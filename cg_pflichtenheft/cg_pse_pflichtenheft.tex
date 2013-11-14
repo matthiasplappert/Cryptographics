@@ -168,14 +168,47 @@ und Windows XP
 
 \subsection{Funktionale Anforderungen}
 \begin{FA}[start=100]
+\item Prozess: Diffie-Hellman Schlüsselaustausch
+\end{FA}
+\begin{itemize}[label={}]
+    \item Ziel: Vermittlung des Diffie-Hellman Schlüsselaustauschs mit Farben-Analogie
+    \item Vorbedingung: keine
+    \item Nachbedingung (Erfolg): Alice und Bob haben sich auf eine 
+        gemeinsame, geheime Farbe geeinigt die Eve nicht kennt
+    \item Nachbedingung (Fehlschlag): Alice und Bob haben eine gemeinsame, 
+        nicht geheime Farbe oder sich auf gar keine Farbe geeinigt
+    \item Auslösendes Ereignis: Ausgewählt in der Timeline
+    \item Anmerkung: das hier vorgestellte Spiel 
+        soll zum einen Demonstriert werden,
+        zum anderen soll es der Nutzer auch selber spielen
+\end{itemize}
+
+Beschreibung:
+\begin{enumerate}
+    \item Erkläre das Ziel sich auf ein gemeinsames Geheimnis zu einigen
+        durch Nutzung eines unsicheren Übertragungskanals
+        bei dem jeder Lauschen kann, ohne das diese das Geheimnis erfahren
+    \item Demonstriere das Prinzip der Einwegfunktion, anhand Farben die man mischen
+        kann, Farben zu mischen ist einfach, zur einer gemischten Farbe
+        herauszufinden welche Farben verwendet wurden hingegen ist schwer
+    \item Alice und Bob einigen sich auf eine gemeinsame nicht-geheime Farbe A
+    \item Alice wählt eine geheime Farbe X und mischt sie mit A zur Farbe AX
+    \item Bob wählt eine geheime Farbe Y und mischt sie mit A zur Farbe AY
+    \item Alice schickt AX zu Bob u. Bob schickt AY zu Alice
+    \item Alice mischt AX mit Y zu AXY
+    \item Bob mischt AY mit X zu AYX
+    \item Wenn Eve weder X noch Y erfahren hat, kennt Eve nicht AXY
+\end{enumerate}
+
+\begin{FA}[start=200]
 \item Kryptographische Verfahren auswählen
 \end{FA}
 
-\begin{FA}[start=200]
+\begin{FA}[start=300]
 \item Funktionen von den jeweiligen Verfahren abhängig
 \end{FA}
 
-\begin{FA}[start=300]
+\begin{FA}[start=400]
 \item Jederzeit die Möglichkeit für interaktive Hilfe ([?]-Button)
 \end{FA}
 
