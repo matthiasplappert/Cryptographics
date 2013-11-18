@@ -5,6 +5,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{enumitem}
 \usepackage{graphicx}
+\usepackage{float}
 
 \newlist{FA}{enumerate}{1}
 \setlist[FA]{label=/FA\arabic*/}
@@ -266,7 +267,24 @@ vielleicht mit Komplementärfarben visualisieren ähnlich wie Diffie-Hellman
 Dies erlaubt das Ausstellungsstück zielgerichtet weiterzuentwickeln.
 
 \section{Benutzerschnittstelle}
-[Grafiken, Entwürfe]
+
+\subsection{Willkommensbildschirm}
+
+Der Willkommensbildschirm besteht einem einleitenden Text, der das Aussstellungsstück kurz dem Puplikum vorstellt, und einer Zeitleiste (Fig. 1). Auf der Zeitleiste werden mithilfe einer geeigneten Skala Jahreszahlen dargestellt. Die kryptografischen Visualisierungen werden auf dieser Zeitleiste mithilfe von "Meilensteinen" dargestellt. Weiterhin werden die Markierungen in grün, gelb oder rot eingefärbt, um den Schwierigkeitsgrad auf einen Blick erkennbar zu machen.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=\textwidth]{ui_welcome_main-draft.jpg}
+  \caption{Willkommensbildschirm mit Zeitleiste.}
+\end{figure}
+
+Sobald ein Meilenstein ausgewählt wurde, erscheint ein Popover (Fig. 2), dass den Namen, die Schwierigkeit und den Zweck des gewählten kryptografischen Verfahrens noch einmal zusammenfasst. Weiterhin werden ein Screenshot der eigentlichen Visualisierung sowie ein Button, um diese zu starten, dargestellt.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=\textwidth]{ui_welcome_popover-draft.jpg}
+  \caption{Detailansicht des Popovers in Fig. 1.}
+\end{figure}
 
 \section{Globale Testfälle}
 - automatisiertes Testen mithilfe von JUnit vor allem der Krypto-Algorithmen
@@ -281,8 +299,8 @@ Das System verwendet das bekannte MVC-Entwurfsmuster. Weiterhin ist geplant, das
 
 \begin{figure}[h!]
   \centering
-    \includegraphics[width=1.0\textwidth]{systemmodel-draft.jpg}
-  \caption{Schematische Darstellung des beschriebenen Systems}
+    \includegraphics[width=\textwidth]{systemmodel-draft.jpg}
+  \caption{Schematische Darstellung des beschriebenen Systems.}
 \end{figure}
 
 \section{Beispielszenarien}
