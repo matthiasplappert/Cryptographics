@@ -268,13 +268,13 @@ Dies erlaubt das Ausstellungsstück zielgerichtet weiterzuentwickeln.
 
 \section{Benutzerschnittstelle}
 
-\subsection{Willkommensbildschirm}
+\subsection{Ablauf einer Visualisierung}
 
 Der Willkommensbildschirm besteht einem einleitenden Text, der das Aussstellungsstück kurz dem Puplikum vorstellt, und einer Zeitleiste (Fig. 1). Auf der Zeitleiste werden mithilfe einer geeigneten Skala Jahreszahlen dargestellt. Die kryptografischen Visualisierungen werden auf dieser Zeitleiste mithilfe von "Meilensteinen" dargestellt. Weiterhin werden die Markierungen in grün, gelb oder rot eingefärbt, um den Schwierigkeitsgrad auf einen Blick erkennbar zu machen.
 
 \begin{figure}[H]
   \centering
-    \includegraphics[width=\textwidth]{ui_welcome_main-draft.jpg}
+    \includegraphics[width=\textwidth]{ui_walkthrough_start-draft.jpg}
   \caption{Willkommensbildschirm mit Zeitleiste.}
 \end{figure}
 
@@ -282,8 +282,24 @@ Sobald ein Meilenstein ausgewählt wurde, erscheint ein Popover (Fig. 2), dass d
 
 \begin{figure}[H]
   \centering
-    \includegraphics[width=\textwidth]{ui_welcome_popover-draft.jpg}
+    \includegraphics[width=\textwidth]{ui_walkthrough_popover-draft.jpg}
   \caption{Detailansicht des Popovers in Fig. 1.}
+\end{figure}
+
+Nachdem der Benutzer eine Visualisierung startet, wird diese angezeigt (Fig. 3). Hierbei ist hervorzuheben, dass der Benutzer zu jedem Zeitpunkt die Visualisierung abbrechen kann, indem er auf den Button in der oberen linken Ecke klickt. Hilfe erhält er zu jedem Zeitpunkt im rechten oberen Eck.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=\textwidth]{ui_walkthrough_visualisation-draft.jpg}
+  \caption{Darstellung einer Visualisierung.}
+\end{figure}
+
+Falls der Benutzer die Visualisierung erfolgreich beendet hat, wird (Fig 4.) angezeigt. Zunächst wird dem Benutzer zu seinem Erfolg gratuliert. Weiterhin besteht die prominente Möglichkeit, zum Willkommensbildschirm zurückzukehren. Falls das Interesse des Benutzers geweckt wurde, kann er sich weiterführendes Material mit nach Hause nehmen, indem er den abgebildeten QR-Code scant.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=\textwidth]{ui_walkthrough_end-draft.jpg}
+  \caption{Erfolgreiches Beenden einer Visualisierung.}
 \end{figure}
 
 \section{Globale Testfälle}
