@@ -25,79 +25,66 @@
 \newpage
 
 \section{Zielbestimmung}
+
+
 Im Rahmen der PSE-Veranstaltung soll für das Kryptologikum des Instituts für 
 Kryptographie und Sicherheit eine Software (Cryptographics / Anicrypto?) zur 
 Demonstration kryptographischer Verfahren erstellt werden. \\
 \\
-Das Programm soll im Laufe der Ausstellung Kryptologikum das 
-Interesse der Besucher wecken, 
-sich mit Verschlüsselung zu befassen und 
-schließlich auch ausgewählte Inhalte der Kryptographie näher bringen
+Das Programm soll im Laufe der Ausstellung Kryptologikum das Interesse der Besucher wecken, sich mit Verschlüsselung zu befassen und schließlich auch ausgewählte Inhalte der Kryptographie näher bringen. \\
 \\
+Wichtig ist, dass die Visualisierungen ansprechend und verständlich gestaltet sind. Die Nutzung von Cryptographics soll Spaß machen. \\
 \\
-Soll Spaß machen.
+Jedes Verfahren wird hierbei in drei Schritten vorgestellt. Diese sind eine Demo, ein interaktiver Versuch und ein wiki-artiger Artikel für weitere Informationen.
+In der Demo wird dem Nutzer der Ablauf der Verschlüsselung möglichst anschaulich demonstriert. Darauf folgend kann im Eigenversuch auf der gleichen Oberfläche die Verschlüsselung selbst ausprobiert werden. Dem Nutzer wird hierbei eine größtmögliche Freiheit zur Wahl sämtlicher Komponenten (wie Klartext, Primzahl, etc.) gelassen. Unter "Mehr Wissen" sollen sich interessierte Benutzer schließlich tiefgehender über das Verfahren informieren können, über seine Entstehung, Einsatz und Nachfolger. Auf geeignete weiterführende Literatur kann mit QR-Codes verwiesen werden. \\
+
 
 \subsection{Musskriterien}
 
 \begin{itemize}
-    \item Implementierung der Caesar-Chiffre
-    \item Implementierung Vigen`ere-Chiffre
-    \item Implementierung RSA
-    \item Implementierung Diffie-Hellmann
-    \item Implementierung Hashfunktionen
+    \item Visualisierung Caesar-Chiffre
+    \item Visualisierung Vigenère-Chiffre
+    \item Visualisierung Diffie-Hellmann
     \item Robuste Programmierung
     \item Intuitive Benutzerführung
     \item Schnelle Reaktionszeiten
-    \item Zugriff auf Krypto-Verfahren über Zeitleiste:
-        \begin{itemize}
-            \item Pop-Up mit kurzem Umriss des Verfahrens
-            \item Draufklicken um zum Verfahren zu Gelangen
-            \item Einfärbung grün/gelb/rot nach Komplexität des Verfahrens
-        \end{itemize}
-    \item Drei Optionen je Verfahren: Demo, Selsbstversuch, weitere Informationen
-    \item Angeleiter Selbstversuch bei "roten" Verfahren
+    \item Zugriff auf Krypto-Verfahren über Zeitleiste
+    \item Benutzerführung über Phasen
+    \item Angeleiter Selbstversuch bei komplexen Verfahren
     \item Interaktion des Benutzers über den Touchscreen
     \item einfache, übersichtliche UI, die sich gut auf Touchscreen bedienen lässt
     \item Robustheit gegen au"sergewöhnliche Interaktion
     \item Man soll das Programm nicht schlie"sen können währen der Vorführung
-    \item Praxisbezug bei modernen Kryptoverfahren
-    \item Sammlung wiederverwendbare UI-Element um z.B. die Texteingabe gleich
-        zu behandeln
+    \item Praxisbezug auf moderne Kryptoverfahren
+    \item Eingängige optische Darstellung der verschiedenen Verfahren
     \item Krypto-Algorithmen lassen sich schrittweise ausführen, um den Prozess
-        langsam zu verdeutlichen (bspw. bei Caesar: Buchstabe für Buchstabe
-        bis Codewort generiert wurde)
-    \item der Benutzer soll die Möglichkeit bekommen Dinge Schritt für Schritt
-        in seiner eigenen Geschwindigkeit nachzuvollziehen und ggf.
-        zurückspringen können
-
-    \item Es darf kein Zurückkommen zum Betriebssystem möglich sein
-    \item Visualisierungen sollten Grafiken und Animationen verwenden um Vorgänge zu verdeutlichen
+        langsam zu verdeutlichen
+    \item Beenden des Programms / Wechsel zum Desktop nur per angeschlossener Tastatur, nicht über Touch-Eingabe
+    \item Das Programm darf zu keinem Zeitpunkt in einen undefinierten Zustand fallen
+    \item Es darf nicht möglich sein das Programm in eine Sackgasse zu führen, die einen Neustart erfordert
+    \item Time-Out bei fehlender Nutzerinteraktion, Rückkehr zum Startbildschirm
+    \item Es ist jederzeit möglich über einen Button zurück zur Startoberfläche zu gelangen
 \end{itemize}
 
 \subsection{Wunschkriterien}
 
 \begin{itemize}
-    \item Implementierung Public Key – Infrastruktur
-    \item Implementierung Shamir Secret Sharing
-    \item Implementierung Passwortsicherheit
-    \item Implementierung One-Time-Pad
-    \item Implementierung Blockchiffre (DES, AES)
-    \item Bei Problemen im Selbstversuch hilft der Computer mit Tipps aus
+    \item Visualisierung Public Key – Infrastruktur
+    \item Visualisierung Shamir Secret Sharing
+    \item Visualisierung Passwortsicherheit
+    \item Visualisierung One-Time-Pad
+    \item Visualisierung Blockchiffre (DES, AES)
+    \item Visualisierung Hashfunktionen
+    \item Visualisierung RSA
     \item Modulares Austauschen/Hinzufügen von weiteren kryptografischen Verfahren
-    \item Einschätzung des aktuellen Wissenstands des Benutzers.
     \item Implementierung elliptischer Kurven
     \item Literaturhinweise(auch weiterführende Literatur), sofern Interesse besteht.
     \item Visualisierungen sollten möglichst ansprechend sein, indem sie z.B. Analogien 
         verwenden (ein Datenpaket wird zu einer Postkarte, ein Schlüssel wird zum einem tatsächlichen Schlüssel, ...).
-    \item Wenn über einen Zeitraum x keine Nutzereingaben erfolgen erscheint ein Countdown 
-        nach dessen Ablauf das Programm auf den Willkommensbildschirm zurücksetzt
-    \item Visualisierung von Modulo mit einer Uhr
+    \item Visualisierungen sollten Grafiken und Animationen verwenden um Vorgänge zu verdeutlichen
     \item Visualisierung von Angriffen auf Verfahren
-    \item (Blockchiffre im ECB-Modus vs. CBC-Modus, siehe Bild in 
-    \item http://de.wikipedia.org/wiki/Electronic\_Code\_Book\_Mode)
-    \item Brute-Force Angriff auf (symmetrisch/asymmetrisch?) Verschlüsselung
-    \item Enigma?
-    \item Zahlentheorie: modulares Rechnen/ Faktorisierungsproblem/ RSA
+    \item Erfassung von Nutzungsstatistiken
+    \item Animation auf Startbildschirm
 \end{itemize}
 
 \subsection{Abgrenzungskriterien}
@@ -109,6 +96,7 @@ Soll Spaß machen.
         sondern Fokus auf schrittweiser Ausführbarkeit
     \item keine formale Korrektheit bei Erklärungen sondern Ansatz ohne nötige Vorkenntnisse 
         um breiter Masse zugänglich zu sein
+    \item nicht zur tatsächlichen Verschlüsselung von Texten gedacht 
 \end{itemize}
 
 \section{Produkteinsatz}
@@ -168,6 +156,8 @@ und Windows XP
 \section{Produktfunktionen}
 
 \subsection{Funktionale Anforderungen}
+
+\subsubsection{Grundfunktionen}
 
 \begin{FA}[start=100]
 \item Darstellung aller Visualisierungen auf einer Zeitleiste
@@ -241,6 +231,8 @@ RSA und Public-Key Verschlüsselung anhand von Pad-Locks als
 öffentliche Schlüssel und den Schlüssel  dazu als privaten,
 vielleicht mit Komplementärfarben visualisieren ähnlich wie Diffie-Hellman
 
+\subsubsection{Erweiterte Funktionen}
+
 \subsection{Nichtfunktionale Anforderungen}
 
 \begin{NA}[start=100]
@@ -301,11 +293,6 @@ Falls der Benutzer die Visualisierung erfolgreich beendet hat, wird (Fig 4.) ang
   \caption{Erfolgreiches Beenden einer Visualisierung.}
 \end{figure}
 
-\section{Globale Testfälle}
-- automatisiertes Testen mithilfe von JUnit vor allem der Krypto-Algorithmen
-- ggf. automatisiertes Testen der UI mithilfe von Szenarien und geeignetem Framework
-Stresstest mit möglichst zufälligen und willkürlichen Eingaben (wie es Kinder eben tun)
-Usability Tests mit passenden Testpersonen
 
 \section{Systemmodelle}
 
@@ -352,6 +339,64 @@ Die Ausstellung ist für diesen Tag nun zu Ende, und die Kryptologikum-Administr
     \includegraphics[width=\textwidth]{resources/usecase1}
   \caption{Anwendungsfalldiagramm zu beschriebenen Szenarien.}
 \end{figure}
+
+Caesar:
+Phase1, Animation:
+Startbildschirm von Caesar wird aus einer Animation bestehen, die die Problematik der fehlenden Verschlüsselung in der Römerzeit und die Lösung Caesars erklärt. 
+Funktionale Anforderungen für alle Chiffren:(generisch, also auch für Cäsar)
+-------------------------------------
+Während der Animation ist es jederzeit möglich sofort zum Selbstversuch überzugehen, sowie auch sofortiges wechseln zum textlastigen Geschichtsteil der Chiffre.
+Man muss währenddessen jederzeit über die Timeline zum nächsten Verschlüsselungsverfahren wechseln können.
+Auch der Teil für Zusatzinformationen, der die QR-Codes enthält, muss erreichbar sein. 
+Nachdem die Animation zu Ende ist, wechselt der Bildschirm in die Phase2.
+-------------------------------------
+Phase2, Selbstversuch:
+Man wird anfangs aufgefordert irgendeine !kurze Zeichenkette oder seinen Vornamen einzugeben. Auf der Eingabe wird dann in den nächsten Schritten gearbeitet.
+             Der Aufbau des Selbstversuchs gestaltet sich folgendermaßen:
+                    In der Mitte des Bildschirms sieht man die Eingabe des Benutzers. Unter der Eingabe ist das Alphabet abgebildet, wobei jeder Buchstabe dort nummeriert ist. Der erste Schritt des Selbstversuchs ist es die Eingabe selbst zu verschlüsseln. Dies geschieht indem jeder Buchstabe der Eingabe nacheinander aufleuchtet und der Benutzer den dazu gehörigen verschlüsselten Buchstaben im Alphabet anklickt. Das Chiffrat taucht zwischen der Eingabe und dem Alphabet auf, sodass unter jedem Buchstaben sein verschlüsseltes Pendant ist. Nachdem alle Buchstaben abgearbeitet sind, entschlüsselt das Programm das Chiffrat selbst und zeigt die Ausgabe unterhalb des Chiffrats an.
+                     Der zweite Schritt des Selbstversuchs besteht in der Entschlüsselung eines gegebenen Chiffrats(welcher nicht größer als die Eingabe des Benutzer von vorhin sein soll). Dies geschieht analog zum ersten Schritt. 
+Optional(Wunschkriterien): 
+                    Dritter Schritt. Dem Benutzer wird die Möglichkeit gegeben ein gegebenes Chiffrat zu knacken. Wobei hier der Klartext nicht mit Cäsar3 verschlüsselt wurde, sondern mit CäsarK. 
+ Wenn alles abgearbeitet ist wechselt der Bildschirm in Phase3, dem Hintergrund der Caesar Chiffre. Sprich die geschichtlichen Hintergründe und seine Besonderheit, sowie auch Schwächen.
+Phase3, Verfahrensinformationen:
+Zu besprechen. Keine Animationen mehr. Mindestens Vor-/Nachteile des Verfahrens und geschichtlicher Hintergrund.
+Sollte der Benutzer noch mehr Informationen zu einem Verschlüsselungsverfahren haben möchte, wird er spätestens in dieser Phase besonders auf die "weiterführende" Literatur verwiesen.
+
+Vigenère:
+Phase1, Animation:
+Die Animation muss jetzt die Problematik der leichten Knackbarkeit der vorherigen Chiffren und Vigenères Lösung dazu zum Ausdruck bringen. Der Benutzer muss aus der Animation klar entnehmen können wer Vigenère war und wie das Verfahren funktioniert.
+Generische Anforderung, wie am Anfang bei Cäsar beschrieben.
+Phase2, Selbstversuch:
+Der Selbstversuch bei Vigenère erfordert für das volle Verständnis eine mindestens doppelt so lange Zeichenkette, wie bei Cäsar, zur Abarbeitung.
+Anfangs wird wie bei Cäsar eine Eingabe gefordert, auf der gearbeitet wird. Die Eingabe besteht aus der Zeichenkette die verschlüsselt wird und aus dem Schlüssel(Codewort).
+Die Schrittreihenfolge ist wie bei Cäsar. Zuerst muss der Benutzer die Eingabe mit dem eingegeben Codewort verschlüsseln und im zweiten Schritt dann ein vorgegebenes Chiffrat mit einem vorgegebenen Schlüssel entschlüsseln.
+Das Verschlüsseln wird folgendermaßen in Szene gesetzt:
+           Die Eingabe des Benutzers wird zentral auf dem Bildschirm angezeigt. Unterhalb ist wieder das Alphabet mit drunter liegender Nummernfolge abgebildet. Unterhalb des Codewortes bekommt jeder Buchstabe seine Nummer aus dem Alphabet, sodass der User weiß um wie vielen Stellen das Klartextzeichen zu verschieben ist. Verschlüsselt wird indem jeder Buchstabe der Eingabe und des Codeworts nacheinander aufleuchtet und der Benutzer das dazu gehörige Chiffrezeichen im Alphabet anklickt. Unter der Eingabe wird anschließend das Chiffrat abgebildet und das Programm entschlüsselt am Ende das Chiffrat und zeigt das Ergebnis an.
+Entschlüsselt wird analog. Hier sind aber das Chiffrat und Codewort vorgegeben. Das Ergebnis wird anschließend unter dem Chiffrat angezeigt.
+Optional:
+Dritter Schritt. Dem Benutzer wird die Möglichkeit gegeben ein gegebenes Chiffrat ohne des Codewortes zu entschlüsseln. Benötigte Hilfsmittel, wie die Häufigkeitsanalyse sind bereit zu stellen. Muss jedoch ebenfalls noch abgeklärt werden, wie genau, da auf zu kurzen Zeichenketten die Häufigkeitsanalyse wie bei Cäsar zu wenig Aussagekraft.
+Phase3 ist analog wie bei Cäsar.
+
+Public Key Infrastruktur(PKI):
+Eins vorneweg: Da dies eine aktuelle Problematik ist, ist es wichtig die Animationen anhand von aktuellen Beispielen aus dem heutigem Alltag darzustellen.
+Phase1, Animation:
+Es ist Anhand einer Animation zu zeigen, wie die Authentifikation öffentlicher Schlüssel mithilfe von Zertifikaten realisiert wird. Es muss daraus ersichtlich sein, wie die Zertifikate beweisen, dass der öffentliche Schlüssel zum anderen Kommunikationspartner gehört und nicht durch einen Angreifer ausgetauscht wurde. 
+Vorausgesetzt man hat die Grundlagen über public key Kryptographie und Hashing verinnerlicht ist dieses System unter die Schwierigkeit "Mittel" einzuordnen. Es ist jedoch auch möglich die Schwierigkeit zu reduzieren indem man die Signaturen bspw. durch eine einfache Unterschrift ersetzt, das beispielhaft für eine Signatur stehen kann. So kann die Schwierigkeit auf "Einfach" zu reduziert werden.
+Es ist jedoch zu beachten, dass hierzu mehrere Animationen notwendig sind um die PKI, wie sie heute eingesetzt ganz verstehen können. Dies liegt daran, dass verschieden Vertrauensmodelle benutzt werden. Zuallererst ist die Rollenvielfalt auf einen User und Certification Authority(CA) zu beschränken. User will in diesem Fall seinen öffentlichen Schlüssel von der CA signieren lassen, sodass bei der Kommunikation mit anderen Usern er neben seinem Schlüssel auch ein Zertifikat vorlegen kann, dass der Schlüssel nicht verändert wurde und er dazu den passenden secret key besitzt. So weiß der andere Kommunikationspartner, dass nur der User die, mit dem erhaltenen public key verschlüsselten, Nachrichten entschlüsseln kann. Diese Zertifikate setzen ein gewisses Vertrauen in den Herausgeber(CA) voraus. Denn, wenn die CA nicht wirklich seriös ist, ist das Zertifikat nicht wirklich ein Beweis dafür, dass der Schlüssel nicht verändert wurde. Vertraut man der CA jedoch fest, so ist man dann auch davon überzeugt, dass man die vertraulichen Nachrichten mit dem PK verschlüsseln und abschicken kann. Das führt auf eine weitere Grundlage der PKI, die Vertrauensmodelle. Aufgrund der großen Vielfalt ist hier auch dringend nötig, wie bei der Rollenvielfalt, auf das wichtigste zu reduzieren.
+Das erste Modell besteht aus einer oder mehreren CA's, die Zertifikate an Benutzer herausgeben können. Hierzu ist die Problematik aufzuzeigen, die dabei entsteht.
+Das zweite ist eine Hierarchie von CA's. Sprich die CA's können andere Benutzer dazu ermächtigen an andere Zertifikate auszustellen. Das Vertrauen in die CA's überträgt sich also auf diesen Benutzer! Was jedoch auch gewisse Probleme mit sich bringt.
+Das dritte Modell heißt Anarchie oder auch Web of Trust. Hier ist jeder Benutzer eine CA und kann seine öffentlichen Schlüssel selbst signieren. Wie auch davor bringt das Probleme und Vorteile mit sich.
+Phase2, Selbstversuch:
+Ist noch zu klären :D
+Phase3, Informationen:
+Hierzu kann man die geschichtliche Einordnung der Problematik der Schlüsselverteilung der Public Key Kryptosystemen(PKK) aufzuzeigen. Die Akteure, die bei der Entwicklung mitgewirkt haben sind aufzuzeigen. Und weiterer Schnickschnack, der uns noch im Laufe einfällt. Dies Das Ananas.
+
+
+\section{Globale Testfälle}
+- automatisiertes Testen mithilfe von JUnit vor allem der Krypto-Algorithmen
+- ggf. automatisiertes Testen der UI mithilfe von Szenarien und geeignetem Framework
+Stresstest mit möglichst zufälligen und willkürlichen Eingaben (wie es Kinder eben tun)
+Usability Tests mit passenden Testpersonen
 
 \section{Qualitätsbestimmung}
 
