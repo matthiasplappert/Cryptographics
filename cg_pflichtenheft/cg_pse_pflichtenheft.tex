@@ -209,6 +209,44 @@ Beschreibung:
     \item Wenn Eve weder X noch Y erfahren hat, kennt Eve nicht AXY
 \end{enumerate}
 
+\begin{FA}[start=100]
+\item Prozess: Diffie-Hellman Schlüsselaustausch Selbstversuch
+\end{FA}
+\begin{itemize}[label={}]
+    \item Ziel: Der Nutzer hat eine erfolgreichen Diffie-Hellman Schlüsselaustausch
+        (mit Farben-Analogie) mit Bob durchgeführt
+    \item Vorbedingung: keine
+    \item Nachbedingung (Erfolg): Alice und Bob haben sich auf eine
+        gemeinsame, geheime Farbe geeinigt die Eve nicht kennt
+    \item Nachbedingung (Fehlschlag): Alice und Bob haben eine gemeinsame,
+        nicht geheime Farbe oder sich auf gar keine Farbe geeinigt
+    \item Auslösendes Ereignis: Ende der Demonstration des Diffie-Hellman
+        Schlüsselaustauschs mit Farben, oder die Demonstration wurde Übersprungen
+\end{itemize}
+
+Beschreibung:
+\begin{enumerate}
+    \item Der Nutzer übernimmt die Rolle von Alice
+    \item Benenne die Aufgabe, dass der Nutzer (Alice) sich auf ein gemeinsames Geheimnis
+        mit Bob einigt, wobei ein öffentlicher Kanal genutzt wird auf dem Eve lauscht,
+        ohne dass Eve das Geheimnis erfährt.
+    \item Der Nutzer (Alice) wird aufgefordert eine Farbe A zu wählen,
+        wurde diese gewählt, wird der Nutzer aufgefordert
+        die nicht geheime Farbe an Bob zu schicken.
+    \item Der Nutzer soll nun eine geheime Farbe X != A wählen,
+        diese soll er an Bob schicken
+    \item Bob wählt eine geheime Farbe Y und mischt sie mit A zur Farbe AY
+    \item Der Nutzer kann nun eine Farbe zu Bob schicken,
+        wenn er die private Farbe X schickt hat er verloren,
+        wenn er A schickt hat er ebenso verloren,
+        wenn er AX schickt geht es weiter
+    \item Der Nutzer wird aufgefordert nun die richtigen Farben zu mischen,
+        wenn er X mit AY mischt geht es weiter, wenn nicht hat er verloren.
+    \item Bob mischt Y mit AX zu AXY
+    \item Wenn Eve weder X noch Y erfahren hat, kennt Eve nicht AXY,
+        der Nutzer kann beglückwünscht werden
+\end{enumerate}
+
 \begin{FA}[start=200]
 \item Kryptographische Verfahren auswählen
 \end{FA}
