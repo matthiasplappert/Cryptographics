@@ -13,6 +13,9 @@
 \newlist{NA}{enumerate}{1}
 \setlist[NA]{label=/NA\arabic*/}
 
+\newlist{PD}{enumerate}{1}
+\setlist[PD]{label=/PD\arabic*/}
+
 
 \title{Cryptographics Pflichtenheft}
 \author{}
@@ -101,6 +104,7 @@ In der Demo wird dem Nutzer der Ablauf der Verschlüsselung möglichst anschauli
     \item Visualisierung von Angriffen auf Verfahren
     \item Erfassung von Nutzungsstatistiken
     \item Animation auf Startbildschirm
+    \item Simple Datenerhebung um externe Analyse von Nutzerverhalten zu ermöglichen
 \end{itemize}
 
 \subsection{Abgrenzungskriterien}
@@ -349,11 +353,15 @@ vielleicht mit Komplementärfarben visualisieren ähnlich wie Diffie-Hellman
 - Die Anwendung muss leicht zu bedienen sein
 
 \section{Produktdaten}
-
-\subsection{Nutzerdaten}
-
-Zu speichern sind ggf. Nutzungsstatistiken, um herauszufinden, welche Visualisierung gut ankommt und welche nicht. 
-Dies erlaubt das Ausstellungsstück zielgerichtet weiterzuentwickeln.
+\begin{PD}[start=10]
+  \item Nutzerverhalten: Für einen Logeintrag zur externen Analyse von anonymem Nutzerverhalten sind folgende Daten lokal zu speichern:
+  \begin{itemize}
+    \item Zeitstempel
+    \item zugehörige Visualisierung
+    \item Ereignis-Code
+    \item Frei wählbare, textuelle Beschreibung des Ereignisses
+  \end{itemize}
+\end{PD}
 
 \section{Benutzerschnittstelle}
 
