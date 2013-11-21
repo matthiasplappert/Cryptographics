@@ -80,7 +80,6 @@ In der Demo wird dem Nutzer der Ablauf der Verschlüsselung möglichst anschauli
     \item Visualisierung Hashfunktionen
     \item Visualisierung RSA
     \item Modulares Austauschen/Hinzufügen von weiteren kryptografischen Verfahren
-    \item Implementierung elliptischer Kurven
     \item Literaturhinweise(auch weiterführende Literatur), sofern Interesse besteht.
     \item Visualisierungen sollten möglichst ansprechend sein, indem sie z.B. Analogien 
         verwenden (ein Datenpaket wird zu einer Postkarte, ein Schlüssel wird zum einem tatsächlichen Schlüssel, ...).
@@ -165,7 +164,7 @@ und Windows XP
 
 \begin{FA}[start=100]
 \item Darstellung aller Visualisierungen auf einer Zeitleiste
-\item Interaktion mit der Zeitleiste, um eine einzelne Visualiserung auswählen zu können
+\item Interaktion mit der Zeitleiste, um eine einzelne Visualisierung auswählen zu können
 \item Darstellung einer Übersichtsseite zur gewählten Visualisierung
 \item Start der gewählten Visualisierung
 \item Abbruch einer gewählten Visualisierung, um zum Startbildschirm zurückzukehren
@@ -182,36 +181,71 @@ und Windows XP
 %/FA206/ - Fehlversuche beim Lösen einer Herausforderung
 
 \begin{FA}[start=100]
-\item Prozess: Diffie-Hellman Schlüsselaustausch
+\item Prozess: Diffie-Hellman Schlüsselaustausch Demonstration
 \end{FA}
 \begin{itemize}[label={}]
     \item Ziel: Vermittlung des Diffie-Hellman Schlüsselaustauschs mit Farben-Analogie
     \item Vorbedingung: keine
-    \item Nachbedingung (Erfolg): Alice und Bob haben sich auf eine 
+    \item Nachbedingung (Erfolg): Alice und Bob haben sich auf eine
         gemeinsame, geheime Farbe geeinigt die Eve nicht kennt
-    \item Nachbedingung (Fehlschlag): Alice und Bob haben eine gemeinsame, 
-        nicht geheime Farbe oder sich auf gar keine Farbe geeinigt
+    \item Nachbedingung (Fehlschlag): Gibt es nicht, da nur
+        eine Demonstration ausgeführt wird
     \item Auslösendes Ereignis: Ausgewählt in der Timeline
-    \item Anmerkung: das hier vorgestellte Spiel 
-        soll zum einen Demonstriert werden,
-        zum anderen soll es der Nutzer auch selber spielen
 \end{itemize}
 
 Beschreibung:
 \begin{enumerate}
-    \item Erkläre das Ziel sich auf ein gemeinsames Geheimnis zu einigen
+    \item Erkläre das Ziel sich auf ein gemeinsames Geheimnis zu einigen,
         durch Nutzung eines unsicheren Übertragungskanals
-        bei dem jeder Lauschen kann, ohne das diese das Geheimnis erfahren
+        bei dem Eve lauschen kann, ohne dass Eve das Geheimnis erfährt
     \item Demonstriere das Prinzip der Einwegfunktion, anhand Farben die man mischen
-        kann, Farben zu mischen ist einfach, zur einer gemischten Farbe
+        kann. Farben zu mischen ist einfach, zur einer gemischten Farbe
         herauszufinden welche Farben verwendet wurden hingegen ist schwer
-    \item Alice und Bob einigen sich auf eine gemeinsame nicht-geheime Farbe A
+    \item Alice und Bob einigen sich auf eine gemeinsame, nicht geheime Farbe A
     \item Alice wählt eine geheime Farbe X und mischt sie mit A zur Farbe AX
     \item Bob wählt eine geheime Farbe Y und mischt sie mit A zur Farbe AY
     \item Alice schickt AX zu Bob u. Bob schickt AY zu Alice
-    \item Alice mischt AX mit Y zu AXY
-    \item Bob mischt AY mit X zu AYX
+    \item Alice mischt X mit AY zu AYX
+    \item Bob mischt Y mit AX zu AXY
     \item Wenn Eve weder X noch Y erfahren hat, kennt Eve nicht AXY
+\end{enumerate}
+
+\begin{FA}[start=100]
+\item Prozess: Diffie-Hellman Schlüsselaustausch Selbstversuch
+\end{FA}
+\begin{itemize}[label={}]
+    \item Ziel: Der Nutzer hat einen erfolgreichen Diffie-Hellman Schlüsselaustausch
+        (mit Farben-Analogie) mit Bob durchgeführt
+    \item Vorbedingung: keine
+    \item Nachbedingung (Erfolg): Alice und Bob haben sich auf eine
+        gemeinsame, geheime Farbe geeinigt die Eve nicht kennt
+    \item Nachbedingung (Fehlschlag): Alice und Bob haben eine gemeinsame,
+        nicht geheime Farbe oder sich auf gar keine Farbe geeinigt
+    \item Auslösendes Ereignis: Ende der Demonstration des Diffie-Hellman
+        Schlüsselaustauschs mit Farben, oder die Demonstration wurde Übersprungen
+\end{itemize}
+
+Beschreibung:
+\begin{enumerate}
+    \item Der Nutzer übernimmt die Rolle von Alice
+    \item Benenne die Aufgabe, dass der Nutzer (Alice) sich auf ein gemeinsames Geheimnis
+        mit Bob einigt, wobei ein öffentlicher Kanal genutzt wird auf dem Eve lauscht,
+        ohne dass Eve das Geheimnis erfährt.
+    \item Der Nutzer (Alice) wird aufgefordert eine Farbe A zu wählen,
+        wurde diese gewählt, wird der Nutzer aufgefordert
+        die nicht geheime Farbe an Bob zu schicken.
+    \item Der Nutzer soll nun eine geheime Farbe X != A wählen,
+        diese soll er an Bob schicken
+    \item Bob wählt eine geheime Farbe Y und mischt sie mit A zur Farbe AY
+    \item Der Nutzer kann nun eine Farbe zu Bob schicken,
+        wenn er die private Farbe X schickt hat er verloren,
+        wenn er A schickt hat er ebenso verloren,
+        wenn er AX schickt geht es weiter
+    \item Der Nutzer wird aufgefordert nun die richtigen Farben zu mischen,
+        wenn er X mit AY mischt geht es weiter, wenn nicht hat er verloren.
+    \item Bob mischt Y mit AX zu AXY
+    \item Wenn Eve weder X noch Y erfahren hat, kennt Eve nicht AXY,
+        der Nutzer kann beglückwünscht werden
 \end{enumerate}
 
 \begin{FA}[start=200]
@@ -226,6 +260,66 @@ Beschreibung:
 \item Jederzeit die Möglichkeit für interaktive Hilfe ([?]-Button)
 \end{FA}
 
+\subsubsection{Erweiterte Funktionen}
+
+\begin{FA}[start=500]
+\item Public Key Infrastruktur (PKI)
+\end{FA}
+\begin{itemize}[label={}]
+\item Prozess: Erläuterung der Vorgänge bei der Verteilung von öffentlichen Schlüsseln.
+\item Ziel: Dem Benutzer ist klar ersichtlich, wie die Verteilung vonstatten geht und welche Instanzen in diesem Rahmen interagieren.
+\item Akteure: Benutzer.
+\item Beschreibung:
+\item Phase 1: Animation.
+\begin{enumerate}
+\item Auf dem Bildschirm erscheinen Animationen, die die Verteilung veranschaulichen.
+\item Der Benutzer sieht die Animation schrittweise und kann sie jederzeit anhalten, vorwärts oder rückwärts gehen.
+\item An die Demo anschließend springt das Programm in die Phase 3, Wiki. 
+\end{enumerate}
+\item Phase 2: Selbstversuch. Wird übersprungen, da sich die Überlegungen zu einem Selbstversuch in PKI keine vernünftigen Ergebnisse liefern. Ein Selbstversuch kann aber jederzeit eingebaut werden.
+\item Phase 3: Wiki.
+\begin{enumerate}
+\item Nach dem Durchlesen ist die Visualisierung des Public-key Infrastruktur abgeschlossen. Der Benuter wird zum nächsten Verfahren weitergeleitet.
+\item //Todo(Mach ich noch heute abend oder morgen früh, da hierzu man bestimmt sehr schöne Erklärungen machen kann! Keine Lust jetzt was billiges hinzuklatschen. Auch die globalen Testfälle mache ich später.):
+\end{enumerate}
+\end{itemize}
+
+\begin{FA}[start=500]
+\item One Time Pad
+\end{FA}
+
+\begin{itemize}[label={}]
+\item Prozess: Visualisierung des Verfahrens One Time Pad.
+\item Ziel: Benutzer versteht das Verfahren und kann selbstständig beliebigen Klartext verschlüsseln und beliebigen Chiffrat, der mit dem One Time Pad erzeugt wurde, entschlüsseln.
+\item Akteure: Benutzer.
+\item Beschreibung:
+\item Phase 1: Animation.
+\begin{enumerate}
+\item Erklärung des Verfahrens anhand von verschiedenen Animationen.
+\item Der Benutzer kann die Animation schrittweise vollziehen und falls nötig schrittweise zurück gehen.
+\item Am Ende der Animation wechselt die Visualisierung des Verfahrens in die zweite Phase, dem Selbstversuch.
+\end{enumerate}
+
+\item Phase2: Selbstversuch.
+\item Schritt 1:
+\begin{enumerate}
+\item Vom Benutzer wird eine Eingabe getätitgt. Diese besteht aus dem Klartext, den es zu verschlüsseln gilt, sowie auch dem Schlüssel. Aus der vorherigen Demo sollte der Benutzer es verstanden haben, wie der Schlüssel auszusehen hat. Oder er lässt sich die Eingabe vom Programm generieren.
+\item Die Funktionalen Anforderungen und der Aufbau des ersten Schrittes des Selbstversuches ist analog zum /F2/. Die Unterschiede sind logischer Natur, wie die Länge des Schlüssels zum Beispiel. Der Benutzer verschlüsselt also mit einem Vigenere, wobei die Schlüssellänge gleich der Länge des Klartextes ist.
+\item Nachdem der Benutzer die Eingabe entsprechend verschlüsselt und das Programm das Chiffrat entschlüsselt und verglichen hat, wechselt im Falle des Erfolgs der Selbstversuch in Schritt 2.
+\end{enumerate}
+
+\item Schritt 2:
+\begin{enumerate}
+\item Die Funktionalen Anforderungen sind im Schritt 2 ebenfalls identisch zu /F2/. Chiffrat wird generiert und Benutzer entschlüsselt das Chiffrat mit einem gegebenen Schlüssel, wie ein Vigenere Chiffrat entschlüsseln würde.
+\item Nachdem alles richtig entschlüsselt wurde und der Benutzer sich über sein neu gewonnenes Wissen freut wechselt die Visualisierung in die Phase 3, dem Wiki-Teil, wo der Benutzer sich noch mehr freuen kann.
+\end{enumerate}
+
+\item Phase3: Wiki.
+\begin{enumerate}
+\item Nach dem Durchlesen ist die Visualisierung von One Time Pad abgeschlossen. Der Benuter wird zum nächsten Verfahren weitergeleitet.
+\end{enumerate}
+\end{itemize}
+
 - Funktionen: Willkommensbildschirm, Algo/Visualisierung wählen, Algo bearbeiten, 
 Soforthilfe passend zum Algo falls man nicht weiter weiß, Algo beenden, 
 ggf. Kontrollfragen oder selbstständiges Anwenden des Gelernten am Ende (z.B. ein Wort mit Caesar verschlüsseln)
@@ -235,7 +329,7 @@ RSA und Public-Key Verschlüsselung anhand von Pad-Locks als
 öffentliche Schlüssel und den Schlüssel  dazu als privaten,
 vielleicht mit Komplementärfarben visualisieren ähnlich wie Diffie-Hellman
 
-\subsubsection{Erweiterte Funktionen}
+
 
 \subsection{Nichtfunktionale Anforderungen}
 
@@ -269,7 +363,7 @@ vielleicht mit Komplementärfarben visualisieren ähnlich wie Diffie-Hellman
 
 \subsection{Ablauf einer Visualisierung}
 
-Der Willkommensbildschirm besteht einem einleitenden Text, der das Aussstellungsstück kurz dem Puplikum vorstellt, und einer Zeitleiste (Fig. 1). Auf der Zeitleiste werden mithilfe einer geeigneten Skala Jahreszahlen dargestellt. Die kryptografischen Visualisierungen werden auf dieser Zeitleiste mithilfe von "Meilensteinen" dargestellt. Weiterhin werden die Markierungen in grün, gelb oder rot eingefärbt, um den Schwierigkeitsgrad auf einen Blick erkennbar zu machen.
+Der Willkommensbildschirm besteht einem einleitenden Text, der das Ausstellungsstück kurz dem Publikum vorstellt, und einer Zeitleiste (Fig. 1). Auf der Zeitleiste werden mithilfe einer geeigneten Skala Jahreszahlen dargestellt. Die kryptografischen Visualisierungen werden auf dieser Zeitleiste mithilfe von "Meilensteinen" dargestellt. Weiterhin werden die Markierungen in grün, gelb oder rot eingefärbt, um den Schwierigkeitsgrad auf einen Blick erkennbar zu machen.
 
 \begin{figure}[H]
   \centering
@@ -331,16 +425,16 @@ Beispiel einer Visualisierung anhand des Caesar-Algos:
 \end{itemize}
 
 \textbf{Szenario 1}:
-Bob ist interessiert in Kryptographie und besucht zu diesem Anlass das Kryptologikum, um mehr Informationen diesbezüglich zu erhalten. Er nähert sich dem Cryptographics, wo ein Bildschirmschoner verschiedene kryptographische Verfahren Teaser-ähnlich visualisiert. Eine Berührung des Bildschirmes zeigt die Willkommensoberfläche von Cryptographics: Ein Zeitstrahl, auf dem chronologisch angeordnet verschiedene kryptographische Verfahren, ihrem Erfindungsjahr zugeordnet, genannt werden und farblich durch ihre Komplexität von grün (leicht) bis rot (schwer) gekennzeichnet sind. Bob wählt durch eine Berührung die Cäsar-Chiffre aus, sie befindet sich nämlich ganz am Anfang des Zeitstrahls. Daraufhin erscheint eine kurze Einleitung als Popup, im Hintergrund baut sich die Oberfläche auf und der Zeitstrahl gleitet verkleinert als Gesamtübersicht an den unteren Bildschirmrand. Nach dem Durchlesen der Einleitung schließt Bob das Popup, und er sieht eine Demonstration der Cäsar-Chiffre als Schritt-für-Schritt-Beispiel auf einer speziell für das Verfahren ausgelegten Oberfläche. Auf genau dieser Oberfläche kann Bob nach dem Beispiel sein neu erlerntes Wissen über das Verfahren anwenden, um Texte zu verschlüsseln, und durch einen gegebenen Schlüssel zu entschlüsseln. Nachdem er das Verfahren nun verinnerlicht hat, kann Bob das nächste Verfahren auswählen, entweder durch Drücken der “Weiter”-Taste, oder indem er ein Verfahren direkt am Zeitstrahl auswählt. Da er die weiteren Verfahren auch noch sehen möchte, arbeitet er sich am Zeitstrahl entlang durch das Programm, wobei er dann schließlich auf das Diffie-Hellman-Verfahren trifft, über welches er noch mehr Informationen erhalten möchte. Er berührt einen dafür vorgesehenen Button, welcher ein Popup mit einem QR-Code öffnet, dass letztendlich zu den ausführlichen Quellen weiterleitet. Alternativ ist dort auch eine gekürzte URL zu finden die man schnell abschreiben kann (Bsp.: http://goo.gl/abcd12).
+Bob ist interessiert in Kryptographie und besucht zu diesem Anlass das Kryptologikum, um mehr Informationen diesbezüglich zu erhalten. Er nähert sich dem Cryptographics, wo ein Bildschirmschoner verschiedene kryptographische Verfahren Teaser-ähnlich visualisiert. Eine Berührung des Bildschirmes zeigt die Willkommensoberfläche von Cryptographics: Ein Zeitstrahl, auf dem chronologisch angeordnet verschiedene kryptographische Verfahren, ihrem Erfindungsjahr zugeordnet, genannt werden und farblich durch ihre Komplexität von grün (leicht) bis rot (schwer) gekennzeichnet sind. Bob wählt durch eine Berührung die Cäsar-Chiffre aus, sie befindet sich nämlich ganz am Anfang des Zeitstrahls. Daraufhin erscheint eine kurze Einleitung als Popup, im Hintergrund baut sich die Oberfläche auf und der Zeitstrahl gleitet verkleinert als Gesamtübersicht an den unteren Bildschirmrand. Nach dem Durchlesen der Einleitung schließt Bob das Popup, und er sieht eine Demonstration der Cäsar-Chiffre als Schritt-für-Schritt-Beispiel auf einer speziell für das Verfahren ausgelegten Oberfläche. Auf genau dieser Oberfläche kann Bob nach dem Beispiel sein neu erlerntes Wissen über das Verfahren anwenden, um Texte zu verschlüsseln, und durch einen gegebenen Schlüssel zu entschlüsseln. Nachdem er das Verfahren nun verinnerlicht hat, kann Bob das nächste Verfahren auswählen, entweder durch Drücken der “Weiter”-Taste, oder indem er ein Verfahren direkt am Zeitstrahl auswählt. Da er die weiteren Verfahren auch noch sehen möchte, arbeitet er sich am Zeitstrahl entlang durch das Programm, wobei er dann schließlich auf das Diffie-Hellman-Verfahren trifft, über welches er noch mehr Informationen erhalten möchte. Er berührt einen dafür vorgesehenen Button, welcher ein Popup mit einem QR-Code öffnet, dass letztendlich zu den ausführlichen Quellen weiterleitet. Alternativ ist dort auch eine gekürzte URL zu finden die man schnell abschreiben kann (Bsp.: http://goo.gl/abcd12).\\
 
 \textbf{Szenario 2}:
-Die ungeduldige Alice wurde von ihrer Freundin überredet, an der Ausstellung teilzunehmen. Sie sieht das Cryptographics und versucht, es durch wiederholte zufällige Eingaben zum Absturz zu bringen. Das Programm zeigt sich jedoch schnell als zu robust, um einem solchen Angriff zu erliegen. Schließlich wählt sie das komplizierteste kryptographische Verfahren aus, um Besuchern nach ihr den Einstieg zu erschweren. Nachdem sie gegangen ist, muss sie jedoch enttäuscht feststellen, dass der nächste Besucher keine weitere Schwierigkeiten hatte, das Programm mit dem dafür vorgesehenen Button in den Grundzustand zurückzuversetzen.
+Die ungeduldige Alice wurde von ihrer Freundin überredet, an der Ausstellung teilzunehmen. Sie sieht das Cryptographics und versucht, es durch wiederholte zufällige Eingaben zum Absturz zu bringen. Das Programm zeigt sich jedoch schnell als zu robust, um einem solchen Angriff zu erliegen. Schließlich wählt sie das komplizierteste kryptographische Verfahren aus, um Besuchern nach ihr den Einstieg zu erschweren. Nachdem sie gegangen ist, muss sie jedoch enttäuscht feststellen, dass der nächste Besucher keine weitere Schwierigkeiten hatte, das Programm mit dem dafür vorgesehenen Button in den Grundzustand zurückzuversetzen.\\
 
 \textbf{Szenario 3}:
-Nachdem Bob nun längere Zeit an Cryptographics verbracht hat, blickt er erschreckt auf die Uhr um festzustellen, dass es schon viel zu spät geworden ist. Er bricht auf, und lässt das Programm genau so zurück, wie er es gerade eben noch benutzt hat. x Sekunden nach seiner letzten Interaktion erscheint eine Meldung, die Bob darauf hingewiesen hätte, dass sich das Programm bald zurücksetzt, sollte in den nächsten y Sekunden keine Eingabe mehr erfolgen. Da er jedoch schon an der Bushaltestelle steht, aktiviert Cryptographics nun den Bildschirmschoner, den Bob zuvor auch schon vorgefunden hatte, und setzt im Hintergrund das Programm wieder auf den Ursprungszustand zurück.
+Nachdem Bob nun längere Zeit an Cryptographics verbracht hat, blickt er erschreckt auf die Uhr um festzustellen, dass es schon viel zu spät geworden ist. Er bricht auf, und lässt das Programm genau so zurück, wie er es gerade eben noch benutzt hat. x Sekunden nach seiner letzten Interaktion erscheint eine Meldung, die Bob darauf hingewiesen hätte, dass sich das Programm bald zurücksetzt, sollte in den nächsten y Sekunden keine Eingabe mehr erfolgen. Da er jedoch schon an der Bushaltestelle steht, aktiviert Cryptographics nun den Bildschirmschoner, den Bob zuvor auch schon vorgefunden hatte, und setzt im Hintergrund das Programm wieder auf den Ursprungszustand zurück.\\
 
 \textbf{Szenario 4}:
-Die Ausstellung ist für diesen Tag nun zu Ende, und die Kryptologikum-Administratorin Claudia schließt gerade noch die Tür hinter Bob ab, um sich jetzt den strombetriebenen Exponaten zu widmen. Als sie am Cryptographics ankommt, versucht sie zunächst, irgendwie zum Betriebssystem zurückzukehren, um den PC sicher herunterfahren zu können. Nach kurzer Zeit stellt sie fest, dass das ohne eine zusätzlich eingesteckte Hardware-Tastatur auf keinen Fall möglich ist. Sie holt also eine USB-Tastatur, steckt sie ein, kehrt über den Windows-Taskmanager zum Betriebssystem zurück, fährt den PC herunter und macht die Lichter aus.
+Die Ausstellung ist für diesen Tag nun zu Ende, und die Kryptologikum-Administratorin Claudia schließt gerade noch die Tür hinter Bob ab, um sich jetzt den strombetriebenen Exponaten zu widmen. Als sie am Cryptographics ankommt, versucht sie zunächst, irgendwie zum Betriebssystem zurückzukehren, um den PC sicher herunterfahren zu können. Nach kurzer Zeit stellt sie fest, dass das ohne eine zusätzlich eingesteckte Hardware-Tastatur auf keinen Fall möglich ist. Sie holt also eine USB-Tastatur, steckt sie ein, kehrt über den Windows-Taskmanager zum Betriebssystem zurück, fährt den PC herunter und macht die Lichter aus.\\
 
 \begin{figure}[h!]
   \centering
@@ -404,7 +498,8 @@ Hierzu kann man die geschichtliche Einordnung der Problematik der Schlüsselvert
 - automatisiertes Testen mithilfe von JUnit vor allem der Krypto-Algorithmen
 - ggf. automatisiertes Testen der UI mithilfe von Szenarien und geeignetem Framework
 Stresstest mit möglichst zufälligen und willkürlichen Eingaben (wie es Kinder eben tun)
-Usability Tests mit passenden Testpersonen
+Usability Tests mit passenden Testpersonen\\
+Es ist sehr ratsam, dass die globalen Testfälle mit /Txy/ sich auf die Funktionalität /Fxy/ beziehen. So ist eine gewisse Konsistenz, Überdeckungsgrad und Übersichtlichkeit gewährleistet. Folgt demnächst, wenn die Funktionalen Anforderungen fertig sind!
 
 \section{Qualitätsbestimmung}
 
