@@ -461,7 +461,7 @@ Nachdem der Benutzer eine Visualisierung startet, wird diese angezeigt (Fig. 3).
   \caption{Darstellung einer Visualisierung.}
 \end{figure}
 
-Falls der Benutzer die Visualisierung erfolgreich beendet hat, wird (Fig 4.) angezeigt. Zunächst wird dem Benutzer zu seinem Erfolg gratuliert. Weiterhin besteht die prominente Möglichkeit, zum Willkommensbildschirm zurückzukehren. Falls das Interesse des Benutzers geweckt wurde, kann er sich weiterführendes Material mit nach Hause nehmen, indem er den abgebildeten QR-Code scant.
+Falls der Benutzer die Visualisierung erfolgreich beendet hat, wird (Fig. 4) angezeigt. Zunächst wird dem Benutzer zu seinem Erfolg gratuliert. Weiterhin besteht die prominente Möglichkeit, zum Willkommensbildschirm zurückzukehren. Falls das Interesse des Benutzers geweckt wurde, kann er zu (Fig. 5) wechseln.
 
 \begin{figure}[H]
   \centering
@@ -469,11 +469,19 @@ Falls der Benutzer die Visualisierung erfolgreich beendet hat, wird (Fig 4.) ang
   \caption{Erfolgreiches Beenden einer Visualisierung.}
 \end{figure}
 
+Hier bekommt der Benutzer weiterführendes Material über sein zuvor gewähltes Thema. Außer dem Text mit den Quellen, kann auch ein QR-Code angezeigt werden, welcher vom Nutzer gescannt werden kann. Auch hier bietet sich die Möglichkeit wieder zum Hauptmenü zurückzukehren.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=\textwidth]{resources/ui_walkthrough_other}
+  \caption{Weiterführende Informationen.}
+\end{figure}
+
 
 \section{Systemmodelle}
 
 \subsection{Systemübersicht}
-Das System verwendet das bekannte MVC-Entwurfsmuster. Weiterhin ist geplant, das System in zwei Schichten zu unterteilen. Von unten nach oben enthält Schicht 1 wiederverendbare und in sich abgeschlossene Bibliotheken. Zum einen handelt es sich hierbei um Code von Dritten (z.B. um QR-Codes zu generieren). Weiterhin ist eine Sammlung wiederverwendbarer Klassen (nachfolgen {\it CGKit} genannt) geplant. {\it CGKit} wird vor allem aus UI-Elemente bestehen, die für die Implementierung aller Visualisierungen wertvoll sind.
+Das System verwendet das bekannte MVC-Entwurfsmuster. Weiterhin ist geplant, das System in zwei Schichten zu unterteilen. Von unten nach oben enthält Schicht 1 wiederverendbare und in sich abgeschlossene Bibliotheken. Zum einen handelt es sich hierbei um Code von Dritten (z.B. um QR-Codes zu generieren). Weiterhin ist eine Sammlung wiederverwendbarer Klassen (nachfolgen {\it GraphicsLib} genannt) geplant. {\it GraphicsLib} wird vor allem aus UI-Elemente bestehen, die für die Implementierung aller Visualisierungen wertvoll sind.
 
 \begin{figure}[h!]
   \centering
