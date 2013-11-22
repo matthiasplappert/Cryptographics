@@ -510,12 +510,12 @@ Beschreibung:
 \begin{enumerate}
     \item Das Programm erklärt das Ziel,
         ein Geheimnis auf N=4 Personen aufzuteilen,
-        wobei K=2 Personen ausreichen sollen um
-        das Geheimnis zu konstruieren
+        wobei K=2 Personen mindestens notwendig sein sollen um
+        das Geheimnis zu rekonstruieren
     \item Erkläre dass das Geheimnis der Wert
         D im Punkt (0, D) ist
     \item Das Programm wählt ein zufälliges lineares Polynom
-        und zeichnet dieses, betone das die Wahl
+        und zeichnet dieses, hebt dabei hervor dass die Wahl
         zufällig sein muss
     \item Der geheime Punkt (0, D)
         wird hervorgehoben
@@ -530,7 +530,7 @@ Beschreibung:
         man nur einen Punkt kennt, indem
         ein Punkt gewählt wird und man
         unterschiedliche mögliche Geraden
-        nacheinander zeichnet
+        nacheinander zeichnet.
         Somit erfährt man auch nicht
         das Geheimnis D
     \item Zeige nun wie 2 Personen
@@ -548,6 +548,65 @@ Beschreibung:
         um D zu rekonstruieren
 \end{enumerate}
 
+\begin{FA}[start=100]
+\item Prozess: Shamir Secret Sharing Selbstversuch
+\end{FA}
+\begin{itemize}[label={}]
+    \item Ziel: Der Nutzer erstellt ein Geheimnis D
+        mit Hilfe von Shamir Secret Sharing.
+        Dieses Rekonstruiert er, indem er das Polynom
+        mit K Punkten interpoliert und das Geheimnis
+        abliest
+    \item Vorbedingung: Der Nutzer hat sich die zugehörige
+        Demonstration angesehen
+    \item Nachbedingung (Erfolg): Shamir Secret Sharing wurde
+        ausgeführt, der Graph des Polynoms wird auf dem
+        Bildschirm gezeichnet, und die Y-Achse
+        sowie der Punkt (0, D) hervorgehoben
+    \item Nachbedingung (Fehlschlag): -
+    \item Auslösendes Ereignis: Ende der SSS Demonstration,
+        oder Demo übersprungen
+\end{itemize}
+
+Beschreibung:
+\begin{enumerate}
+    \item Der Nutzer wählt die Zahl N,
+        für die 2 <= N <= 6 gilt, welche
+        angibt wie viele Personen sich das
+        Geheimnis D teilen
+    \item Der Nutzer wählt die Zahl K,
+        für die 1 <= K <= N gilt, welche
+        angibt wie viele Personen nötig
+        sind, um das Geheimnis D zu
+        rekonstruieren
+    \item Der Nutzer wählt das Geheimnis D
+    \item Nun wird ein zufälliges Polynom
+        vom Grad K-1 konstruiert, welches
+        den Punk (0, D) enthält
+    \item Der Nutzer darf nun verschiedene
+        Punkte auswählen, welche auf
+        die Personen verteilt werden
+    \item Nun kann er versuchen mit
+        einer unterschiedlichen Anzahl
+        an Mitwissern versuchen (0, D)
+        herauszufinden, er selektiert
+        die Mitwisser und wenn er meint
+        er hat genug kann er auf
+        einen Button drücken, welches
+        versucht (0, D) zu rekonstruieren
+    \item Wenn die Anzahl kleiner ist als
+        K, zeige mögliche Polynome als
+        Graphen an, und demonstriere somit
+        das man (0, D) nicht rekonstruieren
+        kann, gehe zum vorherigen Schritt
+    \item Ist die Anzahl der ausgesuchten
+        Mitwisser größer gleich K, so
+        interpoliere das gesuchte Polynom
+        und geben (0, D) an
+    \item Gratulatiere dem Nutzer und
+        zeige Button für Wiki-Artikel
+        oder QR-Codes an
+\end{enumerate}
 
 
 \subsection{Nichtfunktionale Anforderungen}
