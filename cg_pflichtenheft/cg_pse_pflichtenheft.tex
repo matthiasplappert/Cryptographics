@@ -40,6 +40,7 @@
 \newpage
 
 % Table of contents page.
+
 \tableofcontents
 \newpage
 
@@ -55,7 +56,7 @@ Das Programm soll im Laufe der Ausstellung Kryptologikum das Interesse der Besuc
 \\
 Wichtig ist, dass die Visualisierungen ansprechend und verständlich gestaltet sind. Die Nutzung von Cryptographics soll Spaß machen. \\
 \\
-Jedes Verfahren wird hierbei in drei Schritten vorgestellt. Diese sind eine Demo, ein interaktiver Versuch und ein wiki-artiger Artikel für weitere Informationen.
+Jedes Verfahren wird in drei Schritten vorgestellt. Diese sind eine automatisch ablaufende Demonstration, ein interaktiver Versuch und ein wiki-artiger Artikel für weitere Informationen.
 In der Demo wird dem Nutzer der Ablauf der Verschlüsselung möglichst anschaulich demonstriert. Darauf folgend kann im Eigenversuch auf der gleichen Oberfläche die Verschlüsselung selbst ausprobiert werden. Dem Nutzer wird hierbei eine größtmögliche Freiheit zur Wahl sämtlicher Komponenten (wie Klartext, Primzahl, etc.) gelassen. Unter "Mehr Wissen" sollen sich interessierte Benutzer schließlich tiefgehender über das Verfahren informieren können, über seine Entstehung, Einsatz und Nachfolger. Auf geeignete weiterführende Literatur kann mit QR-Codes verwiesen werden. \\
 
 
@@ -65,25 +66,24 @@ In der Demo wird dem Nutzer der Ablauf der Verschlüsselung möglichst anschauli
     \item Visualisierung Caesar-Chiffre
     \item Visualisierung Vigenère-Chiffre
     \item Visualisierung Diffie-Hellmann
-    \item Robuste Programmierung
-    \item Intuitive Benutzerführung
-    \item Schnelle Reaktionszeiten
     \item Zugriff auf Krypto-Verfahren über Zeitleiste
     \item Benutzerführung über Phasen
-    \item Angeleiter Selbstversuch bei komplexen Verfahren
-    \item Interaktion des Benutzers über den Touchscreen
-    \item einfache, übersichtliche UI, die sich gut auf Touchscreen bedienen lässt
-    \item Robustheit gegen au"sergewöhnliche Interaktion
-    \item Man soll das Programm nicht schlie"sen können währen der Vorführung
-    \item Praxisbezug auf moderne Kryptoverfahren
-    \item Eingängige optische Darstellung der verschiedenen Verfahren
     \item Krypto-Algorithmen lassen sich schrittweise ausführen, um den Prozess
         langsam zu verdeutlichen
-    \item Beenden des Programms / Wechsel zum Desktop nur per angeschlossener Tastatur, nicht über Touch-Eingabe
-    \item Das Programm darf zu keinem Zeitpunkt in einen undefinierten Zustand fallen
-    \item Es darf nicht möglich sein das Programm in eine Sackgasse zu führen, die einen Neustart erfordert
+    \item Angeleiter Selbstversuch bei komplexen Verfahren
+    \item Praxisbezug auf moderne Kryptoverfahren
     \item Time-Out bei fehlender Nutzerinteraktion, Rückkehr zum Startbildschirm
-    \item Es ist jederzeit möglich über einen Button zurück zur Startoberfläche zu gelangen
+    \item Mögliche Rückkehr zur Startoberfläche per Button zu jedem Ausführungszeitpunkt
+    \item Interaktion des Benutzers über den Touchscreen
+    \item Intuitive Benutzerführung
+    \item Einfache, übersichtliche UI, die sich gut auf Touchscreen bedienen lässt
+    \item Eingängige optische Darstellung der verschiedenen Verfahren
+    \item Robuste Programmierung
+    \item Schnelle Reaktionszeiten
+    \item Robustheit gegen au"sergewöhnliche Interaktion
+    \item Beenden des Programms / Wechsel zum Desktop nur per angeschlossener Tastatur, nicht über Touch-Eingabe
+    \item Vermeidung undefinierter Zustände des Programms
+    \item Vermeidung von Sackgassen im Programm, die einen Neustart erfordern
 \end{itemize}
 
 \subsection{Wunschkriterien}
@@ -96,27 +96,23 @@ In der Demo wird dem Nutzer der Ablauf der Verschlüsselung möglichst anschauli
     \item Visualisierung Blockchiffre (DES, AES)
     \item Visualisierung Hashfunktionen
     \item Visualisierung RSA
-    \item Modulares Austauschen/Hinzufügen von weiteren kryptografischen Verfahren
-    \item Literaturhinweise(auch weiterführende Literatur), sofern Interesse besteht.
-    \item Visualisierungen sollten möglichst ansprechend sein, indem sie z.B. Analogien
-        verwenden (ein Datenpaket wird zu einer Postkarte, ein Schlüssel wird zum einem tatsächlichen Schlüssel, ...).
-    \item Visualisierungen sollten Grafiken und Animationen verwenden um Vorgänge zu verdeutlichen
+    \item Modulares Austauschen / Hinzufügen von weiteren kryptografischen Verfahren
+    \item Animation auf Startbildschirm als Blickfang
+    \item Literaturhinweise (auch weiterführende Literatur), sofern Interesse besteht
+    \item Optisch ansprechende Visualisierungen durch Nutzung von Grafiken und Animationen
+    \item Verbesserte Verständlichkeit der Visualisierungen durch Verwendung von z.B. Analogien
     \item Visualisierung von Angriffen auf Verfahren
-    \item Erfassung von Nutzungsstatistiken
-    \item Animation auf Startbildschirm
-    \item Simple Datenerhebung um externe Analyse von Nutzerverhalten zu ermöglichen
+    \item Erfassung von grundlegenden Nutzungsstatistiken zur potentiellen externen Analyse des Nutzerverhaltens  im Hinblick auf eventuelle zukünftige Optimierung des Programms
 \end{itemize}
 
 \subsection{Abgrenzungskriterien}
 \begin{itemize}
-    \item Sämtliche kryptologischen Verfahren werden nur zu Vorführungszwecken implementiert. Eine sichere Implementierung ist nicht vorgesehen.
-    \item Dies ist ein Vorführprogramm für eine Ausstellung, demnach ist eine andere  Verwendung nicht ratsam,
-        da dafür ganz andere Anforderungen gelten, die hier nicht beachtet werden. (umformulieren!)
-    \item keine optimierte und 100\% standardkonforme Implementierung von Krypto-Algorithmen,
+	\item Implementierung sämtlicher kryptologischer Verfahren nur zu Vorführungszwecken; somit keine festgelegt sichere Implementierung
+    \item Keine optimierte und 100\% standardkonforme Implementierung von Krypto-Algorithmen,
         sondern Fokus auf schrittweiser Ausführbarkeit
-    \item keine formale Korrektheit bei Erklärungen sondern Ansatz ohne nötige Vorkenntnisse
+    \item Keine formale Korrektheit bei Erklärungen sondern Ansatz ohne nötige Vorkenntnisse
         um breiter Masse zugänglich zu sein
-    \item nicht zur tatsächlichen Verschlüsselung von Texten gedacht
+    \item Nicht zur tatsächlichen Verschlüsselung von Texten gedacht
 \end{itemize}
 
 \section{Produkteinsatz}
@@ -133,7 +129,7 @@ Das Programm richtet sich insbesondere an Kinder, Jugendliche und Erwachsene mit
 
 \subsection{Betriebsbedingungen}
 
-Das Programm soll im Dauerbetrieb problemlos laufen. Dementsprechend dürfen keine Ausnahmen auftreten, die den Betrieb des Programms behindern, oder gar einen Absturz auslösen, der den Benutzer zur Betriebssystemebene führt. Insbesondere muss darauf geachtet werden, dass schnelle, unkontrollierte Benutzereingaben zu keinem undefinierten Zustand des Programms führen. Auch ein reguläres Beenden von Cryptographics soll durch den Benutzer nicht möglich sein, und nur durch eine angeschlossene Hardwaretastatur erreicht werden können.
+Cryptographics soll im Dauerbetrieb problemlos laufen. Dementsprechend dürfen keine Ausnahmen auftreten, die den Betrieb des Programms behindern, oder gar einen Absturz auslösen, der den Benutzer zur Betriebssystemebene führt. Insbesondere muss darauf geachtet werden, dass schnelle, unkontrollierte Benutzereingaben zu keinem undefinierten Zustand des Programms führen. Auch ein reguläres Beenden von Cryptographics soll durch den Benutzer nicht möglich sein, und nur durch eine angeschlossene Hardwaretastatur erreicht werden können.
 
 Der Betrieb soll für die Hardware des eeePC (siehe Produktumgebung) optimiert sein, der während der Ausstellung über keine Internetverbindung verfügt. Inhalte zu weiterführenden Informationen müssen also lokal in Form von leicht aktualisierbaren und austauschbaren Textdateien vorliegen.
 
@@ -144,20 +140,20 @@ Cryptographics wird nicht ausschließlich, aber primär für folgende Spezifikat
 \subsection{Software}
 
 \begin{itemize}[label={}]
-\item Windows XP Home edition
-\item Java
+	\item Windows XP Home edition
+	\item Java
 \end{itemize}
 
 \subsection{Hardware}
 
 \begin{itemize}[label={}]
-\item ASUS Touchscreen EeeTop Tablet
-\item 1.6 GHz Intel Atom CPU
-\item 1GB RAM
-\item 160GB HDD
-\item 15.6 Zoll LCD
-\item Integrierter Grafikchip
-\item resistiver Touchscreen
+	\item ASUS Touchscreen EeeTop Tablet
+	\item 1.6 GHz Intel Atom CPU
+	\item 1GB RAM
+	\item 160GB HDD
+	\item 15.6 Zoll LCD
+	\item Integrierter Grafikchip
+	\item resistiver Touchscreen
 \end{itemize}
 
 \section{Produktfunktionen}
