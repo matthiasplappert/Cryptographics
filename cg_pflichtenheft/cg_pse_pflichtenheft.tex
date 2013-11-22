@@ -47,8 +47,8 @@
 \section{Zielbestimmung}
 
 
-Im Rahmen der PSE-Veranstaltung soll für das Kryptologikum des Instituts für 
-Kryptographie und Sicherheit eine Software (Cryptographics) zur 
+Im Rahmen der PSE-Veranstaltung soll für das Kryptologikum des Instituts für
+Kryptographie und Sicherheit eine Software (Cryptographics) zur
 Demonstration kryptographischer Verfahren erstellt werden. \\
 \\
 Das Programm soll im Laufe der Ausstellung Kryptologikum das Interesse der Besucher wecken, sich mit Verschlüsselung zu befassen und schließlich auch ausgewählte Inhalte der Kryptographie näher bringen. \\
@@ -98,7 +98,7 @@ In der Demo wird dem Nutzer der Ablauf der Verschlüsselung möglichst anschauli
     \item Visualisierung RSA
     \item Modulares Austauschen/Hinzufügen von weiteren kryptografischen Verfahren
     \item Literaturhinweise(auch weiterführende Literatur), sofern Interesse besteht.
-    \item Visualisierungen sollten möglichst ansprechend sein, indem sie z.B. Analogien 
+    \item Visualisierungen sollten möglichst ansprechend sein, indem sie z.B. Analogien
         verwenden (ein Datenpaket wird zu einer Postkarte, ein Schlüssel wird zum einem tatsächlichen Schlüssel, ...).
     \item Visualisierungen sollten Grafiken und Animationen verwenden um Vorgänge zu verdeutlichen
     \item Visualisierung von Angriffen auf Verfahren
@@ -110,18 +110,18 @@ In der Demo wird dem Nutzer der Ablauf der Verschlüsselung möglichst anschauli
 \subsection{Abgrenzungskriterien}
 \begin{itemize}
     \item Sämtliche kryptologischen Verfahren werden nur zu Vorführungszwecken implementiert. Eine sichere Implementierung ist nicht vorgesehen.
-    \item Dies ist ein Vorführprogramm für eine Ausstellung, demnach ist eine andere  Verwendung nicht ratsam, 
+    \item Dies ist ein Vorführprogramm für eine Ausstellung, demnach ist eine andere  Verwendung nicht ratsam,
         da dafür ganz andere Anforderungen gelten, die hier nicht beachtet werden. (umformulieren!)
-    \item keine optimierte und 100\% standardkonforme Implementierung von Krypto-Algorithmen, 
+    \item keine optimierte und 100\% standardkonforme Implementierung von Krypto-Algorithmen,
         sondern Fokus auf schrittweiser Ausführbarkeit
-    \item keine formale Korrektheit bei Erklärungen sondern Ansatz ohne nötige Vorkenntnisse 
+    \item keine formale Korrektheit bei Erklärungen sondern Ansatz ohne nötige Vorkenntnisse
         um breiter Masse zugänglich zu sein
-    \item nicht zur tatsächlichen Verschlüsselung von Texten gedacht 
+    \item nicht zur tatsächlichen Verschlüsselung von Texten gedacht
 \end{itemize}
 
 \section{Produkteinsatz}
 \subsection{Anwendungsbereiche}
-Cryptographics soll in erster Linie als Ausstellungsstück für das Kryptologikum des Instituts für Kryptographie und Sicherheit (IKS) am Karlsruher Institut für Technologie (KIT) dienen. 
+Cryptographics soll in erster Linie als Ausstellungsstück für das Kryptologikum des Instituts für Kryptographie und Sicherheit (IKS) am Karlsruher Institut für Technologie (KIT) dienen.
 
 Besuchern der Ausstellung soll das Funktionsprinzip und die Verwendung historischer, sowie aktueller, kryptographischer Verfahren nähergebracht werden. Diese sollen anhand von vereinfachten und beispielhaften Szenarien aus dem Alltag vermittelt werden, mit dem Ziel, ein größeres Interesse an der Materie zu wecken.
 
@@ -278,13 +278,83 @@ Beschreibung:
 \begin{enumerate}
 \item Auf dem Bildschirm erscheinen Animationen, die die Verteilung veranschaulichen.
 \item Der Benutzer sieht die Animation schrittweise und kann sie jederzeit anhalten, vorwärts oder rückwärts gehen.
-\item An die Demo anschließend springt das Programm in die Phase 3, Wiki. 
+\item An die Demo anschließend springt das Programm in die Phase 3, Wiki.
 \end{enumerate}
 \item Phase 2: Selbstversuch. Wird übersprungen, da sich die Überlegungen zu einem Selbstversuch in PKI keine vernünftigen Ergebnisse liefern. Ein Selbstversuch kann aber jederzeit eingebaut werden.
 \item Phase 3: Wiki.
 \begin{enumerate}
 \item Nach dem Durchlesen ist die Visualisierung des Public-key Infrastruktur abgeschlossen. Der Benuter wird zum nächsten Verfahren weitergeleitet.
 \item //Todo(Mach ich noch heute abend oder morgen früh, da hierzu man bestimmt sehr schöne Erklärungen machen kann! Keine Lust jetzt was billiges hinzuklatschen. Auch die globalen Testfälle mache ich später.):
+\end{enumerate}
+\end{itemize}
+
+\begin{FA}[start=600]
+\item Hashing
+\end{FA}
+\begin{itemize}[label={}]
+\item Prozess: Hashing Demonstration
+\item Ziel: Dem Benutzer ist die Funktionsweise des Hashings bewusst und erhält einen Einblick in den praktischen Nutzen.
+\item Akteure: Benutzer.
+\item Beschreibung:
+\item Phase 1: Einleitung.
+\begin{enumerate}
+\item Erkläre was Hashes sind.
+\item Zeige deren praktischen Nutzen anhand von Beispielen in der Informationstechnologie.
+\end{enumerate}
+\item Phase 2: Animation.
+\begin{enumerate}
+\item Erkläre das Ziel "Fingerabdrücke" von Daten zu machen.
+\item Demonstriere eine einfache Merkle-Damgard-Konstruktion.
+\item Nehme einen festgelegten String und führe diese durch die Konstruktion.
+\item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt der "Fingerabdruck".
+\item Gebe den Fingerabdruck dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
+\item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
+\item Nach dem Erhalten des zweiten Hashes, zeige Nutzer dass die Hashes sich gravierend unterscheiden, also dass Hashes "echte Fingerabdrücke" sind.
+\end{enumerate}
+\item Phase 3: Weiterführende Informationen.
+\begin{enumerate}
+\item Der Benutzer erhält Links zu weiterführenden Quellen.
+\end{enumerate}
+\end{itemize}
+
+\begin{FA}[start=700]
+\item Blockchiffren
+\end{FA}
+\begin{itemize}[label={}]
+\item Prozess: Blockchiffren Demonstration
+\item Ziel: Dem Benutzer ist die Funktionsweise von Blockchiffren bewusst und erhält einen Einblick in die verschiedenen Modí.
+\item Akteure: Benutzer.
+\item Beschreibung:
+\item Phase 1: Einleitung.
+\begin{enumerate}
+\item Erkläre was Blockchiffren sind.
+\item Zeige deren praktischen Nutzen anhand von Beispielen in der Informationstechnologie.
+\end{enumerate}
+\item Phase 2: Animation ECB.
+\begin{enumerate}
+\item Erkläre den ECB Modus.
+\item Zeige den Aufbau vom ECB Modus.
+\item Nehme einen festgelegten String und führe diese durch die Konstruktion.
+\item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt das Chiffrat.
+\item Gebe das Chiffrat dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
+\item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
+\item Nach dem Erhalten des zweiten Chiffrates, zeige Nutzer dass der ECB Modus homomorph ist.
+\item Zeige Nutzer das Problem das dadurch entsteht anhand einem im ECB Modus chiffrierten Bildes.
+\item Dechiffriere das erste Chiffrat.
+\end{enumerate}
+\item Phase 3: Animation CBC.
+\begin{enumerate}
+\item Erkläre den CBC Modus.
+\item Zeige den Aufbau vom CBC Modus.
+\item Nehme einen festgelegten String und führe diese durch die Konstruktion.
+\item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt das Chiffrat.
+\item Gebe das Chiffrat dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
+\item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
+\item Nach dem Erhalten des zweiten Chiffrates, zeige Nutzer dass die Homomorphie nicht mehr gegeben ist.
+\end{enumerate}
+\item Phase 4: Weiterführende Informationen.
+\begin{enumerate}
+\item Der Benutzer erhält Links zu weiterführenden Quellen.
 \end{enumerate}
 \end{itemize}
 
@@ -324,12 +394,12 @@ Beschreibung:
 \end{enumerate}
 \end{itemize}
 
-- Funktionen: Willkommensbildschirm, Algo/Visualisierung wählen, Algo bearbeiten, 
-Soforthilfe passend zum Algo falls man nicht weiter weiß, Algo beenden, 
+- Funktionen: Willkommensbildschirm, Algo/Visualisierung wählen, Algo bearbeiten,
+Soforthilfe passend zum Algo falls man nicht weiter weiß, Algo beenden,
 ggf. Kontrollfragen oder selbstständiges Anwenden des Gelernten am Ende (z.B. ein Wort mit Caesar verschlüsseln)
 \\
 \\
-RSA und Public-Key Verschlüsselung anhand von Pad-Locks als 
+RSA und Public-Key Verschlüsselung anhand von Pad-Locks als
 öffentliche Schlüssel und den Schlüssel  dazu als privaten,
 vielleicht mit Komplementärfarben visualisieren ähnlich wie Diffie-Hellman
 
@@ -456,21 +526,21 @@ Die Ausstellung ist für diesen Tag nun zu Ende, und die Kryptologikum-Administr
 
 Caesar:
 Phase1, Animation:
-Startbildschirm von Caesar wird aus einer Animation bestehen, die die Problematik der fehlenden Verschlüsselung in der Römerzeit und die Lösung Caesars erklärt. 
+Startbildschirm von Caesar wird aus einer Animation bestehen, die die Problematik der fehlenden Verschlüsselung in der Römerzeit und die Lösung Caesars erklärt.
 Funktionale Anforderungen für alle Chiffren:(generisch, also auch für Cäsar)
 -------------------------------------
 Während der Animation ist es jederzeit möglich sofort zum Selbstversuch überzugehen, sowie auch sofortiges wechseln zum textlastigen Geschichtsteil der Chiffre.
 Man muss währenddessen jederzeit über die Timeline zum nächsten Verschlüsselungsverfahren wechseln können.
-Auch der Teil für Zusatzinformationen, der die QR-Codes enthält, muss erreichbar sein. 
+Auch der Teil für Zusatzinformationen, der die QR-Codes enthält, muss erreichbar sein.
 Nachdem die Animation zu Ende ist, wechselt der Bildschirm in die Phase2.
 -------------------------------------
 Phase2, Selbstversuch:
 Man wird anfangs aufgefordert irgendeine !kurze Zeichenkette oder seinen Vornamen einzugeben. Auf der Eingabe wird dann in den nächsten Schritten gearbeitet.
              Der Aufbau des Selbstversuchs gestaltet sich folgendermaßen:
                     In der Mitte des Bildschirms sieht man die Eingabe des Benutzers. Unter der Eingabe ist das Alphabet abgebildet, wobei jeder Buchstabe dort nummeriert ist. Der erste Schritt des Selbstversuchs ist es die Eingabe selbst zu verschlüsseln. Dies geschieht indem jeder Buchstabe der Eingabe nacheinander aufleuchtet und der Benutzer den dazu gehörigen verschlüsselten Buchstaben im Alphabet anklickt. Das Chiffrat taucht zwischen der Eingabe und dem Alphabet auf, sodass unter jedem Buchstaben sein verschlüsseltes Pendant ist. Nachdem alle Buchstaben abgearbeitet sind, entschlüsselt das Programm das Chiffrat selbst und zeigt die Ausgabe unterhalb des Chiffrats an.
-                     Der zweite Schritt des Selbstversuchs besteht in der Entschlüsselung eines gegebenen Chiffrats(welcher nicht größer als die Eingabe des Benutzer von vorhin sein soll). Dies geschieht analog zum ersten Schritt. 
-Optional(Wunschkriterien): 
-                    Dritter Schritt. Dem Benutzer wird die Möglichkeit gegeben ein gegebenes Chiffrat zu knacken. Wobei hier der Klartext nicht mit Cäsar3 verschlüsselt wurde, sondern mit CäsarK. 
+                     Der zweite Schritt des Selbstversuchs besteht in der Entschlüsselung eines gegebenen Chiffrats(welcher nicht größer als die Eingabe des Benutzer von vorhin sein soll). Dies geschieht analog zum ersten Schritt.
+Optional(Wunschkriterien):
+                    Dritter Schritt. Dem Benutzer wird die Möglichkeit gegeben ein gegebenes Chiffrat zu knacken. Wobei hier der Klartext nicht mit Cäsar3 verschlüsselt wurde, sondern mit CäsarK.
  Wenn alles abgearbeitet ist wechselt der Bildschirm in Phase3, dem Hintergrund der Caesar Chiffre. Sprich die geschichtlichen Hintergründe und seine Besonderheit, sowie auch Schwächen.
 Phase3, Verfahrensinformationen:
 Zu besprechen. Keine Animationen mehr. Mindestens Vor-/Nachteile des Verfahrens und geschichtlicher Hintergrund.
@@ -494,7 +564,7 @@ Phase3 ist analog wie bei Cäsar.
 Public Key Infrastruktur(PKI):
 Eins vorneweg: Da dies eine aktuelle Problematik ist, ist es wichtig die Animationen anhand von aktuellen Beispielen aus dem heutigem Alltag darzustellen.
 Phase1, Animation:
-Es ist Anhand einer Animation zu zeigen, wie die Authentifikation öffentlicher Schlüssel mithilfe von Zertifikaten realisiert wird. Es muss daraus ersichtlich sein, wie die Zertifikate beweisen, dass der öffentliche Schlüssel zum anderen Kommunikationspartner gehört und nicht durch einen Angreifer ausgetauscht wurde. 
+Es ist Anhand einer Animation zu zeigen, wie die Authentifikation öffentlicher Schlüssel mithilfe von Zertifikaten realisiert wird. Es muss daraus ersichtlich sein, wie die Zertifikate beweisen, dass der öffentliche Schlüssel zum anderen Kommunikationspartner gehört und nicht durch einen Angreifer ausgetauscht wurde.
 Vorausgesetzt man hat die Grundlagen über public key Kryptographie und Hashing verinnerlicht ist dieses System unter die Schwierigkeit "Mittel" einzuordnen. Es ist jedoch auch möglich die Schwierigkeit zu reduzieren indem man die Signaturen bspw. durch eine einfache Unterschrift ersetzt, das beispielhaft für eine Signatur stehen kann. So kann die Schwierigkeit auf "Einfach" zu reduziert werden.
 Es ist jedoch zu beachten, dass hierzu mehrere Animationen notwendig sind um die PKI, wie sie heute eingesetzt ganz verstehen können. Dies liegt daran, dass verschieden Vertrauensmodelle benutzt werden. Zuallererst ist die Rollenvielfalt auf einen User und Certification Authority(CA) zu beschränken. User will in diesem Fall seinen öffentlichen Schlüssel von der CA signieren lassen, sodass bei der Kommunikation mit anderen Usern er neben seinem Schlüssel auch ein Zertifikat vorlegen kann, dass der Schlüssel nicht verändert wurde und er dazu den passenden secret key besitzt. So weiß der andere Kommunikationspartner, dass nur der User die, mit dem erhaltenen public key verschlüsselten, Nachrichten entschlüsseln kann. Diese Zertifikate setzen ein gewisses Vertrauen in den Herausgeber(CA) voraus. Denn, wenn die CA nicht wirklich seriös ist, ist das Zertifikat nicht wirklich ein Beweis dafür, dass der Schlüssel nicht verändert wurde. Vertraut man der CA jedoch fest, so ist man dann auch davon überzeugt, dass man die vertraulichen Nachrichten mit dem PK verschlüsseln und abschicken kann. Das führt auf eine weitere Grundlage der PKI, die Vertrauensmodelle. Aufgrund der großen Vielfalt ist hier auch dringend nötig, wie bei der Rollenvielfalt, auf das wichtigste zu reduzieren.
 Das erste Modell besteht aus einer oder mehreren CA's, die Zertifikate an Benutzer herausgeben können. Hierzu ist die Problematik aufzuzeigen, die dabei entsteht.
