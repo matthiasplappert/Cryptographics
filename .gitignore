@@ -7,3 +7,6 @@
 *.fdb_latexmk
 *.synctex.gz
 *.toc
+
+# PDF
+cg_pse_pflichtenheft.pdf
