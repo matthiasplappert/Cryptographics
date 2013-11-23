@@ -56,8 +56,8 @@ Das Programm soll im Laufe der Ausstellung Kryptologikum das Interesse der Besuc
 \\
 Wichtig ist, dass die Visualisierungen ansprechend und verständlich gestaltet sind. Die Nutzung von Cryptographics soll Spaß machen. \\
 \\
-Jedes Verfahren wird in drei Schritten vorgestellt. Diese sind eine automatisch ablaufende Demonstration, ein interaktiver Versuch und ein wiki-artiger Artikel für weitere Informationen.
-In der Demonstration wird dem Nutzer der Ablauf der Verschlüsselung möglichst anschaulich demonstriert. Darauf folgend kann im Eigenversuch auf der gleichen Oberfläche die Verschlüsselung selbst ausprobiert werden. Dem Nutzer wird hierbei eine größtmögliche Freiheit zur Wahl sämtlicher Komponenten (wie Klartext, Primzahl, etc.) gelassen. Unter "Mehr Wissen" sollen sich interessierte Benutzer schließlich tiefgehender über das Verfahren informieren können, über seine Entstehung, Einsatz und Nachfolger. Auf geeignete weiterführende Literatur kann mit QR-Codes verwiesen werden. \\
+Jedes Verfahren wird in drei Schritten vorgestellt. Diese sind eine automatisch ablaufende Demonstration, ein interaktiver Versuch und ein Wiki-artiger Artikel für weitere Informationen.
+In der Demonstration wird dem Nutzer der Ablauf der Verschlüsselung möglichst anschaulich demonstriert. Darauf folgend kann im Eigenversuch auf der gleichen Oberfläche die Verschlüsselung selbst ausprobiert werden. Dem Nutzer wird hierbei eine größtmögliche Freiheit zur Wahl sämtlicher Komponenten (wie Klartext, Primzahl, etc.) gelassen. Unter ``Mehr Wissen'' sollen sich interessierte Benutzer schließlich tiefgehender über das Verfahren informieren können, über seine Entstehung, Einsatz und Nachfolger. Auf geeignete weiterführende Literatur kann mit QR-Codes verwiesen werden. \\
 
 
 \subsection{Musskriterien}
@@ -300,7 +300,7 @@ Beschreibung:
         (mit Farben-Analogie) mit Bob durchgeführt
     \item Vorbedingung: keine
     \item Nachbedingung (Erfolg): Alice und Bob haben sich auf eine
-        gemeinsame, geheime Farbe geeinigt die Eve nicht kennt
+        gemeinsame, geheime Farbe geeinigt, die Eve nicht kennt
     \item Nachbedingung (Fehlschlag): Alice und Bob haben eine gemeinsame,
         nicht geheime Farbe oder sich auf gar keine Farbe geeinigt
     \item Auslösendes Ereignis: Ende der Demonstration des Diffie-Hellman
@@ -344,14 +344,14 @@ Beschreibung:
 \item Beschreibung:
 \item Phase 1:Demonstration.
 \begin{enumerate}
- \item[1-4] Die ersten 4 funktionalen Anforderungen sind identisch mit den Anforderungen aus Cäsar und Vigenere. 
+ \item[1-4] Die ersten 4 funktionalen Anforderungen sind identisch mit den Anforderungen aus Cäsar und Vigenère. 
  \item[5] An die Demo anschließend springt das Programm in die Phase 3, Wiki. Phase 2 wird übersprungen, 
           da sich die Überlegungen zu einem Selbstversuch in PKI keine vernünftigen Ergebnisse liefern. 
           Ein Selbstversuch kann aber jederzeit eingebaut werden
 \end{enumerate}
 \item Phase 3: Wiki.
 \begin{enumerate}
- \item[1-2] Identisch mit den funktionalen Anforderung aus Cäsar und Vigenere
+ \item[1-2] Identisch mit den funktionalen Anforderung aus Cäsar und Vigenère
 \end{enumerate}.
 \end{itemize}
 
@@ -376,7 +376,7 @@ Beschreibung:
 \item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt der "Fingerabdruck".
 \item Gebe den Fingerabdruck dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
 \item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
-\item Nach dem Erhalten des zweiten Hashes, zeige Nutzer dass die Hashes sich gravierend unterscheiden, also dass Hashes "echte Fingerabdrücke" sind.
+\item Nach dem Erhalten des zweiten Hashes, zeige Nutzer dass die Hashes sich gravierend unterscheiden, also dass Hashes ``echte Fingerabdrücke'' sind.
 \end{enumerate}
 \item Phase 3: Weiterführende Informationen.
 \begin{enumerate}
@@ -624,7 +624,7 @@ Beschreibung:
 
 \subsection{Ablauf einer Visualisierung}
 
-Der Willkommensbildschirm besteht einem einleitenden Text, der das Ausstellungsstück kurz dem Publikum vorstellt, und einer Zeitleiste (Fig. 1). Auf der Zeitleiste werden mithilfe einer geeigneten Skala Jahreszahlen dargestellt. Die kryptografischen Visualisierungen werden auf dieser Zeitleiste mithilfe von "Meilensteinen" dargestellt. Weiterhin werden die Markierungen in grün, gelb oder rot eingefärbt, um den Schwierigkeitsgrad auf einen Blick erkennbar zu machen.
+Der Willkommensbildschirm besteht aus einem einleitenden Text, der das Ausstellungsstück kurz dem Publikum vorstellt, und einer Zeitleiste (Fig. 1). Auf der Zeitleiste werden mithilfe einer geeigneten Skala Jahreszahlen dargestellt. Die kryptografischen Visualisierungen werden auf dieser Zeitleiste mithilfe von "Meilensteinen" dargestellt. Weiterhin werden die Markierungen in grün, gelb oder rot eingefärbt, um den Schwierigkeitsgrad auf einen Blick erkennbar zu machen.
 
 \begin{figure}[H]
   \centering
@@ -678,8 +678,8 @@ Das System verwendet das bekannte MVC-Entwurfsmuster. Weiterhin ist geplant, das
 
 \section{Beispielszenarien}
 \begin{itemize}
-    \item Beispiel läuft schrittweise ab. Problem wird dargestellt: A möchte B eine Nachricht schicken, die nicht von einer anderen Person als B gelesen werden soll. C versucht die Nachricht zu bekommen. Dabei können A und B nur über ein unsicheres Medium kommunizieren (Analogie z.B. schlüssel per Post verschicken), das von C abgehört wird.
-itemA und B generieren ihre Schlüsselpaare. Der genaue Schlüssel ist nicht relevant.
+    \item Das Beispiel läuft schrittweise ab. Problem wird dargestellt: A möchte B eine Nachricht schicken, die nicht von einer anderen Person als B gelesen werden soll. C versucht die Nachricht zu bekommen. Dabei können A und B nur über ein unsicheres Medium kommunizieren (Analogie z.B. Schlüssel per Post verschicken), das von C abgehört wird.
+\item A und B generieren ihre Schlüsselpaare. Der genaue Schlüssel ist nicht relevant.
 \item A fragt B nach seinem public key, den B auch bereitwillig mitteilt. C hört den public key von B.
 \item A verschlüsselt die Nachricht mit dem public key von B und verschickt die Nachricht an B. C hört die verschlüsselte Nachricht ab.
 \item B entschlüsselt die Nachricht von A mit seinem private key und kann die Nachricht lesen
@@ -701,68 +701,16 @@ einer speziell für das Verfahren ausgelegten Oberfläche. Auf genau dieser Ober
 Die ungeduldige Alice wurde von ihrer Freundin überredet, an der Ausstellung teilzunehmen. Sie sieht das Cryptographics und versucht, es durch wiederholte zufällige Eingaben zum Absturz zu bringen. Das Programm zeigt sich jedoch schnell als zu robust, um einem solchen Angriff zu erliegen. Schließlich wählt sie das komplizierteste kryptographische Verfahren aus, um Besuchern nach ihr den Einstieg zu erschweren. Nachdem sie gegangen ist, muss sie jedoch enttäuscht feststellen, dass der nächste Besucher keine weitere Schwierigkeiten hatte, das Programm mit dem dafür vorgesehenen Button in den Grundzustand zurückzuversetzen.\\
 
 \textbf{Szenario 3}:
-Nachdem Bob nun längere Zeit an Cryptographics verbracht hat, blickt er erschreckt auf die Uhr um festzustellen, dass es schon viel zu spät geworden ist. Er bricht auf, und lässt das Programm genau so zurück, wie er es gerade eben noch benutzt hat. x Sekunden nach seiner letzten Interaktion erscheint eine Meldung, die Bob darauf hingewiesen hätte, dass sich das Programm bald zurücksetzt, sollte in den nächsten y Sekunden keine Eingabe mehr erfolgen. Da er jedoch schon an der Bushaltestelle steht, aktiviert Cryptographics nun den Bildschirmschoner, den Bob zuvor auch schon vorgefunden hatte, und setzt im Hintergrund das Programm wieder auf den Ursprungszustand zurück.\\
+Nachdem Bob nun längere Zeit an Cryptographics verbracht hat, blickt er erschreckt auf die Uhr um festzustellen, dass es schon viel zu spät geworden ist. Er bricht auf, und lässt das Programm genau so zurück, wie er es gerade eben noch benutzt hat. Nach seiner letzten Interaktion erscheint nach x Sekunden eine Meldung, die Bob darauf hingewiesen hätte, dass sich das Programm bald zurücksetzt, sollte in den nächsten y Sekunden keine Eingabe mehr erfolgen. Da er jedoch schon an der Bushaltestelle steht, aktiviert Cryptographics nun den Bildschirmschoner, den Bob zuvor auch schon vorgefunden hatte, und setzt im Hintergrund das Programm wieder auf den Ursprungszustand zurück.\\
 
 \textbf{Szenario 4}:
-Die Ausstellung ist für diesen Tag nun zu Ende, und die Kryptologikum-Administratorin Claudia schließt gerade noch die Tür hinter Bob ab, um sich jetzt den strombetriebenen Exponaten zu widmen. Als sie am Cryptographics ankommt, versucht sie zunächst, irgendwie zum Betriebssystem zurückzukehren, um den PC sicher herunterfahren zu können. Nach kurzer Zeit stellt sie fest, dass das ohne eine zusätzlich eingesteckte Hardware-Tastatur auf keinen Fall möglich ist. Sie holt also eine USB-Tastatur, steckt sie ein, kehrt über den Windows-Taskmanager zum Betriebssystem zurück, fährt den PC herunter und macht die Lichter aus.\\
+Die Ausstellung ist für diesen Tag nun zu Ende, und die Krypto-logikum-Administratorin Claudia schließt gerade noch die Tür hinter Bob ab, um sich jetzt den strombetriebenen Exponaten zu widmen. Als sie am Cryptographics ankommt, versucht sie zunächst, irgendwie zum Betriebssystem zurückzukehren, um den PC sicher herunterfahren zu können. Nach kurzer Zeit stellt sie fest, dass das ohne eine zusätzlich eingesteckte Hardware-Tastatur auf keinen Fall möglich ist. Sie holt also eine USB-Tastatur, steckt sie ein, kehrt über den Windows-Taskmanager zum Betriebssystem zurück, fährt den PC herunter und macht die Lichter aus.\\
 
 \begin{figure}[h!]
   \centering
     \includegraphics[width=\textwidth]{resources/usecase1}
   \caption{Anwendungsfalldiagramm zu beschriebenen Szenarien.}
 \end{figure}
-
-Caesar:
-Phase1, Animation:
-Startbildschirm von Caesar wird aus einer Animation bestehen, die die Problematik der fehlenden Verschlüsselung in der Römerzeit und die Lösung Caesars erklärt.
-Funktionale Anforderungen für alle Chiffren:(generisch, also auch für Cäsar)
--------------------------------------
-Während der Animation ist es jederzeit möglich sofort zum Selbstversuch überzugehen, sowie auch sofortiges wechseln zum textlastigen Geschichtsteil der Chiffre.
-Man muss währenddessen jederzeit über die Timeline zum nächsten Verschlüsselungsverfahren wechseln können.
-Auch der Teil für Zusatzinformationen, der die QR-Codes enthält, muss erreichbar sein.
-Nachdem die Animation zu Ende ist, wechselt der Bildschirm in die Phase2.
--------------------------------------
-Phase2, Selbstversuch:
-Man wird anfangs aufgefordert irgendeine !kurze Zeichenkette oder seinen Vornamen einzugeben. Auf der Eingabe wird dann in den nächsten Schritten gearbeitet.
-             Der Aufbau des Selbstversuchs gestaltet sich folgendermaßen:
-                    In der Mitte des Bildschirms sieht man die Eingabe des Benutzers. Unter der Eingabe ist das Alphabet abgebildet, wobei jeder Buchstabe dort nummeriert ist. Der erste Schritt des Selbstversuchs ist es die Eingabe selbst zu verschlüsseln. Dies geschieht indem jeder Buchstabe der Eingabe nacheinander aufleuchtet und der Benutzer den dazu gehörigen verschlüsselten Buchstaben im Alphabet anklickt. Das Chiffrat taucht zwischen der Eingabe und dem Alphabet auf, sodass unter jedem Buchstaben sein verschlüsseltes Pendant ist. Nachdem alle Buchstaben abgearbeitet sind, entschlüsselt das Programm das Chiffrat selbst und zeigt die Ausgabe unterhalb des Chiffrats an.
-                     Der zweite Schritt des Selbstversuchs besteht in der Entschlüsselung eines gegebenen Chiffrats(welcher nicht größer als die Eingabe des Benutzer von vorhin sein soll). Dies geschieht analog zum ersten Schritt.
-Optional(Wunschkriterien):
-                    Dritter Schritt. Dem Benutzer wird die Möglichkeit gegeben ein gegebenes Chiffrat zu knacken. Wobei hier der Klartext nicht mit Cäsar3 verschlüsselt wurde, sondern mit CäsarK.
- Wenn alles abgearbeitet ist wechselt der Bildschirm in Phase3, dem Hintergrund der Caesar Chiffre. Sprich die geschichtlichen Hintergründe und seine Besonderheit, sowie auch Schwächen.
-Phase3, Verfahrensinformationen:
-Zu besprechen. Keine Animationen mehr. Mindestens Vor-/Nachteile des Verfahrens und geschichtlicher Hintergrund.
-Sollte der Benutzer noch mehr Informationen zu einem Verschlüsselungsverfahren haben möchte, wird er spätestens in dieser Phase besonders auf die "weiterführende" Literatur verwiesen.
-
-Vigenère:
-Phase1, Animation:
-Die Animation muss jetzt die Problematik der leichten Knackbarkeit der vorherigen Chiffren und Vigenères Lösung dazu zum Ausdruck bringen. Der Benutzer muss aus der Animation klar entnehmen können wer Vigenère war und wie das Verfahren funktioniert.
-Generische Anforderung, wie am Anfang bei Cäsar beschrieben.
-Phase2, Selbstversuch:
-Der Selbstversuch bei Vigenère erfordert für das volle Verständnis eine mindestens doppelt so lange Zeichenkette, wie bei Cäsar, zur Abarbeitung.
-Anfangs wird wie bei Cäsar eine Eingabe gefordert, auf der gearbeitet wird. Die Eingabe besteht aus der Zeichenkette die verschlüsselt wird und aus dem Schlüssel(Codewort).
-Die Schrittreihenfolge ist wie bei Cäsar. Zuerst muss der Benutzer die Eingabe mit dem eingegeben Codewort verschlüsseln und im zweiten Schritt dann ein vorgegebenes Chiffrat mit einem vorgegebenen Schlüssel entschlüsseln.
-Das Verschlüsseln wird folgendermaßen in Szene gesetzt:
-           Die Eingabe des Benutzers wird zentral auf dem Bildschirm angezeigt. Unterhalb ist wieder das Alphabet mit drunter liegender Nummernfolge abgebildet. Unterhalb des Codewortes bekommt jeder Buchstabe seine Nummer aus dem Alphabet, sodass der User weiß um wie vielen Stellen das Klartextzeichen zu verschieben ist. Verschlüsselt wird indem jeder Buchstabe der Eingabe und des Codeworts nacheinander aufleuchtet und der Benutzer das dazu gehörige Chiffrezeichen im Alphabet anklickt. Unter der Eingabe wird anschließend das Chiffrat abgebildet und das Programm entschlüsselt am Ende das Chiffrat und zeigt das Ergebnis an.
-Entschlüsselt wird analog. Hier sind aber das Chiffrat und Codewort vorgegeben. Das Ergebnis wird anschließend unter dem Chiffrat angezeigt.
-Optional:
-Dritter Schritt. Dem Benutzer wird die Möglichkeit gegeben ein gegebenes Chiffrat ohne des Codewortes zu entschlüsseln. Benötigte Hilfsmittel, wie die Häufigkeitsanalyse sind bereit zu stellen. Muss jedoch ebenfalls noch abgeklärt werden, wie genau, da auf zu kurzen Zeichenketten die Häufigkeitsanalyse wie bei Cäsar zu wenig Aussagekraft.
-Phase3 ist analog wie bei Cäsar.
-
-Public Key Infrastruktur(PKI):
-Eins vorneweg: Da dies eine aktuelle Problematik ist, ist es wichtig die Animationen anhand von aktuellen Beispielen aus dem heutigem Alltag darzustellen.
-Phase1, Animation:
-Es ist Anhand einer Animation zu zeigen, wie die Authentifikation öffentlicher Schlüssel mithilfe von Zertifikaten realisiert wird. Es muss daraus ersichtlich sein, wie die Zertifikate beweisen, dass der öffentliche Schlüssel zum anderen Kommunikationspartner gehört und nicht durch einen Angreifer ausgetauscht wurde.
-Vorausgesetzt man hat die Grundlagen über public key Kryptographie und Hashing verinnerlicht ist dieses System unter die Schwierigkeit "Mittel" einzuordnen. Es ist jedoch auch möglich die Schwierigkeit zu reduzieren indem man die Signaturen bspw. durch eine einfache Unterschrift ersetzt, das beispielhaft für eine Signatur stehen kann. So kann die Schwierigkeit auf "Einfach" zu reduziert werden.
-Es ist jedoch zu beachten, dass hierzu mehrere Animationen notwendig sind um die PKI, wie sie heute eingesetzt ganz verstehen können. Dies liegt daran, dass verschieden Vertrauensmodelle benutzt werden. Zuallererst ist die Rollenvielfalt auf einen User und Certification Authority(CA) zu beschränken. User will in diesem Fall seinen öffentlichen Schlüssel von der CA signieren lassen, sodass bei der Kommunikation mit anderen Usern er neben seinem Schlüssel auch ein Zertifikat vorlegen kann, dass der Schlüssel nicht verändert wurde und er dazu den passenden secret key besitzt. So weiß der andere Kommunikationspartner, dass nur der User die, mit dem erhaltenen public key verschlüsselten, Nachrichten entschlüsseln kann. Diese Zertifikate setzen ein gewisses Vertrauen in den Herausgeber(CA) voraus. Denn, wenn die CA nicht wirklich seriös ist, ist das Zertifikat nicht wirklich ein Beweis dafür, dass der Schlüssel nicht verändert wurde. Vertraut man der CA jedoch fest, so ist man dann auch davon überzeugt, dass man 
-die vertraulichen Nachrichten mit dem PK verschlüsseln und abschicken kann. Das führt auf eine weitere Grundlage der PKI, die Vertrauensmodelle. Aufgrund der großen Vielfalt ist hier auch dringend nötig, wie bei der Rollenvielfalt, auf das wichtigste zu reduzieren.
-Das erste Modell besteht aus einer oder mehreren CA's, die Zertifikate an Benutzer herausgeben können. Hierzu ist die Problematik aufzuzeigen, die dabei entsteht.
-Das zweite ist eine Hierarchie von CA's. Sprich die CA's können andere Benutzer dazu ermächtigen an andere Zertifikate auszustellen. Das Vertrauen in die CA's überträgt sich also auf diesen Benutzer! Was jedoch auch gewisse Probleme mit sich bringt.
-Das dritte Modell heißt Anarchie oder auch Web of Trust. Hier ist jeder Benutzer eine CA und kann seine öffentlichen Schlüssel selbst signieren. Wie auch davor bringt das Probleme und Vorteile mit sich.
-Phase2, Selbstversuch:
-Ist noch zu klären :D
-Phase3, Informationen:
-Hierzu kann man die geschichtliche Einordnung der Problematik der Schlüsselverteilung der Public Key Kryptosystemen(PKK) aufzuzeigen. Die Akteure, die bei der Entwicklung mitgewirkt haben sind aufzuzeigen. Und weiterer Schnickschnack, der uns noch im Laufe einfällt. Dies Das Ananas.
 
 
 \section{Globale Testfälle}
