@@ -10,3 +10,13 @@
 
 # PDF
 cg_pse_pflichtenheft.pdf
+/cg_pflichtenheft/cg_pse_pflichtenheft.pdf
+
+/cg_pflichtenheft/*.glg
+
+/cg_pflichtenheft/*.glo
+
+/cg_pflichtenheft/*.gls
+/cg_pflichtenheft/*.out
+
+/cg_pflichtenheft/*.ist
