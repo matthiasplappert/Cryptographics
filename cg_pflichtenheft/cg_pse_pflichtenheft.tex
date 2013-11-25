@@ -37,7 +37,8 @@
 \newglossaryentry{PSE}{name={PSE}, description={Praxis der Software-Entwicklung}}
 \newglossaryentry{IKS}{name={IKS}, description={Institut für Kryptographie und Sicherheit}}
 \newglossaryentry{KIT}{name={KIT}, description={Karlsruher Institut für Technologie}}
-
+\newglossaryentry{UI}{name={UI}, description={User Interface, Benutzeroberfläche}}
+\newglossaryentry{EeeTop}{name={EeeTop}, description={Die vom IKS gestellte Hardware auf der das Produkt eingesetzt werden soll}}
 
 \begin{document}
 
@@ -69,17 +70,17 @@ Im Rahmen der \gls{PSE}-Veranstaltung soll für das \gls{Kryptologikum} des Inst
 Kryptographie und Sicherheit die Software \gls{Cryptographics} zur
 Demonstration kryptographischer Verfahren erstellt werden. \\
 \\
-Das Programm soll im Laufe der Ausstellung \gls{Kryptologikum} das Interesse der Besucher wecken, sich mit Verschlüsselung zu befassen und schließlich auch ausgewählte Inhalte der Kryptographie näher bringen. \\
+Das Programm soll im Laufe der Ausstellung das Interesse der Besucher wecken, sich mit Verschlüsselung zu befassen und schließlich auch ausgewählte Inhalte der Kryptographie näher anzuschauen. \\
 \\
 Wichtig ist, dass die Visualisierungen ansprechend und verständlich gestaltet sind. Die Nutzung von \gls{Cryptographics} soll Spaß machen. \\
 \\
 Jedes Verfahren wird in drei Schritten vorgestellt. Diese sind eine automatisch ablaufende Demonstration, ein interaktiver Versuch und ein Wiki-artiger Artikel für weitere Informationen.
-In der Demonstration wird dem Nutzer der Ablauf der Verschlüsselung möglichst anschaulich demonstriert. Darauf folgend kann im Eigenversuch auf der gleichen Oberfläche die Verschlüsselung selbst ausprobiert werden. Dem Nutzer wird hierbei eine größtmögliche Freiheit zur Wahl sämtlicher Komponenten (wie Klartext, Primzahl, etc.) gelassen. Unter ``Mehr Wissen'' sollen sich interessierte Benutzer schließlich tiefgehender über das Verfahren informieren können, über seine Entstehung, Einsatz und Nachfolger. Auf geeignete weiterführende Literatur kann mit QR-Codes verwiesen werden. \\
+In der Demonstration wird dem Nutzer der Ablauf des Verfahrens möglichst anschaulich demonstriert. Darauf folgend kann im Eigenversuch auf der gleichen Oberfläche das Verfahren selbst ausprobiert werden. Dem Nutzer wird hierbei eine größtmögliche Freiheit zur Wahl sämtlicher Komponenten (wie Klartext, Primzahl, etc.) gelassen. Unter ``Mehr Wissen'' sollen sich interessierte Benutzer schließlich tiefgehender über das Verfahren informieren können, über seine Entstehung, Einsatz und Nachfolger. Auf geeignete weiterführende Literatur kann mit QR-Codes verwiesen werden. \\
 
 \subsection{Musskriterien}
 
 \begin{itemize}
-    \item Visualisierung Caesar-Chiffre
+    \item Visualisierung Cäsar-Chiffre
     \item Visualisierung Vigenère-Chiffre
     \item Visualisierung Diffie-Hellmann
     \item Zugriff auf Krypto-Verfahren über Zeitleiste
@@ -92,7 +93,7 @@ In der Demonstration wird dem Nutzer der Ablauf der Verschlüsselung möglichst 
     \item Mögliche Rückkehr zur Startoberfläche per Button zu jedem Ausführungszeitpunkt
     \item Interaktion des Benutzers über den Touchscreen
     \item Intuitive Benutzerführung
-    \item Einfache, übersichtliche UI, die sich gut auf Touchscreen bedienen lässt
+    \item Einfache, übersichtliche \gls{UI}, die sich gut auf Touchscreen bedienen lässt
     \item Einheitliche optische Darstellung der verschiedenen Verfahren
     \item Robuste Programmierung
     \item Schnelle Reaktionszeiten
@@ -121,6 +122,8 @@ In der Demonstration wird dem Nutzer der Ablauf der Verschlüsselung möglichst 
     \item Verbesserte Verständlichkeit der Visualisierungen durch Verwendung von z.B. Analogien
     \item Visualisierung von Angriffen auf Verfahren
     \item Erfassung von grundlegenden Nutzungsstatistiken zur potentiellen externen Analyse des Nutzerverhaltens  im Hinblick auf eventuelle zukünftige Optimierung des Programms
+    \item Lokales Speichern von Auszügen aus weiterführenden Inhalten
+    \item Leichtes Austauschen der oben genannten weiterführenden Inhalten
 \end{itemize}
 
 \subsection{Abgrenzungskriterien}
@@ -139,7 +142,7 @@ In der Demonstration wird dem Nutzer der Ablauf der Verschlüsselung möglichst 
 
 Besuchern der Ausstellung soll das Funktionsprinzip und die Verwendung historischer, sowie aktueller, kryptographischer Verfahren nähergebracht werden. Diese sollen anhand von vereinfachten und beispielhaften Szenarien aus dem Alltag vermittelt werden, mit dem Ziel, ein größeres Interesse an der Materie zu wecken.
 
-\gls{Cryptographics} soll primär auf dem eeePC (siehe Produktumgebung) im \gls{Kryptologikum} eingesetzt werden.
+\gls{Cryptographics} soll primär auf dem \gls{EeeTop} (siehe Produktumgebung) im \gls{Kryptologikum} eingesetzt werden.
 
 \subsection{Zielgruppen}
 
@@ -149,7 +152,7 @@ Das Programm richtet sich insbesondere an Kinder, Jugendliche und Erwachsene mit
 
 \gls{Cryptographics} soll im Dauerbetrieb problemlos laufen. Dementsprechend dürfen keine Ausnahmen auftreten, die den Betrieb des Programms behindern, oder gar einen Absturz auslösen, der den Benutzer zur Betriebssystemebene führt. Insbesondere muss darauf geachtet werden, dass schnelle, unkontrollierte Benutzereingaben zu keinem undefinierten Zustand des Programms führen. Auch ein reguläres Beenden von \gls{Cryptographics} soll durch den Benutzer nicht möglich sein, und nur durch eine angeschlossene Hardwaretastatur erreicht werden können.
 
-Der Betrieb soll für die Hardware des eeePC (siehe Produktumgebung) optimiert sein, der während der Ausstellung über keine Internetverbindung verfügt. Inhalte zu weiterführenden Informationen müssen also lokal in Form von leicht aktualisierbaren und austauschbaren Textdateien vorliegen.
+Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) optimiert sein, der während der Ausstellung über keine Internetverbindung verfügt. Inhalte zu weiterführenden Informationen müssen also lokal in Form von leicht aktualisierbaren und austauschbaren Textdateien vorliegen.
 
 \section{Produktumgebung}
 
@@ -158,14 +161,14 @@ Der Betrieb soll für die Hardware des eeePC (siehe Produktumgebung) optimiert s
 \subsection{Software}
 
 \begin{itemize}
-	\item Windows XP Home edition
+	\item Windows XP Home Edition
 	\item Java Version 7 Update 45
 \end{itemize}
 
 \subsection{Hardware}
 
 \begin{itemize}
-	\item ASUS Touchscreen EeeTop Tablet
+	\item ASUS Touchscreen \gls{EeeTop} Tablet
 	\item 1.6 GHz Intel Atom CPU
 	\item 1GB RAM
 	\item 160GB HDD
@@ -196,18 +199,18 @@ Der Betrieb soll für die Hardware des eeePC (siehe Produktumgebung) optimiert s
 \end{FA}
 \begin{itemize}[label={}]
  \item Ziel: Benutzer versteht das Verfahren und kann selbstständig 
- beliebigen Klartext verschlüsseln und beliebigen Chiffrat, der mit Cäsar erzeugt wurde, entschlüsseln.
- \item Aktuere: Benutzer.
+ beliebige Klartexte verschlüsseln und beliebiges Chiffrat, das mit Cäsar erzeugt wurde, entschlüsseln.
+ \item Akteure: Benutzer.
  \item Beschreibung:
- \item Phase1: Demonstration.
+ \item Phase 1: Demonstration.
 \begin{enumerate}[]
  \item Auf dem Bildschirm erscheinen Animationen, die das Verfahren erklären.
- \item Der Benutzer sieht die Animation schrittweise und kann sie jederzeit anhalten.
+ \item Der Benutzer sieht die Animation schrittweise und kann sie jederzeit pausieren.
  \item Der Benutzer kann in der Animation einen Schritt vorwärts gehen.
  \item Der Benutzer kann in der Animation einen Schritt rückwärts gehen. 
  \item Am Ende der Demonstration wechselt die Visualisierung des Verfahrens in die zweite Phase, dem Selbstversuch.
 \end{enumerate}
- \item Phase2: Selbstversuch.
+ \item Phase 2: Selbstversuch.
  \item Schritt 1:
  \begin{enumerate}
   \item Der Benutzer wird mit einem kleinen Eingabefenster aufgefordert eine kurze Eingabe, 
@@ -252,7 +255,7 @@ Der Betrieb soll für die Hardware des eeePC (siehe Produktumgebung) optimiert s
  \item Akteure: Benutzer.
  \item Beschreibung:
  \item Phase1: Demonstration.
- \item Identisch mit funktionalen Anforderungen in Caesar Phase 1, Demonstration. 
+ \item Identisch mit funktionalen Anforderungen in Cäsar Phase 1, Demonstration. 
  \item Phase2: Selbstversuch.
  \item Schritt 1:
  \begin{enumerate}
@@ -476,7 +479,7 @@ Beschreibung:
 
 - Funktionen: Willkommensbildschirm, Algo/Visualisierung wählen, Algo bearbeiten,
 Soforthilfe passend zum Algo falls man nicht weiter weiß, Algo beenden,
-ggf. Kontrollfragen oder selbstständiges Anwenden des Gelernten am Ende (z.B. ein Wort mit Caesar verschlüsseln)
+ggf. Kontrollfragen oder selbstständiges Anwenden des Gelernten am Ende (z.B. ein Wort mit Cäsar verschlüsseln)
 \\
 \\
 RSA und Public-Key Verschlüsselung anhand von Pad-Locks als
@@ -705,9 +708,9 @@ Das System verwendet das bekannte MVC-Entwurfsmuster. Weiterhin ist geplant, das
 \item B entschlüsselt die Nachricht von A mit seinem private key und kann die Nachricht lesen
 \item C versucht mit der Nachricht irgendetwas anzufangen und versucht sie mit dem abgehörten public key von B zu entschlüsseln. Das scheitert natürlich.
 
-Beispiel einer Visualisierung anhand des Caesar-Algos:
+Beispiel einer Visualisierung anhand des Cäsar-Verfahrens:
 
-\item Es wird erklärt, dass vermutlich Caesar dieses Verfahren verwendet hat um geheime Nachrichten zu verschlüsseln
+\item Es wird erklärt, dass vermutlich Cäsar dieses Verfahren verwendet hat um geheime Nachrichten zu verschlüsseln
 \item Erklärung des Prinzips an einem Beispielsatz. Es werden schrittweise alle gleichen Buchstaben markiert und in ihr Äquivalent umgewandelt (z.B. "Hallo, wie geht's?" -> zuerst alle H zu K, dann alle a zu d, dann alle l zu o). Hier gibt es die Möglichkeit, schrittweise durchzugehen und noch mal zurück zu gehen. Außerdem kann man wenn man das Prinzip verstanden hat ans Ende springen.
 \item Als nächstes muss die Person ein Wort selbst verschlüsseln mit Vorschrift (z.B. a -> b).
 \item Am Ende wird mithilfe eines Diagrammes und der Kenntnis, das E der häufigste Buchstabe im Deutschen ist gezeigt, dass man diese Verschlüsselung leicht umgehen kann
