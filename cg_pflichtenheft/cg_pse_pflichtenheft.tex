@@ -16,6 +16,9 @@
 \newlist{PD}{enumerate}{1}
 \setlist[PD]{label=/PD\arabic*/}
 
+\newlist{T}{enumerate}{1}
+\setlist[T]{label=/T\arabic*/}
+ 
 \title{\textbf{Pflichtenheft} \\ Cryptographics}
 \author{}
 \date{\today}
@@ -185,11 +188,11 @@ Der Betrieb soll für die Hardware des eeePC (siehe Produktumgebung) optimiert s
   \item Start der gewählten Visualisierung
   \item Abbruch einer gewählten Visualisierung, um zum Startbildschirm zurückzukehren
   \item Soforthilfe zu einer gewählten Visualisierung
-  \item Darstellung weiterführender Information nach erfolgreichem Beenden einer Visualisierung 
+  \item Darstellung weiterführender Informationen nach erfolgreichem Beenden einer Visualisierung 
 \end{FA}
 
 \begin{FA}[start=100]
- \item Prozess: Visualiserung des Verfahrens Cäsar.
+ \item Prozess: Visualisierung des Verfahrens Cäsar.
 \end{FA}
 \begin{itemize}[label={}]
  \item Ziel: Benutzer versteht das Verfahren und kann selbstständig 
@@ -345,7 +348,7 @@ Beschreibung:
 
 \subsubsection{Erweiterte Funktionen}
 
-
+//Todo: Didn't we decide to kick PKI and some other stuff out?
 \begin{FA}[start=500]
 \item Public Key Infrastruktur (PKI)
 \end{FA}
@@ -610,17 +613,22 @@ Beschreibung:
 \begin{NA}[start=100]
 \item Schnelle Reaktionszeit
 \end{NA}
+
 \begin{NA}[start=200]
 \item Große Robustheit
 \end{NA}
+
 \begin{NA}[start=300]
 \item Intuitive Benutzerführung
 \end{NA}
 
-- Die Anwendung muss möglichst performant und verzögerungsfrei auf Benutzereingaben reagieren (soweit das die HW zulässt...)
-\\
-\\
-- Die Anwendung muss leicht zu bedienen sein
+\begin{NA}[start=400]
+\item Verhältnismäßig zur Hardware soll Cryptographics möglichst performant und verzögerungsfrei auf Benutzereingaben reagieren.
+\end{NA}
+
+\begin{NA}[start=500]
+\item Benutzerfreundliche Bedienung.
+\end{NA}
 
 \section{Produktdaten}
 \begin{PD}[start=10]
@@ -727,14 +735,56 @@ Die Ausstellung ist für diesen Tag nun zu Ende, und die Krypto-logikum-Administ
 \end{figure}
 
 \section{Globale Testfälle}
-- automatisiertes Testen mithilfe von JUnit vor allem der Krypto-Algorithmen
-- ggf. automatisiertes Testen der UI mithilfe von Szenarien und geeignetem Framework
-Stresstest mit möglichst zufälligen und willkürlichen Eingaben (wie es Kinder eben tun)
-Usability Tests mit passenden Testpersonen\\
-Es ist sehr ratsam, dass die globalen Testfälle mit /Txy/ sich auf die Funktionalität /Fxy/ beziehen. So ist eine gewisse Konsistenz, Überdeckungsgrad und Übersichtlichkeit gewährleistet. Folgt demnächst, wenn die Funktionalen Anforderungen fertig sind!
+//TODO: Meiner Meinung nach sollte jeder zu den funktionalen Anforderungen, 
+die er geschrieben hat noch Testfälle oder Testszenarien sich überlegen.
+Dies kommt anschließend auch in Globale Testfälle rein. Je mehr Testfälle wir uns jetzt überlegen. 
+Desto einfacher wird es später, da mit dem Pflichtenheft wir die Funktionalität bereits festgelegt haben.
+Für Stabilität können wir in der Phase wenig tun.
+\begin{T}[start = 10]
+\item Die Testfälle haben mindestens 80\% des geschriebenen Codes abzudecken. Wünschenswert wären 90\%,
+      um die Stabilität mit größerer Sicherheit zu gewährleisten.
+\end{T}
+
+\begin{T}[start = 10]
+ \item Die Reaktion der Anwendung auf die normale und außergewöhnliche Interaktion des Benutzers mit 
+       den GUI-Elementen muss ausführlich gestestet werden.
+\end{T}
+
+\begin{T}[start = 10]
+ \item Alle Grundfunktionen aus dem Kapitel Funktionale Anforderungen müssen in erster Linie getestet werden.
+\end{T}
+
+\begin{T}[start = 10]
+ \item Funktionen, die von mehreren Verfahren gleichermaßen benutzt werden haben eine höhere Priorität in der Testreihenfolge.
+       Es gilt das Prinzip: Je allgemeiner, desto wichtiger.
+\end{T}
+
+\begin{T}[start = 10]
+ \item Die ersten Testszenarien sind die Beispielszenarien aus dem Pflichtenheft.
+\end{T}
+
+\begin{T}[start = 10]
+ \item Zu testen neben der Funktionalität und Stabilität ist die Wirkung der Anwendung auf den Benutzer. 
+       Dazu können Testpersonen herangezogen werden.
+\end{T}
+
+\begin{T}[start = 10]
+ \item Die Menge der Testpersonen sollte die Kundentypen der Zielgruppe möglichst abdecken.
+\end{T}
+
+\begin{T}[start = 10]
+ \item Vorranging wird JUnit zum testen der Funktionalität des Codes verwendet.
+\end{T}
+
+\begin{T}[start = 10]
+ \item Stress- und Belastbarkeitstest sind so oft wie möglich durchzuführen, bis sofern Hardware es zulässt 
+       Einbrüche in der Leistung und Abstürze mit nur vernachlässigbarer Wahrscheinlichkeit auftreten.
+\end{T}
 
 \section{Qualitätsbestimmung}
 
+In diesem Kapitel wird den Qualitätsmerkmalen Funktionalität, Zuverlässigkeit, Benutzbarkeit, Effizienz, Änderbarkeit und Übertragbarkeit je eine Qualitätsstufe aus sehr gut, gut, normal und nicht relevant zugeordnet. 
+ 
 \section{Anhang}
 
 \subsection{Zeichnungen, Skizzen, etc.}
