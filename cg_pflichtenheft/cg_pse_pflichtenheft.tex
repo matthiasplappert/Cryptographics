@@ -81,7 +81,7 @@ In der Demonstration wird dem Nutzer der Ablauf des Verfahrens möglichst anscha
 
 \begin{itemize}
     \item Visualisierung Cäsar-Chiffre
-    \item Visualisierung Vigenère-Chiffre
+    \item Visualisierung Vigenere-Chiffre
     \item Visualisierung Diffie-Hellmann
     \item Zugriff auf Krypto-Verfahren über Zeitleiste
     \item Benutzerführung über Phasen
@@ -221,8 +221,7 @@ Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) opti
   \item Nun leuchtet jeder Buchstabe der Eingabe nacheinander auf.
   \item Der Benuter wählt das verschlüsselte Gegenstück zum leuchtenden Zeichen in der Eingabe aus dem Alphabet aus. 
   \item Bei jeder Auswahl des Buchstaben aus dem Alphabet taucht dieser unter der Eingabe auf.
-  \item[] Benutzer wiederholt alles solange, bis alle Buchstaben der Eingabe abgearbeitet sind und 
-        das Chiffrat vollständig unter der Eingabe dargestellt ist.
+  \item[] Benutzer wiederholt alles solange, bis alle Buchstaben der Eingabe abgearbeitet sind und das Chiffrat vollständig unter der Eingabe dargestellt ist.
   \item Nun entschlüsselt das Programm das Chiffrat selbst.
   \item Programm zeigt die Ausgabe unterhalb des Chiffrats an.
  \end{enumerate}
@@ -230,16 +229,13 @@ Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) opti
  \begin{enumerate}
   \item Die alte Bildschirmanzeige verschwindet.
   \item Für den Benuter wird vom Programm ein Chiffrat generiert. 
-  \item[] Auf diesem Chiffrat wird dann analog gearbeitet, wie auf der Eingabe aus Schritt 1. Die Funktionalen 
-          Anforderungen sind identisch. Die Unterschiede liegen darin, dass der Benutzer nun entschlüsselt.
-  \item Nach erfolgreichem Entschlüsseln wechselt die Visualisierung des Verfahrens in die Phase 3, 
-        Wiki.
+  \item[] Auf diesem Chiffrat wird dann analog gearbeitet, wie auf der Eingabe aus Schritt 1. Die funktionalen Anforderungen sind identisch. Die Unterschiede liegen darin, dass der Benutzer nun entschlüsselt.
+  \item Nach erfolgreichem Entschlüsseln wechselt die Visualisierung des Verfahrens in die Phase 3, Wiki.
  \end{enumerate}
  \item Phase 3: Wiki.
   \begin{enumerate}
    \item Sammlung an Artikeln über das Verfahren Cäsar.
-   \item Nach dem Durchlesen ist die Visualisierung des Verfahrens Cäsar abgeschlossen. 
-         Der Benuter wird zum nächsten Verfahren weitergeleitet.
+   \item Nach dem Durchlesen ist die Visualisierung des Verfahrens Cäsar abgeschlossen. Der Benuter wird zum nächsten Verfahren weitergeleitet.
   \end{enumerate}
 \end{itemize}
 
@@ -250,13 +246,12 @@ Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) opti
  \item Prozess: Visualiserung des Verfahrens Vigenere.
 \end{FA}
 \begin{itemize}[label={}]
- \item Ziel: Benutzer versteht das Verfahren und kann selbstständig beliebigen Klartext verschlüsseln und beliebigen Chiffrat, 
-       der mit Vigenere erzeugt wurde, entschlüsseln.
+ \item Ziel: Benutzer versteht das Verfahren und kann selbstständig beliebigen Klartext verschlüsseln und beliebigen Chiffrat, der mit Vigenere erzeugt wurde, entschlüsseln.
  \item Akteure: Benutzer.
  \item Beschreibung:
- \item Phase1: Demonstration.
+ \item Phase 1: Demonstration.
  \item Identisch mit funktionalen Anforderungen in Cäsar Phase 1, Demonstration. 
- \item Phase2: Selbstversuch.
+ \item Phase 2: Selbstversuch.
  \item Schritt 1:
  \begin{enumerate}
   \item Auf dem Bildschirm erscheinen Animationen, die das Verfahren erklären.
@@ -360,17 +355,15 @@ Beschreibung:
             interagieren.
 \item Akteure: Benutzer.
 \item Beschreibung:
-\item Phase 1:Demonstration.
+\item Phase 1: Demonstration.
 \begin{enumerate}
- \item[1-4] Die ersten 4 funktionalen Anforderungen sind identisch mit den Anforderungen aus Cäsar und Vigenère. 
- \item[5] An die Demo anschließend springt das Programm in die Phase 3, Wiki. Phase 2 wird übersprungen, 
-          da sich die Überlegungen zu einem Selbstversuch in PKI keine vernünftigen Ergebnisse liefern. 
-          Ein Selbstversuch kann aber jederzeit eingebaut werden
+ \item[1-4] Die ersten 4 funktionalen Anforderungen sind identisch mit den Anforderungen aus Cäsar und Vigenere. 
+ \item[5] An die Demo anschließend springt das Programm in die Phase 3, Wiki. Phase 2 wird übersprungen, da sich die Überlegungen zu einem Selbstversuch in PKI keine vernünftigen Ergebnisse liefern. Ein Selbstversuch kann aber jederzeit eingebaut werden
 \end{enumerate}
 \item Phase 3: Wiki.
 \begin{enumerate}
- \item[1-2] Identisch mit den funktionalen Anforderung aus Cäsar und Vigenère
-\end{enumerate}.
+ \item[1-2] Identisch mit den funktionalen Anforderung aus Cäsar und Vigenere
+\end{enumerate}
 \end{itemize}
 
 \begin{FA}[start=600]
@@ -407,7 +400,7 @@ Beschreibung:
 \end{FA}
 \begin{itemize}[label={}]
 \item Prozess: Blockchiffren Demonstration
-\item Ziel: Dem Benutzer ist die Funktionsweise von Blockchiffren bewusst und erhält einen Einblick in die verschiedenen Modí.
+\item Ziel: Dem Benutzer ist die Funktionsweise von Blockchiffren bewusst und erhält einen Einblick in die verschiedenen Modi.
 \item Akteure: Benutzer.
 \item Beschreibung:
 \item Phase 1: Einleitung.
@@ -423,7 +416,7 @@ Beschreibung:
 \item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt das Chiffrat.
 \item Gebe das Chiffrat dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
 \item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
-\item Nach dem Erhalten des zweiten Chiffrates, zeige Nutzer dass der ECB Modus homomorph ist.
+\item Nach dem Erhalten des zweiten Chiffrats, zeige Nutzer dass der ECB Modus homomorph ist.
 \item Zeige Nutzer das Problem das dadurch entsteht anhand einem im ECB Modus chiffrierten Bildes.
 \item Dechiffriere das erste Chiffrat.
 \end{enumerate}
@@ -435,7 +428,7 @@ Beschreibung:
 \item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt das Chiffrat.
 \item Gebe das Chiffrat dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
 \item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
-\item Nach dem Erhalten des zweiten Chiffrates, zeige Nutzer dass die Homomorphie nicht mehr gegeben ist.
+\item Nach dem Erhalten des zweiten Chiffrats, zeige Nutzer dass die Homomorphie nicht mehr gegeben ist.
 \end{enumerate}
 \item Phase 4: Weiterführende Informationen.
 \begin{enumerate}
