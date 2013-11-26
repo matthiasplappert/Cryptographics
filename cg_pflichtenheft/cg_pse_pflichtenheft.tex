@@ -98,12 +98,10 @@ In der Demonstration wird dem Nutzer der Ablauf des Verfahrens möglichst anscha
 \subsection{Wunschkriterien}
 
 \begin{itemize}
-    \item Visualisierung Public-Key-Infrastruktur
     \item Visualisierung Shamir Secret Sharing
     \item Visualisierung One-Time-Pad
     \item Visualisierung Blockchiffre (DES, AES)
     \item Visualisierung Hashfunktionen
-    \item Visualisierung RSA
     \item Modulares Austauschen / Hinzufügen von weiteren kryptografischen Verfahren
     \item Animation auf Startbildschirm als Blickfang
     \item Namen / Icons für Verfahren in der Zeitleiste für bessere Übersichtlichkeit
@@ -341,28 +339,6 @@ Beschreibung:
 
 \subsubsection{Erweiterte Funktionen}
 
-\begin{FA}[start=500]
-\item Public Key Infrastruktur (PKI)
-\end{FA}
-\begin{itemize}[label={}]
-\item Prozess: Erläuterung der Vorgänge bei der Verteilung von öffentlichen Schlüsseln.
-\item Ziel: Dem Benutzer ist klar ersichtlich, wie die Verteilung vonstatten geht und welche Instanzen in diesem Rahmen 
-            interagieren.
-\item Akteure: Benutzer.
-\item Beschreibung:
-\item Phase 1: Demonstration.
-\begin{enumerate}
- \item[1-4] Die ersten 4 funktionalen Anforderungen sind identisch mit den Anforderungen aus Cäsar und Vigenere. 
- \item[5] An die Demo anschließend springt das Programm in die Phase 3, Wiki. Phase 2 wird übersprungen, 
-da sich die Überlegungen zu einem Selbstversuch in PKI keine vernünftigen Ergebnisse liefern. Ein 
-Selbstversuch kann aber jederzeit eingebaut werden
-\end{enumerate}
-\item Phase 3: Wiki.
-\begin{enumerate}
- \item[1-2] Identisch mit den funktionalen Anforderung aus Cäsar und Vigenere.
-\end{enumerate}
-\end{itemize}
-
 \begin{FA}[start=600]
 \item Hashing
 \end{FA}
@@ -465,15 +441,6 @@ Selbstversuch kann aber jederzeit eingebaut werden
  \item[1-2] Identisch mit den funktionalen Anforderung aus Cäsar und Vigenere
 \end{enumerate}
 \end{itemize}
-
-- Funktionen: Willkommensbildschirm, Verfahren/Visualisierung wählen, Verfahren bearbeiten,
-Soforthilfe passend zum Verfahren falls man nicht weiter weiß, Verfahren beenden,
-ggf. Kontrollfragen oder selbstständiges Anwenden des Gelernten am Ende (z.B. ein Wort mit Cäsar verschlüsseln)
-\\
-\\
-RSA und Public-Key Verschlüsselung anhand von Pad-Locks als
-öffentliche Schlüssel und den Schlüssel  dazu als privaten,
-vielleicht mit Komplementärfarben visualisieren ähnlich wie Diffie-Hellman
 
 \begin{FA}[start=900]
 \item Prozess: Shamir Secret Sharing Demonstration
@@ -688,22 +655,7 @@ Das System verwendet das bekannte MVC-Entwurfsmuster. Weiterhin ist geplant, das
   \caption{Schematische Darstellung des beschriebenen Systems.}
 \end{figure}
 
-\section{Beispielszenarien}
-\begin{itemize}
-    \item Das Beispiel läuft schrittweise ab. Problem wird dargestellt: A möchte B eine Nachricht schicken, die nicht von einer anderen Person als B gelesen werden soll. C versucht die Nachricht zu bekommen. Dabei können A und B nur über ein unsicheres Medium kommunizieren (Analogie z.B. Schlüssel per Post verschicken), das von C abgehört wird.
-\item A und B generieren ihre Schlüsselpaare. Der genaue Schlüssel ist nicht relevant.
-\item A fragt B nach seinem public key, den B auch bereitwillig mitteilt. C hört den public key von B.
-\item A verschlüsselt die Nachricht mit dem public key von B und verschickt die Nachricht an B. C hört die verschlüsselte Nachricht ab.
-\item B entschlüsselt die Nachricht von A mit seinem private key und kann die Nachricht lesen
-\item C versucht mit der Nachricht irgendetwas anzufangen und versucht sie mit dem abgehörten public key von B zu entschlüsseln. Das scheitert natürlich.
-
-Beispiel einer Visualisierung anhand des Cäsar-Verfahrens:
-
-\item Es wird erklärt, dass vermutlich Cäsar dieses Verfahren verwendet hat um geheime Nachrichten zu verschlüsseln
-\item Erklärung des Prinzips an einem Beispielsatz. Es werden schrittweise alle gleichen Buchstaben markiert und in ihr Äquivalent umgewandelt (z.B. "Hallo, wie geht's?" -> zuerst alle H zu K, dann alle a zu d, dann alle l zu o). Hier gibt es die Möglichkeit, schrittweise durchzugehen und noch mal zurück zu gehen. Außerdem kann man wenn man das Prinzip verstanden hat ans Ende springen.
-\item Als nächstes muss die Person ein Wort selbst verschlüsseln mit Vorschrift (z.B. a -> b).
-\item Am Ende wird mithilfe eines Diagrammes und der Kenntnis, das E der häufigste Buchstabe im Deutschen ist gezeigt, dass man diese Verschlüsselung leicht umgehen kann
-\end{itemize}
+\section{Testszenarien}
 
 \textbf{Szenario 1}:
 Bob ist interessiert in Kryptographie und besucht zu diesem Anlass das \gls{Kryptologikum}, um mehr Informationen diesbezüglich zu erhalten. Er nähert sich dem \gls{Cryptographics}, wo ein Bildschirmschoner verschiedene kryptographische Verfahren Teaser-ähnlich visualisiert. Eine Berührung des Bildschirmes zeigt die Willkommensoberfläche von \gls{Cryptographics}: Ein Zeitstrahl, auf dem chronologisch angeordnet verschiedene kryptographische Verfahren, ihrem Erfindungsjahr zugeordnet, genannt werden und farblich durch ihre Komplexität von grün (leicht) bis rot (schwer) gekennzeichnet sind. Bob wählt durch eine Berührung die Cäsar-Chiffre aus, sie befindet sich nämlich ganz am Anfang des Zeitstrahls. Daraufhin erscheint eine kurze Einleitung als Popover, im Hintergrund baut sich die Oberfläche auf und der Zeitstrahl gleitet verkleinert als Gesamtübersicht an den unteren Bildschirmrand. Nach dem Durchlesen der Einleitung schließt Bob das Popup, und er sieht eine Demonstration der Cäsar-Chiffre als Schritt-für-
