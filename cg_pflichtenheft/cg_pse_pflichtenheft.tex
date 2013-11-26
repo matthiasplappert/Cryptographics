@@ -6,6 +6,10 @@
 \usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{amssymb}
+\usepackage{pifont}
+
+\newcommand{\xmark}{\ding{55}}
 
 \newlist{FA}{enumerate}{1}
 \setlist[FA]{label=/FA\arabic*/}
@@ -721,8 +725,49 @@ Die Ausstellung ist für diesen Tag nun zu Ende, und die Kryptologikum-Administr
 
 \section{Qualitätsbestimmung}
 
-In diesem Kapitel wird den Qualitätsmerkmalen Funktionalität, Zuverlässigkeit, Benutzbarkeit, Effizienz, Änderbarkeit und Übertragbarkeit je eine Qualitätsstufe aus sehr gut, gut, normal und nicht relevant zugeordnet. 
- 
+% As specified by http://de.wikipedia.org/wiki/ISO/IEC_9126
+\begin{table}[H]
+  \begin{tabular}{| l | c | c | c | c |}
+    \hline
+     & \textbf{sehr wichtig} & \textbf{wichtig} & \textbf{neutral} & \textbf{unwichtig} \\ \hline
+    \textbf{Funktionalität} &  &  &  & \\ \hline
+    Angemessenheit &  &  & \xmark & \\ \hline
+    Richtigkeit &  & \xmark &  & \\ \hline
+    Interoperabilität &  &  &  & \xmark \\ \hline
+    Ordnungsmäßigkeit &  &  & \xmark & \\ \hline
+    Sicherheit &  &  & \xmark & \\ \hline
+     &  &  &  & \\ \hline
+    \textbf{Zuverlässigkeit} &  &  &  & \\ \hline
+    Reife & & \xmark &  & \\ \hline
+    Fehlertoleranz & & \xmark &  & \\ \hline
+    Wiederherstellbarkeit &  &  & \xmark & \\ \hline
+     &  &  &  & \\ \hline
+    \textbf{Benutzbarkeit} &  &  &  & \\ \hline
+    Verständlichkeit & \xmark &  &  & \\ \hline
+    Erlernbarkeit & \xmark &  &  & \\ \hline
+    Bedienbarkeit & \xmark &  &  & \\ \hline
+     &  &  &  & \\ \hline
+    \textbf{Effizienz} &  &  &  & \\ \hline
+    Zeitverhalten &  &  & \xmark & \\ \hline
+    Verbrauchsverhalten &  &  & \xmark & \\ \hline
+     &  &  &  & \\ \hline
+    \textbf{Änderbarkeit} &  &  & \xmark & \\ \hline
+    Analysierbarkeit &  &  &  & \\ \hline
+    Modifizierbarkeit &  & \xmark &  & \\ \hline
+    Stabilität &  &  & \xmark & \\ \hline
+    Prüfbarkeit &  &  & \xmark & \\ \hline
+     &  &  &  & \\ \hline
+    \textbf{Übertragbarkeit} &  &  &  & \\ \hline
+    Anpassbarkeit &  &  & \xmark & \\ \hline
+    Installierbarkeit &  &  & \xmark & \\ \hline
+    Konformität &  &  & \xmark & \\ \hline
+    Austauschbarkeit &  &  & \xmark & \\ \hline
+    \end{tabular}
+\end{table}
+
+Zusammenfassend lässt sich sagen, dass vor allem die Benutzbarkeit eintscheidend ist.
+
+
 \section{Anhang}
 
 %Glossar ausgeben
