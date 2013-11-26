@@ -188,7 +188,7 @@ Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) opti
 \end{FA}
 \begin{itemize}[label={}]
  \item Ziel: Benutzer versteht das Verfahren und kann selbstständig 
- beliebige Klartexte verschlüsseln und beliebiges Chiffrat, das mit Cäsar erzeugt wurde, entschlüsseln.
+       beliebige Klartexte verschlüsseln und beliebiges Chiffrat, das mit Cäsar erzeugt wurde, entschlüsseln.
  \item Akteure: Benutzer.
  \item Beschreibung:
  \item Phase 1: Demonstration.
@@ -211,7 +211,7 @@ Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) opti
   \item Der Benutzer wählt das verschlüsselte Gegenstück zum leuchtenden Zeichen in der Eingabe aus dem Alphabet aus. 
   \item Bei jeder Auswahl des Buchstaben aus dem Alphabet taucht dieser unter der Eingabe auf.
   \item[] Benutzer wiederholt alles solange, bis alle Buchstaben der Eingabe abgearbeitet sind 
-und das Chiffrat vollständig unter der Eingabe dargestellt ist.
+          und das Chiffrat vollständig unter der Eingabe dargestellt ist.
   \item Nun entschlüsselt das Programm das Chiffrat selbst.
   \item Programm zeigt die Ausgabe unterhalb des Chiffrats an.
  \end{enumerate}
@@ -220,14 +220,20 @@ und das Chiffrat vollständig unter der Eingabe dargestellt ist.
   \item Die alte Bildschirmanzeige verschwindet.
   \item Für den Benutzer wird vom Programm ein Chiffrat generiert. 
   \item[] Auf diesem Chiffrat wird dann analog gearbeitet, wie auf der Eingabe aus Schritt 1. Die funktionalen 
-Anforderungen sind identisch. Die Unterschiede liegen darin, dass der Benutzer nun entschlüsselt.
-  \item Nach erfolgreichem Entschlüsseln wechselt die Visualisierung des Verfahrens in die Phase 3, Wiki.
+          Anforderungen sind identisch. Die Unterschiede liegen darin, dass der Benutzer nun entschlüsselt.
+
+ \end{enumerate}
+ \item Schritt 3:
+ \begin{enumerate}
+  \item Es erscheinen Animationen, die Nachteile von Cäsar demonstrieren.
+  \item Histogramme werden durch interaktive Animationen erklärt.
+  \item Nachdem die letzten Interaktionen abgeschlossen sind, wechselt die Visualisierung in die Phase 3, Wiki.
  \end{enumerate}
  \item Phase 3: Wiki.
   \begin{enumerate}
    \item Sammlung an Artikeln über das Verfahren Cäsar.
    \item Nach dem Durchlesen ist die Visualisierung des Verfahrens Cäsar abgeschlossen. Der Benutzer wird zum 
-nächsten Verfahren weitergeleitet.
+         nächsten Verfahren weitergeleitet.
   \end{enumerate}
 \end{itemize}
 
@@ -239,30 +245,50 @@ nächsten Verfahren weitergeleitet.
 \end{FA}
 \begin{itemize}[label={}]
  \item Ziel: Benutzer versteht das Verfahren und kann selbstständig beliebige Klartexte verschlüsseln 
-und beliebiges Chiffrat, das mit Vigenere erzeugt wurde, entschlüsseln.
+             und beliebiges Chiffrat, das mit Vigenere erzeugt wurde, entschlüsseln.
  \item Akteure: Benutzer.
  \item Beschreibung:
+ 
  \item Phase 1: Demonstration.
  \item Identisch mit funktionalen Anforderungen in Cäsar Phase 1, Demonstration. 
+ 
  \item Phase 2: Selbstversuch.
  \item Schritt 1:
  \begin{enumerate}
-  \item Auf dem Bildschirm erscheinen Animationen, die das Verfahren erklären.
-  \item Der Benutzer kann die Animationen schrittweise vollziehen.
-  \item Der Benutzer kann in den Animationen auch schrittweise rückwärts gehen. 
-  \item Am Ende der Animation wechselt die Visualisierung des Verfahrens in die zweite Phase, dem Selbstversuch.
+  \item Der Benutzer wird mit einem kleinen Eingabefenster aufgefordert eine kurze Eingabe, 
+        die aus einer kleinen Zeichenfolge, dem Klartext, und einer weiteren, dem Schlüssel, zu tätigen.
+  \item Benutzer hat auch die Möglichkeit sich die Eingabe durch einen Button generieren zu lassen.
+  \item Eingabe ist nun in der Mitte des Bildschirms zu sehen und unterhalb ist das Alphabet 
+        abgebildet, wobei jeder Buchstabe nummeriert ist.
+  \item Jeder Buchstabe des Schlüssels ist auch mit seinen Nummer aus dem Alphabet gekennzeichnet.
+  \item Nun leuchtet jeder Buchstabe der Eingabe und des Schlüssel parallel nacheinander auf.
+  \item Der Benutzer wählt das verschlüsselte Gegenstück zum leuchtenden Zeichen in der Eingabe aus dem Alphabet aus. 
+  \item Bei jeder Auswahl des Buchstaben aus dem Alphabet taucht dieser unter der Eingabe auf.
+  \item[] Benutzer wiederholt alles solange, bis alle Buchstaben der Eingabe abgearbeitet sind 
+          und das Chiffrat vollständig unter der Eingabe dargestellt ist.
+  \item Nun entschlüsselt das Programm das Chiffrat selbst.
+  \item Programm zeigt die Ausgabe unterhalb des Chiffrats an.
  \end{enumerate}
  \item Schritt 2:
  \begin{enumerate}
   \item Die alte Bildschirmanzeige verschwindet.
   \item Für den Benutzer wird vom Programm ein Chiffrat mit einem Codewort generiert. 
   \item[] Auf diesem wird dann analog gearbeitet, wie auf der Eingabe aus Schritt 1. Die Funktionalen Anforderungen sind identisch.
-        Die Unterschiede liegen darin, dass der Benutzer nun entschlüsselt. 
-        Der Klartext in Schritt 1 ist nun das Chiffrat und der Schlüssel hat dieselbe Rolle.
-        Das Chiffrat wird auf dieselbe Weise entschlüsselt, wie der Klartext verschlüsselt. 
+          Die Unterschiede liegen darin, dass der Benutzer nun entschlüsselt. 
+          Der Klartext in Schritt 1 ist nun das Chiffrat und der Schlüssel hat dieselbe Rolle.
+          Das Chiffrat wird auf dieselbe Weise entschlüsselt, wie der Klartext verschlüsselt. 
   \item Programm prüft die entschlüsselte Zeichenfolge auf Richtigkeit.
-  \item Nach erfolgreichem Entschlüsseln wechselt die Visualisierung des Verfahrens in die Phase 3, Wiki.
  \end{enumerate}
+  \item Schritt 3:
+ \begin{enumerate}
+  \item Es erscheinen Animationen, die Nachteile von Vigenere demonstrieren.
+  \item Anschließend folgen Erklärungen über mögliche Angriffe auf Vigenere.
+  \item Dem Benutzer wird aus einem verständlichen Klartext mit Vigenere ein Chiffrat generiert.
+  \item Der Benutzer hat die Möglichkeit Histogramme über einen Button zu erstellen.
+  \item Anhand einer interaktiver Animation hat der Benutzer nun die Möglichkeit den Schlüssel für das generierte Chiffrat zu finden.
+  \item Nachdem die letzten Interaktionen abgeschlossen, wechselt die Anwedung in die Phase 3, Wiki.
+ \end{enumerate}
+ 
  \item Phase 3: Wiki.
  \item Identisch mit den funktionalen Anforderungen aus Cäsar, Phase 3: Wiki.
 \end{itemize}
