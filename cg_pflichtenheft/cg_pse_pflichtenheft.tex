@@ -95,7 +95,7 @@ In der Demonstration wird dem Nutzer der Ablauf des Verfahrens möglichst anscha
     \item Einheitliche optische Darstellung der verschiedenen Verfahren
     \item Robuste Programmierung
     \item Schnelle Reaktionszeiten
-    \item Robustheit gegen au"sergewöhnliche Interaktion
+    \item Robustheit gegen außergewöhnliche Interaktion
     \item Beenden des Programms / Wechsel zum Desktop nur per angeschlossener Tastatur, nicht über Touch-Eingabe
     \item Vermeidung undefinierter Zustände des Programms
     \item Vermeidung von Sackgassen im Programm, die einen Neustart erfordern
@@ -217,23 +217,26 @@ Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) opti
   \item Eingabe ist nun in der Mitte des Bildschirms zu sehen und unterhalb ist das Alphabet 
         abgebildet, wobei jeder Buchstabe nummeriert ist.     
   \item Nun leuchtet jeder Buchstabe der Eingabe nacheinander auf.
-  \item Der Benuter wählt das verschlüsselte Gegenstück zum leuchtenden Zeichen in der Eingabe aus dem Alphabet aus. 
+  \item Der Benutzer wählt das verschlüsselte Gegenstück zum leuchtenden Zeichen in der Eingabe aus dem Alphabet aus. 
   \item Bei jeder Auswahl des Buchstaben aus dem Alphabet taucht dieser unter der Eingabe auf.
-  \item[] Benutzer wiederholt alles solange, bis alle Buchstaben der Eingabe abgearbeitet sind und das Chiffrat vollständig unter der Eingabe dargestellt ist.
+  \item[] Benutzer wiederholt alles solange, bis alle Buchstaben der Eingabe abgearbeitet sind 
+und das Chiffrat vollständig unter der Eingabe dargestellt ist.
   \item Nun entschlüsselt das Programm das Chiffrat selbst.
   \item Programm zeigt die Ausgabe unterhalb des Chiffrats an.
  \end{enumerate}
  \item Schritt 2:
  \begin{enumerate}
   \item Die alte Bildschirmanzeige verschwindet.
-  \item Für den Benuter wird vom Programm ein Chiffrat generiert. 
-  \item[] Auf diesem Chiffrat wird dann analog gearbeitet, wie auf der Eingabe aus Schritt 1. Die funktionalen Anforderungen sind identisch. Die Unterschiede liegen darin, dass der Benutzer nun entschlüsselt.
+  \item Für den Benutzer wird vom Programm ein Chiffrat generiert. 
+  \item[] Auf diesem Chiffrat wird dann analog gearbeitet, wie auf der Eingabe aus Schritt 1. Die funktionalen 
+Anforderungen sind identisch. Die Unterschiede liegen darin, dass der Benutzer nun entschlüsselt.
   \item Nach erfolgreichem Entschlüsseln wechselt die Visualisierung des Verfahrens in die Phase 3, Wiki.
  \end{enumerate}
  \item Phase 3: Wiki.
   \begin{enumerate}
    \item Sammlung an Artikeln über das Verfahren Cäsar.
-   \item Nach dem Durchlesen ist die Visualisierung des Verfahrens Cäsar abgeschlossen. Der Benuter wird zum nächsten Verfahren weitergeleitet.
+   \item Nach dem Durchlesen ist die Visualisierung des Verfahrens Cäsar abgeschlossen. Der Benutzer wird zum 
+nächsten Verfahren weitergeleitet.
   \end{enumerate}
 \end{itemize}
 
@@ -241,10 +244,11 @@ Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) opti
 
 %/Vigenere Visualiserung, Funktionale Anforderungen.
 \begin{FA}[start=120]
- \item Prozess: Visualiserung des Verfahrens Vigenere.
+ \item Prozess: Visualisierung des Verfahrens Vigenere.
 \end{FA}
 \begin{itemize}[label={}]
- \item Ziel: Benutzer versteht das Verfahren und kann selbstständig beliebige Klartexte verschlüsseln und beliebiges Chiffrat, das mit Vigenere erzeugt wurde, entschlüsseln.
+ \item Ziel: Benutzer versteht das Verfahren und kann selbstständig beliebige Klartexte verschlüsseln 
+und beliebiges Chiffrat, das mit Vigenere erzeugt wurde, entschlüsseln.
  \item Akteure: Benutzer.
  \item Beschreibung:
  \item Phase 1: Demonstration.
@@ -260,7 +264,7 @@ Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) opti
  \item Schritt 2:
  \begin{enumerate}
   \item Die alte Bildschirmanzeige verschwindet.
-  \item Für den Benuter wird vom Programm ein Chiffrat mit einem Codewort generiert. 
+  \item Für den Benutzer wird vom Programm ein Chiffrat mit einem Codewort generiert. 
   \item[] Auf diesem wird dann analog gearbeitet, wie auf der Eingabe aus Schritt 1. Die Funktionalen Anforderungen sind identisch.
         Die Unterschiede liegen darin, dass der Benutzer nun entschlüsselt. 
         Der Klartext in Schritt 1 ist nun das Chiffrat und der Schlüssel hat dieselbe Rolle.
@@ -356,7 +360,9 @@ Beschreibung:
 \item Phase 1: Demonstration.
 \begin{enumerate}
  \item[1-4] Die ersten 4 funktionalen Anforderungen sind identisch mit den Anforderungen aus Cäsar und Vigenere. 
- \item[5] An die Demo anschließend springt das Programm in die Phase 3, Wiki. Phase 2 wird übersprungen, da sich die Überlegungen zu einem Selbstversuch in PKI keine vernünftigen Ergebnisse liefern. Ein Selbstversuch kann aber jederzeit eingebaut werden
+ \item[5] An die Demo anschließend springt das Programm in die Phase 3, Wiki. Phase 2 wird übersprungen, 
+da sich die Überlegungen zu einem Selbstversuch in PKI keine vernünftigen Ergebnisse liefern. Ein 
+Selbstversuch kann aber jederzeit eingebaut werden
 \end{enumerate}
 \item Phase 3: Wiki.
 \begin{enumerate}
@@ -467,8 +473,8 @@ Beschreibung:
 \end{enumerate}
 \end{itemize}
 
-- Funktionen: Willkommensbildschirm, Algo/Visualisierung wählen, Algo bearbeiten,
-Soforthilfe passend zum Algo falls man nicht weiter weiß, Algo beenden,
+- Funktionen: Willkommensbildschirm, Verfahren/Visualisierung wählen, Verfahren bearbeiten,
+Soforthilfe passend zum Verfahren falls man nicht weiter weiß, Verfahren beenden,
 ggf. Kontrollfragen oder selbstständiges Anwenden des Gelernten am Ende (z.B. ein Wort mit Cäsar verschlüsseln)
 \\
 \\
@@ -594,7 +600,7 @@ Beschreibung:
         Mitwisser größer gleich K, so
         interpoliere das gesuchte Polynom
         und geben (0, D) an
-    \item Gratulatiere dem Nutzer und
+    \item Gratuliere dem Nutzer und
         zeige Button für Wiki-Artikel
         oder QR-Codes an
 \end{enumerate}
@@ -707,9 +713,9 @@ Beispiel einer Visualisierung anhand des Cäsar-Verfahrens:
 \end{itemize}
 
 \textbf{Szenario 1}:
-Bob ist interessiert in Kryptographie und besucht zu diesem Anlass das \gls{Kryptologikum}, um mehr Informationen diesbezüglich zu erhalten. Er nähert sich dem \gls{Cryptographics}, wo ein Bildschirmschoner verschiedene kryptographische Verfahren Teaser-ähnlich visualisiert. Eine Berührung des Bildschirmes zeigt die Willkommensoberfläche von \gls{Cryptographics}: Ein Zeitstrahl, auf dem chronologisch angeordnet verschiedene kryptographische Verfahren, ihrem Erfindungsjahr zugeordnet, genannt werden und farblich durch ihre Komplexität von grün (leicht) bis rot (schwer) gekennzeichnet sind. Bob wählt durch eine Berührung die Cäsar-Chiffre aus, sie befindet sich nämlich ganz am Anfang des Zeitstrahls. Daraufhin erscheint eine kurze Einleitung als Popup, im Hintergrund baut sich die Oberfläche auf und der Zeitstrahl gleitet verkleinert als Gesamtübersicht an den unteren Bildschirmrand. Nach dem Durchlesen der Einleitung schließt Bob das Popup, und er sieht eine Demonstration der Cäsar-Chiffre als Schritt-für-
+Bob ist interessiert in Kryptographie und besucht zu diesem Anlass das \gls{Kryptologikum}, um mehr Informationen diesbezüglich zu erhalten. Er nähert sich dem \gls{Cryptographics}, wo ein Bildschirmschoner verschiedene kryptographische Verfahren Teaser-ähnlich visualisiert. Eine Berührung des Bildschirmes zeigt die Willkommensoberfläche von \gls{Cryptographics}: Ein Zeitstrahl, auf dem chronologisch angeordnet verschiedene kryptographische Verfahren, ihrem Erfindungsjahr zugeordnet, genannt werden und farblich durch ihre Komplexität von grün (leicht) bis rot (schwer) gekennzeichnet sind. Bob wählt durch eine Berührung die Cäsar-Chiffre aus, sie befindet sich nämlich ganz am Anfang des Zeitstrahls. Daraufhin erscheint eine kurze Einleitung als Popover, im Hintergrund baut sich die Oberfläche auf und der Zeitstrahl gleitet verkleinert als Gesamtübersicht an den unteren Bildschirmrand. Nach dem Durchlesen der Einleitung schließt Bob das Popup, und er sieht eine Demonstration der Cäsar-Chiffre als Schritt-für-
 Schritt-Beispiel auf 
-einer speziell für das Verfahren ausgelegten Oberfläche. Auf genau dieser Oberfläche kann Bob nach dem Beispiel sein neu erlerntes Wissen über das Verfahren anwenden, um Texte zu verschlüsseln, und durch einen gegebenen Schlüssel zu entschlüsseln. Nachdem er das Verfahren nun verinnerlicht hat, kann Bob das nächste Verfahren auswählen, entweder durch Drücken der “Weiter”-Taste, oder indem er ein Verfahren direkt am Zeitstrahl auswählt. Da er die weiteren Verfahren auch noch sehen möchte, arbeitet er sich am Zeitstrahl entlang durch das Programm, wobei er dann schließlich auf das Diffie-Hellman-Verfahren trifft, über welches er noch mehr Informationen erhalten möchte. Er berührt einen dafür vorgesehenen Button, welcher ein Popup mit einem QR-Code öffnet, dass letztendlich zu den ausführlichen Quellen weiterleitet. Alternativ ist dort auch eine gekürzte URL zu finden die man schnell abschreiben kann (Bsp.: http://goo.gl/abcd12).\\
+einer speziell für das Verfahren ausgelegten Oberfläche. Auf genau dieser Oberfläche kann Bob nach dem Beispiel sein neu erlerntes Wissen über das Verfahren anwenden, um Texte zu verschlüsseln, und durch einen gegebenen Schlüssel zu entschlüsseln. Nachdem er das Verfahren nun verinnerlicht hat, kann Bob das nächste Verfahren auswählen, entweder durch Drücken der “Weiter”-Taste, oder indem er ein Verfahren direkt am Zeitstrahl auswählt. Da er die weiteren Verfahren auch noch sehen möchte, arbeitet er sich am Zeitstrahl entlang durch das Programm, wobei er dann schließlich auf das Diffie-Hellman-Verfahren trifft, über welches er noch mehr Informationen erhalten möchte. Er berührt einen dafür vorgesehenen Button, welcher ein Popover mit einem QR-Code öffnet, dass letztendlich zu den ausführlichen Quellen weiterleitet. Alternativ ist dort auch eine gekürzte URL zu finden die man schnell abschreiben kann (Bsp.: http://goo.gl/abcd12).\\
 
 \textbf{Szenario 2}:
 Die ungeduldige Alice wurde von ihrer Freundin überredet, an der Ausstellung teilzunehmen. Sie sieht das \gls{Cryptographics} und versucht, es durch wiederholte zufällige Eingaben zum Absturz zu bringen. Das Programm zeigt sich jedoch schnell als zu robust, um einem solchen Angriff zu erliegen. Schließlich wählt sie das komplizierteste kryptographische Verfahren aus, um Besuchern nach ihr den Einstieg zu erschweren. Nachdem sie gegangen ist, muss sie jedoch enttäuscht feststellen, dass der nächste Besucher keine weitere Schwierigkeiten hatte, das Programm mit dem dafür vorgesehenen Button in den Grundzustand zurückzuversetzen.\\
@@ -718,7 +724,7 @@ Die ungeduldige Alice wurde von ihrer Freundin überredet, an der Ausstellung te
 Nachdem Bob nun längere Zeit an \gls{Cryptographics} verbracht hat, blickt er erschreckt auf die Uhr um festzustellen, dass es schon viel zu spät geworden ist. Er bricht auf, und lässt das Programm genau so zurück, wie er es gerade eben noch benutzt hat. Nach seiner letzten Interaktion erscheint nach x Sekunden eine Meldung, die Bob darauf hingewiesen hätte, dass sich das Programm bald zurücksetzt, sollte in den nächsten y Sekunden keine Eingabe mehr erfolgen. Da er jedoch schon an der Bushaltestelle steht, aktiviert \gls{Cryptographics} nun den Bildschirmschoner, den Bob zuvor auch schon vorgefunden hatte, und setzt im Hintergrund das Programm wieder auf den Ursprungszustand zurück.\\
 
 \textbf{Szenario 4}:
-Die Ausstellung ist für diesen Tag nun zu Ende, und die Krypto-logikum-Administratorin Claudia schließt gerade noch die Tür hinter Bob ab, um sich jetzt den strombetriebenen Exponaten zu widmen. Als sie am \gls{Cryptographics} ankommt, versucht sie zunächst, irgendwie zum Betriebssystem zurückzukehren, um den PC sicher herunterfahren zu können. Nach kurzer Zeit stellt sie fest, dass das ohne eine zusätzlich eingesteckte Hardware-Tastatur auf keinen Fall möglich ist. Sie holt also eine USB-Tastatur, steckt sie ein, kehrt über den Windows-Taskmanager zum Betriebssystem zurück, fährt den PC herunter und macht die Lichter aus.\\
+Die Ausstellung ist für diesen Tag nun zu Ende, und die Kryptologikum-Administratorin Claudia schließt gerade noch die Tür hinter Bob ab, um sich jetzt den strombetriebenen Exponaten zu widmen. Als sie am \gls{Cryptographics} ankommt, versucht sie zunächst, irgendwie zum Betriebssystem zurückzukehren, um den PC sicher herunterfahren zu können. Nach kurzer Zeit stellt sie fest, dass das ohne eine zusätzlich eingesteckte Hardware-Tastatur auf keinen Fall möglich ist. Sie holt also eine USB-Tastatur, steckt sie ein, kehrt über den Windows-Taskmanager zum Betriebssystem zurück, fährt den PC herunter und macht die Lichter aus.\\
 
 \begin{figure}[h!]
   \centering
@@ -734,7 +740,7 @@ Die Ausstellung ist für diesen Tag nun zu Ende, und die Krypto-logikum-Administ
 
 \begin{T}[start = 10]
  \item Die Reaktion der Anwendung auf die normale und außergewöhnliche Interaktion des Benutzers mit 
-       den GUI-Elementen muss ausführlich gestestet werden.
+       den GUI-Elementen muss ausführlich getestet werden.
 \end{T}
 
 \begin{T}[start = 10]
