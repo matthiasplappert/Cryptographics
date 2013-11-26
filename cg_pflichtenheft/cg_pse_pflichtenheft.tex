@@ -6,6 +6,12 @@
 \usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{url}
+\usepackage[bottom]{footmisc}
+
+\newcommand{\xmark}{\ding{55}}
 
 \newlist{FA}{enumerate}{1}
 \setlist[FA]{label=/FA\arabic*/}
@@ -39,6 +45,42 @@
 \newglossaryentry{KIT}{name={KIT}, description={Karlsruher Institut für Technologie}}
 \newglossaryentry{UI}{name={UI}, description={User Interface, Benutzeroberfläche}}
 \newglossaryentry{EeeTop}{name={EeeTop}, description={Die vom IKS gestellte Hardware auf der das Produkt eingesetzt werden soll}}
+
+% Definitions for Qualitätsbestimmungen, as specified here:
+% http://de.wikipedia.org/wiki/ISO/IEC_9126
+
+% Funktionalität
+\newglossaryentry{Angemessenheit}{name={Angemessenheit}, description={Eignung von Funktionen für spezifizierte Aufgaben, zum Beispiel aufgabenorientierte Zusammensetzung von Funktionen aus Teilfunktionen}}
+\newglossaryentry{Richtigkeit}{name={Richtigkeit}, description={Liefern der richtigen oder vereinbarten Ergebnisse oder Wirkungen, zum Beispiel die benötigte Genauigkeit von berechneten Werten}}
+\newglossaryentry{Interoperabilitaet}{name={Interoperabilität}, description={Fähigkeit, mit vorgegebenen Systemen zusammenzuwirken}}
+\newglossaryentry{Ordnungsmaessigkeit}{name={Ordnungsmäßigkeit}, description={Merkmale von Software, die bewirken, dass die Software anwendungsspezifische Normen oder Vereinbarungen oder gesetzliche Bestimmungen und ähnliche Vorschriften erfüllt}}
+\newglossaryentry{Sicherheit}{name={Sicherheit}, description={Fähigkeit, unberechtigten Zugriff, sowohl versehentlich als auch vorsätzlich, auf Programme und Daten zu verhindern}}
+
+% Zuverlässigkeit
+\newglossaryentry{Reife}{name={Reife}, description={Geringe Versagenshäufigkeit durch Fehlerzustände}}
+\newglossaryentry{Fehlertoleranz}{name={Fehlertoleranz}, description={Fähigkeit, ein spezifiziertes Leistungsniveau bei Software-Fehlern oder Nicht-Einhaltung ihrer spezifizierten Schnittstelle zu bewahren}}
+\newglossaryentry{Wiederherstellbarkeit}{name={Wiederherstellbarkeit}, description={Fähigkeit, bei einem Versagen das Leistungsniveau wiederherzustellen und die direkt betroffenen Daten wiederzugewinnen. Zu berücksichtigen sind die dafür benötigte Zeit und der benötigte Aufwand}}
+
+% Benutzbarkeit
+\newglossaryentry{Verstaendlichkeit}{name={Verständlichkeit}, description={Aufwand für den Benutzer, das Konzept und die Anwendung zu verstehen}}
+\newglossaryentry{Erlernbarkeit}{name={Erlernbarkeit}, description={Aufwand für den Benutzer, die Anwendung zu erlernen (zum Beispiel Bedienung, Ein-, Ausgabe)}}
+\newglossaryentry{Bedienbarkeit}{name={Bedienbarkeit}, description={Aufwand für den Benutzer, die Anwendung zu bedienen}}
+
+% Effizienz
+\newglossaryentry{Zeitverhalten}{name={Zeitverhalten}, description={Antwort- und Verarbeitungszeiten sowie Durchsatz bei der Funktionsausführun}}
+\newglossaryentry{Verbrauchsverhalten}{name={Verbrauchsverhalten}, description={Anzahl und Dauer der benötigten Betriebsmittel bei der Erfüllung der Funktionen. Ressourcenverbrauch, wie CPU-Zeit, Festplattenzugriffe usw.}}
+
+% Änderbarkeit
+\newglossaryentry{Analysierbarkeit}{name={Analysierbarkeit}, description={Aufwand, um Mängel oder Ursachen von Versagen zu diagnostizieren oder um änderungsbedürftige Teile zu bestimmen}}
+\newglossaryentry{Modifizierbarkeit}{name={Modifizierbarkeit}, description={Aufwand zur Ausführung von Verbesserungen, zur Fehlerbeseitigung oder Anpassung an Umgebungsänderungen}}
+\newglossaryentry{Stabilitaet}{name={Stabilität}, description={Wahrscheinlichkeit des Auftretens unerwarteter Wirkungen von Änderungen}}
+\newglossaryentry{Pruefbarkeit}{name={Prüfbarkeit}, description={Aufwand, der zur Prüfung der geänderten Software notwendig ist}}
+
+% Übertragbarkeit
+\newglossaryentry{Anpassbarkeit}{name={Anpassbarkeit}, description={Fähigkeit der Software, diese an verschiedene Umgebungen anzupassen}}
+\newglossaryentry{Installierbarkeit}{name={Installierbarkeit}, description={Aufwand, der zum Installieren der Software in einer festgelegten Umgebung notwendig ist}}
+\newglossaryentry{Konformitaet}{name={Konformität}, description={Grad, in dem die Software Normen oder Vereinbarungen zur Übertragbarkeit erfüllt}}
+\newglossaryentry{Austauschbarkeit}{name={Austauschbarkeit}, description={Möglichkeit, diese Software anstelle einer spezifizierten anderen in der Umgebung jener Software zu verwenden, sowie der dafür notwendige Aufwand}}
 
 \begin{document}
 
@@ -721,8 +763,51 @@ Die Ausstellung ist für diesen Tag nun zu Ende, und die Kryptologikum-Administr
 
 \section{Qualitätsbestimmung}
 
-In diesem Kapitel wird den Qualitätsmerkmalen Funktionalität, Zuverlässigkeit, Benutzbarkeit, Effizienz, Änderbarkeit und Übertragbarkeit je eine Qualitätsstufe aus sehr gut, gut, normal und nicht relevant zugeordnet. 
- 
+Die hier aufgeführten Merkmale richten sich nach dem ISO/IEC 9126-Standard\footnote{\url{http://de.wikipedia.org/wiki/ISO/IEC_9126}}.
+
+% As specified by http://de.wikipedia.org/wiki/ISO/IEC_9126
+\begin{table}[H]
+  \begin{tabular}{| l | c | c | c | c |}
+    \hline
+     & \textbf{sehr wichtig} & \textbf{wichtig} & \textbf{neutral} & \textbf{unwichtig} \\ \hline
+    \textbf{Funktionalität} &  &  &  & \\ \hline
+    \gls{Angemessenheit} &  &  & \xmark & \\ \hline
+    \gls{Richtigkeit} &  & \xmark &  & \\ \hline
+    \gls{Interoperabilitaet} &  &  &  & \xmark \\ \hline
+    \gls{Ordnungsmaessigkeit} &  &  & \xmark & \\ \hline
+    \gls{Sicherheit} &  &  & \xmark & \\ \hline
+     &  &  &  & \\ \hline
+    \textbf{Zuverlässigkeit} &  &  &  & \\ \hline
+    \gls{Reife} & & \xmark &  & \\ \hline
+    \gls{Fehlertoleranz} & & \xmark &  & \\ \hline
+    \gls{Wiederherstellbarkeit} &  &  & \xmark & \\ \hline
+     &  &  &  & \\ \hline
+    \textbf{Benutzbarkeit} &  &  &  & \\ \hline
+    \gls{Verstaendlichkeit} & \xmark &  &  & \\ \hline
+    \gls{Erlernbarkeit} & \xmark &  &  & \\ \hline
+    \gls{Bedienbarkeit} & \xmark &  &  & \\ \hline
+     &  &  &  & \\ \hline
+    \textbf{Effizienz} &  &  &  & \\ \hline
+    \gls{Zeitverhalten} &  &  & \xmark & \\ \hline
+    \gls{Verbrauchsverhalten} &  &  & \xmark & \\ \hline
+     &  &  &  & \\ \hline
+    \textbf{Änderbarkeit} &  &  & \xmark & \\ \hline
+    \gls{Analysierbarkeit} &  &  &  & \\ \hline
+    \gls{Modifizierbarkeit} &  & \xmark &  & \\ \hline
+    \gls{Stabilitaet} &  &  & \xmark & \\ \hline
+    \gls{Pruefbarkeit} &  &  & \xmark & \\ \hline
+     &  &  &  & \\ \hline
+    \textbf{Übertragbarkeit} &  &  &  & \\ \hline
+    \gls{Anpassbarkeit} &  &  & \xmark & \\ \hline
+    \gls{Installierbarkeit} &  &  & \xmark & \\ \hline
+    \gls{Konformitaet} &  &  & \xmark & \\ \hline
+    \gls{Austauschbarkeit} &  &  & \xmark & \\ \hline
+    \end{tabular}
+\end{table}
+
+Zusammenfassend lässt sich sagen, dass vor allem die Benutzbarkeit eintscheidend ist.
+
+
 \section{Anhang}
 
 %Glossar ausgeben
