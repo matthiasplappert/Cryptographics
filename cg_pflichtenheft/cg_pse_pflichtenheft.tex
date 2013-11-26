@@ -183,306 +183,369 @@ Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) opti
   \item Time-Out bei fehlender Nutzerinteraktion mit Rückkehr zum Startbildschirm
 \end{FA}
 
+%/ Cäsar
 \begin{FA}[start=110]
  \item Prozess: Visualisierung des Verfahrens Cäsar.
 \end{FA}
 \begin{itemize}[label={}]
+
  \item Ziel: Benutzer versteht das Verfahren und kann selbstständig 
- beliebige Klartexte verschlüsseln und beliebiges Chiffrat, das mit Cäsar erzeugt wurde, entschlüsseln.
- \item Akteure: Benutzer.
+beliebige Klartexte verschlüsseln und beliebiges Chiffrat, das mit 
+Cäsar erzeugt wurde, entschlüsseln.
+
+ \item Auslösendes Ereignis: Auswahl durch Zeitleiste.
+
  \item Beschreibung:
+
  \item Phase 1: Demonstration.
-\begin{enumerate}[]
- \item Auf dem Bildschirm erscheinen Animationen, die das Verfahren erklären.
- \item Der Benutzer sieht die Animation schrittweise und kann sie jederzeit pausieren.
- \item Der Benutzer kann in der Animation einen Schritt vorwärts gehen.
- \item Der Benutzer kann in der Animation einen Schritt rückwärts gehen. 
- \item Am Ende der Demonstration wechselt die Visualisierung des Verfahrens in die zweite Phase, dem Selbstversuch.
-\end{enumerate}
+
+	\begin{enumerate}
+	 \item Auf dem Bildschirm erscheinen Animationen, die das Verfahren erklären.
+	 \item Der Benutzer sieht die Animation schrittweise und kann sie jederzeit pausieren.
+	 \item Der Benutzer kann in der Animation einen Schritt vorwärts gehen.
+	 \item Der Benutzer kann in der Animation einen Schritt rückwärts gehen. 
+	 \item Am Ende der Demonstration wechselt die Visualisierung des Verfahrens in die zweite Phase, dem Selbstversuch.
+	\end{enumerate}
+
  \item Phase 2: Selbstversuch.
+
  \item Schritt 1:
- \begin{enumerate}
-  \item Der Benutzer wird mit einem kleinen Eingabefenster aufgefordert eine kurze Eingabe, 
-        die aus einer kleinen Zeichenfolge besteht, zu tätigen.
-  \item Benutzer hat die Möglichkeit sich die Eingabe durch einen Button generieren zu lassen.
-  \item Eingabe ist nun in der Mitte des Bildschirms zu sehen und unterhalb ist das Alphabet 
-        abgebildet, wobei jeder Buchstabe nummeriert ist.     
-  \item Nun leuchtet jeder Buchstabe der Eingabe nacheinander auf.
-  \item Der Benutzer wählt das verschlüsselte Gegenstück zum leuchtenden Zeichen in der Eingabe aus dem Alphabet aus. 
-  \item Bei jeder Auswahl des Buchstaben aus dem Alphabet taucht dieser unter der Eingabe auf.
-  \item[] Benutzer wiederholt alles solange, bis alle Buchstaben der Eingabe abgearbeitet sind 
-und das Chiffrat vollständig unter der Eingabe dargestellt ist.
-  \item Nun entschlüsselt das Programm das Chiffrat selbst.
-  \item Programm zeigt die Ausgabe unterhalb des Chiffrats an.
- \end{enumerate}
+
+	\begin{enumerate}
+	 \item Der Benutzer wird mit einem kleinen Eingabefenster aufgefordert eine kurze Eingabe, die aus einer kleinen Zeichenfolge besteht, zu tätigen.
+	 \item Benutzer hat die Möglichkeit sich die Eingabe durch einen Button generieren zu lassen.
+	 \item Eingabe ist nun in der Mitte des Bildschirms zu sehen und unterhalb ist das Alphabet abgebildet, wobei jeder Buchstabe nummeriert ist.     
+	 \item Nun leuchtet jeder Buchstabe der Eingabe nacheinander auf.
+	 \item Der Benutzer wählt das verschlüsselte Gegenstück zum leuchtenden Zeichen in der Eingabe aus dem Alphabet aus. 
+	 \item Bei jeder Auswahl des Buchstaben aus dem Alphabet taucht dieser unter der Eingabe auf.
+	 \item[] Benutzer wiederholt alles solange, bis alle Buchstaben der Eingabe abgearbeitet sind und das Chiffrat vollständig unter der Eingabe dargestellt ist.
+	 \item Nun entschlüsselt das Programm das Chiffrat selbst.
+	 \item Programm zeigt die Ausgabe unterhalb des Chiffrats an.
+	\end{enumerate}
+
  \item Schritt 2:
- \begin{enumerate}
-  \item Die alte Bildschirmanzeige verschwindet.
-  \item Für den Benutzer wird vom Programm ein Chiffrat generiert. 
-  \item[] Auf diesem Chiffrat wird dann analog gearbeitet, wie auf der Eingabe aus Schritt 1. Die funktionalen 
-Anforderungen sind identisch. Die Unterschiede liegen darin, dass der Benutzer nun entschlüsselt.
-  \item Nach erfolgreichem Entschlüsseln wechselt die Visualisierung des Verfahrens in die Phase 3, Wiki.
- \end{enumerate}
+
+	\begin{enumerate}
+	 \item Die alte Bildschirmanzeige verschwindet.
+	 \item Für den Benutzer wird vom Programm ein Chiffrat generiert. 
+	 \item[] Auf diesem Chiffrat wird dann analog gearbeitet, wie auf der Eingabe aus Schritt 1. Die funktionalen Anforderungen sind identisch. Die Unterschiede liegen darin, dass der Benutzer nun entschlüsselt.
+	\end{enumerate}
+
+ \item Schritt 3:
+	\begin{enumerate}
+	 \item Es erscheinen Animationen, die Nachteile von Cäsar demonstrieren.
+	 \item Histogramme werden durch interaktive Animationen erklärt.
+	 \item Nachdem die letzten Interaktionen abgeschlossen sind, wechselt die Visualisierung in die Phase 3, Wiki.
+	\end{enumerate}
+
  \item Phase 3: Wiki.
-  \begin{enumerate}
-   \item Sammlung an Artikeln über das Verfahren Cäsar.
-   \item Nach dem Durchlesen ist die Visualisierung des Verfahrens Cäsar abgeschlossen. Der Benutzer wird zum 
-nächsten Verfahren weitergeleitet.
-  \end{enumerate}
+
+	\begin{enumerate}
+	 \item Sammlung an Artikeln über das Verfahren Cäsar.
+	 \item Nach dem Durchlesen ist die Visualisierung des Verfahrens Cäsar abgeschlossen. Der Benutzer wird zum nächsten Verfahren weitergeleitet.
+ 	\end{enumerate}
+
 \end{itemize}
+%/ Ende Cäsar
 
-
-
-%/Vigenere Visualiserung, Funktionale Anforderungen.
+%/ Vigenere
 \begin{FA}[start=120]
  \item Prozess: Visualisierung des Verfahrens Vigenere.
 \end{FA}
 \begin{itemize}[label={}]
- \item Ziel: Benutzer versteht das Verfahren und kann selbstständig beliebige Klartexte verschlüsseln 
-und beliebiges Chiffrat, das mit Vigenere erzeugt wurde, entschlüsseln.
- \item Akteure: Benutzer.
+
+ \item Ziel: Benutzer versteht das Verfahren und kann selbstständig beliebige Klartexte verschlüsseln und beliebiges Chiffrat, das mit Vigenere erzeugt wurde, entschlüsseln.
+
+ \item Auslösendes Ereignis: Auswahl durch Zeitleiste.
+
  \item Beschreibung:
+
  \item Phase 1: Demonstration.
+
  \item Identisch mit funktionalen Anforderungen in Cäsar Phase 1, Demonstration. 
+
  \item Phase 2: Selbstversuch.
+
  \item Schritt 1:
- \begin{enumerate}
-  \item Auf dem Bildschirm erscheinen Animationen, die das Verfahren erklären.
-  \item Der Benutzer kann die Animationen schrittweise vollziehen.
-  \item Der Benutzer kann in den Animationen auch schrittweise rückwärts gehen. 
-  \item Am Ende der Animation wechselt die Visualisierung des Verfahrens in die zweite Phase, dem Selbstversuch.
- \end{enumerate}
+
+	\begin{enumerate}
+	 \item Auf dem Bildschirm erscheinen Animationen, die das Verfahren erklären.
+	 \item Der Benutzer kann die Animationen schrittweise vollziehen.
+	 \item Der Benutzer kann in den Animationen auch schrittweise rückwärts gehen. 
+	 \item Am Ende der Animation wechselt die Visualisierung des Verfahrens in die zweite Phase, dem Selbstversuch.
+	\end{enumerate}
+
  \item Schritt 2:
- \begin{enumerate}
-  \item Die alte Bildschirmanzeige verschwindet.
-  \item Für den Benutzer wird vom Programm ein Chiffrat mit einem Codewort generiert. 
-  \item[] Auf diesem wird dann analog gearbeitet, wie auf der Eingabe aus Schritt 1. Die Funktionalen Anforderungen sind identisch.
-        Die Unterschiede liegen darin, dass der Benutzer nun entschlüsselt. 
-        Der Klartext in Schritt 1 ist nun das Chiffrat und der Schlüssel hat dieselbe Rolle.
-        Das Chiffrat wird auf dieselbe Weise entschlüsselt, wie der Klartext verschlüsselt. 
-  \item Programm prüft die entschlüsselte Zeichenfolge auf Richtigkeit.
-  \item Nach erfolgreichem Entschlüsseln wechselt die Visualisierung des Verfahrens in die Phase 3, Wiki.
- \end{enumerate}
+
+	\begin{enumerate}
+	 \item Die alte Bildschirmanzeige verschwindet.
+	 \item Für den Benutzer wird vom Programm ein Chiffrat mit einem Codewort generiert. 
+	 \item[] Auf diesem wird dann analog gearbeitet, wie auf der Eingabe aus Schritt 1. Die 
+funktionalen Anforderungen sind identisch. Die Unterschiede liegen darin, dass der Benutzer 
+nun entschlüsselt. Der Klartext in Schritt 1 ist nun das Chiffrat und der Schlüssel hat 
+dieselbe Rolle. Das Chiffrat wird auf dieselbe Weise entschlüsselt, wie der Klartext verschlüsselt. 
+	 \item Programm prüft die entschlüsselte Zeichenfolge auf Richtigkeit.
+	 \item Nach erfolgreichem Entschlüsseln wechselt die Visualisierung des Verfahrens in die Phase 3, Wiki.
+	\end{enumerate}
+
  \item Phase 3: Wiki.
- \item Identisch mit den funktionalen Anforderungen aus Cäsar, Phase 3: Wiki.
+
+	\begin{enumerate}
+	 \item Sammlung an Artikeln über das Verfahren Vigenere.
+	 \item Nach dem Durchlesen ist die Visualisierung des Verfahrens Vigenere abgeschlossen. Der Benutzer wird zum nächsten Verfahren weitergeleitet.
+ 	\end{enumerate}
+
 \end{itemize}
-%/Ende der Funktionalen Anforderungen für die Visualiserung Vigenere's
+%/ Ende Vigenere
 
-
+%/ Diffie-Hellman
 \begin{FA}[start=130]
-\item Prozess: Diffie-Hellman Schlüsselaustausch Demonstration
+ \item Prozess: Visualisierung des Diffie-Hellman-Schlüsselaustauschs.
 \end{FA}
 \begin{itemize}[label={}]
-    \item Ziel: Vermittlung des Diffie-Hellman Schlüsselaustauschs mit Farben-Analogie
-    \item Vorbedingung: keine
-    \item Nachbedingung (Erfolg): Alice und Bob haben sich auf eine
-        gemeinsame, geheime Farbe geeinigt die Eve nicht kennt
-    \item Nachbedingung (Fehlschlag): Gibt es nicht, da nur
-        eine Demonstration ausgeführt wird
-    \item Auslösendes Ereignis: Ausgewählt in der Zeitleiste
-\end{itemize}
 
-Beschreibung:
-\begin{enumerate}
-    \item Erkläre das Ziel sich auf ein gemeinsames Geheimnis zu einigen,
+ \item Ziel: Vermittlung des Diffie-Hellman-Schlüsselaustauschs durch Farben-Analogie.
+
+ \item Auslösendes Ereignis: Auswahl durch Zeitleiste.
+
+ \item Beschreibung:
+
+ \item Phase 1: Demonstration.
+
+	\begin{enumerate}[]
+     \item Erkläre das Ziel sich auf ein gemeinsames Geheimnis zu einigen,
         durch Nutzung eines unsicheren Übertragungskanals
         bei dem Eve lauschen kann, ohne dass Eve das Geheimnis erfährt
-    \item Demonstriere das Prinzip der Einwegfunktion, anhand Farben die man mischen
+     \item Demonstriere das Prinzip der Einwegfunktion, anhand Farben die man mischen
         kann. Farben zu mischen ist einfach, zur einer gemischten Farbe
         herauszufinden welche Farben verwendet wurden hingegen ist schwer
-    \item Alice und Bob einigen sich auf eine gemeinsame, nicht geheime Farbe A
-    \item Alice wählt eine geheime Farbe X und mischt sie mit A zur Farbe AX
-    \item Bob wählt eine geheime Farbe Y und mischt sie mit A zur Farbe AY
-    \item Alice schickt AX zu Bob u. Bob schickt AY zu Alice
-    \item Alice mischt X mit AY zu AYX
-    \item Bob mischt Y mit AX zu AXY
-    \item Wenn Eve weder X noch Y erfahren hat, kennt Eve nicht AXY
-\end{enumerate}
+     \item Alice und Bob einigen sich auf eine gemeinsame, nicht geheime Farbe A
+     \item Alice wählt eine geheime Farbe X und mischt sie mit A zur Farbe AX
+     \item Bob wählt eine geheime Farbe Y und mischt sie mit A zur Farbe AY
+     \item Alice schickt AX zu Bob u. Bob schickt AY zu Alice
+     \item Alice mischt X mit AY zu AYX
+     \item Bob mischt Y mit AX zu AXY
+	\end{enumerate}
 
-\begin{FA}[start=140]
-\item Prozess: Diffie-Hellman Schlüsselaustausch Selbstversuch
-\end{FA}
-\begin{itemize}[label={}]
-    \item Ziel: Der Nutzer hat einen erfolgreichen Diffie-Hellman Schlüsselaustausch
-        (mit Farben-Analogie) mit Bob durchgeführt
-    \item Vorbedingung: keine
-    \item Nachbedingung (Erfolg): Alice und Bob haben sich auf eine
-        gemeinsame, geheime Farbe geeinigt, die Eve nicht kennt
-    \item Nachbedingung (Fehlschlag): Alice und Bob haben eine gemeinsame,
-        nicht geheime Farbe oder sich auf gar keine Farbe geeinigt
-    \item Auslösendes Ereignis: Ende der Demonstration des Diffie-Hellman
-        Schlüsselaustauschs mit Farben, oder die Demonstration wurde Übersprungen
-\end{itemize}
+ \item Phase 2: Selbstversuch.
 
-Beschreibung:
-\begin{enumerate}
-    \item Der Nutzer übernimmt die Rolle von Alice
-    \item Benenne die Aufgabe, dass der Nutzer (Alice) sich auf ein gemeinsames Geheimnis
+	\begin{enumerate}
+     \item Der Nutzer übernimmt die Rolle von Alice
+     \item Benenne die Aufgabe, dass der Nutzer (Alice) sich auf ein gemeinsames Geheimnis
         mit Bob einigt, wobei ein öffentlicher Kanal genutzt wird auf dem Eve lauscht,
         ohne dass Eve das Geheimnis erfährt.
-    \item Der Nutzer (Alice) wird aufgefordert eine Farbe A zu wählen,
+     \item Der Nutzer (Alice) wird aufgefordert eine Farbe A zu wählen,
         wurde diese gewählt, wird der Nutzer aufgefordert
         die nicht geheime Farbe an Bob zu schicken.
-    \item Der Nutzer soll nun eine geheime Farbe X != A wählen,
+     \item Der Nutzer soll nun eine geheime Farbe X != A wählen,
         diese soll er an Bob schicken
-    \item Bob wählt eine geheime Farbe Y und mischt sie mit A zur Farbe AY
-    \item Der Nutzer kann nun eine Farbe zu Bob schicken,
+     \item Bob wählt eine geheime Farbe Y und mischt sie mit A zur Farbe AY
+     \item Der Nutzer kann nun eine Farbe zu Bob schicken,
         wenn er die private Farbe X schickt hat er verloren,
         wenn er A schickt hat er ebenso verloren,
         wenn er AX schickt geht es weiter
-    \item Der Nutzer wird aufgefordert nun die richtigen Farben zu mischen,
+     \item Der Nutzer wird aufgefordert nun die richtigen Farben zu mischen,
         wenn er X mit AY mischt geht es weiter, wenn nicht hat er verloren.
-    \item Bob mischt Y mit AX zu AXY
-    \item Wenn Eve weder X noch Y erfahren hat, kennt Eve nicht AXY,
+     \item Bob mischt Y mit AX zu AXY
+     \item Wenn Eve weder X noch Y erfahren hat, kennt Eve nicht AXY,
         der Nutzer kann beglückwünscht werden
-\end{enumerate}
+	\end{enumerate}
+
+ \item Phase 3: Wiki.
+
+	\begin{enumerate}
+	 \item Sammlung an Artikeln über das Verfahren des Diffie-Hellman-Schlüsselaustauschs.
+	 \item Nach dem Durchlesen ist die Visualisierung des Diffie-Hellman-Schlüsselaustauschs abgeschlossen. Der Benutzer wird zum nächsten Verfahren weitergeleitet.
+ 	\end{enumerate}
+
+\end{itemize}
+%/ Ende Diffie-Hellman
 
 \subsubsection{Erweiterte Funktionen}
 
+%/ Hasing
 \begin{FA}[start=600]
-\item Hashing
+ \item Prozess: Visualisierung des Verfahrens des Hashings.
 \end{FA}
 \begin{itemize}[label={}]
-\item Prozess: Hashing Demonstration
-\item Ziel: Dem Benutzer ist die Funktionsweise des Hashings bewusst und erhält einen Einblick in den praktischen Nutzen.
-\item Akteure: Benutzer.
-\item Beschreibung:
-\item Phase 1: Einleitung.
-\begin{enumerate}
-\item Erkläre was Hashes sind.
-\item Zeige deren praktischen Nutzen anhand von Beispielen in der Informationstechnologie.
-\end{enumerate}
-\item Phase 2: Animation.
-\begin{enumerate}
-\item Erkläre das Ziel "Fingerabdrücke" von Daten zu machen.
-\item Demonstriere eine einfache Merkle-Damgard-Konstruktion.
-\item Nehme einen festgelegten String und führe diese durch die Konstruktion.
-\item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt der "Fingerabdruck".
-\item Gebe den Fingerabdruck dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
-\item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
-\item Nach dem Erhalten des zweiten Hashes, zeige Nutzer dass die Hashes sich gravierend unterscheiden, also dass Hashes ``echte Fingerabdrücke'' sind.
-\end{enumerate}
-\item Phase 3: Weiterführende Informationen.
-\begin{enumerate}
-\item Der Benutzer erhält Links zu weiterführenden Quellen.
-\end{enumerate}
-\end{itemize}
 
+ \item Ziel: Dem Benutzer ist die Funktionsweise des Hashings bewusst und erhält 
+einen Einblick in den praktischen Nutzen.
+
+ \item Auslösendes Ereignis: Auswahl durch Zeitleiste.
+
+ \item Beschreibung:
+
+ \item Phase 1: Demonstration.
+
+	\begin{enumerate}[]
+	 \item Erkläre was Hashes sind.
+	 \item Zeige deren praktischen Nutzen anhand von Beispielen in der Informatik.
+	\end{enumerate}
+
+ \item Phase 2: Selbstversuch.
+
+	\begin{enumerate}
+	 \item Erkläre das Ziel "Fingerabdrücke" von Daten zu machen.
+	 \item Demonstriere eine einfache Merkle-Damgard-Konstruktion.
+	 \item Nehme einen festgelegten String und führe diese durch die Konstruktion.
+	 \item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt der "Fingerabdruck".
+	 \item Gebe den Fingerabdruck dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
+	 \item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
+	 \item Nach dem Erhalten des zweiten Hashes, zeige Nutzer dass die Hashes sich gravierend unterscheiden, also dass Hashes ``echte Fingerabdrücke'' sind.
+	\end{enumerate}
+
+ \item Phase 3: Wiki.
+
+	\begin{enumerate}
+	 \item Sammlung an Artikeln über das Verfahren des Hashings.
+	 \item Nach dem Durchlesen ist die Visualisierung des Hashings abgeschlossen. Der Benutzer wird zum nächsten Verfahren weitergeleitet.
+ 	\end{enumerate}
+
+\end{itemize}
+%/ Ende Hasing
+
+%/ Blockchiffren
 \begin{FA}[start=700]
-\item Blockchiffren
+ \item Prozess: Visualisierung des Verfahrens der Blockchiffren.
 \end{FA}
 \begin{itemize}[label={}]
-\item Prozess: Blockchiffren Demonstration
-\item Ziel: Dem Benutzer ist die Funktionsweise von Blockchiffren bewusst und erhält einen Einblick in die verschiedenen Modi.
-\item Akteure: Benutzer.
-\item Beschreibung:
-\item Phase 1: Einleitung.
-\begin{enumerate}
-\item Erkläre was Blockchiffren sind.
-\item Zeige deren praktischen Nutzen anhand von Beispielen in der Informationstechnologie.
-\end{enumerate}
-\item Phase 2: Animation ECB.
-\begin{enumerate}
-\item Erkläre den ECB Modus.
-\item Zeige den Aufbau vom ECB Modus.
-\item Nehme einen festgelegten String und führe diese durch die Konstruktion.
-\item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt das Chiffrat.
-\item Gebe das Chiffrat dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
-\item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
-\item Nach dem Erhalten des zweiten Chiffrats, zeige Nutzer dass der ECB Modus homomorph ist.
-\item Zeige Nutzer das Problem das dadurch entsteht anhand einem im ECB Modus chiffrierten Bildes.
-\item Dechiffriere das erste Chiffrat.
-\end{enumerate}
-\item Phase 3: Animation CBC.
-\begin{enumerate}
-\item Erkläre den CBC Modus.
-\item Zeige den Aufbau vom CBC Modus.
-\item Nehme einen festgelegten String und führe diese durch die Konstruktion.
-\item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt das Chiffrat.
-\item Gebe das Chiffrat dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
-\item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
-\item Nach dem Erhalten des zweiten Chiffrats, zeige Nutzer dass die Homomorphie nicht mehr gegeben ist.
-\end{enumerate}
-\item Phase 4: Weiterführende Informationen.
-\begin{enumerate}
-\item Der Benutzer erhält Links zu weiterführenden Quellen.
-\end{enumerate}
-\end{itemize}
 
+ \item Ziel: Dem Benutzer ist die Funktionsweise von Blockchiffren bewusst und erhält einen Einblick in die verschiedenen Modi.
+
+ \item Auslösendes Ereignis: Auswahl durch Zeitleiste.
+
+ \item Beschreibung:
+
+ \item Phase 1: Demonstration.
+
+	\begin{enumerate}[]
+	 \item Erkläre was Blockchiffren sind.
+	 \item Zeige deren praktischen Nutzen anhand von Beispielen in der Informatik.
+	\end{enumerate}
+
+ \item Phase 2: Selbstversuch.
+
+ \item Schritt 1:
+
+	\begin{enumerate}
+	 \item Erkläre den ECB Modus.
+	 \item Zeige den Aufbau vom ECB Modus.
+	 \item Nehme einen festgelegten String und führe diese durch die Konstruktion.
+	 \item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt das Chiffrat.
+	 \item Gebe das Chiffrat dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
+	 \item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
+	 \item Nach dem Erhalten des zweiten Chiffrats, zeige Nutzer dass der ECB Modus homomorph ist.
+	 \item Zeige Nutzer das Problem das dadurch entsteht anhand einem im ECB Modus chiffrierten Bildes.
+	 \item Dechiffriere das erste Chiffrat.
+	\end{enumerate}
+
+ \item Schritt 2:
+
+	\begin{enumerate}
+	 \item Erkläre den CBC Modus.
+	 \item Zeige den Aufbau vom CBC Modus.
+	 \item Nehme einen festgelegten String und führe diese durch die Konstruktion.
+	 \item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt das Chiffrat.
+	 \item Gebe das Chiffrat dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
+	 \item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
+	 \item Nach dem Erhalten des zweiten Chiffrats, zeige Nutzer dass die Homomorphie nicht mehr gegeben ist.
+	\end{enumerate}
+	
+ \item Phase 3: Wiki.
+
+	\begin{enumerate}
+	 \item Sammlung an Artikeln über das Verfahren der Blockchiffren.
+	 \item Nach dem Durchlesen ist die Visualisierung der Blockchiffren abgeschlossen. Der Benutzer wird zum nächsten Verfahren weitergeleitet.
+ 	\end{enumerate}
+
+\end{itemize}
+%/ Ende Blockchiffren
+
+%/ One Time Pad
 \begin{FA}[start=800]
-\item Prozess: Visualisierung des Verfahrens One Time Pad.
+ \item Prozess: Visualisierung des Verfahrens des One Time Pads.
 \end{FA}
-
 \begin{itemize}[label={}]
-\item Ziel: Benutzer versteht das Verfahren und kann selbstständig beliebige Klartexte verschlüsseln und beliebiges Chiffrat, das mit dem One Time Pad erzeugt wurde, entschlüsseln.
-\item Akteure: Benutzer.
-\item Beschreibung:
-\item Phase 1: Demonstration.
-\begin{enumerate}
- \item[1-5] Die funktionalen Anforderungen and diese Phase sind identisch mit den 
-            funktionalen Anforderung in Cäsar, Vigenere und PKI.
-\end{enumerate}
 
-\item Phase2: Selbstversuch.
-\item Schritt 1:
-\begin{enumerate}
-\item[1-6] Die Funktionalen Anforderungen und der Aufbau des ersten Schrittes des Selbstversuches ist analog zu Vigenere, Phase 2: Selbstversuch, Schritt 1. 
-           Die Unterschiede sind logischer Natur, wie die Länge des Schlüssels zum Beispiel. 
-           Der Benutzer verschlüsselt also mit einem Vigenere, wobei die Schlüssellänge gleich der Länge des Klartextes ist.
-\end{enumerate}
+ \item Ziel: Benutzer versteht das Verfahren und kann selbstständig beliebige Klartexte verschlüsseln und beliebiges Chiffrat, das mit dem One Time Pad erzeugt wurde, entschlüsseln.
 
-\item Schritt 2:
-\begin{enumerate}
-\item[1-6] Die Funktionalen Anforderungen und der Aufbau des zweiten Schrittes des Selbstversuches ist analog zu Vigenere, Phase 2: Selbstversuch, Schritt 2. 
-           Die Unterschiede sind ebenfalls logischer und nicht funktionaler Natur.
-\end{enumerate}
-\item Phase 3: Wiki.
-\begin{enumerate}
- \item[1-2] Identisch mit den funktionalen Anforderung aus Cäsar und Vigenere
-\end{enumerate}
+ \item Auslösendes Ereignis: Auswahl durch Zeitleiste.
+
+ \item Beschreibung:
+
+ \item Phase 1: Demonstration.
+
+	\begin{enumerate}[]
+ 	 \item[1-5] Die funktionalen Anforderungen and diese Phase sind identisch mit den 
+            funktionalen Anforderung in Cäsar und Vigenere.
+	\end{enumerate}
+
+ \item Phase 2: Selbstversuch.
+
+ \item Schritt 1:
+
+	\begin{enumerate}
+	 \item[1-6] Die Funktionalen Anforderungen und der Aufbau des ersten 
+Schrittes des Selbstversuches ist analog zu Vigenere, Phase 2: Selbstversuch, 
+Schritt 1. Die Unterschiede sind logischer Natur, wie die Länge des 
+Schlüssels zum Beispiel. Der Benutzer verschlüsselt also mit einem 
+Vigenere, wobei die Schlüssellänge gleich der Länge des Klartextes ist.
+	\end{enumerate}
+
+ \item Schritt 2:
+
+	\begin{enumerate}
+	 \item[1-6] Die Funktionalen Anforderungen und der Aufbau des zweiten 
+Schrittes des Selbstversuches ist analog zu Vigenere, Phase 2: Selbstversuch, 
+Schritt 2. Die Unterschiede sind ebenfalls logischer und nicht funktionaler Natur.
+	\end{enumerate}
+
+ \item Phase 3: Wiki.
+
+	\begin{enumerate}
+	 \item Sammlung an Artikeln über das Verfahren des One Time Pads.
+	 \item Nach dem Durchlesen ist die Visualisierung des One Time Pads abgeschlossen. Der Benutzer wird zum nächsten Verfahren weitergeleitet.
+ 	\end{enumerate}
+
 \end{itemize}
+%/ Ende One Time Pad
 
+%/ Shamir Secret Sharing
 \begin{FA}[start=900]
-\item Prozess: Shamir Secret Sharing Demonstration
+ \item Prozess: Visualisierung des Shamir-Secret-Sharing-Verfahrens.
 \end{FA}
 \begin{itemize}[label={}]
-    \item Ziel: Führe Shamir Secret Sharing
-        aus, wobei die Koeffizienten des Polynoms
-        aus den rationalen Zahlen kommen.
-        (Mit rationalen Zahlen ist SSS nicht sicher,
-        allerdings schön um das Prinzip zu vermitteln)
-    \item Vorbedingung: keine
-    \item Nachbedingung (Erfolg): Shamir Secret Sharing wurde
-        ausgeführt, der Graph des Polynoms wird auf dem
-        Bildschirm gezeichnet, und die Y-Achse
-        sowie der Punkt (0, D) hervorgehoben
-    \item Nachbedingung (Fehlschlag): Sollte nicht auftreten,
-        da dies nur eine Demonstration ist, kein Selbstversuch
-    \item Auslösendes Ereignis: Ausgewählt in der Zeitleiste
-    \item Anmerkung: Es werden nur Punkte (x, y) gewählt,
-        in denen x > 0. Außer für das Geheimnis (0, D)
-\end{itemize}
 
-Beschreibung:
-\begin{enumerate}
-    \item Das Programm erklärt das Ziel,
+ \item Ziel: Führe Shamir Secret Sharing aus, wobei die Koeffizienten des Polynoms 
+aus den rationalen Zahlen kommen. (Mit rationalen Zahlen ist SSS nicht sicher, 
+allerdings schön um das Prinzip zu vermitteln)
+
+ \item Auslösendes Ereignis: Auswahl durch Zeitleiste.
+
+ \item Beschreibung:
+
+ \item Phase 1: Demonstration.
+
+	\begin{enumerate}[]
+     \item Das Programm erklärt das Ziel,
         ein Geheimnis auf N=4 Personen aufzuteilen,
         wobei K=2 Personen mindestens notwendig sein sollen um
         das Geheimnis zu rekonstruieren
-    \item Erkläre dass das Geheimnis der Wert
+     \item Erkläre dass das Geheimnis der Wert
         D im Punkt (0, D) ist
-    \item Das Programm wählt ein zufälliges lineares Polynom
+     \item Das Programm wählt ein zufälliges lineares Polynom
         und zeichnet dieses, hebt dabei hervor dass die Wahl
         zufällig sein muss
-    \item Der geheime Punkt (0, D)
+     \item Der geheime Punkt (0, D)
         wird hervorgehoben
         und als geheim gekennzeichnet
-    \item 4 unterschiedliche Punkte werden ausgewählt
+     \item 4 unterschiedliche Punkte werden ausgewählt
         und markiert
-    \item Die 4 Punkte werden an 4 Personen
+     \item Die 4 Punkte werden an 4 Personen
         verteilt, welche als Figuren dargestellt
         werden
-    \item Demonstriere wie man nicht erfährt
+     \item Demonstriere wie man nicht erfährt
         welche Gerade die richtige ist, wenn
         man nur einen Punkt kennt, indem
         ein Punkt gewählt wird und man
@@ -490,60 +553,41 @@ Beschreibung:
         nacheinander zeichnet.
         Somit erfährt man auch nicht
         das Geheimnis D
-    \item Zeige nun wie 2 Personen
+     \item Zeige nun wie 2 Personen
         durch ihre 2 Punkte das Geheimnis rekonstruieren,
         indem sie die Gerade wiederherstellen und D ablesen
-    \item Erkläre das man dies auf weitere Polynome
+     \item Erkläre das man dies auf weitere Polynome
         verallgemeinern kann
-    \item Erkläre das der Grad des Polynoms
+     \item Erkläre das der Grad des Polynoms
         abhängig von der Zahl K ist, welche
         beschreibt wie viele Personen nötig
         sind um das Geheimnis zu rekonstruieren
-    \item Demonstriere das ganze nochmal mit N=4
+     \item Demonstriere das ganze nochmal mit N=4
         und K=3 und somit einer quadratischen Funktion,
         zeige aber diesmal das 2 Punkte nicht ausreichen
         um D zu rekonstruieren
-\end{enumerate}
+	\end{enumerate}
 
-\begin{FA}[start=1000]
-\item Prozess: Shamir Secret Sharing Selbstversuch
-\end{FA}
-\begin{itemize}[label={}]
-    \item Ziel: Der Nutzer erstellt ein Geheimnis D
-        mit Hilfe von Shamir Secret Sharing.
-        Dieses Rekonstruiert er, indem er das Polynom
-        mit K Punkten interpoliert und das Geheimnis
-        abliest
-    \item Vorbedingung: Der Nutzer hat sich die zugehörige
-        Demonstration angesehen
-    \item Nachbedingung (Erfolg): Shamir Secret Sharing wurde
-        ausgeführt, der Graph des Polynoms wird auf dem
-        Bildschirm gezeichnet, und die Y-Achse
-        sowie der Punkt (0, D) hervorgehoben
-    \item Nachbedingung (Fehlschlag): -
-    \item Auslösendes Ereignis: Ende der SSS Demonstration,
-        oder Demo übersprungen
-\end{itemize}
+ \item Phase 2: Selbstversuch.
 
-Beschreibung:
-\begin{enumerate}
-    \item Der Nutzer wählt die Zahl N,
+	\begin{enumerate}
+     \item Der Nutzer wählt die Zahl N,
         für die 2 <= N <= 6 gilt, welche
         angibt wie viele Personen sich das
         Geheimnis D teilen
-    \item Der Nutzer wählt die Zahl K,
+     \item Der Nutzer wählt die Zahl K,
         für die 1 <= K <= N gilt, welche
         angibt wie viele Personen nötig
         sind, um das Geheimnis D zu
         rekonstruieren
-    \item Der Nutzer wählt das Geheimnis D
-    \item Nun wird ein zufälliges Polynom
+     \item Der Nutzer wählt das Geheimnis D
+     \item Nun wird ein zufälliges Polynom
         vom Grad K-1 konstruiert, welches
         den Punk (0, D) enthält
-    \item Der Nutzer darf nun verschiedene
+     \item Der Nutzer darf nun verschiedene
         Punkte auswählen, welche auf
         die Personen verteilt werden
-    \item Nun kann er versuchen mit
+     \item Nun kann er versuchen mit
         einer unterschiedlichen Anzahl
         an Mitwissern versuchen (0, D)
         herauszufinden, er selektiert
@@ -551,19 +595,30 @@ Beschreibung:
         er hat genug kann er auf
         einen Button drücken, welches
         versucht (0, D) zu rekonstruieren
-    \item Wenn die Anzahl kleiner ist als
+     \item Wenn die Anzahl kleiner ist als
         K, zeige mögliche Polynome als
         Graphen an, und demonstriere somit
         das man (0, D) nicht rekonstruieren
         kann, gehe zum vorherigen Schritt
-    \item Ist die Anzahl der ausgesuchten
+     \item Ist die Anzahl der ausgesuchten
         Mitwisser größer gleich K, so
         interpoliere das gesuchte Polynom
         und geben (0, D) an
-    \item Gratuliere dem Nutzer und
+     \item Gratuliere dem Nutzer und
         zeige Button für Wiki-Artikel
         oder QR-Codes an
-\end{enumerate}
+	\end{enumerate}
+
+ \item Phase 3: Wiki.
+
+	\begin{enumerate}
+	 \item Sammlung an Artikeln über das Verfahren des Shamir Secret Sharings.
+	 \item Nach dem Durchlesen ist die Visualisierung des Shamir Secret Sharings abgeschlossen. Der Benutzer wird zum nächsten Verfahren weitergeleitet.
+ 	\end{enumerate}
+
+\end{itemize}
+%/ Ende Shamir Secret Sharing
+
 
 
 \subsection{Nichtfunktionale Anforderungen}
