@@ -40,13 +40,15 @@
 
 \newglossaryentry{Cryptographics}{name={Cryptographics}, description={Name des zu entwickelnden Produkts}}
 \newglossaryentry{Kryptologikum}{name={Kryptologikum}, description={Ausstellung des IKS}}
-\newglossaryentry{PSE}{name={PSE}, description={Praxis der Software-Entwicklung}}
 \newglossaryentry{IKS}{name={IKS}, description={Institut für Kryptographie und Sicherheit}}
 \newglossaryentry{KIT}{name={KIT}, description={Karlsruher Institut für Technologie}}
 \newglossaryentry{ECB}{name={ECB}, description={Electronic Code Book Mode}}
 \newglossaryentry{CBC}{name={CBC}, description={Cipher Block Chaining Mode}}
 \newglossaryentry{UI}{name={UI}, description={User Interface, Benutzeroberfläche}}
 \newglossaryentry{EeeTop}{name={EeeTop}, description={Die vom IKS gestellte Hardware auf der das Produkt eingesetzt werden soll}}
+
+\newglossaryentry{MVC}{name={MVC}, description={Model-View-Controller, ein bekanntes Muster zur Aufteilung von Komponenten in diese 3 Kategorien}}
+\newglossaryentry{GraphicsLib}{name={GraphicsLib}, description={Sammlung wiederverwendbarer UI-Elemente}}
 
 % Definitions for Qualitätsbestimmungen, as specified here:
 % http://de.wikipedia.org/wiki/ISO/IEC_9126
@@ -100,6 +102,7 @@
     Präsentation & Aydin Tekin & aydin.tekin@student.kit.edu \\ \hline
     \end{tabular}
 \end{table}
+\thispagestyle{empty}
 \newpage
 
 % Table of contents page.
@@ -110,11 +113,11 @@
 % Start of the actual document.
 \section{Zielbestimmung}
 
-Im Rahmen der \gls{PSE}-Veranstaltung soll für das \gls{Kryptologikum} des Instituts für
-Kryptographie und Sicherheit die Software \gls{Cryptographics} zur
+Für das \gls{Kryptologikum} des Instituts für
+Kryptographie und Sicherheit soll die Software \gls{Cryptographics} zur
 Demonstration kryptographischer Verfahren erstellt werden. \\
 \\
-Das Programm soll im Laufe der Ausstellung das Interesse der Besucher wecken, sich mit Verschlüsselung zu befassen und schließlich auch ausgewählte Inhalte der Kryptographie näher anzuschauen. Wichtig ist, dass die Visualisierungen ansprechend und verständlich gestaltet sind. Die Nutzung von \gls{Cryptographics} soll Spaß machen. \\
+Das Programm soll im Laufe der Ausstellung das Interesse der Besucher wecken, sich mit Verschlüsselung und anderen Themen aus der Kryptographie zu befassen. Wichtig ist, dass die Visualisierungen ansprechend und verständlich gestaltet sind. Die Nutzung von \gls{Cryptographics} soll Spaß machen. \\
 \\
 Jedes Verfahren wird in drei Schritten vorgestellt. Diese sind eine automatisch ablaufende Demonstration, ein interaktiver Versuch und ein Wiki-artiger Artikel für weitere Informationen.
 In der Demonstration wird dem Nutzer der Ablauf des Verfahrens möglichst anschaulich demonstriert. Darauf folgend kann im Eigenversuch auf der gleichen Oberfläche das Verfahren selbst ausprobiert werden. Dem Nutzer wird hierbei eine größtmögliche Freiheit zur Wahl sämtlicher Komponenten (wie Klartext, Primzahl, etc.) gelassen. Unter ``Mehr Wissen'' sollen sich interessierte Benutzer schließlich tiefgehender über das Verfahren informieren können, über seine Entstehung, Einsatz und Nachfolger. Auf geeignete weiterführende Literatur kann mit QR-Codes verwiesen werden. \\
@@ -126,65 +129,62 @@ In der Demonstration wird dem Nutzer der Ablauf des Verfahrens möglichst anscha
     \item Visualisierung Vigenere-Chiffre
     \item Visualisierung Diffie-Hellmann
     \item Schrittweise Ausführbarkeit der Kryptographie-Algorithmen
-    \item Praxisbezug auf moderne Kryptoverfahren
+    \item Praxisbezug auf moderne Kryptographieverfahren
     \item Optimierte \gls{UI} für Touchscreen-Interaktion
     \item Intuitiv verständliche Benutzerinteraktion
-    \item Zugriff auf Krypto-Verfahren über Zeitleiste
+    \item Zugriff auf Kryptographie-Verfahren über Zeitleiste
     \item Mehrschritte Präsentation der Verfahren
     \item Angeleiter Selbstversuch bei komplexen Verfahren
     \item Einheitliche optische Darstellung der verschiedenen Verfahren
     \item Mögliche Rückkehr zum Startbildschirm zu jedem Ausführungszeitpunkt
     \item Robuste Ausführung im Dauerbetrieb
     \item Beenden des Programms / Wechsel zum Desktop nur per angeschlossener Tastatur, nicht über Touch-Eingabe
-    \item Lauffähigkeit des Programms in jedem vollständigen Java RTE
+    \item Lauffähigkeit des Programms in jeder vollständigen Java RTE
+    \item Literaturhinweise und weiterführende Informationen mittels QR-Codes
 \end{itemize}
 
 \subsection{Wunschkriterien}
 
 \begin{itemize}
-    \item Visualisierung Shamir Secret Sharing
+    \item Visualisierung Shamir-Secret-Sharing
     \item Visualisierung One-Time-Pad
     \item Visualisierung Blockchiffre (DES, AES)
     \item Visualisierung Hashfunktionen
-    \item Modulares Austauschen / Hinzufügen von weiteren kryptografischen Verfahren
     \item Animation auf Startbildschirm als Blickfang
     \item Namen / Icons für Verfahren in der Zeitleiste für bessere Übersichtlichkeit
-    \item Literaturhinweise (auch weiterführende Literatur) mittels QR-Codes
     \item Optisch ansprechende Visualisierungen durch Nutzung von Grafiken und Animationen
     \item Visualisierung von Angriffen auf Verfahren
     \item Erfassung von grundlegenden Nutzungsstatistiken zur externen Analyse des Nutzerverhaltens im Hinblick auf zukünftige Optimierung
     \item Lokales Speichern von Auszügen aus weiterführenden Inhalten
     \item Leichtes Austauschen der oben genannten weiterführenden Inhalten
->>>>>>> origin/master
 \end{itemize}
 
 \subsection{Abgrenzungskriterien}
 \begin{itemize}
-	\item Implementierung sämtlicher kryptologischer Verfahren nur zu Vorführungszwecken; somit keine festgelegt sichere Implementierung
-    \item Keine optimierte und 100\% standardkonforme Implementierung von Krypto-Algorithmen,
+	\item Implementierung sämtlicher kryptographischer Verfahren nur zu Vorführungszwecken; somit keine festgelegt sichere Implementierung; Cryptographics eignet sich also nicht um tatsächliche Texte sicher zu verschlüsseln
+    \item Keine optimierte und 100\% standardkonforme Implementierung von kryptographischen Algorithmen,
         sondern Fokus auf schrittweiser Ausführbarkeit
     \item Keine formale Korrektheit bei Erklärungen sondern Ansatz ohne nötige Vorkenntnisse
         um breiter Masse zugänglich zu sein
-    \item Nicht zur tatsächlichen Verschlüsselung von Texten gedacht
 \end{itemize}
 
 \section{Produkteinsatz}
 \subsection{Anwendungsbereiche}
 \gls{Cryptographics} soll in erster Linie als Ausstellungsstück für das \gls{Kryptologikum} des Instituts für Kryptographie und Sicherheit (\gls{IKS}) am Karlsruher Institut für Technologie (\gls{KIT}) dienen.
 
-Besuchern der Ausstellung soll das Funktionsprinzip und die Verwendung historischer, sowie aktueller, kryptographischer Verfahren nähergebracht werden. Diese sollen anhand von vereinfachten und beispielhaften Szenarien aus dem Alltag vermittelt werden, mit dem Ziel, ein größeres Interesse an der Materie zu wecken.
+Besuchern der Ausstellung soll das Funktionsprinzip und die Verwendung historischer  sowie aktueller kryptographischer Verfahren nähergebracht werden. Diese sollen anhand von vereinfachten und beispielhaften Szenarien aus dem Alltag vermittelt werden, mit dem Ziel, ein größeres Interesse an der Materie zu wecken.
 
 \gls{Cryptographics} soll primär auf dem \gls{EeeTop} (siehe Produktumgebung) im \gls{Kryptologikum} eingesetzt werden.
 
 \subsection{Zielgruppen}
 
-Das Programm richtet sich insbesondere an Kinder, Jugendliche und Erwachsene mit grundlegenden Kenntnissen der Mathematik. Die Zielgruppe ist demnach ein anonymes Publikum, das sich potenziell aus fachfremden Personen zusammensetzt. Deshalb dürfen für die Verwendung von \gls{Cryptographics} keine Vorkenntnisse in der Kryptographie vorausgesetzt werden.
+Das Programm richtet sich insbesondere an Kinder, Jugendliche und Erwachsene mit grundlegenden Kenntnissen der Mathematik. Die Zielgruppe ist demnach ein anonymes Publikum, das sich überwiegend aus fachfremden Personen zusammensetzt. Deshalb dürfen für die Verwendung von \gls{Cryptographics} keine Vorkenntnisse in der Kryptographie vorausgesetzt werden.
 
 \subsection{Betriebsbedingungen}
 
 \gls{Cryptographics} soll im Dauerbetrieb problemlos laufen. Dementsprechend dürfen keine Ausnahmen auftreten, die den Betrieb des Programms behindern, oder gar einen Absturz auslösen, der den Benutzer zur Betriebssystemebene führt. Insbesondere muss darauf geachtet werden, dass schnelle, unkontrollierte Benutzereingaben zu keinem undefinierten Zustand des Programms führen. Auch ein reguläres Beenden von \gls{Cryptographics} soll durch den Benutzer nicht möglich sein, und nur durch eine angeschlossene Hardwaretastatur erreicht werden können.
 
-Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) optimiert sein, der während der Ausstellung über keine Internetverbindung verfügt. Inhalte zu weiterführenden Informationen müssen also lokal in Form von leicht aktualisierbaren und austauschbaren Textdateien vorliegen.
+Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) optimiert sein, der während der Ausstellung über keine Internetverbindung verfügt. Inhalte zu weiterführenden Informationen müssen also lokal vorliegen.
 
 \section{Produktumgebung}
 
@@ -200,11 +200,11 @@ Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) opti
 \subsection{Hardware}
 
 \begin{itemize}
-	\item ASUS Touchscreen \gls{EeeTop} Tablet
+	\item ASUS Touchscreen \gls{EeeTop} Computer
 	\item 1.6 GHz Intel Atom CPU
 	\item 1GB RAM
 	\item 160GB HDD
-	\item 15.6 Zoll LCD (1366x768 Px Auflösung)
+	\item 15.6 Zoll LCD (1366x768 px Auflösung)
 	\item Integrierter Grafikchip
 	\item Resistiver Touchscreen
 \end{itemize}
@@ -216,15 +216,15 @@ Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) opti
 \subsubsection{Grundfunktionen}
 
 \begin{FA}[start=100]
-  \item Darstellung eines Startbildschirm mit Zeitleiste
-  \item Darstellung aller Visualisierungen auf einer Zeitleiste
-  \item Interaktion mit der Zeitleiste, um eine einzelne Visualisierung auswählen zu können
-  \item Darstellung einer Übersichtsseite zur gewählten Visualisierung
-  \item Start der gewählten Visualisierung
-  \item Abbruch einer gewählten Visualisierung, um zum Startbildschirm zurückzukehren
-  \item Soforthilfe zu einer gewählten Visualisierung
-  \item Darstellung weiterführender Informationen nach erfolgreichem Beenden einer Visualisierung 
-  \item Time-Out bei fehlender Nutzerinteraktion mit Rückkehr zum Startbildschirm
+  \item Darstellung des Startbildschirms mit einer Zeitleiste.
+  \item Darstellung aller Visualisierungen auf der Zeitleiste.
+  \item Interaktion mit der Zeitleiste, um eine beliebige Visualisierung auswählen zu können.
+  \item Darstellung der Übersichtsseite zur gewählten Visualisierung.
+  \item Start der gewählten Visualisierung.
+  \item Abbruch einer gewählten Visualisierung, um zum Startbildschirm zurückzukehren.
+  \item Soforthilfe zur gewählten Visualisierung.
+  \item Darstellung weiterführender Informationen nach erfolgreichem Beenden der Visualisierung.
+  \item Time-Out bei fehlender Nutzerinteraktion mit Rückkehr zum Startbildschirm.
 \end{FA}
 
 %/ Cäsar
@@ -348,7 +348,7 @@ Cäsar erzeugt wurde, entschlüsseln.
          \item Dem Benutzer wird aus einem verständlichen Klartext mit Vigenere ein Chiffrat generiert.
          \item Der Benutzer hat die Möglichkeit Histogramme über einen Button zu erstellen.
          \item Anhand einer interaktiver Animation hat der Benutzer nun die Möglichkeit den Schlüssel für das generierte Chiffrat zu finden.
-         \item Nachdem die letzten Interaktionen abgeschlossen, wechselt die Anwedung in die Phase 3, Wiki.
+         \item Nachdem die letzten Interaktionen abgeschlossen, wechselt die Anwendung in die Phase 3, Wiki.
         \end{enumerate}
 	
  \item Phase 3: Wiki.
@@ -449,10 +449,10 @@ Cäsar erzeugt wurde, entschlüsseln.
  \item Phase 2: Selbstversuch.
 
 	\begin{enumerate}
-	 \item Erkläre das Ziel "Fingerabdrücke" von Daten zu machen.
+	 \item Erkläre das Ziel ``Fingerabdrücke'' von Daten zu machen.
 	 \item Demonstriere eine einfache Merkle-Damgard-Konstruktion.
 	 \item Nehme einen festgelegten String und führe diese durch die Konstruktion.
-	 \item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt der "Fingerabdruck".
+	 \item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt der ``Fingerabdruck''.
 	 \item Gebe den Fingerabdruck dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
 	 \item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
 	 \item Nach dem Erhalten des zweiten Hashes, zeige Nutzer dass die Hashes sich gravierend unterscheiden, also dass Hashes ``echte Fingerabdrücke'' sind.
@@ -625,7 +625,7 @@ allerdings schön um das Prinzip zu vermitteln).
         abhängig von der Zahl K ist, welche
         beschreibt wie viele Personen nötig
         sind um das Geheimnis zu rekonstruieren.
-     \item Demonstriere das ganze nochmal mit N=4
+     \item Demonstriere das ganze nochmals mit N=4
         und K=3 und somit einer quadratischen Funktion,
         zeige aber diesmal das 2 Punkte nicht ausreichen
         um D zu rekonstruieren.
@@ -675,8 +675,8 @@ allerdings schön um das Prinzip zu vermitteln).
  \item Phase 3: Wiki.
 
 	\begin{enumerate}
-	 \item Sammlung an Artikeln über das Verfahren des Shamir Secret Sharings.
-	 \item Nach dem Durchlesen ist die Visualisierung des Shamir Secret Sharings abgeschlossen. Der Benutzer wird zum nächsten Verfahren weitergeleitet.
+	 \item Sammlung an Artikeln über das Verfahren des Shamir-Secret-Sharings.
+	 \item Nach dem Durchlesen ist die Visualisierung des Shamir-Secret-Sharings abgeschlossen. Der Benutzer wird zum nächsten Verfahren weitergeleitet.
  	\end{enumerate}
 
 \end{itemize}
@@ -685,23 +685,27 @@ allerdings schön um das Prinzip zu vermitteln).
 \subsection{Nichtfunktionale Anforderungen}
 
 \begin{NA}[start=100]
-\item Schnelle Reaktionszeit
+\item Schnelle Reaktionszeit.
 \end{NA}
 
 \begin{NA}[start=200]
-\item Große Robustheit
+\item Geringe Fehleranfälligkeit durch falsche Bedienung.
 \end{NA}
 
 \begin{NA}[start=300]
-\item Intuitive Benutzerführung
+\item Problemloser Betrieb im Dauermodus.
 \end{NA}
 
 \begin{NA}[start=400]
-\item Verhältnismäßig zur Hardware soll Cryptographics möglichst performant und verzögerungsfrei auf Benutzereingaben reagieren.
+\item Intuitive Benutzerführung.
 \end{NA}
 
 \begin{NA}[start=500]
-\item Benutzerfreundliche Bedienung.
+\item Benutzerfreundliche und einfache Bedienung.
+\end{NA}
+
+\begin{NA}[start=600]
+\item Optimierte Benutzerinteraktion für Touchscreen-Eingaben.
 \end{NA}
 
 \section{Produktdaten}
@@ -713,29 +717,30 @@ allerdings schön um das Prinzip zu vermitteln).
     \item Ereignis-Code
     \item Frei wählbare, textuelle Beschreibung des Ereignisses
   \end{itemize}
+  Dies trifft nur zu, wenn das Wunschkriterium ``Erfassung von grundlegenden Nutzungsstatistiken'' umgesetzt wird.
 \end{PD}
 
 \section{Benutzerschnittstelle}
 
 \subsection{Ablauf einer Visualisierung}
 
-Der Willkommensbildschirm besteht aus einem einleitenden Text, der das Ausstellungsstück kurz dem Publikum vorstellt, und einer Zeitleiste (Fig. 1). Auf der Zeitleiste werden mithilfe einer geeigneten Skala Jahreszahlen dargestellt. Die kryptografischen Visualisierungen werden auf dieser Zeitleiste mithilfe von "Meilensteinen" dargestellt. Weiterhin werden die Markierungen in grün, gelb oder rot eingefärbt, um den Schwierigkeitsgrad auf einen Blick erkennbar zu machen.
+Der Startbildschirm besteht aus einem einleitenden Text, der das Ausstellungsstück kurz dem Publikum vorstellt, und einer Zeitleiste (Abb. 1). Auf der Zeitleiste werden mithilfe einer geeigneten Skala Jahreszahlen dargestellt. Die kryptografischen Visualisierungen werden auf dieser Zeitleiste mithilfe von ``Meilensteinen'' dargestellt. Weiterhin werden die Markierungen in grün, gelb oder rot eingefärbt, um den Schwierigkeitsgrad auf einen Blick erkennbar zu machen.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=\textwidth]{resources/ui_walkthrough_start-draft}
-  \caption{Willkommensbildschirm mit Zeitleiste.}
+  \caption{Startbildschirm mit Zeitleiste.}
 \end{figure}
 
-Sobald ein Meilenstein ausgewählt wurde, erscheint ein Popover (Fig. 2), dass den Namen, die Schwierigkeit und den Zweck des gewählten kryptografischen Verfahrens noch einmal zusammenfasst. Weiterhin werden ein Screenshot der eigentlichen Visualisierung sowie ein Button, um diese zu starten, dargestellt.
+Sobald ein Meilenstein ausgewählt wurde, erscheint ein Popover (Abb. 2), das den Namen, die Schwierigkeit und den Zweck des gewählten kryptografischen Verfahrens noch einmal zusammenfasst. Weiterhin wird ein Button dargestellt, welcher die Visualisierung startet.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=\textwidth]{resources/ui_walkthrough_popover-draft}
-  \caption{Detailansicht des Popovers in Fig. 1.}
+  \caption{Detailansicht des Popovers in Abb 1.}
 \end{figure}
 
-Nachdem der Benutzer eine Visualisierung startet, wird diese angezeigt (Fig. 3). Hierbei ist hervorzuheben, dass der Benutzer zu jedem Zeitpunkt die Visualisierung abbrechen kann, indem er auf den Button in der oberen linken Ecke klickt. Hilfe erhält er zu jedem Zeitpunkt im rechten oberen Eck.
+Nachdem der Benutzer eine Visualisierung gestartet hat, wird diese angezeigt (Abb. 3). Hierbei ist hervorzuheben, dass der Benutzer zu jedem Zeitpunkt die Visualisierung abbrechen kann, indem er auf den Button in der oberen linken Ecke klickt. Hilfe erhält er zu jedem Zeitpunkt im rechten oberen Eck.
 
 \begin{figure}[H]
   \centering
@@ -743,7 +748,7 @@ Nachdem der Benutzer eine Visualisierung startet, wird diese angezeigt (Fig. 3).
   \caption{Darstellung einer Visualisierung.}
 \end{figure}
 
-Falls der Benutzer die Visualisierung erfolgreich beendet hat, wird (Fig. 4) angezeigt. Zunächst wird dem Benutzer zu seinem Erfolg gratuliert. Weiterhin besteht die prominente Möglichkeit, zum Willkommensbildschirm zurückzukehren. Falls das Interesse des Benutzers geweckt wurde, kann er zu (Fig. 5) wechseln.
+Falls der Benutzer die Visualisierung erfolgreich beendet hat, wird Abb. 4 angezeigt. Zunächst wird dem Benutzer zu seinem Erfolg gratuliert. Weiterhin besteht die gut sichtbare Möglichkeit, zum Startbildschirm zurückzukehren. Falls das Interesse des Benutzers geweckt wurde, kann er zu den weiterführenden Informationen wechseln (Abb. 5).
 
 \begin{figure}[H]
   \centering
@@ -751,7 +756,7 @@ Falls der Benutzer die Visualisierung erfolgreich beendet hat, wird (Fig. 4) ang
   \caption{Erfolgreiches Beenden einer Visualisierung.}
 \end{figure}
 
-Hier bekommt der Benutzer weiterführendes Material über sein zuvor gewähltes Thema. Außer dem Text mit den Quellen, kann auch ein QR-Code angezeigt werden, welcher vom Nutzer gescannt werden kann. Auch hier bietet sich die Möglichkeit wieder zum Hauptmenü zurückzukehren.
+Neben den weiterführenden Informationen wird auch ein QR-Code angezeigt. Dieser kann vom Benutzer gescannt werden, um weiterführende Links oder Literaturhinweise mit nachhause zu nehmen. Auch hier existiert die Möglichkeit, zum Startbildschirm zurückzukehren.
 
 \begin{figure}[H]
   \centering
@@ -763,7 +768,7 @@ Hier bekommt der Benutzer weiterführendes Material über sein zuvor gewähltes 
 \section{Systemmodelle}
 
 \subsection{Systemübersicht}
-Das System verwendet das bekannte MVC-Entwurfsmuster. Weiterhin ist geplant, das System in zwei Schichten zu unterteilen. Von unten nach oben enthält Schicht 1 wiederverendbare und in sich abgeschlossene Bibliotheken. Zum einen handelt es sich hierbei um Code von Dritten (z.B. um QR-Codes zu generieren). Weiterhin ist eine Sammlung wiederverwendbarer Klassen (nachfolgen {\it GraphicsLib} genannt) geplant. {\it GraphicsLib} wird vor allem aus UI-Elemente bestehen, die für die Implementierung aller Visualisierungen wertvoll sind.
+Das System verwendet das bekannte \gls{MVC}-Entwurfsmuster. Weiterhin ist geplant, das System in zwei Schichten zu unterteilen. Von unten nach oben enthält Schicht 1 wiederverwendbare und in sich abgeschlossene Bibliotheken. Zum einen handelt es sich hierbei um Code von Dritten (z.B. um QR-Codes zu generieren). Weiterhin ist eine Sammlung wiederverwendbarer Klassen (nachfolgen \gls{GraphicsLib} genannt) geplant. \gls{GraphicsLib} wird vor allem aus \gls{UI}-Elementen bestehen, die für die Implementierung aller Visualisierungen wertvoll sind.
 
 \begin{figure}[h!]
   \centering
@@ -771,21 +776,22 @@ Das System verwendet das bekannte MVC-Entwurfsmuster. Weiterhin ist geplant, das
   \caption{Schematische Darstellung des beschriebenen Systems.}
 \end{figure}
 
+
 \section{Testszenarien}
 
 \textbf{Szenario 1}:
-Bob ist interessiert in Kryptographie und besucht zu diesem Anlass das \gls{Kryptologikum}, um mehr Informationen diesbezüglich zu erhalten. Er nähert sich dem \gls{Cryptographics}, wo ein Bildschirmschoner verschiedene kryptographische Verfahren Teaser-ähnlich visualisiert. Eine Berührung des Bildschirmes zeigt die Willkommensoberfläche von \gls{Cryptographics}: Ein Zeitstrahl, auf dem chronologisch angeordnet verschiedene kryptographische Verfahren, ihrem Erfindungsjahr zugeordnet, genannt werden und farblich durch ihre Komplexität von grün (leicht) bis rot (schwer) gekennzeichnet sind. Bob wählt durch eine Berührung die Cäsar-Chiffre aus, sie befindet sich nämlich ganz am Anfang des Zeitstrahls. Daraufhin erscheint eine kurze Einleitung als Popover, im Hintergrund baut sich die Oberfläche auf und der Zeitstrahl gleitet verkleinert als Gesamtübersicht an den unteren Bildschirmrand. Nach dem Durchlesen der Einleitung schließt Bob das Popup, und er sieht eine Demonstration der Cäsar-Chiffre als Schritt-für-
-Schritt-Beispiel auf 
-einer speziell für das Verfahren ausgelegten Oberfläche. Auf genau dieser Oberfläche kann Bob nach dem Beispiel sein neu erlerntes Wissen über das Verfahren anwenden, um Texte zu verschlüsseln, und durch einen gegebenen Schlüssel zu entschlüsseln. Nachdem er das Verfahren nun verinnerlicht hat, kann Bob das nächste Verfahren auswählen, entweder durch Drücken der “Weiter”-Taste, oder indem er ein Verfahren direkt am Zeitstrahl auswählt. Da er die weiteren Verfahren auch noch sehen möchte, arbeitet er sich am Zeitstrahl entlang durch das Programm, wobei er dann schließlich auf das Diffie-Hellman-Verfahren trifft, über welches er noch mehr Informationen erhalten möchte. Er berührt einen dafür vorgesehenen Button, welcher ein Popover mit einem QR-Code öffnet, dass letztendlich zu den ausführlichen Quellen weiterleitet. Alternativ ist dort auch eine gekürzte URL zu finden die man schnell abschreiben kann (Bsp.: http://goo.gl/abcd12).\\
+Bob ist interessiert an Kryptographie und besucht aus diesem Grund das \gls{Kryptologikum}. Er nähert sich dem \gls{Cryptographics}-Ausstellungsstück. Eine Berührung des Bildschirmes zeigt den Startbildschirm von \gls{Cryptographics}: Eine Zeitleiste, auf dem chronologisch angeordnet verschiedene kryptographische Verfahren dargestellt werden. Die Verfahren sind außerdem farblich durch ihre Komplexität von grün (leicht) bis rot (schwer) gekennzeichnet. Bob wählt durch eine Berührung die Cäsar-Chiffre aus, sie befindet sich nämlich am Anfang der Zeitleiste. Daraufhin erscheint eine kurze Einleitung. Nach dem Durchlesen der Einleitung starten Bob die Visualisierung. Die folgende Demonstration der Cäsar-Chiffre erfolgt Schritt für 
+Schritt auf 
+einer speziell für das Verfahren ausgelegten Oberfläche. Auf genau dieser Oberfläche kann Bob nach dem Beispiel sein neu erlerntes Wissen über das Verfahren anwenden, um Texte zu verschlüsseln, und durch einen gegebenen Schlüssel zu entschlüsseln. Nachdem Bob das Verfahren verstanden hat, kehrt Bob zum Startbildschirm zurück. Da er auch an den anderen Verfahren interessiert ist, arbeitet er sich am Zeitstrahl entlang durch das Programm. Schließlich stößt er auf das Diffie-Hellman-Verfahren, über welches er zusätzliche Informationen erhalten möchte. Er berührt einen dafür vorgesehenen Button und landet auf einem Bildschirm, der weiterführende Informationen sowie einen QR-Code anzeigt. Bob liest die weiterführenden Informationen und scant den QR-Code mit seinem Smartphone. Auch zuhause kann sich Bob dank des gescannten QR-Codes weiter über das Diffie-Hellman-Verfahren informieren.\\
 
 \textbf{Szenario 2}:
-Die ungeduldige Alice wurde von ihrer Freundin überredet, an der Ausstellung teilzunehmen. Sie sieht das \gls{Cryptographics} und versucht, es durch wiederholte zufällige Eingaben zum Absturz zu bringen. Das Programm zeigt sich jedoch schnell als zu robust, um einem solchen Angriff zu erliegen. Schließlich wählt sie das komplizierteste kryptographische Verfahren aus, um Besuchern nach ihr den Einstieg zu erschweren. Nachdem sie gegangen ist, muss sie jedoch enttäuscht feststellen, dass der nächste Besucher keine weitere Schwierigkeiten hatte, das Programm mit dem dafür vorgesehenen Button in den Grundzustand zurückzuversetzen.\\
+Die ungeduldige Alice wurde von ihrer Freundin überredet an der Ausstellung teilzunehmen. Sie sieht das \gls{Cryptographics}-Ausstellungsstück und versucht es durch wiederholte zufällige Eingaben zum Absturz zu bringen. Das Programm erweist sich jedoch schnell als zu robust. Schließlich wählt sie das komplizierteste kryptographische Verfahren aus, um nachfolgenden Besuchern den Einstieg zu erschweren. Nachdem sie gegangen ist, muss sie jedoch enttäuscht feststellen, dass der nächste Besucher keine weitere Schwierigkeiten hat, das Programm mit dem dafür vorgesehenen Button in den Grundzustand zurückzuversetzen.\\
 
 \textbf{Szenario 3}:
-Nachdem Bob nun längere Zeit an \gls{Cryptographics} verbracht hat, blickt er erschreckt auf die Uhr um festzustellen, dass es schon viel zu spät geworden ist. Er bricht auf, und lässt das Programm genau so zurück, wie er es gerade eben noch benutzt hat. Nach seiner letzten Interaktion erscheint nach x Sekunden eine Meldung, die Bob darauf hingewiesen hätte, dass sich das Programm bald zurücksetzt, sollte in den nächsten y Sekunden keine Eingabe mehr erfolgen. Da er jedoch schon an der Bushaltestelle steht, aktiviert \gls{Cryptographics} nun den Bildschirmschoner, den Bob zuvor auch schon vorgefunden hatte, und setzt im Hintergrund das Programm wieder auf den Ursprungszustand zurück.\\
+Nachdem Bob nun längere Zeit am \gls{Cryptographics}-Ausstellungsstück verbracht hat, blickt er erschrocken auf die Uhr und stellt fest, dass es schon viel zu spät geworden ist. Er bricht auf und lässt das Programm genau so zurück, wie er es gerade eben noch benutzt hat. Nach seiner letzten Interaktion erscheint nach x Sekunden eine Meldung, die Bob darauf hingewiesen hätte, dass sich das Programm bald zurücksetzt, sollte in den nächsten y Sekunden keine Eingabe mehr erfolgen. Da er jedoch schon an der Bushaltestelle steht, wechselt \gls{Cryptographics} automatisch zurück zum Startbildschirm.\\
 
 \textbf{Szenario 4}:
-Die Ausstellung ist für diesen Tag nun zu Ende, und die Kryptologikum-Administratorin Claudia schließt gerade noch die Tür hinter Bob ab, um sich jetzt den strombetriebenen Exponaten zu widmen. Als sie am \gls{Cryptographics} ankommt, versucht sie zunächst, irgendwie zum Betriebssystem zurückzukehren, um den PC sicher herunterfahren zu können. Nach kurzer Zeit stellt sie fest, dass das ohne eine zusätzlich eingesteckte Hardware-Tastatur auf keinen Fall möglich ist. Sie holt also eine USB-Tastatur, steckt sie ein, kehrt über den Windows-Taskmanager zum Betriebssystem zurück, fährt den PC herunter und macht die Lichter aus.\\
+Die Ausstellung ist für diesen Tag zu Ende, und die Kryptologikum-Administratorin Claudia schließt gerade noch die Tür hinter Bob ab, um sich jetzt den strombetriebenen Exponaten zu widmen. Als sie am \gls{Cryptographics}-Ausstellungsstück ankommt, versucht sie zunächst, irgendwie zum Betriebssystem zurückzukehren, um den PC sicher herunterfahren zu können. Nach kurzer Zeit stellt sie fest, dass das ohne eine eingesteckte Hardware-Tastatur auf keinen Fall möglich ist. Sie holt also eine USB-Tastatur, steckt sie ein, kehrt über den Windows-Taskmanager zum Betriebssystem zurück, fährt den PC herunter und macht die Lichter aus.\\
 
 \begin{figure}[h!]
   \centering
@@ -799,7 +805,7 @@ Die Ausstellung ist für diesen Tag nun zu Ende, und die Kryptologikum-Administr
 \end{T}
 
 \begin{T}[start = 20]
- \item Benutzer muss eine Farbe für Alice beim Diffie-Hellman-Schlüsselaustausch auswählen. Diese wird dann visuell im Bildschirm zugehörig zu Alice als "öffentliche" Farbe abgebildet.
+ \item Benutzer muss eine Farbe für Alice beim Diffie-Hellman-Schlüsselaustausch auswählen. Diese wird dann visuell im Bildschirm zugehörig zu Alice als ``öffentliche'' Farbe abgebildet.
 \end{T}
 
 \begin{T}[start = 30]
@@ -841,7 +847,7 @@ Die Ausstellung ist für diesen Tag nun zu Ende, und die Kryptologikum-Administr
 \end{T}
 
 \begin{T}[start = 120]
- \item Am Ende jeder Phase soll bei Cäsar und Vigenere die Anwedung automatisch in die nächste Phase übergehen und sich die Oberfläche 
+ \item Am Ende jeder Phase soll bei Cäsar und Vigenere die Anwendung automatisch in die nächste Phase übergehen und sich die Oberfläche 
        der nächsten Phase entsprechend ändern.
 \end{T}
 
