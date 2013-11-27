@@ -715,15 +715,15 @@ allerdings schön um das Prinzip zu vermitteln).
 
 \subsection{Ablauf einer Visualisierung}
 
-Der Willkommensbildschirm besteht aus einem einleitenden Text, der das Ausstellungsstück kurz dem Publikum vorstellt, und einer Zeitleiste (Abb. 1). Auf der Zeitleiste werden mithilfe einer geeigneten Skala Jahreszahlen dargestellt. Die kryptografischen Visualisierungen werden auf dieser Zeitleiste mithilfe von "Meilensteinen" dargestellt. Weiterhin werden die Markierungen in grün, gelb oder rot eingefärbt, um den Schwierigkeitsgrad auf einen Blick erkennbar zu machen.
+Der Startbildschirm besteht aus einem einleitenden Text, der das Ausstellungsstück kurz dem Publikum vorstellt, und einer Zeitleiste (Abb. 1). Auf der Zeitleiste werden mithilfe einer geeigneten Skala Jahreszahlen dargestellt. Die kryptografischen Visualisierungen werden auf dieser Zeitleiste mithilfe von "Meilensteinen" dargestellt. Weiterhin werden die Markierungen in grün, gelb oder rot eingefärbt, um den Schwierigkeitsgrad auf einen Blick erkennbar zu machen.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=\textwidth]{resources/ui_walkthrough_start-draft}
-  \caption{Willkommensbildschirm mit Zeitleiste.}
+  \caption{Startbildschirm mit Zeitleiste.}
 \end{figure}
 
-Sobald ein Meilenstein ausgewählt wurde, erscheint ein Popover (Abb. 2), dass den Namen, die Schwierigkeit und den Zweck des gewählten kryptografischen Verfahrens noch einmal zusammenfasst. Weiterhin werden ein Screenshot der eigentlichen Visualisierung sowie ein Button, um diese zu starten, dargestellt.
+Sobald ein Meilenstein ausgewählt wurde, erscheint ein Popover (Abb. 2), das den Namen, die Schwierigkeit und den Zweck des gewählten kryptografischen Verfahrens noch einmal zusammenfasst. Weiterhin werden ein Screenshot der eigentlichen Visualisierung sowie ein Button, um diese zu starten, dargestellt.
 
 \begin{figure}[H]
   \centering
@@ -739,7 +739,7 @@ Nachdem der Benutzer eine Visualisierung startet, wird diese angezeigt (Abb. 3).
   \caption{Darstellung einer Visualisierung.}
 \end{figure}
 
-Falls der Benutzer die Visualisierung erfolgreich beendet hat, wird (Abb. 4) angezeigt. Zunächst wird dem Benutzer zu seinem Erfolg gratuliert. Weiterhin besteht die prominente Möglichkeit, zum Willkommensbildschirm zurückzukehren. Falls das Interesse des Benutzers geweckt wurde, kann er zu (Abb. 5) wechseln.
+Falls der Benutzer die Visualisierung erfolgreich beendet hat, wird (Abb. 4) angezeigt. Zunächst wird dem Benutzer zu seinem Erfolg gratuliert. Weiterhin besteht die prominente Möglichkeit, zum Startbildschirm zurückzukehren. Falls das Interesse des Benutzers geweckt wurde, kann er zu (Abb. 5) wechseln.
 
 \begin{figure}[H]
   \centering
@@ -747,7 +747,7 @@ Falls der Benutzer die Visualisierung erfolgreich beendet hat, wird (Abb. 4) ang
   \caption{Erfolgreiches Beenden einer Visualisierung.}
 \end{figure}
 
-Hier bekommt der Benutzer weiterführendes Material über sein zuvor gewähltes Thema. Außer dem Text mit den Quellen, kann auch ein QR-Code angezeigt werden, welcher vom Nutzer gescannt werden kann. Auch hier bietet sich die Möglichkeit wieder zum Hauptmenü zurückzukehren.
+Hier bekommt der Benutzer weiterführendes Material über sein zuvor gewähltes Thema. Außer dem Text mit den Quellen, kann auch ein QR-Code angezeigt werden, welcher vom Nutzer gescannt werden kann. Auch hier bietet sich die Möglichkeit wieder zum Startbildschirm zurückzukehren.
 
 \begin{figure}[H]
   \centering
@@ -770,7 +770,7 @@ Das System verwendet das bekannte MVC-Entwurfsmuster. Weiterhin ist geplant, das
 \section{Testszenarien}
 
 \textbf{Szenario 1}:
-Bob ist interessiert in Kryptographie und besucht zu diesem Anlass das \gls{Kryptologikum}, um mehr Informationen diesbezüglich zu erhalten. Er nähert sich dem \gls{Cryptographics}, wo ein Bildschirmschoner verschiedene kryptographische Verfahren Teaser-ähnlich visualisiert. Eine Berührung des Bildschirmes zeigt die Willkommensoberfläche von \gls{Cryptographics}: Ein Zeitstrahl, auf dem chronologisch angeordnet verschiedene kryptographische Verfahren, ihrem Erfindungsjahr zugeordnet, genannt werden und farblich durch ihre Komplexität von grün (leicht) bis rot (schwer) gekennzeichnet sind. Bob wählt durch eine Berührung die Cäsar-Chiffre aus, sie befindet sich nämlich ganz am Anfang des Zeitstrahls. Daraufhin erscheint eine kurze Einleitung als Popover, im Hintergrund baut sich die Oberfläche auf und der Zeitstrahl gleitet verkleinert als Gesamtübersicht an den unteren Bildschirmrand. Nach dem Durchlesen der Einleitung schließt Bob das Popup, und er sieht eine Demonstration der Cäsar-Chiffre als Schritt-für-
+Bob ist interessiert in Kryptographie und besucht zu diesem Anlass das \gls{Kryptologikum}, um mehr Informationen diesbezüglich zu erhalten. Er nähert sich dem \gls{Cryptographics}, wo ein Bildschirmschoner verschiedene kryptographische Verfahren Teaser-ähnlich visualisiert. Eine Berührung des Bildschirmes zeigt den Startbildschirm von \gls{Cryptographics}: Ein Zeitstrahl, auf dem chronologisch angeordnet verschiedene kryptographische Verfahren, ihrem Erfindungsjahr zugeordnet, genannt werden und farblich durch ihre Komplexität von grün (leicht) bis rot (schwer) gekennzeichnet sind. Bob wählt durch eine Berührung die Cäsar-Chiffre aus, sie befindet sich nämlich ganz am Anfang des Zeitstrahls. Daraufhin erscheint eine kurze Einleitung als Popover, im Hintergrund baut sich die Oberfläche auf und der Zeitstrahl gleitet verkleinert als Gesamtübersicht an den unteren Bildschirmrand. Nach dem Durchlesen der Einleitung schließt Bob das Popup, und er sieht eine Demonstration der Cäsar-Chiffre als Schritt-für-
 Schritt-Beispiel auf 
 einer speziell für das Verfahren ausgelegten Oberfläche. Auf genau dieser Oberfläche kann Bob nach dem Beispiel sein neu erlerntes Wissen über das Verfahren anwenden, um Texte zu verschlüsseln, und durch einen gegebenen Schlüssel zu entschlüsseln. Nachdem er das Verfahren nun verinnerlicht hat, kann Bob das nächste Verfahren auswählen, entweder durch Drücken der “Weiter”-Taste, oder indem er ein Verfahren direkt am Zeitstrahl auswählt. Da er die weiteren Verfahren auch noch sehen möchte, arbeitet er sich am Zeitstrahl entlang durch das Programm, wobei er dann schließlich auf das Diffie-Hellman-Verfahren trifft, über welches er noch mehr Informationen erhalten möchte. Er berührt einen dafür vorgesehenen Button, welcher ein Popover mit einem QR-Code öffnet, dass letztendlich zu den ausführlichen Quellen weiterleitet. Alternativ ist dort auch eine gekürzte URL zu finden die man schnell abschreiben kann (Bsp.: http://goo.gl/abcd12).\\
 
