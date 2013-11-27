@@ -313,10 +313,19 @@ Cäsar erzeugt wurde, entschlüsseln.
  \item Schritt 1:
 
 	\begin{enumerate}
-	 \item Auf dem Bildschirm erscheinen Animationen, die das Verfahren erklären.
-	 \item Der Benutzer kann die Animationen schrittweise vollziehen.
-	 \item Der Benutzer kann in den Animationen auch schrittweise rückwärts gehen. 
-	 \item Am Ende der Animation wechselt die Visualisierung des Verfahrens in die zweite Phase, dem Selbstversuch.
+	   \item Der Benutzer wird mit einem kleinen Eingabefenster aufgefordert eine kurze Eingabe, 
+                 die aus einer kleinen Zeichenfolge, dem Klartext, und einer weiteren, dem Schlüssel, zu tätigen.
+	   \item Der Benutzer hat auch die Möglichkeit sich die Eingabe durch einen Button generieren zu lassen.
+	   \item Die Eingabe ist nun in der Mitte des Bildschirms zu sehen und unterhalb ist das Alphabet 
+		 abgebildet, wobei jeder Buchstabe nummeriert ist.
+	   \item Jeder Buchstabe des Schlüssels ist auch mit seiner Nummer aus dem Alphabet gekennzeichnet.
+	   \item Nun leuchtet jeder Buchstabe der Eingabe und des Schlüssel parallel nacheinander auf.
+	   \item Der Benutzer wählt das verschlüsselte Gegenstück zum leuchtenden Zeichen in der Eingabe aus dem Alphabet aus. 
+	   \item Bei jeder Auswahl des Buchstaben aus dem Alphabet taucht dieser unter der Eingabe auf.
+	   \item Der Benutzer wiederholt alles solange, bis alle Buchstaben der Eingabe abgearbeitet sind 
+		   und das Chiffrat vollständig unter der Eingabe dargestellt ist.
+	   \item Nun entschlüsselt das Programm das Chiffrat selbst.
+	   \item Das Programm zeigt die Ausgabe unterhalb des Chiffrats an.
 	\end{enumerate}
 
  \item Schritt 2:
@@ -325,13 +334,23 @@ Cäsar erzeugt wurde, entschlüsseln.
 	 \item Die alte Bildschirmanzeige verschwindet.
 	 \item Für den Benutzer wird vom Programm ein Chiffrat mit einem Codewort generiert. 
 	 \item[] Auf diesem wird dann analog gearbeitet, wie auf der Eingabe aus Schritt 1. Die 
-funktionalen Anforderungen sind identisch. Die Unterschiede liegen darin, dass der Benutzer 
-nun entschlüsselt. Der Klartext in Schritt 1 ist nun das Chiffrat und der Schlüssel hat 
-dieselbe Rolle. Das Chiffrat wird auf dieselbe Weise entschlüsselt, wie der Klartext verschlüsselt. 
-	 \item Programm prüft die entschlüsselte Zeichenfolge auf Richtigkeit.
-	 \item Nach erfolgreichem Entschlüsseln wechselt die Visualisierung des Verfahrens in die Phase 3, Wiki.
+	         funktionalen Anforderungen sind identisch. Die Unterschiede liegen darin, dass der Benutzer 
+                 nun entschlüsselt. Der Klartext in Schritt 1 ist nun das Chiffrat und der Schlüssel hat 
+                 dieselbe Rolle. Das Chiffrat wird auf dieselbe Weise entschlüsselt, wie der Klartext verschlüsselt wurde. 
+	 \item Das Programm prüft die entschlüsselte Zeichenfolge auf Richtigkeit.
 	\end{enumerate}
-
+	
+ \item Schritt 3:
+ 
+	\begin{enumerate}
+         \item Es erscheinen Animationen, die Nachteile von Vigenere demonstrieren.
+         \item Anschließend folgen Erklärungen über mögliche Angriffe auf Vigenere.
+         \item Dem Benutzer wird aus einem verständlichen Klartext mit Vigenere ein Chiffrat generiert.
+         \item Der Benutzer hat die Möglichkeit Histogramme über einen Button zu erstellen.
+         \item Anhand einer interaktiver Animation hat der Benutzer nun die Möglichkeit den Schlüssel für das generierte Chiffrat zu finden.
+         \item Nachdem die letzten Interaktionen abgeschlossen, wechselt die Anwedung in die Phase 3, Wiki.
+        \end{enumerate}
+	
  \item Phase 3: Wiki.
 
 	\begin{enumerate}
@@ -358,11 +377,11 @@ dieselbe Rolle. Das Chiffrat wird auf dieselbe Weise entschlüsselt, wie der Kla
 
 	\begin{enumerate}[]
      \item Erkläre das Ziel sich auf ein gemeinsames Geheimnis zu einigen,
-        durch Nutzung eines unsicheren Übertragungskanals
-        bei dem Eve lauschen kann, ohne dass Eve das Geheimnis erfährt.
+           durch Nutzung eines unsicheren Übertragungskanals
+           bei dem Eve lauschen kann, ohne dass Eve das Geheimnis erfährt.
      \item Demonstriere das Prinzip der Einwegfunktion, anhand Farben die man mischen
-        kann. Farben zu mischen ist einfach, zur einer gemischten Farbe
-        herauszufinden welche Farben verwendet wurden hingegen ist schwer.
+           kann. Farben zu mischen ist einfach, zur einer gemischten Farbe
+           herauszufinden welche Farben verwendet wurden hingegen ist schwer.
      \item Alice und Bob einigen sich auf eine gemeinsame, nicht geheime Farbe A.
      \item Alice wählt eine geheime Farbe X und mischt sie mit A zur Farbe AX.
      \item Bob wählt eine geheime Farbe Y und mischt sie mit A zur Farbe AY.
@@ -376,23 +395,23 @@ dieselbe Rolle. Das Chiffrat wird auf dieselbe Weise entschlüsselt, wie der Kla
 	\begin{enumerate}
      \item Der Nutzer übernimmt die Rolle von Alice.
      \item Benenne die Aufgabe, dass der Nutzer (Alice) sich auf ein gemeinsames Geheimnis
-        mit Bob einigt, wobei ein öffentlicher Kanal genutzt wird auf dem Eve lauscht,
-        ohne dass Eve das Geheimnis erfährt.
+           mit Bob einigt, wobei ein öffentlicher Kanal genutzt wird auf dem Eve lauscht,
+           ohne dass Eve das Geheimnis erfährt.
      \item Der Nutzer (Alice) wird aufgefordert eine Farbe A zu wählen,
-        wurde diese gewählt, wird der Nutzer aufgefordert
-        die nicht geheime Farbe an Bob zu schicken.
+           wurde diese gewählt, wird der Nutzer aufgefordert
+           die nicht geheime Farbe an Bob zu schicken.
      \item Der Nutzer soll nun eine geheime Farbe X != A wählen,
-         sie mit A zur Farbe AX mischen
+           sie mit A zur Farbe AX mischen
      \item Bob wählt eine geheime Farbe Y und mischt sie mit A zur Farbe AY.
      \item Der Nutzer kann nun eine Farbe zu Bob schicken,
-        wenn er die private Farbe X schickt hat er verloren,
-        wenn er A schickt hat er ebenso verloren,
-        wenn er AX schickt geht es weiter.
+           wenn er die private Farbe X schickt hat er verloren,
+           wenn er A schickt hat er ebenso verloren,
+           wenn er AX schickt geht es weiter.
      \item Der Nutzer wird aufgefordert nun die richtigen Farben zu mischen,
-        wenn er X mit AY mischt geht es weiter, wenn nicht hat er verloren.
+           wenn er X mit AY mischt geht es weiter, wenn nicht hat er verloren.
      \item Bob mischt Y mit AX zu AXY.
      \item Wenn Eve weder X noch Y erfahren hat, kennt Eve nicht AXY,
-        der Nutzer kann beglückwünscht werden.
+           der Nutzer kann beglückwünscht werden.
 	\end{enumerate}
 
  \item Phase 3: Wiki.
@@ -414,7 +433,7 @@ dieselbe Rolle. Das Chiffrat wird auf dieselbe Weise entschlüsselt, wie der Kla
 \begin{itemize}[label={}]
 
  \item Ziel: Dem Benutzer ist die Funktionsweise des Hashings bewusst und erhält 
-einen Einblick in den praktischen Nutzen.
+       einen Einblick in den praktischen Nutzen.
 
  \item Auslösendes Ereignis: Auswahl durch Zeitleiste.
 
@@ -789,6 +808,41 @@ Die Ausstellung ist für diesen Tag nun zu Ende, und die Kryptologikum-Administr
 
 \begin{T}[start = 40]
  \item Je nachdem welche Farbe (öffentlich, nicht-öffentlich oder gemischt) der Nutzer zum Schicken an Bob beim Diffie-Hellman-Schlüsselaustausch auswählt, wird darüber informiert ob seine Aktion falsch oder richtig war.
+\end{T}
+
+\begin{T}[start = 50]
+ \item Bei Cäsar und Vigenere kann der Benutzer über ein Eingabefenster Eingaben tätigen.
+\end{T}
+
+\begin{T}[start = 60]
+ \item Bei Cäsar und Vigenere kann der Benutzer sich die Eingaben generieren lassen.
+\end{T}
+
+\begin{T}[start = 70]
+ \item Im Laufe des Selbstversuchs von Vigenere und Cäsar sollen die Buchstaben der Aufgabe aufleuchten.
+\end{T}
+
+\begin{T}[start = 80]
+ \item Im Laufe des Selbstversuchs von Vigenere und Cäsar soll das Alphabet interaktiv sein.
+\end{T}
+
+\begin{T}[start = 90]
+ \item Die Anwendung muss am Ende vom Schritt 1 der Phase 2, Selbstversuch bei Cäsar und Vigenere den vom 
+       Benutzer verschlüsselten Klartext entschlüsseln und das Ergebnis anzeigen.
+\end{T}
+
+\begin{T}[start = 100]
+ \item Am Ende des 2ten Schritt der Phase 2, Selbstversuch soll bei Cäsar und Vigenere die Anwendung den entschlüsselten Klartext 
+       auf Richtigkeit prüfen und es dem Benutzer anzeigen.
+\end{T}
+
+\begin{T}[start = 110]
+ \item Im 3ten Schritt der Phase 2, Selbstversuch soll der Benutzer sich nach der Demonstration Histogramme erstellen lassen können.
+\end{T}
+
+\begin{T}[start = 120]
+ \item Am Ende jeder Phase soll bei Cäsar und Vigenere die Anwedung automatisch in die nächste Phase übergehen und sich die Oberfläche 
+       der nächsten Phase entsprechend ändern.
 \end{T}
 
 \section{Qualitätsbestimmung}
