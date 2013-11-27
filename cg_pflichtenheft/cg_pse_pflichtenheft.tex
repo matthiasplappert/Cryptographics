@@ -125,7 +125,7 @@ In der Demonstration wird dem Nutzer der Ablauf des Verfahrens möglichst anscha
 \subsection{Musskriterien}
 
 \begin{itemize}
-    \item Visualisierung Cäsar-Chiffre
+    \item Visualisierung Caesar-Chiffre
     \item Visualisierung Vigenère-Chiffre
     \item Visualisierung Diffie-Hellmann
     \item Schrittweise Ausführbarkeit der Kryptographie-Algorithmen
@@ -227,15 +227,15 @@ Der Betrieb soll für die Hardware des \gls{EeeTop} (siehe Produktumgebung) opti
   \item Time-Out bei fehlender Nutzerinteraktion mit Rückkehr zum Startbildschirm.
 \end{FA}
 
-%/ Cäsar
+%/ Caesar
 \begin{FA}[start=110]
- \item Prozess: Visualisierung des Verfahrens Cäsar.
+ \item Prozess: Visualisierung des Verfahrens Caesar.
 \end{FA}
 \begin{itemize}[label={}]
 
  \item Ziel: Benutzer versteht das Verfahren und kann selbstständig 
 beliebige Klartexte verschlüsseln und beliebiges Chiffrat, das mit 
-Cäsar erzeugt wurde, entschlüsseln.
+Caesar erzeugt wurde, entschlüsseln.
 
  \item Auslösendes Ereignis: Auswahl durch Zeitleiste.
 
@@ -277,7 +277,7 @@ Cäsar erzeugt wurde, entschlüsseln.
 
  \item Schritt 3:
 	\begin{enumerate}
-	 \item Es erscheinen Animationen, die Nachteile von Cäsar demonstrieren.
+	 \item Es erscheinen Animationen, die Nachteile von Caesar demonstrieren.
 	 \item Histogramme werden durch interaktive Animationen erklärt.
 	 \item Nachdem die letzten Interaktionen abgeschlossen sind, wechselt die Visualisierung in die Phase 3, Wiki.
 	\end{enumerate}
@@ -285,12 +285,12 @@ Cäsar erzeugt wurde, entschlüsseln.
  \item Phase 3: Wiki.
 
 	\begin{enumerate}
-	 \item Sammlung an Artikeln über das Verfahren Cäsar.
-	 \item Nach dem Durchlesen ist die Visualisierung des Verfahrens Cäsar abgeschlossen. Der Benutzer wird zum nächsten Verfahren weitergeleitet.
+	 \item Sammlung an Artikeln über das Verfahren Caesar.
+	 \item Nach dem Durchlesen ist die Visualisierung des Verfahrens Caesar abgeschlossen. Der Benutzer wird zum nächsten Verfahren weitergeleitet.
  	\end{enumerate}
 
 \end{itemize}
-%/ Ende Cäsar
+%/ Ende Caesar
 
 %/ Vigenère
 \begin{FA}[start=120]
@@ -306,7 +306,7 @@ Cäsar erzeugt wurde, entschlüsseln.
 
  \item Phase 1: Demonstration.
 
- \item Identisch mit funktionalen Anforderungen in Cäsar Phase 1, Demonstration. 
+ \item Identisch mit funktionalen Anforderungen in Caesar Phase 1, Demonstration. 
 
  \item Phase 2: Selbstversuch.
 
@@ -541,7 +541,7 @@ Cäsar erzeugt wurde, entschlüsseln.
 
 	\begin{enumerate}[]
  	 \item[1-5] Die funktionalen Anforderungen and diese Phase sind identisch mit den 
-            funktionalen Anforderung in Cäsar und Vigenère.
+            funktionalen Anforderung in Caesar und Vigenère.
 	\end{enumerate}
 
  \item Phase 2: Selbstversuch.
@@ -780,7 +780,7 @@ Das System verwendet das bekannte \gls{MVC}-Entwurfsmuster. Weiterhin ist geplan
 \section{Testszenarien}
 
 \textbf{Szenario 1}:
-Bob ist interessiert an Kryptographie und besucht aus diesem Grund das \gls{Kryptologikum}. Er nähert sich dem \gls{Cryptographics}-Ausstellungsstück. Eine Berührung des Bildschirmes zeigt den Startbildschirm von \gls{Cryptographics}: Eine Zeitleiste, auf dem chronologisch angeordnet verschiedene kryptographische Verfahren dargestellt werden. Die Verfahren sind außerdem farblich durch ihre Komplexität von grün (leicht) bis rot (schwer) gekennzeichnet. Bob wählt durch eine Berührung die Cäsar-Chiffre aus, sie befindet sich nämlich am Anfang der Zeitleiste. Daraufhin erscheint eine kurze Einleitung. Nach dem Durchlesen der Einleitung starten Bob die Visualisierung. Die folgende Demonstration der Cäsar-Chiffre erfolgt Schritt für 
+Bob ist interessiert an Kryptographie und besucht aus diesem Grund das \gls{Kryptologikum}. Er nähert sich dem \gls{Cryptographics}-Ausstellungsstück. Eine Berührung des Bildschirmes zeigt den Startbildschirm von \gls{Cryptographics}: Eine Zeitleiste, auf dem chronologisch angeordnet verschiedene kryptographische Verfahren dargestellt werden. Die Verfahren sind außerdem farblich durch ihre Komplexität von grün (leicht) bis rot (schwer) gekennzeichnet. Bob wählt durch eine Berührung die Caesar-Chiffre aus, sie befindet sich nämlich am Anfang der Zeitleiste. Daraufhin erscheint eine kurze Einleitung. Nach dem Durchlesen der Einleitung starten Bob die Visualisierung. Die folgende Demonstration der Caesar-Chiffre erfolgt Schritt für 
 Schritt auf 
 einer speziell für das Verfahren ausgelegten Oberfläche. Auf genau dieser Oberfläche kann Bob nach dem Beispiel sein neu erlerntes Wissen über das Verfahren anwenden, um Texte zu verschlüsseln, und durch einen gegebenen Schlüssel zu entschlüsseln. Nachdem Bob das Verfahren verstanden hat, kehrt Bob zum Startbildschirm zurück. Da er auch an den anderen Verfahren interessiert ist, arbeitet er sich am Zeitstrahl entlang durch das Programm. Schließlich stößt er auf das Diffie-Hellman-Verfahren, über welches er zusätzliche Informationen erhalten möchte. Er berührt einen dafür vorgesehenen Button und landet auf einem Bildschirm, der weiterführende Informationen sowie einen QR-Code anzeigt. Bob liest die weiterführenden Informationen und scant den QR-Code mit seinem Smartphone. Auch zuhause kann sich Bob dank des gescannten QR-Codes weiter über das Diffie-Hellman-Verfahren informieren.\\
 
@@ -817,28 +817,28 @@ Die Ausstellung ist für diesen Tag zu Ende, und die Kryptologikum-Administrator
 \end{T}
 
 \begin{T}[start = 50]
- \item Bei Cäsar und Vigenère kann der Benutzer über ein Eingabefenster Eingaben tätigen.
+ \item Bei Caesar und Vigenère kann der Benutzer über ein Eingabefenster Eingaben tätigen.
 \end{T}
 
 \begin{T}[start = 60]
- \item Bei Cäsar und Vigenère kann der Benutzer sich die Eingaben generieren lassen.
+ \item Bei Caesar und Vigenère kann der Benutzer sich die Eingaben generieren lassen.
 \end{T}
 
 \begin{T}[start = 70]
- \item Im Laufe des Selbstversuchs von Vigenère und Cäsar sollen die Buchstaben der Aufgabe aufleuchten.
+ \item Im Laufe des Selbstversuchs von Vigenère und Caesar sollen die Buchstaben der Aufgabe aufleuchten.
 \end{T}
 
 \begin{T}[start = 80]
- \item Im Laufe des Selbstversuchs von Vigenère und Cäsar soll das Alphabet interaktiv sein.
+ \item Im Laufe des Selbstversuchs von Vigenère und Caesar soll das Alphabet interaktiv sein.
 \end{T}
 
 \begin{T}[start = 90]
- \item Die Anwendung muss am Ende vom Schritt 1 der Phase 2, Selbstversuch bei Cäsar und Vigenère den vom 
+ \item Die Anwendung muss am Ende vom Schritt 1 der Phase 2, Selbstversuch bei Caesar und Vigenère den vom 
        Benutzer verschlüsselten Klartext entschlüsseln und das Ergebnis anzeigen.
 \end{T}
 
 \begin{T}[start = 100]
- \item Am Ende des 2ten Schritt der Phase 2, Selbstversuch soll bei Cäsar und Vigenère die Anwendung den entschlüsselten Klartext 
+ \item Am Ende des 2ten Schritt der Phase 2, Selbstversuch soll bei Caesar und Vigenère die Anwendung den entschlüsselten Klartext 
        auf Richtigkeit prüfen und es dem Benutzer anzeigen.
 \end{T}
 
@@ -847,7 +847,7 @@ Die Ausstellung ist für diesen Tag zu Ende, und die Kryptologikum-Administrator
 \end{T}
 
 \begin{T}[start = 120]
- \item Am Ende jeder Phase soll bei Cäsar und Vigenère die Anwendung automatisch in die nächste Phase übergehen und sich die Oberfläche 
+ \item Am Ende jeder Phase soll bei Caesar und Vigenère die Anwendung automatisch in die nächste Phase übergehen und sich die Oberfläche 
        der nächsten Phase entsprechend ändern.
 \end{T}
 
