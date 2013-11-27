@@ -43,6 +43,8 @@
 \newglossaryentry{PSE}{name={PSE}, description={Praxis der Software-Entwicklung}}
 \newglossaryentry{IKS}{name={IKS}, description={Institut für Kryptographie und Sicherheit}}
 \newglossaryentry{KIT}{name={KIT}, description={Karlsruher Institut für Technologie}}
+\newglossaryentry{ECB}{name={ECB}, description={Electronic Code Book Mode}}
+\newglossaryentry{CBC}{name={CBC}, description={Cipher Block Chaining Mode}}
 \newglossaryentry{UI}{name={UI}, description={User Interface, Benutzeroberfläche}}
 \newglossaryentry{EeeTop}{name={EeeTop}, description={Die vom IKS gestellte Hardware auf der das Produkt eingesetzt werden soll}}
 
@@ -471,27 +473,27 @@ einen Einblick in den praktischen Nutzen.
  \item Schritt 1:
 
 	\begin{enumerate}
-	 \item Erkläre den ECB Modus.
-	 \item Zeige den Aufbau vom ECB Modus.
+	 \item Erkläre den \gls{ECB} Modus.
+	 \item Zeige den Aufbau vom \gls{ECB} Modus.
 	 \item Nehme einen festgelegten String und führe diese durch die Konstruktion.
 	 \item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt das Chiffrat.
 	 \item Gebe das Chiffrat dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
 	 \item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
-	 \item Nach dem Erhalten des zweiten Chiffrats, zeige Nutzer dass der ECB Modus homomorph ist.
-	 \item Zeige Nutzer das Problem das dadurch entsteht anhand einem im ECB Modus chiffrierten Bildes.
+	 \item Nach dem Erhalten des zweiten Chiffrats, zeige Nutzer dass der ECB Modus gleiche Klartextblöcke auf gleiche Chiffratblöcke abbildet.
+	 \item Zeige Nutzer das Problem das dadurch entsteht anhand einem im \gls{ECB} Modus chiffrierten Bildes.
 	 \item Dechiffriere das erste Chiffrat.
 	\end{enumerate}
 
  \item Schritt 2:
 
 	\begin{enumerate}
-	 \item Erkläre den CBC Modus.
-	 \item Zeige den Aufbau vom CBC Modus.
+	 \item Erkläre den \gls{CBC} Modus.
+	 \item Zeige den Aufbau vom \gls{CBC} Modus.
 	 \item Nehme einen festgelegten String und führe diese durch die Konstruktion.
 	 \item Jeder Schritt wird einzeln visualisiert dargestellt, so entsteht Schritt für Schritt das Chiffrat.
 	 \item Gebe das Chiffrat dieses Strings an. Speichere das Ergebnis in der Maske, damit dieser später eingesehen werden kann.
 	 \item Nun ersetze einen Buchstaben des vorherigen Strings und führe diese erneut durch die Konstruktion.
-	 \item Nach dem Erhalten des zweiten Chiffrats, zeige Nutzer dass die Homomorphie nicht mehr gegeben ist.
+	 \item Nach dem Erhalten des zweiten Chiffrats, zeige Nutzer dass die Blockverkettung die Schwächen vom \gls{ECB} Modus behebt.
 	\end{enumerate}
 	
  \item Phase 3: Wiki.
@@ -774,44 +776,19 @@ Die Ausstellung ist für diesen Tag nun zu Ende, und die Kryptologikum-Administr
 
 \section{Globale Testfälle}
 \begin{T}[start = 10]
-\item Die Testfälle haben mindestens 80\% des geschriebenen Codes abzudecken. Wünschenswert wären 90\%,
-      um die Stabilität mit größerer Sicherheit zu gewährleisten.
+\item Beim Drücken des Hilfe-Buttons bekommt der Nutzer Hilfestellungen zur aktuellen Aufgabe.
 \end{T}
 
-\begin{T}[start = 10]
- \item Die Reaktion der Anwendung auf die normale und außergewöhnliche Interaktion des Benutzers mit 
-       den GUI-Elementen muss ausführlich getestet werden.
+\begin{T}[start = 20]
+ \item Benutzer muss eine Farbe für Alice beim Diffie-Hellman-Schlüsselaustausch auswählen. Diese wird dann visuell im Bildschirm zugehörig zu Alice als "öffentliche" Farbe abgebildet.
 \end{T}
 
-\begin{T}[start = 10]
- \item Alle Grundfunktionen aus dem Kapitel Funktionale Anforderungen müssen in erster Linie getestet werden.
+\begin{T}[start = 30]
+ \item Nach dem Auswählen der geheimen Farbe beim Diffie-Hellman-Schlüsselaustausch für Alice, wird dieser visuell mit der zuvor gewählten, öffentlichen Farbe gemischt und am Bildschirm dargestellt.
 \end{T}
 
-\begin{T}[start = 10]
- \item Funktionen, die von mehreren Verfahren gleichermaßen benutzt werden haben eine höhere Priorität in der Testreihenfolge.
-       Es gilt das Prinzip: Je allgemeiner, desto wichtiger.
-\end{T}
-
-\begin{T}[start = 10]
- \item Die ersten Testszenarien sind die Beispielszenarien aus dem Pflichtenheft.
-\end{T}
-
-\begin{T}[start = 10]
- \item Zu testen neben der Funktionalität und Stabilität ist die Wirkung der Anwendung auf den Benutzer. 
-       Dazu können Testpersonen herangezogen werden.
-\end{T}
-
-\begin{T}[start = 10]
- \item Die Menge der Testpersonen sollte die Kundentypen der Zielgruppe möglichst abdecken.
-\end{T}
-
-\begin{T}[start = 10]
- \item Vorranging wird JUnit zum testen der Funktionalität des Codes verwendet.
-\end{T}
-
-\begin{T}[start = 10]
- \item Stress- und Belastbarkeitstest sind so oft wie möglich durchzuführen, bis sofern Hardware es zulässt 
-       Einbrüche in der Leistung und Abstürze mit nur vernachlässigbarer Wahrscheinlichkeit auftreten.
+\begin{T}[start = 40]
+ \item Je nachdem welche Farbe (öffentlich, nicht-öffentlich oder gemischt) der Nutzer zum Schicken an Bob beim Diffie-Hellman-Schlüsselaustausch auswählt, wird darüber informiert ob seine Aktion falsch oder richtig war.
 \end{T}
 
 \section{Qualitätsbestimmung}
