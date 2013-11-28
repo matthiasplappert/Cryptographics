@@ -1,0 +1,67 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[ngerman]{translator}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{url}
+\usepackage[bottom]{footmisc}
+\usepackage{hyperref}
+\usepackage[nonumberlist, section=subsection]{glossaries}
+
+\title{\textbf{Entwurf} \\ Cryptographics}
+\author{}
+\date{\today}
+
+%Glossar-Befehle anschalten
+\makeglossaries
+% \newglossaryentry{identifier}{name={Name}, description={Description}}
+
+\begin{document}
+
+% The cover page.
+\maketitle
+\begin{table}[b]
+  \begin{tabular}{| l | l | l |}
+    \hline
+    \textbf{Phase} & \textbf{Verantwortlicher} & \textbf{Email} \\ \hline
+    Pflichtenheft & Matthias Jaenicke & matthias.jaenicke@student.kit.edu \\ \hline
+    Entwurf & Matthias Plappert & undkc@student.kit.edu \\
+            & Julien Duman & uncyc@student.kit.edu \\ \hline
+    Implementierung & Christian Dreher & uaeef@student.kit.edu \\ \hline
+    Qualitätssicherung & Wasilij Beskorovajnov & uajkm@student.kit.edu \\ \hline
+    Präsentation & Aydin Tekin & aydin.tekin@student.kit.edu \\ \hline
+    \end{tabular}
+\end{table}
+\thispagestyle{empty}
+\newpage
+
+% Table of contents page.
+\tableofcontents
+\newpage
+
+% Start of the actual document.
+\section{Einleitung}
+
+\section{Aufbau}
+\subsection{Architektur}
+\subsection{Klassendiagramm}
+
+\section{Klassenbeschreibung}
+\subsection{Übersicht}
+\subsection{Model}
+\subsection{View}
+\subsection{Controller}
+
+\section{Abläufe}
+
+\section{Entwurfdaten}
+
+\section{Anhang}
+\glsaddall
+\printglossary[numberedsection, style=altlist]
+
+\end{document}

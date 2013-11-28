@@ -7,16 +7,12 @@
 *.fdb_latexmk
 *.synctex.gz
 *.toc
+*.glg
+*.glo
+*.gls
+*.out
+*.ist
 
 # PDF
-cg_pse_pflichtenheft.pdf
 /cg_pflichtenheft/cg_pse_pflichtenheft.pdf
-
-/cg_pflichtenheft/*.glg
-
-/cg_pflichtenheft/*.glo
-
-/cg_pflichtenheft/*.gls
-/cg_pflichtenheft/*.out
-
-/cg_pflichtenheft/*.ist
+/cg_entwurf/cg_entwurf.pdf
