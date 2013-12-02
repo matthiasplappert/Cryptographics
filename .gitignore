@@ -16,3 +16,6 @@
 # PDF
 /cg_pflichtenheft/cg_pse_pflichtenheft.pdf
 /cg_entwurf/cg_entwurf.pdf
+
+# Java
+/cg_implementierung/bin/*
