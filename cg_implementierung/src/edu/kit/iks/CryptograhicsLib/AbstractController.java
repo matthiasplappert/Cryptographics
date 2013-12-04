@@ -47,4 +47,8 @@ abstract public class AbstractController {
 		// TODO: return immutable copy
 		return _childControllers;
 	}
+	
+	public boolean viewIsLoaded() {
+		return (_view != null);
+	}
 }
