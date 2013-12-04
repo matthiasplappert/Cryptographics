@@ -4,7 +4,7 @@ public class Main {
 	public static void main(String[] args) {
 		MainController mainController = new MainController();
 		mainController.loadView();
-		mainController.presentStart();
+		mainController.presentStartAction();
 		
 		// TODO: start run loop and kick things off.
 	}
