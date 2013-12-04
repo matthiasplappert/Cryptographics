@@ -5,14 +5,14 @@ import java.util.List;
 import javax.swing.JComponent;
 
 abstract public class AbstractController {
-	protected JComponent view = null;
+	protected JComponent _view = null;
 	
-	protected AbstractController parentController = null;
+	protected AbstractController _parentController = null;
 	
-	protected List<AbstractController> childControllers;
+	protected List<AbstractController> _childControllers;
 	
 	public AbstractController() {
-		childControllers = new ArrayList<AbstractController>();
+		_childControllers = new ArrayList<AbstractController>();
 	}
 
 	public void addChildController(AbstractController childController) {
@@ -28,23 +28,23 @@ abstract public class AbstractController {
 	}
 	
 	public void unloadView() {
-		this.view = null;
+		_view = null;
 	}
 	
 	public JComponent getView() {
-		return view;
+		return _view;
 	}
 
 	public void setView(JComponent view) {
-		this.view = view;
+		_view = view;
 	}
 
 	public AbstractController getParentController() {
-		return parentController;
+		return _parentController;
 	}
 	
 	public List<AbstractController> getChildControllers() {
 		// TODO: return immutable copy
-		return childControllers;
+		return _childControllers;
 	}
 }

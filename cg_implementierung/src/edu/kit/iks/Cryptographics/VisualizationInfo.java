@@ -4,51 +4,51 @@ import java.awt.Image;
 import java.net.URL;
 
 abstract public class VisualizationInfo {
-	protected String id;
+	protected String _id;
 	
-	protected String name;
+	protected String _name;
 	
-	protected String description;
+	protected String _description;
 	
-	protected float timelineOffset;
+	protected float _timelineOffset;
 	
-	protected VisualizationDifficulty difficulty;
+	protected VisualizationDifficulty _difficulty;
 	
-	protected int year;
+	protected int _year;
 	
-	protected URL additionalInformationFileURL;
+	protected URL _additionalInformationFileURL;
 	
-	protected Image qrCode;
+	protected Image _qrCode;
 
 	public String getId() {
-		return id;
+		return _id;
 	}
 
 	public String getName() {
-		return name;
+		return _name;
 	}
 
 	public String getDescription() {
-		return description;
+		return _description;
 	}
 
 	public float getTimelineOffset() {
-		return timelineOffset;
+		return _timelineOffset;
 	}
 
 	public VisualizationDifficulty getDifficulty() {
-		return difficulty;
+		return _difficulty;
 	}
 
 	public int getYear() {
-		return year;
+		return _year;
 	}
 
 	public URL getAdditionalInformationFileURL() {
-		return additionalInformationFileURL;
+		return _additionalInformationFileURL;
 	}
 
 	public Image getQrCode() {
-		return qrCode;
+		return _qrCode;
 	}
 }
