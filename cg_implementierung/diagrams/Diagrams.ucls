@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="edu.kit.iks.Cryptographics.MainController" project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/MainController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="929" y="317"/>    
+    <position height="-1" width="-1" x="1000" y="317"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -61,7 +61,7 @@
   <class id="7" language="java" name="edu.kit.iks.Cryptographics.Caesar.VisualizationInfo" project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/Caesar/VisualizationInfo.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="699" y="898"/>    
+    <position height="-1" width="-1" x="514" y="1008"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -71,7 +71,7 @@
   <class id="8" language="java" name="edu.kit.iks.Cryptographics.Vigenere.VisualizationInfo" project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/Vigenere/VisualizationInfo.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="907" y="898"/>    
+    <position height="-1" width="-1" x="903" y="1008"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -81,7 +81,7 @@
   <class id="9" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.VisualizationInfo" 
     project="Cryptographics" file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/VisualizationInfo.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1129" y="898"/>    
+    <position height="-1" width="-1" x="1286" y="1005"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -186,62 +186,54 @@
     <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <association id="25">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="26" name="_difficulty"/>      
-      <multiplicity id="27" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="14"/>  
-  </generalization>  
-  <generalization id="29">    
+  <generalization id="25">    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <generalization id="30">    
+  <generalization id="26">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <generalization id="27">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <association id="31">    
+  <association id="28">    
     <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="32" name="_visualizationInfo"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
+      <attribute id="29" name="_visualizationInfo"/>      
+      <multiplicity id="30" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="34">    
+  <generalization id="31">    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="14"/>  
   </generalization>  
-  <association id="35">    
+  <association id="32">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="36" name="_welcomeView"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
+      <attribute id="33" name="_welcomeView"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="38">    
+  <generalization id="35">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <generalization id="39">    
+  <generalization id="36">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <generalization id="40">    
+  <generalization id="37">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <association id="41">    
+  <association id="38">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="42" name="_popoverView"/>      
-      <multiplicity id="43" minimum="0" maximum="1"/>    
+      <attribute id="39" name="_popoverView"/>      
+      <multiplicity id="40" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
