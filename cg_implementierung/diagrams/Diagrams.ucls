@@ -41,7 +41,7 @@
   <enumeration id="5" language="java" name="edu.kit.iks.Cryptographics.VisualizationDifficulty" project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/VisualizationDifficulty.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="587" y="618"/>    
+    <position height="-1" width="-1" x="594" y="716"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -51,7 +51,7 @@
   <class id="6" language="java" name="edu.kit.iks.Cryptographics.AbstractVisualizationInfo" project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/AbstractVisualizationInfo.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="911" y="616"/>    
+    <position height="-1" width="-1" x="903" y="744"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -155,7 +155,7 @@
   </class>  
   <class id="17" language="java" name="edu.kit.iks.Cryptographics.Vigenere.Controller" project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/Vigenere/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="80" width="173" x="842" y="433"/>    
+    <position height="-1" width="-1" x="1081" y="508"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -195,45 +195,53 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization id="28">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <generalization id="29">    
     <end type="SOURCE" refId="15"/>    
     <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="1"/>  
   </generalization>  
   <generalization id="30">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <generalization id="31">    
+  <association id="31">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="32" name="_visualizationInfo"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="34">    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="14"/>  
   </generalization>  
-  <association id="32">    
+  <association id="35">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="33" name="_welcomeView"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
+      <attribute id="36" name="_welcomeView"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="35">    
+  <generalization id="38">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <generalization id="36">    
+  <generalization id="39">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <generalization id="37">    
+  <generalization id="40">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <association id="38">    
+  <association id="41">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="39" name="_popoverView"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
+      <attribute id="42" name="_popoverView"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
