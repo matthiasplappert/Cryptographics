@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="edu.kit.iks.CryptograhicsLib.AbstractController" project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/CryptograhicsLib/AbstractController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="163" y="83"/>    
+    <position height="-1" width="-1" x="471" y="105"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="edu.kit.iks.Cryptographics.MainController" project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/MainController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="92" y="324"/>    
+    <position height="-1" width="-1" x="789" y="345"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="edu.kit.iks.Cryptographics.StartController" project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/StartController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="279" y="347"/>    
+    <position height="-1" width="-1" x="386" y="355"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -31,7 +31,7 @@
   <class id="4" language="java" name="edu.kit.iks.Cryptographics.VisualizationContainerController" 
     project="Cryptographics" file="/Cryptographics/src/edu/kit/iks/Cryptographics/VisualizationContainerController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="465" y="251"/>    
+    <position height="-1" width="-1" x="131" y="346"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -41,34 +41,24 @@
   <class id="5" language="java" name="edu.kit.iks.Cryptographics.VisualizationController" project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/VisualizationController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="516" y="85"/>    
+    <position height="-1" width="-1" x="609" y="346"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="edu.kit.iks.Cryptographics.Caesar.VisualizationInfo" project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/Caesar/VisualizationInfo.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="554" y="796"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <enumeration id="7" language="java" name="edu.kit.iks.Cryptographics.VisualizationDifficulty" project="Cryptographics" 
+  <enumeration id="6" language="java" name="edu.kit.iks.Cryptographics.VisualizationDifficulty" project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/VisualizationDifficulty.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="531" y="625"/>    
+    <position height="-1" width="-1" x="587" y="618"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="8" language="java" name="edu.kit.iks.Cryptographics.AbstractVisualizationInfo" project="Cryptographics" 
+  <class id="7" language="java" name="edu.kit.iks.Cryptographics.AbstractVisualizationInfo" project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/AbstractVisualizationInfo.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="911" y="616"/>    
@@ -78,31 +68,69 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="9">    
+  <class id="8" language="java" name="edu.kit.iks.Cryptographics.Caesar.VisualizationInfo" project="Cryptographics" 
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/Caesar/VisualizationInfo.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="699" y="898"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="edu.kit.iks.Cryptographics.Vigenere.VisualizationInfo" project="Cryptographics" 
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/Vigenere/VisualizationInfo.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="907" y="898"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.VisualizationInfo" 
+    project="Cryptographics" file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/VisualizationInfo.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1129" y="898"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="12">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="13">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <generalization id="10">    
+  <generalization id="14">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="15">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <association id="11">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="12" name="_difficulty"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
+  <association id="16">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="17" name="_difficulty"/>      
+      <multiplicity id="18" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="14">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <generalization id="15">    
+  <generalization id="19">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <generalization id="16">    
+  <generalization id="20">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
