@@ -1,5 +1,7 @@
 package edu.kit.iks.Cryptographics;
 
-public class MainController {
+import edu.kit.iks.CryptograhicsLib.AbstractController;
+
+public class MainController extends AbstractController {
 
 }

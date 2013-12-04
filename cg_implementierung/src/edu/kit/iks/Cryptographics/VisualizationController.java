@@ -1,5 +1,7 @@
 package edu.kit.iks.Cryptographics;
 
-public class VisualizationController {
+import edu.kit.iks.CryptograhicsLib.AbstractController;
+
+public class VisualizationController extends AbstractController {
 
 }
