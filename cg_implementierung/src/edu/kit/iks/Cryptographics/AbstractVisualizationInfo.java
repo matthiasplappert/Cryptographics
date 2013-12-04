@@ -3,7 +3,7 @@ package edu.kit.iks.Cryptographics;
 import java.awt.Image;
 import java.net.URL;
 
-abstract public class VisualizationInfo {
+abstract public class AbstractVisualizationInfo {
 	protected String _id;
 	
 	protected String _name;
