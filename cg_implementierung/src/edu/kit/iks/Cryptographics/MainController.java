@@ -6,11 +6,11 @@ import edu.kit.iks.CryptograhicsLib.AbstractController;
 import edu.kit.iks.CryptograhicsLib.AbstractVisualizationInfo;
 
 class MainController extends AbstractController {
-	private JFrame frame;
+	private JFrame _frame;
 	
-	private StartController startController;
+	private StartController _startController;
 	
-	private VisualizationContainerController visualizationContainerController;
+	private VisualizationContainerController _visualizationContainerController;
 	
 	public void presentStartAction() {
 		
