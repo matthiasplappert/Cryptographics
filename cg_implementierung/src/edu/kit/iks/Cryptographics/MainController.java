@@ -1,14 +1,16 @@
 package edu.kit.iks.Cryptographics;
 
 import javax.swing.JFrame;
-import edu.kit.iks.CryptograhicsLib.AbstractController;
 
-public class MainController extends AbstractController {
-	private JFrame frame;
+import edu.kit.iks.CryptograhicsLib.AbstractController;
+import edu.kit.iks.CryptograhicsLib.AbstractVisualizationInfo;
+
+class MainController extends AbstractController {
+	private JFrame _frame;
 	
-	private StartController startController;
+	private StartController _startController;
 	
-	private VisualizationContainerController visualizationContainerController;
+	private VisualizationContainerController _visualizationContainerController;
 	
 	public void presentStartAction() {
 		
