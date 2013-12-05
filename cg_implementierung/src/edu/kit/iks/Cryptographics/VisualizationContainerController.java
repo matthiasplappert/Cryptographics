@@ -7,6 +7,8 @@ public class VisualizationContainerController extends AbstractController {
 	
 	private AbstractVisualizationInfo _visualizationInfo;
 	
+	private AbstractVisualizationController _visualizationController;
+	
 	public VisualizationContainerController(AbstractVisualizationInfo visualizationInfo) {
 		_visualizationInfo = visualizationInfo;
 		_loadVisualizationController();
