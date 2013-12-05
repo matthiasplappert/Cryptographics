@@ -1,6 +1,7 @@
 package edu.kit.iks.Cryptographics;
 
 import edu.kit.iks.CryptograhicsLib.AbstractController;
+import edu.kit.iks.CryptograhicsLib.AbstractVisualizationInfo;
 
 public class StartController extends AbstractController {
 	private PopoverView _popoverView;

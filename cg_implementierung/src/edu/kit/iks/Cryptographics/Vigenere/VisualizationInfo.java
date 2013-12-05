@@ -1,10 +1,10 @@
 package edu.kit.iks.Cryptographics.Vigenere;
 
-import edu.kit.iks.Cryptographics.AbstractVisualizationController;
-import edu.kit.iks.Cryptographics.AbstractVisualizationInfo;
+import edu.kit.iks.CryptograhicsLib.AbstractVisualizationController;
+import edu.kit.iks.CryptograhicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.Cryptographics.VisualizationDifficulty;
 
-public class VisualizationInfo extends AbstractVisualizationInfo {
+class VisualizationInfo extends AbstractVisualizationInfo {
 	public String getId() {
 		return "diffiehellman";
 	}
