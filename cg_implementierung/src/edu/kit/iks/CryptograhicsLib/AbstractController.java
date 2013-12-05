@@ -7,8 +7,6 @@ import javax.swing.JComponent;
 abstract public class AbstractController {
 	protected JComponent _view = null;
 	
-	protected AbstractController _parentController = null;
-	
 	protected List<AbstractController> _childControllers;
 	
 	public AbstractController() {
@@ -37,10 +35,6 @@ abstract public class AbstractController {
 
 	public void setView(JComponent view) {
 		_view = view;
-	}
-
-	public AbstractController getParentController() {
-		return _parentController;
 	}
 	
 	public List<AbstractController> getChildControllers() {
