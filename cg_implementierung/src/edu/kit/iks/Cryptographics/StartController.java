@@ -1,5 +1,6 @@
 package edu.kit.iks.Cryptographics;
 
+import java.util.List;
 import edu.kit.iks.CryptograhicsLib.AbstractController;
 
 public class StartController extends AbstractController {
@@ -8,6 +9,8 @@ public class StartController extends AbstractController {
 	private TimelineView _timelineView;
 	
 	private WelcomeView _welcomeView;
+	
+	private List<AbstractVisualizationInfo> visualizationInfos;
 	
 	public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo) {
 		
