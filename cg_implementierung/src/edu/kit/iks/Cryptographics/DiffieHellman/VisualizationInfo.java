@@ -10,7 +10,7 @@ class VisualizationInfo extends AbstractVisualizationInfo {
 	}
 	
 	public String getName() {
-		return "Vigen�re";
+		return "Vigenère";
 	}
 	
 	public String getDescription() {
