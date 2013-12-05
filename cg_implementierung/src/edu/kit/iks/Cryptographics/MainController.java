@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 import edu.kit.iks.CryptograhicsLib.AbstractController;
 import edu.kit.iks.CryptograhicsLib.AbstractVisualizationInfo;
 
-public class MainController extends AbstractController {
+class MainController extends AbstractController {
 	private JFrame frame;
 	
 	private StartController startController;

@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import edu.kit.iks.CryptograhicsLib.AbstractController;
 import edu.kit.iks.CryptograhicsLib.AbstractVisualizationInfo;
 
-public class VisualizationContainerController extends AbstractController {
+class VisualizationContainerController extends AbstractController {
 	private JLabel _nameLabel;
 	
 	private JButton _exitButton;
