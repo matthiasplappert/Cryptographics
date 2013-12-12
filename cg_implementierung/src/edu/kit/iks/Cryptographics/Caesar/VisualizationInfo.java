@@ -6,6 +6,7 @@ import java.util.List;
 import edu.kit.iks.Cryptographics.VisualizationDifficulty;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.InformationController;
 
 public class VisualizationInfo extends AbstractVisualizationInfo {
 	public String getId() {
@@ -36,9 +37,9 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 		List<Class> controllerClasses =
 			new ArrayList<Class>();
 		
-		controllerClasses.add(Controller.class);
-		
-		// TODO: Add controller for every phase
+		controllerClasses.add(DemonstrationController.class);
+		controllerClasses.add(ExperimentController.class);
+		controllerClasses.add(InformationController.class);
 		
 		return controllerClasses;
 	}
