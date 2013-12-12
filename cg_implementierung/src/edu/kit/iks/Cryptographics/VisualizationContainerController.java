@@ -4,16 +4,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import edu.kit.iks.CryptographicsLib.AbstractController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class VisualizationContainerController extends AbstractController {
-	private JLabel _nameLabel;
-	
-	private JButton _exitButton;
-	
-	private JButton _helpButton;
+	private VisualizationContainerView _containerView;
 	
 	private AbstractVisualizationInfo _visualizationInfo;
+	
+	private AbstractVisualizationController _visualizationController;
 	
 	public VisualizationContainerController(AbstractVisualizationInfo visualizationInfo) {
 		_visualizationInfo = visualizationInfo;
