@@ -15,7 +15,7 @@ public class CipherStep implements CipherStepable {
 		// Handle current index
 		String message = context.getMessage();
 		int offset = Integer.parseInt(context.getKey());
-		// TODO: add proper handling of modulo
+		// TODO add proper handling of modulo
 		context.getCipherBuilder().append(message.charAt(this._index) + offset);
 		
 		int nextIndex = this._index + 1;
