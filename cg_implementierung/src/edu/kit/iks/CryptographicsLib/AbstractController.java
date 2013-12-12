@@ -36,8 +36,7 @@ abstract public class AbstractController {
 	 * (The index is the same as the list-index of {_childControllers} or
 	 * may be defined through enums)
 	 * 
-	 * @param phase The phase of the child controller which should be set as active.
-	 * 		  First controller is {phase = 0}
+	 * @param index The index of the child controller which should be set as active.
 	 */
 	public void setActiveChildController(int index) {
 		
