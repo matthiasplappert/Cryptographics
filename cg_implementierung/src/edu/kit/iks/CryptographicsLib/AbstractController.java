@@ -9,7 +9,15 @@ abstract public class AbstractController {
 	
 	protected AbstractController _parentController = null;
 	
+	/**
+	 * List of all possible child controllers
+	 */
 	protected List<AbstractController> _childControllers;
+	
+	/**
+	 * The child controller which is currently active.
+	 */
+	protected AbstractController _activeChildController;
 	
 	public AbstractController() {
 		_childControllers = new ArrayList<AbstractController>();
@@ -21,6 +29,19 @@ abstract public class AbstractController {
 	
 	public void removeChildController(AbstractController childController) {
 		
+	}
+	
+	/**
+	 * Sets the currently active child controller from given {phase} 
+	 * 
+	 * @param phase The phase of the child controller which should be set as active.
+	 * 		  First controller is {phase = 0}
+	 */
+	public void setActiveChildController(int phase) {
+		
+		// TODO check phase for validity. {phase} will be passed through the clicked button
+		
+		this._activeChildController = this._childControllers.get(phase);
 	}
 	
 	public void loadView() {
