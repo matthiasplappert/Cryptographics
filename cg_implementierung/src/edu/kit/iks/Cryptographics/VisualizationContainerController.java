@@ -2,7 +2,9 @@ package edu.kit.iks.Cryptographics;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import edu.kit.iks.CryptograhicsLib.AbstractController;
+
+import edu.kit.iks.CryptographicsLib.AbstractController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class VisualizationContainerController extends AbstractController {
 	private JLabel _nameLabel;

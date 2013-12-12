@@ -1,7 +1,9 @@
 package edu.kit.iks.Cryptographics;
 
 import javax.swing.JFrame;
-import edu.kit.iks.CryptograhicsLib.AbstractController;
+
+import edu.kit.iks.CryptographicsLib.AbstractController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class MainController extends AbstractController {
 	private JFrame frame;
