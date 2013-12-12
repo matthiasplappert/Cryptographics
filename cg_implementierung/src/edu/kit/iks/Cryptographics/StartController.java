@@ -11,7 +11,7 @@ public class StartController extends AbstractController {
 	
 	private WelcomeView _welcomeView;
 	
-	private List<AbstractVisualizationInfo> visualizationInfos;
+	private List<AbstractVisualizationInfo> _visualizationInfos;
 	
 	public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo) {
 		
