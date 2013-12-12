@@ -1,7 +1,7 @@
 package edu.kit.iks.Cryptographics.Caesar;
 
-import edu.kit.iks.CryptograhicsLib.AbstractCipherContext;
-import edu.kit.iks.CryptograhicsLib.CipherStepable;
+import edu.kit.iks.CryptographicsLib.AbstractCipherContext;
+import edu.kit.iks.CryptographicsLib.CipherStepable;
 
 public class CipherContext extends AbstractCipherContext {
 	public CipherContext(String message, String key) {

@@ -1,4 +1,4 @@
-package edu.kit.iks.CryptograhicsLib;
+package edu.kit.iks.CryptographicsLib;
 
 public interface CipherStepable {
 	 public void perform(AbstractCipherContext context);

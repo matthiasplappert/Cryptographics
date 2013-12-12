@@ -1,13 +1,13 @@
 package edu.kit.iks.Cryptographics.Caesar;
 
-import edu.kit.iks.CryptograhicsLib.AbstractCipherContext;
-import edu.kit.iks.CryptograhicsLib.CipherStepable;
+import edu.kit.iks.CryptographicsLib.AbstractCipherContext;
+import edu.kit.iks.CryptographicsLib.CipherStepable;
 
 public class CipherStep implements CipherStepable {
-	private int index = 0;
+	private int _index = 0;
 	
 	public CipherStep(int index) {
-		this.index = index;
+		this._index = index;
 	}
 	
 	@Override
@@ -16,9 +16,9 @@ public class CipherStep implements CipherStepable {
 		String message = context.getMessage();
 		int offset = Integer.parseInt(context.getKey());
 		// TODO: add proper handling of modulo
-		context.getCipherBuilder().append(message.charAt(this.index) + offset);
+		context.getCipherBuilder().append(message.charAt(this._index) + offset);
 		
-		int nextIndex = this.index + 1;
+		int nextIndex = this._index + 1;
 		if (nextIndex < message.length()) {
 			context.setNextStep(new CipherStep(nextIndex));
 		} else {
@@ -28,6 +28,6 @@ public class CipherStep implements CipherStepable {
 	
 	@Override
 	public void undo(AbstractCipherContext context) {
-		context.getCipherBuilder().deleteCharAt(this.index);
+		context.getCipherBuilder().deleteCharAt(this._index);
 	}
 }

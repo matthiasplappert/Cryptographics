@@ -1,52 +1,52 @@
-package edu.kit.iks.CryptograhicsLib;
+package edu.kit.iks.CryptographicsLib;
 
 import java.util.ArrayList;
 import java.util.List;
 
 abstract public class AbstractCipherContext {
-	private CipherStepable nextStep;
+	private CipherStepable _nextStep;
 	
-	private List<CipherStepable> previousSteps;
+	private List<CipherStepable> _previousSteps;
 	
-	private String message;
+	private String _message;
 	
-	private String key;
+	private String _key;
 	
-	private StringBuilder cipherBuilder;
+	private StringBuilder _cipherBuilder;
 	
 	abstract public CipherStepable getInitialStep();
 	
 	public AbstractCipherContext(String message, String key) {
-		this.message = message;
-		this.key = key;
-		this.previousSteps = new ArrayList<CipherStepable>();
+		this._message = message;
+		this._key = key;
+		this._previousSteps = new ArrayList<CipherStepable>();
 		
-		this.nextStep = getInitialStep();
+		this._nextStep = getInitialStep();
 	}
 	
 	public String getMessage() {
-		return this.message;
+		return this._message;
 	}
 	
 	public String getKey() {
-		return this.key;
+		return this._key;
 	}
 	
 	public StringBuilder getCipherBuilder() {
-		return this.cipherBuilder;
+		return this._cipherBuilder;
 	}
 	
 	public String getCipher() {
-		return this.cipherBuilder.toString();
+		return this._cipherBuilder.toString();
 	}
 	
 	public void setNextStep(CipherStepable step) {
 		// TODO: add current nextStep to previousSteps if != NULL
-		this.nextStep = step;
+		this._nextStep = step;
 	}
 	
 	public void performStep() {
-		this.nextStep.perform(this);
+		this._nextStep.perform(this);
 	}
 	
 	public void undoStep() {
@@ -56,10 +56,10 @@ abstract public class AbstractCipherContext {
 	}
 	
 	public boolean canPerformStep() {
-		return (this.nextStep != null);
+		return (this._nextStep != null);
 	}
 	
 	public boolean canUndoStep() {
-		return (this.previousSteps.size() > 0);
+		return (this._previousSteps.size() > 0);
 	}
 }
