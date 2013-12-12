@@ -1,8 +1,5 @@
 package edu.kit.iks.Cryptographics;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-
 import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
