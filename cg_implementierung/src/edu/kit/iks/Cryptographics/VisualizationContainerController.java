@@ -1,6 +1,11 @@
 package edu.kit.iks.Cryptographics;
 
-import edu.kit.iks.CryptograhicsLib.AbstractController;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
+import edu.kit.iks.CryptographicsLib.AbstractController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class VisualizationContainerController extends AbstractController {
 	private VisualizationContainerView _containerView;
