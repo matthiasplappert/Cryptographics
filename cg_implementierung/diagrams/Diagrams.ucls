@@ -96,9 +96,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="edu.kit.iks.Cryptographics.Caesar.Controller" project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/Caesar/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="915" y="1387"/>    
+  <class id="11" language="java" name="edu.kit.iks.Cryptographics.Caesar.ExperimentController" project="Cryptographics" 
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/Caesar/ExperimentController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="891" y="1582"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -108,17 +109,18 @@
   <class id="12" language="java" name="edu.kit.iks.Cryptographics.Caesar.VisualizationInfo" project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/Caesar/VisualizationInfo.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="394" y="1384"/>    
+    <position height="-1" width="-1" x="394" y="1575"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Controller" project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Controller.java" binary="false" 
+  <class id="13" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.ExperimentController" 
+    project="Cryptographics" 
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/ExperimentController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="929" y="1619"/>    
+    <position height="-1" width="-1" x="929" y="1810"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -128,16 +130,17 @@
   <class id="14" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.VisualizationInfo" 
     project="Cryptographics" file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/VisualizationInfo.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="392" y="1621"/>    
+    <position height="-1" width="-1" x="392" y="1812"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="edu.kit.iks.Cryptographics.Vigenere.Controller" project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/Vigenere/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="939" y="1863"/>    
+  <class id="15" language="java" name="edu.kit.iks.Cryptographics.Vigenere.ExperimentController" 
+    project="Cryptographics" file="/Cryptographics/src/edu/kit/iks/Cryptographics/Vigenere/ExperimentController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="939" y="2054"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,7 +150,7 @@
   <class id="16" language="java" name="edu.kit.iks.Cryptographics.Vigenere.VisualizationInfo" project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/Vigenere/VisualizationInfo.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="395" y="1863"/>    
+    <position height="-1" width="-1" x="395" y="2054"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -174,182 +177,269 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="19">    
+  <class id="19" language="java" name="edu.kit.iks.Cryptographics.Vigenere.DemonstrationController" 
+    project="Cryptographics" file="/Cryptographics/src/edu/kit/iks/Cryptographics/Vigenere/DemonstrationController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="942" y="1965"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.DemonstrationController" 
+    project="Cryptographics" 
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/DemonstrationController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="929" y="1722"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="edu.kit.iks.Cryptographics.Caesar.DemonstrationController" 
+    project="Cryptographics" file="/Cryptographics/src/edu/kit/iks/Cryptographics/Caesar/DemonstrationController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="899" y="1486"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="edu.kit.iks.Cryptographics.InformationController" project="Cryptographics" 
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/InformationController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="731" y="1362"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="23">    
     <bendpoint x="57" y="1862"/>    
     <bendpoint x="57" y="1280"/>    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="8"/>  
   </generalization>  
-  <generalization id="20">    
+  <generalization id="24">    
+    <bendpoint x="1058" y="1650"/>    
+    <bendpoint x="1055" y="1327"/>    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="26">    
     <bendpoint x="1009" y="294"/>    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="17"/>  
   </generalization>  
-  <generalization id="21">    
+  <generalization id="27">    
     <bendpoint x="103" y="1620"/>    
     <bendpoint x="103" y="1325"/>    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="8"/>  
   </generalization>  
-  <association id="22">    
+  <association id="28">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="23" name="_timelineView"/>      
-      <multiplicity id="24" minimum="0" maximum="1"/>    
+      <attribute id="29" name="_timelineView"/>      
+      <multiplicity id="30" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="25">    
+  <generalization id="31">    
     <bendpoint x="326" y="344"/>    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="17"/>  
   </generalization>  
-  <association id="26">    
+  <association id="32">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="27" name="_visualizationInfo">        
+      <attribute id="33" name="_visualizationInfo">        
         <position height="18" width="103" x="640" y="973"/>      
       </attribute>      
-      <multiplicity id="28" minimum="0" maximum="1">        
+      <multiplicity id="34" minimum="0" maximum="1">        
         <position height="16" width="25" x="589" y="975"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="29">    
+  <generalization id="35">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="17"/>  
   </generalization>  
-  <generalization id="30">    
-    <bendpoint x="1077" y="1620"/>    
+  <generalization id="36">    
+    <bendpoint x="1077" y="1799"/>    
     <bendpoint x="1077" y="1323"/>    
     <end type="SOURCE" refId="13"/>    
     <end type="TARGET" refId="10"/>  
   </generalization>  
-  <generalization id="31">    
+  <generalization id="37">    
     <bendpoint x="774" y="416"/>    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="17"/>  
   </generalization>  
-  <association id="32">    
+  <association id="38">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="33" name="_visualizationInfo"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
+      <attribute id="39" name="_visualizationInfo"/>      
+      <multiplicity id="40" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="35">    
+  <association id="41">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="36" name="_containerView"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
+      <attribute id="42" name="_containerView"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="38">    
+  <association id="44">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="39" name="_popoverView"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
+      <attribute id="45" name="_popoverView"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="41">    
+  <association id="47">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="42" name="_visualizationInfo"/>      
-      <multiplicity id="43" minimum="0" maximum="1"/>    
+      <attribute id="48" name="_visualizationInfo"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="44">    
+  <generalization id="50">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="51">    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="8"/>  
   </generalization>  
-  <generalization id="45">    
+  <generalization id="52">    
+    <bendpoint x="1043" y="1582"/>    
+    <bendpoint x="1041" y="1328"/>    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="10"/>  
   </generalization>  
-  <dependency id="46">    
+  <dependency id="53">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="9"/>  
   </dependency>  
-  <generalization id="47">    
-    <bendpoint x="1140" y="1863"/>    
+  <generalization id="54">    
+    <bendpoint x="1140" y="1996"/>    
     <bendpoint x="1140" y="1259"/>    
     <end type="SOURCE" refId="15"/>    
     <end type="TARGET" refId="10"/>  
   </generalization>  
-  <association id="48">    
+  <association id="55">    
     <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="49" name="_visualizationInfo"/>      
-      <multiplicity id="50" minimum="0" maximum="1"/>    
+      <attribute id="56" name="_visualizationInfo"/>      
+      <multiplicity id="57" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="51">    
+  <association id="58">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="59" name="_visualizationInfo"/>      
+      <multiplicity id="60" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="61">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="62" name="_visualizationInfo"/>      
+      <multiplicity id="63" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="64">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="65" name="_visualizationInfo"/>      
+      <multiplicity id="66" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="67">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="52" name="_visualizationContainerController">        
+      <attribute id="68" name="_visualizationContainerController">        
         <position height="18" width="191" x="513" y="679"/>      
       </attribute>      
-      <multiplicity id="53" minimum="0" maximum="1">        
+      <multiplicity id="69" minimum="0" maximum="1">        
         <position height="16" width="25" x="722" y="682"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="54">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="55" name="_visualizationInfo"/>      
-      <multiplicity id="56" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="57">    
+  <generalization id="70">    
+    <bendpoint x="1109" y="1827"/>    
+    <bendpoint x="1109" y="1261"/>    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <association id="71">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="58" name="_welcomeView"/>      
-      <multiplicity id="59" minimum="0" maximum="1"/>    
+      <attribute id="72" name="_welcomeView"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="60">    
+  <association id="74">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="61" name="_startController">        
+      <attribute id="75" name="_startController">        
         <position height="18" width="92" x="407" y="677"/>      
       </attribute>      
-      <multiplicity id="62" minimum="0" maximum="1">        
+      <multiplicity id="76" minimum="0" maximum="1">        
         <position height="16" width="25" x="355" y="677"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="63">    
+  <association id="77">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="78" name="_visualizationInfo"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="80">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="64" name="_visualizationInfos">        
+      <attribute id="81" name="_visualizationInfos">        
         <position height="18" width="109" x="328" y="970"/>      
       </attribute>      
-      <multiplicity id="65" minimum="0" maximum="2147483647">        
+      <multiplicity id="82" minimum="0" maximum="2147483647">        
         <position height="16" width="23" x="472" y="972"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="66">    
+  <association id="83">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="67" name="_visualizationController"/>      
-      <multiplicity id="68" minimum="0" maximum="1"/>    
+      <attribute id="84" name="_visualizationController"/>      
+      <multiplicity id="85" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="69">    
+  <dependency id="86">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="1"/>  
   </dependency>  
