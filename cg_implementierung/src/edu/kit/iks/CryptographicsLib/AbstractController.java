@@ -32,16 +32,18 @@ abstract public class AbstractController {
 	}
 	
 	/**
-	 * Sets the currently active child controller from given {phase} 
+	 * Sets the currently active child controller from given {index} 
+	 * (The index is the same as the list-index of {_childControllers} or
+	 * may be defined through enums)
 	 * 
 	 * @param phase The phase of the child controller which should be set as active.
 	 * 		  First controller is {phase = 0}
 	 */
-	public void setActiveChildController(int phase) {
+	public void setActiveChildController(int index) {
 		
-		// TODO check phase for validity. {phase} will be passed through the clicked button
+		// TODO: check phase for validity. {phase} will be passed through the clicked button
 		
-		this._activeChildController = this._childControllers.get(phase);
+		this._activeChildController = this._childControllers.get(index);
 	}
 	
 	public void loadView() {
