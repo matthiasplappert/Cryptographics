@@ -208,10 +208,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="edu.kit.iks.Cryptographics.InformationController" project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/InformationController.java" binary="false" 
+  <class id="22" language="java" name="edu.kit.iks.CryptographicsLib.InformationController" project="Cryptographics" 
+    file="/Cryptographics/src/edu/kit/iks/CryptographicsLib/InformationController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="731" y="1362"/>    
+    <position height="-1" width="-1" x="716" y="1367"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -231,13 +231,13 @@
     <end type="TARGET" refId="10"/>  
   </generalization>  
   <generalization id="25">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="26">    
     <bendpoint x="1009" y="294"/>    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <generalization id="26">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="10"/>  
   </generalization>  
   <generalization id="27">    
     <bendpoint x="103" y="1620"/>    
