@@ -6,11 +6,11 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class VisualizationInfo extends AbstractVisualizationInfo {
 	public String getId() {
-		return "vigenere";
+		return "diffiehellman";
 	}
 	
 	public String getName() {
-		return "Vigen�re";
+		return "Diffie-Hellman";
 	}
 	
 	public String getDescription() {
