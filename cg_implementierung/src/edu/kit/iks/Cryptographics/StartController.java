@@ -26,6 +26,6 @@ public class StartController extends AbstractController {
 	}
 	
 	private void _loadAllVisualizationInfos() {
-		
+		this._visualizationInfos = VisualizationInfoLoader.loadAllVisualizationInfos();
 	}
 }
