@@ -1,16 +1,16 @@
 package edu.kit.iks.Cryptographics.Vigenere;
 
-import edu.kit.iks.Cryptographics.AbstractVisualizationController;
-import edu.kit.iks.Cryptographics.AbstractVisualizationInfo;
 import edu.kit.iks.Cryptographics.VisualizationDifficulty;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class VisualizationInfo extends AbstractVisualizationInfo {
 	public String getId() {
-		return "diffiehellman";
+		return "vigenere";
 	}
 	
 	public String getName() {
-		return "Diffie-Hellman";
+		return "Vigenère";
 	}
 	
 	public String getDescription() {
