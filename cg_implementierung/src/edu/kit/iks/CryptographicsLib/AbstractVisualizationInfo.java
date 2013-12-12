@@ -1,7 +1,9 @@
-package edu.kit.iks.Cryptographics;
+package edu.kit.iks.CryptographicsLib;
 
 import java.awt.Image;
 import java.net.URL;
+
+import edu.kit.iks.Cryptographics.VisualizationDifficulty;
 
 abstract public class AbstractVisualizationInfo {
 	abstract public String getId();

@@ -1,4 +1,4 @@
-package edu.kit.iks.CryptograhicsLib;
+package edu.kit.iks.CryptographicsLib;
 
 import java.util.ArrayList;
 import java.util.List;
