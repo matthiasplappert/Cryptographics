@@ -2,6 +2,7 @@ package edu.kit.iks.CryptographicsLib;
 
 import java.awt.Image;
 import java.net.URL;
+import java.util.List;
 
 import edu.kit.iks.Cryptographics.VisualizationDifficulty;
 
@@ -18,7 +19,9 @@ abstract public class AbstractVisualizationInfo {
 
 	abstract public int getYear();
 	
-	abstract public Class<AbstractVisualizationController> getControllerClass();
+	// TODO: fix warning here 
+	// ("Class is a raw type. References to generic type Class<T> should be parameterized")
+	abstract public List<Class> getControllerClasses();
 
 	public URL getAdditionalInformationFileURL() {
 		return null;
