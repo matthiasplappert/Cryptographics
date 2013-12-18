@@ -43,7 +43,7 @@ abstract public class AbstractController {
 		
 		// TODO: check phase for validity. {phase} will be passed through the clicked button
 		
-		this._activeChildController = this._childControllers.get(index);
+		this.activeChildController = this._childControllers.get(index);
 	}
 	
 	public void loadView() {
