@@ -28,7 +28,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	}
 
 	public int getYear() {
-		return 0;
+		return 1976;
 	}
 	
 	public List<Class> getControllerClasses() {
