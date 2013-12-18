@@ -9,6 +9,8 @@ abstract public class AbstractVisualizationController extends AbstractController
 	}
 	
 	public AbstractVisualizationInfo getVisualizationInfo() {
-		return null;
+		return _visualizationInfo;
 	}
+	
+	
 }
