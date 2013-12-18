@@ -3,9 +3,10 @@ package edu.kit.iks.CryptographicsLib;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 abstract public class AbstractController {
-	protected JComponent _view = null;
+	protected JPanel _view = null;
 	
 	protected AbstractController _parentController = null;
 	
@@ -42,7 +43,7 @@ abstract public class AbstractController {
 		
 		// TODO: check phase for validity. {phase} will be passed through the clicked button
 		
-		this._activeChildController = this._childControllers.get(index);
+		this.activeChildController = this._childControllers.get(index);
 	}
 	
 	public void loadView() {
@@ -57,7 +58,7 @@ abstract public class AbstractController {
 		return _view;
 	}
 
-	public void setView(JComponent view) {
+	public void setView(JPanel view) {
 		_view = view;
 	}
 

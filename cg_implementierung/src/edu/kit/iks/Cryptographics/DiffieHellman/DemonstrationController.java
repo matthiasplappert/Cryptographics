@@ -30,7 +30,7 @@ public class DemonstrationController extends AbstractVisualizationController {
 	}
 	
 	public void nextStateListener(ActionEvent event) {
-		push(state)
+		//push(state)
 		this.state = this.state.nextState();
 		this.view = this.state.getView();
 	}

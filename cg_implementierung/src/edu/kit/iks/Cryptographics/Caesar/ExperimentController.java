@@ -6,6 +6,6 @@ public class ExperimentController extends AbstractVisualizationController {
 	private VisualizationInfo _visualizationInfo;
 	
 	public ExperimentController(VisualizationInfo visualizationInfo) {
-		super(visualizationInfo);
+		super();
 	}
 }
