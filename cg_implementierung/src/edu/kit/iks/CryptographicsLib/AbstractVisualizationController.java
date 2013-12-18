@@ -11,4 +11,8 @@ abstract public class AbstractVisualizationController extends AbstractController
 	public AbstractVisualizationInfo getVisualizationInfo() {
 		return null;
 	}
+	
+	public String getHelp() {
+		return null;
+	}
 }
