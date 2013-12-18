@@ -1,5 +1,7 @@
 package edu.kit.iks.Cryptographics.DiffieHellman;
 
+import java.awt.event.ActionEvent;
+
 import javax.swing.JPanel;
 
 import edu.kit.iks.Cryptographics.DiffieHellman.State.DHFirstState;
@@ -25,5 +27,16 @@ public class DemonstrationController extends AbstractVisualizationController {
 	
 	public JPanel getView() {
 		return this.view;
+	}
+	
+	public void nextStateListener(ActionEvent event) {
+		push(state)
+		this.state = this.state.nextState();
+		this.view = this.state.getView();
+	}
+	
+	public void prevStateListener(ActionEvent event) {
+		this.state = this.state.previousState();
+		this.view = this.state.getView();
 	}
 }

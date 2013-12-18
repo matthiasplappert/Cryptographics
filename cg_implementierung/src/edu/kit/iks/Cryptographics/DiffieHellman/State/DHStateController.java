@@ -10,5 +10,13 @@ public abstract class DHStateController {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public DHStateController nextState() {
+		return null;
+	}
+	
+	public DHStateController previousState() {
+		return null;
+	}
 
 }

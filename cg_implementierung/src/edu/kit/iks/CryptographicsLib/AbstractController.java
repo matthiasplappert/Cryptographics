@@ -17,7 +17,7 @@ abstract public class AbstractController {
 	/**
 	 * The child controller which is currently active.
 	 */
-	protected AbstractController _activeChildController;
+	protected AbstractController activeChildController;
 	
 	public AbstractController() {
 		_childControllers = new ArrayList<AbstractController>();

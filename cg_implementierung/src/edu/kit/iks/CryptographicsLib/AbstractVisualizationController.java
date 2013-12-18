@@ -1,7 +1,7 @@
 package edu.kit.iks.CryptographicsLib;
 
 
-abstract public class AbstractVisualizationController extends AbstractController {
+public abstract class AbstractVisualizationController extends AbstractController {
 	private AbstractVisualizationInfo _visualizationInfo;
 	
 	public AbstractVisualizationController() {
@@ -9,6 +9,10 @@ abstract public class AbstractVisualizationController extends AbstractController
 	}
 	
 	public AbstractVisualizationInfo getVisualizationInfo() {
+		return null;
+	}
+	
+	public String getHelp() {
 		return null;
 	}
 }
