@@ -12,6 +12,11 @@ public class MainController extends AbstractController {
 	
 	private VisualizationContainerController _visualizationContainerController;
 	
+	public MainController() {
+		this._frame = new JFrame();
+		this._startController = new StartController();
+	}
+	
 	public void presentStartAction() {
 		
 	}
