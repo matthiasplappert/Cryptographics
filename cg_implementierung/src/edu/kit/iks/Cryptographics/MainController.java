@@ -31,7 +31,7 @@ public class MainController extends AbstractController {
 	private VisualizationContainerController _visualizationContainerController;
 	
 	/**
-	 * Constructor initializing an instance of MainController
+	 * Constructor initializing a new instance of {MainController}
 	 */
 	public MainController() {
 		this._frame = new JFrame();
