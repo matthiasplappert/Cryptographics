@@ -21,7 +21,7 @@ public class ProblemDemonstrationController extends
 	 * Contains all elements of the gui for the demonstration of caesar's
 	 * problem.
 	 */
-	private CaesarDemoProblemView view;
+	private CaesarProblemDemoView view;
 
 	/**
 	 * @param visualizationInfo
@@ -30,7 +30,7 @@ public class ProblemDemonstrationController extends
 			CaesarVisualizationInfo visualizationInfo) {
 		super();
 		this.visualizationInfo = visualizationInfo;
-		this.view = new CaesarDemoProblemView();
+		this.view = new CaesarProblemDemoView();
 		this.view.addBackBtnListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt

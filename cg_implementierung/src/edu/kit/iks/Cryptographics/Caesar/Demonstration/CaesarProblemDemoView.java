@@ -2,12 +2,10 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import edu.kit.iks.Cryptographics.Caesar.AbstractView;
 
-public class CaesarDemoProblemView extends AbstractView {
+public class CaesarProblemDemoView extends AbstractView {
 
 	private static final long serialVersionUID = 1L;
 
@@ -16,7 +14,7 @@ public class CaesarDemoProblemView extends AbstractView {
 	private JLabel cipher;
 	private JLabel interceptor;
 
-	public CaesarDemoProblemView() {
+	public CaesarProblemDemoView() {
 		
 	}
 	/**

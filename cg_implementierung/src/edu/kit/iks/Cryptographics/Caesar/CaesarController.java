@@ -66,7 +66,7 @@ public class CaesarController extends AbstractVisualizationController {
 			}
 
 		});
-		
+		//TODO: Too dirty, searching for a smarter solution..
 		/**
 		 * Initializes the action listener of the Labels that represent the
 		 * alpabet. So the user can interact with them.
