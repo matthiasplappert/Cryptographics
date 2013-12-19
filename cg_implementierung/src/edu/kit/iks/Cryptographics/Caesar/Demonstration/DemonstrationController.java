@@ -1,5 +1,6 @@
-package edu.kit.iks.Cryptographics.Caesar;
+package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
+import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 
 public class DemonstrationController extends AbstractVisualizationController {
@@ -8,4 +9,11 @@ public class DemonstrationController extends AbstractVisualizationController {
 	public DemonstrationController(VisualizationInfo visualizationInfo) {
 		super();
 	}
+	
+	this.view.addListener(new ActionListener() {
+		meinHandle();
+	});
+	
+	meinHandler();
+	
 }
