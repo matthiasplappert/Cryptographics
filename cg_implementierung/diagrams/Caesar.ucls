@@ -21,9 +21,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="edu.kit.iks.Cryptographics.Caesar.VisualizationInfo" project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/Caesar/VisualizationInfo.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo" 
+    project="Cryptographics" file="/Cryptographics/src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="116" y="424"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
