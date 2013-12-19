@@ -6,14 +6,14 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 /**
  * This class is a registry where all {VisualisationInfo}-objects are 
  * accessible through the static {loadAllVisualizationInfo()}-method.
- * Objects of this class cannot be initialized
+ * Objects of this class cannot be instantiated
  * 
  * @author Christian Dreher
  */
 public class VisualizationInfoLoader {
 	
 	/**
-	 * Private constructor to prevent objects of this class form being initialized 
+	 * Private constructor to prevent this class from being instantiated
 	 */
 	private VisualizationInfoLoader() {
 		
