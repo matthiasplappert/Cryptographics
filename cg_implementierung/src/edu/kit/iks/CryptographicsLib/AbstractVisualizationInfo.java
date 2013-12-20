@@ -19,6 +19,7 @@ abstract public class AbstractVisualizationInfo {
 
 	abstract public int getYear();
 	
+	abstract public String getQRCodeContent();
 	// TODO: fix warning here 
 	// ("Class is a raw type. References to generic type Class<T> should be parameterized")
 	abstract public List<Class> getControllerClasses();

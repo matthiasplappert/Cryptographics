@@ -1,5 +1,5 @@
 package edu.kit.iks.Cryptographics.Vigenere.State;
 
-public class VFirstView {
+public class VFirstView extends VView {
 
 }
