@@ -6,10 +6,6 @@ import edu.kit.iks.Cryptographics.VisualizationDifficulty;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-/**
- * @author TEST
- *
- */
 public class VisualizationInfo extends AbstractVisualizationInfo {
 	
 	public String getId() {
@@ -21,6 +17,10 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	}
 
 	public String getDescription() {
+		return "";
+	}
+	
+	public String getQRCodeContent() {
 		return "";
 	}
 
