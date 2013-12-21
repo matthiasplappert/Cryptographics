@@ -5,46 +5,72 @@ import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 /**
- * An instance of this class is the start controller showing teasers
+ * An instance of this class is the start controller showing teasers 
  * 
  * @author Christian Dreher
  */
 public class StartController extends AbstractController {
+
+	/**
+	 * An instance of the popover view 
+	 */
+	private PopoverView popoverView;
+
+	/**
+	 * An instance of the timeline view 
+	 */
+	private TimelineView timelineView;
 	
 	/**
-	 * An instance of the popover view
+	 * An instance of the welcome view 
 	 */
-	private PopoverView _popoverView;
-	
-	/**
-	 * An instance of the timeline view
-	 */
-	private TimelineView _timelineView;
-	
-	/**
-	 * An instance of the welcome view
-	 */
-	private WelcomeView _welcomeView;
+	private WelcomeView welcomeView;
 	
 	/**
 	 * A list of all VisualizationInfo-objects 
 	 */
-	private List<AbstractVisualizationInfo> _visualizationInfos;
+	private List<AbstractVisualizationInfo> visualizationInfos;
 	
 	/**
-	 * Constructor initializing a new instance of {StartController}
+	 * Constructor initializing a new instance of {StartController} 
 	 */
 	public StartController() {
 		super();
-		this._loadAllVisualizationInfos();
+		
+		this.popoverView = new PopoverView();
+		this.welcomeView = new WelcomeView();
+		this.timelineView = new TimelineView();
+
+		this.loadAllVisualizationInfos();
 	}
 	
 	/**
-	 * Shows a popover with information from given {visualizationInfo}
-	 * 
-	 * @param visualizationInfo Object of {VisualizationInfo} containing the
-	 * metadata to display
+	 * Loads the view 
 	 */
+	@Override
+	public void loadView() {
+		this._view.add(this.popoverView);
+		this._view.add(this.welcomeView);
+		this._view.add(this.timelineView);
+	}
+	
+	/**
+	 * Unloads the view by setting all object references to null 
+	 */
+	@Override
+	public void unloadView() {
+		this.popoverView = null;
+		this.welcomeView = null;
+		this.timelineView = null;
+		this._view = null;
+	}
+	
+    /**
+     * Shows a popover with information from given {visualizationInfo} 
+     * 
+     * @param visualizationInfo Object of {VisualizationInfo} containing the
+     * metadata to display
+     */
 	public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo) {
 		
 	}
@@ -57,7 +83,7 @@ public class StartController extends AbstractController {
 	}
 	
 	/**
-	 * Starts the visualization of a procedure from given {visualizationInfo}
+	 * Starts the visualization of a procedure from given {visualizationInfo} 
 	 * 
 	 * @param visualizationInfo Object of {VisualizationInfo} containing the
 	 * data to instantiate related controllers from
@@ -69,7 +95,8 @@ public class StartController extends AbstractController {
 	/**
 	 * Helper method to initialize {_visualizationInfos} 
 	 */
-	private void _loadAllVisualizationInfos() {
-		this._visualizationInfos = VisualizationInfoLoader.loadAllVisualizationInfos();
+	private void loadAllVisualizationInfos() {
+
+		this.visualizationInfos = VisualizationInfoLoader.loadAllVisualizationInfos();
 	}
 }

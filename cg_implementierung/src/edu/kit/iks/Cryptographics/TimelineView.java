@@ -1,5 +1,6 @@
 package edu.kit.iks.Cryptographics;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -8,5 +9,8 @@ import javax.swing.JPanel;
  * @author Christian Dreher
  */
 public class TimelineView extends JPanel {
-
+	
+	public TimelineView() {
+		this.add(new JLabel("Timeline"));
+	}
 }

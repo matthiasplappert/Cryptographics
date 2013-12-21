@@ -16,7 +16,5 @@ public class Main {
 		MainController mainController = new MainController();
 		mainController.loadView();
 		mainController.presentStartAction();
-		
-		// TODO: start run loop and kick things off.
 	}
 }

@@ -21,6 +21,7 @@ abstract public class AbstractController {
 	protected AbstractController activeChildController;
 	
 	public AbstractController() {
+		this._view = new JPanel();
 		_childControllers = new ArrayList<AbstractController>();
 	}
 
