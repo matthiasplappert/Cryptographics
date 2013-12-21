@@ -45,9 +45,19 @@
 
 % Start of the actual document.
 \section{Einleitung}
+In diesem Heft werden die Entwürfe zur Implementierung von Cryptographics spezifiziert erläutert.
 
 \section{Aufbau}
+
 \subsection{Architektur}
+Die Architektur sieht drei Hierarchieebenen vor. Die erste Ebene, Main-Ebene genannt,
+ist dafür verantwortlich, die Controller aus der zweiten Ebene auszutauschen. Controller
+zweiten Ebene sind der StartController, der einen Blickfang und eine Übersicht mit der
+Zeitlinie darstellt, und der ContainerController, der diejenigen UI-Elemente verwaltet,
+die in jedem Verfahren gleich sind. Dabei ist der ContainerController dafür verantwortlich,
+die dritte Ebene zu deligieren. Diese Ebene besteht aus Controllern, die ein spezifisches
+Verfahren visualisieren und diese Visualisierung verwalten.
+
 \subsection{Klassendiagramm}
 
 \section{Klassenbeschreibung}
