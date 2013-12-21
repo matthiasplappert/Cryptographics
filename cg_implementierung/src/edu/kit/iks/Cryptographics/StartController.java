@@ -5,23 +5,24 @@ import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 /**
- * An instance of this class is the start controller showing teasers
+ * An instance of this class is the start controller showing teasers 
  * 
  * @author Christian Dreher
  */
 public class StartController extends AbstractController {
 
 	/**
-	 * An instance of the popover view
+	 * An instance of the popover view 
 	 */
 	private PopoverView popoverView;
 
 	/**
-	 * An instance of the timeline view
-	 */	private TimelineView timelineView;
+	 * An instance of the timeline view 
+	 */
+	private TimelineView timelineView;
 	
 	/**
-	 * An instance of the welcome view
+	 * An instance of the welcome view 
 	 */
 	private WelcomeView welcomeView;
 	
@@ -31,7 +32,7 @@ public class StartController extends AbstractController {
 	private List<AbstractVisualizationInfo> visualizationInfos;
 	
 	/**
-	 * Constructor initializing a new instance of {StartController}
+	 * Constructor initializing a new instance of {StartController} 
 	 */
 	public StartController() {
 		super();
@@ -43,6 +44,9 @@ public class StartController extends AbstractController {
 		this.loadAllVisualizationInfos();
 	}
 	
+	/**
+	 * Loads the view 
+	 */
 	@Override
 	public void loadView() {
 		this._view.add(this.popoverView);
@@ -50,6 +54,9 @@ public class StartController extends AbstractController {
 		this._view.add(this.timelineView);
 	}
 	
+	/**
+	 * Unloads the view by setting all object references to null 
+	 */
 	@Override
 	public void unloadView() {
 		this.popoverView = null;
@@ -58,6 +65,12 @@ public class StartController extends AbstractController {
 		this._view = null;
 	}
 	
+    /**
+     * Shows a popover with information from given {visualizationInfo} 
+     * 
+     * @param visualizationInfo Object of {VisualizationInfo} containing the
+     * metadata to display
+     */
 	public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo) {
 		
 	}
@@ -70,7 +83,7 @@ public class StartController extends AbstractController {
 	}
 	
 	/**
-	 * Starts the visualization of a procedure from given {visualizationInfo}
+	 * Starts the visualization of a procedure from given {visualizationInfo} 
 	 * 
 	 * @param visualizationInfo Object of {VisualizationInfo} containing the
 	 * data to instantiate related controllers from
