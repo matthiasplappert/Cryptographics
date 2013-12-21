@@ -1,15 +1,17 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 /**
+ * TODO:!!!!!!!!!!!!!Temporary class. We'll see where to put it in. Not used at the
+ * moment. !!!!!!!!!!
  * @author Wasilij Beskorovajnov.
  *
  */
-public class CaesarProblemDemoModel {
+public class CFirstModel {
      
 	/**
 	 * @param c
 	 */
-	public void animationStart(CaesarProblemDemoView c) {
+	public void animationStart(CFirstView c) {
 		//perform first animation and show explanations.
 		//stop.
 		//perform second animation and show explanations.

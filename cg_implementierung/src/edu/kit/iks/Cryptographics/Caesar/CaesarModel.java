@@ -1,6 +1,9 @@
 package edu.kit.iks.Cryptographics.Caesar;
 
 /**
+ * TODO:!!!!!!!!!!!!!Temporary class. We'll see where to put it in. Not used at the
+ * moment. !!!!!!!!!!
+ * 
  * @author Wasilij Beskorovajnov.
  * 
  */
@@ -26,7 +29,7 @@ public class CaesarModel {
 	 * @param c
 	 */
 	public void checkValidChar(char c) {
-        //ch ch ch check :D  
+		// ch ch ch check :D
 	}
 
 	/**
@@ -34,9 +37,9 @@ public class CaesarModel {
 	 * @param plaintext
 	 */
 	public void decryptAndCheck(String cipher, String plaintext) {
-		//something intelligent und fully uncreative.
+		// something intelligent und fully uncreative.
 	}
-	
+
 	/**
 	 * 
 	 */
