@@ -57,7 +57,11 @@ public class MainController extends AbstractController {
 		}
 		
 		this.startController.loadView();
-		this._view.add("StartController View", this.startController.getView());
+		this._view.add(this.startController.getView());
+		
+		// Important to call validate, as some elements may
+		// be invisible otherwise
+		this.frame.validate();
 	}
 	
 	/**
