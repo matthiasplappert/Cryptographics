@@ -3,27 +3,16 @@ package edu.kit.iks.CryptographicsLib;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 
 abstract public class AbstractController {
-	protected JPanel _view = null;
+	protected JComponent view = null;
 	
-	protected AbstractController _parentController = null;
-	
-	/**
-	 * List of all possible child controllers
-	 */
-	protected List<AbstractController> _childControllers;
+	protected AbstractController parentController = null;
 	
 	/**
-	 * The child controller which is currently active.
+	 * List of all child controllers
 	 */
-	protected AbstractController activeChildController;
-	
-	public AbstractController() {
-		this._view = new JPanel();
-		_childControllers = new ArrayList<AbstractController>();
-	}
+	protected List<AbstractController> childControllers = new ArrayList<AbstractController>();
 
 	public void addChildController(AbstractController childController) {
 		
@@ -33,46 +22,26 @@ abstract public class AbstractController {
 		
 	}
 	
-	/**
-	 * Sets the currently active child controller from given {index} 
-	 * (The index is the same as the list-index of {_childControllers} or
-	 * may be defined through enums)
-	 * 
-	 * @param index The index of the child controller which should be set as active.
-	 */
-	public void setActiveChildController(int index) {
-		
-		// TODO: check phase for validity. {phase} will be passed through the clicked button
-		
-		this.activeChildController = this._childControllers.get(index);
-	}
-	
-	public void loadView() {
-		
-	}
+	abstract public void loadView();
 	
 	public void unloadView() {
-		_view = null;
+		this.view = null;
 	}
 	
 	public JComponent getView() {
-		return _view;
-	}
-
-	public void setView(JPanel view) {
-		_view = view;
+		return this.view;
 	}
 
 	public AbstractController getParentController() {
-		return _parentController;
+		return this.parentController;
 	}
 	
 	public List<AbstractController> getChildControllers() {
 		// TODO: return immutable copy
-		return _childControllers;
+		return this.childControllers;
 	}
 	
 	public boolean viewIsLoaded() {
-		return (_view != null);
+		return (this.view != null);
 	}
 }
