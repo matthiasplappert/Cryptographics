@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import edu.kit.iks.Cryptographics.Caesar.CAbstractState;
+import edu.kit.iks.Cryptographics.Caesar.CGeneralState;
 import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
 
 /**
@@ -19,7 +19,7 @@ import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CThirdState extends CAbstractState {
+public class CThirdState extends CGeneralState {
 
 	public CThirdState(VisualizationInfo visualizationInfo) {
 		super(visualizationInfo);

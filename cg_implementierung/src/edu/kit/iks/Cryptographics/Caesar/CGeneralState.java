@@ -12,7 +12,7 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CAbstractState extends AbstractVisualizationController {
+public class CGeneralState extends AbstractVisualizationController {
 	/**
 	 * Contains all relevant informations about the cipher Caesar.
 	 */
@@ -22,15 +22,15 @@ public class CAbstractState extends AbstractVisualizationController {
 	 * Contains all elements of the gui for the demonstration of caesar's
 	 * problem.
 	 */
-	protected CaesarUpperView view;
+	protected CGeneralView view;
 
 	/**
 	 * @param visualizationInfo
 	 */
-	public CAbstractState(VisualizationInfo visualizationInfo) {
+	public CGeneralState(VisualizationInfo visualizationInfo) {
 		super();
 		this.visualizationInfo = visualizationInfo;
-		this.view = new CaesarUpperView();
+		this.view = new CGeneralView();
 		this.view.getBackBtn().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt

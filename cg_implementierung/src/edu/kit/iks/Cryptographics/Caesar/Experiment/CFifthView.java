@@ -6,20 +6,18 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import edu.kit.iks.Cryptographics.Caesar.AbstractView;
-
 /**
  * This view represents the last view of the experiment phase. The elements
  * contained here allow the user to break a given caesar cipher and have the
  * purpose to show him the disadvantages of the caesar cipher, in particular how
  * easy it is to break it. In additional user gets an animation presented that
  * describe what histogramms are and how they could help him solving his task to
- * break the cipher. 
+ * break the cipher.
  * 
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CFifthView extends AbstractView {
+public class CFifthView {
 
 	/**
 	 * 
@@ -48,15 +46,72 @@ public class CFifthView extends AbstractView {
 	private JLabel key;
 
 	/**
-	 * Label that will contain and histogram image that will be explained to the
+	 * Label that will contain a histogram image that will be explained to the
 	 * user.
 	 */
-	private JLabel histogramm;
+	private JLabel histogram;
+
+	/**
+	 * Buttons for navigating for- and backwards in the animation.
+	 */
+	protected JButton nextBtn;
+	protected JButton backBtn;
+
+	/**
+	 * Constructor.
+	 */
+	public CFifthView() {
+
+	}
+
+	/**
+	 * Explanations and animations are shown that explain histograms.
+	 */
+	public void startAnimations() {
+		step1();
+		// stop.
+		step2();
+		// stop.
+		step3();
+		// stop.
+		step4();
+		//done.
+	}
 
 	/**
 	 * 
 	 */
-	public CFifthView() {
+	private void step1() {
+		// Explain why the Caesar cipher is not appropriate nowadays.
+	}
+
+	/**
+	 * 
+	 */
+	private void step2() {
+		// Explain what histograms are.
+	}
+
+	/**
+	 * 
+	 */
+	private void step3() {
+		// Explain how they are used and how to read from them.
+	}
+
+	/**
+	 * 
+	 */
+	private void step4() {
+		// Explain how to decrypt big text that was ciphered with Caesar without
+		// a key.
+	}
+
+	/**
+	 * @param label
+	 * @param c
+	 */
+	public void setContent(JLabel label, char c) {
 
 	}
 

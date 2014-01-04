@@ -3,12 +3,10 @@
  */
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import edu.kit.iks.Cryptographics.Caesar.CAbstractState;
+import edu.kit.iks.Cryptographics.Caesar.CGeneralState;
 import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
 
 /**
@@ -20,8 +18,11 @@ import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CFourthState extends CAbstractState {
+public class CFourthState extends CGeneralState {
 
+	/**
+	 * @param visualizationInfo
+	 */
 	public CFourthState(VisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		// TODO: Too dirty, searching for a smarter solution..

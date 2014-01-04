@@ -2,19 +2,21 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import edu.kit.iks.Cryptographics.Caesar.AbstractView;
 
 /**
- * This is the first view the user gets presented when he requested the
- * visualization of Caesar's cipher. Here the user gets to know what Problems
- * Caesar faced when his enemys could intercept and read his orders. The JLabels
- * will contain images that will represent cesar for example. Meanwhile user
- * gets explanations shown that explain what what the animation means and does.
+ * This is the first view the user gets presented when he requests the
+ * visualization of Caesar's cipher. Here the user gets to know what problems
+ * Caesar faced when his enemies could intercept and read his orders. The
+ * JLabels will contain images that will represent Caesar for example. Meanwhile
+ * user gets explanations shown that explain what what the animation means and
+ * does.
  * 
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CFirstView extends AbstractView {
+public class CFirstView {
+	
+	
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,8 +27,49 @@ public class CFirstView extends AbstractView {
 	private JLabel cipher;
 	private JLabel interceptor;
 
+	/**
+	 * Buttons for navigating for- and backwards in the animation.
+	 */
+	protected JButton nextBtn;
+	protected JButton backBtn;
+
 	public CFirstView() {
 
+	}
+
+	/**
+	 * @param c
+	 */
+	public void animationStart() {
+		// perform first animation and show explanations.
+		step1();
+		// stop.
+		// perform second animation and show explanations.
+		step2();
+		// stop.
+		//...
+		step3();
+		//stop.
+		// perform last animation and show explanations.
+		step4();
+		//done.
+		
+	}
+
+	private void step1() {
+		// Caesar makes up a big plan and sends his orders by his messenger.
+	}
+
+	private void step2() {
+		// Caesar's orders gets intercepted.
+	}
+
+	private void step3() {
+		// Enemy reads his orders and Caesar's big plan is crossed.
+	}
+
+	private void step4() {
+		// Caesar is very sad.
 	}
 
 	/**

@@ -3,7 +3,7 @@
  */
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
-import edu.kit.iks.Cryptographics.Caesar.CAbstractState;
+import edu.kit.iks.Cryptographics.Caesar.CGeneralState;
 import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
 
 /**
@@ -13,7 +13,7 @@ import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CSecondState extends CAbstractState {
+public class CSecondState extends CGeneralState {
 
 	/**
 	 * @param visualizationInfo
