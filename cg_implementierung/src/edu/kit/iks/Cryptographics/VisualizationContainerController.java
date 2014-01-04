@@ -56,7 +56,7 @@ public class VisualizationContainerController extends AbstractController {
 			this._childControllers.add(controller);
 		}
 		
-		this.setActiveChildController(0);
+		this.setActiveChildController(0);*/
 	}
 	
 	/**
