@@ -68,14 +68,14 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getControllerClasses()
 	 */
 	public List<Class> getControllerClasses() {
-		List<Class> controllerClasses =
-			new ArrayList<Class>();
+		List<Class> controllerClasses = new ArrayList<Class>();
 		
 		controllerClasses.add(CFirstState.class);
 		controllerClasses.add(CSecondState.class);
 		controllerClasses.add(CThirdState.class);
 		controllerClasses.add(CFourthState.class);
 		controllerClasses.add(CFifthState.class);
+		controllerClasses.add(InformationController.class);
 		
 		return controllerClasses;
 	}
