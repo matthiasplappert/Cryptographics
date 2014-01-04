@@ -44,8 +44,8 @@ public class MainController extends AbstractController {
 	 */
 	@Override
 	public void loadView() {
-		this._view = new JPanel();
-		this.frame.add(this._view);
+		super.loadView();
+		this.frame.add(this.view);
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class MainController extends AbstractController {
 		}
 		
 		this.startController.loadView();
-		this._view.add(this.startController.getView());
+		this.view.add(this.startController.getView());
 		
 		// Important to call validate, as some elements may
 		// be invisible otherwise

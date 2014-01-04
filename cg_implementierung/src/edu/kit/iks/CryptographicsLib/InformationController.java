@@ -5,8 +5,9 @@ import java.net.URL;
 
 
 public class InformationController extends AbstractVisualizationController {
-	public InformationController(AbstractVisualizationInfo visualizationInfo, URL Path, Image QRCode) {
-		super();	
-		this._view = new InformationView(Path, QRCode);
+	public void loadView() {
+		URL path = this.getVisualizationInfo().getAdditionalInformationFileURL();
+		Image qrCode = this.getVisualizationInfo().getQrCode(); 
+		this.view = new InformationView(path, qrCode);
 	}
 }

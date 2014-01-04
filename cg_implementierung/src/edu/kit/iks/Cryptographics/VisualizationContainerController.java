@@ -39,7 +39,7 @@ public class VisualizationContainerController extends AbstractController {
 	public VisualizationContainerController(AbstractVisualizationInfo visualizationInfo) {
 		_visualizationInfo = visualizationInfo;
 		
-		// TODO: Example to instantiate all possible child classes
+		/*// TODO: Example to instantiate all possible child classes
 		List<Class> childClasses = this._visualizationInfo.getControllerClasses();
 		
 		for (Class<AbstractVisualizationController> childClass : childClasses) {
@@ -56,7 +56,7 @@ public class VisualizationContainerController extends AbstractController {
 			this._childControllers.add(controller);
 		}
 		
-		this.setActiveChildController(0);
+		this.setActiveChildController(0);*/
 	}
 	
 	/**

@@ -36,10 +36,6 @@ public class StartController extends AbstractController {
 	 */
 	public StartController() {
 		super();
-		
-		this.popoverView = new PopoverView();
-		this.welcomeView = new WelcomeView();
-		this.timelineView = new TimelineView();
 
 		this.loadAllVisualizationInfos();
 	}
@@ -49,9 +45,16 @@ public class StartController extends AbstractController {
 	 */
 	@Override
 	public void loadView() {
-		this._view.add(this.popoverView);
-		this._view.add(this.welcomeView);
-		this._view.add(this.timelineView);
+		super.loadView();
+		
+		this.popoverView = new PopoverView();
+		this.view.add(this.popoverView);
+		
+		this.welcomeView = new WelcomeView();
+		this.view.add(this.welcomeView);
+		
+		this.timelineView = new TimelineView();
+		this.view.add(this.timelineView);
 	}
 	
 	/**
@@ -62,7 +65,7 @@ public class StartController extends AbstractController {
 		this.popoverView = null;
 		this.welcomeView = null;
 		this.timelineView = null;
-		this._view = null;
+		this.view = null;
 	}
 	
     /**

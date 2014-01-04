@@ -1,78 +1,59 @@
 package edu.kit.iks.CryptographicsLib;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 abstract public class AbstractController {
-	protected JPanel _view = null;
+	protected JPanel view = null;
 	
-	protected AbstractController _parentController = null;
-	
-	/**
-	 * List of all possible child controllers
-	 */
-	protected List<AbstractController> _childControllers;
+	protected AbstractController parentController = null;
 	
 	/**
-	 * The child controller which is currently active.
+	 * The child controller.
 	 */
-	protected AbstractController activeChildController;
-	
-	public AbstractController() {
-		this._view = new JPanel();
-		_childControllers = new ArrayList<AbstractController>();
-	}
+	protected AbstractController childController;
 
-	public void addChildController(AbstractController childController) {
+	public void setChildController(AbstractController childController) {
+		// Remove old child, if it exists.
+		if (this.childController != null) {
+			this.view.remove(this.childController.getView());
+			this.childController.parentController = null;
+		}
 		
-	}
-	
-	public void removeChildController(AbstractController childController) {
+		// Set new child.
+		childController.parentController = this;
+		this.childController = childController;
 		
-	}
-	
-	/**
-	 * Sets the currently active child controller from given {index} 
-	 * (The index is the same as the list-index of {_childControllers} or
-	 * may be defined through enums)
-	 * 
-	 * @param index The index of the child controller which should be set as active.
-	 */
-	public void setActiveChildController(int index) {
-		
-		// TODO: check phase for validity. {phase} will be passed through the clicked button
-		
-		this.activeChildController = this._childControllers.get(index);
+		// Load and configure view of child.
+		if (!childController.viewIsLoaded()) {
+			childController.loadView();
+		}
+		JComponent childView = childController.getView();
+		// TODO: set to view coordinates!
+		this.view.add(childView);
 	}
 	
 	public void loadView() {
-		
+		this.view = new JPanel();
 	}
 	
 	public void unloadView() {
-		_view = null;
+		this.view = null;
 	}
 	
 	public JComponent getView() {
-		return _view;
-	}
-
-	public void setView(JPanel view) {
-		_view = view;
+		return this.view;
 	}
 
 	public AbstractController getParentController() {
-		return _parentController;
+		return this.parentController;
 	}
 	
-	public List<AbstractController> getChildControllers() {
-		// TODO: return immutable copy
-		return _childControllers;
+	public AbstractController getChildController() {
+		return this.childController;
 	}
 	
 	public boolean viewIsLoaded() {
-		return (_view != null);
+		return (this.view != null);
 	}
 }
