@@ -18,16 +18,4 @@ public class CFifthModel extends CGeneralAnimationModel {
 		super();
 	}
 
-	/**
-	 * Update the animation.
-	 * 
-	 * @param view
-	 *            view that contains the animation.
-	 */
-	public void updateView(CFifthView fifth) {
-
-	}
-	
-	
-
 }

@@ -14,13 +14,5 @@ public class CFirstModel extends CGeneralAnimationModel {
 	public CFirstModel() {
 		super();
 	}
-	/**
-	 * Update the animation.
-	 * 
-	 * @param view
-	 *            view that contains the animation.
-	 */
-	public void updateView(CFirstView first) {
-
-	}
+	
 }

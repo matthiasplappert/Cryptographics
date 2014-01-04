@@ -10,13 +10,11 @@ import edu.kit.iks.Cryptographics.Caesar.CGeneralAnimationModel;
  * 
  */
 public class CSecondModel extends CGeneralAnimationModel {
-	/**
-	 * Update the animation.
-	 * 
-	 * @param view
-	 *            view that contains the animation.
-	 */
-	public void updateView(CSecondView second) {
 
+	/**
+	 * Constructor.
+	 */
+	public CSecondModel() {
+		super();
 	}
 }

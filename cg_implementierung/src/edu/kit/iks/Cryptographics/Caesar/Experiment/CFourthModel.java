@@ -12,7 +12,7 @@ import edu.kit.iks.Cryptographics.Caesar.CGeneralExperimentModel;
 public class CFourthModel extends CGeneralExperimentModel {
 
 	/**
-	 * 
+	 * Constructor.
 	 */
 	public CFourthModel() {
 		super();

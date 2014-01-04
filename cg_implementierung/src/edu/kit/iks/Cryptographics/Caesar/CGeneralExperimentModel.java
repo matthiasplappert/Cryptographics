@@ -12,6 +12,12 @@ import edu.kit.iks.Cryptographics.Caesar.CGeneralView;
 public class CGeneralExperimentModel {
 
 	/**
+	 * Consructor.
+	 */
+	public CGeneralExperimentModel() {
+		// TODO Auto-generated constructor stub
+	}
+	/**
 	 * Check if the character was encrypted valid.
 	 * 
 	 * @param c
@@ -19,16 +25,6 @@ public class CGeneralExperimentModel {
 	public boolean checkValidChar(char c) {
 		// ch ch ch check :D
 		return true;
-	}
-
-	/**
-	 * Update the animation.
-	 * 
-	 * @param view
-	 *            view that contains the animation.
-	 */
-	public void updateView(CGeneralView third) {
-
 	}
 
 }
