@@ -10,7 +10,10 @@ abstract public class AbstractController {
 	protected AbstractController parentController = null;
 	
 	/**
-	 * List of all child controllers
+	 * List of all child controllers. A view controller can have many
+	 * child view controllers. The view of a child view controller should
+	 * always be visible, so this is not a list of possible child controllers
+	 * but rather a list of all currently used child controllers!  
 	 */
 	protected List<AbstractController> childControllers = new ArrayList<AbstractController>();
 
