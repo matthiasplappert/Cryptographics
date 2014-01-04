@@ -4,8 +4,6 @@ import java.awt.Image;
 import java.net.URL;
 import java.util.List;
 
-import edu.kit.iks.Cryptographics.VisualizationDifficulty;
-
 abstract public class AbstractVisualizationInfo {
 	abstract public String getId();
 
