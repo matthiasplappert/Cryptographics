@@ -2,9 +2,9 @@ package edu.kit.iks.Cryptographics.DiffieHellman;
 
 import java.util.List;
 
-import edu.kit.iks.Cryptographics.VisualizationDifficulty;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
 public class VisualizationInfo extends AbstractVisualizationInfo {
 	public String getId() {
@@ -32,6 +32,12 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	}
 	
 	public List<Class> getControllerClasses() {
+		return null;
+	}
+
+	@Override
+	public String getQRCodeContent() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }
