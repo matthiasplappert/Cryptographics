@@ -3,30 +3,27 @@ package edu.kit.iks.CryptographicsLib;
 import java.awt.event.ActionEvent;
 import java.util.Stack;
 
-abstract public class AbstractSequenceController extends AbstractController {
-	private Stack<Stepable> stepHistory;
+abstract public class AbstractVisualizationSequenceController extends AbstractVisualizationController {
+	private Stack<AbstractStepController> stepHistory;
 	
-	abstract public Stepable getInitialStep();
+	abstract public AbstractStepController getInitialStep();
 	
-	public AbstractSequenceController() {
+	public AbstractVisualizationSequenceController() {
 		super();
 		
 		// Load and verify initial step.
-		Stepable initialStep = this.getInitialStep();
+		AbstractStepController initialStep = this.getInitialStep();
 		if (initialStep == null) {
-			// TODO: raise exception!
-		}
-		if (!(initialStep instanceof AbstractController)) {
 			// TODO: raise exception!
 		}
 		
 		// Set initial step.
 		this.stepHistory.push(initialStep);
-		this.setChildController((AbstractController)initialStep);
+		this.setChildController(initialStep);
 	}
 	
 	public boolean hasNextStep() {
-		Stepable currentStep = this.stepHistory.lastElement();
+		AbstractStepController currentStep = this.stepHistory.lastElement();
 		return currentStep.hasNextStep();
 	}
 	
@@ -39,15 +36,10 @@ abstract public class AbstractSequenceController extends AbstractController {
 			// TODO: raise exception!
 		}
 		
-		// Verify that next step is an AbstractController.
-		Stepable nextStep = this.stepHistory.lastElement().getNextStep();
-		if (!(nextStep instanceof AbstractController)) {
-			// TODO: raise an exception!
-		}
-		
 		// Push next step to history.
+		AbstractStepController nextStep = this.stepHistory.lastElement().getNextStep();
 		this.stepHistory.push(nextStep);
-		this.setChildController((AbstractController)nextStep);
+		this.setChildController(nextStep);
 	}
 	
 	public void previousStep() {
@@ -57,8 +49,8 @@ abstract public class AbstractSequenceController extends AbstractController {
 		
 		// Remove current step and set previous step as child.
 		this.stepHistory.pop();
-		Stepable previousStep = this.stepHistory.lastElement();
-		this.setChildController((AbstractController)previousStep);
+		AbstractStepController previousStep = this.stepHistory.lastElement();
+		this.setChildController(previousStep);
 	}
 	
 	public void nextStepActionListener(ActionEvent event) {
