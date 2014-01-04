@@ -7,12 +7,14 @@ import edu.kit.iks.Cryptographics.Caesar.CGeneralAnimationModel;
 
 /**
  * @author Wasilij Beskorovajnov.
- *
+ * 
  */
-public class CFirstModel extends CGeneralAnimationModel {
+public class CSecondModel extends CGeneralAnimationModel {
 
-	public CFirstModel() {
+	/**
+	 * Constructor.
+	 */
+	public CSecondModel() {
 		super();
 	}
-	
 }

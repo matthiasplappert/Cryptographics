@@ -18,7 +18,7 @@ import javax.swing.JTextField;
  * contains generated String from the program and no real user input.
  * 
  * 2. When in first step of the experiment phase input is enabled for user
- * input. And the explanation textfield is disabled troughout the whole
+ * input. And the explanation textfield is disabled throughout the whole
  * experiment phase. Alphabet becomes also clickable.
  * 
  * 3. UserOutput is only shown when needed.
@@ -29,7 +29,7 @@ import javax.swing.JTextField;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CaesarUpperView extends AbstractView {
+public class CGeneralView {
 
 	/**
 	 * Dies Das ananas.
@@ -65,14 +65,45 @@ public class CaesarUpperView extends AbstractView {
 	 * Numbering of alphabet chars.
 	 */
 	protected JLabel[] alphabetNumbering;
+	
+	/**
+	 *  Buttons for navigating for- and backwards in the animation.
+	 */
+	protected JButton nextBtn;
+	protected JButton backBtn;
 
 	/**
 	 * Constructor.
 	 */
-	public CaesarUpperView() {
+	public CGeneralView() {
 
 	}
 
+	/**
+	 * Enlightens the needed JLabel.
+	 */
+	public void lightsOn(JLabel label) {
+		// on/off
+	}
+	
+	/** Sets the character c as the content of the JLabel label.
+	 * @param label
+	 * @param c
+	 */
+	public void setContent(JLabel label, char c) {
+		
+	}
+	
+	/**
+	 * Inserts the input from the user or the generated input from the program
+	 * into the JLabel Array and displays it.
+	 * 
+	 * @param input
+	 */
+	public void insertInput(String input) {
+
+	}
+	
 	/**
 	 * @return backBtn
 	 */
