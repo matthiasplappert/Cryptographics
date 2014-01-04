@@ -3,13 +3,13 @@ package edu.kit.iks.Cryptographics.Caesar;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.kit.iks.Cryptographics.VisualizationDifficulty;
 import edu.kit.iks.Cryptographics.Caesar.Demonstration.CFirstState;
 import edu.kit.iks.Cryptographics.Caesar.Demonstration.CSecondState;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.CFifthState;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.CFourthState;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.CThirdState;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
 /**
  * @author Wasilij Beskorovajnov.
@@ -68,14 +68,14 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getControllerClasses()
 	 */
 	public List<Class> getControllerClasses() {
-		List<Class> controllerClasses =
-			new ArrayList<Class>();
+		List<Class> controllerClasses = new ArrayList<Class>();
 		
 		controllerClasses.add(CFirstState.class);
 		controllerClasses.add(CSecondState.class);
 		controllerClasses.add(CThirdState.class);
 		controllerClasses.add(CFourthState.class);
 		controllerClasses.add(CFifthState.class);
+		controllerClasses.add(InformationController.class);
 		
 		return controllerClasses;
 	}

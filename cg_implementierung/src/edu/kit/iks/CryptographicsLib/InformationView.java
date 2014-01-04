@@ -6,10 +6,20 @@ import java.net.URL;
 import javax.swing.JPanel;
 
 public class InformationView extends JPanel {
-	//stub: private WebView informations;
-	private Image QRCode;
-	public InformationView(URL Path, Image QRCode) {
-		//Position QRCode
-		//Create Webview with URL
+	private Image qrCode;
+	
+	private URL path;
+	
+	public InformationView(URL path, Image qrCode) {
+		this.qrCode = qrCode;
+		this.path = path;
+	}
+	
+	public URL getPath() {
+		return this.path;
+	}
+	
+	public Image getQrCode() {
+		return this.qrCode;
 	}
 }

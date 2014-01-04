@@ -15,16 +15,16 @@ public class VisualizationContainerView extends JPanel {
 	/**
 	 * Name of the current visualization
 	 */
-	private JLabel _nameLabel;
+	private JLabel nameLabel;
 	
 	/**
 	 * Button to exit the current visualization
 	 */
-	private JButton _exitButton;
+	private JButton exitButton;
 	
 	/**
 	 * Button to access interactive help for the current step inside the
 	 * visualization
 	 */
-	private JButton _helpButton;
+	private JButton helpButton;
 }

@@ -1,18 +1,15 @@
 package edu.kit.iks.CryptographicsLib;
 
-
 public abstract class AbstractVisualizationController extends AbstractController {
-	private AbstractVisualizationInfo _visualizationInfo;
+	private AbstractVisualizationInfo visualizationInfo;
 	
-	public AbstractVisualizationController() {
-
+	public AbstractVisualizationController(AbstractVisualizationInfo visualizationInfo) {
+		this.visualizationInfo = visualizationInfo;
 	}
 	
 	public AbstractVisualizationInfo getVisualizationInfo() {
-		return null;
+		return this.visualizationInfo;
 	}
 	
-	public String getHelp() {
-		return null;
-	}
+	abstract public String getHelp();
 }
