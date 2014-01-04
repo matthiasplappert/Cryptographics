@@ -3,12 +3,13 @@ package edu.kit.iks.Cryptographics.Caesar;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.kit.iks.Cryptographics.Caesar.Demonstration.CFirstState;
-import edu.kit.iks.Cryptographics.Caesar.Demonstration.CSecondState;
-import edu.kit.iks.Cryptographics.Caesar.Experiment.CFifthState;
-import edu.kit.iks.Cryptographics.Caesar.Experiment.CFourthState;
-import edu.kit.iks.Cryptographics.Caesar.Experiment.CThirdState;
+import edu.kit.iks.Cryptographics.Caesar.Demonstration.CIntroductionController;
+import edu.kit.iks.Cryptographics.Caesar.Demonstration.CCipherDemoController;
+import edu.kit.iks.Cryptographics.Caesar.Experiment.CHistrogramController;
+import edu.kit.iks.Cryptographics.Caesar.Experiment.CDecryptingController;
+import edu.kit.iks.Cryptographics.Caesar.Experiment.CEncryptingController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
 /**
@@ -70,11 +71,11 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	public List<Class> getControllerClasses() {
 		List<Class> controllerClasses = new ArrayList<Class>();
 		
-		controllerClasses.add(CFirstState.class);
-		controllerClasses.add(CSecondState.class);
-		controllerClasses.add(CThirdState.class);
-		controllerClasses.add(CFourthState.class);
-		controllerClasses.add(CFifthState.class);
+		controllerClasses.add(CIntroductionController.class);
+		controllerClasses.add(CCipherDemoController.class);
+		controllerClasses.add(CEncryptingController.class);
+		controllerClasses.add(CDecryptingController.class);
+		controllerClasses.add(CHistrogramController.class);
 		controllerClasses.add(InformationController.class);
 		
 		return controllerClasses;

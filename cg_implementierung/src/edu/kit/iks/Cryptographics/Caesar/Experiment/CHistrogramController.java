@@ -16,7 +16,7 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CFifthState extends AbstractVisualizationController {
+public class CHistrogramController extends AbstractVisualizationController {
 
 	/**
 	 * Contains all relevant informations about the cipher Caesar.
@@ -27,16 +27,17 @@ public class CFifthState extends AbstractVisualizationController {
 	 * Contains all elements of the gui for the demonstration of caesar's
 	 * disadvantages.
 	 */
-	private CFifthView view;
+	private CHistogramView view;
 
 	/**
 	 * Constructor
 	 * 
 	 * @param visualizationInfo
 	 */
-	public CFifthState(VisualizationInfo visualizationInfo) {
+	public CHistrogramController(VisualizationInfo visualizationInfo) {
+		super(visualizationInfo);
 		this.visualizationInfo = visualizationInfo;
-		this.view = new CFifthView();
+		this.view = new CHistogramView();
 		this.view.getBackBtn().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
@@ -73,6 +74,18 @@ public class CFifthState extends AbstractVisualizationController {
 				// step back
 			}
 		});
+	}
+
+	@Override
+	public String getHelp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void loadView() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

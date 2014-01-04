@@ -11,12 +11,12 @@ import edu.kit.iks.Cryptographics.Caesar.CGeneralView;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CSecondView extends CGeneralView {
+public class CCipherDemoView extends CGeneralView {
 
 	/**
 	 * Constructor.
 	 */
-	public CSecondView() {
+	public CCipherDemoView() {
 		super();
 	}
 

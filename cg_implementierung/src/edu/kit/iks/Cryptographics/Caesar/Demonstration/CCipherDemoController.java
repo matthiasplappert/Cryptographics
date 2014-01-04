@@ -3,7 +3,7 @@
  */
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
-import edu.kit.iks.Cryptographics.Caesar.CGeneralState;
+import edu.kit.iks.Cryptographics.Caesar.CGeneralController;
 import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
 
 /**
@@ -13,12 +13,12 @@ import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CSecondState extends CGeneralState {
+public class CCipherDemoController extends CGeneralController {
 
 	/**
 	 * @param visualizationInfo
 	 */
-	public CSecondState(VisualizationInfo visualizationInfo) {
+	public CCipherDemoController(VisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 }

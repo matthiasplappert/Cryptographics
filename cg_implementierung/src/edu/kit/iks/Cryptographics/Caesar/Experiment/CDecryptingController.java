@@ -6,7 +6,7 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import edu.kit.iks.Cryptographics.Caesar.CGeneralState;
+import edu.kit.iks.Cryptographics.Caesar.CGeneralController;
 import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
 
 /**
@@ -18,12 +18,12 @@ import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CFourthState extends CGeneralState {
+public class CDecryptingController extends CGeneralController {
 
 	/**
 	 * @param visualizationInfo
 	 */
-	public CFourthState(VisualizationInfo visualizationInfo) {
+	public CDecryptingController(VisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		// TODO: Too dirty, searching for a smarter solution..
 		/**

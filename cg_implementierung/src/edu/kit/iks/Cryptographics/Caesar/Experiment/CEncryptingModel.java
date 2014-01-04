@@ -1,6 +1,5 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
-import edu.kit.iks.Cryptographics.Caesar.CGeneralExperimentModel;
 
 /**
  * TODO:!!!!!!!!!!!!!Temporary class. We'll see where to put it in. Not used at
@@ -9,7 +8,7 @@ import edu.kit.iks.Cryptographics.Caesar.CGeneralExperimentModel;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CThirdModel extends CGeneralExperimentModel {
+public class CEncryptingModel{
 
 	/**
 	 * Indicates whether input from the user is needed or not.
@@ -19,8 +18,18 @@ public class CThirdModel extends CGeneralExperimentModel {
 	/**
 	 * Constructor.
 	 */
-	public CThirdModel() {
+	public CEncryptingModel() {
 
+	}
+	
+	/**
+	 * Check if the character was encrypted valid.
+	 * 
+	 * @param c
+	 */
+	public boolean checkValidChar(char c) {
+		// ch ch ch check :D
+		return true;
 	}
 
 	/**

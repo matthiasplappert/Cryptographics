@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import edu.kit.iks.Cryptographics.Caesar.CGeneralState;
+import edu.kit.iks.Cryptographics.Caesar.CGeneralController;
 import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
 
 /**
@@ -19,9 +19,9 @@ import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CThirdState extends CGeneralState {
+public class CEncryptingController extends CGeneralController {
 
-	public CThirdState(VisualizationInfo visualizationInfo) {
+	public CEncryptingController(VisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		this.view.getInput().addActionListener(new ActionListener() {
 
