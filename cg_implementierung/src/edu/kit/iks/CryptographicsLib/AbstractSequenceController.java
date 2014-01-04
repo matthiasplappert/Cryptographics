@@ -1,5 +1,6 @@
 package edu.kit.iks.CryptographicsLib;
 
+import java.awt.event.ActionEvent;
 import java.util.Stack;
 
 abstract public class AbstractSequenceController extends AbstractController {
@@ -58,5 +59,17 @@ abstract public class AbstractSequenceController extends AbstractController {
 		this.stepHistory.pop();
 		Stepable previousStep = this.stepHistory.lastElement();
 		this.setChildController((AbstractController)previousStep);
+	}
+	
+	public void nextStepActionListener(ActionEvent event) {
+		if (this.hasNextStep()) {
+			this.nextStep();
+		}
+	}
+	
+	public void previousStepActionListener(ActionEvent event) {
+		if (this.hasPreviousStep()) {
+			this.previousStep();
+		}
 	}
 }
