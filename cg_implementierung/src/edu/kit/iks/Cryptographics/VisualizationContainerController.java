@@ -117,6 +117,7 @@ public class VisualizationContainerController extends AbstractController {
 		AbstractVisualizationController controller = null;
 		Class<AbstractVisualizationController> controllerClass = this.visualizationInfo.getControllerClasses().get(index);
 		try {
+			// TODO: pass VisualizationInfo to the controller!
 			controller = controllerClass.newInstance();
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
