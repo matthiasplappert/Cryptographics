@@ -4,6 +4,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import edu.kit.iks.CryptographicsLib.VisualizationView;
+
 /**
  * This view appears first when user finished understanding the animations from
  * the CFirstView. It is used in the last step of the demonstration phase, in
@@ -29,7 +31,7 @@ import javax.swing.JTextField;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class AbstractView {
+public class AbstractView extends VisualizationView {
 
 	/**
 	 * Dies Das ananas.
@@ -67,12 +69,6 @@ public class AbstractView {
 	protected JLabel[] alphabetNumbering;
 	
 	/**
-	 *  Buttons for navigating for- and backwards in the animation.
-	 */
-	protected JButton nextBtn;
-	protected JButton backBtn;
-
-	/**
 	 * Constructor.
 	 */
 	public AbstractView() {
@@ -102,20 +98,6 @@ public class AbstractView {
 	 */
 	public void insertInput(String input) {
 
-	}
-	
-	/**
-	 * @return backBtn
-	 */
-	public JButton getBackBtn() {
-		return backBtn;
-	}
-
-	/**
-	 * @return nextBtn
-	 */
-	public JButton getNextBtn() {
-		return nextBtn;
 	}
 
 	/**
