@@ -6,8 +6,7 @@ import java.util.List;
 import edu.kit.iks.Cryptographics.Caesar.Demonstration.CIntroductionController;
 import edu.kit.iks.Cryptographics.Caesar.Demonstration.CCipherDemoController;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.CHistrogramController;
-import edu.kit.iks.Cryptographics.Caesar.Experiment.CDecryptingController;
-import edu.kit.iks.Cryptographics.Caesar.Experiment.CEncryptingController;
+import edu.kit.iks.Cryptographics.Caesar.Experiment.CEnAndDecryptingController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
@@ -73,8 +72,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 		
 		controllerClasses.add(CIntroductionController.class);
 		controllerClasses.add(CCipherDemoController.class);
-		controllerClasses.add(CEncryptingController.class);
-		controllerClasses.add(CDecryptingController.class);
+		controllerClasses.add(CEnAndDecryptingController.class);
 		controllerClasses.add(CHistrogramController.class);
 		controllerClasses.add(InformationController.class);
 		
