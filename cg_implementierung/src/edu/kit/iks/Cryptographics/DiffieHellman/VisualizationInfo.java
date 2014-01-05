@@ -1,8 +1,10 @@
 package edu.kit.iks.Cryptographics.DiffieHellman;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
 public class VisualizationInfo extends AbstractVisualizationInfo {
@@ -38,7 +40,13 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	
 	@Override
 	public List<Class> getControllerClasses() {
-		return null;
+		List<Class> controllerClasses = new ArrayList<Class>();
+		
+		controllerClasses.add(DemonstrationController.class);
+		controllerClasses.add(ExperimentController.class);
+		controllerClasses.add(InformationController.class);
+		
+		return controllerClasses;
 	}
 
 	@Override
