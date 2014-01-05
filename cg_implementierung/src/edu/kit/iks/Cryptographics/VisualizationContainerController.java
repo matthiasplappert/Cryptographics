@@ -113,7 +113,6 @@ public class VisualizationContainerController extends AbstractController {
 	}
 	
 	private AbstractVisualizationController loadVisualizationController(int index) {
-		// TODO: load
 		AbstractVisualizationController controller = null;
 		Class<AbstractVisualizationController> controllerClass = this.visualizationInfo.getControllerClasses().get(index);
 		try {
