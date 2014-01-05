@@ -1,18 +1,15 @@
-/**
- * 
- */
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 /**
  * @author Wasilij Beskorovajnov.
  *
  */
-public class CIntroductionModel {
+public class IntroductionModel {
 
 	/**
 	 * Constructor.
 	 */
-	public CIntroductionModel() {
+	public IntroductionModel() {
 		
 	}
 	/**

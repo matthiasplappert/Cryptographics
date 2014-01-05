@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
 
@@ -8,12 +5,12 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CHistrogramModel {
+public class HistrogramModel {
 
 	/**
 	 * Constructor.
 	 */
-	public CHistrogramModel() {
+	public HistrogramModel() {
 		
 	}
 

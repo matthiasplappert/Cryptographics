@@ -2,41 +2,33 @@ package edu.kit.iks.Cryptographics.DiffieHellman;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.JPanel;
-
-import edu.kit.iks.Cryptographics.DiffieHellman.State.DHFirstState;
-import edu.kit.iks.Cryptographics.DiffieHellman.State.DHStateController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class DemonstrationController extends AbstractVisualizationController {
-	private JPanel view;
+	private Model model;
 	
-	private DHStateController state;
-	
-	private DiffieHellmanModel model;
-	
-	private VisualizationInfo _visualizationInfo;
-	
-	public DemonstrationController() {
-		super();
-		this._visualizationInfo = new VisualizationInfo();
-		this.state = new DHFirstState();
-		this.view = this.state.getView();
-		this.model = new DiffieHellmanModel();
-	}
-	
-	public JPanel getView() {
-		return this.view;
+	public DemonstrationController(AbstractVisualizationInfo visualizationInfo) {
+		super(visualizationInfo);
+		this.model = new Model();
 	}
 	
 	public void nextStateListener(ActionEvent event) {
-		//push(state)
-		this.state = this.state.nextState();
-		this.view = this.state.getView();
+		// TODO go to next state
 	}
 	
-	public void prevStateListener(ActionEvent event) {
-		this.state = this.state.previousState();
-		this.view = this.state.getView();
+	public void previousStateListener(ActionEvent event) {
+		// TODO go to previous state
+	}
+
+	@Override
+	public String getHelp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void loadView() {
+		// TODO Auto-generated method stub
 	}
 }

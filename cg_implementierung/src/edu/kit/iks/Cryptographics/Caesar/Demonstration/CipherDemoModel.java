@@ -1,18 +1,15 @@
-/**
- * 
- */
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 /**
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CCipherDemoModel {
+public class CipherDemoModel {
 
 	/**
 	 * Constructor.
 	 */
-	public CCipherDemoModel() {
+	public CipherDemoModel() {
 
 	}
 	

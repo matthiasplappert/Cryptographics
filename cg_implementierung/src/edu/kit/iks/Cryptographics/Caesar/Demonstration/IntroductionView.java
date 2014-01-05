@@ -14,7 +14,7 @@ import javax.swing.JLabel;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CIntroductionView {
+public class IntroductionView {
 	
 	
 
@@ -33,7 +33,7 @@ public class CIntroductionView {
 	protected JButton nextBtn;
 	protected JButton backBtn;
 
-	public CIntroductionView() {
+	public IntroductionView() {
 
 	}
 

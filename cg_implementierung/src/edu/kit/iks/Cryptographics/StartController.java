@@ -1,6 +1,9 @@
 package edu.kit.iks.Cryptographics;
 
 import java.util.List;
+
+import javax.swing.JPanel;
+
 import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
@@ -36,22 +39,24 @@ public class StartController extends AbstractController {
 	 */
 	public StartController() {
 		super();
-		
-		this.popoverView = new PopoverView();
-		this.welcomeView = new WelcomeView();
-		this.timelineView = new TimelineView();
-
 		this.loadAllVisualizationInfos();
 	}
 	
 	/**
-	 * Loads the view 
+	 * Loads the view
 	 */
 	@Override
 	public void loadView() {
-		this._view.add(this.popoverView);
-		this._view.add(this.welcomeView);
-		this._view.add(this.timelineView);
+		this.view = new JPanel();
+		
+		this.popoverView = new PopoverView();
+		this.view.add(this.popoverView);
+		
+		this.welcomeView = new WelcomeView();
+		this.view.add(this.welcomeView);
+		
+		this.timelineView = new TimelineView();
+		this.view.add(this.timelineView);
 	}
 	
 	/**
@@ -62,7 +67,7 @@ public class StartController extends AbstractController {
 		this.popoverView = null;
 		this.welcomeView = null;
 		this.timelineView = null;
-		this._view = null;
+		this.view = null;
 	}
 	
     /**
@@ -96,7 +101,6 @@ public class StartController extends AbstractController {
 	 * Helper method to initialize {_visualizationInfos} 
 	 */
 	private void loadAllVisualizationInfos() {
-
 		this.visualizationInfos = VisualizationInfoLoader.loadAllVisualizationInfos();
 	}
 }

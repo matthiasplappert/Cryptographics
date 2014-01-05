@@ -1,4 +1,4 @@
-package edu.kit.iks.Cryptographics.Caesar.Demonstration;
+package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,12 +7,14 @@ import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 
 /**
- * This class is the controller of the view CFirstView.
+ * Controller for the last step of the experiment phase. User can try to break
+ * the caesar cipher. CFifthView is being controlled here.
  * 
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CIntroductionController extends AbstractVisualizationController {
+public class HistrogramController extends AbstractVisualizationController {
+
 	/**
 	 * Contains all relevant informations about the cipher Caesar.
 	 */
@@ -20,17 +22,19 @@ public class CIntroductionController extends AbstractVisualizationController {
 
 	/**
 	 * Contains all elements of the gui for the demonstration of caesar's
-	 * problem.
+	 * disadvantages.
 	 */
-	private CIntroductionView view;
+	private HistogramView view;
 
 	/**
+	 * Constructor
+	 * 
 	 * @param visualizationInfo
 	 */
-	public CIntroductionController(VisualizationInfo visualizationInfo) {
+	public HistrogramController(VisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		this.visualizationInfo = visualizationInfo;
-		this.view = new CIntroductionView();
+		this.view = new HistogramView();
 		this.view.getBackBtn().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
@@ -49,6 +53,24 @@ public class CIntroductionController extends AbstractVisualizationController {
 				// step forward.
 			}
 		});
+		this.view.getIncrement().addActionListener(new ActionListener() {
+			/*
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
+			 * .event.ActionEvent)
+			 */
+			public void actionPerformed(ActionEvent event) {
+				// step back
+			}
+		});
+		this.view.getDecrement().addActionListener(new ActionListener() {
+			/*
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
+			 * .event.ActionEvent)
+			 */
+			public void actionPerformed(ActionEvent event) {
+				// step back
+			}
+		});
 	}
 
 	@Override
@@ -62,4 +84,5 @@ public class CIntroductionController extends AbstractVisualizationController {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

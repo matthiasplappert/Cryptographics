@@ -1,9 +1,6 @@
-/**
- * 
- */
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
-import edu.kit.iks.Cryptographics.Caesar.CGeneralView;
+import edu.kit.iks.Cryptographics.Caesar.AbstractView;
 
 /**
  * Performs animations for demonstrating Caesar's idea.
@@ -11,12 +8,12 @@ import edu.kit.iks.Cryptographics.Caesar.CGeneralView;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CCipherDemoView extends CGeneralView {
+public class CipherDemoView extends AbstractView {
 
 	/**
 	 * Constructor.
 	 */
-	public CCipherDemoView() {
+	public CipherDemoView() {
 		super();
 	}
 

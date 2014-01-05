@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
 import javax.swing.JButton;
@@ -17,7 +14,7 @@ import javax.swing.JLabel;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CHistogramView {
+public class HistogramView {
 
 	/**
 	 * 
@@ -60,7 +57,7 @@ public class CHistogramView {
 	/**
 	 * Constructor.
 	 */
-	public CHistogramView() {
+	public HistogramView() {
 
 	}
 
