@@ -12,16 +12,19 @@ import edu.kit.iks.Cryptographics.Caesar.CGeneralController;
 import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
 
 /**
- * Controller for the first step of the demonstration phase. When user has to
- * put input and encrypt it. Controls the needed elements from CaesarUpperView,
- * !!see CaesarUpperView for more details!!.
+ * Controller for the first and second step of the demonstration phase. When user has to
+ * put input and encrypt it and in the second step to decrypt a given cipher. Controls the needed elements from CaesarUpperView,
+ * !!see CGeneralView for more details!!.
  * 
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CEncryptingController extends CGeneralController {
+public class CEnAndDecryptingController extends CGeneralController {
 
-	public CEncryptingController(VisualizationInfo visualizationInfo) {
+	/** Constructor.
+	 * @param visualizationInfo
+	 */
+	public CEnAndDecryptingController(VisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		this.view.getInput().addActionListener(new ActionListener() {
 
