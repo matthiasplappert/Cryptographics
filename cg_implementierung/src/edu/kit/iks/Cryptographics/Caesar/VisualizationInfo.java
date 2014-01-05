@@ -3,10 +3,10 @@ package edu.kit.iks.Cryptographics.Caesar;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.kit.iks.Cryptographics.Caesar.Demonstration.CIntroductionController;
-import edu.kit.iks.Cryptographics.Caesar.Demonstration.CCipherDemoController;
-import edu.kit.iks.Cryptographics.Caesar.Experiment.CHistrogramController;
-import edu.kit.iks.Cryptographics.Caesar.Experiment.CEnAndDecryptingController;
+import edu.kit.iks.Cryptographics.Caesar.Demonstration.IntroductionController;
+import edu.kit.iks.Cryptographics.Caesar.Demonstration.CipherDemoController;
+import edu.kit.iks.Cryptographics.Caesar.Experiment.HistrogramController;
+import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
@@ -70,10 +70,10 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	public List<Class> getControllerClasses() {
 		List<Class> controllerClasses = new ArrayList<Class>();
 		
-		controllerClasses.add(CIntroductionController.class);
-		controllerClasses.add(CCipherDemoController.class);
-		controllerClasses.add(CEnAndDecryptingController.class);
-		controllerClasses.add(CHistrogramController.class);
+		controllerClasses.add(IntroductionController.class);
+		controllerClasses.add(CipherDemoController.class);
+		controllerClasses.add(CryptoController.class);
+		controllerClasses.add(HistrogramController.class);
 		controllerClasses.add(InformationController.class);
 		
 		return controllerClasses;

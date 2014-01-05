@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import edu.kit.iks.Cryptographics.Caesar.CGeneralController;
+import edu.kit.iks.Cryptographics.Caesar.AbstractController;
 import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
 
 /**
@@ -16,12 +16,12 @@ import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CEnAndDecryptingController extends CGeneralController {
+public class CryptoController extends AbstractController {
 
 	/** Constructor.
 	 * @param visualizationInfo
 	 */
-	public CEnAndDecryptingController(VisualizationInfo visualizationInfo) {
+	public CryptoController(VisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		this.view.getInput().addActionListener(new ActionListener() {
 

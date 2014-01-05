@@ -8,7 +8,7 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CEncryptingModel{
+public class EncryptingModel{
 
 	/**
 	 * Indicates whether input from the user is needed or not.
@@ -18,7 +18,7 @@ public class CEncryptingModel{
 	/**
 	 * Constructor.
 	 */
-	public CEncryptingModel() {
+	public EncryptingModel() {
 
 	}
 	

@@ -2,16 +2,18 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 /**
  * @author Wasilij Beskorovajnov.
- *
+ * 
  */
-public class CIntroductionModel {
+public class CipherDemoModel {
 
 	/**
 	 * Constructor.
 	 */
-	public CIntroductionModel() {
-		
+	public CipherDemoModel() {
+
 	}
+	
+
 	/**
 	 * 
 	 */
@@ -25,5 +27,4 @@ public class CIntroductionModel {
 	public void back() {
 		// step backwards.
 	}
-	
 }

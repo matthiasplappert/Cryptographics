@@ -29,7 +29,7 @@ import javax.swing.JTextField;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CGeneralView {
+public class AbstractView {
 
 	/**
 	 * Dies Das ananas.
@@ -75,7 +75,7 @@ public class CGeneralView {
 	/**
 	 * Constructor.
 	 */
-	public CGeneralView() {
+	public AbstractView() {
 
 	}
 

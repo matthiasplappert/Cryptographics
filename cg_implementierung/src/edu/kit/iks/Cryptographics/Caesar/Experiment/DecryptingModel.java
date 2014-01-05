@@ -4,12 +4,12 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CDecryptingModel {
+public class DecryptingModel {
 
 	/**
 	 * Constructor.
 	 */
-	public CDecryptingModel() {
+	public DecryptingModel() {
 
 	}
 	

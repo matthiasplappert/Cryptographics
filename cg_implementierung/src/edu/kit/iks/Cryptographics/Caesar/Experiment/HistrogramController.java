@@ -13,7 +13,7 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CHistrogramController extends AbstractVisualizationController {
+public class HistrogramController extends AbstractVisualizationController {
 
 	/**
 	 * Contains all relevant informations about the cipher Caesar.
@@ -24,17 +24,17 @@ public class CHistrogramController extends AbstractVisualizationController {
 	 * Contains all elements of the gui for the demonstration of caesar's
 	 * disadvantages.
 	 */
-	private CHistogramView view;
+	private HistogramView view;
 
 	/**
 	 * Constructor
 	 * 
 	 * @param visualizationInfo
 	 */
-	public CHistrogramController(VisualizationInfo visualizationInfo) {
+	public HistrogramController(VisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		this.visualizationInfo = visualizationInfo;
-		this.view = new CHistogramView();
+		this.view = new HistogramView();
 		this.view.getBackBtn().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt

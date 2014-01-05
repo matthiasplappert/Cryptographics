@@ -1,6 +1,6 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
-import edu.kit.iks.Cryptographics.Caesar.CGeneralController;
+import edu.kit.iks.Cryptographics.Caesar.AbstractController;
 import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
 
 /**
@@ -10,12 +10,12 @@ import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CCipherDemoController extends CGeneralController {
+public class CipherDemoController extends AbstractController {
 
 	/**
 	 * @param visualizationInfo
 	 */
-	public CCipherDemoController(VisualizationInfo visualizationInfo) {
+	public CipherDemoController(VisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 }
