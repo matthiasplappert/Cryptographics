@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.kit.iks.Cryptographics.Caesar;
 
 import java.awt.event.ActionEvent;

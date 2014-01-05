@@ -1,6 +1,3 @@
-/**
- * 
- */
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
 /**
