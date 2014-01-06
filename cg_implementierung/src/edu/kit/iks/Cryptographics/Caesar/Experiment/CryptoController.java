@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import edu.kit.iks.Cryptographics.Caesar.AbstractController;
-import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
+import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 
 /**
  * Controller for the first and second step of the experiment phase. When user has to
@@ -21,7 +21,7 @@ public class CryptoController extends AbstractController {
 	/** Constructor.
 	 * @param visualizationInfo
 	 */
-	public CryptoController(VisualizationInfo visualizationInfo) {
+	public CryptoController(CaesarVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		this.view.getInput().addActionListener(new ActionListener() {
 

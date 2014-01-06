@@ -15,7 +15,7 @@ import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
  * @author Wasilij Beskorovajnov.
  *
  */
-public class VisualizationInfo extends AbstractVisualizationInfo {
+public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	
 	/* 
 	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getId()
