@@ -42,7 +42,7 @@ public class StartController extends AbstractController {
 	public StartController() {
 		this.loadAllVisualizationInfos();
 		this.loadView();
-		this.timelineView.getCaesar().addActionListener(new ActionListener() {
+		this.timelineView.getButtons()[0].addActionListener(new ActionListener() {
 
 			/*
 			 * (non-Javadoc)
@@ -73,7 +73,7 @@ public class StartController extends AbstractController {
 		this.welcomeView = new WelcomeView();
 		this.view.add(this.welcomeView);
 
-		this.timelineView = new TimelineView();
+		this.timelineView = new TimelineView(visualizationInfos);
 		this.view.add(this.timelineView);
 	}
 
