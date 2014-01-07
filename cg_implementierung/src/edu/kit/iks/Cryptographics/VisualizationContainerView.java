@@ -27,4 +27,9 @@ public class VisualizationContainerView extends JPanel {
 	 * visualization
 	 */
 	private JButton helpButton;
+	
+	public VisualizationContainerView() {
+		this.add(new JLabel("CONTAINER"));
+		this.validate();
+	}
 }

@@ -1,5 +1,6 @@
 package edu.kit.iks.Cryptographics;
 
+import java.lang.reflect.Constructor;
 import java.util.List;
 
 import edu.kit.iks.CryptographicsLib.AbstractController;
@@ -120,16 +121,17 @@ public class VisualizationContainerController extends AbstractController {
 	}
 
 	private AbstractVisualizationController loadVisualizationController(int index) {
-		AbstractVisualizationController controller = null;
+		Constructor<AbstractVisualizationController> controllerConstructor = null;
 		Class<AbstractVisualizationController> controllerClass = this.visualizationInfo.getControllerClasses().get(index);
-		/*try {
-			// TODO: pass VisualizationInfo to the controller!
-			controller = controllerClass.newInstance();
+		AbstractVisualizationController controller = null;
+		try {
+			// visualizationinfo is now passed to the contructor.
+			controllerConstructor = controllerClass.getConstructor(AbstractVisualizationInfo.class);
+	        controller = controllerConstructor.newInstance(this.visualizationInfo);	
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
 		this.visualizationControllers[index] = controller;
 		return controller;
 	}

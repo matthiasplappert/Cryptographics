@@ -20,15 +20,15 @@ public class TimelineView extends JPanel {
 	public TimelineView() {
 		this.add(new JLabel("TimeLine"));
 		this.caesar = new JButton("Caesar");
-		this.caesar.setVisible(true);
 		this.add(caesar);
+		this.validate();
 	}
 
 	/**
 	 * @return the caesar
 	 */
 	public JButton getCaesar() {
-		return caesar;
+		return this.caesar;
 	}
 
 	/**

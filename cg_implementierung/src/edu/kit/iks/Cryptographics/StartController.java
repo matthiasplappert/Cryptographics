@@ -52,8 +52,8 @@ public class StartController extends AbstractController {
 			 * ActionEvent)
 			 */
 			public void actionPerformed(ActionEvent event) {
-				unloadView();
-			//	startVisualizationAction(visualizationInfos.get(0));
+				//unloadView();
+				startVisualizationAction(visualizationInfos.get(0));
 			}
 
 		});
