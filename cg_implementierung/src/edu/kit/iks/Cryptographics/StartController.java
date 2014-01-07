@@ -67,8 +67,8 @@ public class StartController extends AbstractController {
 	public void loadView() {
 		this.view = new JPanel();
 
-		this.popoverView = new PopoverView();
-		this.view.add(this.popoverView);
+		//this.popoverView = new PopoverView();
+		//this.view.add(this.popoverView);
 
 		this.welcomeView = new WelcomeView();
 		this.view.add(this.welcomeView);
