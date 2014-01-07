@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
+import edu.kit.iks.Cryptographics.DiffieHellman.DHVisualizationInfo;
+import edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 /**
@@ -30,6 +32,8 @@ public class VisualizationInfoLoader {
 	static public List<AbstractVisualizationInfo> loadAllVisualizationInfos() {
 		List<AbstractVisualizationInfo> visualizationInfos = new ArrayList<AbstractVisualizationInfo>();
 		visualizationInfos.add(new CaesarVisualizationInfo());
+		visualizationInfos.add(new DHVisualizationInfo());
+		visualizationInfos.add(new VigenereVisualizationInfo());
 		return visualizationInfos;
 	}
 }

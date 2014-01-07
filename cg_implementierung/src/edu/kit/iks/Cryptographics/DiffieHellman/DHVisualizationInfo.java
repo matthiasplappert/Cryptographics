@@ -7,7 +7,7 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
-public class VisualizationInfo extends AbstractVisualizationInfo {
+public class DHVisualizationInfo extends AbstractVisualizationInfo {
 	@Override
 	public String getId() {
 		return "diffiehellman";

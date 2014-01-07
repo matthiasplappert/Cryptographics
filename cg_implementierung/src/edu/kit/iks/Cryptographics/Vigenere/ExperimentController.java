@@ -4,7 +4,7 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 
 public class ExperimentController extends AbstractVisualizationController {
 	
-	public ExperimentController(VisualizationInfo visualizationInfo) {
+	public ExperimentController(VigenereVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 

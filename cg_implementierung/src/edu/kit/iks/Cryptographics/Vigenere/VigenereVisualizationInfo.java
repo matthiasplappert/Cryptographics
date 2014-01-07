@@ -7,7 +7,7 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
-public class VisualizationInfo extends AbstractVisualizationInfo {
+public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	
 	public String getId() {
 		return "vigenere";
