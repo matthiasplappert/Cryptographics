@@ -1,6 +1,7 @@
 package edu.kit.iks.Cryptographics;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import edu.kit.iks.CryptographicsLib.AbstractController;
@@ -126,8 +127,18 @@ public class VisualizationContainerController extends AbstractController {
 		AbstractVisualizationController controller = null;
 		try {
 			// visualizationinfo is now passed to the contructor.
-			controllerConstructor = controllerClass.getConstructor(AbstractVisualizationInfo.class);
-	        controller = controllerConstructor.newInstance(this.visualizationInfo);	
+			try {
+				controllerConstructor = controllerClass.getConstructor(AbstractVisualizationInfo.class);
+			} catch (SecurityException | NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        try {
+				controller = controllerConstructor.newInstance(this.visualizationInfo);
+			} catch (IllegalArgumentException | InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
