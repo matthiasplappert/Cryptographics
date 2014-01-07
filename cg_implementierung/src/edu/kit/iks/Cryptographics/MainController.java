@@ -59,6 +59,7 @@ public class MainController extends AbstractController {
 			this.visualizationContainerController.unloadView();
 		}
 		this.startController = new StartController();
+		this.startController.loadView();
 		this.view.add(this.startController.getView());
 		
 		// Important to call validate, as some elements may
@@ -73,7 +74,12 @@ public class MainController extends AbstractController {
 	 * instantiate the controller from
 	 */
 	public void presentVisualizationAction(AbstractVisualizationInfo visualizationInfo) {
+		// TODO: figure out if we need to unload the view/controller
 		this.startController.unloadView();
+		
+		// TODO: load VisualizationContainerController
+		// TODO: load view
+		// TODO: present view
 	}
 	
 	/**

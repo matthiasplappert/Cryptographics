@@ -30,6 +30,8 @@ public class VisualizationContainerController extends AbstractController {
 	 * Container to display the actual visualization of a procedure
 	 */
 	private VisualizationContainerView view;
+	
+	List<Class> childClasses;
 
 	/**
 	 * Constructor initializing a new instance of
@@ -42,12 +44,12 @@ public class VisualizationContainerController extends AbstractController {
 	public VisualizationContainerController(
 			AbstractVisualizationInfo visualizationInfo) {
 		this.visualizationInfo = visualizationInfo;
-		List<Class> childClasses = this.visualizationInfo
+		this.childClasses = this.visualizationInfo
 				.getControllerClasses();
 
 		// Create an array that can hold all visualization controllers.
 		// The controller's will be instantiated on demand (lazily).
-		this.visualizationControllers = new AbstractVisualizationController[childClasses
+		this.visualizationControllers = new AbstractVisualizationController[this.childClasses
 				.size()];
 	}
 
@@ -63,11 +65,25 @@ public class VisualizationContainerController extends AbstractController {
 	@Override
 	public void loadView() {
 		this.view = new VisualizationContainerView();
+		
+		// TODO: action listener for helpButton
+		// TODO: dispatch call to currentVisualizationController.getHelp()
+		// TODO: present popover for help
+		
+		// TODO: action listener for exitButton
+		// TODO: in action listener do:
+		//       MainController mainController = (MainController)this.getParentController();
+		//       mainController.presentStartAction();
 	}
 
 	@Override
 	public VisualizationContainerView getView() {
 		return this.view;
+	}
+	
+	public void presentHelpPopover(String helpText) {
+		// TODO: load popover
+		// TODO: present
 	}
 
 	public void setCurrentVisualizationControllerIndex(int index) {
@@ -100,13 +116,8 @@ public class VisualizationContainerController extends AbstractController {
 		return this.visualizationControllers[this.currentVisualizationControllerIndex];
 	}
 
-	public AbstractVisualizationController currentVisualizationController() {
-		return this.visualizationControllers[this.currentVisualizationControllerIndex];
-	}
-
 	public boolean hasNextVisualizationController() {
-		return (this.currentVisualizationControllerIndex < this.visualizationInfo
-				.getControllerClasses().size() - 1);
+		return (this.currentVisualizationControllerIndex < childClasses.size() - 1);
 	}
 
 	public void presentNextVisualizationController() {
@@ -123,7 +134,7 @@ public class VisualizationContainerController extends AbstractController {
 
 	private AbstractVisualizationController loadVisualizationController(int index) {
 		Constructor<AbstractVisualizationController> controllerConstructor = null;
-		Class<AbstractVisualizationController> controllerClass = this.visualizationInfo.getControllerClasses().get(index);
+		Class<AbstractVisualizationController> controllerClass = childClasses.get(index);
 		AbstractVisualizationController controller = null;
 		try {
 			// visualizationinfo is now passed to the contructor.

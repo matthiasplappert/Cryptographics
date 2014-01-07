@@ -41,23 +41,6 @@ public class StartController extends AbstractController {
 	 */
 	public StartController() {
 		this.loadAllVisualizationInfos();
-		this.loadView();
-		this.timelineView.getButtons()[0].addActionListener(new ActionListener() {
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see
-			 * java.awt.event.ActionListener#actionPerformed(java.awt.event.
-			 * ActionEvent)
-			 */
-			public void actionPerformed(ActionEvent event) {
-				//unloadView();
-				startVisualizationAction(visualizationInfos.get(0));
-			}
-
-		});
-
 	}
 
 	/**
@@ -65,7 +48,7 @@ public class StartController extends AbstractController {
 	 */
 	@Override
 	public void loadView() {
-		this.view = new JPanel();
+		this.view = new JPanel();		
 
 		//this.popoverView = new PopoverView();
 		//this.view.add(this.popoverView);
@@ -75,6 +58,16 @@ public class StartController extends AbstractController {
 
 		this.timelineView = new TimelineView(visualizationInfos);
 		this.view.add(this.timelineView);
+		
+		// TODO: use MouseButtonClick listener
+		ActionListener listener = new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				// TODO: check if getSource() is the right method
+				TimelineViewButton button = (TimelineViewButton)event.getSource();
+				presentPopoverAction(button.getVisualizationInfo());
+			}
+		};
+		// TODO: loop through all buttons and add action listener
 	}
 
 	/**
@@ -98,14 +91,19 @@ public class StartController extends AbstractController {
 	 *            display
 	 */
 	public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo) {
-
+		// TODO: load PopoverView
+		// TODO: assign action listener to popover view for start button
+		// TODO: get visualizationInfo from actionevent and call
+		//        this.startVisualizationAction(visualizationInfo);
+		
+		// TODO: assign action listener for close button that calls dismissPopoverAction()
 	}
 
 	/**
 	 * Dismisses the popover
 	 */
 	public void dismissPopoverAction() {
-
+		// TODO: dismiss popover
 	}
 
 	/**
@@ -115,12 +113,9 @@ public class StartController extends AbstractController {
 	 *            Object of {VisualizationInfo} containing the data to
 	 *            instantiate related controllers from
 	 */
-	public void startVisualizationAction(
-			AbstractVisualizationInfo visualizationInfo) {
-		VisualizationContainerController container = new VisualizationContainerController(
-				visualizationInfo);
-		container.loadView();
-		container.setCurrentVisualizationControllerIndex(0);
+	public void startVisualizationAction(AbstractVisualizationInfo visualizationInfo) {
+		MainController mainController = (MainController)this.getParentController();
+		mainController.presentVisualizationAction(visualizationInfo);
 	}
 
 	/**

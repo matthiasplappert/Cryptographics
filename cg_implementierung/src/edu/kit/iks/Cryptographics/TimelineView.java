@@ -3,7 +3,6 @@ package edu.kit.iks.Cryptographics;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -18,51 +17,24 @@ public class TimelineView extends JPanel {
 	
 	private List<AbstractVisualizationInfo> visualizationInfos;
 
-	private JButton[] buttons;
+	private TimelineViewButton[] buttons;
 	
-	public JButton[] getButtons() {
+	public TimelineViewButton[] getButtons() {
 		return buttons;
 	}
-
-	private JButton caesar;
-	
-	private JButton diffieHellman;
-	
-	private JButton vigenere;
 	
 	public TimelineView(List<AbstractVisualizationInfo> visualizationInfos) {
-		this.buttons = new JButton[visualizationInfos.size()];
+		this.buttons = new TimelineViewButton[visualizationInfos.size()];
 		AbstractVisualizationInfo tmpVI;
 		this.visualizationInfos = visualizationInfos;
 		this.add(new JLabel("TimeLine"));
 		int j=0;
 		for( Iterator<AbstractVisualizationInfo> i = visualizationInfos.iterator(); i.hasNext();) {
 			tmpVI = i.next();
-			this.buttons[j] = new JButton(tmpVI.getName());
+			this.buttons[j] = new TimelineViewButton(tmpVI);
 			this.add(buttons[j]);
+			j++;
 		}
 		this.validate();
 	}
-
-	/**
-	 * @return the caesar
-	 */
-	public JButton getCaesar() {
-		return this.caesar;
-	}
-
-	/**
-	 * @return the diffieHellman
-	 */
-	public JButton getDiffieHellman() {
-		return diffieHellman;
-	}
-
-	/**
-	 * @return the vigenere
-	 */
-	public JButton getVigenere() {
-		return vigenere;
-	}
 }
-
