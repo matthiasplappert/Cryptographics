@@ -19,7 +19,7 @@ abstract public class AbstractController extends AbstractVisualizationController
 	/**
 	 * @param visualizationInfo
 	 */
-	public AbstractController(VisualizationInfo visualizationInfo) {
+	public AbstractController(CaesarVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 

@@ -1,6 +1,9 @@
 package edu.kit.iks.Cryptographics;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 /**
@@ -25,6 +28,8 @@ public class VisualizationInfoLoader {
 	 * @return A list of all {VisualizationInfo}-objects 
 	 */
 	static public List<AbstractVisualizationInfo> loadAllVisualizationInfos() {
-		return null;
+		List<AbstractVisualizationInfo> visualizationInfos = new ArrayList<AbstractVisualizationInfo>();
+		visualizationInfos.add(new CaesarVisualizationInfo());
+		return visualizationInfos;
 	}
 }

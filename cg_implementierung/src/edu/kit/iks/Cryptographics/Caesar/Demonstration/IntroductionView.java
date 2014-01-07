@@ -2,6 +2,7 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  * This is the first view the user gets presented when he requests the
@@ -14,7 +15,7 @@ import javax.swing.JLabel;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class IntroductionView {
+public class IntroductionView extends JPanel{
 	
 	
 
@@ -34,7 +35,7 @@ public class IntroductionView {
 	protected JButton backBtn;
 
 	public IntroductionView() {
-
+       this.add(new JLabel("CAESAR INTRODUCTION"));
 	}
 
 	/**

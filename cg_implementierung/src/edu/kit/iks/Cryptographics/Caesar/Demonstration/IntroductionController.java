@@ -3,7 +3,7 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
+import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 
 /**
@@ -16,7 +16,7 @@ public class IntroductionController extends AbstractVisualizationController {
 	/**
 	 * Contains all relevant informations about the cipher Caesar.
 	 */
-	private VisualizationInfo visualizationInfo;
+	private CaesarVisualizationInfo visualizationInfo;
 
 	/**
 	 * Contains all elements of the gui for the demonstration of caesar's
@@ -27,8 +27,9 @@ public class IntroductionController extends AbstractVisualizationController {
 	/**
 	 * @param visualizationInfo
 	 */
-	public IntroductionController(VisualizationInfo visualizationInfo) {
+	public IntroductionController(CaesarVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
+		this.loadView();
 		this.visualizationInfo = visualizationInfo;
 		this.view = new IntroductionView();
 		this.view.getBackBtn().addActionListener(new ActionListener() {
@@ -59,7 +60,7 @@ public class IntroductionController extends AbstractVisualizationController {
 
 	@Override
 	public void loadView() {
-		// TODO Auto-generated method stub
+	    this.view = new IntroductionView();
 		
 	}
 }

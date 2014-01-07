@@ -3,7 +3,7 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
+import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 
 /**
@@ -18,7 +18,7 @@ public class HistrogramController extends AbstractVisualizationController {
 	/**
 	 * Contains all relevant informations about the cipher Caesar.
 	 */
-	private VisualizationInfo visualizationInfo;
+	private CaesarVisualizationInfo visualizationInfo;
 
 	/**
 	 * Contains all elements of the gui for the demonstration of caesar's
@@ -31,7 +31,7 @@ public class HistrogramController extends AbstractVisualizationController {
 	 * 
 	 * @param visualizationInfo
 	 */
-	public HistrogramController(VisualizationInfo visualizationInfo) {
+	public HistrogramController(CaesarVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		this.visualizationInfo = visualizationInfo;
 		this.view = new HistogramView();

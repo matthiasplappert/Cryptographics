@@ -6,10 +6,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import edu.kit.iks.Cryptographics.Caesar.AbstractController;
-import edu.kit.iks.Cryptographics.Caesar.VisualizationInfo;
+import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 
 /**
- * Controller for the first and second step of the demonstration phase. When user has to
+ * Controller for the first and second step of the experiment phase. When user has to
  * put input and encrypt it and in the second step to decrypt a given cipher. Controls the needed elements from CaesarUpperView,
  * !!see CGeneralView for more details!!.
  * 
@@ -21,7 +21,7 @@ public class CryptoController extends AbstractController {
 	/** Constructor.
 	 * @param visualizationInfo
 	 */
-	public CryptoController(VisualizationInfo visualizationInfo) {
+	public CryptoController(CaesarVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		this.view.getInput().addActionListener(new ActionListener() {
 
