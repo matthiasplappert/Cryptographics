@@ -21,8 +21,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="edu.kit.iks.Cryptographics.Vigenere.VisualizationInfo" project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/Vigenere/VisualizationInfo.java" binary="false" 
+  <class id="3" language="java" name="edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo" 
+    project="Cryptographics" 
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/Vigenere/VigenereVisualizationInfo.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="206" width="216" x="14" y="221"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
