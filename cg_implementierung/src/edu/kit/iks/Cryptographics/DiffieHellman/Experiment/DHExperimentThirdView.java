@@ -1,5 +1,12 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
-public class DHExperimentThirdView {
+import javax.swing.JPanel;
+
+public class DHExperimentThirdView extends JPanel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 539729162359687203L;
 
 }
