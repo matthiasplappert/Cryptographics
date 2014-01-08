@@ -18,7 +18,8 @@ abstract public class AbstractController {
 	protected List<AbstractController> childControllers = new ArrayList<AbstractController>();
 
 	public void addChildController(AbstractController childController) {
-		
+		childController.parentController = this;
+		childControllers.add(childController);
 	}
 	
 	public void removeChildController(AbstractController childController) {
