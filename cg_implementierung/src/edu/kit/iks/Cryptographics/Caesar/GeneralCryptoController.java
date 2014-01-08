@@ -9,17 +9,17 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
  * @author Wasilij Beskorovajnov.
  * 
  */
-abstract public class AbstractController extends AbstractVisualizationController {
+abstract public class GeneralCryptoController extends AbstractVisualizationController {
 	/**
 	 * Contains all elements of the gui for the demonstration of caesar's
 	 * problem.
 	 */
-	protected AbstractView view;
+	protected CryptoView view;
 
 	/**
 	 * @param visualizationInfo
 	 */
-	public AbstractController(CaesarVisualizationInfo visualizationInfo) {
+	public GeneralCryptoController(CaesarVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 
@@ -31,7 +31,7 @@ abstract public class AbstractController extends AbstractVisualizationController
 
 	@Override
 	public void loadView() {
-		this.view = new AbstractView();
+		this.view = new CryptoView();
 		this.view.getBackButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt

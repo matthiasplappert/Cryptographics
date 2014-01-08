@@ -36,7 +36,7 @@ public class IntroductionController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 	    this.view = new IntroductionView();
-	    this.view.getBackBtn().addActionListener(new ActionListener() {
+	    this.view.getBackButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)
@@ -45,7 +45,7 @@ public class IntroductionController extends AbstractVisualizationController {
 				// step back
 			}
 		});
-		this.view.getNextBtn().addActionListener(new ActionListener() {
+		this.view.getNextButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)
