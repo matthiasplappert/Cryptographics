@@ -10,18 +10,34 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class JImage extends JPanel{
+/**
+ * Class to display an image in the view
+ * 
+ * @author Christian Dreher
+ */
+public class ImageView extends JPanel{
+
 	/**
-	 * 
+	 * Serial Version UID
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 6272421643783212805L;
+	
+	/**
+	 * Image to be displayed
+	 */
 	private BufferedImage image;
 
-    public JImage(Image img) {
-		if (img instanceof BufferedImage)
-	    {
+	/**
+	 * Constructor initializing a new instance of {ImageView}
+	 * with given {img}
+	 * 
+	 * @param img Image to be displayed
+	 */
+    public ImageView(Image img) {
+		if (img instanceof BufferedImage) {
 	        this.image = (BufferedImage) img;
 	    }
+		
 	    // Create a buffered image with transparency
 	    BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
 	    // Draw the image on to the buffered image
@@ -31,13 +47,24 @@ public class JImage extends JPanel{
 	    this.image = bimage;
     }
     
-    public JImage(String filePath) {
+    /**
+     * Constructor initializing a new instance of {ImageView}
+     * with given {filePath}
+     * 
+     * @param filePath File path to the image to be displayed
+     */
+    public ImageView(String filePath) {
     	try {                
             image = ImageIO.read(new File(filePath));
-         } catch (IOException ex) {
+         } catch (IOException e) {
+        	 e.printStackTrace();
          }
     }
 
+    /*
+     * (non-Javadoc)
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

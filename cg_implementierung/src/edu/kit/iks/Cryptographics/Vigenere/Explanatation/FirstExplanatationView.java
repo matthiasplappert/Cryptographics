@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import edu.kit.iks.CryptographicsLib.JImage;
+import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /*
@@ -20,7 +20,7 @@ public class FirstExplanatationView extends VisualizationView{
 	//Visulisation of the Key
 	private JLabel vigenereWeakExplanatation;
 	
-	private JImage vigenereHistogramm;
+	private ImageView vigenereHistogramm;
 	
 	public FirstExplanatationView() {
        this.add(new JLabel("VIGENERE EXPLANATATION"));

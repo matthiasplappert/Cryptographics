@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import edu.kit.iks.CryptographicsLib.JImage;
 import edu.kit.iks.CryptographicsLib.UICharacterFrequencyDiagram;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 

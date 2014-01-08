@@ -25,7 +25,7 @@ public class VisualizationView extends JPanel {
 	public JButton getNextButton() {
 		return nextButton;
 	}
-	
+
 	public JButton getBackButton() {
 		return backButton;
 	}
