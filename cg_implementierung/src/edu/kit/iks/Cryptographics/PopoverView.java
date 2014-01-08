@@ -18,16 +18,34 @@ public class PopoverView extends JPanel {
 	 */
 	private static final long serialVersionUID = -5949014143695648861L;
 
+	/**
+	 * Label to display the name of the current procedure
+	 */
 	private JLabel procedureName;
 
+	/**
+	 * Label to display the current difficulty
+	 */
 	private JLabel difficulty;
 
+	/**
+	 * Label to display an introduction
+	 */
 	private JLabel introduction;
 
+	/**
+	 * Button to start the currently displayed procedure
+	 */
 	private VisualizationButton startButton;
 
+	/**
+	 * Button to close the popover
+	 */
 	private JButton closeButton;
 
+	/**
+	 * {VisualizationInfo}-object holding metadata of the current procedure
+	 */
 	private AbstractVisualizationInfo visualizationInfo;
 
 	/**
@@ -69,5 +87,4 @@ public class PopoverView extends JPanel {
 	public JButton getCloseButton() {
 		return closeButton;
 	}
-
 }
