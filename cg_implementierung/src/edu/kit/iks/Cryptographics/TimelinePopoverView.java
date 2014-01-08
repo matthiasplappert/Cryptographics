@@ -4,10 +4,19 @@ import javax.swing.JLabel;
 
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
+/**
+ * Objects of this class represent the popover when
+ * the user clicks on a button in it
+ * 
+ * @author Christian Dreher
+ */
 public class TimelinePopoverView extends PopoverView {
 	
-	private static final long serialVersionUID = 1L;
-	
+	/**
+	 * Serial Version UID
+	 */
+	private static final long serialVersionUID = 1914359780570867605L;
+
 	/**
      * {VisualizationInfo}-object holding metadata of the current visualization
      */
