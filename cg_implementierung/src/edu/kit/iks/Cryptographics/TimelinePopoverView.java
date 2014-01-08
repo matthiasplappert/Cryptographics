@@ -39,6 +39,7 @@ public class TimelinePopoverView extends PopoverView {
 		this.getContentView().add(this.descriptionLabel);
 		
 		this.startButton = new VisualizationButton(visualizationInfo);
+		this.startButton.setText("Start");
 		this.getContentView().add(this.startButton);
 		
 		this.getContentView().validate();
