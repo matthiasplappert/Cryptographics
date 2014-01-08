@@ -9,6 +9,7 @@ import javax.swing.JPanel;
  * @author Christian Dreher
  */
 public class PopoverView extends JPanel {
+	
 	/**
 	 * Serial Version UID
 	 */
@@ -19,8 +20,14 @@ public class PopoverView extends JPanel {
 	 */
 	private JButton closeButton;
 	
+	/**
+	 * Content area of the popover
+	 */
 	private JPanel contentView;
 	
+	/**
+	 * Constructor initializing a new instance of {PopoverView}
+	 */
 	public PopoverView() {
 		this.closeButton = new JButton();
 		this.add(this.closeButton);

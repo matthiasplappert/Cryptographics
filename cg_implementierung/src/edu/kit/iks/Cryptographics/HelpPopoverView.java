@@ -2,12 +2,27 @@ package edu.kit.iks.Cryptographics;
 
 import javax.swing.JLabel;
 
+/**
+ * Objects of this class represent the popover when
+ * the user clicks on the help button
+ * 
+ * @author Christian Dreher
+ */
 public class HelpPopoverView extends PopoverView {
-
-	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Serial Version UID
+	 */
+	private static final long serialVersionUID = -8140547473696504022L;
+
+	/**
+	 * Text to be displayed
+	 */
 	private String helpText;
 	
+	/**
+	 * Label to actually display the text on the UI
+	 */
 	private JLabel helpTextLabel;
 	
 	/**
