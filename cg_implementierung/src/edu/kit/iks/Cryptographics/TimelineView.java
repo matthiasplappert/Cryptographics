@@ -15,26 +15,48 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
  */
 public class TimelineView extends JPanel {
 	
+	/**
+	 * List of all {VisualizationInfo}-objects containing the metadata 
+	 * to display on the timeline
+	 */
 	private List<AbstractVisualizationInfo> visualizationInfos;
 
+	/**
+	 * Buttons to open the popover of a specific procedure to eventually 
+	 * start their visualization
+	 */
 	private VisualizationButton[] buttons;
 	
+	/**
+	 * Gets the buttons symbolizing a procedure displayed on the timeline 
+	 * 
+	 * @return Array of all timeline-buttons
+	 */
 	public VisualizationButton[] getButtons() {
 		return buttons;
 	}
 	
+	/**
+	 * Constructor initializing a new instance of {TimelineView} with 
+	 * given {visualizationInfos}
+	 * 
+	 * @param visualizationInfos List of all {VisualizationInfo}-instances
+	 */
 	public TimelineView(List<AbstractVisualizationInfo> visualizationInfos) {
 		this.buttons = new VisualizationButton[visualizationInfos.size()];
 		AbstractVisualizationInfo tmpVI;
 		this.visualizationInfos = visualizationInfos;
 		this.add(new JLabel("TimeLine"));
-		int j=0;
-		for( Iterator<AbstractVisualizationInfo> i = visualizationInfos.iterator(); i.hasNext();) {
+		
+		int j = 0;
+		
+		for (Iterator<AbstractVisualizationInfo> i = visualizationInfos.iterator(); i.hasNext();) {
 			tmpVI = i.next();
 			this.buttons[j] = new VisualizationButton(tmpVI);
 			this.add(this.buttons[j]);
 			j++;
 		}
+		
 		this.validate();
 	}
 }
