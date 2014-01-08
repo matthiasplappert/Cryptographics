@@ -6,7 +6,7 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 /**
  * Objects of this class represent the popover when
- * the user clicks on a button in it
+ * the user clicks on a button in the timeline
  * 
  * @author Christian Dreher
  */
