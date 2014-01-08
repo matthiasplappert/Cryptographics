@@ -3,6 +3,9 @@ package edu.kit.iks.Cryptographics.DiffieHellman;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DHDemoFirstController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DHDemoSecondController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.DHExperimentFirstController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
@@ -41,9 +44,9 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 	public List<Class> getControllerClasses() {
 		List<Class> controllerClasses = new ArrayList<Class>();
 		
-//		controllerClasses.add(DemonstrationController.class);
-//		controllerClasses.add(ExperimentController.class);
-//		controllerClasses.add(InformationController.class);
+		controllerClasses.add(DHDemoFirstController.class);
+		controllerClasses.add(DHDemoSecondController.class);
+		controllerClasses.add(DHExperimentFirstController.class);
 		
 		return controllerClasses;
 	}
