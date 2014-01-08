@@ -23,7 +23,7 @@ public class PopoverView extends JPanel {
 		this.contentView = new JPanel();
 		this.add(this.contentView);
 		
-		// TODO: layout content and close button
+		this.validate();
 	}
 	
 	/**
