@@ -3,6 +3,9 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import edu.kit.iks.CryptographicsLib.UICharacterFrequencyDiagram;
+import edu.kit.iks.CryptographicsLib.VisualizationView;
+
 /**
  * This view represents the last view of the experiment phase. The elements
  * contained here allow the user to break a given caesar cipher and have the
@@ -14,7 +17,7 @@ import javax.swing.JLabel;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class HistogramView {
+public class HistogramView extends VisualizationView{
 
 	/**
 	 * 
@@ -46,13 +49,14 @@ public class HistogramView {
 	 * Label that will contain a histogram image that will be explained to the
 	 * user.
 	 */
-	private JLabel histogram;
+	private UICharacterFrequencyDiagram histogram;
 
 	/**
-	 * Buttons for navigating for- and backwards in the animation.
+	 * @return the histogram
 	 */
-	protected JButton nextBtn;
-	protected JButton backBtn;
+	public UICharacterFrequencyDiagram getHistogram() {
+		return histogram;
+	}
 
 	/**
 	 * Constructor.
@@ -72,36 +76,36 @@ public class HistogramView {
 		step3();
 		// stop.
 		step4();
-		//done.
+		// done.
 	}
 
 	/**
-	 * 
+	 * Explain why the Caesar cipher is not appropriate nowadays.
 	 */
 	private void step1() {
-		// Explain why the Caesar cipher is not appropriate nowadays.
+
 	}
 
 	/**
-	 * 
+	 * Explain what histograms are.
 	 */
 	private void step2() {
-		// Explain what histograms are.
+
 	}
 
 	/**
-	 * 
+	 * Explain how they are used and how to read from them.
 	 */
 	private void step3() {
-		// Explain how they are used and how to read from them.
+
 	}
 
 	/**
-	 * 
+	 * Explain how to decrypt big text that was ciphered with Caesar without a
+	 * key.
 	 */
 	private void step4() {
-		// Explain how to decrypt big text that was ciphered with Caesar without
-		// a key.
+
 	}
 
 	/**
@@ -169,19 +173,5 @@ public class HistogramView {
 	 */
 	public JButton getDecrement() {
 		return decrement;
-	}
-
-	/**
-	 * @return backBtn
-	 */
-	public JButton getBackBtn() {
-		return backBtn;
-	}
-
-	/**
-	 * @return nextBtn
-	 */
-	public JButton getNextBtn() {
-		return nextBtn;
 	}
 }
