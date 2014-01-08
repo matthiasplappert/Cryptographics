@@ -7,7 +7,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class FourthDemonstrationView extends JPanel{
+import edu.kit.iks.CryptographicsLib.VisualizationView;
+
+public class FourthDemonstrationView extends VisualizationView{
 	private static final long serialVersionUID = 6294968461280032987L;
 	
 	//ENCRYPTED CHARS WITH THEIR INDEXES
@@ -25,10 +27,6 @@ public class FourthDemonstrationView extends JPanel{
 	private JLabel charFirst;
 	private JLabel charSecond;
 	private JLabel charFinished;
-	
-	//Buttons to navigate
-	private JButton buttonNext;
-	private JButton buttonBack;
 	
 	public FourthDemonstrationView() {
        this.add(new JLabel("VIGENERE INTRODUCTION"));
