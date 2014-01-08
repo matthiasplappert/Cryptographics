@@ -21,7 +21,7 @@ public class StartController extends AbstractController {
 	/**
 	 * An instance of the popover view
 	 */
-	private PopoverView popoverView;
+	private TimelinePopoverView popoverView;
 
 	/**
 	 * An instance of the timeline view
@@ -122,7 +122,7 @@ public class StartController extends AbstractController {
 	 *            Information about the cipher.
 	 */
 	private void loadPopoverView(AbstractVisualizationInfo vsInfo) {
-		this.popoverView = new PopoverView(vsInfo);
+		this.popoverView = new TimelinePopoverView(vsInfo);
 		this.view.add(this.popoverView);
 		this.popoverView.validate();
 		// call needed to re-layout the new view. Else popoverView is not
