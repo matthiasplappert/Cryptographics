@@ -32,7 +32,7 @@ public class TimelineView extends JPanel {
 		for( Iterator<AbstractVisualizationInfo> i = visualizationInfos.iterator(); i.hasNext();) {
 			tmpVI = i.next();
 			this.buttons[j] = new VisualizationButton(tmpVI);
-			this.add(buttons[j]);
+			this.add(this.buttons[j]);
 			j++;
 		}
 		this.validate();
