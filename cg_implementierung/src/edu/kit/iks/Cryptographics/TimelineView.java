@@ -17,21 +17,21 @@ public class TimelineView extends JPanel {
 	
 	private List<AbstractVisualizationInfo> visualizationInfos;
 
-	private TimelineViewButton[] buttons;
+	private VisualizationButton[] buttons;
 	
-	public TimelineViewButton[] getButtons() {
+	public VisualizationButton[] getButtons() {
 		return buttons;
 	}
 	
 	public TimelineView(List<AbstractVisualizationInfo> visualizationInfos) {
-		this.buttons = new TimelineViewButton[visualizationInfos.size()];
+		this.buttons = new VisualizationButton[visualizationInfos.size()];
 		AbstractVisualizationInfo tmpVI;
 		this.visualizationInfos = visualizationInfos;
 		this.add(new JLabel("TimeLine"));
 		int j=0;
 		for( Iterator<AbstractVisualizationInfo> i = visualizationInfos.iterator(); i.hasNext();) {
 			tmpVI = i.next();
-			this.buttons[j] = new TimelineViewButton(tmpVI);
+			this.buttons[j] = new VisualizationButton(tmpVI);
 			this.add(buttons[j]);
 			j++;
 		}

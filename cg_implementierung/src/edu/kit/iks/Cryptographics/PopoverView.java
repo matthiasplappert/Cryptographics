@@ -20,7 +20,7 @@ public class PopoverView extends JPanel {
 	
 	private JLabel introduction;
 	
-	private JButton startButton;
+	private VisualizationButton startButton;
 	
 	private JButton closeButton;
 	
@@ -29,13 +29,19 @@ public class PopoverView extends JPanel {
 	public PopoverView(AbstractVisualizationInfo vsInfo) {
 		visualizationInfo = vsInfo;
 		
-		procedureName = new JLabel(vsInfo.getName());
+		this.procedureName = new JLabel(vsInfo.getName());
 		
 		// TODO: map to human readable string
-		difficulty = new JLabel(vsInfo.getDifficulty().toString());
-		introduction = new JLabel(vsInfo.getDescription());
-		startButton = new JButton();
-		closeButton = new JButton();
+		this.difficulty = new JLabel(vsInfo.getDifficulty().toString());
+		this.introduction = new JLabel(vsInfo.getDescription());
+		this.startButton = new VisualizationButton(vsInfo);
+		this.closeButton = new JButton();
+		this.add(procedureName);
+		this.add(difficulty);
+		this.add(introduction);
+		this.add(startButton);
+		this.add(closeButton);
+		this.validate();
 	}
 	
 	public JButton getStartButton() {

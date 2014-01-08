@@ -4,10 +4,10 @@ import javax.swing.JButton;
 
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class TimelineViewButton extends JButton {
+public class VisualizationButton extends JButton {
 	private AbstractVisualizationInfo visualizationInfo;
 	
-	public TimelineViewButton(AbstractVisualizationInfo vInfo) {
+	public VisualizationButton(AbstractVisualizationInfo vInfo) {
 		visualizationInfo = vInfo;
 	}
 	
