@@ -28,7 +28,7 @@ public class PopoverView extends JPanel {
 	
 	public PopoverView(AbstractVisualizationInfo vsInfo) {
 		visualizationInfo = vsInfo;
-		
+		this.add(new JLabel("POPOVER"));
 		this.procedureName = new JLabel(vsInfo.getName());
 		
 		// TODO: map to human readable string
@@ -41,7 +41,6 @@ public class PopoverView extends JPanel {
 		this.add(introduction);
 		this.add(startButton);
 		this.add(closeButton);
-		this.validate();
 	}
 	
 	public JButton getStartButton() {
