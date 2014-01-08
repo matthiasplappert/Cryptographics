@@ -57,6 +57,38 @@ public class SecondController extends AbstractVisualizationController {
 
 			}
 		});
+		v.getNextButton().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent event) {
+				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+				containerController.presentStartController();
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 		
 		this.view = v;
 		this.view.add(new JLabel("Second"));

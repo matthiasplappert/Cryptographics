@@ -108,6 +108,7 @@ public class StartController extends AbstractController {
 		// TODO: Unload the view correctly.
 		this.view.remove(welcomeView);
 		this.view.remove(timelineView);
+		this.view.remove(popoverView);
 		this.view.validate();
 		this.popoverView = null;
 		this.welcomeView = null;

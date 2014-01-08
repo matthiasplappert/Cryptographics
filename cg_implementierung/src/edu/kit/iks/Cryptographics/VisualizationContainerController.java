@@ -219,4 +219,9 @@ public class VisualizationContainerController extends AbstractController {
 		this.visualizationControllers[index] = controller;
 		return controller;
 	}
+	
+	public void presentStartController() {
+		MainController mainController = (MainController)this.getParentController();
+		mainController.presentStartAction();
+	}
 }
