@@ -16,6 +16,11 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 public class TimelineView extends JPanel {
 	
 	/**
+	 * Serial Version UID
+	 */
+	private static final long serialVersionUID = -4974243564527826198L;
+
+	/**
 	 * List of all {VisualizationInfo}-objects containing the metadata 
 	 * to display on the timeline
 	 */

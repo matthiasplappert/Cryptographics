@@ -13,6 +13,11 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
  */
 public class PopoverView extends JPanel {
 
+	/**
+	 * Serial Version UID
+	 */
+	private static final long serialVersionUID = -5949014143695648861L;
+
 	private JLabel procedureName;
 
 	private JLabel difficulty;

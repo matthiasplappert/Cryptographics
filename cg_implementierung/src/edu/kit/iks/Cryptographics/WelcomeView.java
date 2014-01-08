@@ -10,6 +10,11 @@ import javax.swing.JPanel;
  */
 public class WelcomeView extends JPanel {
 	
+	/**
+	 * Serial Version UID
+	 */
+	private static final long serialVersionUID = -8871817760284013217L;
+
 	public WelcomeView() {
 		this.add(new JLabel("Welcome"));
 	}
