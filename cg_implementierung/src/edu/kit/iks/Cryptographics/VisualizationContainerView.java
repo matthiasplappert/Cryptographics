@@ -28,6 +28,9 @@ public class VisualizationContainerView extends JPanel {
 	 */
 	private JButton helpButton;
 	
+	/**
+	 * Constructor initializing a new instance of {VisualizationContainerView}
+	 */
 	public VisualizationContainerView() {
 		this.add(new JLabel("CONTAINER"));
 		this.validate();
