@@ -97,8 +97,7 @@ public class StartController extends AbstractController {
 			});
 
 		}
-		this.view.validate();
-
+		this.view.revalidate();
 	}
 
 	/**
@@ -119,12 +118,15 @@ public class StartController extends AbstractController {
 	 * Loads the view for the popover which gives the user all needed
 	 * informations about the cipher he clicked.
 	 * 
-	 * @param vsInfo Information about the cipher.
+	 * @param vsInfo
+	 *            Information about the cipher.
 	 */
 	private void loadPopoverView(AbstractVisualizationInfo vsInfo) {
 		this.popoverView = new PopoverView(vsInfo);
 		this.view.add(this.popoverView);
 		this.popoverView.validate();
+		// call needed to re-layout the new view. Else popoverView is not
+		// visible.
 		this.view.revalidate();
 	}
 
@@ -136,65 +138,65 @@ public class StartController extends AbstractController {
 	 *            display
 	 */
 	public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo) {
+
 		loadPopoverView(visualizationInfo);
-		// TODO: assign action listener to popover view for start button
-		/*
-		 * this.popoverView.getStartButton().addMouseListener(new
-		 * MouseListener() {
-		 * 
-		 * @Override public void mouseClicked(MouseEvent event) { // TODO: get
-		 * visualizationInfo from actionevent and call VisualizationButton start
-		 * = (VisualizationButton) event .getSource();
-		 * startVisualizationAction(start.getVisualizationInfo()); }
-		 * 
-		 * @Override public void mousePressed(MouseEvent e) { // TODO
-		 * Auto-generated method stub
-		 * 
-		 * }
-		 * 
-		 * @Override public void mouseReleased(MouseEvent e) { // TODO
-		 * Auto-generated method stub
-		 * 
-		 * }
-		 * 
-		 * @Override public void mouseEntered(MouseEvent e) { // TODO
-		 * Auto-generated method stub
-		 * 
-		 * }
-		 * 
-		 * @Override public void mouseExited(MouseEvent e) { // TODO
-		 * Auto-generated method stub
-		 * 
-		 * }
-		 * 
-		 * }); this.popoverView.getCloseButton().addMouseListener(new
-		 * MouseListener() {
-		 * 
-		 * @Override public void mouseReleased(MouseEvent e) { // TODO
-		 * Auto-generated method stub
-		 * 
-		 * }
-		 * 
-		 * @Override public void mousePressed(MouseEvent e) { // TODO
-		 * Auto-generated method stub
-		 * 
-		 * }
-		 * 
-		 * @Override public void mouseExited(MouseEvent e) { // TODO
-		 * Auto-generated method stub
-		 * 
-		 * }
-		 * 
-		 * @Override public void mouseEntered(MouseEvent e) { // TODO
-		 * Auto-generated method stub
-		 * 
-		 * }
-		 * 
-		 * @Override public void mouseClicked(MouseEvent e) { // TODO
-		 * Auto-generated method stub
-		 * 
-		 * } });
-		 */
+		this.popoverView.getStartButton().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent event) {
+				// TODO: getvisualizationInfo from actionevent and call
+				// VisualizationButton start = (VisualizationButton) event
+				// .getSource();
+				// startVisualizationAction(start.getVisualizationInfo());
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+
+			}
+
+		});
+		this.popoverView.getCloseButton().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+			}
+		});
 		// TODO: get visualizationInfo from actionevent and call
 		// this.startVisualizationAction(visualizationInfo);
 

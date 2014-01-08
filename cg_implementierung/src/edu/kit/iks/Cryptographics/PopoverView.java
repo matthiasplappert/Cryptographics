@@ -12,25 +12,29 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
  * @author Christian Dreher
  */
 public class PopoverView extends JPanel {
-	
-	// TODO: add Label or Button
+
 	private JLabel procedureName;
-	
+
 	private JLabel difficulty;
-	
+
 	private JLabel introduction;
-	
+
 	private VisualizationButton startButton;
-	
+
 	private JButton closeButton;
-	
+
 	private AbstractVisualizationInfo visualizationInfo;
-	
+
+	/**
+	 * Constructor for the View of the Popover.
+	 * 
+	 * @param vsInfo
+	 *            Informations about a cipher.
+	 */
 	public PopoverView(AbstractVisualizationInfo vsInfo) {
 		visualizationInfo = vsInfo;
-		this.add(new JLabel("POPOVER"));
 		this.procedureName = new JLabel(vsInfo.getName());
-		
+
 		// TODO: map to human readable string
 		this.difficulty = new JLabel(vsInfo.getDifficulty().toString());
 		this.introduction = new JLabel(vsInfo.getDescription());
@@ -42,12 +46,23 @@ public class PopoverView extends JPanel {
 		this.add(startButton);
 		this.add(closeButton);
 	}
-	
-	public JButton getStartButton() {
+
+	/**
+	 * Returns the StartButton.
+	 * 
+	 * @return the startButton button to return.
+	 */
+	public VisualizationButton getStartButton() {
 		return startButton;
 	}
-	
+
+	/**
+	 * Returns the CloseButton.
+	 * 
+	 * @return the closeButton button to return.
+	 */
 	public JButton getCloseButton() {
 		return closeButton;
 	}
+
 }
