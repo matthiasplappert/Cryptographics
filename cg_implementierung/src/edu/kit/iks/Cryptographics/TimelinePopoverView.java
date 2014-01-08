@@ -8,14 +8,29 @@ public class TimelinePopoverView extends PopoverView {
 	
 	private static final long serialVersionUID = 1L;
 	
+	/**
+     * {VisualizationInfo}-object holding metadata of the current visualization
+     */
 	private AbstractVisualizationInfo visualizationInfo;
 	
+	/**
+     * Label to display the name of the current visualization
+     */
 	private JLabel nameLabel;
 
+	/**
+     * Label to display the current difficulty
+     */
 	private JLabel difficultyLabel;
 
+	/**
+     * Label to display a description
+     */
 	private JLabel descriptionLabel;
 
+	/**
+     * Button to start the currently displayed visualization
+     */
 	private VisualizationButton startButton;
 	
 	/**

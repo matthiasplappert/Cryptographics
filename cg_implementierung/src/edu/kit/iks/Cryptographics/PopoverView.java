@@ -9,9 +9,14 @@ import javax.swing.JPanel;
  * @author Christian Dreher
  */
 public class PopoverView extends JPanel {
-	
-	private static final long serialVersionUID = 1L;
+	/**
+	 * Serial Version UID
+	 */
+	private static final long serialVersionUID = -5949014143695648861L;
 
+	/**
+	 * Button to close the popover
+	 */
 	private JButton closeButton;
 	
 	private JPanel contentView;

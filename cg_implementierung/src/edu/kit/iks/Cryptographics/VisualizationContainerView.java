@@ -13,6 +13,11 @@ import javax.swing.JPanel;
 public class VisualizationContainerView extends JPanel {
 	
 	/**
+	 * Serial Version UID
+	 */
+	private static final long serialVersionUID = 2802070691102616667L;
+
+	/**
 	 * Name of the current visualization
 	 */
 	private JLabel nameLabel;
@@ -28,6 +33,9 @@ public class VisualizationContainerView extends JPanel {
 	 */
 	private JButton helpButton;
 	
+	/**
+	 * Constructor initializing a new instance of {VisualizationContainerView}
+	 */
 	public VisualizationContainerView() {
 		this.add(new JLabel("CONTAINER"));
 		this.validate();
