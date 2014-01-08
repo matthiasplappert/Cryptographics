@@ -144,10 +144,8 @@ public class StartController extends AbstractController {
 
 			@Override
 			public void mouseClicked(MouseEvent event) {
-				// TODO: getvisualizationInfo from actionevent and call
-				// VisualizationButton start = (VisualizationButton) event
-				// .getSource();
-				// startVisualizationAction(start.getVisualizationInfo());
+				VisualizationButton startButton = (VisualizationButton)event.getSource();
+				startVisualizationAction(startButton.getVisualizationInfo());
 			}
 
 			@Override
