@@ -77,6 +77,7 @@ public class VisualizationContainerController extends AbstractController {
 	@Override
 	public void loadView() {
 		this.view = new VisualizationContainerView();
+		this.view.validate();
 		
 		// TODO: action listener for helpButton
 		// TODO: dispatch call to currentVisualizationController.getHelp()
@@ -145,6 +146,7 @@ public class VisualizationContainerController extends AbstractController {
 		// Load new view
 		newController.loadView();
 		this.getView().add(newController.getView());
+		this.getView().revalidate();
 	}
 
 	/**
@@ -216,5 +218,10 @@ public class VisualizationContainerController extends AbstractController {
 		
 		this.visualizationControllers[index] = controller;
 		return controller;
+	}
+	
+	public void presentStartController() {
+		MainController mainController = (MainController)this.getParentController();
+		mainController.presentStartAction();
 	}
 }
