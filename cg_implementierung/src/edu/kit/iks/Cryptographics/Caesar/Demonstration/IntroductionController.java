@@ -3,8 +3,11 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComponent;
+
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 /**
  * This class is the controller of the view CFirstView.
@@ -23,10 +26,20 @@ public class IntroductionController extends AbstractVisualizationController {
 	/**
 	 * @param visualizationInfo
 	 */
-	public IntroductionController(CaesarVisualizationInfo visualizationInfo) {
+	public IntroductionController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 
+	/**
+	 * Gets the view
+	 * 
+	 * @return The view of this controller
+	 */
+	@Override
+	public JComponent getView() {
+		return this.view;
+	}
+	
 	@Override
 	public String getHelp() {
 		// TODO Auto-generated method stub
@@ -54,6 +67,7 @@ public class IntroductionController extends AbstractVisualizationController {
 				// step forward.
 			}
 		});
-		
+		this.view.validate();
 	}
+	
 }

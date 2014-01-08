@@ -29,7 +29,7 @@ public class PopoverView extends JPanel {
 	 * Constructor initializing a new instance of {PopoverView}
 	 */
 	public PopoverView() {
-		this.closeButton = new JButton();
+		this.closeButton = new JButton("Close");
 		this.add(this.closeButton);
 		
 		this.contentView = new JPanel();

@@ -1,5 +1,7 @@
 package edu.kit.iks.Cryptographics;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -22,13 +24,13 @@ public class VisualizationContainerController extends AbstractController {
 	private int currentVisualizationControllerIndex;
 
 	/**
-	 * List of all visualizationControllers. Behaves like a cache and
-	 * will be filled on demand
+	 * List of all visualizationControllers. Behaves like a cache and will be
+	 * filled on demand
 	 */
 	private AbstractVisualizationController[] visualizationControllers;
 
 	/**
-	 * {VisualizationInfo}-object holding metadata of the procuedure 
+	 * {VisualizationInfo}-object holding metadata of the procuedure
 	 */
 	private AbstractVisualizationInfo visualizationInfo;
 
@@ -36,9 +38,9 @@ public class VisualizationContainerController extends AbstractController {
 	 * Container to display the actual visualization of a procedure
 	 */
 	private VisualizationContainerView view;
-	
+
 	/**
-	 * List of all child classes 
+	 * List of all child classes
 	 */
 	List<Class> childClasses;
 
@@ -53,8 +55,7 @@ public class VisualizationContainerController extends AbstractController {
 	public VisualizationContainerController(
 			AbstractVisualizationInfo visualizationInfo) {
 		this.visualizationInfo = visualizationInfo;
-		this.childClasses = this.visualizationInfo
-				.getControllerClasses();
+		this.childClasses = this.visualizationInfo.getControllerClasses();
 
 		// Create an array that can hold all visualization controllers.
 		// The controller's will be instantiated on demand (lazily).
@@ -77,16 +78,81 @@ public class VisualizationContainerController extends AbstractController {
 	@Override
 	public void loadView() {
 		this.view = new VisualizationContainerView();
-		this.view.validate();
 		
-		// TODO: action listener for helpButton
+		this.view.getHelpButton().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
+		this.view.getExitButton().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainController mainController = (MainController) getParentController();
+				mainController.presentStartAction();
+			}
+		});
+
 		// TODO: dispatch call to currentVisualizationController.getHelp()
 		// TODO: present popover for help
-		
+
 		// TODO: action listener for exitButton
 		// TODO: in action listener do:
-		//       MainController mainController = (MainController)this.getParentController();
-		//       mainController.presentStartAction();
+		// MainController mainController =
+		// (MainController)this.getParentController();
+		// mainController.presentStartAction();
 	}
 
 	/**
@@ -94,10 +160,11 @@ public class VisualizationContainerController extends AbstractController {
 	 */
 	@Override
 	public void unloadView() {
-		// TODO: must this method be overridden to behave properly, or can the
-		// method of the parent class be used?
+	  this.view.removeAll();
+	  this.view.revalidate();
+	  this.view = null;
 	}
-	
+
 	/**
 	 * Gets the view
 	 */
@@ -105,11 +172,12 @@ public class VisualizationContainerController extends AbstractController {
 	public VisualizationContainerView getView() {
 		return this.view;
 	}
-	
+
 	/**
 	 * Shows a popover displaying given {helpText}
 	 * 
-	 * @param helpText String to be displayed
+	 * @param helpText
+	 *            String to be displayed
 	 */
 	public void presentHelpPopover(String helpText) {
 		// TODO: load popover
@@ -119,8 +187,9 @@ public class VisualizationContainerController extends AbstractController {
 	/**
 	 * Sets the current visualizationController with given index
 	 * 
-	 * @param index Index of the VisualizationController inside 
-	 * 		{visualizationControllers}-array
+	 * @param index
+	 *            Index of the VisualizationController inside
+	 *            {visualizationControllers}-array
 	 */
 	public void setCurrentVisualizationControllerIndex(int index) {
 		AbstractVisualizationController oldController = this
@@ -159,11 +228,11 @@ public class VisualizationContainerController extends AbstractController {
 	}
 
 	/**
-	 * Checks, whether this controller has a next {VisualizationController}
-	 * or not
+	 * Checks, whether this controller has a next {VisualizationController} or
+	 * not
 	 * 
 	 * @return {true}, if this controller has a next {VisualizationController},
-	 * 		{false} if not
+	 *         {false} if not
 	 */
 	public boolean hasNextVisualizationController() {
 		return (this.currentVisualizationControllerIndex < childClasses.size() - 1);
@@ -180,8 +249,8 @@ public class VisualizationContainerController extends AbstractController {
 	 * Checks, whether this controller has a previous {VisualizationController}
 	 * or not
 	 * 
-	 * @return {true}, if this controller has a previous {VisualizationController},
-	 * 		{false} if not
+	 * @return {true}, if this controller has a previous
+	 *         {VisualizationController}, {false} if not
 	 */
 	public boolean hasPreviousVisualizationController() {
 		return (this.currentVisualizationControllerIndex > 1);
@@ -197,31 +266,37 @@ public class VisualizationContainerController extends AbstractController {
 	/**
 	 * Loads the {VisualizationController} with given {index}
 	 * 
-	 * @param index Index of the {VisualizationController} inside 
-	 * 		{visualizationControllers}-array
+	 * @param index
+	 *            Index of the {VisualizationController} inside
+	 *            {visualizationControllers}-array
 	 * @return The just loaded {VisualizationController}
 	 */
-	private AbstractVisualizationController loadVisualizationController(int index) {
+	private AbstractVisualizationController loadVisualizationController(
+			int index) {
 		Constructor<AbstractVisualizationController> controllerConstructor = null;
-		Class<AbstractVisualizationController> controllerClass = childClasses.get(index);
+		Class<AbstractVisualizationController> controllerClass = childClasses
+				.get(index);
 		AbstractVisualizationController controller = null;
-		
+
 		try {
 			// visualizationinfo is now passed to the contructor.
-			controllerConstructor = controllerClass.getConstructor(AbstractVisualizationInfo.class);
-	        controller = controllerConstructor.newInstance(this.visualizationInfo);	
+			controllerConstructor = controllerClass
+					.getConstructor(AbstractVisualizationInfo.class);
+			controller = controllerConstructor
+					.newInstance(this.visualizationInfo);
 		} catch (InstantiationException | IllegalAccessException
 				| NoSuchMethodException | SecurityException
 				| IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
-		
+
 		this.visualizationControllers[index] = controller;
 		return controller;
 	}
-	
+
 	public void presentStartController() {
-		MainController mainController = (MainController)this.getParentController();
+		MainController mainController = (MainController) this
+				.getParentController();
 		mainController.presentStartAction();
 	}
 }

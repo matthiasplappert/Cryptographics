@@ -17,7 +17,7 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class IntroductionView extends VisualizationView{
+public class IntroductionView extends VisualizationView {
 
 	/**
 	 * Labels that will contain img for animation.
@@ -27,7 +27,9 @@ public class IntroductionView extends VisualizationView{
 	private JLabel interceptor;
 
 	public IntroductionView() {
-       this.add(new JLabel("CAESAR INTRODUCTION"));
+		super();
+		this.add(new JLabel("CAESAR INTRODUCTION"));
+		this.validate();
 	}
 
 	/**
@@ -40,41 +42,41 @@ public class IntroductionView extends VisualizationView{
 		// perform second animation and show explanations.
 		step2();
 		// stop.
-		//...
+		// ...
 		step3();
-		//stop.
+		// stop.
 		// perform last animation and show explanations.
 		step4();
-		//done.
-		
+		// done.
+
 	}
 
 	/**
 	 * Caesar makes up a big plan and sends his orders by his messenger.
 	 */
 	private void step1() {
-	
+
 	}
 
 	/**
-	 *  Caesar's orders gets intercepted.
+	 * Caesar's orders gets intercepted.
 	 */
 	private void step2() {
-		
+
 	}
 
 	/**
 	 * Enemy reads his orders and Caesar's big plan is crossed.
 	 */
 	private void step3() {
-		
+
 	}
 
 	/**
 	 * Caesar is very sad.
 	 */
 	private void step4() {
-		
+
 	}
 
 	/**

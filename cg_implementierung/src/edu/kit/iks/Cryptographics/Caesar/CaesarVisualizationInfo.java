@@ -3,10 +3,10 @@ package edu.kit.iks.Cryptographics.Caesar;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.kit.iks.Cryptographics.Caesar.Demonstration.IntroductionController;
 import edu.kit.iks.Cryptographics.Caesar.Demonstration.CipherDemoController;
-import edu.kit.iks.Cryptographics.Caesar.Experiment.HistrogramController;
+import edu.kit.iks.Cryptographics.Caesar.Demonstration.IntroductionController;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoController;
+import edu.kit.iks.Cryptographics.Caesar.Experiment.HistrogramController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
@@ -16,7 +16,7 @@ import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
  *
  */
 public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
-	
+
 	/* 
 	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getId()
 	 */
@@ -35,10 +35,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getDescription()
 	 */
 	public String getDescription() {
-		return "Get to know how Ceasar fooled his enemys that " +
-				"intercepted his orders and see one of the oldest " +
-				"attempts to make confidential material unreadable " +
-				"for undesireable readers";
+		return null;
 	}
 
 	/* 
@@ -87,4 +84,5 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 }
