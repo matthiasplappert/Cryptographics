@@ -8,5 +8,9 @@ public class DHDemoSecondView extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 6243104730541136349L;
+	
+	public DHDemoSecondView() {
+		super();
+	}
 
 }
