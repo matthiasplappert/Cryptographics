@@ -9,6 +9,7 @@ public class VisualizationButton extends JButton {
 	
 	public VisualizationButton(AbstractVisualizationInfo vInfo) {
 		visualizationInfo = vInfo;
+		this.setText(visualizationInfo.getName());
 	}
 	
 	public AbstractVisualizationInfo getVisualizationInfo() {
