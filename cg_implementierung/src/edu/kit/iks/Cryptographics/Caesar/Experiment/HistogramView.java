@@ -72,36 +72,36 @@ public class HistogramView {
 		step3();
 		// stop.
 		step4();
-		//done.
+		// done.
 	}
 
 	/**
-	 * 
+	 * Explain why the Caesar cipher is not appropriate nowadays.
 	 */
 	private void step1() {
-		// Explain why the Caesar cipher is not appropriate nowadays.
+
 	}
 
 	/**
-	 * 
+	 * Explain what histograms are.
 	 */
 	private void step2() {
-		// Explain what histograms are.
+
 	}
 
 	/**
-	 * 
+	 * Explain how they are used and how to read from them.
 	 */
 	private void step3() {
-		// Explain how they are used and how to read from them.
+
 	}
 
 	/**
-	 * 
+	 * Explain how to decrypt big text that was ciphered with Caesar without a
+	 * key.
 	 */
 	private void step4() {
-		// Explain how to decrypt big text that was ciphered with Caesar without
-		// a key.
+
 	}
 
 	/**

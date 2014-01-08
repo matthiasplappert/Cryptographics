@@ -1,6 +1,6 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
-import edu.kit.iks.Cryptographics.Caesar.AbstractView;
+import edu.kit.iks.Cryptographics.Caesar.CaesarCipherView;
 
 /**
  * Performs animations for demonstrating Caesar's idea.
@@ -8,7 +8,7 @@ import edu.kit.iks.Cryptographics.Caesar.AbstractView;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CipherDemoView extends AbstractView {
+public class CipherDemoView extends CaesarCipherView {
 
 	/**
 	 * Constructor.

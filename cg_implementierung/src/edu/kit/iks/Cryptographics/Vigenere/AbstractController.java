@@ -3,11 +3,11 @@ package edu.kit.iks.Cryptographics.Vigenere;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import edu.kit.iks.Cryptographics.Caesar.AbstractView;
+import edu.kit.iks.Cryptographics.Caesar.CaesarCipherView;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 
 abstract public class AbstractController extends AbstractVisualizationController {
-	protected AbstractView view;
+	protected CaesarCipherView view;
 
 	/**
 	 * @param visualizationInfo
@@ -24,7 +24,7 @@ abstract public class AbstractController extends AbstractVisualizationController
 
 	@Override
 	public void loadView() {
-		this.view = new AbstractView();
+		this.view = new CaesarCipherView();
 		this.view.getBackButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt

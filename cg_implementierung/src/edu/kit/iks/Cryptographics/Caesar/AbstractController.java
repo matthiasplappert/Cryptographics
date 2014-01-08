@@ -14,7 +14,7 @@ abstract public class AbstractController extends AbstractVisualizationController
 	 * Contains all elements of the gui for the demonstration of caesar's
 	 * problem.
 	 */
-	protected AbstractView view;
+	protected CaesarCipherView view;
 
 	/**
 	 * @param visualizationInfo
@@ -31,7 +31,7 @@ abstract public class AbstractController extends AbstractVisualizationController
 
 	@Override
 	public void loadView() {
-		this.view = new AbstractView();
+		this.view = new CaesarCipherView();
 		this.view.getBackButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt

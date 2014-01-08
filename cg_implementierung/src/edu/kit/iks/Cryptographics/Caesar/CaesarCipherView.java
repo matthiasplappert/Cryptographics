@@ -31,7 +31,7 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class AbstractView extends VisualizationView {
+public class CaesarCipherView extends VisualizationView {
 
 	/**
 	 * Dies Das ananas.
@@ -71,7 +71,7 @@ public class AbstractView extends VisualizationView {
 	/**
 	 * Constructor.
 	 */
-	public AbstractView() {
+	public CaesarCipherView() {
 
 	}
 
