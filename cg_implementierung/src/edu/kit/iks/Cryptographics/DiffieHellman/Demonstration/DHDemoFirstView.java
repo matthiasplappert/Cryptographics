@@ -1,8 +1,8 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
-import javax.swing.JPanel;
+import edu.kit.iks.CryptographicsLib.VisualizationView;
 
-public class DHDemoFirstView extends JPanel {
+public class DHDemoFirstView extends VisualizationView {
 
 
 	/**
