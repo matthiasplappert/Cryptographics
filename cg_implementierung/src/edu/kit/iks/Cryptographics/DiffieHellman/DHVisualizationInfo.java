@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
 public class DHVisualizationInfo extends AbstractVisualizationInfo {
@@ -42,9 +41,9 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 	public List<Class> getControllerClasses() {
 		List<Class> controllerClasses = new ArrayList<Class>();
 		
-		controllerClasses.add(DemonstrationController.class);
-		controllerClasses.add(ExperimentController.class);
-		controllerClasses.add(InformationController.class);
+//		controllerClasses.add(DemonstrationController.class);
+//		controllerClasses.add(ExperimentController.class);
+//		controllerClasses.add(InformationController.class);
 		
 		return controllerClasses;
 	}
