@@ -4,6 +4,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import edu.kit.iks.CryptographicsLib.VisualizationView;
+
 /**
  * This is the first view the user gets presented when he requests the
  * visualization of Caesar's cipher. Here the user gets to know what problems
@@ -15,11 +17,7 @@ import javax.swing.JPanel;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class IntroductionView extends JPanel{
-	
-	
-
-	private static final long serialVersionUID = 1L;
+public class IntroductionView extends VisualizationView{
 
 	/**
 	 * Labels that will contain img for animation.
@@ -27,12 +25,6 @@ public class IntroductionView extends JPanel{
 	private JLabel caesar;
 	private JLabel cipher;
 	private JLabel interceptor;
-
-	/**
-	 * Buttons for navigating for- and backwards in the animation.
-	 */
-	protected JButton nextBtn;
-	protected JButton backBtn;
 
 	public IntroductionView() {
        this.add(new JLabel("CAESAR INTRODUCTION"));
@@ -57,34 +49,32 @@ public class IntroductionView extends JPanel{
 		
 	}
 
+	/**
+	 * Caesar makes up a big plan and sends his orders by his messenger.
+	 */
 	private void step1() {
-		// Caesar makes up a big plan and sends his orders by his messenger.
+	
 	}
 
+	/**
+	 *  Caesar's orders gets intercepted.
+	 */
 	private void step2() {
-		// Caesar's orders gets intercepted.
+		
 	}
 
+	/**
+	 * Enemy reads his orders and Caesar's big plan is crossed.
+	 */
 	private void step3() {
-		// Enemy reads his orders and Caesar's big plan is crossed.
+		
 	}
 
+	/**
+	 * Caesar is very sad.
+	 */
 	private void step4() {
-		// Caesar is very sad.
-	}
-
-	/**
-	 * @return backBtn
-	 */
-	public JButton getBackBtn() {
-		return backBtn;
-	}
-
-	/**
-	 * @return nextBtn
-	 */
-	public JButton getNextBtn() {
-		return nextBtn;
+		
 	}
 
 	/**

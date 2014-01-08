@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import edu.kit.iks.Cryptographics.Caesar.AbstractController;
+import edu.kit.iks.Cryptographics.Caesar.GeneralCryptoController;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 
 /**
@@ -16,7 +16,7 @@ import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CryptoController extends AbstractController {
+public class CryptoController extends GeneralCryptoController {
 
 	/** Constructor.
 	 * @param visualizationInfo
@@ -33,50 +33,8 @@ public class CryptoController extends AbstractController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
 			}
-
 		});
-		// TODO: Too dirty, searching for a smarter solution..
-		/**
-		 * Initializes the action listener of the Labels that represent the
-		 * alpabet. So the user can interact with them.
-		 */
-		for (int i = 0; i < 26; i++) {
-			this.view.getAlphabet()[i].addMouseListener(new MouseListener() {
-
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
-
-				}
-
-			});
-		}
 	}
 
 }

@@ -1,9 +1,10 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import edu.kit.iks.Cryptographics.Caesar.AbstractController;
+import edu.kit.iks.Cryptographics.Caesar.GeneralCryptoController;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 
 /**
@@ -13,15 +14,14 @@ import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CipherDemoController extends AbstractController {
+public class CipherDemoController extends GeneralCryptoController {
 
 	/**
 	 * @param visualizationInfo
 	 */
 	public CipherDemoController(CaesarVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		
-		  this.view.getBackButton().addActionListener(new ActionListener() {
+	    this.view.getBackButton().addActionListener(new ActionListener() {
 				/*
 				 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 				 * .event.ActionEvent)
