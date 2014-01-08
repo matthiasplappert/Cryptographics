@@ -13,10 +13,6 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
  * 
  */
 public class IntroductionController extends AbstractVisualizationController {
-	/**
-	 * Contains all relevant informations about the cipher Caesar.
-	 */
-	private CaesarVisualizationInfo visualizationInfo;
 
 	/**
 	 * Contains all elements of the gui for the demonstration of caesar's
@@ -29,27 +25,6 @@ public class IntroductionController extends AbstractVisualizationController {
 	 */
 	public IntroductionController(CaesarVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		this.loadView();
-		this.visualizationInfo = visualizationInfo;
-		this.view = new IntroductionView();
-		this.view.getBackBtn().addActionListener(new ActionListener() {
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
-			 * .event.ActionEvent)
-			 */
-			public void actionPerformed(ActionEvent event) {
-				// step back
-			}
-		});
-		this.view.getNextBtn().addActionListener(new ActionListener() {
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
-			 * .event.ActionEvent)
-			 */
-			public void actionPerformed(ActionEvent event) {
-				// step forward.
-			}
-		});
 	}
 
 	@Override
@@ -61,6 +36,24 @@ public class IntroductionController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 	    this.view = new IntroductionView();
+	    this.view.getBackButton().addActionListener(new ActionListener() {
+			/*
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
+			 * .event.ActionEvent)
+			 */
+			public void actionPerformed(ActionEvent event) {
+				// step back
+			}
+		});
+		this.view.getNextButton().addActionListener(new ActionListener() {
+			/*
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
+			 * .event.ActionEvent)
+			 */
+			public void actionPerformed(ActionEvent event) {
+				// step forward.
+			}
+		});
 		
 	}
 }

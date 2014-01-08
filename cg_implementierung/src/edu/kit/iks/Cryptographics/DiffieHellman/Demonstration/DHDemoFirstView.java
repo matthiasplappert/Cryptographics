@@ -1,8 +1,9 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
-import javax.swing.JPanel;
+import edu.kit.iks.CryptographicsLib.VisualizationView;
 
-public class DHDemoFirstView extends JPanel {
+public class DHDemoFirstView extends VisualizationView {
+	
 
 
 	/**
@@ -11,7 +12,7 @@ public class DHDemoFirstView extends JPanel {
 	private static final long serialVersionUID = 5986978581223106407L;
 
 	public DHDemoFirstView() {
-		
+		super();
 	}
 
 }

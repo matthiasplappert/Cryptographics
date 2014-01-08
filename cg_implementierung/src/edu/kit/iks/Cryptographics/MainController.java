@@ -57,14 +57,19 @@ public class MainController extends AbstractController {
 	 */
 	public void presentStartAction() {
 		if (this.visualizationContainerController != null) {
+			this.view.remove(this.visualizationContainerController.getView());
 			this.visualizationContainerController.unloadView();
+			this.removeChildController(this.visualizationContainerController);
 		}
+		
 		this.startController = new StartController();
 		this.startController.loadView();
+		this.addChildController(this.startController);
 		this.view.add(this.startController.getView());
 
 		// Important to call validate, as some elements may
 		// be invisible otherwise
+		this.view.validate();
 		this.frame.validate();
 	}
 
@@ -78,15 +83,23 @@ public class MainController extends AbstractController {
 	public void presentVisualizationAction(
 			AbstractVisualizationInfo visualizationInfo) {
 		// TODO: figure out if we need to unload the view/controller
-		this.startController.unloadView();
+		if (this.startController != null) {
+			this.view.remove(this.startController.getView());
+			this.startController.unloadView();
+			this.removeChildController(this.startController);
+		}
 
-		//load VisualizationContainerController
-		VisualizationContainerController containerController = new VisualizationContainerController(
+		// load VisualizationContainerController
+		this.visualizationContainerController = new VisualizationContainerController(
 				visualizationInfo);
 		// load view
-		containerController.loadView();
-		// present view
-		containerController.setCurrentVisualizationControllerIndex(0);
+		this.visualizationContainerController.loadView();
+		this.addChildController(this.visualizationContainerController);
+		this.view.add(this.visualizationContainerController.getView());
+		this.visualizationContainerController.setCurrentVisualizationControllerIndex(0);
+		
+		this.view.revalidate();
+		this.frame.revalidate();
 	}
 
 	/**

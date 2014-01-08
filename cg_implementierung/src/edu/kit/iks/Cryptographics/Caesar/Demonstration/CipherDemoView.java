@@ -1,6 +1,7 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
-import edu.kit.iks.Cryptographics.Caesar.AbstractView;
+import edu.kit.iks.Cryptographics.Caesar.CryptoView;
+import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
  * Performs animations for demonstrating Caesar's idea.
@@ -8,7 +9,7 @@ import edu.kit.iks.Cryptographics.Caesar.AbstractView;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CipherDemoView extends AbstractView {
+public class CipherDemoView extends CryptoView {
 
 	/**
 	 * Constructor.
@@ -40,33 +41,31 @@ public class CipherDemoView extends AbstractView {
 	}
 
 	/**
-	 * 
+	 * Explain the elements on the screen. Only explanations are shown.
 	 */
 	private void step1() {
-		// Explain the elements on the screen.
-		// Only explanations are shown.
+
 	}
 
 	/**
-	 * 
+	 * Describe how each character is encrypted.
 	 */
 	private void step2() {
-		// Describe how each character is encrypted.
+
 	}
 
 	/**
-	 * 
+	 * Describe the general Caesar cipher. (The key can vary from 0-25.)
 	 */
 	private void step3() {
-		// Describe the general Caesar cipher.
-		// (The key can vary from 0-25.)
+
 	}
 
 	/**
-	 * 
+	 * Describe that decryption is the same way as encryption.
 	 */
 	private void step4() {
-		// Describe that decryption is the same way as encryption.
+
 	}
 
 }

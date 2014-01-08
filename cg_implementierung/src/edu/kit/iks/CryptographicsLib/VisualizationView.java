@@ -25,6 +25,15 @@ public class VisualizationView extends JPanel {
 	 */
 	private JButton backButton;
 	
+	public VisualizationView() {
+		nextButton = new JButton("Next");
+		this.add(nextButton);
+		
+		backButton = new JButton("Back");
+		this.add(backButton);
+		this.validate();
+	}
+	
 	/**
 	 * Gets the next button
 	 * 

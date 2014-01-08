@@ -1,11 +1,12 @@
-package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
+package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class DHDemoFirstController extends AbstractVisualizationController {
+public class DHExperimentSecondController extends AbstractVisualizationController {
 
-	public DHDemoFirstController(AbstractVisualizationInfo visualizationInfo) {
+	public DHExperimentSecondController(
+			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		// TODO Auto-generated constructor stub
 	}
@@ -18,8 +19,8 @@ public class DHDemoFirstController extends AbstractVisualizationController {
 
 	@Override
 	public void loadView() {
-		this.view = new DHDemoFirstView();
-
+		// TODO Auto-generated method stub
+		
 	}
 
 }

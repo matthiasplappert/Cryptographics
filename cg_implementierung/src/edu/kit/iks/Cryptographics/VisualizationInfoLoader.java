@@ -5,6 +5,7 @@ import java.util.List;
 
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.Cryptographics.DiffieHellman.DHVisualizationInfo;
+import edu.kit.iks.Cryptographics.Example.VisualizationInfo;
 import edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
@@ -34,6 +35,7 @@ public class VisualizationInfoLoader {
 		visualizationInfos.add(new CaesarVisualizationInfo());
 		visualizationInfos.add(new DHVisualizationInfo());
 		visualizationInfos.add(new VigenereVisualizationInfo());
+		visualizationInfos.add(new VisualizationInfo());
 		return visualizationInfos;
 	}
 }

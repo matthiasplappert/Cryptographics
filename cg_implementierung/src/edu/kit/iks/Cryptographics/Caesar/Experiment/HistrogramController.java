@@ -35,7 +35,7 @@ public class HistrogramController extends AbstractVisualizationController {
 		super(visualizationInfo);
 		this.visualizationInfo = visualizationInfo;
 		this.view = new HistogramView();
-		this.view.getBackBtn().addActionListener(new ActionListener() {
+		this.view.getBackButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)
@@ -44,7 +44,7 @@ public class HistrogramController extends AbstractVisualizationController {
 				// step back
 			}
 		});
-		this.view.getNextBtn().addActionListener(new ActionListener() {
+		this.view.getNextButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)

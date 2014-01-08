@@ -1,4 +1,4 @@
-package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
+package edu.kit.iks.Cryptographics.Vigenere.Experiment;
 
 import java.awt.Image;
 
@@ -9,16 +9,21 @@ import javax.swing.JTextField;
 
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
-public class FourthDemonstrationView extends VisualizationView{
+/*
+ * This class represents the view of the first experimentation step. In the first step the user
+ * chooses a string and a passphrase, then he is asked to do the encryption. When the encryption
+ * is succesfull, cryptographics will decrypt it.
+ */
+public class FirstExperimentView extends VisualizationView{
 	private static final long serialVersionUID = 6294968461280032987L;
+	
+	//PLAIN CHARS WITH THEIR INDEXES
+	private JLabel[] indexCharPlain;
+	private JTextField[] textCharPlan;
 	
 	//ENCRYPTED CHARS WITH THEIR INDEXES
 	private JLabel[] indexCharEncrypted;
 	private JTextField[] textCharEncrypted;
-	
-	//DECRYPTED CHARS WITH THEIR INDEXES
-	private JLabel[] indexCharDecrypted;
-	private JTextField[] textCharDecrypted;
 	
 	//Visulisation of the Key
 	private JLabel vigenereKeyDesc;
@@ -28,7 +33,7 @@ public class FourthDemonstrationView extends VisualizationView{
 	private JLabel charSecond;
 	private JLabel charFinished;
 	
-	public FourthDemonstrationView() {
-       this.add(new JLabel("VIGENERE INTRODUCTION"));
+	public FirstExperimentView() {
+       this.add(new JLabel("VIGENERE EXPERIMENT"));
 	}
 }

@@ -1,14 +1,13 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
-
 /**
- * TODO:!!!!!!!!!!!!!Temporary class. We'll see where to put it in. Not used at
- * the moment. !!!!!!!!!!
+ * Model of the last step of Caesar Introduction phase and the first two steps
+ * of the experiment.
  * 
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class EncryptingModel{
+public class CryptoModel {
 
 	/**
 	 * Indicates whether input from the user is needed or not.
@@ -18,10 +17,10 @@ public class EncryptingModel{
 	/**
 	 * Constructor.
 	 */
-	public EncryptingModel() {
+	public CryptoModel() {
 
 	}
-	
+
 	/**
 	 * Check if the character was encrypted valid.
 	 * 
