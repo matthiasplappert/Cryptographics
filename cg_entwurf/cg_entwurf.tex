@@ -61,10 +61,29 @@ Verfahren visualisieren und diese Visualisierung verwalten.
 \subsection{Klassendiagramm}
 
 \section{Klassenbeschreibung}
-\subsection{Übersicht}
-\subsection{Model}
-\subsection{View}
-\subsection{Controller}
+  \subsection{Paket edu.kit.iks.Cryptographics}
+    \subsubsection{Klasse MainController}
+      Der MainController erzeugt das Fenster und verwaltet Start- und VisualizationContainerController.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-MainController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractController
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public void presentStartAction() \newline
+        Läd den StartController und zeigt seine View an.
+      \end{itemize}
+
+\subsection{Paket edu.kit.iks.CryptographicsLib}
+\subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
+\subsection{Paket edu.kit.iks.Cryptographics.Caesar}
+\subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
 
 \section{Abläufe}
 
