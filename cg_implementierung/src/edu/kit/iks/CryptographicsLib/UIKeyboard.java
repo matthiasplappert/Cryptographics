@@ -5,6 +5,9 @@ import javax.swing.JPanel;
 /**
  * @author Matthias Jaenicke.
  * 
+ * A displayable keyboard for character input per mouse click or touchscreen.
+ * Contains only the basic 26 capital characters.
+ * Consists of UIKeyboardKey instances.
  */
 public class UIKeyboard extends JPanel{
 

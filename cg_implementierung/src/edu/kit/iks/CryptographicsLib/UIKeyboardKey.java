@@ -5,7 +5,8 @@ import javax.swing.JButton;
 /**
  * 
  * @author Matthias Jaenicke
- *
+ * 
+ * The single keys for UIKeyboard.
  */
 public class UIKeyboardKey extends JButton{
 
