@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 /**
  * @author Matthias Jaenicke.
  * 
+ * A horizontal strip of the numbers from 1 to 26.
+ * Used for UIAlphabetStrip.
  */
 public class UINumbersStrip extends JPanel{
 
@@ -22,7 +24,7 @@ private static JLabel[] strip;
 		
 		strip = new JLabel[26];
 
-		for (int i = 0; i < 26; i++) {
+		for (int i = 1; i < 27; i++) {
 			strip[i] = new JLabel(String.valueOf(i));
 			strip[i].setVerticalAlignment(JLabel.CENTER);
 			strip[i].setHorizontalAlignment(JLabel.CENTER);

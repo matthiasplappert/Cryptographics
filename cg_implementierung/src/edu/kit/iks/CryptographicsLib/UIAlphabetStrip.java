@@ -1,14 +1,16 @@
 package edu.kit.iks.CryptographicsLib;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SpringLayout;
 
 /**
  * @author Matthias Jaenicke.
  * 
+ * A horizontal strip of all letters from A to Z.
+ * Beneath it is matched by a corresponding strip of the numbers from 1 to 26.
  */
 public class UIAlphabetStrip extends JPanel {
 	private static JLabel[] strip;
@@ -16,7 +18,7 @@ public class UIAlphabetStrip extends JPanel {
 	public UIAlphabetStrip() {
 		
 		super();
-		FlowLayout layout = new FlowLayout();
+		SpringLayout layout = new SpringLayout();
 		this.setLayout(layout);
 		
 		strip = new JLabel[26];
