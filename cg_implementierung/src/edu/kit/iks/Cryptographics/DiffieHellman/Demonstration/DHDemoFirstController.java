@@ -18,7 +18,7 @@ public class DHDemoFirstController extends AbstractVisualizationController {
 
 	@Override
 	public void loadView() {
-		// TODO Auto-generated method stub
+		this.view = new DHDemoFirstView();
 
 	}
 
