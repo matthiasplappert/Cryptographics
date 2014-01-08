@@ -17,13 +17,19 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 public class VisualizationContainerController extends AbstractController {
 
 	/**
-	 * Active child controller. Overrides {_activeChildController} from
-	 * {AbstractController}
+	 * Index of the current {VisualizationController} in {childControllers}-list
 	 */
 	private int currentVisualizationControllerIndex;
 
+	/**
+	 * List of all visualizationControllers. Behaves like a cache and
+	 * will be filled on demand
+	 */
 	private AbstractVisualizationController[] visualizationControllers;
 
+	/**
+	 * {VisualizationInfo}-object holding metadata of the procuedure 
+	 */
 	private AbstractVisualizationInfo visualizationInfo;
 
 	/**
@@ -31,6 +37,9 @@ public class VisualizationContainerController extends AbstractController {
 	 */
 	private VisualizationContainerView view;
 	
+	/**
+	 * List of all child classes 
+	 */
 	List<Class> childClasses;
 
 	/**
@@ -62,6 +71,9 @@ public class VisualizationContainerController extends AbstractController {
 		return this.visualizationInfo;
 	}
 
+	/**
+	 * Loads the view
+	 */
 	@Override
 	public void loadView() {
 		this.view = new VisualizationContainerView();
@@ -76,16 +88,39 @@ public class VisualizationContainerController extends AbstractController {
 		//       mainController.presentStartAction();
 	}
 
+	/**
+	 * Unloads the view
+	 */
+	@Override
+	public void unloadView() {
+		// TODO: must this method be overridden to behave properly, or can the
+		// method of the parent class be used?
+	}
+	
+	/**
+	 * Gets the view
+	 */
 	@Override
 	public VisualizationContainerView getView() {
 		return this.view;
 	}
 	
+	/**
+	 * Shows a popover displaying given {helpText}
+	 * 
+	 * @param helpText String to be displayed
+	 */
 	public void presentHelpPopover(String helpText) {
 		// TODO: load popover
 		// TODO: present
 	}
 
+	/**
+	 * Sets the current visualizationController with given index
+	 * 
+	 * @param index Index of the VisualizationController inside 
+	 * 		{visualizationControllers}-array
+	 */
 	public void setCurrentVisualizationControllerIndex(int index) {
 		AbstractVisualizationController oldController = this
 				.getCurrentVisualizationController();
@@ -112,50 +147,73 @@ public class VisualizationContainerController extends AbstractController {
 		this.getView().add(newController.getView());
 	}
 
+	/**
+	 * Gets the current {VisualizationController}
+	 * 
+	 * @return Current {VisualizationController}
+	 */
 	public AbstractVisualizationController getCurrentVisualizationController() {
 		return this.visualizationControllers[this.currentVisualizationControllerIndex];
 	}
 
+	/**
+	 * Checks, whether this controller has a next {VisualizationController}
+	 * or not
+	 * 
+	 * @return {true}, if this controller has a next {VisualizationController},
+	 * 		{false} if not
+	 */
 	public boolean hasNextVisualizationController() {
 		return (this.currentVisualizationControllerIndex < childClasses.size() - 1);
 	}
 
+	/**
+	 * Presents the next {VisualizationController}
+	 */
 	public void presentNextVisualizationController() {
 		this.setCurrentVisualizationControllerIndex(this.currentVisualizationControllerIndex + 1);
 	}
 
+	/**
+	 * Checks, whether this controller has a previous {VisualizationController}
+	 * or not
+	 * 
+	 * @return {true}, if this controller has a previous {VisualizationController},
+	 * 		{false} if not
+	 */
 	public boolean hasPreviousVisualizationController() {
 		return (this.currentVisualizationControllerIndex > 1);
 	}
 
+	/**
+	 * Presents the previous {VisualizationController}
+	 */
 	public void presentPreviousVisualizationController() {
 		this.setCurrentVisualizationControllerIndex(this.currentVisualizationControllerIndex - 1);
 	}
 
+	/**
+	 * Loads the {VisualizationController} with given {index}
+	 * 
+	 * @param index Index of the {VisualizationController} inside 
+	 * 		{visualizationControllers}-array
+	 * @return The just loaded {VisualizationController}
+	 */
 	private AbstractVisualizationController loadVisualizationController(int index) {
 		Constructor<AbstractVisualizationController> controllerConstructor = null;
 		Class<AbstractVisualizationController> controllerClass = childClasses.get(index);
 		AbstractVisualizationController controller = null;
+		
 		try {
 			// visualizationinfo is now passed to the contructor.
 			controllerConstructor = controllerClass.getConstructor(AbstractVisualizationInfo.class);
 	        controller = controllerConstructor.newInstance(this.visualizationInfo);	
-		} catch (InstantiationException | IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
+		} catch (InstantiationException | IllegalAccessException
+				| NoSuchMethodException | SecurityException
+				| IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
+		
 		this.visualizationControllers[index] = controller;
 		return controller;
 	}
