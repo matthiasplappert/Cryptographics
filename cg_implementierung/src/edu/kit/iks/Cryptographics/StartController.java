@@ -2,6 +2,8 @@ package edu.kit.iks.Cryptographics;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -48,26 +50,54 @@ public class StartController extends AbstractController {
 	 */
 	@Override
 	public void loadView() {
-		this.view = new JPanel();		
-
-		//this.popoverView = new PopoverView();
-		//this.view.add(this.popoverView);
+		this.view = new JPanel();
 
 		this.welcomeView = new WelcomeView();
 		this.view.add(this.welcomeView);
 
 		this.timelineView = new TimelineView(visualizationInfos);
 		this.view.add(this.timelineView);
-		
-		// TODO: use MouseButtonClick listener
-		ActionListener listener = new ActionListener() {
-			public void actionPerformed(ActionEvent event) {
-				// TODO: check if getSource() is the right method
-				TimelineViewButton button = (TimelineViewButton)event.getSource();
-				presentPopoverAction(button.getVisualizationInfo());
-			}
-		};
-		// TODO: loop through all buttons and add action listener
+
+		for (VisualizationButton button : this.timelineView.getButtons()) {
+			button.addMouseListener(new MouseListener() {
+
+				@Override
+				public void mouseClicked(MouseEvent event) {
+					// TODO: check if getSource() is the right method
+					VisualizationButton button = (VisualizationButton) event
+							.getSource();
+					presentPopoverAction(button.getVisualizationInfo());
+
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+
+				}
+
+			});
+
+		}
+		this.view.revalidate();
 	}
 
 	/**
@@ -75,12 +105,29 @@ public class StartController extends AbstractController {
 	 */
 	@Override
 	public void unloadView() {
-	    this.view.remove(welcomeView);
-	    this.view.remove(timelineView);
-	    this.view.validate();
+		// TODO: Unload the view correctly.
+		this.view.remove(welcomeView);
+		this.view.remove(timelineView);
+		this.view.validate();
 		this.popoverView = null;
 		this.welcomeView = null;
 		this.view = null;
+	}
+
+	/**
+	 * Loads the view for the popover which gives the user all needed
+	 * informations about the cipher he clicked.
+	 * 
+	 * @param vsInfo
+	 *            Information about the cipher.
+	 */
+	private void loadPopoverView(AbstractVisualizationInfo vsInfo) {
+		this.popoverView = new PopoverView(vsInfo);
+		this.view.add(this.popoverView);
+		this.popoverView.validate();
+		// call needed to re-layout the new view. Else popoverView is not
+		// visible.
+		this.view.revalidate();
 	}
 
 	/**
@@ -91,12 +138,70 @@ public class StartController extends AbstractController {
 	 *            display
 	 */
 	public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo) {
-		// TODO: load PopoverView
-		// TODO: assign action listener to popover view for start button
+
+		loadPopoverView(visualizationInfo);
+		this.popoverView.getStartButton().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent event) {
+				// TODO: getvisualizationInfo from actionevent and call
+				// VisualizationButton start = (VisualizationButton) event
+				// .getSource();
+				// startVisualizationAction(start.getVisualizationInfo());
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+
+			}
+
+		});
+		this.popoverView.getCloseButton().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+			}
+		});
 		// TODO: get visualizationInfo from actionevent and call
-		//        this.startVisualizationAction(visualizationInfo);
-		
-		// TODO: assign action listener for close button that calls dismissPopoverAction()
+		// this.startVisualizationAction(visualizationInfo);
+
+		// TODO: assign action listener for close button that calls
+		// dismissPopoverAction()
 	}
 
 	/**
@@ -113,8 +218,10 @@ public class StartController extends AbstractController {
 	 *            Object of {VisualizationInfo} containing the data to
 	 *            instantiate related controllers from
 	 */
-	public void startVisualizationAction(AbstractVisualizationInfo visualizationInfo) {
-		MainController mainController = (MainController)this.getParentController();
+	public void startVisualizationAction(
+			AbstractVisualizationInfo visualizationInfo) {
+		MainController mainController = (MainController) this
+				.getParentController();
 		mainController.presentVisualizationAction(visualizationInfo);
 	}
 

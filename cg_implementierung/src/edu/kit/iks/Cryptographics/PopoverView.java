@@ -12,37 +12,57 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
  * @author Christian Dreher
  */
 public class PopoverView extends JPanel {
-	
-	// TODO: add Label or Button
+
 	private JLabel procedureName;
-	
+
 	private JLabel difficulty;
-	
+
 	private JLabel introduction;
-	
-	private JButton startButton;
-	
+
+	private VisualizationButton startButton;
+
 	private JButton closeButton;
-	
+
 	private AbstractVisualizationInfo visualizationInfo;
-	
+
+	/**
+	 * Constructor for the View of the Popover.
+	 * 
+	 * @param vsInfo
+	 *            Informations about a cipher.
+	 */
 	public PopoverView(AbstractVisualizationInfo vsInfo) {
 		visualizationInfo = vsInfo;
-		
-		procedureName = new JLabel(vsInfo.getName());
-		
+		this.procedureName = new JLabel(vsInfo.getName());
+
 		// TODO: map to human readable string
-		difficulty = new JLabel(vsInfo.getDifficulty().toString());
-		introduction = new JLabel(vsInfo.getDescription());
-		startButton = new JButton();
-		closeButton = new JButton();
+		this.difficulty = new JLabel(vsInfo.getDifficulty().toString());
+		this.introduction = new JLabel(vsInfo.getDescription());
+		this.startButton = new VisualizationButton(vsInfo);
+		this.closeButton = new JButton();
+		this.add(procedureName);
+		this.add(difficulty);
+		this.add(introduction);
+		this.add(startButton);
+		this.add(closeButton);
 	}
-	
-	public JButton getStartButton() {
+
+	/**
+	 * Returns the StartButton.
+	 * 
+	 * @return the startButton button to return.
+	 */
+	public VisualizationButton getStartButton() {
 		return startButton;
 	}
-	
+
+	/**
+	 * Returns the CloseButton.
+	 * 
+	 * @return the closeButton button to return.
+	 */
 	public JButton getCloseButton() {
 		return closeButton;
 	}
+
 }
