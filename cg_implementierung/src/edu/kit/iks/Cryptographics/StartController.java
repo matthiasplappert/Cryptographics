@@ -106,7 +106,7 @@ public class StartController extends AbstractController {
 	 */
 	@Override
 	public void unloadView() {
-		//TODO: Unload the view correctly.
+		// TODO: Unload the view correctly.
 		this.view.remove(welcomeView);
 		this.view.remove(timelineView);
 		this.view.validate();
@@ -115,8 +115,13 @@ public class StartController extends AbstractController {
 		this.view = null;
 	}
 
+	/**
+	 * Loads the view for the popover which gives the user all needed
+	 * informations about the cipher he clicked.
+	 * 
+	 * @param vsInfo Information about the cipher.
+	 */
 	private void loadPopoverView(AbstractVisualizationInfo vsInfo) {
-		// TODO: load PopoverView
 		this.popoverView = new PopoverView(vsInfo);
 		this.view.add(this.popoverView);
 		this.popoverView.validate();
