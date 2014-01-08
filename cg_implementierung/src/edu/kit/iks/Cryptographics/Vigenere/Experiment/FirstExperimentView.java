@@ -7,12 +7,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import edu.kit.iks.CryptographicsLib.VisualizationView;
+
 /*
  * This class represents the view of the first experimentation step. In the first step the user
  * chooses a string and a passphrase, then he is asked to do the encryption. When the encryption
  * is succesfull, cryptographics will decrypt it.
  */
-public class FirstExperimentView extends JPanel{
+public class FirstExperimentView extends VisualizationView{
 	private static final long serialVersionUID = 6294968461280032987L;
 	
 	//PLAIN CHARS WITH THEIR INDEXES
@@ -30,10 +32,6 @@ public class FirstExperimentView extends JPanel{
 	private JLabel charFirst;
 	private JLabel charSecond;
 	private JLabel charFinished;
-	
-	//Buttons to navigate
-	private JButton buttonNext;
-	private JButton buttonBack;
 	
 	public FirstExperimentView() {
        this.add(new JLabel("VIGENERE EXPERIMENT"));
