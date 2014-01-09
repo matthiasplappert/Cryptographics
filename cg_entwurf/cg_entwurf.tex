@@ -1097,7 +1097,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse ExplainKeyExchangeController}
-      Der dritte StateController für die Diffie-Hellman Analogie Demonstration.
+      Der dritte StateController für die Demonstration der Diffie-Hellman Analogie.
       Verwendet das Diffie-Hellman Model und die ExplainKeyExchangeView.
 
       \begin{figure}[H]
@@ -1120,13 +1120,13 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         Lädt die View zum zugehörigen Zustand.
       \end{itemize}
 
-\subsubsection{Klasse ExplainAimController}
-      Der erste StateController für die Diffie-Hellman Analogie Demonstration.
-      Verwendet das Diffie-Hellman Model und die ExplainAimView.
+\subsubsection{Klasse AliceChooseSecretController}
+      Der vierte StateController für die Demonstration der Diffie-Hellman Analogie.
+      Verwendet das Diffie-Hellman Model und die AliceChooseSecretView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainAimController}
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-AliceChooseSecretController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1136,13 +1136,14 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public ExplainAimController(AbstractVisualizationInfo visualizationInfo) \newline
+          \item public AliceChooseSecretController(AbstractVisualizationInfo visualizationInfo) \newline
               Holt sich sein DiffieHellman Model Singleton und instanziert seine View
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
         Lädt die View zum zugehörigen Zustand.
       \end{itemize}
+
 \subsubsection{Klasse ExplainAimController}
       Der erste StateController für die Diffie-Hellman Analogie Demonstration.
       Verwendet das Diffie-Hellman Model und die ExplainAimView.
