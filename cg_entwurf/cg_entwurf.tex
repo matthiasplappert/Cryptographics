@@ -604,6 +604,118 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 	% /CharacterFrequencyDiagramView
 	
+	% ImageView
+	\subsubsection{Klasse ImageView}
+	  Instanzen dieser Klasse erzeugen ein JPanel, das ein Bild darstellt, welches
+	  durch überschriebene Konstruktoren auf verschiedene Weisen initialisiert werden kann. 
+	
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-CryptographicsLib-ImageView}
+      \end{figure}
+	
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item javax.swing.JPanel
+      \end{itemize}
+	
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public ImageView(Image img) \newline
+          Konstruktor, der die Instanz anhand eines Image-Objekts initialisiert.
+        \item public ImageView(String filePath) \newline
+          Konstruktor, der die Instanz anhand eines Bilddateipfads initialisiert.
+        \item protected void paintComponent(Graphics g) \newline
+          Überschreibt javax.swing.JComponent\#paintComponent(java.awt.Graphics)
+      \end{itemize}
+      
+      \textbf{Getter}
+      \begin{itemize}
+		\item \textit{keine}
+      \end{itemize}
+      
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+	% /ImageView	
+	
+	% InformationController
+	\subsubsection{Klasse InformationController}
+	  Der InformationController ist ein von den Verfahren gemeinsam genutzter
+	  Controller um weiterführende Informationen anzuzeigen, wobei dieser Controller
+	  die für das Verfahren notwendige Informationsseite anhand der übergebenen VisualizationInfo
+	  selbst initialisiert.
+	
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-CryptographicsLib-InformationController}
+      \end{figure}
+	
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+	
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public InformationController(AbstractVisualizationInfo visualizationInfo) \newline
+          Konstruktor, der die Informationsseite anhand der übergebenen VisualizationInfo
+          selbstständig initialisiert.
+		\item public void loadView() \newline
+		  Überschreibt edu.kit.iks.CryptographicsLib.AbstractController\#loadView()
+		\item public String getHelp() \newline
+		  Überschreibt edu.kit.iks.CryptographicsLib.AbstractVisualizationController\#getHelp()
+		\item public InformationView getView() \newline
+		  Überschreibt edu.kit.iks.CryptographicsLib.AbstractController\#getView()
+      \end{itemize}
+      
+      \textbf{Getter}
+      \begin{itemize}
+		\item \textit{keine}
+      \end{itemize}
+      
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+	% /InformationController	
+	
+	% InformationView
+	\subsubsection{Klasse InformationView}
+	  Instanzen dieser Klasse stellen eine View für den InformationController dar.
+	  Zur Initialisierung benötigt diese Klasse das QR-Code-Bild zu den weiterführenden 
+	  Informationen, sowie den Pfad zur lokalen HTML-Datei mit Informationen zum
+	  aktuellen Verfahren.
+	
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-CryptographicsLib-InformationView}
+      \end{figure}
+	
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item javax.swing.JPanel
+      \end{itemize}
+	
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public InformationView(URL path, Image qrCode) \newline
+          Konstruktor, der die View mit dem QR-Code-Bild und der lokalen HTML-Datei füllt.
+      \end{itemize}
+      
+      \textbf{Getter}
+      \begin{itemize}
+		\item public URL getPath()
+		\item public Image getQrCode()
+      \end{itemize}
+      
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+	% /InformationView	
+	
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
     \subsubsection{Klasse AbstractController}
       Der AbstractController ist eine abstrakte Klasse, die die verschiedenen State-Controller im Vigenere-Paket nutzen.
@@ -743,6 +855,104 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item edu.kit.iks.CryptographicsLib.VisualizationView
       \end{itemize}
 
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Experiment}
+    \subsubsection{Klasse FirstExperimentController}
+      Der FirstExperimentController erstellt FirstExperimentView.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-MainController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractController
+      \end{itemize}
+
+    \subsubsection{Klasse FirstExperimentView}
+      Die FirstExperimentView zeigt den Selbstversuch wobei der Nutzer einen selbst gewählten Text mit einem selbstgewähltem Passwort verschlüsseln muss und dieser hinterher von Cryptographics entschlüsselt wird.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-MainController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+    \subsubsection{Klasse SecondExperimentController}
+      Der SecondExperimentController erstellt SecondExperimentView.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-MainController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractController
+      \end{itemize}
+
+    \subsubsection{Klasse SecondExperimentView}
+      Die SecondExperimentView zeigt den Selbstversuch wobei der Nutzer einen generierten Text mit einem generierten Passwort entschlüsseln muss.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-MainController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanatation}
+    \subsubsection{Klasse FirstExplanatationController}
+      Der FirstExplanatationController erstellt FirstExplanatationView.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-MainController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractController
+      \end{itemize}
+
+    \subsubsection{Klasse FirstExplanatationView}
+      Die FirstExperimentView zeigt die Schwachstellen und möglich Angriffspunkte von Vigenere.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-MainController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+    \subsubsection{Klasse SecondExplanatationController}
+      Der SecondExplanatationController erstellt SecondExplanatationView.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-MainController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractController
+      \end{itemize}
+
+    \subsubsection{Klasse SecondExplanatationView}
+      Die SecondExplanatationView zeigt den Selbstversuch wobei der Nutzer ein Histogramm generieren, die Schlüssellänge berechnen lassen kann und dann den Key finden muss.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-MainController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
 \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
 
 \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
@@ -797,6 +1007,38 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item public void setAlicePrivateColor(Color alicePrivateColor)
         \item public void setSharedColor(Color sharedColor)
         \item public void setBobPublicColor(Color bobPublicColor)
+      \end{itemize}
+
+\subsubsection{Klasse DHVisualizationInfo}
+      DHVisualizationInfo enthält alle wichtigen Informationen zu dem Verfahren, wie z.B. Verfahrensname/Beschreibung.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-DHVisualizationInfo}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public String getId() \newline
+        Gibt die Kennungs-ID aus.
+        \item public String getName() \newline
+        Gibt den Namen des Verfahrens aus.
+        \item public String getDescription() \newline
+        Gibt die Beschreibung des Verfahrens aus.
+        \item public String getQRCodeContent() \newline
+        Gibt den Inhalt des QRCodes aus.
+        \item public float getTimelineOffset() \newline
+        Gibt die relative Position in der Timeline aus.
+        \item public VisualizationDifficulty getDifficulty() \newline
+        Gibt den Schwierigkeitsgrad aus.
+        \item public int getYear() \newline
+        Gibt das Jahr aus, in welchem das Verfahren entwickelt wurde.
+        \item public List<Class> getControllerClasses() \newline
+        Gibt eine Liste von Controller-Klassen des Verfahrens aus, welche dann im Statecontroller geswitcht werden können.
       \end{itemize}
 
 \section{Abläufe}
