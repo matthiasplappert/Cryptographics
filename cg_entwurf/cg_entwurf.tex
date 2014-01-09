@@ -1320,7 +1320,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 \subsubsection{Klasse ExplainAimController}
       Der erste Controller für die Demonstration der Diffie-Hellman Analogie.
       Der ExplainAim Zustand, erklärt was wir eigentlich erreichen wollen,
-      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
+      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal auszutauschen.
       Verwendet das Diffie-Hellman Model und die ExplainAimView.
 
       \begin{figure}[H]
@@ -1344,7 +1344,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse ExplainAimView}
-      Die erste StateView für die Demonstration der Diffie-Hellman Analogie.
+      Die erste View für die Demonstration der Diffie-Hellman Analogie.
       Der ExplainAim Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
@@ -1367,7 +1367,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       Der zweite Controller für die Demonstration der Diffie-Hellman Analogie.
       Der OnewayController Zustand, erklärt wie wir dies durch Einwegfunktionen
       erreichen können. Dazu erklärt er an einer Analogie das Konzept
-      der Einwegfunktion.
+      einer Einwegfunktion.
       Verwendet das Diffie-Hellman Model und die OnewayView.
 
       \begin{figure}[H]
@@ -1391,9 +1391,10 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse OnewayView}
-      Die zweite StateView für die Demonstration der Diffie-Hellman Analogie.
-      Der Oneway Zustand, erklärt was wir eigentlich erreichen wollen,
-      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
+      Die zweite View für die Demonstration der Diffie-Hellman Analogie.
+      Der OnewayView Zustand, erklärt wie wir dies durch Einwegfunktionen
+      erreichen können. Dazu erklärt er an einer Analogie das Konzept
+      einer Einwegfunktion.
 
       \begin{figure}[H]
         \centering
@@ -1412,6 +1413,8 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
 \subsubsection{Klasse ExplainKeyExchangeController}
       Der dritte Controller für die Demonstration der Diffie-Hellman Analogie.
+      Zeigt, wie ein Lauscher das Geheimnis erhält, wenn man es
+      im Klartext versendet.
       Verwendet das Diffie-Hellman Model und die ExplainKeyExchangeView.
 
       \begin{figure}[H]
@@ -1427,7 +1430,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \textbf{Methoden}
       \begin{itemize}
           \item public ExplainKeyExchangeController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1435,9 +1438,9 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse ExplainKeyExchangeView}
-      Die dritte StateView für die Demonstration der Diffie-Hellman Analogie.
-      Der ExplainKeyExchange Zustand, erklärt was wir eigentlich erreichen wollen,
-      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
+      Die dritte View für die Demonstration der Diffie-Hellman Analogie.
+      Zeigt, wie ein Lauscher das Geheimnis erhält, wenn man es
+      im Klartext versendet.
 
       \begin{figure}[H]
         \centering
@@ -1456,6 +1459,9 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
 \subsubsection{Klasse AliceChooseSecretController}
       Der vierte Controller für die Demonstration der Diffie-Hellman Analogie.
+      Zeige wie Alice eine öffentliche und geheime Farbe wählt und 
+      die öffentliche Farbe, sowie die öffentliche, gemischt mit der geheimen Farbe,
+      an Bob sendet.
       Verwendet das Diffie-Hellman Model und die AliceChooseSecretView.
 
       \begin{figure}[H]
@@ -1471,7 +1477,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \textbf{Methoden}
       \begin{itemize}
           \item public AliceChooseSecretController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1479,9 +1485,10 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse AliceChooseSecretView}
-      Die vierte StateView für die Demonstration der Diffie-Hellman Analogie.
-      Der AliceChooseSecret Zustand, erklärt was wir eigentlich erreichen wollen,
-      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
+      Die vierte View für die Demonstration der Diffie-Hellman Analogie.
+      Zeige wie Alice eine öffentliche und geheime Farbe wählt und 
+      die öffentliche Farbe, sowie die öffentliche, gemischt mit der geheimen Farbe,
+      an Bob sendet.
 
       \begin{figure}[H]
         \centering
@@ -1500,6 +1507,8 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
 \subsubsection{Klasse BobChooseSecretController}
       Der fünfte Controller für die Demonstration der Diffie-Hellman Analogie.
+      Zeigt wie Bob eine geheime Farbe wählt und diese, gemischt mit
+      der öffentlichen Farbe von Alice, an Alice sendet.
       Verwendet das Diffie-Hellman Model und die BobChooseSecretView.
 
       \begin{figure}[H]
@@ -1515,7 +1524,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \textbf{Methoden}
       \begin{itemize}
           \item public BobChooseSecretController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1523,9 +1532,9 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse BobChooseSecretView}
-      Die fünfte StateView für die Demonstration der Diffie-Hellman Analogie.
-      Der BobChooseSecret Zustand, erklärt was wir eigentlich erreichen wollen,
-      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
+      Die fünfte View für die Demonstration der Diffie-Hellman Analogie.
+      Zeigt wie Bob eine geheime Farbe wählt und diese, gemischt mit
+      der öffentlichen Farbe von Alice, an Alice sendet.
 
       \begin{figure}[H]
         \centering
@@ -1544,6 +1553,8 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
 \subsubsection{Klasse MixColorController}
       Der sechste Controller für die Demonstration der Diffie-Hellman Analogie.
+      Der MixColor Zustand, erklärt was wir eigentlich erreichen wollen,
+      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
       Verwendet das Diffie-Hellman Model und die MixColorView.
 
       \begin{figure}[H]
@@ -1559,7 +1570,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \textbf{Methoden}
       \begin{itemize}
           \item public MixColorController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1567,7 +1578,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse MixColorView}
-      Die sechste StateView für die Demonstration der Diffie-Hellman Analogie.
+      Die sechste View für die Demonstration der Diffie-Hellman Analogie.
       Der MixColor Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
@@ -1615,7 +1626,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse YourTurnView}
-      Der erste StateView für das Experiment der Diffie-Hellman Analogie.
+      Der erste View für das Experiment der Diffie-Hellman Analogie.
       Der YourTurn Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
@@ -1661,7 +1672,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse ChoosePublicColorView}
-      Die zweite StateView für das Experiment der Diffie-Hellman Analogie.
+      Die zweite View für das Experiment der Diffie-Hellman Analogie.
       Der ChoosePublicColor Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
@@ -1707,7 +1718,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse SendColorView}
-      Die dritte StateView für das Experiment der Diffie-Hellman Analogie.
+      Die dritte View für das Experiment der Diffie-Hellman Analogie.
       Der SendColor Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
@@ -1753,7 +1764,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse ChooseSecretColorView}
-      Die vierte StateView für das Experiment der Diffie-Hellman Analogie.
+      Die vierte View für das Experiment der Diffie-Hellman Analogie.
       Der ChooseSecretColor Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
@@ -1799,7 +1810,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse SendRightColorView}
-      Die fünfte StateView für das Experiment der Diffie-Hellman Analogie.
+      Die fünfte View für das Experiment der Diffie-Hellman Analogie.
       Der SendRightColor Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
@@ -1845,7 +1856,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse MixFinalSecretView}
-      Die sechste StateView für das Experiment der Diffie-Hellman Analogie.
+      Die sechste View für das Experiment der Diffie-Hellman Analogie.
       Der MixFinalSecret Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
