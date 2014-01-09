@@ -100,6 +100,8 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
   \subsection{Paket edu.kit.iks.CryptographicsLib}
+    
+    % AbstractController
   	\subsubsection{Klasse AbstractController}
 	  Um die MVC-Architektur zu erleichtern wird ein abstrakter Controller benötigt, mit dem Mechanismen
 	  für die Controller ausgelagert werden können. Des Weiteren bietet das die Möglichkeit, konkrete
@@ -148,7 +150,9 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \begin{itemize}
         \item \textit{keine}
       \end{itemize}
+	% /AbstractController
 	
+	% AbstractVisualizationController
 	\subsubsection{Klasse AbstractVisualizationController}
 	  Diese abstrakte Klasse konkretisiert den AbstractController zur Verwendung als
 	  abstrakter Controller speziell für Visualisierungen. Dies umfasst unter anderem
@@ -162,7 +166,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \ite edu.kit.iks.CryptographicsLib.AbstractController
+        \item edu.kit.iks.CryptographicsLib.AbstractController
       \end{itemize}
 	
       \textbf{Methoden}
@@ -184,6 +188,76 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \begin{itemize}
         \item \textit{keine}
       \end{itemize}
+	% /AbstractVisualizationController
+	
+	% AbstractVisualizationInfo
+	\subsubsection{Klasse AbstractVisualizationInfo}
+	  Um mit den Metadaten der einzelnen Visualisierungen besser umgehen zu können
+	  wird diese Klasse benötigt. Eine konkrete VisualizationInfo muss des Weiteren
+	  die abstrakten Methoden implementieren und wird so dazu gezwungen, die 
+	  benötigten Metadaten einer Visualisierung bereitzustellen.
+	
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-CryptographicsLib-AbstractVisualizationInfo}
+      \end{figure}
+	
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+	
+      \textbf{Methoden}
+      \begin{itemize}
+        \item abstract public String getId() \newline
+          Erzwingt das Setzen einer ID. Die ID wird verwendet, um ein Verfahren anhand
+          eines sprechenden Namens identifizieren zu können.
+        \item abstract public String getName() \newline
+          Erzwingt das Setzen eines Namens. Dieser Name dient als Anzeigename für ein
+          Verfahren.
+        \item abstract public String getDescription() \newline
+          Erzwingt das Setzen einer Beschreibung des Verfahrens. Die Beschreibung ist
+          eine Kurzeinleitung und wird zum Beispiel im Popover beim Klicken auf ein
+          Verfahren in der Zeitleiste angezeigt.
+        \item abstract public float getTimelineOffset() \newline
+          Erzwingt das Setzen eines Abstandes auf der Zeitleiste. Dieser Wert liegt
+          zwischen 0.0 und 1.0 und ermöglicht eine Sortierung von links (0.0) nach rechts (1.0).
+        \item abstract public VisualizationDifficulty getDifficulty() \newline
+          Erzwingt das Setzen einer Schwierigkeit die ein enum ist.
+        \item abstract public int getYear() \newline
+          Erzwingt das Setzen des Jahres, in dem das Verfahren entwickelt wurde.
+        \item abstract public String getQRCodeContent() \newline
+          Erzwingt das Setzen eines QR-Code-Inhalts. Damit ist der Text gemeint, der
+          zu einem QR-Code kodiert werden soll (zum Beispiel eine URL oder eine ISBN).
+        \item abstract public List<Class> getControllerClasses() \newline
+          Erzwingt das Setzen der Controller, die für die Visualisierung benötigt werden.
+          Die Reihenfolge der Klassen in der Liste ist insofern wichtig, als dass dadurch
+		  die sequenzielle Reihenfolge beim Abspielen einer Visualisierung definiert wird 
+		  (Sprünge sind also trotzdem möglich).
+        \item public URL getAdditionalInformationFileURL() \newline
+          Gibt die Datei-URL der lokalen HTML-Datei zurück, in der die weiterführenden
+          Informationen aufgeführt werden. Diese Methode ist nicht abstrakt, da anhand
+          der gesetzten ID ein Standardverzeichnis angesprochen werden kann.
+        \item public Image getQrCode() \newline
+          Erzeugt ein QR-Code-Bild anhand der gesetzten getQRCodeContent(). Auch diese Methode
+          muss nicht abstrakt sein, da es durch die bereits implementierten abstrakten Methoden
+          errechnet werden, oder aus dem eventuell vorhandenen Cache geladen werden kann.
+      \end{itemize}
+      
+      \textbf{Getter}
+      \begin{itemize}
+		\item \textit{keine}
+      \end{itemize}
+      
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+	% /AbstractVisualizationInfo
+	
+	
+	
+	
 	
 \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
 \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
