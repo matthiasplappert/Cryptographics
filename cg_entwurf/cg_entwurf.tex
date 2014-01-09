@@ -45,20 +45,39 @@
 
 % Start of the actual document.
 \section{Einleitung}
-In diesem Heft werden die Entwürfe zur Implementierung von Cryptographics spezifiziert erläutert.
+Für das Kryptologikum des Instituts für Kryptographie und Sicherheit soll die Software Cryptographics zur Demonstration kryptographischer Verfahren erstellt werden. Das Softwareprodukt soll vor allem auf Ausstellungen präsentiert werden und erfordert daher eine möglichst intuitve Benutzerführung.
+
+Um das Ziel der intuitven Benutzerinteraktion zu erreichen, liegt das Hauptaugenmerk des Entwurfes auf der Planung eines Rahmenwerkes, dass es erlaubt, einzelne Verfahren in die Software einzubetten. Durch wiederverwendbare UI-Komponenten sowie eine einheitliche und für alle Verfahren indetischen Benutzerführung erreichen wir dieses Ziel. Zusätzlich erlaubt uns dieser Entwurf, wiederkehrende Aufgaben wie beispielsweise die Soforthilfe mit minimalem Aufwand innerhalb der einzelnen Verfahren zu implementiert. Die eigentliche Komplexität steckt heribei immer im Rahmenwerk, sodass alle Verfahren von Verbesserungen und Optimierungen profitieren. Weiterhin setzen wir auf eine simples, modulares System, dass es uns erlaubt, Verfahren mit minmalem Aufwand zu implementieren, zu warten und auszutauschen. Grundprinzipien ist hierbei die lose Kopplung der einzelnen Verfahren.
+
+Eine Herausforderung stellte die Abwägung zwischen Konsistenz und einer nötigen Flexibilität innerhalb der Verfahren da. So erfordern beispielsweise unterschiedliche Verfahren durchaus sehr unterschiedliche Arten der Navigation. Unser Entwurf sieht hierbei vor, dass die einzelnen Verfahren durchaus flexible und ohne strikte Vorgaben funktionieren können, gewisse Funktionen wie beispielsweise die Hilfe immmer auf diesselbe Art funktionieren. Das oben beschriebene Rahmenwerk agiert auch hier unterstützend, erlaubt aber eine gewisse Flexibilität beispielsweise bei der Navigation innerhalb des Verfahrens. Somit lassen sich eine Vielzahl von unterschiedlichen Visualisierungen realisieren.
 
 \section{Aufbau}
 
 \subsection{Architektur}
-Die Architektur sieht drei Hierarchieebenen vor. Die erste Ebene, Main-Ebene genannt,
-ist dafür verantwortlich, die Controller aus der zweiten Ebene auszutauschen. Controller
-zweiten Ebene sind der StartController, der einen Blickfang und eine Übersicht mit der
-Zeitlinie darstellt, und der ContainerController, der diejenigen UI-Elemente verwaltet,
-die in jedem Verfahren gleich sind. Dabei ist der ContainerController dafür verantwortlich,
-die dritte Ebene zu deligieren. Diese Ebene besteht aus Controllern, die ein spezifisches
-Verfahren visualisieren und diese Visualisierung verwalten.
 
-\subsection{Klassendiagramm}
+Die grundlegende Architektur gliedert sich in 4 Schichten. Hierbei implementieren die Schichten von unten nach oben Funktionalität, die dann in der höheren Schicht verwendet werden kann.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=\textwidth]{resources/architecture}
+  \caption{Architekturübersicht.}
+\end{figure}
+
+In der ersten, der untersten Schicht befinden sich Bibliotheken von Drittanbietern. In unserem Fall handelt es sich hierbei um QRGen, eine Java-Bibliothek um QR-Codes zu generieren, sowie um ein Framework zur Lokalisierung.
+
+In der zweiten Schicht befindet sich das Modul edu.kit.iks.CryptographicsLib. Dieses Modul enthält zum Einen abstrakte Klassen, die von den weiter obenliegenden Klassen verwendet werden. Zum Anderen finden sich hier wiederverwendbare UI-Komponenten, die beispielsweise bei verschiedenen Verfahren verwendet werden können.
+
+Die dritte Schicht besteht aus dem Modul edu.kit.iks.Cryptographics. Hierbei handelt es sich um das Rahmenwerk, in dem alle Visualiserungen ausgeführt werden. Hier wird beispielsweise die Logik implementiert um zwischen Verfahren über eine Zeitleiste wechsel zu können oder auch die Soforthilfe.
+
+Die oberste und vierte Schicht besteht aus den einzelnen, konkreten Verfahren.
+
+Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip um eine Trennung von Datenmodell, Präsentation und Programmsteuerung zu erreichen. Sowohl die Präsentation als auch die Programmsteuerung verwendet hierbei das Entwurfsmuster Kompositum. Dies erlaubt es uns, eine hierarchische Struktur zu implementieren, und die Aufgaben der Programmsteuerung klar voneinander abzugrenzen. Eine schematische Darstellung der Controller-Hierarchie während einer Visualisierung ist in Abb. 2 zu finden.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=\textwidth]{resources/architecture-2}
+  \caption{Darstellung der einzelnen Controller während einer Visualisierung.}
+\end{figure}
 
 \section{Klassenbeschreibung}
   \subsection{Paket edu.kit.iks.Cryptographics}
