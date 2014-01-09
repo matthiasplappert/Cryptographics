@@ -149,6 +149,42 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item \textit{keine}
       \end{itemize}
 	
+	\subsubsection{Klasse AbstractVisualizationController}
+	  Diese abstrakte Klasse konkretisiert den AbstractController zur Verwendung als
+	  abstrakter Controller speziell für Visualisierungen. Dies umfasst unter anderem
+	  ein Konstruktor, der eine VisualizationInfo als Parameter übergeben bekommt und
+	  sich damit initialisiert, sowie einige für Visualisierungen gemeinsame Methoden.
+	
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-CryptographicsLib-AbstractVisualizationController}
+      \end{figure}
+	
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \ite edu.kit.iks.CryptographicsLib.AbstractController
+      \end{itemize}
+	
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public AbstractVisualizationController(AbstractVisualizationInfo visualizationInfo) \newline
+          Konstruktor. Bekommt als Parameter eine VisualizationInfo, die als Attribut gehalten wird.
+        \item abstract public String getHelp() \newline
+          Durch das Implementieren dieser Schnittstelle innerhalb eines konkreten Visualisierungs-Controllers
+          soll eine einheitliche Hilfe-Funktion geschaffen werden. Dabei muss der konkrete Visualisierungs-
+          Controller selbst entscheiden, was die aktuell passende Hilfe ist.
+      \end{itemize}
+      
+      \textbf{Getter}
+      \begin{itemize}
+		\item public AbstractVisualizationInfo getVisualizationInfo()
+      \end{itemize}
+      
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+	
 \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
 \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
 \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
