@@ -6,8 +6,11 @@ import java.util.List;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.BobChooseSecretController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainAimController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.AliceChooseSecretController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.MixColorController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.OnewayController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainKeyExchangeController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.MixFinalSecretController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.SendRightColorController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.YourTurnController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.ChooseSecretColorController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.ChoosePublicColorController;
@@ -55,10 +58,13 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 		controllerClasses.add(ExplainKeyExchangeController.class);
 		controllerClasses.add(AliceChooseSecretController.class);
 		controllerClasses.add(BobChooseSecretController.class);
+		controllerClasses.add(MixColorController.class);
 		controllerClasses.add(YourTurnController.class);
 		controllerClasses.add(ChoosePublicColorController.class);
 		controllerClasses.add(SendColorController.class);
 		controllerClasses.add(ChooseSecretColorController.class);
+		controllerClasses.add(SendRightColorController.class);
+		controllerClasses.add(MixFinalSecretController.class);
 		
 		return controllerClasses;
 	}
