@@ -1,4 +1,4 @@
-package edu.kit.iks.Cryptographics.Vigenere.Explanatation;
+package edu.kit.iks.Cryptographics.Vigenere.Explanation;
 
 import java.awt.Image;
 
@@ -15,7 +15,7 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
  * to the user. He has the choice to create a histogramm and use an algorithm to get the length of 
  * the key. Then he has to extract the password. 
  */
-public class SecondExplanatationView extends VisualizationView{
+public class SecondExplanationView extends VisualizationView{
 	private static final long serialVersionUID = 6294968461280032987L;
 	
 	//encrypted text
@@ -31,7 +31,7 @@ public class SecondExplanatationView extends VisualizationView{
 	private CharacterFrequencyDiagramView vigenereHistogramm;
 	private CharacterFrequencyDiagramView alphabetHistogramm;
 	
-	public SecondExplanatationView() {
+	public SecondExplanationView() {
        this.add(new JLabel("VIGENERE EXPLANATATION2"));
 	}
 }
