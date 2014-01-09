@@ -2,7 +2,7 @@ package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
 import javax.swing.JPanel;
 
-public class DHExperimentThirdView extends JPanel {
+public class SendColorView extends JPanel {
 
 	/**
 	 * 

@@ -4,15 +4,13 @@ import edu.kit.iks.Cryptographics.DiffieHellman.Model;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class DHDemoThirdController extends AbstractVisualizationController {
-	
+public class OnewayController extends AbstractVisualizationController {
 	private Model dhModel;
-	private DHDemoThirdView view;
-	
-	public DHDemoThirdController(AbstractVisualizationInfo visualizationInfo) {
+	private OnewayView view;
+	public OnewayController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		dhModel = Model.getInstance();
-		view = new DHDemoThirdView();
+		view = new OnewayView();
 		// TODO Auto-generated constructor stub
 	}
 

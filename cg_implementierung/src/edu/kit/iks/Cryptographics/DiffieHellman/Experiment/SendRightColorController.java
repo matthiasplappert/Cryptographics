@@ -1,17 +1,18 @@
-package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
+package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
 import edu.kit.iks.Cryptographics.DiffieHellman.Model;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class DHDemoFourthController extends AbstractVisualizationController {
+public class SendRightColorController extends AbstractVisualizationController {
 	private Model dhModel;
-	private DHDemoFourthView view;
+	private SendColorView view;
 	
-	public DHDemoFourthController(AbstractVisualizationInfo visualizationInfo) {
+	public SendRightColorController(
+			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		dhModel = Model.getInstance();
-		view = new DHDemoFourthView();
+		view = new SendColorView();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -24,7 +25,7 @@ public class DHDemoFourthController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

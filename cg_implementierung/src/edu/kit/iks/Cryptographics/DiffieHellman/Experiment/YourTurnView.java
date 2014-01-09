@@ -2,7 +2,7 @@ package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
 import javax.swing.JPanel;
 
-public class DHExperimentFirstView extends JPanel {
+public class YourTurnView extends JPanel {
 
 	/**
 	 * 
