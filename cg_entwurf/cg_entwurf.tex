@@ -858,12 +858,14 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \textbf{Methoden}
       \begin{itemize}
         \item public PopoverView() \newline
-          Konstruktor, der ein Popover 
+          Konstruktor, der ein Popover erzeugt und alle gemeinsamen Komponenten wie
+          die Buttons initialisiert.
       \end{itemize}
       
       \textbf{Getter}
       \begin{itemize}
-		\item \textit{keine}
+		\item public JButton getCloseButton()
+		\item public JPanel getContentView()
       \end{itemize}
       
       \textbf{Setter}
