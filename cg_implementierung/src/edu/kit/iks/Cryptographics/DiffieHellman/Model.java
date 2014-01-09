@@ -3,6 +3,8 @@ package edu.kit.iks.Cryptographics.DiffieHellman;
 import java.awt.Color;
 
 public class Model {
+	private static Model instance;
+	
 	private Color alicePublicColor;
 	
 	private Color alicePrivateColor;
@@ -16,6 +18,20 @@ public class Model {
 	private Color bobPrivateColor;
 	
 	private Color bobMixedColor;
+	
+	/**
+	 * Singleton Class to share between different controller states
+	 */
+	private Model() {
+		
+	}
+	
+	public static Model getInstance() {
+		if(instance == null) {
+			instance = new Model();
+		}
+		return instance;
+	}
 
 	public Color getAlicePublicColor() {
 		return alicePublicColor;
