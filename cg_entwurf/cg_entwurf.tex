@@ -686,6 +686,33 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         Gibt eine Liste von Controller-Klassen des Verfahrens aus, welche dann im Statecontroller geswitcht werden können.
       \end{itemize}
 
+\subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Demonstration}
+
+\subsubsection{Klasse ExplainAimController}
+      Der erste StateController für die Diffie-Hellman Analogie Demonstration.
+      Verwendet das Diffie-Hellman Model und die ExplainAimView.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainAimController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+          \item public ExplainAimController(AbstractVisualizationInfo visualizationInfo) \newline
+              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+
 \section{Abläufe}
 
 \section{Entwurfdaten}
