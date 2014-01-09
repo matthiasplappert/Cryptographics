@@ -78,38 +78,6 @@ public class VisualizationContainerController extends AbstractController {
 	@Override
 	public void loadView() {
 		this.view = new VisualizationContainerView();
-		this.view.getHelpButton().addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
 		this.view.getExitButton().addMouseListener(new MouseListener() {
 
 			@Override
@@ -174,10 +142,6 @@ public class VisualizationContainerController extends AbstractController {
 
 			}
 		});
-
-		// TODO: dispatch call to currentVisualizationController.getHelp()
-		// TODO: present popover for help
-
 	}
 
 	/**

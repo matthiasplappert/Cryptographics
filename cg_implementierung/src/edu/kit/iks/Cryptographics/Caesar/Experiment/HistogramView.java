@@ -17,7 +17,7 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class HistogramView extends VisualizationView{
+public class HistogramView extends VisualizationView {
 
 	/**
 	 * 
@@ -62,7 +62,10 @@ public class HistogramView extends VisualizationView{
 	 * Constructor.
 	 */
 	public HistogramView() {
-
+		this.add(new JLabel("Histogramms"));
+		this.explanations = new JLabel("Explanations");
+		this.add(explanations);
+		this.validate();
 	}
 
 	/**

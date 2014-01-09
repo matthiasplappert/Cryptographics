@@ -1,6 +1,10 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
-import edu.kit.iks.Cryptographics.Caesar.CryptoView;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
@@ -9,13 +13,60 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CipherDemoView extends CryptoView {
+public class CipherDemoView extends VisualizationView {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6762667303208572310L;
+	
+	
+	/**
+	 * Explanation textfield.
+	 */
+	private JLabel explanations;
+
+	/**
+	 * Textfield for user input. Used in experiment.
+	 */
+	private JTextField input;
+
+	/**
+	 * Input from the user for encryption.
+	 */
+	private JLabel[] userInput;
+
+	/**
+	 * Output from user interaction.
+	 */
+	private JLabel[] userOutput;
+
+	/**
+	 * The alphabet.
+	 */
+	private JLabel[] alphabet;
+
+	/**
+	 * Numbering of alphabet chars.
+	 */
+	private JLabel[] alphabetNumbering;	
+	
+	/**
+	 * Button needed for proceeding the stepwise animations.
+	 */
+	private JButton proceed;
+	
 	/**
 	 * Constructor.
 	 */
 	public CipherDemoView() {
 		super();
+		this.add(new JLabel("DemoView"));
+		this.explanations = new JLabel("Explanations");
+		this.add(this.explanations);
+		this.proceed = new JButton("proceed");
+		this.add(proceed);
+		this.validate();
 	}
 
 	/**
@@ -66,6 +117,55 @@ public class CipherDemoView extends CryptoView {
 	 */
 	private void step4() {
 
+	}
+
+	/**
+	 * @return the proceed
+	 */
+	public JButton getProceed() {
+		return proceed;
+	}
+
+	/**
+	 * @return the explanations
+	 */
+	public JLabel getExplanations() {
+		return explanations;
+	}
+
+	/**
+	 * @return the input
+	 */
+	public JTextField getInput() {
+		return input;
+	}
+
+	/**
+	 * @return the userInput
+	 */
+	public JLabel[] getUserInput() {
+		return userInput;
+	}
+
+	/**
+	 * @return the userOutput
+	 */
+	public JLabel[] getUserOutput() {
+		return userOutput;
+	}
+
+	/**
+	 * @return the alphabet
+	 */
+	public JLabel[] getAlphabet() {
+		return alphabet;
+	}
+
+	/**
+	 * @return the alphabetNumbering
+	 */
+	public JLabel[] getAlphabetNumbering() {
+		return alphabetNumbering;
 	}
 
 }

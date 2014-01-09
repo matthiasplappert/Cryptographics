@@ -1,6 +1,5 @@
-package edu.kit.iks.Cryptographics.Caesar;
+package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -41,22 +40,22 @@ public class CryptoView extends VisualizationView {
 	/**
 	 * Explanation textfield.
 	 */
-	protected JLabel explanations;
+	private JLabel explanations;
 
 	/**
 	 * Textfield for user input. Used in experiment.
 	 */
-	protected JTextField input;
+	private JTextField input;
 
 	/**
 	 * Input from the user for encryption.
 	 */
-	protected JLabel[] userInput;
+	private JLabel[] userInput;
 
 	/**
 	 * Output from user interaction.
 	 */
-	protected JLabel[] userOutput;
+	private JLabel[] userOutput;
 
 	/**
 	 * The alphabet.
@@ -67,29 +66,36 @@ public class CryptoView extends VisualizationView {
 	 * Numbering of alphabet chars.
 	 */
 	protected JLabel[] alphabetNumbering;
-	
+
 	/**
 	 * Constructor.
 	 */
 	public CryptoView() {
-
+		this.add(new JLabel("CryptoView"));
+		this.explanations = new JLabel("Explanations");
+		this.add(explanations);
+		this.input = new JTextField();
+		this.add(input);
+		this.validate();
 	}
 
 	/**
 	 * Enlightens the needed JLabel.
 	 */
-	public void lightsOn(JLabel label) {
+	private void lightsOn(JLabel label) {
 		// on/off
 	}
-	
-	/** Sets the character c as the content of the JLabel label.
+
+	/**
+	 * Sets the character c as the content of the JLabel label.
+	 * 
 	 * @param label
 	 * @param c
 	 */
-	public void setContent(JLabel label, char c) {
-		
+	private void setContent(JLabel label, char c) {
+
 	}
-	
+
 	/**
 	 * Inserts the input from the user or the generated input from the program
 	 * into the JLabel Array and displays it.
@@ -150,6 +156,21 @@ public class CryptoView extends VisualizationView {
 	 */
 	public void setAlphabet(JLabel[] alphabet) {
 		this.alphabet = alphabet;
+	}
+
+	/**
+	 * @return the explanations
+	 */
+	public JLabel getExplanations() {
+		return explanations;
+	}
+
+	/**
+	 * @param explanations
+	 *            the explanations to set
+	 */
+	public void setExplanations(JLabel explanations) {
+		this.explanations = explanations;
 	}
 
 }

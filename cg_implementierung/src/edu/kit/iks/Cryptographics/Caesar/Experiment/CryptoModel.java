@@ -34,9 +34,9 @@ public class CryptoModel {
 	/**
 	 * @param input
 	 */
-	public String handleInput(String input) {
+	public boolean handleInput(String input) {
 		// do something intelligent with the input.
-		return input;
+		return true;
 	}
 
 	/**
