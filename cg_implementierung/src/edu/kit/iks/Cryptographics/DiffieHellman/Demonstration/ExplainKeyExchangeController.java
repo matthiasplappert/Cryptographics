@@ -1,12 +1,18 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
+import edu.kit.iks.Cryptographics.DiffieHellman.Model;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class DHDemoFifthController extends AbstractVisualizationController {
-
-	public DHDemoFifthController(AbstractVisualizationInfo visualizationInfo) {
+public class ExplainKeyExchangeController extends AbstractVisualizationController {
+	
+	private Model dhModel;
+	private ExplainKeyExchangeView view;
+	
+	public ExplainKeyExchangeController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
+		dhModel = Model.getInstance();
+		view = new ExplainKeyExchangeView();
 		// TODO Auto-generated constructor stub
 	}
 
