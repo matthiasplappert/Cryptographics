@@ -403,6 +403,41 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 	% /InformationController	
 	
+	% InformationView
+	\subsubsection{Klasse InformationView}
+	  Instanzen dieser Klasse stellen eine View für den InformationController dar.
+	  Zur Initialisierung benötigt diese Klasse das QR-Code-Bild zu den weiterführenden 
+	  Informationen, sowie den Pfad zur lokalen HTML-Datei mit Informationen zum
+	  aktuellen Verfahren.
+	
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-CryptographicsLib-InformationView}
+      \end{figure}
+	
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item javax.swing.JPanel
+      \end{itemize}
+	
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public InformationView(URL path, Image qrCode) \newline
+          Konstruktor, der die View mit dem QR-Code-Bild und der lokalen HTML-Datei füllt.
+      \end{itemize}
+      
+      \textbf{Getter}
+      \begin{itemize}
+		\item public URL getPath()
+		\item public Image getQrCode()
+      \end{itemize}
+      
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+	% /InformationView	
+	
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
     \subsubsection{Klasse AbstractController}
       Der AbstractController ist eine abstrakte Klasse, die die verschiedenen State-Controller im Vigenere-Paket nutzen.
