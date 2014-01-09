@@ -96,10 +96,58 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \textbf{Methoden}
       \begin{itemize}
         \item public void presentStartAction() \newline
-        Läd den StartController und zeigt seine View an.
+        Lädt den StartController und zeigt seine View an.
       \end{itemize}
 
-\subsection{Paket edu.kit.iks.CryptographicsLib}
+  \subsection{Paket edu.kit.iks.CryptographicsLib}
+  	  \subsection{Klasse AbstractController}
+	  Um die MVC-Architektur zu erleichtern wird ein abstrakter Controller benötigt, mit dem Mechanismen
+	  für die Controller ausgelagert werden können.
+	
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-CryptographicsLib-AbstractController}
+      \end{figure}
+	
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+	
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public void addChildController(AbstractController childController) \newline
+          Fügt den übergebenen Kind-Controller zur Liste der Kind-Controller hinzu.
+        
+        \item public void removeChildController(AbstractController childController) \newline
+          Entfernt den übergebenen Kind-Controller aus der Liste der Kind-Controller.
+          
+        \item abstract public void loadView() \newline
+          Abstrakte Deklaration der loadView()-Methode zwingt die erbenden Controller dazu,
+          zu definieren, wie ihre View geladen werden soll.
+          
+        \item public void unloadView() \newline
+          Gibt den von der View verbrauchten Speicher wieder frei, sofern diese nicht mehr
+          benötigt wird. Zu beachten ist, dass diese Methode über eine Standardimplementierung
+          verfügt, es aber durchaus sinnvoll sein kann, das Standardverhalten durch eine
+          eigene Implementierung zu überschreiben.
+        
+        \item public boolean viewIsLoaded() \newline
+          Prüft ab, ob die View bereits geladen ist oder nicht.
+      \end{itemize}
+      
+      \textbf{Getter}
+      \begin{itemize}
+        \item public JComponent getView()
+        \item public AbstractController getParentController()
+        \item public List<AbstractController> getChildControllers()
+      \end{itemize}
+      
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+	
 \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
 \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
 \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
