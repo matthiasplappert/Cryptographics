@@ -927,7 +927,8 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
 	% VisualizationInfoLoader
 	\subsubsection{Klasse VisualizationInfoLoader}
-	  todo
+	  Diese Klasse bietet mit ihrer einzigen statischen Methode eine Möglichkeit, 
+	  die VisualizationInfos sämtlicher Verfahren zu beziehen.
 	
       \begin{figure}[H]
         \centering
@@ -941,8 +942,8 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Methoden}
       \begin{itemize}
-        \item public todo() \newline
-          todo.
+        \item static public List<AbstractVisualizationInfo> loadAllVisualizationInfos() \newline
+          Bezieht eine Liste der VisualizationInfos sämtlicher Verfahren.
       \end{itemize}
       
       \textbf{Getter}
@@ -958,7 +959,8 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
 	% VisualizationView
 	\subsubsection{Klasse VisualizationView}
-	  todo
+	  Die VisualizationView vereint gemeinsame Komponenten, die die Visualisierungen
+	  untereinander teilen.
 	
       \begin{figure}[H]
         \centering
@@ -967,18 +969,19 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item \textit{keine}
+        \item javax.swing.JPanel
       \end{itemize}
 	
       \textbf{Methoden}
       \begin{itemize}
-        \item public todo() \newline
-          todo.
+        \item public VisualizationView() \newline
+          Konstruktor, der die gemeinsamen Komponenten initialisiert.
       \end{itemize}
       
       \textbf{Getter}
       \begin{itemize}
-		\item \textit{keine}
+		\item public JButton getNextButton()
+		\item public JButton getBackButton()
       \end{itemize}
       
       \textbf{Setter}
