@@ -1,8 +1,9 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
+import java.awt.Image;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
@@ -17,17 +18,39 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class IntroductionView extends VisualizationView{
+public class IntroductionView extends VisualizationView {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7214639660774564585L;
 
 	/**
 	 * Labels that will contain img for animation.
 	 */
-	private JLabel caesar;
-	private JLabel cipher;
-	private JLabel interceptor;
+	private Image caesar;
+	private Image cipher;
+	private Image interceptor;
+
+	/**
+	 * Button needed for proceeding the stepwise animations.
+	 */
+	private JButton proceed;
+
+	/**
+	 * JLabel that holds text which is needed for explaining what now happens,
+	 * will happen or happened.
+	 */
+	private JLabel explanation;
 
 	public IntroductionView() {
-       this.add(new JLabel("CAESAR INTRODUCTION"));
+		super();
+		this.add(new JLabel("CAESAR INTRODUCTION"));
+		this.explanation = new JLabel("Explanations");
+		this.add(explanation);
+		this.proceed = new JButton("Proceed");
+		this.add(proceed);
+		this.validate();
 	}
 
 	/**
@@ -40,47 +63,70 @@ public class IntroductionView extends VisualizationView{
 		// perform second animation and show explanations.
 		step2();
 		// stop.
-		//...
+		// ...
 		step3();
-		//stop.
+		// stop.
 		// perform last animation and show explanations.
 		step4();
-		//done.
-		
+		// done.
+
 	}
 
+	/**
+	 * @return the proceed
+	 */
+	public JButton getProceed() {
+		return proceed;
+	}
+
+	
 	/**
 	 * Caesar makes up a big plan and sends his orders by his messenger.
 	 */
 	private void step1() {
-	
+
 	}
 
 	/**
-	 *  Caesar's orders gets intercepted.
+	 * Caesar's orders gets intercepted.
 	 */
 	private void step2() {
-		
+
 	}
 
 	/**
 	 * Enemy reads his orders and Caesar's big plan is crossed.
 	 */
 	private void step3() {
-		
+
 	}
 
 	/**
 	 * Caesar is very sad.
 	 */
 	private void step4() {
-		
+
+	}
+
+	/**
+	 * @return the explanation
+	 */
+	public JLabel getExplanation() {
+		return explanation;
+	}
+
+	/**
+	 * @param explanation
+	 *            the explanation to set
+	 */
+	public void setExplanation(JLabel explanation) {
+		this.explanation = explanation;
 	}
 
 	/**
 	 * @return the caesar
 	 */
-	public JLabel getCaesar() {
+	public Image getCaesar() {
 		return caesar;
 	}
 
@@ -88,14 +134,14 @@ public class IntroductionView extends VisualizationView{
 	 * @param caesar
 	 *            the caesar to set
 	 */
-	public void setCaesar(JLabel caesar) {
+	public void setCaesar(Image caesar) {
 		this.caesar = caesar;
 	}
 
 	/**
 	 * @return the cipher
 	 */
-	public JLabel getCipher() {
+	public Image getCipher() {
 		return cipher;
 	}
 
@@ -103,14 +149,14 @@ public class IntroductionView extends VisualizationView{
 	 * @param cipher
 	 *            the cipher to set
 	 */
-	public void setCipher(JLabel cipher) {
+	public void setCipher(Image cipher) {
 		this.cipher = cipher;
 	}
 
 	/**
 	 * @return the interceptor
 	 */
-	public JLabel getInterceptor() {
+	public Image getInterceptor() {
 		return interceptor;
 	}
 
@@ -118,7 +164,7 @@ public class IntroductionView extends VisualizationView{
 	 * @param interceptor
 	 *            the interceptor to set
 	 */
-	public void setInterceptor(JLabel interceptor) {
+	public void setInterceptor(Image interceptor) {
 		this.interceptor = interceptor;
 	}
 }

@@ -38,6 +38,31 @@ public class VisualizationContainerView extends JPanel {
 	 */
 	public VisualizationContainerView() {
 		this.add(new JLabel("CONTAINER"));
-		this.validate();
+	    this.exitButton = new JButton("Exit");
+	    this.helpButton = new JButton("Help");
+	    this.add(this.helpButton);
+	    this.add(this.exitButton);
+	    this.validate();
+	}
+
+	/**
+	 * @return the nameLabel
+	 */
+	public JLabel getNameLabel() {
+		return nameLabel;
+	}
+
+	/**
+	 * @return the exitButton
+	 */
+	public JButton getExitButton() {
+		return exitButton;
+	}
+
+	/**
+	 * @return the helpButton
+	 */
+	public JButton getHelpButton() {
+		return helpButton;
 	}
 }

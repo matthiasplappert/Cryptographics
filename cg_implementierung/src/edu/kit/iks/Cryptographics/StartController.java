@@ -97,7 +97,7 @@ public class StartController extends AbstractController {
 			});
 
 		}
-		this.view.revalidate();
+		this.view.validate();
 	}
 
 	/**
@@ -105,13 +105,12 @@ public class StartController extends AbstractController {
 	 */
 	@Override
 	public void unloadView() {
-		// TODO: Unload the view correctly.
-		this.view.remove(welcomeView);
-		this.view.remove(timelineView);
-		this.view.remove(popoverView);
-		this.view.validate();
+		this.view.removeAll();
+		this.view.revalidate();
+
 		this.popoverView = null;
 		this.welcomeView = null;
+		this.timelineView = null;
 		this.view = null;
 	}
 
@@ -145,7 +144,8 @@ public class StartController extends AbstractController {
 
 			@Override
 			public void mouseClicked(MouseEvent event) {
-				VisualizationButton startButton = (VisualizationButton)event.getSource();
+				VisualizationButton startButton = (VisualizationButton) event
+						.getSource();
 				startVisualizationAction(startButton.getVisualizationInfo());
 			}
 
@@ -193,21 +193,18 @@ public class StartController extends AbstractController {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+				dismissPopoverAction();
 			}
 		});
-		// TODO: get visualizationInfo from actionevent and call
-		// this.startVisualizationAction(visualizationInfo);
-
-		// TODO: assign action listener for close button that calls
-		// dismissPopoverAction()
 	}
 
 	/**
 	 * Dismisses the popover
 	 */
 	public void dismissPopoverAction() {
-		// TODO: dismiss popover
+		this.view.remove(popoverView);
+		this.view.revalidate();
+		this.popoverView = null;
 	}
 
 	/**
