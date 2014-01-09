@@ -556,6 +556,38 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item public void setBobPublicColor(Color bobPublicColor)
       \end{itemize}
 
+\subsubsection{Klasse DHVisualizationInfo}
+      DHVisualizationInfo enthält alle wichtigen Informationen zu dem Verfahren, wie z.B. Verfahrensname/Beschreibung.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-DHVisualizationInfo}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public String getId() \newline
+        Gibt die Kennungs-ID aus.
+        \item public String getName() \newline
+        Gibt den Namen des Verfahrens aus.
+        \item public String getDescription() \newline
+        Gibt die Beschreibung des Verfahrens aus.
+        \item public String getQRCodeContent() \newline
+        Gibt den Inhalt des QRCodes aus.
+        \item public float getTimelineOffset() \newline
+        Gibt die relative Position in der Timeline aus.
+        \item public VisualizationDifficulty getDifficulty() \newline
+        Gibt den Schwierigkeitsgrad aus.
+        \item public int getYear() \newline
+        Gibt das Jahr aus, in welchem das Verfahren entwickelt wurde.
+        \item public List<Class> getControllerClasses() \newline
+        Gibt eine Liste von Controller-Klassen des Verfahrens aus, welche dann im Statecontroller geswitcht werden können.
+      \end{itemize}
+
 \section{Abläufe}
 
 \section{Entwurfdaten}
