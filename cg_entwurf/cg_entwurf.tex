@@ -398,7 +398,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 \subsubsection{Klasse Model}
       Das Model in MVC für die Diffie-Hellman Analogie.
       Diese Klasse verwendet das Singleton Entwurfsmuster,
-      da die unterschiedliche Controller das gleiche Model verwenden.
+      da die unterschiedliche Controller das gleiche Model sollen.
 
       \begin{figure}[H]
         \centering
@@ -410,7 +410,43 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item \textit{keine}
       \end{itemize}
 
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public static Model getInstance() \newline
+            Fabrikmethode um das Singleton-Muster zu implementieren.
+            Verwendet Lazy-Evaluation.
+        \item public void mixAlicePrivateAndPublic() \newline
+            Mische die private und öffentliche Farbe
+            von Alice. Entspricht der modularen Exponentiation
+            im echten Diffie-Hellman verfahren.
+        \item public void mixBobPrivateAndPublic() \newline
+            Mische die private und öffentliche Farbe
+            von Bob. Entspricht der modularen Exponentiation
+            im echten Diffie-Hellman verfahren.
+        \item public void mixShared() \newline
+            Mische die jeweiligen private Farben
+            zu den bereits gemischten Farben
+            um das gemeinsame Geheimnis zu erhalten.
+      \end{itemize}
 
+      \textbf{Getter}
+      \begin{itemize}
+        \item public Color getAlicPublicColor()
+        \item public Color getAlicePrivateColor()
+        \item public Color getAliceMixedColor()
+        \item public Color getSharedColor()
+        \item public Color getBobPublicColor
+        \item public Color getBobPrivateColor()
+        \item public Color getBobMixedColor()
+      \end{itemize}
+
+      \textbf{Setter}
+      \begin{itemize}
+        \item public void setAlicPublicColor(Color alicePublicColor)
+        \item public void setAlicePrivateColor(Color alicePrivateColor)
+        \item public void setSharedColor(Color sharedColor)
+        \item public void setBobPublicColor(Color bobPublicColor)
+      \end{itemize}
 
 \section{Abläufe}
 
