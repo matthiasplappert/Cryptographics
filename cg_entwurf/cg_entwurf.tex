@@ -81,6 +81,64 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
 \section{Klassenbeschreibung}
   \subsection{Paket edu.kit.iks.Cryptographics}
+    \subsubsection{Klasse HelpPopoverView}
+      Die HelpPopoverView stellt bei Bedarf die Soforthilfe dar.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-HelpPopoverView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.PopoverView
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public HelpPopoverView(String helpText) \newline
+        Konstruktor. Erstellt eine HelpPopoverView mit einem gegebenen Hilfstext.
+      \end{itemize}
+
+      \textbf{Getter}
+      \begin{itemize}
+        \item public String getHelpText() \newline
+        Gibt den im Konstruktor übergebenen Hilfstext zurück.
+        \item public String getHelpTextLabel() \newline
+      \end{itemize}
+
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+    \subsubsection{Klasse Main}
+      Main stellt den Einstiegspunkt des Programmes dar.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-Main}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public static void main(String[] args) \newline
+        Initialisiert den MainController.
+      \end{itemize}
+
+      \textbf{Getter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
     \subsubsection{Klasse MainController}
       Der MainController erzeugt das Fenster und verwaltet Start- und VisualizationContainerController.
       \begin{figure}[H]
@@ -95,8 +153,228 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       
       \textbf{Methoden}
       \begin{itemize}
+        \item public void loadView() \newline
+        Lädt die View.
         \item public void presentStartAction() \newline
         Lädt den StartController und zeigt seine View an.
+        \item public void presentVisualizationAction(AbstractVisualizationInfo visualizationInfo) \newline
+        Lädt den VisualizationContainerController, übergibt die konkrete VisualizationInfo und zeigt seine View an.
+      \end{itemize}
+
+      \textbf{Getter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+    \subsubsection{Klasse StartController}
+      Der StartController verwaltet TimelineView sowie WelcomeView. Weiterhin zeigt er die TimelinePopoverView an und delegiert das Laden eines Verfahrens an den MainController.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-StartController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractController
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public void loadView() \newline
+        Lädt die View.
+        \item public void unloadView() \newline
+        Gibt die View frei.
+        \item public void presentPopoverAction(AbstractVisualizationInfon visualizationInfo) \newline
+        Erzeugt und präsentiert eine TimelinePopoverView, die Informationen zur gewählten Visualisierung enthält.
+        \item public void dismissPopoverAction() \newline
+        Entfernt die aktuelle TimelinePopoverView.
+        \item public void startVisualizationAction(AbstractVisualizationInfon visualizationInfo) \newline
+        Die gewählte Visualisierung soll gestartet werden. Hierzu delegiert diese Methode die Aufgabe an den MainController.
+      \end{itemize}
+
+      \textbf{Getter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+    \subsubsection{Klasse TimelinePopoverView}
+      Die TimelinePopoverView stellt Informationen zu einer gewählten Visualisierung dar und bietet eine Möglichkeit an die Visualisierung zu starten.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-TimelinePopoverView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.PopoverView
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public TimelinePopoverView(AbstractVisualizationInfo visualizationInfo) \newline
+        Konstruktor. Erzeugt eine neue TimelinePopoverView und übergibt die benötigten Informationen zur Darstellung als AbstractVisualizationInfo.
+      \end{itemize}
+
+      \textbf{Getter}
+      \begin{itemize}
+        \item public VisualizationButton getStartButton()
+        \item public AbstractVisualizationInfo getVisualizationInfo()
+      \end{itemize}
+
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+    \subsubsection{Klasse TimelineView}
+      Die TimelineView stellt alle Visualisierung auf einer Zeitleiste dar.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-TimelineView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item javax.swing.JPanel
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public TimelineView(List<AbstractVisualizationInfo> visualizationInfos) \newline
+        Konstruktor. Erzeugt eine neue TimelineView mit einer Liste von Visualisierungen.
+      \end{itemize}
+
+      \textbf{Getter}
+      \begin{itemize}
+        \item public VisualizationButton[] getBVuttons() \newline
+        Gibt alle Buttons der TimelineView zurück. Jeder Button steht für eine Visualisierung auf der Zeitleiste.
+      \end{itemize}
+
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+    \subsubsection{Klasse VisualizationContainerController}
+      Der VisualizationContainerController bietet den Rahmen für alle Visualisierungen. Seine Aufgabe ist es, zum einen die Funktionalität der VisualizationContainerView zu implementieren, zum anderen stellt er konkrete Subklassen von AbstractVisualizationController dar. Weiterhin bietet VisualizationContainerController eine Möglichkeit zwischen allen AbstractVisualizationControllern hin- und herzuwechseln.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-VisualizationContainerController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractController
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public VisualizationContainerController(AbstractVisualizationInfo visualizationInfo) \newline
+        Konstruktor. Erzeugt einen neuen VisualizationContainerController für die gegebene Visualisierung.
+        Hierbei wird über die übergebene AbstractVisualizationInfo die Liste aller childClasses abgefragt.
+        Diese Liste enthält konkrete Klassen, die von AbstractVisualizationController erben und das eigentliche Verfahren schrittweise implementieren.
+        \item public void loadView() \newline
+        Lädt die View.
+        \item public void unloadView() \newline
+        Gibt die View frei.
+        \item public void presentHelpPopover() \newline
+        Zeigt die aktuelle Soforthilfe in einer HelpPopoverView an. Der Hilfstext wird dabei vom aktuellen
+        AbstractVisualizationController abgefragt.
+        \item public void dismissHelpPopover() \newline
+        Entfernt die aktuelle HelpPopoverView.
+        \item presentNextVisualizationController() \newline
+        Wechselt zum nächsten AbstractVisualizationController aus der Liste der childClasses.
+        \item presentPreviousVisualizationController() \newline
+        Wechselt zum vorherigen AbstractVisualizationController aus der Liste der childClasses.
+        \item presentStartController() \newline
+        Delegiert den Wechsel zurück zum StartController an den MainController.
+      \end{itemize}
+
+      \textbf{Getter}
+      \begin{itemize}
+        \item public AbstractVisualizationInfo getVisualizationInfo()
+        \item public VisualizationContainerView getView()
+        \item public AbstractVisualizationController getCurrentVisualizationContoller() \newline
+        Gibt den aktuell verwendeten AbstractVisualizationController zurück.
+        \item public boolean hasNextVisualizationController() \newline
+        Überprüft, ob es einen nächsten AbstractVisualizationController gibt.
+        \item public boolean hasPreviousVisualizationController() \newline
+        Überprüft, ob es einen vorherigen AbstractVisualizationController gibt.
+        \item public HelpPopoverView getHelpPopoverView() \newline
+        Gibt die aktuelle HelpPopoverView zurück falls diese existiert.
+      \end{itemize}
+
+      \textbf{Setter}
+      \begin{itemize}
+        \item setCurrentVisualizationControllerIndex(int index) \newline
+        Setzt den aktuellen AbstractViewController auf den in index spezifizierten. Diese Methode läd bei Bedarf 
+        die konkrete Instanz aus der Liste childClasses und speichert die Instanz in visualizationControllers.
+      \end{itemize}
+
+    \subsubsection{Klasse VisualizationContainerView}
+      Die VisualizationContainerView bietet einen Rahmen für die eigentliche Visualisierung. Hierbei wird der Name der Visualisierung sowie zwei Buttons um die Visualisierung abzubrechen sowie die Soforthilfe aufzurufen dargestellt.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-VisualizationContainerView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item javax.swing.JPanel
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+      \textbf{Getter}
+      \begin{itemize}
+        \item public JLabel getNameLabel()
+        \item public JLabel getExitButton()
+        \item public JLabel getHelpButton()
+      \end{itemize}
+
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+    \subsubsection{Klasse WelcomeView}
+      Die WelcomeView wird oberhalb der TimelineView im StartController dargestellt und begrüßt den Benutzer.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-WelcomeView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item javax.swing.JPanel
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+      \textbf{Getter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
       \end{itemize}
 
   \subsection{Paket edu.kit.iks.CryptographicsLib}
