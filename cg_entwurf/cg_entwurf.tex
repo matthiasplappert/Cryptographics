@@ -1233,7 +1233,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 \subsubsection{Klasse Model}
       Das Model in MVC für die Diffie-Hellman Analogie.
       Diese Klasse verwendet das Singleton Entwurfsmuster,
-      da die unterschiedliche Controller das gleiche Model sollen.
+      da die unterschiedliche Controller das gleiche Model verwenden sollen.
 
       \begin{figure}[H]
         \centering
@@ -1318,14 +1318,14 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Demonstration}
 
 \subsubsection{Klasse ExplainAimController}
-      Der erste StateController für die Demonstration der Diffie-Hellman Analogie.
+      Der erste Controller für die Demonstration der Diffie-Hellman Analogie.
       Der ExplainAim Zustand, erklärt was wir eigentlich erreichen wollen,
-      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
+      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal auszutauschen.
       Verwendet das Diffie-Hellman Model und die ExplainAimView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainAimController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainAimController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1344,13 +1344,13 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse ExplainAimView}
-      Die erste StateView für die Demonstration der Diffie-Hellman Analogie.
+      Die erste View für die Demonstration der Diffie-Hellman Analogie.
       Der ExplainAim Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainAimView}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainAimView}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1364,15 +1364,15 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse OnewayController}
-      Der zweite StateController für die Demonstration der Diffie-Hellman Analogie.
+      Der zweite Controller für die Demonstration der Diffie-Hellman Analogie.
       Der OnewayController Zustand, erklärt wie wir dies durch Einwegfunktionen
       erreichen können. Dazu erklärt er an einer Analogie das Konzept
-      der Einwegfunktion.
+      einer Einwegfunktion.
       Verwendet das Diffie-Hellman Model und die OnewayView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-OnewayController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-OnewayController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1391,13 +1391,14 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse OnewayView}
-      Die zweite StateView für die Demonstration der Diffie-Hellman Analogie.
-      Der Oneway Zustand, erklärt was wir eigentlich erreichen wollen,
-      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
+      Die zweite View für die Demonstration der Diffie-Hellman Analogie.
+      Der OnewayView Zustand, erklärt wie wir dies durch Einwegfunktionen
+      erreichen können. Dazu erklärt er an einer Analogie das Konzept
+      einer Einwegfunktion.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-OnewayView}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-OnewayView}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1411,12 +1412,14 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse ExplainKeyExchangeController}
-      Der dritte StateController für die Demonstration der Diffie-Hellman Analogie.
+      Der dritte Controller für die Demonstration der Diffie-Hellman Analogie.
+      Zeigt, wie ein Lauscher das Geheimnis erhält, wenn man es
+      im Klartext versendet.
       Verwendet das Diffie-Hellman Model und die ExplainKeyExchangeView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainKeyExchangeController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainKeyExchangeController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1427,7 +1430,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \textbf{Methoden}
       \begin{itemize}
           \item public ExplainKeyExchangeController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1435,13 +1438,13 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse ExplainKeyExchangeView}
-      Die erste StateView für die Demonstration der Diffie-Hellman Analogie.
-      Der ExplainKeyExchange Zustand, erklärt was wir eigentlich erreichen wollen,
-      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
+      Die dritte View für die Demonstration der Diffie-Hellman Analogie.
+      Zeigt, wie ein Lauscher das Geheimnis erhält, wenn man es
+      im Klartext versendet.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainKeyExchangeView}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainKeyExchangeView}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1455,12 +1458,15 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse AliceChooseSecretController}
-      Der vierte StateController für die Demonstration der Diffie-Hellman Analogie.
+      Der vierte Controller für die Demonstration der Diffie-Hellman Analogie.
+      Zeige wie Alice eine öffentliche und geheime Farbe wählt und 
+      die öffentliche Farbe, sowie die öffentliche, gemischt mit der geheimen Farbe,
+      an Bob sendet.
       Verwendet das Diffie-Hellman Model und die AliceChooseSecretView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-AliceChooseSecretController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-AliceChooseSecretController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1471,7 +1477,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \textbf{Methoden}
       \begin{itemize}
           \item public AliceChooseSecretController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1479,13 +1485,14 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse AliceChooseSecretView}
-      Die vierte StateView für die Demonstration der Diffie-Hellman Analogie.
-      Der AliceChooseSecret Zustand, erklärt was wir eigentlich erreichen wollen,
-      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
+      Die vierte View für die Demonstration der Diffie-Hellman Analogie.
+      Zeige wie Alice eine öffentliche und geheime Farbe wählt und 
+      die öffentliche Farbe, sowie die öffentliche, gemischt mit der geheimen Farbe,
+      an Bob sendet.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-AliceChooseSecretView}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-AliceChooseSecretView}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1499,12 +1506,14 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse BobChooseSecretController}
-      Der fünfte StateController für die Demonstration der Diffie-Hellman Analogie.
+      Der fünfte Controller für die Demonstration der Diffie-Hellman Analogie.
+      Zeigt wie Bob eine geheime Farbe wählt und diese, gemischt mit
+      der öffentlichen Farbe von Alice, an Alice sendet.
       Verwendet das Diffie-Hellman Model und die BobChooseSecretView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-BobChooseSecretController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-BobChooseSecretController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1515,7 +1524,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \textbf{Methoden}
       \begin{itemize}
           \item public BobChooseSecretController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1523,13 +1532,13 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse BobChooseSecretView}
-      Die fünfte StateView für die Demonstration der Diffie-Hellman Analogie.
-      Der BobChooseSecret Zustand, erklärt was wir eigentlich erreichen wollen,
-      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
+      Die fünfte View für die Demonstration der Diffie-Hellman Analogie.
+      Zeigt wie Bob eine geheime Farbe wählt und diese, gemischt mit
+      der öffentlichen Farbe von Alice, an Alice sendet.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-BobChooseSecretView}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-BobChooseSecretView}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1543,12 +1552,14 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse MixColorController}
-      Der sechste StateController für die Demonstration der Diffie-Hellman Analogie.
+      Der sechste Controller für die Demonstration der Diffie-Hellman Analogie.
+      Der MixColor Zustand, erklärt was wir eigentlich erreichen wollen,
+      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
       Verwendet das Diffie-Hellman Model und die MixColorView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-MixColorController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-MixColorController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1559,7 +1570,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \textbf{Methoden}
       \begin{itemize}
           \item public MixColorController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1567,13 +1578,13 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse MixColorView}
-      Die erste StateView für die Demonstration der Diffie-Hellman Analogie.
+      Die sechste View für die Demonstration der Diffie-Hellman Analogie.
       Der MixColor Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-MixColorView}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-MixColorView}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1589,14 +1600,14 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Experiment}
 
 \subsubsection{Klasse YourTurnController}
-      Der erste StateController für das Experiment der Diffie-Hellman Analogie.
+      Der erste Controller für das Experiment der Diffie-Hellman Analogie.
       Der YourTurn Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
       Verwendet das Diffie-Hellman Model und die YourTurnView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-YourTurnController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-YourTurnController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1615,13 +1626,13 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse YourTurnView}
-      Der erste StateView für das Experiment der Diffie-Hellman Analogie.
+      Der erste View für das Experiment der Diffie-Hellman Analogie.
       Der YourTurn Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-YourTurnView}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-YourTurnView}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1635,14 +1646,14 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse ChoosePublicColorController}
-      Der erste StateController für das Experiment der Diffie-Hellman Analogie.
+      Der zweite Controller für das Experiment der Diffie-Hellman Analogie.
       Der ChoosePublicColor Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
       Verwendet das Diffie-Hellman Model und die ChoosePublicColorView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-ChoosePublicColorController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-ChoosePublicColorController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1661,13 +1672,13 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse ChoosePublicColorView}
-      Der erste StateView für das Experiment der Diffie-Hellman Analogie.
+      Die zweite View für das Experiment der Diffie-Hellman Analogie.
       Der ChoosePublicColor Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-ChoosePublicColorView}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-ChoosePublicColorView}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1681,14 +1692,14 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse SendColorController}
-      Der erste StateController für das Experiment der Diffie-Hellman Analogie.
+      Der dritte Controller für das Experiment der Diffie-Hellman Analogie.
       Der SendColor Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
       Verwendet das Diffie-Hellman Model und die SendColorView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-SendColorController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-SendColorController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1707,13 +1718,13 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse SendColorView}
-      Der erste StateView für das Experiment der Diffie-Hellman Analogie.
+      Die dritte View für das Experiment der Diffie-Hellman Analogie.
       Der SendColor Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-SendColorView}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-SendColorView}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1727,14 +1738,14 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse ChooseSecretColorController}
-      Der erste StateController für das Experiment der Diffie-Hellman Analogie.
+      Der vierte Controller für das Experiment der Diffie-Hellman Analogie.
       Der ChooseSecretColor Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
       Verwendet das Diffie-Hellman Model und die ChooseSecretColorView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-ChooseSecretColorController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-ChooseSecretColorController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1753,13 +1764,13 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse ChooseSecretColorView}
-      Der erste StateView für das Experiment der Diffie-Hellman Analogie.
+      Die vierte View für das Experiment der Diffie-Hellman Analogie.
       Der ChooseSecretColor Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-ChooseSecretColorView}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-ChooseSecretColorView}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1773,14 +1784,14 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse SendRightColorController}
-      Der erste StateController für das Experiment der Diffie-Hellman Analogie.
+      Der fünfte Controller für das Experiment der Diffie-Hellman Analogie.
       Der SendRightColor Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
       Verwendet das Diffie-Hellman Model und die SendRightColorView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-SendRightColorController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-SendRightColorController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1799,13 +1810,13 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse SendRightColorView}
-      Der erste StateView für das Experiment der Diffie-Hellman Analogie.
+      Die fünfte View für das Experiment der Diffie-Hellman Analogie.
       Der SendRightColor Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-SendRightColorView}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-SendRightColorView}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1819,14 +1830,14 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse MixFinalSecretController}
-      Der erste StateController für das Experiment der Diffie-Hellman Analogie.
+      Der sechste Controller für das Experiment der Diffie-Hellman Analogie.
       Der MixFinalSecret Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
       Verwendet das Diffie-Hellman Model und die MixFinalSecretView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-MixFinalSecretController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-MixFinalSecretController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
@@ -1845,13 +1856,13 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse MixFinalSecretView}
-      Der erste StateView für das Experiment der Diffie-Hellman Analogie.
+      Die sechste View für das Experiment der Diffie-Hellman Analogie.
       Der MixFinalSecret Zustand, erklärt was wir eigentlich erreichen wollen,
       nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-MixFinalSecretView}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-MixFinalSecretView}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
