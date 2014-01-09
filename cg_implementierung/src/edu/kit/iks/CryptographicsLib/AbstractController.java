@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
 
-import edu.kit.iks.Cryptographics.PopoverView;
-
 /**
  * Abstract Controller
  * 

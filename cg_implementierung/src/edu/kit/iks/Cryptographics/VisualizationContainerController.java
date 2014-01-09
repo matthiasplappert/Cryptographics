@@ -43,6 +43,11 @@ public class VisualizationContainerController extends AbstractController {
 	 * List of all child classes
 	 */
 	List<Class> childClasses;
+	
+	/**
+	 * View of the popover wich shows help for the user.
+	 */
+	private HelpPopoverView helpPopoverView;
 
 	/**
 	 * Constructor initializing a new instance of
@@ -167,10 +172,12 @@ public class VisualizationContainerController extends AbstractController {
 	 * 
 	 */
 	public void presentHelpPopover() {
-		HelpPopoverView helpView = new HelpPopoverView(this
-				.getCurrentVisualizationController().getHelp());
-		this.getCurrentVisualizationController().setHelpView(helpView);
-		helpView.getCloseButton().addMouseListener(new MouseListener() {
+		if (this.helpPopoverView != null) {
+			this.dismissHelpPopover();
+		}
+		
+		this.helpPopoverView = new HelpPopoverView(this.getCurrentVisualizationController().getHelp());
+		this.helpPopoverView.getCloseButton().addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -198,21 +205,21 @@ public class VisualizationContainerController extends AbstractController {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dismissHelp();
+				dismissHelpPopover();
 				
 			}
 		});
-		this.view.add(helpView);
+		this.view.add(this.helpPopoverView);
 		this.view.revalidate();
 	}
 	
 	/**
 	 * Function for unloading the helpView.
 	 */
-	public void dismissHelp() {
-		this.view.remove(this.getCurrentVisualizationController().getHelpView());
+	public void dismissHelpPopover() {
+		this.view.remove(this.helpPopoverView);
 		this.view.revalidate();
-		this.getCurrentVisualizationController().setHelpView(null);
+		this.helpPopoverView = null;
 	}
 
 	/**
@@ -329,5 +336,12 @@ public class VisualizationContainerController extends AbstractController {
 		MainController mainController = (MainController) this
 				.getParentController();
 		mainController.presentStartAction();
+	}
+	
+	/**
+	 * @return the helpView
+	 */
+	public HelpPopoverView getHelpPopoverView() {
+		return helpPopoverView;
 	}
 }

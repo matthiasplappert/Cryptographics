@@ -57,9 +57,8 @@ public class MainController extends AbstractController {
 	 */
 	public void presentStartAction() {
 		if (this.visualizationContainerController != null) {
-			if (this.visualizationContainerController.getCurrentVisualizationController().getHelpView() != null) {
-				this.visualizationContainerController.dismissHelp();
-				this.view.repaint();
+			if (this.visualizationContainerController.getHelpPopoverView() != null) {
+				this.visualizationContainerController.dismissHelpPopover();
 			}
 			this.view.remove(this.visualizationContainerController.getView());
 			this.visualizationContainerController.unloadView();
@@ -73,7 +72,8 @@ public class MainController extends AbstractController {
 
 		// Important to call validate, as some elements may
 		// be invisible otherwise
-		this.view.validate();
+		this.view.revalidate();
+		this.view.repaint();
 		this.frame.validate();
 	}
 
@@ -103,6 +103,7 @@ public class MainController extends AbstractController {
 		this.visualizationContainerController.setCurrentVisualizationControllerIndex(0);
 		
 		this.view.revalidate();
+		this.view.repaint();
 		this.frame.revalidate();
 	}
 
