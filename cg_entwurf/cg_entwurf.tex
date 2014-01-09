@@ -288,7 +288,43 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 	% /AlphabetStripView
 	
+	% CharacterFrequencyDiagramView
+	\subsubsection{Klasse CharacterFrequencyDiagramView}
+	  Instanzen dieser Klasse erzeugen ein Säulendiagramm, wobei die
+	  Höhe jeder Säule die relative Häufigkeit eines Buchstaben in einem Text anzeigt.
+	  Eine konkrete Instanz dieser Klasse kann aufgrund ihrer Vaterklasse als JPanel behandelt werden.
 	
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-CryptographicsLib-CharacterFrequencyDiagramView}
+      \end{figure}
+	
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item javax.swing.JPanel
+      \end{itemize}
+	
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public CharacterFrequencyDiagramView(int[] quantities) \newline
+          Konstruktor, der mit den Häufigkeiten der einzelnen Buchstaben in einem Text
+          initialisiert wird.
+        \item public void generateDiagram() \newline
+          Generiert das Diagramm anhand der gesetzten Parameter.
+        \item public void drawDiagram() \newline
+          Zeichnet das Diagramm.
+      \end{itemize}
+      
+      \textbf{Getter}
+      \begin{itemize}
+		\item public int[] getQuantities()
+      \end{itemize}
+      
+      \textbf{Setter}
+      \begin{itemize}
+        \item public void setQuantities(int[] quantitiesOfCharacters)
+      \end{itemize}
+	% /CharacterFrequencyDiagramView
 	
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
     \subsubsection{Klasse AbstractController}
