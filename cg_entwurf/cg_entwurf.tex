@@ -326,6 +326,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 	% /CharacterFrequencyDiagramView
 	
+	% ImageView
 	\subsubsection{Klasse ImageView}
 	  Instanzen dieser Klasse erzeugen ein JPanel, das ein Bild darstellt, welches
 	  durch überschriebene Konstruktoren auf verschiedene Weisen initialisiert werden kann. 
@@ -360,6 +361,47 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item \textit{keine}
       \end{itemize}
 	% /ImageView	
+	
+	% InformationController
+	\subsubsection{Klasse InformationController}
+	  Der InformationController ist ein von den Verfahren gemeinsam genutzter
+	  Controller um weiterführende Informationen anzuzeigen, wobei dieser Controller
+	  die für das Verfahren notwendige Informationsseite anhand der übergebenen VisualizationInfo
+	  selbst initialisiert.
+	
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-CryptographicsLib-InformationController}
+      \end{figure}
+	
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+	
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public InformationController(AbstractVisualizationInfo visualizationInfo) \newline
+          Konstruktor, der die Informationsseite anhand der übergebenen VisualizationInfo
+          selbstständig initialisiert.
+		\item public void loadView() \newline
+		  Überschreibt edu.kit.iks.CryptographicsLib.AbstractController\#loadView()
+		\item public String getHelp() \newline
+		  Überschreibt edu.kit.iks.CryptographicsLib.AbstractVisualizationController\#getHelp()
+		\item public InformationView getView() \newline
+		  Überschreibt edu.kit.iks.CryptographicsLib.AbstractController\#getView()
+      \end{itemize}
+      
+      \textbf{Getter}
+      \begin{itemize}
+		\item \textit{keine}
+      \end{itemize}
+      
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+	% /InformationController	
 	
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
     \subsubsection{Klasse AbstractController}
