@@ -149,7 +149,40 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item \textit{keine}
       \end{itemize}
 	
-\subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
+    \subsubsection{Klasse AbstractController}
+      Der AbstractController ist eine abstrakte Klasse, die die verschiedenen State-Controller im Vigenere-Paket nutzen.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-MainController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+    \subsubsection{Klasse VigenereModel}
+      Das VigenereModel ist für die Ver- und Entschlüsselung zuständig.
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-MainController}
+      \end{figure}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public char XOR(char a, char b) \newline
+        Benutzt einen logischen XOR auf die Parameter a und b.
+      \end{itemize}
+
 \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
 \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
 
