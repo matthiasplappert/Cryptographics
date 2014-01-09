@@ -3,15 +3,15 @@ package edu.kit.iks.Cryptographics.DiffieHellman;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DHDemoFifthController;
-import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DHDemoFirstController;
-import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DHDemoFourthController;
-import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DHDemoSecondController;
-import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DHDemoThirdController;
-import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.DHExperimentFirstController;
-import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.DHExperimentFourthController;
-import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.DHExperimentSecondController;
-import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.DHExperimentThirdController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.BobChooseSecretController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainAimController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.AliceChooseSecretController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.OnewayController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainKeyExchangeController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.YourTurnController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.ChooseSecretColorController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.ChoosePublicColorController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.SendColorController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
@@ -50,15 +50,15 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 	public List<Class> getControllerClasses() {
 		List<Class> controllerClasses = new ArrayList<Class>();
 		
-		controllerClasses.add(DHDemoFirstController.class);
-		controllerClasses.add(DHDemoSecondController.class);
-		controllerClasses.add(DHDemoThirdController.class);
-		controllerClasses.add(DHDemoFourthController.class);
-		controllerClasses.add(DHDemoFifthController.class);
-		controllerClasses.add(DHExperimentFirstController.class);
-		controllerClasses.add(DHExperimentSecondController.class);
-		controllerClasses.add(DHExperimentThirdController.class);
-		controllerClasses.add(DHExperimentFourthController.class);
+		controllerClasses.add(ExplainAimController.class);
+		controllerClasses.add(OnewayController.class);
+		controllerClasses.add(ExplainKeyExchangeController.class);
+		controllerClasses.add(AliceChooseSecretController.class);
+		controllerClasses.add(BobChooseSecretController.class);
+		controllerClasses.add(YourTurnController.class);
+		controllerClasses.add(ChoosePublicColorController.class);
+		controllerClasses.add(SendColorController.class);
+		controllerClasses.add(ChooseSecretColorController.class);
 		
 		return controllerClasses;
 	}
