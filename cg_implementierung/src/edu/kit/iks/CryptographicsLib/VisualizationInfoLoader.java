@@ -1,4 +1,4 @@
-package edu.kit.iks.Cryptographics;
+package edu.kit.iks.CryptographicsLib;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,6 @@ import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.Cryptographics.DiffieHellman.DHVisualizationInfo;
 import edu.kit.iks.Cryptographics.Example.VisualizationInfo;
 import edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 /**
  * This class is a registry where all {VisualisationInfo}-objects are 

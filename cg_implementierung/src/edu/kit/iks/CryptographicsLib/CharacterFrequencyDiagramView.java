@@ -11,10 +11,10 @@ import javax.swing.JPanel;
  * maximum height of the diagram. Each other beam has a corresponding fraction of this height.
  * The equivalent characters are displayed beneath each beam.
  */
-public class UICharacterFrequencyDiagram extends JPanel{
+public class CharacterFrequencyDiagramView extends JPanel{
 
 	private int [] quantitiesOfCharacters;
-	public UICharacterFrequencyDiagram(int[] quantities) {
+	public CharacterFrequencyDiagramView(int[] quantities) {
 		super();
 		
 		setQuantities(quantities);

@@ -8,11 +8,11 @@ import javax.swing.JButton;
  * 
  * The single keys for UIKeyboard.
  */
-public class UIKeyboardKey extends JButton{
+public class KeyboardButton extends JButton{
 
 	private char keyValue;
 	
-	public UIKeyboardKey(char keyValue) {
+	public KeyboardButton(char keyValue) {
 		super();
 		
 		setKeyValue(keyValue);

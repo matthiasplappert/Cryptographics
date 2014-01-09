@@ -1,8 +1,6 @@
-package edu.kit.iks.Cryptographics;
+package edu.kit.iks.CryptographicsLib;
 
 import javax.swing.JButton;
-
-import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 /**
  * Objects of this class are a decorator for JButton, 

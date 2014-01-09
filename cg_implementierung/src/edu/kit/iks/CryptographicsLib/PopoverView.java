@@ -1,4 +1,4 @@
-package edu.kit.iks.Cryptographics;
+package edu.kit.iks.CryptographicsLib;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
