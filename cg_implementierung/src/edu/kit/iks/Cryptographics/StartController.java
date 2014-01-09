@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 
 import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.VisualizationButton;
+import edu.kit.iks.CryptographicsLib.VisualizationInfoLoader;
 
 /**
  * An instance of this class is the start controller showing teasers

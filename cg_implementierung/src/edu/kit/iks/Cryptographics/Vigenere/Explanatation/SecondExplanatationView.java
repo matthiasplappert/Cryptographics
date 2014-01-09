@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import edu.kit.iks.CryptographicsLib.UICharacterFrequencyDiagram;
+import edu.kit.iks.CryptographicsLib.CharacterFrequencyDiagramView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /*
@@ -28,8 +28,8 @@ public class SecondExplanatationView extends VisualizationView{
 	private JButton buttonGenerateHistogramm;
 	private JButton buttonComputeKeyLength;
 	
-	private UICharacterFrequencyDiagram vigenereHistogramm;
-	private UICharacterFrequencyDiagram alphabetHistogramm;
+	private CharacterFrequencyDiagramView vigenereHistogramm;
+	private CharacterFrequencyDiagramView alphabetHistogramm;
 	
 	public SecondExplanatationView() {
        this.add(new JLabel("VIGENERE EXPLANATATION2"));

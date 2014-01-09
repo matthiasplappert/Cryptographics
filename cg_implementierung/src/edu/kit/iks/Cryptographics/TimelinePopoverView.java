@@ -3,6 +3,8 @@ package edu.kit.iks.Cryptographics;
 import javax.swing.JLabel;
 
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.PopoverView;
+import edu.kit.iks.CryptographicsLib.VisualizationButton;
 
 /**
  * Objects of this class represent the popover when

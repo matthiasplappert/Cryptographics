@@ -3,7 +3,7 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import edu.kit.iks.CryptographicsLib.UICharacterFrequencyDiagram;
+import edu.kit.iks.CryptographicsLib.CharacterFrequencyDiagramView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
@@ -49,12 +49,12 @@ public class HistogramView extends VisualizationView {
 	 * Label that will contain a histogram image that will be explained to the
 	 * user.
 	 */
-	private UICharacterFrequencyDiagram histogram;
+	private CharacterFrequencyDiagramView histogram;
 
 	/**
 	 * @return the histogram
 	 */
-	public UICharacterFrequencyDiagram getHistogram() {
+	public CharacterFrequencyDiagramView getHistogram() {
 		return histogram;
 	}
 

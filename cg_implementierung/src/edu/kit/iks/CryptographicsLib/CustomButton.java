@@ -7,9 +7,9 @@ import javax.swing.JButton;
  * 
  * A button with customized design to be used all throughout the program.
  */
-public class UICustomButton extends JButton {
+public class CustomButton extends JButton {
 
-	public UICustomButton() {
+	public CustomButton() {
 		super();
 	}
 }

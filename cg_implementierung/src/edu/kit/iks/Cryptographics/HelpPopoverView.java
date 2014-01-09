@@ -2,6 +2,8 @@ package edu.kit.iks.Cryptographics;
 
 import javax.swing.JLabel;
 
+import edu.kit.iks.CryptographicsLib.PopoverView;
+
 /**
  * Objects of this class represent the popover when
  * the user clicks on the help button
