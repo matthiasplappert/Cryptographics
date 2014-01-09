@@ -6,12 +6,12 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class MixColorController extends AbstractVisualizationController {
 	private Model dhModel;
-	private AliceChooseSecretView view;
+	private MixColorView view;
 	
 	public MixColorController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		dhModel = Model.getInstance();
-		view = new AliceChooseSecretView();
+		view = new MixColorView();
 		// TODO Auto-generated constructor stub
 	}
 

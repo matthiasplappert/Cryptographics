@@ -1041,6 +1041,156 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         Gibt eine Liste von Controller-Klassen des Verfahrens aus, welche dann im Statecontroller geswitcht werden können.
       \end{itemize}
 
+\subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Demonstration}
+
+\subsubsection{Klasse ExplainAimController}
+      Der erste StateController für die Demonstration der Diffie-Hellman Analogie.
+      Der ExplainAim Zustand, erklärt was wir eigentlich erreichen wollen,
+      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
+      Verwendet das Diffie-Hellman Model und die ExplainAimView.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainAimController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+          \item public ExplainAimController(AbstractVisualizationInfo visualizationInfo) \newline
+              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse OnewayController}
+      Der zweite StateController für die Demonstration der Diffie-Hellman Analogie.
+      Der OnewayController Zustand, erklärt wie wir dies durch Einwegfunktionen
+      erreichen können. Dazu erklärt er an einer Analogie das Konzept
+      der Einwegfunktion.
+      Verwendet das Diffie-Hellman Model und die OnewayView.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-OnewayController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+          \item public OnewayController(AbstractVisualizationInfo visualizationInfo) \newline
+              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse ExplainKeyExchangeController}
+      Der dritte StateController für die Demonstration der Diffie-Hellman Analogie.
+      Verwendet das Diffie-Hellman Model und die ExplainKeyExchangeView.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainKeyExchangeController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+          \item public ExplainKeyExchangeController(AbstractVisualizationInfo visualizationInfo) \newline
+              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse AliceChooseSecretController}
+      Der vierte StateController für die Demonstration der Diffie-Hellman Analogie.
+      Verwendet das Diffie-Hellman Model und die AliceChooseSecretView.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-AliceChooseSecretController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+          \item public AliceChooseSecretController(AbstractVisualizationInfo visualizationInfo) \newline
+              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse BobChooseSecretController}
+      Der erste StateController für die Diffie-Hellman Analogie Demonstration.
+      Verwendet das Diffie-Hellman Model und die BobChooseSecretView.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-BobChooseSecretController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+          \item public BobChooseSecretController(AbstractVisualizationInfo visualizationInfo) \newline
+              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+\subsubsection{Klasse MixColorController}
+      Der erste StateController für die Diffie-Hellman Analogie Demonstration.
+      Verwendet das Diffie-Hellman Model und die MixColorView.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-MixColorController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+          \item public MixColorController(AbstractVisualizationInfo visualizationInfo) \newline
+              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
 \section{Abläufe}
 
 \glsaddall
