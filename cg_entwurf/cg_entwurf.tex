@@ -326,6 +326,41 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 	% /CharacterFrequencyDiagramView
 	
+	\subsubsection{Klasse ImageView}
+	  Instanzen dieser Klasse erzeugen ein JPanel, das ein Bild darstellt, welches
+	  durch überschriebene Konstruktoren auf verschiedene Weisen initialisiert werden kann. 
+	
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{resources/edu-kit-iks-CryptographicsLib-ImageView}
+      \end{figure}
+	
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item javax.swing.JPanel
+      \end{itemize}
+	
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public ImageView(Image img) \newline
+          Konstruktor, der die Instanz anhand eines Image-Objekts initialisiert.
+        \item public ImageView(String filePath) \newline
+          Konstruktor, der die Instanz anhand eines Bilddateipfads initialisiert.
+        \item protected void paintComponent(Graphics g) \newline
+          Überschreibt javax.swing.JComponent\#paintComponent(java.awt.Graphics)
+      \end{itemize}
+      
+      \textbf{Getter}
+      \begin{itemize}
+		\item \textit{keine}
+      \end{itemize}
+      
+      \textbf{Setter}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+	% /ImageView	
+	
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
     \subsubsection{Klasse AbstractController}
       Der AbstractController ist eine abstrakte Klasse, die die verschiedenen State-Controller im Vigenere-Paket nutzen.
