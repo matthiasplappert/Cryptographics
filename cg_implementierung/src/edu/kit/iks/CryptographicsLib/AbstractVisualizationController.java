@@ -1,5 +1,7 @@
 package edu.kit.iks.CryptographicsLib;
 
+import edu.kit.iks.Cryptographics.PopoverView;
+
 /**
  * Abstract visualisization controller specialized for
  * the needs of a procedure to visualize its contents
@@ -7,6 +9,11 @@ package edu.kit.iks.CryptographicsLib;
  * @author Christian Dreher
  */
 public abstract class AbstractVisualizationController extends AbstractController {
+	
+	/**
+	 * View of the popover wich shows help for the user.
+	 */
+	private PopoverView helpView;
 	
 	/**
 	 * {VisualizationInfo}-object holding all metadata of the procedure
@@ -39,4 +46,18 @@ public abstract class AbstractVisualizationController extends AbstractController
 	 * @return help text
 	 */
 	abstract public String getHelp();
+	
+	/**
+	 * @return the helpView
+	 */
+	public PopoverView getHelpView() {
+		return helpView;
+	}
+
+	/**
+	 * @param helpView the helpView to set
+	 */
+	public void setHelpView(PopoverView helpView) {
+		this.helpView = helpView;
+	}
 }

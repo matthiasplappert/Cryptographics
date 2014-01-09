@@ -57,6 +57,10 @@ public class MainController extends AbstractController {
 	 */
 	public void presentStartAction() {
 		if (this.visualizationContainerController != null) {
+			if (this.visualizationContainerController.getCurrentVisualizationController().getHelpView() != null) {
+				this.visualizationContainerController.dismissHelp();
+				this.view.repaint();
+			}
 			this.view.remove(this.visualizationContainerController.getView());
 			this.visualizationContainerController.unloadView();
 			this.removeChildController(this.visualizationContainerController);

@@ -33,8 +33,7 @@ public class HelpPopoverView extends PopoverView {
 	public HelpPopoverView(String helpText) {
 		super();
 		
-		this.helpText = helpText;
-		
+		this.helpText = helpText;		
 		this.helpTextLabel = new JLabel(helpText);
 		this.getContentView().add(this.helpTextLabel);
 	}

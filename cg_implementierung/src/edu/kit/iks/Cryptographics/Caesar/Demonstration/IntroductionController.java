@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComponent;
 
+import edu.kit.iks.Cryptographics.PopoverView;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
@@ -69,5 +70,5 @@ public class IntroductionController extends AbstractVisualizationController {
 		});
 		this.view.validate();
 	}
-	
+
 }

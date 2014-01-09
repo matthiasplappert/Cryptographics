@@ -202,9 +202,6 @@ public class StartController extends AbstractController {
 				dismissPopoverAction();
 			}
 		});
-
-		// TODO: assign action listener for close button that calls
-		// dismissPopoverAction()
 	}
 
 	/**

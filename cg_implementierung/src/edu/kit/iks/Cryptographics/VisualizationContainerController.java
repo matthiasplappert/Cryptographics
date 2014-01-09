@@ -78,7 +78,6 @@ public class VisualizationContainerController extends AbstractController {
 	@Override
 	public void loadView() {
 		this.view = new VisualizationContainerView();
-		
 		this.view.getHelpButton().addMouseListener(new MouseListener() {
 
 			@Override
@@ -111,7 +110,6 @@ public class VisualizationContainerController extends AbstractController {
 
 			}
 		});
-
 		this.view.getExitButton().addMouseListener(new MouseListener() {
 
 			@Override
@@ -144,15 +142,42 @@ public class VisualizationContainerController extends AbstractController {
 				mainController.presentStartAction();
 			}
 		});
+		this.view.getHelpButton().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				presentHelpPopover();
+
+			}
+		});
 
 		// TODO: dispatch call to currentVisualizationController.getHelp()
 		// TODO: present popover for help
 
-		// TODO: action listener for exitButton
-		// TODO: in action listener do:
-		// MainController mainController =
-		// (MainController)this.getParentController();
-		// mainController.presentStartAction();
 	}
 
 	/**
@@ -160,9 +185,9 @@ public class VisualizationContainerController extends AbstractController {
 	 */
 	@Override
 	public void unloadView() {
-	  this.view.removeAll();
-	  this.view.revalidate();
-	  this.view = null;
+		this.view.removeAll();
+		this.view.revalidate();
+		this.view = null;
 	}
 
 	/**
@@ -174,14 +199,56 @@ public class VisualizationContainerController extends AbstractController {
 	}
 
 	/**
-	 * Shows a popover displaying given {helpText}
+	 * Shows a popover displaying given help.
 	 * 
-	 * @param helpText
-	 *            String to be displayed
 	 */
-	public void presentHelpPopover(String helpText) {
-		// TODO: load popover
-		// TODO: present
+	public void presentHelpPopover() {
+		HelpPopoverView helpView = new HelpPopoverView(this
+				.getCurrentVisualizationController().getHelp());
+		this.getCurrentVisualizationController().setHelpView(helpView);
+		helpView.getCloseButton().addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dismissHelp();
+				
+			}
+		});
+		this.view.add(helpView);
+		this.view.revalidate();
+	}
+	
+	/**
+	 * Function for unloading the helpView.
+	 */
+	public void dismissHelp() {
+		this.view.remove(this.getCurrentVisualizationController().getHelpView());
+		this.view.revalidate();
+		this.getCurrentVisualizationController().setHelpView(null);
 	}
 
 	/**
