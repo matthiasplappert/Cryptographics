@@ -6,6 +6,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{enumitem}
 \usepackage{graphicx}
+\usepackage{geometry}
 \usepackage{float}
 \usepackage{url}
 \usepackage[bottom]{footmisc}
@@ -1876,18 +1877,22 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 \section{Abläufe}
 
 \subsection{Sequenzdiagramme}
-\newpage
+\newgeometry{left=2cm,right=2cm,bottom=2cm}
 \subsubsection{Diagramm 1}
+	Dieses Diagramm verdeutlicht Ablauf von Cryptographics auf Timeline-Ebene.
 	\begin{figure}[H]
         \centering
-        \includegraphics[width=1.25\textwidth]{resources/sequenceDiagram01}
+        \includegraphics[height=0.9\textheight]{resources/sequenceDiagram01}
       \end{figure}
       
 \subsubsection{Diagramm 2}
+	Dieses Diagramm verdeutlicht Ablauf von Cryptographics auf Visualisierungs-Ebene.
 	\begin{figure}[H]
         \centering
-        \includegraphics[width=1.25\textwidth]{resources/sequenceDiagram02}
+        \includegraphics[height=0.9\textheight]{resources/sequenceDiagram02}
       \end{figure}
+
+\restoregeometry
 
 \glsaddall
 \printglossary[numberedsection, style=altlist]
