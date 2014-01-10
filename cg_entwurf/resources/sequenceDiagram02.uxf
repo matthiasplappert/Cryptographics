@@ -79,10 +79,10 @@ _IntroductionView_</panel_attributes>
       <x>410</x>
       <y>10</y>
       <w>50</w>
-      <h>900</h>
+      <h>1570</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;880</additional_attributes>
+    <additional_attributes>30;30;30;1550</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -999,7 +999,7 @@ presentNextVisualizationController()</panel_attributes>
       <x>220</x>
       <y>1140</y>
       <w>20</w>
-      <h>280</h>
+      <h>230</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -1010,7 +1010,7 @@ presentNextVisualizationController()</panel_attributes>
       <x>40</x>
       <y>1160</y>
       <w>950</w>
-      <h>270</h>
+      <h>230</h>
     </coordinates>
     <panel_attributes>Gleicher Ablauf wie oben</panel_attributes>
     <additional_attributes/>
@@ -1100,10 +1100,10 @@ _InformationView_</panel_attributes>
       <x>580</x>
       <y>1310</y>
       <w>50</w>
-      <h>160</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;140</additional_attributes>
+    <additional_attributes>30;30;30;90</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -1111,16 +1111,16 @@ _InformationView_</panel_attributes>
       <x>770</x>
       <y>1310</y>
       <w>50</w>
-      <h>320</h>
+      <h>270</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;300</additional_attributes>
+    <additional_attributes>30;30;30;250</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>200</x>
-      <y>1390</y>
+      <y>1340</y>
       <w>50</w>
       <h>90</h>
     </coordinates>
@@ -1131,7 +1131,7 @@ _InformationView_</panel_attributes>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>600</x>
-      <y>1450</y>
+      <y>1400</y>
       <w>20</w>
       <h>90</h>
     </coordinates>
@@ -1142,7 +1142,7 @@ _InformationView_</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>580</x>
-      <y>1470</y>
+      <y>1420</y>
       <w>50</w>
       <h>160</h>
     </coordinates>
@@ -1153,7 +1153,7 @@ _InformationView_</panel_attributes>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>220</x>
-      <y>1460</y>
+      <y>1410</y>
       <w>20</w>
       <h>80</h>
     </coordinates>
@@ -1164,7 +1164,7 @@ _InformationView_</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>200</x>
-      <y>1460</y>
+      <y>1420</y>
       <w>50</w>
       <h>160</h>
     </coordinates>
@@ -1175,7 +1175,7 @@ _InformationView_</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>210</x>
-      <y>1410</y>
+      <y>1360</y>
       <w>410</w>
       <h>70</h>
     </coordinates>
