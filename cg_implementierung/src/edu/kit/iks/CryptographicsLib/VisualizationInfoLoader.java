@@ -17,6 +17,8 @@ import edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo;
  */
 public class VisualizationInfoLoader {
 	
+	static private List<AbstractVisualizationInfo> visualizationInfos;
+	
 	/**
 	 * Private constructor to prevent this class from being instantiated
 	 */

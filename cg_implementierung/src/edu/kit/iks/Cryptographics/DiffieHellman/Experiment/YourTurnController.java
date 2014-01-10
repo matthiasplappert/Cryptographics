@@ -1,19 +1,15 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.Model;
-import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
+import edu.kit.iks.Cryptographics.DiffieHellman.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class YourTurnController extends
-		AbstractVisualizationController {
+public class YourTurnController extends AbstractController {
 	
-	private Model dhModel;
 	private YourTurnView view;
 
 	public YourTurnController(
 			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		dhModel = Model.getInstance();
 		view = new YourTurnView();
 		// TODO Auto-generated constructor stub
 	}

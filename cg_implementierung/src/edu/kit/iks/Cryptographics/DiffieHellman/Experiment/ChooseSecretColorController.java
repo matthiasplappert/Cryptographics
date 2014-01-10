@@ -1,18 +1,15 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.Model;
-import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
+import edu.kit.iks.Cryptographics.DiffieHellman.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class ChooseSecretColorController extends AbstractVisualizationController {
+public class ChooseSecretColorController extends AbstractController {
 	
-	private Model dhModel;
 	private ChooseSecretColorView view;
 	
 	public ChooseSecretColorController(
 			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		dhModel = Model.getInstance();
 		view = new ChooseSecretColorView();
 		
 		// TODO Auto-generated constructor stub
