@@ -107,11 +107,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item public String getHelpTextLabel() \newline
       \end{itemize}
 
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
     \subsubsection{Klasse Main}
       Main stellt den Einstiegspunkt des Programmes dar.
       \begin{figure}[H]
@@ -128,16 +123,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \begin{itemize}
         \item public static void main(String[] args) \newline
         Initialisiert den MainController.
-      \end{itemize}
-
-      \textbf{Getter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
       \end{itemize}
 
     \subsubsection{Klasse MainController}
@@ -160,16 +145,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         Lädt den StartController und zeigt seine View an.
         \item public void presentVisualizationAction(AbstractVisualizationInfo visualizationInfo) \newline
         Lädt den VisualizationContainerController, übergibt die konkrete VisualizationInfo und zeigt seine View an.
-      \end{itemize}
-
-      \textbf{Getter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
       \end{itemize}
 
     \subsubsection{Klasse StartController}
@@ -198,15 +173,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         Die gewählte Visualisierung soll gestartet werden. Hierzu delegiert diese Methode die Aufgabe an den MainController.
       \end{itemize}
 
-      \textbf{Getter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
+      
 
     \subsubsection{Klasse TimelinePopoverView}
       Die TimelinePopoverView stellt Informationen zu einer gewählten Visualisierung dar und bietet eine Möglichkeit an die Visualisierung zu starten.
@@ -232,11 +199,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item public AbstractVisualizationInfo getVisualizationInfo()
       \end{itemize}
 
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
     \subsubsection{Klasse TimelineView}
       Die TimelineView stellt alle Visualisierung auf einer Zeitleiste dar.
       \begin{figure}[H]
@@ -259,11 +221,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \begin{itemize}
         \item public VisualizationButton[] getButtons() \newline
         Gibt alle Buttons der TimelineView zurück. Jeder Button steht für eine Visualisierung auf der Zeitleiste.
-      \end{itemize}
-
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
       \end{itemize}
 
     \subsubsection{Klasse VisualizationContainerController}
@@ -346,11 +303,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item public JLabel getHelpButton()
       \end{itemize}
 
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
     \subsubsection{Klasse WelcomeView}
       Die WelcomeView wird oberhalb der TimelineView im StartController dargestellt und begrüßt den Benutzer.
       \begin{figure}[H]
@@ -364,16 +316,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
       
       \textbf{Methoden}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
-      \textbf{Getter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
-      \textbf{Setter}
       \begin{itemize}
         \item \textit{keine}
       \end{itemize}
@@ -424,11 +366,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item public AbstractController getParentController()
         \item public List<AbstractController> getChildControllers()
       \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
 	% /AbstractController
 	
 	% AbstractVisualizationController
@@ -461,11 +398,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \textbf{Getter}
       \begin{itemize}
 		\item public AbstractVisualizationInfo getVisualizationInfo()
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
       \end{itemize}
 	% /AbstractVisualizationController
 	
@@ -522,16 +454,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
           muss nicht abstrakt sein, da es durch die bereits implementierten abstrakten Methoden
           errechnet werden, oder aus dem eventuell vorhandenen Cache geladen werden kann.
       \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
 	% /AbstractVisualizationInfo
 	
 	% AlphabetStripView
@@ -554,16 +476,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \begin{itemize}
         \item public AlphabetStripView() \newline
           Konstruktor, der die Alphabetanzeige initialisiert.
-      \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
       \end{itemize}
 	% /AlphabetStripView
 	
@@ -629,16 +541,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item protected void paintComponent(Graphics g) \newline
           Überschreibt javax.swing.JComponent\#paintComponent(java.awt.Graphics)
       \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
 	% /ImageView	
 	
 	% InformationController
@@ -670,16 +572,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 		\item public InformationView getView() \newline
 		  Überschreibt edu.kit.iks.CryptographicsLib.AbstractController\#getView()
       \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
 	% /InformationController	
 	
 	% InformationView
@@ -709,11 +601,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \begin{itemize}
 		\item public URL getPath()
 		\item public Image getQrCode()
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
       \end{itemize}
 	% /InformationView	
 	
@@ -767,16 +654,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item public KeyboardView()
           Konstruktor, der eine Tastatur mit standardmäßigem Zeichensatz initialisiert.
       \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
 	% /KeyboardView	
 	
 	% NumbersStripView
@@ -799,16 +676,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \begin{itemize}
         \item public NumberStripView() \newline
           Konstruktor, der die Zeile mit Zahlen von 1 bis 26 initialisiert.
-      \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
       \end{itemize}
 	% /NumbersStripView	
 	
@@ -838,12 +705,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \begin{itemize}
 		\item public JButton getCloseButton()
 		\item public JPanel getContentView()
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
+      \end{itemize}      
 	% /PopoverView	
 	
 	% VisualizationButton
@@ -869,11 +731,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \textbf{Getter}
       \begin{itemize}
 		\item public AbstractVisualizationInfo getVisualizationInfo()
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
       \end{itemize}
 	% /VisualizationButton	
 	
@@ -917,16 +774,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item static public List<AbstractVisualizationInfo> loadAllVisualizationInfos() \newline
           Bezieht eine Liste der VisualizationInfos sämtlicher Verfahren.
       \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
 	% /VisualizationInfoLoader	
 	
 	% VisualizationView
@@ -954,11 +801,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \begin{itemize}
 		\item public JButton getNextButton()
 		\item public JButton getBackButton()
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
       \end{itemize}
 	% /VisualizationView	
 	
@@ -1200,8 +1042,220 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
+  \subsubsection{Klasse CaesarVisualizationInfo}
+      CaesarVisualizationInfo enthält alle wichtigen Informationen zu dem Verfahren, wie z.B. Verfahrensname/Beschreibung.
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-CaesarVisualizationInfo}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public String getId() \newline
+        Gibt die Kennungs-ID aus.
+        \item public String getName() \newline
+        Gibt den Namen des Verfahrens aus.
+        \item public String getDescription() \newline
+        Gibt die Beschreibung des Verfahrens aus.
+        \item public String getQRCodeContent() \newline
+        Gibt den Inhalt des QRCodes aus.
+        \item public float getTimelineOffset() \newline
+        Gibt die relative Position in der Timeline aus.
+        \item public VisualizationDifficulty getDifficulty() \newline
+        Gibt den Schwierigkeitsgrad aus.
+        \item public int getYear() \newline
+        Gibt das Jahr aus, in welchem das Verfahren entwickelt wurde.
+        \item public List<Class> getControllerClasses() \newline
+        Gibt eine Liste von Controller-Klassen des Verfahrens aus, welche dann im Statecontroller geswitcht werden können.
+      \end{itemize}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Demonstration}
+
+\subsubsection{Klasse CipherDemoController}
+      todo
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Demonstration-CipherDemoController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public CipherDemoController(AbstractVisualizationInfo visualizationInfo)
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse CipherDemoView}
+      todo
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Demonstration-CipherDemoView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item todo
+      \end{itemize}
+
+\subsubsection{Klasse IntroductionController}
+      todo
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Demonstration-IntroductionController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public IntroductionController(AbstractVisualizationInfo visualizationInfo)
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse IntroductionView}
+      todo
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Demonstration-IntroductionView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+\subsubsection{Klasse CryptoController}
+      todo
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Experiment-CryptoController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public CryptoController(AbstractVisualizationInfo visualizationInfo)
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse CryptoModel}
+      todo
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Experiment-CryptoModel}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item todo
+      \end{itemize}
+
+\subsubsection{Klasse CryptoView}
+      todo
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Experiment-CryptoView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+\subsubsection{Klasse HistogramController}
+      todo
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Experiment-HistogramController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public HistogramController(AbstractVisualizationInfo visualizationInfo)
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse HistogramView}
+      todo
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Experiment-HistogramView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
 
 \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
+    \subsubsection{Klasse AbstractController}
       Der AbstractController ist eine abstrakte Klasse, die die verschiedenen State-Controller im DiffieHellman-Paket nutzen.
       \begin{figure}[H]
         \centering
@@ -1330,8 +1384,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public ExplainAimController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+        \item public ExplainAimController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1377,8 +1430,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public OnewayController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+          \item public OnewayController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1424,8 +1476,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public ExplainKeyExchangeController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+          \item public ExplainKeyExchangeController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1471,8 +1522,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public AliceChooseSecretController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+          \item public AliceChooseSecretController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1518,8 +1568,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public BobChooseSecretController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+          \item public BobChooseSecretController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1563,8 +1612,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public MixColorController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+          \item public MixColorController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1610,8 +1658,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public YourTurnController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+          \item public YourTurnController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1656,8 +1703,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public ChoosePublicColorController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+          \item public ChoosePublicColorController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1701,8 +1747,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public SendColorController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+          \item public SendColorController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1746,8 +1791,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public ChooseSecretColorController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+          \item public ChooseSecretColorController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1792,8 +1836,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public SendRightColorController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+          \item public SendRightColorController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1838,8 +1881,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public MixFinalSecretController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+          \item public MixFinalSecretController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
