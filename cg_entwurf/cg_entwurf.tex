@@ -1076,6 +1076,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
   \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Demonstration}
 
+
 \subsubsection{Klasse CipherDemoController}
       todo
 
@@ -1156,8 +1157,11 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item \textit{keine}
       \end{itemize}
 
+\subsection{Paket edu.kit.iks.Cryptographics.Caesar.Experiment}
+
 \subsubsection{Klasse CryptoController}
-      todo
+      Controller für den ersten und zweiten Schritt der Experimentphase, in der der Benutzer erst einen Text eingeben und verschlüsseln und im zweiten Schritt einen gegebenen Text entschlüsseln muss.
+      Kontrolliert die benötigten Elemente von CaesarUpperView. Details hierzu siehe CGeneralView.
 
       \begin{figure}[H]
         \centering
@@ -1171,7 +1175,8 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-        \item public CryptoController(AbstractVisualizationInfo visualizationInfo)
+        \item public CryptoController(AbstractVisualizationInfo visualizationInfo) \newline
+        Konstruktor, instanziiert die Klasse anhand der gegeben Information zur Visualisierung
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1179,7 +1184,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse CryptoModel}
-      todo
+      Modell für den letzten Schritt der Caesar-Einführung und die ersten beiden Schritte der Experimentphase.
 
       \begin{figure}[H]
         \centering
@@ -1197,7 +1202,16 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse CryptoView}
-      todo
+      Diese Ansicht erscheint zum ersten Mal, wenn der Nutzer die Animationen aus CFirstView verstanden hat. Sie wird im letzten Schritt der Vorführungsphase, und dem ersten, und zweiten Schritt der Experimentphase verwendet. Wegen der nur kleinen Unterschiede zwischen diesen Schritten ist die Ansicht für sie in einer Klasse verpackt.
+      
+      Die Unterschiede sind wie folgt: 
+      \begin{itemize}
+      	\item Im letzten Schritt der Vorführungsphase ist das JTextfield explanations aktiv und zeigt die benötigten Informationen an. Dieses ist für Nutzereingaben deaktiviert. Auch das Feld für die Ausgabe von Nutzereingaben ist deaktiviert und unsichtbar. Das Feld für die Nutzereingabe ist deaktiviert und enthält vom Programm erstellten Text. Außerdem ist das Alphabet nicht anklickbar.
+      	\item Im ersten Schritt der Experimentphase werden die Nutzereingaben aktiviert und das Alphabet anklickbar. Das Erklärungstextfeld ist jetzt während der gesamten Phase deaktiviert.
+      	\item Das Feld für die Ausgabe von Nutzereingaben wird nur bei Bedarf eingeblendet.
+      \end{itemize} 
+      
+      Diese Ansicht bietet Elemente um dem Nutzer das verschlüsseln eigener Eingaben und das entschlüsseln von generiertem Text zu ermöglichen.
 
       \begin{figure}[H]
         \centering
@@ -1215,7 +1229,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse HistogramController}
-      todo
+      Controller für den letzten Schritt der Experimentphase. Der Nutzer kann hier versuchen die Caesar-Verschlüsselung per Häufigkeitsanalyse zu brechen.
 
       \begin{figure}[H]
         \centering
@@ -1237,7 +1251,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse HistogramView}
-      todo
+      Diese Klasse ist für die letzte Ansicht der Experimentphase. Die hier enthaltenen Elemente erlauben dem Nutzer eine gegebene Caesar-Verschlüsselung zu brechen mit dem Zweck ihm die Nachteile dieser Verschlüsselung aufzuzeigen, insbesondere wie leicht sie zu brechen ist. Zusätzlich bekommt der Nutzer eine Animation gezeigt, die ihm erklärt was ein Histogramm ist und wie es ihm helfen kann die Verschlüsselung zu brechen.
 
       \begin{figure}[H]
         \centering
