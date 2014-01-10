@@ -566,37 +566,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 	% /AlphabetStripView
 	
-	% CustomButton
-	\subsubsection{Klasse CustomButton}
-	  Instanzen dieser Klasse erzeugen einen Button, der gegenüber seine Vaterklasse keine zusätzliche Funktionalität bietet. Er dient lediglich dazu ein alternatives Design für Buttons zentral zu verwalten.
-	
-      \begin{figure}[H]
-        \centering
-        \includegraphics{resources/edu-kit-iks-CryptographicsLib-CustomButton}
-      \end{figure}
-	
-      \textbf{Superklassen und Interfaces}
-      \begin{itemize}
-        \item javax.swing.JButton
-      \end{itemize}
-	
-      \textbf{Methoden}
-      \begin{itemize}
-        \item public CustomButton() \newline
-          Konstruktor, der den Button initialisiert.
-      \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-	% /CustomButton	
-	
 	% CharacterFrequencyDiagramView
 	\subsubsection{Klasse CharacterFrequencyDiagramView}
 	  Instanzen dieser Klasse erzeugen ein Säulendiagramm, wobei die
@@ -1180,9 +1149,9 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item edu.kit.iks.CryptographicsLib.VisualizationView
       \end{itemize}
 
-  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanatation}
-    \subsubsection{Klasse FirstExplanatationController}
-      Der FirstExplanatationController erstellt FirstExplanatationView.
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanation}
+    \subsubsection{Klasse FirstExplanationController}
+      Der FirstExplanationController erstellt FirstExplanationView.
       \begin{figure}[H]
         \centering
         \includegraphics{resources/edu-kit-iks-Cryptographics-Vigenere-FirstExplanationController}
@@ -1193,7 +1162,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item edu.kit.iks.CryptographicsLib.AbstractController
       \end{itemize}
 
-    \subsubsection{Klasse FirstExplanatationView}
+    \subsubsection{Klasse FirstExplanationView}
       Die FirstExperimentView zeigt die Schwachstellen und möglich Angriffspunkte von Vigenere.
       \begin{figure}[H]
         \centering
@@ -1205,8 +1174,8 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item edu.kit.iks.CryptographicsLib.VisualizationView
       \end{itemize}
 
-    \subsubsection{Klasse SecondExplanatationController}
-      Der SecondExplanatationController erstellt SecondExplanatationView.
+    \subsubsection{Klasse SecondExplanationController}
+      Der SecondExplanationController erstellt SecondExplanationView.
       \begin{figure}[H]
         \centering
         \includegraphics{resources/edu-kit-iks-Cryptographics-Vigenere-SecondExplanationController}
@@ -1217,7 +1186,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item edu.kit.iks.CryptographicsLib.AbstractController
       \end{itemize}
 
-    \subsubsection{Klasse SecondExplanatationView}
+    \subsubsection{Klasse SecondExplanationView}
       Die SecondExplanatationView zeigt den Selbstversuch wobei der Nutzer ein Histogramm generieren, die Schlüssellänge berechnen lassen kann und dann den Key finden muss.
       \begin{figure}[H]
         \centering
@@ -1232,7 +1201,30 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
 
 \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
-\subsubsection{Klasse Model}
+      Der AbstractController ist eine abstrakte Klasse, die die verschiedenen State-Controller im DiffieHellman-Paket nutzen.
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-AbstractController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public AbstractController(AbstractVisualizationInfo visualzationInfo) \newline
+        Konstruktor. Erzeugt einen neuen AbstractController.
+      \end{itemize}
+
+      \textbf{Getter}
+      \begin{itemize}
+        \item public Model getModel() \newline
+        Gibt die Singleton-Instanz des Models zurück.
+      \end{itemize}
+
+  \subsubsection{Klasse Model}
       Das Model in MVC für die Diffie-Hellman Analogie.
       Diese Klasse verwendet das Singleton Entwurfsmuster,
       da die unterschiedliche Controller das gleiche Model verwenden sollen.
@@ -1332,7 +1324,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
@@ -1379,7 +1371,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
@@ -1426,7 +1418,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
@@ -1473,7 +1465,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
@@ -1520,7 +1512,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
@@ -1565,7 +1557,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
@@ -1612,7 +1604,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
@@ -1658,7 +1650,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
@@ -1703,7 +1695,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
@@ -1748,7 +1740,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
@@ -1794,7 +1786,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
@@ -1840,7 +1832,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
