@@ -163,17 +163,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.AbstractController" 
-    project="Cryptographics" file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/AbstractController.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2771" y="435"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="17" language="java" name="edu.kit.iks.CryptographicsLib.AbstractVisualizationController" 
+  <class id="16" language="java" name="edu.kit.iks.CryptographicsLib.AbstractVisualizationController" 
     project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/CryptographicsLib/AbstractVisualizationController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -184,7 +174,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.AliceChooseSecretView" 
+  <class id="17" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.AliceChooseSecretView" 
     project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/AliceChooseSecretView.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -195,7 +185,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.BobChooseSecretView" 
+  <class id="18" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.BobChooseSecretView" 
     project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/BobChooseSecretView.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -206,7 +196,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainAimView" 
+  <class id="19" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainAimView" 
     project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/ExplainAimView.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -217,7 +207,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainKeyExchangeView" 
+  <class id="20" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainKeyExchangeView" 
     project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/ExplainKeyExchangeView.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -228,7 +218,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.MixColorView" 
+  <class id="21" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.MixColorView" 
     project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/MixColorView.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -239,7 +229,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.OnewayView" 
+  <class id="22" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.OnewayView" 
     project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/OnewayView.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -250,7 +240,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="24" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.ChoosePublicColorView" 
+  <class id="23" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.ChoosePublicColorView" 
     project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/ChoosePublicColorView.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -261,7 +251,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="25" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.ChooseSecretColorView" 
+  <class id="24" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.ChooseSecretColorView" 
     project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/ChooseSecretColorView.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -272,7 +262,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="26" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.MixFinalSecretView" 
+  <class id="25" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.MixFinalSecretView" 
     project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/MixFinalSecretView.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -283,7 +273,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="27" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.SendColorView" 
+  <class id="26" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.SendColorView" 
     project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/SendColorView.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -294,7 +284,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="28" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.SendRightColorView" 
+  <class id="27" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.SendRightColorView" 
     project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/SendRightColorView.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -305,7 +295,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="29" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.YourTurnView" 
+  <class id="28" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.YourTurnView" 
     project="Cryptographics" 
     file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/YourTurnView.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -316,164 +306,174 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="30">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <association id="31">    
+  <class id="29" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.AbstractController" 
+    project="Cryptographics" file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/AbstractController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2772" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="30">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="32" name="view"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="25" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="34">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <generalization id="35">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <generalization id="36">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <generalization id="37">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="17"/>  
-  </generalization>  
-  <association id="38">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="39" name="instance"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="41">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="42" name="visualizationInfo"/>      
-      <multiplicity id="43" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="44">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="45" name="view"/>      
-      <multiplicity id="46" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="47">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="48" name="view"/>      
-      <multiplicity id="49" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="23" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="50">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="51" name="view"/>      
-      <multiplicity id="52" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="28" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="53">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <association id="54">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="55" name="view"/>      
-      <multiplicity id="56" minimum="0" maximum="1"/>    
+      <attribute id="31" name="view"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="24" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="57">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <association id="58">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="59" name="view"/>      
-      <multiplicity id="60" minimum="0" maximum="1"/>    
+  <association id="33">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="34" name="model"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="22" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="61">    
+  <generalization id="36">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="29"/>  
+  </generalization>  
+  <generalization id="37">    
     <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="16"/>  
+    <end type="TARGET" refId="29"/>  
   </generalization>  
-  <generalization id="62">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="16"/>  
+  <generalization id="38">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="29"/>  
   </generalization>  
-  <association id="63">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="64" name="view"/>      
-      <multiplicity id="65" minimum="0" maximum="1"/>    
+  <association id="39">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="40" name="instance"/>      
+      <multiplicity id="41" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="66">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="67" name="view"/>      
-      <multiplicity id="68" minimum="0" maximum="1"/>    
+  <association id="42">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="43" name="visualizationInfo"/>      
+      <multiplicity id="44" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="69">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="70" name="view"/>      
-      <multiplicity id="71" minimum="0" maximum="1"/>    
+  <generalization id="45">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="29"/>  
+  </generalization>  
+  <association id="46">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="47" name="view"/>      
+      <multiplicity id="48" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="72">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <generalization id="73">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <generalization id="74">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <generalization id="75">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <association id="76">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="77" name="view"/>      
-      <multiplicity id="78" minimum="0" maximum="1"/>    
+  <association id="49">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="50" name="view"/>      
+      <multiplicity id="51" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="52">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="53" name="view"/>      
+      <multiplicity id="54" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="27" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="79">    
-    <end type="SOURCE" refId="6"/>    
+  <generalization id="55">    
+    <end type="SOURCE" refId="29"/>    
     <end type="TARGET" refId="16"/>  
   </generalization>  
+  <generalization id="56">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="29"/>  
+  </generalization>  
+  <association id="57">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="58" name="view"/>      
+      <multiplicity id="59" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="60">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="61" name="view"/>      
+      <multiplicity id="62" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="63">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="29"/>  
+  </generalization>  
+  <generalization id="64">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="29"/>  
+  </generalization>  
+  <association id="65">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="66" name="view"/>      
+      <multiplicity id="67" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="68">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="69" name="view"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="71">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="29"/>  
+  </generalization>  
+  <association id="72">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="73" name="view"/>      
+      <multiplicity id="74" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="75">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="29"/>  
+  </generalization>  
+  <generalization id="76">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="29"/>  
+  </generalization>  
+  <generalization id="77">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="78">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="29"/>  
+  </generalization>  
+  <generalization id="79">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="29"/>  
+  </generalization>  
   <association id="80">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="81" name="model"/>      
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="81" name="view"/>      
       <multiplicity id="82" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="26" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="83">    
@@ -481,7 +481,7 @@
       <attribute id="84" name="view"/>      
       <multiplicity id="85" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="29" navigable="true"/>    
+    <end type="TARGET" refId="28" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="86">    
@@ -489,7 +489,7 @@
       <attribute id="87" name="view"/>      
       <multiplicity id="88" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="26" navigable="true"/>    
+    <end type="TARGET" refId="25" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
