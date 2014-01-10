@@ -1201,7 +1201,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
 \subsubsection{Klasse CryptoController}
       Controller für den ersten und zweiten Schritt der Experimentphase, in der der Benutzer erst einen Text eingeben und verschlüsseln und im zweiten Schritt einen gegebenen Text entschlüsseln muss.
-      Kontrolliert die benötigten Elemente von CaesarUpperView. Details hierzu siehe CGeneralView.
 
       \begin{figure}[H]
         \centering
@@ -1242,15 +1241,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse CryptoView}
-      Diese Ansicht erscheint zum ersten Mal, wenn der Nutzer die Animationen aus CFirstView verstanden hat. Sie wird im letzten Schritt der Vorführungsphase, und dem ersten, und zweiten Schritt der Experimentphase verwendet. Wegen der nur kleinen Unterschiede zwischen diesen Schritten ist die Ansicht für sie in einer Klasse verpackt.
-      
-      Die Unterschiede sind wie folgt: 
-      \begin{itemize}
-      	\item Im letzten Schritt der Vorführungsphase ist das JTextfield explanations aktiv und zeigt die benötigten Informationen an. Dieses ist für Nutzereingaben deaktiviert. Auch das Feld für die Ausgabe von Nutzereingaben ist deaktiviert und unsichtbar. Das Feld für die Nutzereingabe ist deaktiviert und enthält vom Programm erstellten Text. Außerdem ist das Alphabet nicht anklickbar.
-      	\item Im ersten Schritt der Experimentphase werden die Nutzereingaben aktiviert und das Alphabet anklickbar. Das Erklärungstextfeld ist jetzt während der gesamten Phase deaktiviert.
-      	\item Das Feld für die Ausgabe von Nutzereingaben wird nur bei Bedarf eingeblendet.
-      \end{itemize} 
-      
       Diese Ansicht bietet Elemente um dem Nutzer das verschlüsseln eigener Eingaben und das entschlüsseln von generiertem Text zu ermöglichen.
 
       \begin{figure}[H]
