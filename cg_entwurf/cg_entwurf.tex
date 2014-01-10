@@ -536,7 +536,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	% AlphabetStripView
 	\subsubsection{Klasse AlphabetStripView}
 	  Instanzen dieser Klasse erzeugen eine Zeile mit den Buchstaben des Alphabets.
-	  Unter jeder dieser Buchstaben ist eine Durchnummerierung beginnend bei 1 für "A".
+	  Unter jeder dieser Buchstaben ist eine Durchnummerierung beginnend bei 1 für ``A''.
 	  Eine konkrete Instanz dieser Klasse kann aufgrund ihrer Vaterklasse als JPanel behandelt werden.
 	
       \begin{figure}[H]
@@ -568,7 +568,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
 	% CustomButton
 	\subsubsection{Klasse CustomButton}
-	  todo
+	  Instanzen dieser Klasse erzeugen einen Button, der gegenüber seine Vaterklasse keine zusätzliche Funktionalität bietet. Er dient lediglich dazu ein alternatives Design für Buttons zentral zu verwalten.
 	
       \begin{figure}[H]
         \centering
@@ -577,13 +577,13 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item \textit{keine}
+        \item javax.swing.JButton
       \end{itemize}
 	
       \textbf{Methoden}
       \begin{itemize}
-        \item public todo() \newline
-          todo.
+        \item public CustomButton() \newline
+          Konstruktor, der den Button initialisiert.
       \end{itemize}
       
       \textbf{Getter}
@@ -749,7 +749,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
 	% KeyboardButton
 	\subsubsection{Klasse KeyboardButton}
-	  todo
+	  Instanzen dieser Klasse erzeugen die einzelnen Tasten für die Klasse Keyboard View. Die Funktionalität entspricht der Vaterklasse JButton.
 	
       \begin{figure}[H]
         \centering
@@ -758,29 +758,29 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item \textit{keine}
+        \item javax.swing.JButton
       \end{itemize}
 	
       \textbf{Methoden}
       \begin{itemize}
-        \item public todo() \newline
-          todo.
+        \item public KeyBoardButton(char) \newline
+          Konstruktor, der einen Button mit dem gegebenen Zeichen initialisiert.
       \end{itemize}
       
       \textbf{Getter}
       \begin{itemize}
-		\item \textit{keine}
+		\item public char getKeyValue()
       \end{itemize}
       
       \textbf{Setter}
       \begin{itemize}
-        \item \textit{keine}
+        \item public void setKeyValue(char)
       \end{itemize}
 	% /KeyboardButton	
 	
 	% KeyboardView
 	\subsubsection{Klasse KeyboardView}
-	  todo
+	  Instanzen dieser Klasse erzeugen eine Instanz einer Bildschirmtastatur mit 26 Tasten im QWERTZ-Format für die Texteingabe per Maus oder insbesondere per berührungssensitivem Bildschirm. Eine konkrete Instanz dieser Klasse kann aufgrund ihrer Vaterklasse als JPanel behandelt werden.
 	
       \begin{figure}[H]
         \centering
@@ -789,13 +789,13 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item \textit{keine}
+        \item javax.swing.JPanel
       \end{itemize}
 	
       \textbf{Methoden}
       \begin{itemize}
-        \item public todo() \newline
-          todo.
+        \item public KeyboardView()
+          Konstruktor, der eine Tastatur mit standardmäßigem Zeichensatz initialisiert.
       \end{itemize}
       
       \textbf{Getter}
@@ -811,7 +811,9 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
 	% NumbersStripView
 	\subsubsection{Klasse NumbersStripView}
-	  todo
+	  Instanzen dieser Klasse erzeugen eine Zeile mit den Zahlen von 1 bis 26.
+	  Diese Klasse dient als Hilfsklasse für AlphabetStripView.
+	  Eine konkrete Instanz dieser Klasse kann aufgrund ihrer Vaterklasse als JPanel behandelt werden.
 	
       \begin{figure}[H]
         \centering
@@ -820,13 +822,13 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item \textit{keine}
+        \item javax.swing.JPanel
       \end{itemize}
 	
       \textbf{Methoden}
       \begin{itemize}
-        \item public todo() \newline
-          todo.
+        \item public NumberStripView() \newline
+          Konstruktor, der die Zeile mit Zahlen von 1 bis 26 initialisiert.
       \end{itemize}
       
       \textbf{Getter}
@@ -876,7 +878,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
 	% VisualizationButton
 	\subsubsection{Klasse VisualizationButton}
-	  todo
+	  Diese Klasse dient als Dekorierer für JButton. Instanzen hiervon beinhalten Informationen über das Verfahren, welche sie auf der Zeitleiste repräsentieren.
 	
       \begin{figure}[H]
         \centering
@@ -885,18 +887,18 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item \textit{keine}
+        \item javax.swing.JButton
       \end{itemize}
 	
       \textbf{Methoden}
       \begin{itemize}
-        \item public todo() \newline
-          todo.
+        \item public VisualizationButton() \newline
+          Konstruktor, der einen Button mit den gegebenen Visualisierungsinformationen initialisiert.
       \end{itemize}
       
       \textbf{Getter}
       \begin{itemize}
-		\item \textit{keine}
+		\item public AbstractVisualizationInfo getVisualizationInfo()
       \end{itemize}
       
       \textbf{Setter}
@@ -907,7 +909,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
 	% VisualizationDifficulty
 	\subsubsection{Enum VisualizationDifficulty}
-	  todo
+	  Die bietet eine Aufzählung für die verschiedenen Komplexitätsgrade der visualisierten Verfahren.
 	
       \begin{figure}[H]
         \centering
