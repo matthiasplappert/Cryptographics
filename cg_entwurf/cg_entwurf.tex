@@ -1076,6 +1076,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
   \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Demonstration}
 
+
 \subsubsection{Klasse CipherDemoController}
       CipherDemoController demonstriert das Caesar-Verfahren anhand eines Beispiels. Dieser Controller ist der letzte Schritt in der Demonstrationsphase.
 
@@ -1199,7 +1200,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Experiment}
 
 \subsubsection{Klasse CryptoController}
-      todo
+      Controller für den ersten und zweiten Schritt der Experimentphase, in der der Benutzer erst einen Text eingeben und verschlüsseln und im zweiten Schritt einen gegebenen Text entschlüsseln muss.
 
       \begin{figure}[H]
         \centering
@@ -1213,7 +1214,8 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Methoden}
       \begin{itemize}
-        \item public CryptoController(AbstractVisualizationInfo visualizationInfo)
+        \item public CryptoController(AbstractVisualizationInfo visualizationInfo) \newline
+        Konstruktor, instanziiert die Klasse anhand der gegeben Information zur Visualisierung
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
@@ -1221,7 +1223,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse CryptoModel}
-      todo
+      Modell für den letzten Schritt der Caesar-Einführung und die ersten beiden Schritte der Experimentphase.
 
       \begin{figure}[H]
         \centering
@@ -1239,7 +1241,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse CryptoView}
-      todo
+      Diese Ansicht bietet Elemente um dem Nutzer das verschlüsseln eigener Eingaben und das entschlüsseln von generiertem Text zu ermöglichen.
 
       \begin{figure}[H]
         \centering
@@ -1257,7 +1259,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse HistogramController}
-      todo
+      Controller für den letzten Schritt der Experimentphase. Der Nutzer kann hier versuchen die Caesar-Verschlüsselung per Häufigkeitsanalyse zu brechen.
 
       \begin{figure}[H]
         \centering
@@ -1279,7 +1281,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsubsection{Klasse HistogramView}
-      todo
+      Diese Klasse ist für die letzte Ansicht der Experimentphase. Die hier enthaltenen Elemente erlauben dem Nutzer eine gegebene Caesar-Verschlüsselung zu brechen mit dem Zweck ihm die Nachteile dieser Verschlüsselung aufzuzeigen, insbesondere wie leicht sie zu brechen ist. Zusätzlich bekommt der Nutzer eine Animation gezeigt, die ihm erklärt was ein Histogramm ist und wie es ihm helfen kann die Verschlüsselung zu brechen.
 
       \begin{figure}[H]
         \centering
