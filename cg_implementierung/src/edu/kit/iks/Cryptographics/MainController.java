@@ -1,12 +1,12 @@
 package edu.kit.iks.Cryptographics;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
 
-import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -41,14 +41,12 @@ public class MainController extends AbstractController {
 	private VisualizationContainerController visualizationContainerController;
 
 	/**
-	 * Loads the view
+	 * Just loads the frame. This controller is specially since it does not load a view.
 	 */
 	@Override
 	public void loadView() {
 		this.loadLookAndFeel();
 		this.loadFrame();
-		this.view = new JPanel();
-		this.frame.add(this.view);
 	}
 
 	/**
@@ -95,7 +93,7 @@ public class MainController extends AbstractController {
 			if (this.visualizationContainerController.getHelpPopoverView() != null) {
 				this.visualizationContainerController.dismissHelpPopover();
 			}
-			this.view.remove(this.visualizationContainerController.getView());
+			this.frame.getContentPane().remove(this.visualizationContainerController.getView());
 			this.visualizationContainerController.unloadView();
 			this.removeChildController(this.visualizationContainerController);
 		}
@@ -103,12 +101,12 @@ public class MainController extends AbstractController {
 		this.startController = new StartController();
 		this.startController.loadView();
 		this.addChildController(this.startController);
-		this.view.add(this.startController.getView());
+		this.frame.getContentPane().add(this.startController.getView(), BorderLayout.CENTER);
 
 		// Important to call validate, as some elements may
 		// be invisible otherwise
-		this.view.revalidate();
-		this.view.repaint();
+		this.frame.getContentPane().revalidate();
+		this.frame.getContentPane().repaint();
 		this.frame.validate();
 	}
 
@@ -123,7 +121,7 @@ public class MainController extends AbstractController {
 			AbstractVisualizationInfo visualizationInfo) {
 		// TODO: figure out if we need to unload the view/controller
 		if (this.startController != null) {
-			this.view.remove(this.startController.getView());
+			this.frame.getContentPane().remove(this.startController.getView());
 			this.startController.unloadView();
 			this.removeChildController(this.startController);
 		}
@@ -134,11 +132,11 @@ public class MainController extends AbstractController {
 		// load view
 		this.visualizationContainerController.loadView();
 		this.addChildController(this.visualizationContainerController);
-		this.view.add(this.visualizationContainerController.getView());
+		this.frame.getContentPane().add(this.visualizationContainerController.getView(), BorderLayout.CENTER);
 		this.visualizationContainerController.setCurrentVisualizationControllerIndex(0);
 		
-		this.view.revalidate();
-		this.view.repaint();
+		this.frame.getContentPane().revalidate();
+		this.frame.getContentPane().repaint();
 		this.frame.revalidate();
 	}
 

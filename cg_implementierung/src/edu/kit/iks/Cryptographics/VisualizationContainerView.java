@@ -1,5 +1,8 @@
 package edu.kit.iks.Cryptographics;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,14 +37,45 @@ public class VisualizationContainerView extends JPanel {
 	private JButton helpButton;
 	
 	/**
+	 * The content view that contains the actual visualization 
+	 */
+	private JPanel contentView;
+	
+	/**
 	 * Constructor initializing a new instance of {VisualizationContainerView}
 	 */
 	public VisualizationContainerView() {
-		this.add(new JLabel("CONTAINER"));
-	    this.exitButton = new JButton("Exit");
-	    this.helpButton = new JButton("Help");
-	    this.add(this.helpButton);
-	    this.add(this.exitButton);
+		super(new GridBagLayout());
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.weightx = 1.0;
+		constraints.weighty = 1.0;
+		
+		// Create the exit button.
+		constraints.gridx = 0;
+		constraints.gridy = 0;
+		this.exitButton = new JButton("Exit");
+		this.add(this.exitButton, constraints);
+		
+		// Create the name label.
+		constraints.gridx = 1;
+		constraints.gridy = 0;
+		this.nameLabel = new JLabel();
+		this.add(this.nameLabel, constraints);
+		
+		// Create the help button.
+		constraints.gridx = 2;
+		constraints.gridy = 0;
+		this.helpButton = new JButton("Help");
+		this.add(this.helpButton, constraints);
+		
+		// Create content view.
+		constraints.gridx = 0;
+		constraints.gridy = 1;
+		constraints.fill = GridBagConstraints.BOTH;
+		constraints.gridwidth = 3;
+	    this.contentView = new JPanel();
+	    this.add(this.contentView, constraints);
+	    
 	    this.validate();
 	}
 
@@ -64,5 +98,13 @@ public class VisualizationContainerView extends JPanel {
 	 */
 	public JButton getHelpButton() {
 		return helpButton;
+	}
+	
+	/**
+	 * @return the contentView
+	 * @return
+	 */
+	public JPanel getContentView() {
+		return contentView;
 	}
 }
