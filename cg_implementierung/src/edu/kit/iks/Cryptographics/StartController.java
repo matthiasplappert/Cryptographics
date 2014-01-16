@@ -117,7 +117,10 @@ public class StartController extends AbstractController {
 	public void unloadView() {
 		this.view.removeAll();
 		this.view.revalidate();
-
+		
+		if (this.popoverView != null) {
+			this.dismissPopoverAction();
+		}
 		this.popoverView = null;
 		this.welcomeView = null;
 		this.timelineView = null;
@@ -132,18 +135,12 @@ public class StartController extends AbstractController {
 	 *            Information about the cipher.
 	 */
 	private void loadPopoverView(AbstractVisualizationInfo vsInfo) {
-		
 		if (this.popoverView != null) {
 			this.dismissPopoverAction();
 		}
 		
 		this.popoverView = new TimelinePopoverView(vsInfo);
-		this.view.add(this.popoverView);
-		this.popoverView.validate();
-		
-		// call needed to re-layout the new view. Else popoverView is not
-		// visible.
-		this.view.revalidate();
+		this.popoverView.present();
 	}
 
 	/**
@@ -220,8 +217,7 @@ public class StartController extends AbstractController {
 	 * Dismisses the popover
 	 */
 	public void dismissPopoverAction() {
-		this.view.remove(popoverView);
-		this.view.revalidate();
+		this.popoverView.dismiss();
 		this.popoverView = null;
 	}
 
@@ -234,6 +230,8 @@ public class StartController extends AbstractController {
 	 */
 	public void startVisualizationAction(
 			AbstractVisualizationInfo visualizationInfo) {
+		this.dismissPopoverAction();
+		
 		MainController mainController = (MainController) this
 				.getParentController();
 		mainController.presentVisualizationAction(visualizationInfo);
