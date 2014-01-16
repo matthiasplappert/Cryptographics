@@ -1,6 +1,5 @@
 package edu.kit.iks.Cryptographics;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -48,6 +47,8 @@ public class VisualizationContainerView extends JPanel {
 	public VisualizationContainerView() {
 		super(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.weightx = 1.0;
+		constraints.weighty = 1.0;
 		
 		// Create the exit button.
 		constraints.gridx = 0;
@@ -73,7 +74,6 @@ public class VisualizationContainerView extends JPanel {
 		constraints.fill = GridBagConstraints.BOTH;
 		constraints.gridwidth = 3;
 	    this.contentView = new JPanel();
-	    this.contentView.setBackground(Color.red);
 	    this.add(this.contentView, constraints);
 	    
 	    this.validate();
