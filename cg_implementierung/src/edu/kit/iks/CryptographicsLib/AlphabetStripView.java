@@ -16,7 +16,6 @@ import javax.swing.JPanel;
  */
 public class AlphabetStripView extends JPanel {
 	private static JPanel strip;
-	private static NumbersStripView numberStrip;
 	
 	public AlphabetStripView() {
 		

@@ -4,9 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoView;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
-import edu.kit.iks.CryptographicsLib.NumbersStripView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
@@ -47,11 +45,6 @@ public class CipherDemoView extends VisualizationView {
 	 * The alphabet.
 	 */
 	private AlphabetStripView alphabet;
-
-	/**
-	 * Numbering of alphabet chars.
-	 */
-	private NumbersStripView alphabetNumbering;	
 	
 	/**
 	 * Button needed for proceeding the stepwise animations.
@@ -108,13 +101,6 @@ public class CipherDemoView extends VisualizationView {
 	}
 
 	/**
-	 * @return the alphabetNumbering
-	 */
-	public NumbersStripView getAlphabetNumbering() {
-		return alphabetNumbering;
-	}
-
-	/**
 	 * @param explanations the explanations to set
 	 */
 	public void setExplanations(JLabel explanations) {
@@ -147,13 +133,6 @@ public class CipherDemoView extends VisualizationView {
 	 */
 	public void setAlphabet(AlphabetStripView alphabet) {
 		this.alphabet = alphabet;
-	}
-
-	/**
-	 * @param alphabetNumbering the alphabetNumbering to set
-	 */
-	public void setAlphabetNumbering(NumbersStripView alphabetNumbering) {
-		this.alphabetNumbering = alphabetNumbering;
 	}
 
 	/**
