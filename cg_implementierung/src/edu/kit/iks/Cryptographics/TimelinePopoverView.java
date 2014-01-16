@@ -1,5 +1,9 @@
 package edu.kit.iks.Cryptographics;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
 import javax.swing.JLabel;
 
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
@@ -54,19 +58,40 @@ public class TimelinePopoverView extends PopoverView {
 		
 		this.visualizationInfo = visualizationInfo;
 		
+		// Configure content view.
+		this.getContentView().setLayout(new GridBagLayout());
+		
+		// Create name label.
+		GridBagConstraints nameConstraints = new GridBagConstraints();
+		nameConstraints.gridx = 0;
+		nameConstraints.gridy = 0;
+		nameConstraints.gridwidth = 2;
 		this.nameLabel = new JLabel(visualizationInfo.getName());
-		this.getContentView().add(this.nameLabel);
+		this.getContentView().add(this.nameLabel, nameConstraints);
 		
 		// TODO: map to human readable string
+		// Create difficulty label.
+		GridBagConstraints difficultyConstraints = new GridBagConstraints();
+		difficultyConstraints.gridx = 2;
+		difficultyConstraints.gridy = 0;
 		this.difficultyLabel = new JLabel(visualizationInfo.getDifficulty().toString());
-		this.getContentView().add(this.difficultyLabel);
+		this.getContentView().add(this.difficultyLabel, difficultyConstraints);
 		
+		// Create description label.
+		GridBagConstraints descriptionConstraints = new GridBagConstraints();
+		descriptionConstraints.gridx = 0;
+		descriptionConstraints.gridy = 1;
+		descriptionConstraints.gridwidth = 3;
 		this.descriptionLabel = new JLabel(visualizationInfo.getDescription());
-		this.getContentView().add(this.descriptionLabel);
+		this.getContentView().add(this.descriptionLabel, descriptionConstraints);
 		
+		// Create start button
+		GridBagConstraints startConstraints = new GridBagConstraints();
+		startConstraints.gridx = 1;
+		startConstraints.gridy = 2;
 		this.startButton = new VisualizationButton(visualizationInfo);
 		this.startButton.setText("Start");
-		this.getContentView().add(this.startButton);
+		this.getContentView().add(this.startButton, startConstraints);
 		
 		this.getContentView().validate();
 	}
