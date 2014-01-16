@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Resources>
 	<caesar id="caesarId">
-      <caesarImage id="caesarImage" name="./resources/caesar/caesar.png"/>
+      <caesarImage  path="./resources/caesar/caesar.png"/>
+      <ordersImage  path="./resources/caesar/orders.jpg"/>
+      <courierImage path="./resources/caesar/courier.jpg"/>
+      <interceptorImage path="./resources/caesar/interceptor.png"/>
 	</caesar>
 </Resources>

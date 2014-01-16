@@ -13,8 +13,7 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class FirstDemonstrationController extends AbstractVisualizationController {
-	private FirstDemonstrationView view;
-	
+
 	/* Checks if vigenere text is read */
 	private boolean vigenereRead = false;
 	
@@ -30,19 +29,19 @@ public class FirstDemonstrationController extends AbstractVisualizationControlle
 	@Override
 	public void loadView() {
 		this.view = new FirstDemonstrationView();
-		this.view.getBackButton().addActionListener(new ActionListener() {
+		this.getView().getBackButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				if (vigenereRead) {
 					vigenereRead = false;
-					view.getModuloText().setVisible(false);
+					getView().getModuloText().setVisible(false);
 					// TODO Hide clock
 				}
 			}
 		});
-		this.view.getNextButton().addActionListener(new ActionListener() {
+		this.getView().getNextButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				if (!vigenereRead) {
-					view.getModuloText().setVisible(true);
+					getView().getModuloText().setVisible(true);
 					// TODO show clock
 					vigenereRead = true;
 				} else {
@@ -55,8 +54,8 @@ public class FirstDemonstrationController extends AbstractVisualizationControlle
 	}
 	
 	@Override
-	public JComponent getView() {
-		return this.view;
+	public FirstDemonstrationView getView() {
+		return (FirstDemonstrationView) this.view;
 	}
 	
 }
