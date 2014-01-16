@@ -58,6 +58,7 @@ public class StartController extends AbstractController {
 		GridBagConstraints welcomeViewLayout = new GridBagConstraints();
 		welcomeViewLayout.fill = GridBagConstraints.HORIZONTAL;
 		welcomeViewLayout.gridy = 0;
+		welcomeViewLayout.ipady = 600; // TODO: remove hardcode...
 		this.welcomeView = new WelcomeView();
 		this.view.add(this.welcomeView, welcomeViewLayout);
 
@@ -67,6 +68,7 @@ public class StartController extends AbstractController {
 		this.timelineView = new TimelineView(visualizationInfos);
 		this.view.add(this.timelineView, timelineViewLayout);
 
+		// Add event handlers
 		for (VisualizationButton button : this.timelineView.getButtons()) {
 			button.addMouseListener(new MouseListener() {
 
