@@ -124,9 +124,15 @@ public class StartController extends AbstractController {
 	 *            Information about the cipher.
 	 */
 	private void loadPopoverView(AbstractVisualizationInfo vsInfo) {
+		
+		if (this.popoverView != null) {
+			this.dismissPopoverAction();
+		}
+		
 		this.popoverView = new TimelinePopoverView(vsInfo);
 		this.view.add(this.popoverView);
 		this.popoverView.validate();
+		
 		// call needed to re-layout the new view. Else popoverView is not
 		// visible.
 		this.view.revalidate();
@@ -142,6 +148,7 @@ public class StartController extends AbstractController {
 	public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo) {
 
 		loadPopoverView(visualizationInfo);
+		
 		this.popoverView.getStartButton().addMouseListener(new MouseListener() {
 
 			@Override
@@ -172,6 +179,7 @@ public class StartController extends AbstractController {
 			}
 
 		});
+		
 		this.popoverView.getCloseButton().addMouseListener(new MouseListener() {
 
 			@Override
