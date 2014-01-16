@@ -1,5 +1,6 @@
 package edu.kit.iks.Cryptographics;
 
+import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.Constructor;
@@ -254,7 +255,7 @@ public class VisualizationContainerController extends AbstractController {
 
 		// Load new view
 		newController.loadView();
-		this.getView().getContentView().add(newController.getView());
+		this.getView().getContentView().add(newController.getView(), BorderLayout.CENTER);
 		this.getView().revalidate();
 	}
 

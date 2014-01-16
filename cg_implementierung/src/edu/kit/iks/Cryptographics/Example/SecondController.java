@@ -1,5 +1,6 @@
 package edu.kit.iks.Cryptographics.Example;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -92,6 +93,7 @@ public class SecondController extends AbstractVisualizationController {
 		
 		this.view = v;
 		this.view.add(new JLabel("Second"));
+		this.view.setBackground(Color.RED);
 		this.view.validate();
 	}
 
