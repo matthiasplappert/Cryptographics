@@ -3,6 +3,7 @@ package edu.kit.iks.Cryptographics.Vigenere;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.kit.iks.Cryptographics.Vigenere.Demonstration.*;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
@@ -43,9 +44,9 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	
 	public List<Class> getControllerClasses() {
 		List<Class> controllerClasses = new ArrayList<Class>();
-		
-		//controllerClasses.add(DemonstrationController.class);
-		//controllerClasses.add(ExperimentController.class);
+		controllerClasses.add(FirstDemonstrationController.class);
+		controllerClasses.add(SecondDemonstrationController.class);
+		controllerClasses.add(ThirdDemonstrationController.class);
 		controllerClasses.add(InformationController.class);
 		
 		return controllerClasses;

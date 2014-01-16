@@ -1,5 +1,7 @@
 package edu.kit.iks.CryptographicsLib;
 
+import javax.swing.JComponent;
+
 /**
  * Abstract visualisization controller specialized for
  * the needs of a procedure to visualize its contents
@@ -39,4 +41,6 @@ public abstract class AbstractVisualizationController extends AbstractController
 	 * @return help text
 	 */
 	abstract public String getHelp();
+	
+	abstract public JComponent getView(); 
 }

@@ -29,6 +29,6 @@ public class ThirdDemonstrationView extends VisualizationView{
 	private JLabel charFinished;
 	
 	public ThirdDemonstrationView() {
-       this.add(new JLabel("VIGENERE INTRODUCTION"));
+       this.add(new JLabel("VIGENERE INTRODUCTION3"));
 	}
 }

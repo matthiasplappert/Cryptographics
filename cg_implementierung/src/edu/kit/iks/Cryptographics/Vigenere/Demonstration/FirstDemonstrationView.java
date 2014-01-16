@@ -16,6 +16,8 @@ public class FirstDemonstrationView extends VisualizationView{
 	private JLabel moduloText;
 	
 	public FirstDemonstrationView() {
-       this.add(new JLabel("VIGENERE INTRODUCTION"));
+		super();
+       this.add(new JLabel("VIGENERE INTRODUCTION1"));
+       this.validate();
 	}
 }
