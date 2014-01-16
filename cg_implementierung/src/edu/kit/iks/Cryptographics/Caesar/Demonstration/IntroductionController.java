@@ -21,9 +21,9 @@ public class IntroductionController extends AbstractVisualizationController {
 
 	/**
 	 * Variable holding track of the current step user has proceeded in the
-	 * animation.
+	 * animation. if it is 0, then it is the last step.
 	 */
-	private int step;
+	private int AnimationStep;
 
 	/**
 	 * Contains all elements of the gui for the demonstration of caesar's
@@ -63,7 +63,7 @@ public class IntroductionController extends AbstractVisualizationController {
 			 * .event.ActionEvent)
 			 */
 			public void actionPerformed(ActionEvent event) {
-				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+				VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
 				containerController.presentNextVisualizationController();
 			}
 		});
@@ -96,7 +96,7 @@ public class IntroductionController extends AbstractVisualizationController {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				animationProceed();
+				animationProceed(getAnimationStep());
 
 			}
 		});
@@ -108,8 +108,64 @@ public class IntroductionController extends AbstractVisualizationController {
 	 * Needed for dispatching the clickEvent from the button to activate the
 	 * animation of the view.
 	 */
-	public void animationProceed() {
-		this.view.animationStart();
+	public void animationProceed(int step) {
+
+		this.animationStart(step);
 	}
+	
+	/**
+	 * Method for
+	 * 
+	 * @param c
+	 */
+	private void animationStart(int step) {
+		switch (step) {
+		case 1:
+			this.view.step1();
+			break;
+		case 2:
+			this.view.step2();
+			break;
+		case 3:
+			this.view.step3();
+			break;
+		case 4:
+			this.view.step4();
+			break;
+		default:
+			animationDone();
+		}
+	}
+
+	/**
+	 * @param step
+	 */
+	private void unloadAnimation(int step) {
+
+	}
+
+	/**
+	 * 
+	 */
+	private void animationDone() {
+		// TODO Auto-generated method stub
+
+	}
+	
+	/**
+	 * @return the animationStep
+	 */
+	public int getAnimationStep() {
+		return AnimationStep;
+	}
+
+	/**
+	 * @param animationStep
+	 *            the animationStep to set
+	 */
+	public void setAnimationStep(int animationStep) {
+		AnimationStep = animationStep;
+	}
+
 
 }
