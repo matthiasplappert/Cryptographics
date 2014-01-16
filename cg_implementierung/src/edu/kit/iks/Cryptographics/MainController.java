@@ -55,8 +55,17 @@ public class MainController extends AbstractController {
 	 */
 	private void loadFrame() {
 		this.frame = new JFrame("Cryptographics");
-		this.frame.setSize(1366, 768); // Basic size for testing. Needs to be
-										// fullscreen in the end
+		
+		boolean debug = true;
+		
+		if (debug) {
+			this.frame.setSize(1366, 768); // Basic size for testing. Needs to be
+										   // fullscreen in the end
+		} else {
+			this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			this.frame.setUndecorated(true);
+		}
+		
 		this.frame.setVisible(true);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
