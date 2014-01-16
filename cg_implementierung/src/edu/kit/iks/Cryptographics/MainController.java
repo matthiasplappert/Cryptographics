@@ -1,19 +1,20 @@
 package edu.kit.iks.Cryptographics;
 
 import java.awt.BorderLayout;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.synth.SynthLookAndFeel;
 
 import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.PopoverView;
 
 /**
  * An instance of this class is the main controller, delegating all performed
@@ -58,6 +59,10 @@ public class MainController extends AbstractController {
 										// fullscreen in the end
 		this.frame.setVisible(true);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// Extract the glassPane. We use this for displaying popovers.
+		JPanel popoverContainerView = (JPanel)this.frame.getGlassPane();
+		PopoverView.setContainerView(popoverContainerView);
 	}
 	
 	/**
