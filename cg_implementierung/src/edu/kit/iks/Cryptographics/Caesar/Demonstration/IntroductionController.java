@@ -33,12 +33,6 @@ public class IntroductionController extends AbstractVisualizationController {
 	private int AnimationStep;
 
 	/**
-	 * Contains all elements of the gui for the demonstration of caesar's
-	 * problem.
-	 */
-	private IntroductionView view;
-
-	/**
      * 
      */
 	private Element caesarResource;
@@ -56,8 +50,8 @@ public class IntroductionController extends AbstractVisualizationController {
 	 * @return The view of this controller
 	 */
 	@Override
-	public JComponent getView() {
-		return this.view;
+	public IntroductionView getView() {
+		return (IntroductionView) this.view;
 	}
 
 	/* (non-Javadoc)
@@ -77,12 +71,12 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.view = new IntroductionView();
 		this.AnimationStep = 1;
 
-		this.view.setProceed(new JButton("proceed"));
-		this.view.add(this.view.getProceed());
-		this.view.setExplanation(new JLabel("explanations"));
-		this.view.add(this.view.getExplanation());
+		this.getView().setProceed(new JButton("proceed"));
+		this.getView().add(this.getView().getProceed());
+		this.getView().setExplanation(new JLabel("explanations"));
+		this.getView().add(this.getView().getExplanation());
 
-		this.view.getNextButton().addActionListener(new ActionListener() {
+		this.getView().getNextButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)
@@ -93,7 +87,7 @@ public class IntroductionController extends AbstractVisualizationController {
 			}
 		});
 
-		this.view.getProceed().addMouseListener(new MouseListener() {
+		this.getView().getProceed().addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -126,7 +120,7 @@ public class IntroductionController extends AbstractVisualizationController {
 			}
 		});
 
-		this.view.validate();
+		this.getView().validate();
 	}
 
 	/**
@@ -134,7 +128,6 @@ public class IntroductionController extends AbstractVisualizationController {
 	 * animation of the view.
 	 */
 	public void animationProceed(int step) {
-
 		this.animationStart(step);
 	}
 
@@ -165,17 +158,17 @@ public class IntroductionController extends AbstractVisualizationController {
 	private void step1() {
 		this.AnimationStep++;
 
-		this.view.setCaesarImg(new ImageView(getCaesarResource().getChild(
+		this.getView().setCaesarImg(new ImageView(getCaesarResource().getChild(
 				"caesarImage").getAttributeValue("path")));
-		this.view.add(this.view.getCaesarImg());
-		this.view
+		this.getView().add(this.getView().getCaesarImg());
+		this.getView()
 				.getExplanation()
 				.setText(
 						"Caesar makes up a big plan and sends his orders by his messenger.");
 
-		this.view.validate();
+		this.getView().validate();
 
-		this.view.firstAnimation();
+		this.getView().firstAnimation();
 
 	}
 
@@ -185,13 +178,13 @@ public class IntroductionController extends AbstractVisualizationController {
 	private void step2() {
 		this.AnimationStep++;
 
-		this.view.setInterceptor(new ImageView(getCaesarResource().getChild(
+		this.getView().setInterceptor(new ImageView(getCaesarResource().getChild(
 				"interceptorImage").getAttributeValue("path")));
-		this.view.add(this.view.getInterceptor());
-		this.view.getExplanation().setText("Caesar's orders gets intercepted.");
-		this.view.validate();
+		this.getView().add(this.getView().getInterceptor());
+		this.getView().getExplanation().setText("Caesar's orders gets intercepted.");
+		this.getView().validate();
 
-		this.view.secondAnimation();
+		this.getView().secondAnimation();
 	}
 
 	/**
@@ -199,24 +192,24 @@ public class IntroductionController extends AbstractVisualizationController {
 	 */
 	private void step3() {
 		this.AnimationStep++;
-		this.view.getExplanation().setText("PLAN CROSSED");
-		this.view.validate();
+		this.getView().getExplanation().setText("PLAN CROSSED");
+		this.getView().validate();
 	}
 
 	/**
 	 * 
 	 */
 	private void animationDone() {
-		this.view.remove(this.view.getCaesarImg());
-		this.view.setCaesarImg(null);
-		this.view.remove(this.view.getInterceptor());
-		this.view.setInterceptor(null);
-		this.view.remove(this.view.getExplanation());
-		this.view.setExplanation(null);
-		this.view.remove(this.view.getProceed());
-		this.view.setProceed(null);
-		this.view.add(new JLabel("Animation is done and Caesar is very sad"));
-		this.view.revalidate();
+		this.getView().remove(this.getView().getCaesarImg());
+		this.getView().setCaesarImg(null);
+		this.getView().remove(this.getView().getInterceptor());
+		this.getView().setInterceptor(null);
+		this.getView().remove(this.getView().getExplanation());
+		this.getView().setExplanation(null);
+		this.getView().remove(this.getView().getProceed());
+		this.getView().setProceed(null);
+		this.getView().add(new JLabel("Animation is done and Caesar is very sad"));
+		this.getView().revalidate();
 	}
 
 	/**

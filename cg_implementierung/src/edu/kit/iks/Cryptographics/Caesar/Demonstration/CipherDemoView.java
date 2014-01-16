@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoView;
+import edu.kit.iks.CryptographicsLib.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.NumbersStripView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
@@ -34,22 +36,22 @@ public class CipherDemoView extends VisualizationView {
 	/**
 	 * Input from the user for encryption.
 	 */
-	private JLabel[] userInput;
+	private JLabel userInput;
 
 	/**
 	 * Output from user interaction.
 	 */
-	private JLabel[] userOutput;
+	private JLabel userOutput;
 
 	/**
 	 * The alphabet.
 	 */
-	private JLabel[] alphabet;
+	private AlphabetStripView alphabet;
 
 	/**
 	 * Numbering of alphabet chars.
 	 */
-	private JLabel[] alphabetNumbering;	
+	private NumbersStripView alphabetNumbering;	
 	
 	/**
 	 * Button needed for proceeding the stepwise animations.
@@ -61,62 +63,6 @@ public class CipherDemoView extends VisualizationView {
 	 */
 	public CipherDemoView() {
 		super();
-		this.add(new JLabel("DemoView"));
-		this.explanations = new JLabel("Explanations");
-		this.add(this.explanations);
-		this.proceed = new JButton("proceed");
-		this.add(proceed);
-		this.validate();
-	}
-
-	/**
-	 * Function for performing the needed animations. After each step the
-	 * animation stops and continues when user wishes.
-	 * 
-	 * @param c
-	 */
-	public void animationStart() {
-		// perform first animation and show explanations.
-		step1();
-		// stop.
-		// perform second animation and show explanations.
-		step2();
-		// stop.
-		// ...
-		step3();
-		// stop.
-		// perform last animation and show explanations.
-		step4();
-		// done.
-
-	}
-
-	/**
-	 * Explain the elements on the screen. Only explanations are shown.
-	 */
-	private void step1() {
-
-	}
-
-	/**
-	 * Describe how each character is encrypted.
-	 */
-	private void step2() {
-
-	}
-
-	/**
-	 * Describe the general Caesar cipher. (The key can vary from 0-25.)
-	 */
-	private void step3() {
-
-	}
-
-	/**
-	 * Describe that decryption is the same way as encryption.
-	 */
-	private void step4() {
-
 	}
 
 	/**
@@ -143,29 +89,78 @@ public class CipherDemoView extends VisualizationView {
 	/**
 	 * @return the userInput
 	 */
-	public JLabel[] getUserInput() {
+	public JLabel getUserInput() {
 		return userInput;
 	}
 
 	/**
 	 * @return the userOutput
 	 */
-	public JLabel[] getUserOutput() {
+	public JLabel getUserOutput() {
 		return userOutput;
 	}
 
 	/**
 	 * @return the alphabet
 	 */
-	public JLabel[] getAlphabet() {
+	public AlphabetStripView getAlphabet() {
 		return alphabet;
 	}
 
 	/**
 	 * @return the alphabetNumbering
 	 */
-	public JLabel[] getAlphabetNumbering() {
+	public NumbersStripView getAlphabetNumbering() {
 		return alphabetNumbering;
+	}
+
+	/**
+	 * @param explanations the explanations to set
+	 */
+	public void setExplanations(JLabel explanations) {
+		this.explanations = explanations;
+	}
+
+	/**
+	 * @param input the input to set
+	 */
+	public void setInput(JTextField input) {
+		this.input = input;
+	}
+
+	/**
+	 * @param userInput the userInput to set
+	 */
+	public void setUserInput(JLabel userInput) {
+		this.userInput = userInput;
+	}
+
+	/**
+	 * @param userOutput the userOutput to set
+	 */
+	public void setUserOutput(JLabel userOutput) {
+		this.userOutput = userOutput;
+	}
+
+	/**
+	 * @param alphabet the alphabet to set
+	 */
+	public void setAlphabet(AlphabetStripView alphabet) {
+		this.alphabet = alphabet;
+	}
+
+	/**
+	 * @param alphabetNumbering the alphabetNumbering to set
+	 */
+	public void setAlphabetNumbering(NumbersStripView alphabetNumbering) {
+		this.alphabetNumbering = alphabetNumbering;
+	}
+
+	/**
+	 * @param proceed the proceed to set
+	 */
+	public void setProceed(JButton proceed) {
+		this.proceed = proceed;
 	}
 
 }
