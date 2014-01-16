@@ -3,6 +3,7 @@ package edu.kit.iks.CryptographicsLib;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,26 +21,26 @@ public class AlphabetStripView extends JPanel {
 	public AlphabetStripView() {
 		
 		super();
-		BorderLayout layout = new BorderLayout();
+
+		GridLayout layout = new GridLayout(2, 26);
 		this.setLayout(layout);
-		
-		FlowLayout stripLayout = new FlowLayout();
-		strip = new JPanel(); //new JLabel[26];
-		strip.setLayout(stripLayout);
-		
-		numberStrip = new NumbersStripView();
 
 		int asciiA = 65;
 		JLabel currChar;
-		for (int i = asciiA; i < asciiA+26; i++) {
-			currChar = new JLabel(String.valueOf((char)i));
+		for (int i = 0; i < 26; i++) {
+			currChar = new JLabel(String.valueOf((char)(i+asciiA)));
 			currChar.setVerticalAlignment(JLabel.CENTER);
 			currChar.setHorizontalAlignment(JLabel.CENTER);
-			strip.add(currChar);
+			this.add(currChar);
 		}
 		
-		this.add(strip, BorderLayout.NORTH);
-		this.add(numberStrip, BorderLayout.SOUTH);
+		JLabel currNum;
+		for (int i = 0; i < 26; i++) {
+			currNum = new JLabel("" + (i+1));
+			currNum.setVerticalAlignment(JLabel.CENTER);
+			currNum.setHorizontalAlignment(JLabel.CENTER);
+			this.add(currNum);
+		}
 		
 		Dimension d = new Dimension(20 * 26, 20);
 		this.setPreferredSize(d);
