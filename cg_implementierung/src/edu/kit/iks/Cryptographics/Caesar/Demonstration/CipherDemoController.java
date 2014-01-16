@@ -5,7 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JComponent;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
@@ -20,12 +21,7 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
  */
 public class CipherDemoController extends AbstractVisualizationController {
 
-	/**
-	 * Contains all elements of the gui for the demonstration of caesar's
-	 * problem.
-	 */
-	private CipherDemoView view;
-
+	private int animationStep;
 	/**
 	 * @param visualizationInfo
 	 */
@@ -36,28 +32,36 @@ public class CipherDemoController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.view = new CipherDemoView();
-		this.view.getBackButton().addActionListener(new ActionListener() {
+        this.animationStep = 1;
+        
+		this.getView().setExplanations(new JLabel("Explanations---CipherDemo"));
+		this.getView().add(this.getView().getExplanations());
+
+		this.getView().setProceed(new JButton("proceed"));
+		this.getView().add(this.getView().getProceed());
+
+		this.getView().getBackButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)
 			 */
 			public void actionPerformed(ActionEvent event) {
-				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+				VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
 				containerController.presentPreviousVisualizationController();
 			}
 		});
-		this.view.getNextButton().addActionListener(new ActionListener() {
+		this.getView().getNextButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)
 			 */
 			public void actionPerformed(ActionEvent event) {
-				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+				VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
 				containerController.presentNextVisualizationController();
 			}
 		});
 
-		this.view.getProceed().addMouseListener(new MouseListener() {
+		this.getView().getProceed().addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -85,19 +89,76 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-                 proceedAnimation();
+				animationStart(getAnimationStep());
 			}
 		});
 
-		this.view.validate();
+		this.getView().validate();
 	}
 
 	/**
-	 * Needed for dispatching the clickEvent from the button to activate the
-	 * animation of the view.
+	 * @return the animationStep
 	 */
-	public void proceedAnimation() {
-		this.view.animationStart();
+	public int getAnimationStep() {
+		return animationStep;
+	}
+
+	/**
+	 * Function for performing the needed animations. After each step the
+	 * animation stops and continues when user wishes.
+	 * 
+	 * @param c
+	 */
+	public void animationStart(int step) {
+		switch (step) {
+		case 1:
+			step1();
+			break;
+		case 2:
+			step2();
+			break;
+		case 3:
+			step3();
+			break;
+		case 4:
+			animationDone();
+		}
+
+	}
+
+	/**
+	 * Explain the elements on the screen. Only explanations are shown.
+	 */
+	private void step1() {
+
+	}
+
+	/**
+	 * Describe how each character is encrypted.
+	 */
+	private void step2() {
+
+	}
+
+	/**
+	 * Describe the general Caesar cipher. (The key can vary from 0-25.)
+	 */
+	private void step3() {
+
+	}
+
+	/**
+	 * Describe that decryption is the same way as encryption.
+	 */
+	private void step4() {
+
+	}
+
+	/**
+	 * 
+	 */
+	private void animationDone() {
+
 	}
 
 	@Override
@@ -105,14 +166,14 @@ public class CipherDemoController extends AbstractVisualizationController {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	/**
 	 * Gets the view
 	 * 
 	 * @return The view of this controller
 	 */
 	@Override
-	public JComponent getView() {
-		return this.view;
+	public CipherDemoView getView() {
+		return (CipherDemoView) this.view;
 	}
 }
