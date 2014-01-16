@@ -1,7 +1,16 @@
 package edu.kit.iks.Cryptographics;
 
+import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.text.ParseException;
+
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.synth.SynthLookAndFeel;
 
 import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
@@ -36,6 +45,7 @@ public class MainController extends AbstractController {
 	 */
 	@Override
 	public void loadView() {
+		this.loadLookAndFeel();
 		this.loadFrame();
 		this.view = new JPanel();
 		this.frame.add(this.view);
@@ -50,6 +60,31 @@ public class MainController extends AbstractController {
 										// fullscreen in the end
 		this.frame.setVisible(true);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	/**
+	 * Loads the custom look and feel.
+	 */
+	private void loadLookAndFeel() {
+		SynthLookAndFeel lookAndFeel = new SynthLookAndFeel();
+		try {
+			lookAndFeel.load(new File("resources/theme/manifest.xml").toURI().toURL());
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			UIManager.setLookAndFeel(lookAndFeel);
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
