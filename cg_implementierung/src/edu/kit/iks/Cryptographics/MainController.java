@@ -45,7 +45,7 @@ public class MainController extends AbstractController {
 	 */
 	@Override
 	public void loadView() {
-		this.loadLookAndFeel();
+		//this.loadLookAndFeel();
 		this.loadFrame();
 	}
 
@@ -138,19 +138,5 @@ public class MainController extends AbstractController {
 		this.frame.getContentPane().revalidate();
 		this.frame.getContentPane().repaint();
 		this.frame.revalidate();
-	}
-
-	/**
-	 * Helper method to load the {StartController}
-	 */
-	private void loadStartController() {
-		this.startController = new StartController();
-	}
-
-	/**
-	 * Helper method to load the {VisualizationContainerController}
-	 */
-	private void loadVisualizationContainerController() {
-
 	}
 }

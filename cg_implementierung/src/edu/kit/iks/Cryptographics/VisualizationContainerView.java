@@ -1,5 +1,6 @@
 package edu.kit.iks.Cryptographics;
 
+import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -46,35 +47,44 @@ public class VisualizationContainerView extends JPanel {
 	 */
 	public VisualizationContainerView() {
 		super(new GridBagLayout());
-		GridBagConstraints constraints = new GridBagConstraints();
-		constraints.weightx = 1.0;
-		constraints.weighty = 1.0;
 		
 		// Create the exit button.
-		constraints.gridx = 0;
-		constraints.gridy = 0;
+		GridBagConstraints exitConstraints = new GridBagConstraints();
+		exitConstraints.weightx = 1.0;
+		exitConstraints.weighty = 0.1;
+		exitConstraints.gridx = 0;
+		exitConstraints.gridy = 0;
 		this.exitButton = new JButton("Exit");
-		this.add(this.exitButton, constraints);
+		this.add(this.exitButton, exitConstraints);
 		
 		// Create the name label.
-		constraints.gridx = 1;
-		constraints.gridy = 0;
+		GridBagConstraints nameConstraints = new GridBagConstraints();
+		nameConstraints.weightx = 1.0;
+		nameConstraints.weighty = 0.1;
+		nameConstraints.gridx = 1;
+		nameConstraints.gridy = 0;
 		this.nameLabel = new JLabel();
-		this.add(this.nameLabel, constraints);
+		this.add(this.nameLabel, nameConstraints);
 		
 		// Create the help button.
-		constraints.gridx = 2;
-		constraints.gridy = 0;
+		GridBagConstraints helpConstraints = new GridBagConstraints();
+		helpConstraints.weightx = 1.0;
+		helpConstraints.weighty = 0.1;
+		helpConstraints.gridx = 2;
+		helpConstraints.gridy = 0;
 		this.helpButton = new JButton("Help");
-		this.add(this.helpButton, constraints);
+		this.add(this.helpButton, helpConstraints);
 		
 		// Create content view.
-		constraints.gridx = 0;
-		constraints.gridy = 1;
-		constraints.fill = GridBagConstraints.BOTH;
-		constraints.gridwidth = 3;
-	    this.contentView = new JPanel();
-	    this.add(this.contentView, constraints);
+		GridBagConstraints contentConstraints = new GridBagConstraints();
+		contentConstraints.weightx = 1.0;
+		contentConstraints.weighty = 0.9;
+		contentConstraints.gridx = 0;
+		contentConstraints.gridy = 1;
+		contentConstraints.fill = GridBagConstraints.BOTH;
+		contentConstraints.gridwidth = 3;
+	    this.contentView = new JPanel(new BorderLayout());
+	    this.add(this.contentView, contentConstraints);
 	    
 	    this.validate();
 	}
