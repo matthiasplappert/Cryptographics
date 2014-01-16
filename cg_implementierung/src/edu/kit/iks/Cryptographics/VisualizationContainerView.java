@@ -67,6 +67,7 @@ public class VisualizationContainerView extends JPanel {
 		this.helpButton = new JButton("Help");
 		this.add(this.helpButton, constraints);
 		
+		// Create content view.
 		constraints.gridx = 0;
 		constraints.gridy = 1;
 		constraints.fill = GridBagConstraints.BOTH;
