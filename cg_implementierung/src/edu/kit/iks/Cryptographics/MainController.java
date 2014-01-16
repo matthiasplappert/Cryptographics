@@ -56,7 +56,7 @@ public class MainController extends AbstractController {
 	private void loadFrame() {
 		this.frame = new JFrame("Cryptographics");
 		
-		boolean debug = false;
+		boolean debug = true;
 		
 		if (debug) {
 			this.frame.setSize(1366, 768); // Basic size for testing. Needs to be
