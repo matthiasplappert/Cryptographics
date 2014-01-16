@@ -34,14 +34,26 @@ public class VisualizationContainerView extends JPanel {
 	private JButton helpButton;
 	
 	/**
+	 * The content view that contains the actual visualization 
+	 */
+	private JPanel contentView;
+	
+	/**
 	 * Constructor initializing a new instance of {VisualizationContainerView}
 	 */
 	public VisualizationContainerView() {
-		this.add(new JLabel("CONTAINER"));
 	    this.exitButton = new JButton("Exit");
+	    this.add(this.exitButton);
+	    
 	    this.helpButton = new JButton("Help");
 	    this.add(this.helpButton);
-	    this.add(this.exitButton);
+	    
+	    this.nameLabel = new JLabel();
+	    this.add(this.nameLabel);
+	    
+	    this.contentView = new JPanel();
+	    this.add(this.contentView);
+	    
 	    this.validate();
 	}
 
@@ -64,5 +76,13 @@ public class VisualizationContainerView extends JPanel {
 	 */
 	public JButton getHelpButton() {
 		return helpButton;
+	}
+	
+	/**
+	 * @return the contentView
+	 * @return
+	 */
+	public JPanel getContentView() {
+		return contentView;
 	}
 }

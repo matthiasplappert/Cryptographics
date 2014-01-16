@@ -83,6 +83,8 @@ public class VisualizationContainerController extends AbstractController {
 	@Override
 	public void loadView() {
 		this.view = new VisualizationContainerView();
+		this.view.getNameLabel().setText(this.getVisualizationInfo().getName());
+		
 		this.view.getExitButton().addMouseListener(new MouseListener() {
 
 			@Override
@@ -236,7 +238,7 @@ public class VisualizationContainerController extends AbstractController {
 			this.removeChildController(oldController);
 
 			// Remove view
-			this.getView().remove(oldController.getView());
+			this.getView().getContentView().remove(oldController.getView());
 			oldController.unloadView();
 		}
 
@@ -252,7 +254,7 @@ public class VisualizationContainerController extends AbstractController {
 
 		// Load new view
 		newController.loadView();
-		this.getView().add(newController.getView());
+		this.getView().getContentView().add(newController.getView());
 		this.getView().revalidate();
 	}
 
