@@ -43,6 +43,7 @@ public class IntroductionView extends VisualizationView {
 	 * Labels that will contain img for animation.
 	 */
 	private ImageView caesarImg;
+	private ImageView courier;
 	private ImageView orders;
 	private ImageView cipher;
 	private ImageView interceptor;
@@ -58,42 +59,31 @@ public class IntroductionView extends VisualizationView {
 	 */
 	private JLabel explanation;
 
+	/**
+	 * 
+	 */
 	public IntroductionView() {
 		super();
 	}
 
 	/**
+	 * 
+	 */
+	public void firstAnimation() {
+		
+	}
+	
+	/**
+	 * 
+	 */
+	public void secondAnimation() {
+		
+	}
+	/**
 	 * @return the proceed
 	 */
 	public JButton getProceed() {
 		return proceed;
-	}
-
-	/**
-	 * Caesar makes up a big plan and sends his orders by his messenger.
-	 */
-	public void step1() {
-	}
-
-	/**
-	 * Caesar's orders gets intercepted.
-	 */
-	public void step2() {
-
-	}
-
-	/**
-	 * Enemy reads his orders and Caesar's big plan is crossed.
-	 */
-	public void step3() {
-
-	}
-
-	/**
-	 * Caesar is very sad.
-	 */
-	public void step4() {
-
 	}
 
 	/**
@@ -189,6 +179,20 @@ public class IntroductionView extends VisualizationView {
 	 */
 	public void setProceed(JButton proceed) {
 		this.proceed = proceed;
+	}
+
+	/**
+	 * @return the courier
+	 */
+	public ImageView getCourier() {
+		return courier;
+	}
+
+	/**
+	 * @param courier the courier to set
+	 */
+	public void setCourier(ImageView courier) {
+		this.courier = courier;
 	}
 	
 }
