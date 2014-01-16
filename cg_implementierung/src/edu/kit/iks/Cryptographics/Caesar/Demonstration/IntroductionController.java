@@ -39,6 +39,11 @@ public class IntroductionController extends AbstractVisualizationController {
 	private IntroductionView view;
 
 	/**
+     * 
+     */
+	private Element caesarResource;
+
+	/**
 	 * @param visualizationInfo
 	 */
 	public IntroductionController(AbstractVisualizationInfo visualizationInfo) {
@@ -55,24 +60,27 @@ public class IntroductionController extends AbstractVisualizationController {
 		return this.view;
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationController#getHelp()
+	 */
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return "Just click proceed till it works and see the magic.";
 	}
 
 	@Override
 	public void loadView() {
+		CaesarVisualizationInfo vsInfo = (CaesarVisualizationInfo) this
+				.getVisualizationInfo();
+		this.caesarResource = vsInfo.getResources();
 		this.view = new IntroductionView();
-		CaesarVisualizationInfo vsInfo = (CaesarVisualizationInfo) this.getVisualizationInfo();
-		Element caesarResources = vsInfo.getResources();
-		
+		this.AnimationStep = 1;
+
 		this.view.setProceed(new JButton("proceed"));
 		this.view.add(this.view.getProceed());
 		this.view.setExplanation(new JLabel("explanations"));
 		this.view.add(this.view.getExplanation());
-		this.view.setCaesarImg(new ImageView(caesarResources.getChild("caesarImage").getAttributeValue("name")));
-		this.view.add(this.view.getCaesarImg());
 
 		this.view.getNextButton().addActionListener(new ActionListener() {
 			/*
@@ -129,7 +137,7 @@ public class IntroductionController extends AbstractVisualizationController {
 
 		this.animationStart(step);
 	}
-	
+
 	/**
 	 * Method for
 	 * 
@@ -138,37 +146,79 @@ public class IntroductionController extends AbstractVisualizationController {
 	private void animationStart(int step) {
 		switch (step) {
 		case 1:
-			this.view.step1();
+			step1();
 			break;
 		case 2:
-			this.view.step2();
+			step2();
 			break;
 		case 3:
-			this.view.step3();
+			step3();
 			break;
 		case 4:
-			this.view.step4();
-			break;
-		default:
 			animationDone();
 		}
 	}
 
 	/**
-	 * @param step
+	 * Caesar makes up a big plan and sends his orders by his messenger.
 	 */
-	private void unloadAnimation(int step) {
+	private void step1() {
+		this.AnimationStep++;
 
+		this.view.setCaesarImg(new ImageView(getCaesarResource().getChild(
+				"caesarImage").getAttributeValue("path")));
+		this.view.add(this.view.getCaesarImg());
+		this.view
+				.getExplanation()
+				.setText(
+						"Caesar makes up a big plan and sends his orders by his messenger.");
+
+		this.view.validate();
+
+		this.view.firstAnimation();
+
+	}
+
+	/**
+	 * Caesar's orders gets intercepted.
+	 */
+	private void step2() {
+		this.AnimationStep++;
+
+		this.view.setInterceptor(new ImageView(getCaesarResource().getChild(
+				"interceptorImage").getAttributeValue("path")));
+		this.view.add(this.view.getInterceptor());
+		this.view.getExplanation().setText("Caesar's orders gets intercepted.");
+		this.view.validate();
+
+		this.view.secondAnimation();
+	}
+
+	/**
+	 * Enemy reads his orders and Caesar's big plan is crossed.
+	 */
+	private void step3() {
+		this.AnimationStep++;
+		this.view.getExplanation().setText("PLAN CROSSED");
+		this.view.validate();
 	}
 
 	/**
 	 * 
 	 */
 	private void animationDone() {
-		// TODO Auto-generated method stub
-
+		this.view.remove(this.view.getCaesarImg());
+		this.view.setCaesarImg(null);
+		this.view.remove(this.view.getInterceptor());
+		this.view.setInterceptor(null);
+		this.view.remove(this.view.getExplanation());
+		this.view.setExplanation(null);
+		this.view.remove(this.view.getProceed());
+		this.view.setProceed(null);
+		this.view.add(new JLabel("Animation is done and Caesar is very sad"));
+		this.view.revalidate();
 	}
-	
+
 	/**
 	 * @return the animationStep
 	 */
@@ -184,5 +234,11 @@ public class IntroductionController extends AbstractVisualizationController {
 		AnimationStep = animationStep;
 	}
 
+	/**
+	 * @return the caesarResource
+	 */
+	public Element getCaesarResource() {
+		return caesarResource;
+	}
 
 }

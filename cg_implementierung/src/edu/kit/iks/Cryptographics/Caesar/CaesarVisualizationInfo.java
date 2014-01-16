@@ -25,12 +25,12 @@ import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 
 	/**
-	 * 
+	 * Caesar root element from the xml file.
 	 */
 	Element caesarResources;
 
 	/**
-	 * 
+	 * Constructor for the visualizationInfo.
 	 */
 	public CaesarVisualizationInfo() {
 		SAXBuilder saxBuilder = new SAXBuilder();
