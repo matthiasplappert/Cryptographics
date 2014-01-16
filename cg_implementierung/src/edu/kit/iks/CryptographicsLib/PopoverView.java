@@ -1,5 +1,7 @@
 package edu.kit.iks.CryptographicsLib;
 
+import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -26,6 +28,11 @@ public class PopoverView extends JPanel {
 	private JPanel contentView;
 	
 	/**
+	 * The shared container view
+	 */
+	static private JPanel containerView;
+	
+	/**
 	 * Constructor initializing a new instance of {PopoverView}
 	 */
 	public PopoverView() {
@@ -34,6 +41,8 @@ public class PopoverView extends JPanel {
 		
 		this.contentView = new JPanel();
 		this.add(this.contentView);
+		
+		this.setBackground(Color.RED);
 		
 		this.validate();
 	}
@@ -55,5 +64,38 @@ public class PopoverView extends JPanel {
 	 */
 	public JPanel getContentView() {
 		return contentView;
+	}
+	
+	/**
+	 * Configures all popovers to use a given container view. The container view
+	 * should be visible above all other components and should have maximum height
+	 * and width. You cannot use popover views before configuring them without a container!
+	 * 
+	 * @param containerView the container view
+	 */
+	public static void setContainerView(JPanel containerView) {
+		PopoverView.containerView = containerView;
+		
+		// Configure container.
+		containerView.setVisible(true);
+	}
+	
+	/**
+	 * Presents a popover in the container 
+	 */
+	public void present() {
+		this.validate();
+		
+		PopoverView.containerView.add(this);
+		PopoverView.containerView.validate();
+	}
+	
+	/**
+	 * Removes a popover from the container
+	 */
+	public void dismiss() {
+		PopoverView.containerView.remove(this);
+		PopoverView.containerView.revalidate();
+		PopoverView.containerView.repaint();
 	}
 }

@@ -157,8 +157,14 @@ public class VisualizationContainerController extends AbstractController {
 	 */
 	@Override
 	public void unloadView() {
+		if (this.helpPopoverView != null) {
+			this.dismissHelpPopover();
+		}
+		
 		this.view.removeAll();
 		this.view.revalidate();
+		
+		this.helpPopoverView = null;
 		this.view = null;
 	}
 
@@ -212,16 +218,14 @@ public class VisualizationContainerController extends AbstractController {
 				
 			}
 		});
-		this.view.add(this.helpPopoverView);
-		this.view.revalidate();
+		this.helpPopoverView.present();
 	}
 	
 	/**
 	 * Function for unloading the helpView.
 	 */
 	public void dismissHelpPopover() {
-		this.view.remove(this.helpPopoverView);
-		this.view.revalidate();
+		this.helpPopoverView.dismiss();
 		this.helpPopoverView = null;
 	}
 
@@ -336,6 +340,10 @@ public class VisualizationContainerController extends AbstractController {
 	}
 
 	public void presentStartController() {
+		if (this.helpPopoverView != null) {
+			this.dismissHelpPopover();
+		}
+		
 		MainController mainController = (MainController) this
 				.getParentController();
 		mainController.presentStartAction();
