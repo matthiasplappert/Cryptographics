@@ -1,6 +1,5 @@
 package edu.kit.iks.Cryptographics.Caesar;
 
-import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import edu.kit.iks.Cryptographics.Caesar.Demonstration.IntroductionController;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoController;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.HistogramController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
@@ -39,7 +37,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 
 		// obtain file object
 		File file = new File(
-				"./resources/Resources.xml");
+				"./resources/caesar/CaesarResources.xml");
 
 		try {
 			// converted file to document object
