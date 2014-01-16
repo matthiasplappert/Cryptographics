@@ -1,10 +1,12 @@
 package edu.kit.iks.CryptographicsLib;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
 
 /**
  * @author Matthias Jaenicke.
@@ -13,25 +15,34 @@ import javax.swing.SpringLayout;
  * Beneath it is matched by a corresponding strip of the numbers from 1 to 26.
  */
 public class AlphabetStripView extends JPanel {
-	private static JLabel[] strip;
+	private static JPanel strip;
+	private static NumbersStripView numberStrip;
 	
 	public AlphabetStripView() {
 		
 		super();
-		SpringLayout layout = new SpringLayout();
+
+		GridLayout layout = new GridLayout(2, 26);
 		this.setLayout(layout);
-		
-		strip = new JLabel[26];
 
 		int asciiA = 65;
-		for (int i = asciiA; i < asciiA+26; i++) {
-			strip[i] = new JLabel(String.valueOf((char)i));
-			strip[i].setVerticalAlignment(JLabel.CENTER);
-			strip[i].setHorizontalAlignment(JLabel.CENTER);
-			this.add(strip[i]);
+		JLabel currChar;
+		for (int i = 0; i < 26; i++) {
+			currChar = new JLabel(String.valueOf((char)(i+asciiA)));
+			currChar.setVerticalAlignment(JLabel.CENTER);
+			currChar.setHorizontalAlignment(JLabel.CENTER);
+			this.add(currChar);
 		}
 		
-		Dimension d = new Dimension(20 * strip.length, 20);
+		JLabel currNum;
+		for (int i = 0; i < 26; i++) {
+			currNum = new JLabel("" + (i+1));
+			currNum.setVerticalAlignment(JLabel.CENTER);
+			currNum.setHorizontalAlignment(JLabel.CENTER);
+			this.add(currNum);
+		}
+		
+		Dimension d = new Dimension(20 * 26, 20);
 		this.setPreferredSize(d);
 	}
 }
