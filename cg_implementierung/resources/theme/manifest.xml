@@ -12,7 +12,7 @@
   <!-- The default button style -->
   <style id="defaultButton">
     <property key="Button.textShiftOffset" type="integer" value="1"/>
-    <insets top="5" left="10" right="10" bottom="5"/>
+    <insets top="10" left="20" right="20" bottom="10"/>
     <font name="Verdana" size="16" style="BOLD"/>
     <state>
       <imagePainter method="buttonBackground" path="button.png" sourceInsets="8 8 8 8"/>   
