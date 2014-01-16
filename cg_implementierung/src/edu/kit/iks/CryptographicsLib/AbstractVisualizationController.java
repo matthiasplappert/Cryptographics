@@ -41,6 +41,4 @@ public abstract class AbstractVisualizationController extends AbstractController
 	 * @return help text
 	 */
 	abstract public String getHelp();
-	
-	abstract public JComponent getView(); 
 }
