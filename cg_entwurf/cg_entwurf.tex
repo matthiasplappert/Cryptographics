@@ -6,6 +6,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{enumitem}
 \usepackage{graphicx}
+\usepackage{geometry}
 \usepackage{float}
 \usepackage{url}
 \usepackage[bottom]{footmisc}
@@ -47,9 +48,9 @@
 \section{Einleitung}
 Für das Kryptologikum des Instituts für Kryptographie und Sicherheit soll die Software Cryptographics zur Demonstration kryptographischer Verfahren erstellt werden. Das Softwareprodukt soll vor allem auf Ausstellungen präsentiert werden und erfordert daher eine möglichst intuitive Benutzerführung.
 
-Um das Ziel der intuitiven Benutzerinteraktion zu erreichen, liegt das Hauptaugenmerk des Entwurfes auf der Planung eines Rahmenwerkes, dass es erlaubt, einzelne Verfahren in die Software einzubetten. Durch wiederverwendbare UI-Komponenten sowie eine einheitliche und für alle Verfahren identischen Benutzerführung erreichen wir dieses Ziel. Zusätzlich erlaubt uns dieser Entwurf, wiederkehrende Aufgaben wie beispielsweise die Soforthilfe mit minimalem Aufwand innerhalb der einzelnen Verfahren zu implementieren. Die eigentliche Komplexität steckt hierbei immer im Rahmenwerk, sodass alle Verfahren von Verbesserungen und Optimierungen profitieren. Weiterhin setzen wir auf eine simples, modulares System, dass es uns erlaubt, Verfahren mit minimalem Aufwand zu implementieren, zu warten und auszutauschen. Grundprinzipien ist hierbei die lose Kopplung der einzelnen Verfahren.
+Um das Ziel der intuitiven Benutzerinteraktion zu erreichen, liegt das Hauptaugenmerk des Entwurfes auf der Planung eines Rahmenwerkes, dass es erlaubt, einzelne Verfahren in die Software einzubetten. Durch wiederverwendbare UI-Komponenten sowie eine einheitliche und für alle Verfahren identischen Benutzerführung erreichen wir dieses Ziel. Zusätzlich erlaubt uns dieser Entwurf, wiederkehrende Aufgaben wie beispielsweise die Soforthilfe mit minimalem Aufwand innerhalb der einzelnen Verfahren zu implementieren. Die eigentliche Komplexität steckt hierbei immer im Rahmenwerk, sodass alle Verfahren von Verbesserungen und Optimierungen profitieren. Weiterhin setzen wir auf ein simples, modulares System, dass es uns erlaubt, Verfahren mit minimalem Aufwand zu implementieren, zu warten und auszutauschen. Grundprinzip ist hierbei die lose Kopplung der einzelnen Verfahren.
 
-Eine Herausforderung stellte die Abwägung zwischen Konsistenz und einer nötigen Flexibilität innerhalb der Verfahren da. So erfordern beispielsweise unterschiedliche Verfahren durchaus sehr unterschiedliche Arten der Navigation. Unser Entwurf sieht hierbei vor, dass die einzelnen Verfahren durchaus flexible und ohne strikte Vorgaben funktionieren können, gewisse Funktionen wie beispielsweise die Hilfe immer auf dieselbe Art funktionieren. Das oben beschriebene Rahmenwerk agiert auch hier unterstützend, erlaubt aber eine gewisse Flexibilität beispielsweise bei der Navigation innerhalb des Verfahrens. Somit lassen sich eine Vielzahl von unterschiedlichen Visualisierungen realisieren.
+Eine Herausforderung stellte die Abwägung zwischen Konsistenz und einer nötigen Flexibilität innerhalb der Verfahren da. So erfordern beispielsweise unterschiedliche Verfahren durchaus sehr unterschiedliche Arten der Navigation. Unser Entwurf sieht hierbei vor, dass die einzelnen Verfahren durchaus flexible und ohne strikte Vorgaben funktionieren können, gewisse Funktionen wie beispielsweise die Hilfe immer auf dieselbe Art funktionieren. Das oben beschriebene Rahmenwerk agiert auch hier unterstützend, erlaubt aber eine gewisse Flexibilität beispielsweise bei der Navigation innerhalb des Verfahrens. Somit lässt sich eine Vielzahl von unterschiedlichen Visualisierungen realisieren.
 
 \section{Aufbau}
 
@@ -65,7 +66,7 @@ Die grundlegende Architektur gliedert sich in 4 Schichten. Hierbei implementiere
 
 In der ersten, der untersten Schicht befinden sich Bibliotheken von Drittanbietern. In unserem Fall handelt es sich hierbei um QRGen, eine Java-Bibliothek um QR-Codes zu generieren, sowie um ein Framework zur Lokalisierung.
 
-In der zweiten Schicht befindet sich das Modul edu.kit.iks.CryptographicsLib. Dieses Modul enthält zum Einen abstrakte Klassen, die von den weiter oben liegenden Klassen verwendet werden. Zum Anderen finden sich hier wiederverwendbare UI-Komponenten, die beispielsweise bei verschiedenen Verfahren verwendet werden können.
+In der zweiten Schicht befindet sich das Modul edu.kit.iks.CryptographicsLib. Dieses Modul enthält zum einen abstrakte Klassen, die von den weiter oben liegenden Klassen verwendet werden. Zum anderen finden sich hier wiederverwendbare UI-Komponenten, die beispielsweise bei verschiedenen Verfahren verwendet werden können.
 
 Die dritte Schicht besteht aus dem Modul edu.kit.iks.Cryptographics. Hierbei handelt es sich um das Rahmenwerk, in dem alle Visualisierungen ausgeführt werden. Hier wird beispielsweise die Logik implementiert um zwischen Verfahren über eine Zeitleiste wechseln zu können oder auch die Soforthilfe.
 
@@ -106,11 +107,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item public String getHelpTextLabel() \newline
       \end{itemize}
 
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
     \subsubsection{Klasse Main}
       Main stellt den Einstiegspunkt des Programmes dar.
       \begin{figure}[H]
@@ -127,16 +123,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \begin{itemize}
         \item public static void main(String[] args) \newline
         Initialisiert den MainController.
-      \end{itemize}
-
-      \textbf{Getter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
       \end{itemize}
 
     \subsubsection{Klasse MainController}
@@ -159,16 +145,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         Lädt den StartController und zeigt seine View an.
         \item public void presentVisualizationAction(AbstractVisualizationInfo visualizationInfo) \newline
         Lädt den VisualizationContainerController, übergibt die konkrete VisualizationInfo und zeigt seine View an.
-      \end{itemize}
-
-      \textbf{Getter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
       \end{itemize}
 
     \subsubsection{Klasse StartController}
@@ -197,15 +173,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         Die gewählte Visualisierung soll gestartet werden. Hierzu delegiert diese Methode die Aufgabe an den MainController.
       \end{itemize}
 
-      \textbf{Getter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
+      
 
     \subsubsection{Klasse TimelinePopoverView}
       Die TimelinePopoverView stellt Informationen zu einer gewählten Visualisierung dar und bietet eine Möglichkeit an die Visualisierung zu starten.
@@ -231,11 +199,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item public AbstractVisualizationInfo getVisualizationInfo()
       \end{itemize}
 
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
     \subsubsection{Klasse TimelineView}
       Die TimelineView stellt alle Visualisierung auf einer Zeitleiste dar.
       \begin{figure}[H]
@@ -256,13 +219,8 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 
       \textbf{Getter}
       \begin{itemize}
-        \item public VisualizationButton[] getBVuttons() \newline
+        \item public VisualizationButton[] getButtons() \newline
         Gibt alle Buttons der TimelineView zurück. Jeder Button steht für eine Visualisierung auf der Zeitleiste.
-      \end{itemize}
-
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
       \end{itemize}
 
     \subsubsection{Klasse VisualizationContainerController}
@@ -345,11 +303,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item public JLabel getHelpButton()
       \end{itemize}
 
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
     \subsubsection{Klasse WelcomeView}
       Die WelcomeView wird oberhalb der TimelineView im StartController dargestellt und begrüßt den Benutzer.
       \begin{figure}[H]
@@ -363,16 +316,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
       
       \textbf{Methoden}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
-      \textbf{Getter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-
-      \textbf{Setter}
       \begin{itemize}
         \item \textit{keine}
       \end{itemize}
@@ -423,11 +366,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item public AbstractController getParentController()
         \item public List<AbstractController> getChildControllers()
       \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
 	% /AbstractController
 	
 	% AbstractVisualizationController
@@ -460,11 +398,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \textbf{Getter}
       \begin{itemize}
 		\item public AbstractVisualizationInfo getVisualizationInfo()
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
       \end{itemize}
 	% /AbstractVisualizationController
 	
@@ -521,22 +454,12 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
           muss nicht abstrakt sein, da es durch die bereits implementierten abstrakten Methoden
           errechnet werden, oder aus dem eventuell vorhandenen Cache geladen werden kann.
       \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
 	% /AbstractVisualizationInfo
 	
 	% AlphabetStripView
 	\subsubsection{Klasse AlphabetStripView}
 	  Instanzen dieser Klasse erzeugen eine Zeile mit den Buchstaben des Alphabets.
-	  Unter jeder dieser Buchstaben ist eine Durchnummerierung beginnend bei 1 für "A".
+	  Unter jeder dieser Buchstaben ist eine Durchnummerierung beginnend bei 1 für ``A''.
 	  Eine konkrete Instanz dieser Klasse kann aufgrund ihrer Vaterklasse als JPanel behandelt werden.
 	
       \begin{figure}[H]
@@ -554,48 +477,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item public AlphabetStripView() \newline
           Konstruktor, der die Alphabetanzeige initialisiert.
       \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
 	% /AlphabetStripView
-	
-	% CustomButton
-	\subsubsection{Klasse CustomButton}
-	  todo
-	
-      \begin{figure}[H]
-        \centering
-        \includegraphics{resources/edu-kit-iks-CryptographicsLib-CustomButton}
-      \end{figure}
-	
-      \textbf{Superklassen und Interfaces}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-	
-      \textbf{Methoden}
-      \begin{itemize}
-        \item public todo() \newline
-          todo.
-      \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
-	% /CustomButton	
 	
 	% CharacterFrequencyDiagramView
 	\subsubsection{Klasse CharacterFrequencyDiagramView}
@@ -659,16 +541,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item protected void paintComponent(Graphics g) \newline
           Überschreibt javax.swing.JComponent\#paintComponent(java.awt.Graphics)
       \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
 	% /ImageView	
 	
 	% InformationController
@@ -700,16 +572,6 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 		\item public InformationView getView() \newline
 		  Überschreibt edu.kit.iks.CryptographicsLib.AbstractController\#getView()
       \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
 	% /InformationController	
 	
 	% InformationView
@@ -740,16 +602,11 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 		\item public URL getPath()
 		\item public Image getQrCode()
       \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
 	% /InformationView	
 	
 	% KeyboardButton
 	\subsubsection{Klasse KeyboardButton}
-	  todo
+	  Instanzen dieser Klasse erzeugen die einzelnen Tasten für die Klasse Keyboard View. Die Funktionalität entspricht der Vaterklasse JButton.
 	
       \begin{figure}[H]
         \centering
@@ -758,29 +615,29 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item \textit{keine}
+        \item javax.swing.JButton
       \end{itemize}
 	
       \textbf{Methoden}
       \begin{itemize}
-        \item public todo() \newline
-          todo.
+        \item public KeyBoardButton(char) \newline
+          Konstruktor, der einen Button mit dem gegebenen Zeichen initialisiert.
       \end{itemize}
       
       \textbf{Getter}
       \begin{itemize}
-		\item \textit{keine}
+		\item public char getKeyValue()
       \end{itemize}
       
       \textbf{Setter}
       \begin{itemize}
-        \item \textit{keine}
+        \item public void setKeyValue(char)
       \end{itemize}
 	% /KeyboardButton	
 	
 	% KeyboardView
 	\subsubsection{Klasse KeyboardView}
-	  todo
+	  Instanzen dieser Klasse erzeugen eine Instanz einer Bildschirmtastatur mit 26 Tasten im QWERTZ-Format für die Texteingabe per Maus oder insbesondere per berührungssensitivem Bildschirm. Eine konkrete Instanz dieser Klasse kann aufgrund ihrer Vaterklasse als JPanel behandelt werden.
 	
       \begin{figure}[H]
         \centering
@@ -789,29 +646,21 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item \textit{keine}
+        \item javax.swing.JPanel
       \end{itemize}
 	
       \textbf{Methoden}
       \begin{itemize}
-        \item public todo() \newline
-          todo.
-      \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
+        \item public KeyboardView()
+          Konstruktor, der eine Tastatur mit standardmäßigem Zeichensatz initialisiert.
       \end{itemize}
 	% /KeyboardView	
 	
 	% NumbersStripView
 	\subsubsection{Klasse NumbersStripView}
-	  todo
+	  Instanzen dieser Klasse erzeugen eine Zeile mit den Zahlen von 1 bis 26.
+	  Diese Klasse dient als Hilfsklasse für AlphabetStripView.
+	  Eine konkrete Instanz dieser Klasse kann aufgrund ihrer Vaterklasse als JPanel behandelt werden.
 	
       \begin{figure}[H]
         \centering
@@ -820,29 +669,20 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item \textit{keine}
+        \item javax.swing.JPanel
       \end{itemize}
 	
       \textbf{Methoden}
       \begin{itemize}
-        \item public todo() \newline
-          todo.
-      \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
+        \item public NumberStripView() \newline
+          Konstruktor, der die Zeile mit Zahlen von 1 bis 26 initialisiert.
       \end{itemize}
 	% /NumbersStripView	
 	
 	% PopoverView
 	\subsubsection{Klasse PopoverView}
-	  todo
+	  Diese Klasse ist als Oberklasse für konkrete Popover gedacht. Sie
+	  bündelt die Funktionalitäten, die jeder Popover des Programms haben muss.
 	
       \begin{figure}[H]
         \centering
@@ -851,29 +691,26 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item \textit{keine}
+        \item javax.swing.JPanel
       \end{itemize}
 	
       \textbf{Methoden}
       \begin{itemize}
-        \item public todo() \newline
-          todo.
+        \item public PopoverView() \newline
+          Konstruktor, der ein Popover erzeugt und alle gemeinsamen Komponenten wie
+          die Buttons initialisiert.
       \end{itemize}
       
       \textbf{Getter}
       \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
-      \end{itemize}
+		\item public JButton getCloseButton()
+		\item public JPanel getContentView()
+      \end{itemize}      
 	% /PopoverView	
 	
 	% VisualizationButton
 	\subsubsection{Klasse VisualizationButton}
-	  todo
+	  Diese Klasse dient als Dekorierer für JButton. Instanzen hiervon beinhalten Informationen über das Verfahren, welche sie auf der Zeitleiste repräsentieren.
 	
       \begin{figure}[H]
         \centering
@@ -882,29 +719,24 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item \textit{keine}
+        \item javax.swing.JButton
       \end{itemize}
 	
       \textbf{Methoden}
       \begin{itemize}
-        \item public todo() \newline
-          todo.
+        \item public VisualizationButton() \newline
+          Konstruktor, der einen Button mit den gegebenen Visualisierungsinformationen initialisiert.
       \end{itemize}
       
       \textbf{Getter}
       \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
+		\item public AbstractVisualizationInfo getVisualizationInfo()
       \end{itemize}
 	% /VisualizationButton	
 	
 	% VisualizationDifficulty
 	\subsubsection{Enum VisualizationDifficulty}
-	  todo
+	  Die bietet eine Aufzählung für die verschiedenen Komplexitätsgrade der visualisierten Verfahren.
 	
       \begin{figure}[H]
         \centering
@@ -924,7 +756,8 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
 	% VisualizationInfoLoader
 	\subsubsection{Klasse VisualizationInfoLoader}
-	  todo
+	  Diese Klasse bietet mit ihrer einzigen statischen Methode eine Möglichkeit, 
+	  die VisualizationInfos sämtlicher Verfahren zu beziehen.
 	
       \begin{figure}[H]
         \centering
@@ -938,24 +771,15 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Methoden}
       \begin{itemize}
-        \item public todo() \newline
-          todo.
-      \end{itemize}
-      
-      \textbf{Getter}
-      \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
+        \item static public List<AbstractVisualizationInfo> loadAllVisualizationInfos() \newline
+          Bezieht eine Liste der VisualizationInfos sämtlicher Verfahren.
       \end{itemize}
 	% /VisualizationInfoLoader	
 	
 	% VisualizationView
 	\subsubsection{Klasse VisualizationView}
-	  todo
+	  Die VisualizationView vereint gemeinsame Komponenten, die die Visualisierungen
+	  untereinander teilen.
 	
       \begin{figure}[H]
         \centering
@@ -964,23 +788,19 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 	
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item \textit{keine}
+        \item javax.swing.JPanel
       \end{itemize}
 	
       \textbf{Methoden}
       \begin{itemize}
-        \item public todo() \newline
-          todo.
+        \item public VisualizationView() \newline
+          Konstruktor, der die gemeinsamen Komponenten initialisiert.
       \end{itemize}
       
       \textbf{Getter}
       \begin{itemize}
-		\item \textit{keine}
-      \end{itemize}
-      
-      \textbf{Setter}
-      \begin{itemize}
-        \item \textit{keine}
+		\item public JButton getNextButton()
+		\item public JButton getBackButton()
       \end{itemize}
 	% /VisualizationView	
 	
@@ -1172,9 +992,9 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item edu.kit.iks.CryptographicsLib.VisualizationView
       \end{itemize}
 
-  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanatation}
-    \subsubsection{Klasse FirstExplanatationController}
-      Der FirstExplanatationController erstellt FirstExplanatationView.
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanation}
+    \subsubsection{Klasse FirstExplanationController}
+      Der FirstExplanationController erstellt FirstExplanationView.
       \begin{figure}[H]
         \centering
         \includegraphics{resources/edu-kit-iks-Cryptographics-Vigenere-FirstExplanationController}
@@ -1185,7 +1005,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item edu.kit.iks.CryptographicsLib.AbstractController
       \end{itemize}
 
-    \subsubsection{Klasse FirstExplanatationView}
+    \subsubsection{Klasse FirstExplanationView}
       Die FirstExperimentView zeigt die Schwachstellen und möglich Angriffspunkte von Vigenere.
       \begin{figure}[H]
         \centering
@@ -1197,8 +1017,8 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item edu.kit.iks.CryptographicsLib.VisualizationView
       \end{itemize}
 
-    \subsubsection{Klasse SecondExplanatationController}
-      Der SecondExplanatationController erstellt SecondExplanatationView.
+    \subsubsection{Klasse SecondExplanationController}
+      Der SecondExplanationController erstellt SecondExplanationView.
       \begin{figure}[H]
         \centering
         \includegraphics{resources/edu-kit-iks-Cryptographics-Vigenere-SecondExplanationController}
@@ -1209,7 +1029,7 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
         \item edu.kit.iks.CryptographicsLib.AbstractController
       \end{itemize}
 
-    \subsubsection{Klasse SecondExplanatationView}
+    \subsubsection{Klasse SecondExplanationView}
       Die SecondExplanatationView zeigt den Selbstversuch wobei der Nutzer ein Histogramm generieren, die Schlüssellänge berechnen lassen kann und dann den Key finden muss.
       \begin{figure}[H]
         \centering
@@ -1222,12 +1042,291 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
       \end{itemize}
 
 \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
+  \subsubsection{Klasse CaesarVisualizationInfo}
+      CaesarVisualizationInfo enthält alle wichtigen Informationen zu dem Verfahren, wie z.B. Verfahrensname/Beschreibung.
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-CaesarVisualizationInfo}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public String getId() \newline
+        Gibt die Kennungs-ID aus.
+        \item public String getName() \newline
+        Gibt den Namen des Verfahrens aus.
+        \item public String getDescription() \newline
+        Gibt die Beschreibung des Verfahrens aus.
+        \item public String getQRCodeContent() \newline
+        Gibt den Inhalt des QRCodes aus.
+        \item public float getTimelineOffset() \newline
+        Gibt die relative Position in der Timeline aus.
+        \item public VisualizationDifficulty getDifficulty() \newline
+        Gibt den Schwierigkeitsgrad aus.
+        \item public int getYear() \newline
+        Gibt das Jahr aus, in welchem das Verfahren entwickelt wurde.
+        \item public List<Class> getControllerClasses() \newline
+        Gibt eine Liste von Controller-Klassen des Verfahrens aus, welche dann im Statecontroller geswitcht werden können.
+      \end{itemize}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Demonstration}
+
+
+\subsubsection{Klasse CipherDemoController}
+      CipherDemoController demonstriert das Caesar-Verfahren anhand eines Beispiels. Dieser Controller ist der letzte Schritt in der Demonstrationsphase.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Demonstration-CipherDemoController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public CipherDemoController(AbstractVisualizationInfo visualizationInfo)
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+        \item public void proceedAnimation() \newline
+        Startet die Animation in der View.
+      \end{itemize}
+
+\subsubsection{Klasse CipherDemoView}
+      CipherDemoView visualisiert die Caesar-Ciphre anhand eines Beispiels.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Demonstration-CipherDemoView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public CipherDemoView() \newline
+        Konstruktor. Erzeugt die benötigten Subviews.
+        \item public void animationStart() \newline
+        Startet die Animation.
+      \end{itemize}
+
+      \textbf{Getter}
+      \begin{itemize}
+        \item public JButton getProceed()
+        \item public JLabel getExplanations()
+        \item public JTextField getInput()
+        \item public JLabel[] getUserInput()
+        \item public JLabel[] getUserOutput()
+        \item public JLabel[] getAlphabet()
+        \item public JLabel[] getAlphabetNumbering()
+      \end{itemize}
+
+\subsubsection{Klasse IntroductionController}
+      IntroductionController ist der erste Controller der Demonstrationsphase und leitet in das Thema ein.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Demonstration-IntroductionController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public IntroductionController(AbstractVisualizationInfo visualizationInfo)
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+        \item public void animationProceed() \newline
+        Startet die Animation in der View.
+      \end{itemize}
+
+\subsubsection{Klasse IntroductionView}
+      IntroductionView erläutert dem Benutzer, was das Caesar-Verfahren überhaupt ist. Das Ganze wird
+      anhand eines Beispiels demonstriert, indem Caesar seine Befehle weitergeben möchte, ohne dass jemand
+      diese abfangen kann.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Demonstration-IntroductionView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public IntrocuctionView() \newline
+        Konstruktor. Erzeugt die benötigten Subviews.
+        \item public void animationStart() \newline
+        Startet die Animation.
+      \end{itemize}
+
+      \textbf{Getter}
+      \begin{itemize}
+        \item public JButton getProceed()
+        \item public JLabel getExplanation()
+        \item public Image getCaesar()
+        \item public Image getCipher()
+        \item public Image getInterceptor()
+      \end{itemize}
+
+      \textbf{Setter}
+      \begin{itemize}
+        \item public void setExplanation(JLabel explanation)
+        \item public void setCaesar(Image caesar)
+        \item public void setCipher(Image cipher)
+        \item public void setInterceptor(Image interceptor)
+      \end{itemize}
+
+\subsection{Paket edu.kit.iks.Cryptographics.Caesar.Experiment}
+
+\subsubsection{Klasse CryptoController}
+      Controller für den ersten und zweiten Schritt der Experimentphase, in der der Benutzer erst einen Text eingeben und verschlüsseln und im zweiten Schritt einen gegebenen Text entschlüsseln muss.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Experiment-CryptoController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public CryptoController(AbstractVisualizationInfo visualizationInfo) \newline
+        Konstruktor, instanziiert die Klasse anhand der gegeben Information zur Visualisierung
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse CryptoModel}
+      Modell für den letzten Schritt der Caesar-Einführung und die ersten beiden Schritte der Experimentphase.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Experiment-CryptoModel}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item todo
+      \end{itemize}
+
+\subsubsection{Klasse CryptoView}
+      Diese Ansicht bietet Elemente um dem Nutzer das verschlüsseln eigener Eingaben und das entschlüsseln von generiertem Text zu ermöglichen.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Experiment-CryptoView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+\subsubsection{Klasse HistogramController}
+      Controller für den letzten Schritt der Experimentphase. Der Nutzer kann hier versuchen die Caesar-Verschlüsselung per Häufigkeitsanalyse zu brechen.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Experiment-HistogramController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public HistogramController(AbstractVisualizationInfo visualizationInfo)
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse HistogramView}
+      Diese Klasse ist für die letzte Ansicht der Experimentphase. Die hier enthaltenen Elemente erlauben dem Nutzer eine gegebene Caesar-Verschlüsselung zu brechen mit dem Zweck ihm die Nachteile dieser Verschlüsselung aufzuzeigen, insbesondere wie leicht sie zu brechen ist. Zusätzlich bekommt der Nutzer eine Animation gezeigt, die ihm erklärt was ein Histogramm ist und wie es ihm helfen kann die Verschlüsselung zu brechen.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-Caesar-Experiment-HistogramView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
 
 \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
-\subsubsection{Klasse Model}
+    \subsubsection{Klasse AbstractController}
+      Der AbstractController ist eine abstrakte Klasse, die die verschiedenen State-Controller im DiffieHellman-Paket nutzen.
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-AbstractController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+      \end{itemize}
+      
+      \textbf{Methoden}
+      \begin{itemize}
+        \item public AbstractController(AbstractVisualizationInfo visualzationInfo) \newline
+        Konstruktor. Erzeugt einen neuen AbstractController.
+      \end{itemize}
+
+      \textbf{Getter}
+      \begin{itemize}
+        \item public Model getModel() \newline
+        Gibt die Singleton-Instanz des Models zurück.
+      \end{itemize}
+
+  \subsubsection{Klasse Model}
       Das Model in MVC für die Diffie-Hellman Analogie.
       Diese Klasse verwendet das Singleton Entwurfsmuster,
-      da die unterschiedliche Controller das gleiche Model sollen.
+      da die unterschiedliche Controller das gleiche Model verwenden sollen.
 
       \begin{figure}[H]
         \centering
@@ -1312,154 +1411,599 @@ Alle Schichten unterteilen ihre Klassen nach dem Model-View-Controller-Prinzip u
 \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Demonstration}
 
 \subsubsection{Klasse ExplainAimController}
-      Der erste StateController für die Demonstration der Diffie-Hellman Analogie.
+      Der erste Controller für die Demonstration der Diffie-Hellman Analogie.
       Der ExplainAim Zustand, erklärt was wir eigentlich erreichen wollen,
-      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
+      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal auszutauschen.
       Verwendet das Diffie-Hellman Model und die ExplainAimView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainAimController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainAimController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public ExplainAimController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+        \item public ExplainAimController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
         Lädt die View zum zugehörigen Zustand.
       \end{itemize}
 
+\subsubsection{Klasse ExplainAimView}
+      Die erste View für die Demonstration der Diffie-Hellman Analogie.
+      Der ExplainAim Zustand, erklärt was wir eigentlich erreichen wollen,
+      nämlich ein gemeinsames Geheimnis auf einem unsicheren Kanal austauschen.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainAimView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
 \subsubsection{Klasse OnewayController}
-      Der zweite StateController für die Demonstration der Diffie-Hellman Analogie.
+      Der zweite Controller für die Demonstration der Diffie-Hellman Analogie.
       Der OnewayController Zustand, erklärt wie wir dies durch Einwegfunktionen
       erreichen können. Dazu erklärt er an einer Analogie das Konzept
-      der Einwegfunktion.
+      einer Einwegfunktion.
       Verwendet das Diffie-Hellman Model und die OnewayView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-OnewayController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-OnewayController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public OnewayController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziiert seine View
+          \item public OnewayController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
         Lädt die View zum zugehörigen Zustand.
       \end{itemize}
 
+\subsubsection{Klasse OnewayView}
+      Die zweite View für die Demonstration der Diffie-Hellman Analogie.
+      Der OnewayView Zustand, erklärt wie wir dies durch Einwegfunktionen
+      erreichen können. Dazu erklärt er an einer Analogie das Konzept
+      einer Einwegfunktion.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-OnewayView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
 \subsubsection{Klasse ExplainKeyExchangeController}
-      Der dritte StateController für die Demonstration der Diffie-Hellman Analogie.
+      Der dritte Controller für die Demonstration der Diffie-Hellman Analogie.
+      Zeigt, wie ein Lauscher das Geheimnis erhält, wenn man es
+      im Klartext versendet.
       Verwendet das Diffie-Hellman Model und die ExplainKeyExchangeView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainKeyExchangeController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainKeyExchangeController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public ExplainKeyExchangeController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+          \item public ExplainKeyExchangeController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
         Lädt die View zum zugehörigen Zustand.
       \end{itemize}
 
+\subsubsection{Klasse ExplainKeyExchangeView}
+      Die dritte View für die Demonstration der Diffie-Hellman Analogie.
+      Zeigt, wie ein Lauscher das Geheimnis erhält, wenn man es
+      im Klartext versendet.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-ExplainKeyExchangeView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
 \subsubsection{Klasse AliceChooseSecretController}
-      Der vierte StateController für die Demonstration der Diffie-Hellman Analogie.
+      Der vierte Controller für die Demonstration der Diffie-Hellman Analogie.
+      Zeige wie Alice eine öffentliche und geheime Farbe wählt und 
+      die öffentliche Farbe, sowie die öffentliche, gemischt mit der geheimen Farbe,
+      an Bob sendet.
       Verwendet das Diffie-Hellman Model und die AliceChooseSecretView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-AliceChooseSecretController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-AliceChooseSecretController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public AliceChooseSecretController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+          \item public AliceChooseSecretController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
         Lädt die View zum zugehörigen Zustand.
       \end{itemize}
 
+\subsubsection{Klasse AliceChooseSecretView}
+      Die vierte View für die Demonstration der Diffie-Hellman Analogie.
+      Zeige wie Alice eine öffentliche und geheime Farbe wählt und 
+      die öffentliche Farbe, sowie die öffentliche, gemischt mit der geheimen Farbe,
+      an Bob sendet.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-AliceChooseSecretView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
 \subsubsection{Klasse BobChooseSecretController}
-      Der erste StateController für die Diffie-Hellman Analogie Demonstration.
+      Der fünfte Controller für die Demonstration der Diffie-Hellman Analogie.
+      Zeigt wie Bob eine geheime Farbe wählt und diese, gemischt mit
+      der öffentlichen Farbe von Alice, an Alice sendet.
       Verwendet das Diffie-Hellman Model und die BobChooseSecretView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-BobChooseSecretController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-BobChooseSecretController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public BobChooseSecretController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+          \item public BobChooseSecretController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
         Lädt die View zum zugehörigen Zustand.
       \end{itemize}
+
+\subsubsection{Klasse BobChooseSecretView}
+      Die fünfte View für die Demonstration der Diffie-Hellman Analogie.
+      Zeigt wie Bob eine geheime Farbe wählt und diese, gemischt mit
+      der öffentlichen Farbe von Alice, an Alice sendet.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-BobChooseSecretView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
 \subsubsection{Klasse MixColorController}
-      Der erste StateController für die Diffie-Hellman Analogie Demonstration.
+      Der sechste Controller für die Demonstration der Diffie-Hellman Analogie.
+      Zeigt wie das gemeinsame Geheimnis erzeugt wird.
       Verwendet das Diffie-Hellman Model und die MixColorView.
 
       \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-MixColorController}
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-MixColorController}
       \end{figure}
 
       \textbf{Superklassen und Interfaces}
       \begin{itemize}
-        \item edu.kit.iks.CryptographicsLib.AbstractVisualizationController
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
       \end{itemize}
 
       \textbf{Methoden}
       \begin{itemize}
-          \item public MixColorController(AbstractVisualizationInfo visualizationInfo) \newline
-              Holt sich sein DiffieHellman Model Singleton und instanziert seine View
+          \item public MixColorController(AbstractVisualizationInfo visualizationInfo)
         \item public String getHelp() \newline
         Gibt den Hilfe-Text an.
         \item public String loadView() \newline
         Lädt die View zum zugehörigen Zustand.
       \end{itemize}
 
+\subsubsection{Klasse MixColorView}
+      Die sechste View für die Demonstration der Diffie-Hellman Analogie.
+      Zeigt wie das gemeinsame Geheimnis erzeugt wird.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Demonstration-MixColorView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+\subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Experiment}
+
+\subsubsection{Klasse YourTurnController}
+      Der erste Controller für das Experiment der Diffie-Hellman Analogie.
+      Der YourTurn Zustand, erklärt dem Nutzer das er jetzt an der Reihe ist
+      und wiederholt kurz nochmal das Ziel.
+      Verwendet das Diffie-Hellman Model und die YourTurnView.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-YourTurnController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+          \item public YourTurnController(AbstractVisualizationInfo visualizationInfo)
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse YourTurnView}
+      Die erste View für das Experiment der Diffie-Hellman Analogie.
+      Der YourTurn Zustand, erklärt dem Nutzer das er jetzt an der Reihe ist
+      und wiederholt kurz nochmal das Ziel.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-YourTurnView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item javax.swing.JPanel
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+\subsubsection{Klasse ChoosePublicColorController}
+      Der zweite Controller für das Experiment der Diffie-Hellman Analogie.
+      Der ChoosePublicColor Zustand, fordert den Nutzer auf
+      eine öffentliche Farbe zu wählen.
+      Verwendet das Diffie-Hellman Model und die ChoosePublicColorView.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-ChoosePublicColorController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+          \item public ChoosePublicColorController(AbstractVisualizationInfo visualizationInfo)
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse ChoosePublicColorView}
+      Die zweite View für das Experiment der Diffie-Hellman Analogie.
+      Der ChoosePublicColor Zustand, fordert den Nutzer auf
+      eine öffentliche Farbe zu wählen.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-ChoosePublicColorView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item javax.swing.JPanel
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+\subsubsection{Klasse SendColorController}
+      Der dritte Controller für das Experiment der Diffie-Hellman Analogie.
+      Fordert den Nutzer auf seine Farbe zu senden, Eve erhält dabei eine Kopie.
+      Verwendet das Diffie-Hellman Model und die SendColorView.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-SendColorController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+          \item public SendColorController(AbstractVisualizationInfo visualizationInfo)
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse SendColorView}
+      Die dritte View für das Experiment der Diffie-Hellman Analogie.
+      Fordert den Nutzer auf seine Farbe zu senden, Eve erhält dabei eine Kopie.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-SendColorView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item javax.swing.JPanel
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+\subsubsection{Klasse ChooseSecretColorController}
+      Der vierte Controller für das Experiment der Diffie-Hellman Analogie.
+      Fordert den Nutzer auf, eine geheime Farbe zu wählen und die
+      jeweiligen Farben miteinander zu mischen.
+      Verwendet das Diffie-Hellman Model und die ChooseSecretColorView.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-ChooseSecretColorController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+          \item public ChooseSecretColorController(AbstractVisualizationInfo visualizationInfo)
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse ChooseSecretColorView}
+      Die vierte View für das Experiment der Diffie-Hellman Analogie.
+      Fordert den Nutzer auf, eine geheime Farbe zu wählen und die
+      jeweiligen Farben miteinander zu mischen.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-ChooseSecretColorView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item javax.swing.JPanel
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+\subsubsection{Klasse SendRightColorController}
+      Der fünfte Controller für das Experiment der Diffie-Hellman Analogie.
+      Fordert den Nutzer auf die richtige Farbe zu senden,
+      je nach Wahl gewinnt oder verliert der Nutzer. Siehe Pflichtenheft.
+      Verwendet das Diffie-Hellman Model und die SendRightColorView.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-SendRightColorController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+          \item public SendRightColorController(AbstractVisualizationInfo visualizationInfo)
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse SendRightColorView}
+      Die fünfte View für das Experiment der Diffie-Hellman Analogie.
+      Fordert den Nutzer auf die richtige Farbe zu senden,
+      je nach Wahl gewinnt oder verliert der Nutzer. Siehe Pflichtenheft.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-SendRightColorView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item javax.swing.JPanel
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
+\subsubsection{Klasse MixFinalSecretController}
+      Der sechste Controller für das Experiment der Diffie-Hellman Analogie.
+      Der MixFinalSecret Zustand, mische die richtigen Farben
+      zum gemeinsamen Geheimnis.
+      Verwendet das Diffie-Hellman Model und die MixFinalSecretView.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-MixFinalSecretController}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.Cryptographics.DiffieHellman.AbstractController
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+          \item public MixFinalSecretController(AbstractVisualizationInfo visualizationInfo)
+        \item public String getHelp() \newline
+        Gibt den Hilfe-Text an.
+        \item public String loadView() \newline
+        Lädt die View zum zugehörigen Zustand.
+      \end{itemize}
+
+\subsubsection{Klasse MixFinalSecretView}
+      Die sechste View für das Experiment der Diffie-Hellman Analogie.
+      Der MixFinalSecret Zustand, mische die richtigen Farben
+      zum gemeinsamen Geheimnis.
+
+      \begin{figure}[H]
+        \centering
+        \includegraphics{resources/edu-kit-iks-Cryptographics-DiffieHellman-Experiment-MixFinalSecretView}
+      \end{figure}
+
+      \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item javax.swing.JPanel
+      \end{itemize}
+
+      \textbf{Methoden}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+
 \section{Abläufe}
+
+\subsection{Sequenzdiagramme}
+\newgeometry{left=2cm,right=2cm,bottom=2cm}
+\subsubsection{Diagramm 1}
+	Dieses Diagramm verdeutlicht Ablauf von Cryptographics auf Timeline-Ebene.
+	\begin{figure}[H]
+        \centering
+        \includegraphics[height=0.9\textheight]{resources/sequenceDiagram01}
+      \end{figure}
+      
+\subsubsection{Diagramm 2}
+	Dieses Diagramm verdeutlicht Ablauf von Cryptographics auf Visualisierungs-Ebene.
+	\begin{figure}[H]
+        \centering
+        \includegraphics[height=0.9\textheight]{resources/sequenceDiagram02}
+      \end{figure}
+
+\restoregeometry
+
+\section{Anhang}
+
+\subsection{Klassendiagramme}
+\subsubsection{Rahmenwerk}
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.9\textheight]{resources/uml-core}
+\end{figure}
+
+\subsubsection{UI-Komponenten}
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.9\textheight]{resources/uml-ui-components}
+\end{figure}
+
+\subsubsection{Caesar}
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.9\textheight]{resources/uml-caesar}
+\end{figure}
+
+\subsubsection{Vigenère}
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.9\textheight]{resources/uml-vigenere}
+\end{figure}
+
+\subsubsection{Diffie-Hellman}
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=0.9\textheight]{resources/uml-diffiehellman}
+\end{figure}
 
 \glsaddall
 \printglossary[numberedsection, style=altlist]

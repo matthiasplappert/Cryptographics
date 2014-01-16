@@ -1,18 +1,14 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.Model;
-import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
+import edu.kit.iks.Cryptographics.DiffieHellman.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class AliceChooseSecretController extends AbstractVisualizationController {
-	private Model dhModel;
+public class AliceChooseSecretController extends AbstractController {
 	private AliceChooseSecretView view;
 	
 	public AliceChooseSecretController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		dhModel = Model.getInstance();
 		view = new AliceChooseSecretView();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
