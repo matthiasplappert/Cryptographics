@@ -5,11 +5,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import org.jdom2.Element;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
+import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.ImageView;
 
 /**
  * This class is the controller of the view CFirstView.
@@ -57,6 +64,16 @@ public class IntroductionController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.view = new IntroductionView();
+		CaesarVisualizationInfo vsInfo = (CaesarVisualizationInfo) this.getVisualizationInfo();
+		Element caesarResources = vsInfo.getResources();
+		
+		this.view.setProceed(new JButton("proceed"));
+		this.view.add(this.view.getProceed());
+		this.view.setExplanation(new JLabel("explanations"));
+		this.view.add(this.view.getExplanation());
+		this.view.setCaesarImg(new ImageView(caesarResources.getChild("caesarImage").getAttributeValue("name")));
+		this.view.add(this.view.getCaesarImg());
+
 		this.view.getNextButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Resources>
+	<caesar id="caesarId">
+      <caesarImage id="caesarImage" name="/home/wasilij/Cryptographics/cg_implementierung/resources/caesar/caesar.png"/>
+	</caesar>
+</Resources>
