@@ -11,7 +11,6 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class SecondDemonstrationController extends AbstractVisualizationController {
-	private SecondDemonstrationView view;
 	
 	public SecondDemonstrationController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
@@ -27,7 +26,7 @@ public class SecondDemonstrationController extends AbstractVisualizationControll
 	public void loadView() {
 		// TODO Auto-generated method stub
 		this.view = new SecondDemonstrationView();
-		this.view.getBackButton().addActionListener(new ActionListener() {
+		this.getView().getBackButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)
@@ -37,7 +36,7 @@ public class SecondDemonstrationController extends AbstractVisualizationControll
 				containerController.presentPreviousVisualizationController();
 			}
 		});
-		this.view.getNextButton().addActionListener(new ActionListener() {
+		this.getView().getNextButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)
@@ -50,7 +49,7 @@ public class SecondDemonstrationController extends AbstractVisualizationControll
 	}
 
 	@Override
-	public JComponent getView() {
-		return this.view;
+	public SecondDemonstrationView getView() {
+		return (SecondDemonstrationView) this.view;
 	}
 }
