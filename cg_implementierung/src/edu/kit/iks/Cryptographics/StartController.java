@@ -1,7 +1,7 @@
 package edu.kit.iks.Cryptographics;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
@@ -52,13 +52,20 @@ public class StartController extends AbstractController {
 	 */
 	@Override
 	public void loadView() {
-		this.view = new JPanel();
-
+		this.view = new JPanel(new GridBagLayout());
+		
+		// Add welcome view and its layout
+		GridBagConstraints welcomeViewLayout = new GridBagConstraints();
+		welcomeViewLayout.fill = GridBagConstraints.HORIZONTAL;
+		welcomeViewLayout.gridy = 0;
 		this.welcomeView = new WelcomeView();
-		this.view.add(this.welcomeView);
+		this.view.add(this.welcomeView, welcomeViewLayout);
 
+		// Add timeline view and its layout
+		GridBagConstraints timelineViewLayout = new GridBagConstraints();
+		timelineViewLayout.gridy = 1;
 		this.timelineView = new TimelineView(visualizationInfos);
-		this.view.add(this.timelineView);
+		this.view.add(this.timelineView, timelineViewLayout);
 
 		for (VisualizationButton button : this.timelineView.getButtons()) {
 			button.addMouseListener(new MouseListener() {
@@ -95,10 +102,9 @@ public class StartController extends AbstractController {
 					// TODO Auto-generated method stub
 
 				}
-
 			});
-
 		}
+		
 		this.view.validate();
 	}
 
