@@ -1,0 +1,23 @@
+ <synth>
+  <!-- The default style -->
+  <style id="defaultStyle">
+    <font name="Verdana" size="16"/>
+    <state>
+      <color value="WHITE" type="BACKGROUND"/>
+      <color value="BLACK" type="FOREGROUND"/>
+    </state>
+  </style>
+  <bind style="defaultStyle" type="region" key=".*"/>
+
+  <!-- The default button style -->
+  <style id="defaultButton">
+    <property key="Button.textShiftOffset" type="integer" value="1"/>
+    <insets top="10" left="20" right="20" bottom="10"/>
+    <font name="Verdana" size="16" style="BOLD"/>
+    <state>
+      <imagePainter method="buttonBackground" path="button.png" sourceInsets="8 8 8 8"/>   
+      <color value="WHITE" type="TEXT_FOREGROUND"/>
+    </state>
+  </style>
+  <bind style="defaultButton" type="region" key="Button"/>
+ </synth>

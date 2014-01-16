@@ -52,7 +52,6 @@ public class TimelineView extends JPanel {
 		this.buttons = new VisualizationButton[visualizationInfos.size()];
 		AbstractVisualizationInfo tmpVI;
 		this.visualizationInfos = visualizationInfos;
-		this.add(new JLabel("TimeLine"));
 		
 		int j = 0;
 		
