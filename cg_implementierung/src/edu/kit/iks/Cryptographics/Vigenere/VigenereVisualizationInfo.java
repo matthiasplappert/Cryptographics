@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.kit.iks.Cryptographics.Vigenere.Demonstration.*;
+import edu.kit.iks.Cryptographics.Vigenere.Experiment.FirstExperimentController;
+import edu.kit.iks.Cryptographics.Vigenere.Experiment.SecondExperimentController;
+import edu.kit.iks.Cryptographics.Vigenere.Explanation.FirstExplanationController;
+import edu.kit.iks.Cryptographics.Vigenere.Explanation.SecondExplanationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
@@ -47,8 +51,11 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 		controllerClasses.add(FirstDemonstrationController.class);
 		controllerClasses.add(SecondDemonstrationController.class);
 		controllerClasses.add(ThirdDemonstrationController.class);
+		controllerClasses.add(FirstExperimentController.class);
+		controllerClasses.add(SecondExperimentController.class);
+		controllerClasses.add(FirstExplanationController.class);
+		controllerClasses.add(SecondExplanationController.class);
 		controllerClasses.add(InformationController.class);
-		
 		return controllerClasses;
 	}
 }
