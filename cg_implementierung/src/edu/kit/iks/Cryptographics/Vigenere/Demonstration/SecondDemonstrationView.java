@@ -29,6 +29,6 @@ public class SecondDemonstrationView extends VisualizationView{
 	private JLabel charFinished;
 	
 	public SecondDemonstrationView() {
-       this.add(new JLabel("VIGENERE INTRODUCTION"));
+       this.add(new JLabel("VIGENERE INTRODUCTION2"));
 	}
 }
