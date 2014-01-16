@@ -61,6 +61,7 @@ public class ImageView extends JPanel{
          } catch (IOException e) {
         	 e.printStackTrace();
          }
+    	this.setPreferredSize(new Dimension(this.image.getWidth(), this.image.getHeight()));
     }
 
     /*

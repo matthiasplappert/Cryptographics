@@ -39,7 +39,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 
 		// obtain file object
 		File file = new File(
-				"/home/wasilij/Cryptographics/cg_implementierung/resources/Resources.xml");
+				"./resources/Resources.xml");
 
 		try {
 			// converted file to document object
