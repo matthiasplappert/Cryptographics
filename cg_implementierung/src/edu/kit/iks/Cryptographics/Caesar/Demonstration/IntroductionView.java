@@ -1,10 +1,17 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
+import java.awt.Dimension;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 
 import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
@@ -32,12 +39,10 @@ public class IntroductionView extends VisualizationView {
 	 */
 	private JPanel animationContainer;
 
-	Document resources;
-
 	/**
 	 * Labels that will contain img for animation.
 	 */
-	private ImageView caesar;
+	private ImageView caesarImg;
 	private ImageView orders;
 	private ImageView cipher;
 	private ImageView interceptor;
@@ -55,13 +60,6 @@ public class IntroductionView extends VisualizationView {
 
 	public IntroductionView() {
 		super();
-		this.animationContainer = new JPanel();
-		this.add(new JLabel("CAESAR INTRODUCTION"));
-		this.explanation = new JLabel("Explanations");
-		this.add(explanation);
-		this.proceed = new JButton("Proceed");
-		this.add(proceed);
-		this.validate();
 	}
 
 	/**
@@ -116,16 +114,16 @@ public class IntroductionView extends VisualizationView {
 	/**
 	 * @return the caesar
 	 */
-	public ImageView getCaesar() {
-		return caesar;
+	public ImageView getCaesarImg() {
+		return this.caesarImg;
 	}
 
 	/**
 	 * @param caesar
 	 *            the caesar to set
 	 */
-	public void setCaesar(ImageView caesar) {
-		this.caesar = caesar;
+	public void setCaesarImg(ImageView caesarImg) {
+		this.caesarImg = caesarImg;
 	}
 
 	/**
@@ -157,4 +155,40 @@ public class IntroductionView extends VisualizationView {
 	public void setInterceptor(ImageView interceptor) {
 		this.interceptor = interceptor;
 	}
+
+	/**
+	 * @return the animationContainer
+	 */
+	public JPanel getAnimationContainer() {
+		return animationContainer;
+	}
+
+	/**
+	 * @param animationContainer the animationContainer to set
+	 */
+	public void setAnimationContainer(JPanel animationContainer) {
+		this.animationContainer = animationContainer;
+	}
+
+	/**
+	 * @return the orders
+	 */
+	public ImageView getOrders() {
+		return orders;
+	}
+
+	/**
+	 * @param orders the orders to set
+	 */
+	public void setOrders(ImageView orders) {
+		this.orders = orders;
+	}
+
+	/**
+	 * @param proceed the proceed to set
+	 */
+	public void setProceed(JButton proceed) {
+		this.proceed = proceed;
+	}
+	
 }
