@@ -61,7 +61,7 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	}
 
 	public float getTimelineOffset() {
-		return 0.5f;
+		return 0.33f;
 	}
 
 	public VisualizationDifficulty getDifficulty() {
