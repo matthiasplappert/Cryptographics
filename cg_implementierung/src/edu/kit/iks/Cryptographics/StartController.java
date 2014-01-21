@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import edu.kit.iks.CryptographicsLib.AbstractController;
@@ -77,7 +78,7 @@ public class StartController extends AbstractController {
 					// TODO: check if getSource() is the right method
 					VisualizationButton button = (VisualizationButton) event
 							.getSource();
-					presentPopoverAction(button.getVisualizationInfo());
+					presentPopoverAction(button.getVisualizationInfo(), button);
 
 				}
 
@@ -140,7 +141,6 @@ public class StartController extends AbstractController {
 		}
 		
 		this.popoverView = new TimelinePopoverView(vsInfo);
-		this.popoverView.present(this.timelineView);
 	}
 
 	/**
@@ -150,10 +150,9 @@ public class StartController extends AbstractController {
 	 *            Object of {VisualizationInfo} containing the metadata to
 	 *            display
 	 */
-	public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo) {
-
+	public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo, JComponent sender) {
 		loadPopoverView(visualizationInfo);
-		
+		this.popoverView.present(sender);
 		this.popoverView.getStartButton().addMouseListener(new MouseListener() {
 
 			@Override

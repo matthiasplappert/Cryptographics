@@ -155,9 +155,9 @@ public class PopoverView extends JPanel {
 		this.validate();
 		
 		// Calculate the anchorPoint. The origin is in the center of the component.
-		double x = anchorComponent.getLocation().getX();
+		double x = anchorComponent.getLocationOnScreen().getX() - PopoverView.containerView.getLocationOnScreen().getX();
 		x += anchorComponent.getSize().getWidth() / 2;
-		double y = anchorComponent.getLocation().getY();
+		double y = anchorComponent.getLocationOnScreen().getY() - PopoverView.containerView.getLocationOnScreen().getY();
 		y += anchorComponent.getSize().getHeight() / 2;
 		this.anchorPoint = new Point((int)x, (int)y);
 		
