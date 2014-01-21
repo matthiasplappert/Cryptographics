@@ -1,9 +1,9 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.AbstractController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class AliceChooseSecretController extends AbstractController {
+public class AliceChooseSecretController extends AbstractVisualizationController {
 	private AliceChooseSecretView view;
 	
 	public AliceChooseSecretController(AbstractVisualizationInfo visualizationInfo) {
@@ -22,5 +22,9 @@ public class AliceChooseSecretController extends AbstractController {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	@Override
+	public AliceChooseSecretView getView() {
+		return (AliceChooseSecretView) this.view;
+	}
 }

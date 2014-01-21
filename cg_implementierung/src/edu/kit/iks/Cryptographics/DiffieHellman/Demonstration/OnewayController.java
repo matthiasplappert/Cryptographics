@@ -1,9 +1,9 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.AbstractController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class OnewayController extends AbstractController {
+public class OnewayController extends AbstractVisualizationController {
 	private OnewayView view;
 	
 	public OnewayController(AbstractVisualizationInfo visualizationInfo) {
@@ -24,4 +24,8 @@ public class OnewayController extends AbstractController {
 
 	}
 
+	@Override
+	public OnewayView getView() {
+		return (OnewayView) this.view;
+	}
 }

@@ -1,9 +1,9 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.AbstractController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class ExplainKeyExchangeController extends AbstractController {
+public class ExplainKeyExchangeController extends AbstractVisualizationController {
 	
 	private ExplainKeyExchangeView view;
 	
@@ -23,6 +23,11 @@ public class ExplainKeyExchangeController extends AbstractController {
 	public void loadView() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public ExplainKeyExchangeView getView() {
+		return (ExplainKeyExchangeView) this.view;
 	}
 
 }

@@ -1,9 +1,10 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.AbstractController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.BobChooseSecretView;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class YourTurnController extends AbstractController {
+public class YourTurnController extends AbstractVisualizationController {
 	
 	private YourTurnView view;
 
@@ -24,6 +25,11 @@ public class YourTurnController extends AbstractController {
 	public void loadView() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public YourTurnView getView() {
+		return (YourTurnView) this.view;
 	}
 
 }
