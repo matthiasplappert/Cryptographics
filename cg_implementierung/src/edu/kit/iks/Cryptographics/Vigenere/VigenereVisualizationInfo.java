@@ -1,7 +1,14 @@
 package edu.kit.iks.Cryptographics.Vigenere;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 
 import edu.kit.iks.Cryptographics.Vigenere.Demonstration.*;
 import edu.kit.iks.Cryptographics.Vigenere.Experiment.FirstExperimentController;
@@ -13,6 +20,29 @@ import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
 public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
+	private Element vigenereResources;
+	
+	public VigenereVisualizationInfo() {
+		SAXBuilder saxBuilder = new SAXBuilder();
+
+		// obtain file object
+		File file = new File(
+				"./resources/vigenere/VigenereResources.xml");
+
+		try {
+			// converted file to document object
+			Document document = saxBuilder.build(file);
+
+			// get root node from xml
+			this.vigenereResources = document.getRootElement().getChild("vigenere");
+		} catch (JDOMException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	public String getId() {
 		return "vigenere";
@@ -57,5 +87,9 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 		controllerClasses.add(SecondExplanationController.class);
 		controllerClasses.add(InformationController.class);
 		return controllerClasses;
+	}
+	
+	public Element getResources() {
+		return vigenereResources;
 	}
 }

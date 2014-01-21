@@ -140,7 +140,7 @@ public class StartController extends AbstractController {
 		}
 		
 		this.popoverView = new TimelinePopoverView(vsInfo);
-		this.popoverView.present();
+		this.popoverView.present(this.timelineView);
 	}
 
 	/**
