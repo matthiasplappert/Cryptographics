@@ -32,7 +32,7 @@ public class PopoverView extends JPanel {
 	/**
 	 * The arrow location of the popover.
 	 */
-	private ArrowLocation arrowLocation;
+	private ArrowLocation arrowLocation = ArrowLocation.TOP;
 	
 	/**
 	 * Serial Version UID
@@ -59,6 +59,8 @@ public class PopoverView extends JPanel {
 	 */
 	public PopoverView() {
 		super(new GridBagLayout());
+		
+		this.setOpaque(false);
 		
 		// Create close button.
 		GridBagConstraints closeConstraints = new GridBagConstraints();
@@ -122,16 +124,13 @@ public class PopoverView extends JPanel {
 	public void present(JComponent originComponent) {
 		this.validate();
 		
-		Point origin = originComponent.getLocationOnScreen();
-		
-		// Update view.
-		this.setLocation(this.getLocationFromOrigin(origin));
-		this.arrowLocation = this.getArrowLocationFromOrigin(origin);
-		this.repaint();
+		Point origin = originComponent.getLocation();
 		
 		// Position in container view.
 		PopoverView.containerView.add(this);
 		PopoverView.containerView.validate();
+		
+		this.updateLocationAndArrowLocationFromOrigin(origin);
 	}
 	
 	/**
@@ -159,35 +158,63 @@ public class PopoverView extends JPanel {
 		final double cornerRadius = 20.0;
 		
 		// Create the basic rounded shape.
-		Area shape = new Area(new RoundRectangle2D.Double(0.0, arrowHeight, this.getSize().getWidth(), this.getSize().getHeight() - arrowHeight, cornerRadius, cornerRadius));
+		Area shape = null;
+		switch (this.arrowLocation) {
+			case TOP:
+				shape = new Area(new RoundRectangle2D.Double(0.0, arrowHeight, this.getSize().getWidth(), this.getSize().getHeight() - arrowHeight, cornerRadius, cornerRadius));
+				break;
+				
+			case RIGHT:
+				shape = new Area(new RoundRectangle2D.Double(0.0, 0.0, this.getSize().getWidth() - arrowHeight, this.getSize().getHeight(), cornerRadius, cornerRadius));
+				break;
+				
+			case BOTTOM:
+				shape = new Area(new RoundRectangle2D.Double(0.0, 0.0, this.getSize().getWidth(), this.getSize().getHeight() - arrowHeight, cornerRadius, cornerRadius));
+				break;
+				
+			case LEFT:
+				shape = new Area(new RoundRectangle2D.Double(arrowHeight, 0.0, this.getSize().getWidth() - arrowHeight, this.getSize().getHeight(), cornerRadius, cornerRadius));
+				break;
+		}
 		
-		// Draw the arrow.
+		// Create the arrow path.
 	    GeneralPath path = new GeneralPath(GeneralPath.WIND_EVEN_ODD);
-	    path.moveTo(this.getSize().getWidth() / 2 - arrowWidth / 2, arrowHeight);
-	    path.lineTo(this.getSize().getWidth() / 2, 0);
-	    path.lineTo(this.getSize().getWidth() / 2 + arrowWidth / 2, arrowHeight);
+	    switch (this.arrowLocation) {
+			case TOP:
+				path.moveTo(this.getSize().getWidth() / 2 - arrowWidth / 2, arrowHeight);
+				path.lineTo(this.getSize().getWidth() / 2, 0);
+			    path.lineTo(this.getSize().getWidth() / 2 + arrowWidth / 2, arrowHeight);
+				
+			case RIGHT:
+				path.moveTo(this.getSize().getWidth() - arrowHeight, this.getSize().getHeight() / 2 - arrowWidth / 2);
+				path.lineTo(this.getSize().getWidth(), this.getSize().getHeight() / 2);
+			    path.lineTo(this.getSize().getWidth() - arrowHeight, this.getSize().getHeight() / 2 + arrowWidth / 2);
+				
+			case BOTTOM:
+				path.moveTo(this.getSize().getWidth() / 2 - arrowWidth / 2, this.getSize().getHeight() - arrowHeight);
+				path.lineTo(this.getSize().getWidth() / 2, this.getSize().getHeight());
+			    path.lineTo(this.getSize().getWidth() / 2 + arrowWidth / 2, this.getSize().getHeight() - arrowHeight);
+				
+			case LEFT:
+				path.moveTo(arrowHeight, this.getSize().getHeight() / 2 - arrowWidth / 2);
+				path.lineTo(0, this.getSize().getHeight() / 2);
+			    path.lineTo(arrowHeight, this.getSize().getHeight() / 2 + arrowWidth / 2);
+	    }
 	    path.closePath();
-	    shape.add(new Area (path));
+	    shape.add(new Area(path));
 
 	    return shape;
 	}
 	
 	/**
-	 * Translates the requested origin into the actual location of the popover 
+	 * Updates the location and arrow location for a given origin
+	 *  
 	 * @param origin the preferred origin of the popover 
-	 * @return the suggested location of the popover view
 	 */
-	private Point getLocationFromOrigin(Point origin) {
-		return origin;
-	}
-	
-	/**
-	 * Calculates the optimal arrow location for the given origin.
-	 * 
-	 * @param origin the preferred origin of the popover
-	 * @return the suggested arrow location of the popover view
-	 */
-	private ArrowLocation getArrowLocationFromOrigin(Point origin) {
-		return ArrowLocation.TOP;
+	private void updateLocationAndArrowLocationFromOrigin(Point origin) {
+		// Update view.
+		this.setLocation(origin);
+		this.arrowLocation = ArrowLocation.TOP;
+		this.repaint();
 	}
 }
