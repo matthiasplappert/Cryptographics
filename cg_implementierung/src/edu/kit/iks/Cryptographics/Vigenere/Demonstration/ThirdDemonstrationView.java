@@ -30,5 +30,11 @@ public class ThirdDemonstrationView extends VisualizationView{
 	
 	public ThirdDemonstrationView() {
        this.add(new JLabel("VIGENERE INTRODUCTION3"));
+       this.vigenereKeyDesc = new JLabel("Vigenere Key: " + this.vigenereKey);
+       
+       this.add(this.charFirst = new JLabel());
+       this.add(this.charSecond = new JLabel());
+       this.add(this.charFinished = new JLabel());
+       this.add(this.vigenereKeyDesc);
 	}
 }
