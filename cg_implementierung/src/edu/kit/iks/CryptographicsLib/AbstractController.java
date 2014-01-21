@@ -3,7 +3,6 @@ package edu.kit.iks.CryptographicsLib;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 
 /**
  * Abstract Controller
