@@ -82,7 +82,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	 * ()
 	 */
 	public float getTimelineOffset() {
-		return 0.0f;
+		return 0.01f;
 	}
 
 	/*
