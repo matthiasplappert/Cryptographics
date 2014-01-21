@@ -34,9 +34,10 @@ abstract public class AbstractVisualizationInfo {
 
 	/**
 	 * Offset on the timeline indicating the position on the timeline 
-	 * from left (0.0) to right (1.0) 
+	 * from left. The offset must be in the interval (0,1).
+	 * An offset equal to 0 or 1 will lead to undefined behaviour!
 	 * 
-	 * @return Position on the timeline from left (0.0) to right (1.0) 
+	 * @return Position on the timeline in the interval (0,1)
 	 */
 	abstract public float getTimelineOffset();
 
