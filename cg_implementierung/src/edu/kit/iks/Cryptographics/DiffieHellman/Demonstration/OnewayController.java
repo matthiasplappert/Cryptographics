@@ -24,4 +24,8 @@ public class OnewayController extends AbstractVisualizationController {
 
 	}
 
+	@Override
+	public OnewayView getView() {
+		return (OnewayView) this.view;
+	}
 }

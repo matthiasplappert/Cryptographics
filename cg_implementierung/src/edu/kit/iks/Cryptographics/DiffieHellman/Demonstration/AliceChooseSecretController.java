@@ -22,5 +22,9 @@ public class AliceChooseSecretController extends AbstractVisualizationController
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	@Override
+	public AliceChooseSecretView getView() {
+		return (AliceChooseSecretView) this.view;
+	}
 }

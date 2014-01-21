@@ -4,7 +4,6 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class BobChooseSecretController extends AbstractVisualizationController {
-	private BobChooseSecretView view;
 	
 	public BobChooseSecretController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
@@ -22,6 +21,11 @@ public class BobChooseSecretController extends AbstractVisualizationController {
 	public void loadView() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public BobChooseSecretView getView() {
+		return (BobChooseSecretView) this.view;
 	}
 
 }

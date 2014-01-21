@@ -1,5 +1,6 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.BobChooseSecretView;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
@@ -25,4 +26,8 @@ public class ChoosePublicColorController extends AbstractVisualizationController
 		
 	}
 
+	@Override
+	public ChoosePublicColorView getView() {
+		return (ChoosePublicColorView) this.view;
+	}
 }

@@ -24,5 +24,10 @@ public class ExplainKeyExchangeController extends AbstractVisualizationControlle
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public ExplainKeyExchangeView getView() {
+		return (ExplainKeyExchangeView) this.view;
+	}
 
 }

@@ -23,5 +23,10 @@ public class MixColorController extends AbstractVisualizationController {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public MixColorView getView() {
+		return (MixColorView) this.view;
+	}
 
 }
