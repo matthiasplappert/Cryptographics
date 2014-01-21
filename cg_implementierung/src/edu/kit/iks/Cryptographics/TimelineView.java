@@ -1,5 +1,6 @@
 package edu.kit.iks.Cryptographics;
 
+import java.awt.Color;
 import java.util.Iterator;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.VisualizationButton;
 
 /**
@@ -49,6 +51,7 @@ public class TimelineView extends JPanel {
 	 * @param visualizationInfos List of all {VisualizationInfo}-instances
 	 */
 	public TimelineView(List<AbstractVisualizationInfo> visualizationInfos) {
+		this.setBackground(Color.red);
 		this.buttons = new VisualizationButton[visualizationInfos.size()];
 		AbstractVisualizationInfo tmpVI;
 		this.visualizationInfos = visualizationInfos;

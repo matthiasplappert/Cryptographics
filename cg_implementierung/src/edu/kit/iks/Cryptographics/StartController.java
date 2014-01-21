@@ -64,6 +64,8 @@ public class StartController extends AbstractController {
 
 		// Add timeline view and its layout
 		GridBagConstraints timelineViewLayout = new GridBagConstraints();
+		timelineViewLayout.fill = GridBagConstraints.HORIZONTAL;
+		timelineViewLayout.weightx = 1.0;
 		timelineViewLayout.gridy = 1;
 		this.timelineView = new TimelineView(visualizationInfos);
 		this.view.add(this.timelineView, timelineViewLayout);
