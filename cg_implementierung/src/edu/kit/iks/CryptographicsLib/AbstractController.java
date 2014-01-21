@@ -3,6 +3,7 @@ package edu.kit.iks.CryptographicsLib;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 /**
  * Abstract Controller
@@ -14,7 +15,7 @@ abstract public class AbstractController {
 	/**
 	 * The view of the controller
 	 */
-	protected JComponent view = null;
+	protected JPanel view = null;
 
 	/**
 	 * The parent controller
@@ -67,7 +68,7 @@ abstract public class AbstractController {
 	 * 
 	 * @return The view of this controller
 	 */
-	public JComponent getView() {
+	public JPanel getView() {
 		return this.view;
 	}
 

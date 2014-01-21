@@ -1,9 +1,9 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.AbstractController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class MixFinalSecretController extends AbstractController {
+public class MixFinalSecretController extends AbstractVisualizationController {
 	
 	private MixFinalSecretView view;
 	

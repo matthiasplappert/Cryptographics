@@ -1,9 +1,9 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.AbstractController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class BobChooseSecretController extends AbstractController {
+public class BobChooseSecretController extends AbstractVisualizationController {
 	private BobChooseSecretView view;
 	
 	public BobChooseSecretController(AbstractVisualizationInfo visualizationInfo) {
