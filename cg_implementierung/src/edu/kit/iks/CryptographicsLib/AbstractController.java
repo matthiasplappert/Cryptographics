@@ -15,7 +15,7 @@ abstract public class AbstractController {
 	/**
 	 * The view of the controller
 	 */
-	protected JPanel view = null;
+	protected JComponent view = null;
 
 	/**
 	 * The parent controller
@@ -68,7 +68,7 @@ abstract public class AbstractController {
 	 * 
 	 * @return The view of this controller
 	 */
-	public JPanel getView() {
+	public JComponent getView() {
 		return this.view;
 	}
 
