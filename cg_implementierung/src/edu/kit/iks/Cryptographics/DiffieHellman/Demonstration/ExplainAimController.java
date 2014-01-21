@@ -23,7 +23,7 @@ public class ExplainAimController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.view = new ExplainAimView();
-//		this.view.setBackground(Color.WHITE);
+		this.view.setBackground(Color.WHITE);
 
 	}
 	
