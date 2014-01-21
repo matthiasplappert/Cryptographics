@@ -184,8 +184,13 @@ public class VisualizationContainerController extends AbstractController {
 		if (this.helpPopoverView != null) {
 			this.dismissHelpPopover();
 		}
+		String helpText = this.getCurrentVisualizationController().getHelp();
+		if (helpText == null) {
+			// Do not present help if no help is available.
+			return;
+		}
 		
-		this.helpPopoverView = new HelpPopoverView(this.getCurrentVisualizationController().getHelp());
+		this.helpPopoverView = new HelpPopoverView(helpText);
 		this.helpPopoverView.getCloseButton().addMouseListener(new MouseListener() {
 			
 			@Override

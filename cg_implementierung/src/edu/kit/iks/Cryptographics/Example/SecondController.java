@@ -19,8 +19,7 @@ public class SecondController extends AbstractVisualizationController {
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ullamcorper velit sit amet dictum fringilla. Proin convallis ipsum ante, sed lacinia lorem luctus in.";
 	}
 
 	@Override

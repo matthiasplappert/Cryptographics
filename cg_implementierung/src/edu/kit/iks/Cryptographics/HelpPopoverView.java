@@ -35,8 +35,8 @@ public class HelpPopoverView extends PopoverView {
 	public HelpPopoverView(String helpText) {
 		super();
 		
-		this.helpText = helpText;		
-		this.helpTextLabel = new JLabel(helpText);
+		this.helpText = helpText;
+		this.helpTextLabel = new JLabel("<html><div style=\"width:200px;\">" + helpText + "</div></html>");
 		this.getContentView().add(this.helpTextLabel);
 	}
 	
