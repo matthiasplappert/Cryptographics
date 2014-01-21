@@ -35,13 +35,14 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class IntroductionView extends VisualizationView implements
-		ActionListener {
+public class IntroductionView extends VisualizationView {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7214639660774564585L;
+
+	private GridBagLayout introLayout;
 
 	/**
 	 * Container for the animations.
@@ -57,7 +58,7 @@ public class IntroductionView extends VisualizationView implements
 	private ImageView cipher;
 	private ImageView interceptor;
 
-	private int x;
+	int x;
 	private int y;
 
 	private Timer timer;
@@ -83,9 +84,8 @@ public class IntroductionView extends VisualizationView implements
 		this.animationContainer = new JPanel();
 		this.getBackButton().setVisible(false);
 		this.getNextButton().setText("Go to Caesar's idea!");
-		this.setBackground(Color.BLUE);
 
-		GridBagLayout introLayout = new GridBagLayout();
+		this.introLayout = new GridBagLayout();
 		GridBagConstraints nextConstraint = new GridBagConstraints();
 		this.setLayout(introLayout);
 
@@ -110,14 +110,16 @@ public class IntroductionView extends VisualizationView implements
 
 		GridBagConstraints caesarImgConstraint = new GridBagConstraints();
 		caesarImgConstraint.anchor = caesarImgConstraint.LINE_START;
-		caesarImgConstraint.weightx = 0;
+		caesarImgConstraint.weightx = 0.1;
 		caesarImgConstraint.weighty = 0.5;
 		caesarImgConstraint.gridx = 0;
 		caesarImgConstraint.gridy = 0;
+		
 		this.setCaesarImg(new ImageView(introResource.getChild("caesarImage")
 				.getAttributeValue("path")));
 		this.add(this.caesarImg, caesarImgConstraint);
 		GridBagConstraints explanationConstraint = new GridBagConstraints();
+		
 		explanationConstraint.anchor = explanationConstraint.PAGE_END;
 		explanationConstraint.weightx = 0.5;
 		explanationConstraint.weighty = 0;
@@ -133,43 +135,31 @@ public class IntroductionView extends VisualizationView implements
 
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		// uopdate x,y coordinates
-		x += 10;
-		// ask GUI to repaint itself
-		repaint();
-	}
-
-	public void paint(Graphics g) {
-		super.paint(g); // dto redraw the background
-		g.drawImage(caesarImg.getImage(), x, 0, null);
-	}
-
 	/**
 	 * 
 	 */
 	public void firstAnimation() {
-		class Animation extends JPanel implements ActionListener {
-
+		this.timer = new Timer(50, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				x += 10;
-				repaint();
-			}
-				@Override
-				public void paint(Graphics g) {
-					super.paint(g); // dto redraw the background
-					g.drawImage(getCaesarImg().getImage(), x, 0, null);
+				if (getCaesarImg().getX() < 400) {
+				animate();
+				} else {
+				getTimer().stop();
 				}
-				
-			
-			
-		}
-		Animation animation = new Animation();
-		this.timer = new Timer(50, animation);
+			}
+		});
+		x = getCaesarImg().getX();
 		this.timer.start();
 	}
 
+	public void animate() {
+		x += 10;
+		int y = getCaesarImg().getY();
+		getCaesarImg().setBounds( x, y, getPreferredSize().width, getPreferredSize().height);
+		getCaesarImg().validate();	
+		this.repaint();
+	}
 	/**
 	 * 
 	 */
@@ -302,6 +292,13 @@ public class IntroductionView extends VisualizationView implements
 	 */
 	public Timer getTimer() {
 		return timer;
+	}
+
+	/**
+	 * @return the introLayout
+	 */
+	public GridBagLayout getIntroLayout() {
+		return introLayout;
 	}
 
 }
