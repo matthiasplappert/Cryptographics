@@ -21,7 +21,7 @@ public class Logger {
 	public static void d(String classID, String method, String debugText) {
 		if (Logger.debugMode) {
 			
-			System.out.println("[LOG]: " + classID + "::" + method + "() - " + debugText);
+			System.out.println("[Debug]: " + classID + "::" + method + "() - " + debugText);
 		}
 	}
 }
