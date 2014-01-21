@@ -32,6 +32,26 @@ public class PopoverView extends JPanel {
 	};
 	
 	/**
+	 * The width of the arrow.
+	 */
+	final private static int ARROW_WIDTH = 40;
+	
+	/**
+	 * The height of the arrow.
+	 */
+	final private static int ARROW_HEIGHT = 20;
+	
+	/**
+	 * The inner inset of the popover.
+	 */
+	final private static int INSET = 20;
+	
+	/**
+	 * The corner radius of the popover.
+	 */
+	final private static int CORNER_RADIUS = 20;
+	
+	/**
 	 * The arrow location of the popover.
 	 */
 	private ArrowLocation arrowLocation = ArrowLocation.TOP;
@@ -162,27 +182,23 @@ public class PopoverView extends JPanel {
     }
 
 	private Area createShape() {
-		final double arrowHeight  = 20.0;
-		final double arrowWidth   = 40.0;
-		final double cornerRadius = 20.0;
-		
 		// Create the basic rounded shape.
 		Area shape = null;
 		switch (this.arrowLocation) {
 			case TOP:
-				shape = new Area(new RoundRectangle2D.Double(0.0, arrowHeight, this.getSize().getWidth(), this.getSize().getHeight() - arrowHeight, cornerRadius, cornerRadius));
+				shape = new Area(new RoundRectangle2D.Double(0.0, ARROW_HEIGHT, this.getSize().getWidth(), this.getSize().getHeight() - ARROW_HEIGHT, CORNER_RADIUS, CORNER_RADIUS));
 				break;
 				
 			case RIGHT:
-				shape = new Area(new RoundRectangle2D.Double(0.0, 0.0, this.getSize().getWidth() - arrowHeight, this.getSize().getHeight(), cornerRadius, cornerRadius));
+				shape = new Area(new RoundRectangle2D.Double(0.0, 0.0, this.getSize().getWidth() - ARROW_HEIGHT, this.getSize().getHeight(), CORNER_RADIUS, CORNER_RADIUS));
 				break;
 				
 			case BOTTOM:
-				shape = new Area(new RoundRectangle2D.Double(0.0, 0.0, this.getSize().getWidth(), this.getSize().getHeight() - arrowHeight, cornerRadius, cornerRadius));
+				shape = new Area(new RoundRectangle2D.Double(0.0, 0.0, this.getSize().getWidth(), this.getSize().getHeight() - ARROW_HEIGHT, CORNER_RADIUS, CORNER_RADIUS));
 				break;
 				
 			case LEFT:
-				shape = new Area(new RoundRectangle2D.Double(arrowHeight, 0.0, this.getSize().getWidth() - arrowHeight, this.getSize().getHeight(), cornerRadius, cornerRadius));
+				shape = new Area(new RoundRectangle2D.Double(ARROW_HEIGHT, 0.0, this.getSize().getWidth() - ARROW_HEIGHT, this.getSize().getHeight(), CORNER_RADIUS, CORNER_RADIUS));
 				break;
 		}
 		
@@ -190,27 +206,27 @@ public class PopoverView extends JPanel {
 	    GeneralPath path = new GeneralPath(GeneralPath.WIND_EVEN_ODD);
 	    switch (this.arrowLocation) {
 			case TOP:
-				path.moveTo(this.getSize().getWidth() / 2 - arrowWidth / 2, arrowHeight);
+				path.moveTo(this.getSize().getWidth() / 2 - ARROW_WIDTH / 2, ARROW_HEIGHT);
 				path.lineTo(this.getSize().getWidth() / 2, 0);
-			    path.lineTo(this.getSize().getWidth() / 2 + arrowWidth / 2, arrowHeight);
+			    path.lineTo(this.getSize().getWidth() / 2 + ARROW_WIDTH / 2, ARROW_HEIGHT);
 			    break;
 				
 			case RIGHT:
-				path.moveTo(this.getSize().getWidth() - arrowHeight, this.getSize().getHeight() / 2 - arrowWidth / 2);
+				path.moveTo(this.getSize().getWidth() - ARROW_HEIGHT, this.getSize().getHeight() / 2 - ARROW_WIDTH / 2);
 				path.lineTo(this.getSize().getWidth(), this.getSize().getHeight() / 2);
-			    path.lineTo(this.getSize().getWidth() - arrowHeight, this.getSize().getHeight() / 2 + arrowWidth / 2);
+			    path.lineTo(this.getSize().getWidth() - ARROW_HEIGHT, this.getSize().getHeight() / 2 + ARROW_WIDTH / 2);
 			    break;
 				
 			case BOTTOM:
-				path.moveTo(this.getSize().getWidth() / 2 - arrowWidth / 2, this.getSize().getHeight() - arrowHeight);
+				path.moveTo(this.getSize().getWidth() / 2 - ARROW_WIDTH / 2, this.getSize().getHeight() - ARROW_HEIGHT);
 				path.lineTo(this.getSize().getWidth() / 2, this.getSize().getHeight());
-			    path.lineTo(this.getSize().getWidth() / 2 + arrowWidth / 2, this.getSize().getHeight() - arrowHeight);
+			    path.lineTo(this.getSize().getWidth() / 2 + ARROW_WIDTH / 2, this.getSize().getHeight() - ARROW_HEIGHT);
 			    break;
 				
 			case LEFT:
-				path.moveTo(arrowHeight, this.getSize().getHeight() / 2 - arrowWidth / 2);
+				path.moveTo(ARROW_HEIGHT, this.getSize().getHeight() / 2 - ARROW_WIDTH / 2);
 				path.lineTo(0, this.getSize().getHeight() / 2);
-			    path.lineTo(arrowHeight, this.getSize().getHeight() / 2 + arrowWidth / 2);
+			    path.lineTo(ARROW_HEIGHT, this.getSize().getHeight() / 2 + ARROW_WIDTH / 2);
 			    break;
 	    }
 	    path.closePath();
@@ -243,10 +259,10 @@ public class PopoverView extends JPanel {
 	private void updateBorder() {
 		Border border;
 		switch (this.arrowLocation) {
-			case TOP: border = BorderFactory.createEmptyBorder(40, 20, 20, 20); break;
-			case BOTTOM: border = BorderFactory.createEmptyBorder(20, 20, 40, 20); break;
-			case LEFT: border = BorderFactory.createEmptyBorder(20, 40, 20, 20); break;
-			case RIGHT: border = BorderFactory.createEmptyBorder(20, 20, 20, 40); break;
+			case TOP: border = BorderFactory.createEmptyBorder(INSET + ARROW_HEIGHT, INSET, INSET, INSET); break;
+			case BOTTOM: border = BorderFactory.createEmptyBorder(INSET, INSET, INSET + ARROW_HEIGHT, INSET); break;
+			case LEFT: border = BorderFactory.createEmptyBorder(INSET, INSET + ARROW_HEIGHT, INSET, INSET); break;
+			case RIGHT: border = BorderFactory.createEmptyBorder(INSET, INSET, INSET, INSET + ARROW_HEIGHT); break;
 			default: border = BorderFactory.createEmptyBorder(0, 0, 0, 0); break;
 		}
 		
