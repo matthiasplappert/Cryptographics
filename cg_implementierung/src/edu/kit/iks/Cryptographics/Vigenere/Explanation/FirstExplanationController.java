@@ -4,9 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
-import edu.kit.iks.Cryptographics.Vigenere.*;
-import edu.kit.iks.Cryptographics.Vigenere.Demonstration.SecondDemonstrationView;
-import edu.kit.iks.Cryptographics.Vigenere.Experiment.SecondExperimentView;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
