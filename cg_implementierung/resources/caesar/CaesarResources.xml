@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Resources>
-	<caesar id="caesarId">
+<Caesar>
+	<Introduction id="caesarId">
       <caesarImage  path="./resources/caesar/caesar.png"/>
       <ordersImage  path="./resources/caesar/orders.jpg"/>
       <courierImage path="./resources/caesar/courier.jpg"/>
       <interceptorImage path="./resources/caesar/interceptor.png"/>
-	</caesar>
-</Resources>
+	</Introduction>
+	<CipherDemo>
+	<input content="Anna"/>
+	</CipherDemo>
+	
+</Caesar>

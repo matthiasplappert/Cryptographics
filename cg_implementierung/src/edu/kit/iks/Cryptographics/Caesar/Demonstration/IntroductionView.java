@@ -1,6 +1,9 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.io.File;
 import java.io.IOException;
 
@@ -13,6 +16,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
+import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
@@ -35,7 +39,7 @@ public class IntroductionView extends VisualizationView {
 	private static final long serialVersionUID = -7214639660774564585L;
 
 	/**
-	 * Containerpanel for the animations.
+	 * Container for the animations.
 	 */
 	private JPanel animationContainer;
 
@@ -64,21 +68,70 @@ public class IntroductionView extends VisualizationView {
 	 */
 	public IntroductionView() {
 		super();
+		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
+		Element introResource = vsInfo.getResources().getChild("Introduction");
+		this.animationContainer = new JPanel();
+		this.getBackButton().setVisible(false);
+		this.getNextButton().setText("Go to Caesar's idea!");
+		this.setBackground(Color.BLUE);
+
+		GridBagLayout introLayout = new GridBagLayout();
+		GridBagConstraints c = new GridBagConstraints();
+		this.setLayout(introLayout);
+
+		c.anchor = c.FIRST_LINE_START;
+		c.weightx = 0;
+		c.weighty = 0;
+		c.gridx = 0;
+		c.gridy = 0;
+		introLayout.setConstraints(this.getNextButton(), c);
+
+		c.anchor = c.PAGE_START;
+		c.weightx = 0.5;
+		c.weighty = 0.5;
+		c.gridx = 0;
+		c.gridy = 0;
+		this.setProceed(new JButton("Forward the animation!"));
+		this.add(this.proceed, c);
+
+		this.setExplanation(new JLabel());
+		this.add(this.explanation);
+
+		c.anchor = c.LINE_START;
+		c.weightx = 0;
+		c.weighty = 0.5;
+		c.gridx = 0;
+		c.gridy = 0;
+		this.setCaesarImg(new ImageView(introResource.getChild("caesarImage")
+				.getAttributeValue("path")));
+		this.add(this.caesarImg, c);
+		c.anchor = c.PAGE_END;
+		c.weightx = 0.5;
+		c.weighty = 0;
+		c.gridx = 0;
+		c.gridy = 0;
+		introLayout.setConstraints(this.explanation, c);
+		this.explanation
+				.setText("Caesar makes up a big plan and sends his orders by his messenger.");
+		
+		this.validate();
+
 	}
 
 	/**
 	 * 
 	 */
 	public void firstAnimation() {
-		
+
 	}
-	
+
 	/**
 	 * 
 	 */
 	public void secondAnimation() {
-		
+
 	}
+
 	/**
 	 * @return the proceed
 	 */
@@ -154,7 +207,8 @@ public class IntroductionView extends VisualizationView {
 	}
 
 	/**
-	 * @param animationContainer the animationContainer to set
+	 * @param animationContainer
+	 *            the animationContainer to set
 	 */
 	public void setAnimationContainer(JPanel animationContainer) {
 		this.animationContainer = animationContainer;
@@ -168,14 +222,16 @@ public class IntroductionView extends VisualizationView {
 	}
 
 	/**
-	 * @param orders the orders to set
+	 * @param orders
+	 *            the orders to set
 	 */
 	public void setOrders(ImageView orders) {
 		this.orders = orders;
 	}
 
 	/**
-	 * @param proceed the proceed to set
+	 * @param proceed
+	 *            the proceed to set
 	 */
 	public void setProceed(JButton proceed) {
 		this.proceed = proceed;
@@ -189,10 +245,11 @@ public class IntroductionView extends VisualizationView {
 	}
 
 	/**
-	 * @param courier the courier to set
+	 * @param courier
+	 *            the courier to set
 	 */
 	public void setCourier(ImageView courier) {
 		this.courier = courier;
 	}
-	
+
 }
