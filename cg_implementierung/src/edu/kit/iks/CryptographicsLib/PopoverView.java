@@ -6,12 +6,14 @@ import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.geom.Area;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 /**
@@ -20,6 +22,17 @@ import javax.swing.JPanel;
  * @author Christian Dreher
  */
 public class PopoverView extends JPanel {
+	/**
+	 * Defines the possible locations of a popover arrow. 
+	 */
+	private enum ArrowLocation {
+	    TOP, RIGHT, BOTTOM, LEFT 
+	};
+	
+	/**
+	 * The arrow location of the popover.
+	 */
+	private ArrowLocation arrowLocation;
 	
 	/**
 	 * Serial Version UID
@@ -47,6 +60,7 @@ public class PopoverView extends JPanel {
 	public PopoverView() {
 		super(new GridBagLayout());
 		
+		// Create close button.
 		GridBagConstraints closeConstraints = new GridBagConstraints();
 		closeConstraints.gridx = 0;
 		closeConstraints.gridy = 0;
@@ -54,6 +68,7 @@ public class PopoverView extends JPanel {
 		this.closeButton = new JButton("Close");
 		this.add(this.closeButton, closeConstraints);
 		
+		// Create content view.
 		GridBagConstraints contentConstraints = new GridBagConstraints();
 		contentConstraints.gridx = 0;
 		contentConstraints.gridy = 1;
@@ -72,7 +87,7 @@ public class PopoverView extends JPanel {
 	 * @return the closeButton button to return.
 	 */
 	public JButton getCloseButton() {
-		return closeButton;
+		return this.closeButton;
 	}
 	
 	/**
@@ -82,7 +97,7 @@ public class PopoverView extends JPanel {
 	 * @return the content view.
 	 */
 	public JPanel getContentView() {
-		return contentView;
+		return this.contentView;
 	}
 	
 	/**
@@ -100,11 +115,21 @@ public class PopoverView extends JPanel {
 	}
 	
 	/**
-	 * Presents a popover in the container 
+	 * Presents a popover in the container
+	 * 
+	 * @param originComponent the origin of the popover is where the arrow of the popover should point to
 	 */
-	public void present() {
+	public void present(JComponent originComponent) {
 		this.validate();
 		
+		Point origin = originComponent.getLocationOnScreen();
+		
+		// Update view.
+		this.setLocation(this.getLocationFromOrigin(origin));
+		this.arrowLocation = this.getArrowLocationFromOrigin(origin);
+		this.repaint();
+		
+		// Position in container view.
 		PopoverView.containerView.add(this);
 		PopoverView.containerView.validate();
 	}
@@ -118,7 +143,7 @@ public class PopoverView extends JPanel {
 		PopoverView.containerView.repaint();
 	}
 	
-	protected void paintComponent (Graphics g) {
+	protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         
         final Area shape = this.createShape();
@@ -145,5 +170,24 @@ public class PopoverView extends JPanel {
 	    shape.add(new Area (path));
 
 	    return shape;
+	}
+	
+	/**
+	 * Translates the requested origin into the actual location of the popover 
+	 * @param origin the preferred origin of the popover 
+	 * @return the suggested location of the popover view
+	 */
+	private Point getLocationFromOrigin(Point origin) {
+		return origin;
+	}
+	
+	/**
+	 * Calculates the optimal arrow location for the given origin.
+	 * 
+	 * @param origin the preferred origin of the popover
+	 * @return the suggested arrow location of the popover view
+	 */
+	private ArrowLocation getArrowLocationFromOrigin(Point origin) {
+		return ArrowLocation.TOP;
 	}
 }
