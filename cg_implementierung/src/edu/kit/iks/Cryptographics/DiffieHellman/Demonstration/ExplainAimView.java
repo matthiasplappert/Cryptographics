@@ -1,8 +1,15 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
+import java.awt.Color;
+import java.awt.GridBagLayout;
+
+import javax.swing.JLabel;
+
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 public class ExplainAimView extends VisualizationView {
+	
+	private JLabel aimExplain;
 	
 
 
@@ -13,6 +20,11 @@ public class ExplainAimView extends VisualizationView {
 
 	public ExplainAimView() {
 		super();
+		this.setLayout(new GridBagLayout());
+		this.setBackground(Color.WHITE);
+		this.aimExplain = new JLabel();
+		this.aimExplain.setText("Our aim is to exchange a secret key on a public channel");
+		this.add(aimExplain);
 	}
 
 }
