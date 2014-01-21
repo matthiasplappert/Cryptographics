@@ -21,7 +21,7 @@ public class FirstController extends AbstractVisualizationController {
 	@Override
 	public String getHelp() {
 		// TODO Auto-generated method stub
-		return "Test";
+		return "This is an example help. You can even use <strong>HTML</strong>.";
 	}
 
 	@Override

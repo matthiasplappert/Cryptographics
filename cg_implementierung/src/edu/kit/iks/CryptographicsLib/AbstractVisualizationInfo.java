@@ -88,4 +88,18 @@ abstract public class AbstractVisualizationInfo {
 	public Image getQrCode() {
 		return null;
 	}
+	
+	/**
+	 * Gets the human-readable and localized difficulty
+	 * 
+	 * @return The difficulty string
+	 */
+	public String getHumanReadableDifficulty() {
+		switch (this.getDifficulty()) {
+			case EASY: return "Easy";
+			case MEDIUM: return "Medium";
+			case HARD: return "Hard";
+			default: return null;
+		}
+	}
 }
