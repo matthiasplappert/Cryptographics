@@ -1,6 +1,9 @@
 package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
 
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -39,6 +42,11 @@ public class FirstDemonstrationView extends VisualizationView{
 
 	public FirstDemonstrationView(VigenereVisualizationInfo visualizationInfo) {
 		super();
+		
+		
+		this.setLayout(null);
+		
+		
 		this.vigenereXML = visualizationInfo.getResources();
 		this.vigenereText = new JLabel("Vigenere bla bla... Now go to modulo:");
 		this.moduloText = new JLabel("It's easy to describe the logical operation 'modulo'; we use it everyday in our... ");
@@ -51,6 +59,31 @@ public class FirstDemonstrationView extends VisualizationView{
 		this.add(this.vigenereText);
 		this.add(this.clock);
 		this.add(this.moduloText);
+		this.vigenereText.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+		this.moduloText.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+		Dimension size = this.vigenereText.getPreferredSize();
+		this.vigenereText.setBounds(180, 5,
+	             size.width, size.height);
+		
+		size = this.vigenere.getPreferredSize();
+		this.vigenere.setBounds(30, 5,
+	             size.width, size.height);
+		
+		size = this.moduloText.getPreferredSize();
+		this.moduloText.setBounds(180, 160,
+	             size.width, size.height);
+		
+		size = this.clock.getPreferredSize();
+		this.clock.setBounds(500, 400,
+	             size.width, size.height);
+		
+		size = this.getBackButton().getPreferredSize();
+		this.getBackButton().setBounds(30, 600,
+	             size.width, size.height);
+		
+		size = this.getNextButton().getPreferredSize();
+		this.getNextButton().setBounds(1100, 600,
+	             size.width, size.height);
 		
 		//in the first step set modulo unvisible
 		this.moduloText.setVisible(false);
