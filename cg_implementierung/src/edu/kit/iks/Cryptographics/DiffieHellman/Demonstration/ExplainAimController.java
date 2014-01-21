@@ -1,17 +1,16 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
-import java.awt.Color;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class ExplainAimController extends AbstractVisualizationController {
-	private ExplainAimView view;
 	
 	public ExplainAimController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		view = new ExplainAimView();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
@@ -23,13 +22,24 @@ public class ExplainAimController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.view = new ExplainAimView();
-		this.view.setBackground(Color.WHITE);
+		// TODO use mouselistener instead of actionlistener
+		this.getView().getNextButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
+			}
+		});
+		
+		this.getView().getBackButton().setVisible(false);
 
 	}
 	
 	@Override
 	public ExplainAimView getView() {
 		return (ExplainAimView) this.view;
+		
 	}
 
 
