@@ -1,5 +1,7 @@
 package edu.kit.iks.CryptographicsLib;
 
+import java.util.Date;
+
 public class Logger {
 	private static boolean debugMode = false;
 	
@@ -11,9 +13,15 @@ public class Logger {
 		Logger.debugMode = true;
 	}
 	
-	public static void log(String classID, String method, String logEntry) {
+	public static void l(String logEntry) {
+		Date date = new java.util.Date();
+		// TODO: log in file with timestamp (date+time)
+	}
+	
+	public static void d(String classID, String method, String debugText) {
 		if (Logger.debugMode) {
-			System.out.println("[LOG]: " + classID + "::" + method + "() - " + logEntry);
+			
+			System.out.println("[LOG]: " + classID + "::" + method + "() - " + debugText);
 		}
 	}
 }

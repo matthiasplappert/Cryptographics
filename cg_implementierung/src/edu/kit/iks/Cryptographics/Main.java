@@ -16,7 +16,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		Logger.setDebugMode();
-		Logger.log("Main", "main", "Logger running.");
+		Logger.d("Main", "main", "Debugger running.");
 		
 		MainController mainController = new MainController();
 		mainController.loadView();
