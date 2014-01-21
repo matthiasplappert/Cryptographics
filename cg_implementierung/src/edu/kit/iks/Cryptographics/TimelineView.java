@@ -80,6 +80,14 @@ public class TimelineView extends JPanel {
 		fillPanelConstraints.gridx = 1;
 		fillPanelConstraints.gridy = 0;
 		
+		// Explenation to the constraints:
+		// The constraings force the wrappers to overlay each other. Each wrapper is
+		// build up as following:
+		// [[----buttonPanel----[-button-][----fillPanel----]]
+		// The width of the wrapper is always full screen size, the buttonPanel's
+		// width is always the percentage the timelineOffset defines. The fillPanel's
+		// width is 1 - timelineOffset. The fill panel is needed as counterweight.
+		
 		// Initialize and place all buttons with above defined constraints
 		for (Iterator<AbstractVisualizationInfo> i = visualizationInfos.iterator(); i.hasNext();) {
 			vInfo = i.next();
