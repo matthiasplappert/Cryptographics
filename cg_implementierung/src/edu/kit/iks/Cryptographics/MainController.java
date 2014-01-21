@@ -60,6 +60,7 @@ public class MainController extends AbstractController {
 		if (Logger.debugModeActive()) {
 			this.frame.setSize(1366, 768); // Basic size for testing. Needs to be
 										   // fullscreen in the end
+			Logger.d("MainController", "loadFrame", "Fullscreen mode disabled due to debugging.");
 		} else {
 			this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			this.frame.setUndecorated(true);
@@ -99,6 +100,8 @@ public class MainController extends AbstractController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else {
+			Logger.d("MainController", "loadLookAndFeel", "Look and feel disabled due to debugging.");
 		}
 	}
 
