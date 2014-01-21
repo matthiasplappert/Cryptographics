@@ -70,6 +70,8 @@ public class IntroductionController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.animationStep = 1;
+		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
+		this.introResource = vsInfo.getResources().getChild("Introduction");
         this.view = new IntroductionView();
         
 		this.getView().getNextButton().addActionListener(new ActionListener() {
