@@ -1,6 +1,9 @@
 package edu.kit.iks.Cryptographics;
 
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.Iterator;
 import java.util.List;
 
@@ -51,17 +54,61 @@ public class TimelineView extends JPanel {
 	 * @param visualizationInfos List of all {VisualizationInfo}-instances
 	 */
 	public TimelineView(List<AbstractVisualizationInfo> visualizationInfos) {
-		this.setBackground(Color.red);
+		super(new GridBagLayout());
+		
 		this.buttons = new VisualizationButton[visualizationInfos.size()];
-		AbstractVisualizationInfo tmpVI;
+		AbstractVisualizationInfo vInfo;
 		this.visualizationInfos = visualizationInfos;
 		
 		int j = 0;
+
+		// Constraints for wrapper-panel
+		GridBagConstraints wrapperPanelConstraints = new GridBagConstraints();
+		wrapperPanelConstraints.fill = GridBagConstraints.HORIZONTAL;
+		wrapperPanelConstraints.weightx = 1.0f;
+		wrapperPanelConstraints.gridx = 0;
+		wrapperPanelConstraints.gridy = 0;
 		
+		// Constraints for button-panel
+		GridBagConstraints buttonPanelConstraints = new GridBagConstraints();
+		buttonPanelConstraints.anchor = GridBagConstraints.LINE_END;
+		buttonPanelConstraints.gridx = 0;
+		buttonPanelConstraints.gridy = 0;
+		
+		// Constraints for fill-panel
+		GridBagConstraints fillPanelConstraints = new GridBagConstraints();
+		fillPanelConstraints.gridx = 1;
+		fillPanelConstraints.gridy = 0;
+		
+		// Initialize and place all buttons with above defined constraints
 		for (Iterator<AbstractVisualizationInfo> i = visualizationInfos.iterator(); i.hasNext();) {
-			tmpVI = i.next();
-			this.buttons[j] = new VisualizationButton(tmpVI);
-			this.add(this.buttons[j]);
+			vInfo = i.next();
+
+			// Fit constraints to ensure the right position of the button
+			buttonPanelConstraints.weightx = vInfo.getTimelineOffset();
+			fillPanelConstraints.weightx = 1 - vInfo.getTimelineOffset();
+
+			// Initialize button
+			this.buttons[j] = new VisualizationButton(vInfo);
+			
+			// Initialize helping panels
+			JPanel wrapperPanel = new JPanel(new GridBagLayout());
+			JPanel buttonPanel = new JPanel(new GridBagLayout());
+			JPanel fillPanel = new JPanel();
+			
+			// Populate helping panels with button
+			buttonPanel.add(this.buttons[j]);
+			wrapperPanel.add(buttonPanel, buttonPanelConstraints);
+			wrapperPanel.add(fillPanel, fillPanelConstraints);
+			
+			// Make helping panels invisible
+			wrapperPanel.setOpaque(false);
+			buttonPanel.setOpaque(false);
+			fillPanel.setOpaque(false);
+			
+			// Add wrapper to actual layout
+			this.add(wrapperPanel, wrapperPanelConstraints);
+			
 			j++;
 		}
 		
