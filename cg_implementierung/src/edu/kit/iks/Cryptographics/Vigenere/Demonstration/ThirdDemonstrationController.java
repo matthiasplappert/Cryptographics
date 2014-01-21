@@ -8,7 +8,7 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class ThirdDemonstrationController extends AbstractVisualizationController {
-	
+
 	public ThirdDemonstrationController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
