@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComponent;
-import javax.swing.JPanel;
-
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
@@ -104,7 +102,7 @@ public class CryptoController extends AbstractVisualizationController {
 	 * @return The view of this controller
 	 */
 	@Override
-	public JPanel getView() {
+	public JComponent getView() {
 		return this.view;
 	}
 
