@@ -28,7 +28,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	@Override
 	public String getDescription() {
 		// TODO Auto-generated method stub
-		return "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+		return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 	}
 
 	@Override

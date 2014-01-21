@@ -66,6 +66,7 @@ public class TimelinePopoverView extends PopoverView {
 		nameConstraints.gridx = 0;
 		nameConstraints.gridy = 0;
 		nameConstraints.gridwidth = 2;
+		nameConstraints.insets = new Insets(20, 0, 0, 0);
 		this.nameLabel = new JLabel(visualizationInfo.getName());
 		this.getContentView().add(this.nameLabel, nameConstraints);
 		
@@ -74,7 +75,9 @@ public class TimelinePopoverView extends PopoverView {
 		GridBagConstraints difficultyConstraints = new GridBagConstraints();
 		difficultyConstraints.gridx = 2;
 		difficultyConstraints.gridy = 0;
-		this.difficultyLabel = new JLabel(visualizationInfo.getDifficulty().toString());
+		difficultyConstraints.anchor = GridBagConstraints.LINE_END;
+		difficultyConstraints.insets = new Insets(20, 0, 0, 0);
+		this.difficultyLabel = new JLabel(visualizationInfo.getHumanReadableDifficulty());
 		this.getContentView().add(this.difficultyLabel, difficultyConstraints);
 		
 		// Create description label.
@@ -82,13 +85,16 @@ public class TimelinePopoverView extends PopoverView {
 		descriptionConstraints.gridx = 0;
 		descriptionConstraints.gridy = 1;
 		descriptionConstraints.gridwidth = 3;
-		this.descriptionLabel = new JLabel(visualizationInfo.getDescription());
+		descriptionConstraints.insets = new Insets(20, 0, 20, 0);
+		this.descriptionLabel = new JLabel("<html><div style=\"width:200px;\">" + visualizationInfo.getDescription() + "</div></html>");
 		this.getContentView().add(this.descriptionLabel, descriptionConstraints);
 		
 		// Create start button
 		GridBagConstraints startConstraints = new GridBagConstraints();
-		startConstraints.gridx = 1;
+		startConstraints.gridx = 0;
 		startConstraints.gridy = 2;
+		startConstraints.gridwidth = 3;
+		startConstraints.anchor = GridBagConstraints.ABOVE_BASELINE;
 		this.startButton = new VisualizationButton(visualizationInfo);
 		this.startButton.setText("Start");
 		this.getContentView().add(this.startButton, startConstraints);
