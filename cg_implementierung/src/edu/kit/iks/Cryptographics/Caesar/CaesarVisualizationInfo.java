@@ -27,7 +27,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	/**
 	 * Caesar root element from the xml file.
 	 */
-	Element caesarResources;
+	private Element caesarResources;
 
 	/**
 	 * Constructor for the visualizationInfo.
@@ -44,7 +44,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 			Document document = saxBuilder.build(file);
 
 			// get root node from xml
-			this.caesarResources = document.getRootElement().getChild("caesar");
+			this.caesarResources = document.getRootElement();
 		} catch (JDOMException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
