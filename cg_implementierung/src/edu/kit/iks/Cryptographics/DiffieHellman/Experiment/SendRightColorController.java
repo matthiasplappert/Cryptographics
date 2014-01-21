@@ -1,9 +1,10 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.AbstractController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.BobChooseSecretView;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class SendRightColorController extends AbstractController {
+public class SendRightColorController extends AbstractVisualizationController {
 	private SendRightColorView view;
 	
 	public SendRightColorController(
@@ -23,6 +24,11 @@ public class SendRightColorController extends AbstractController {
 	public void loadView() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public SendRightColorView getView() {
+		return (SendRightColorView) this.view;
 	}
 
 }

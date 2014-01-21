@@ -3,15 +3,12 @@ package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JComponent;
-
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
-import edu.kit.iks.Cryptographics.Vigenere.*;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class ThirdDemonstrationController extends AbstractVisualizationController {
-	
+
 	public ThirdDemonstrationController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}

@@ -1,10 +1,9 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.AbstractController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class MixColorController extends AbstractController {
-	private MixColorView view;
+public class MixColorController extends AbstractVisualizationController {
 	
 	public MixColorController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
@@ -22,6 +21,11 @@ public class MixColorController extends AbstractController {
 	public void loadView() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	public MixColorView getView() {
+		return (MixColorView) this.view;
 	}
 
 }

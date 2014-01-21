@@ -1,7 +1,5 @@
 package edu.kit.iks.CryptographicsLib;
 
-import javax.swing.JComponent;
-
 /**
  * Abstract visualisization controller specialized for
  * the needs of a procedure to visualize its contents

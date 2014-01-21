@@ -14,6 +14,7 @@ import javax.swing.plaf.synth.SynthLookAndFeel;
 
 import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.PopoverView;
 
 /**
@@ -46,7 +47,7 @@ public class MainController extends AbstractController {
 	 */
 	@Override
 	public void loadView() {
-		//this.loadLookAndFeel();
+		this.loadLookAndFeel();
 		this.loadFrame();
 	}
 
@@ -56,11 +57,10 @@ public class MainController extends AbstractController {
 	private void loadFrame() {
 		this.frame = new JFrame("Cryptographics");
 		
-		boolean debug = true;
-		
-		if (debug) {
+		if (Logger.debugModeActive()) {
 			this.frame.setSize(1366, 768); // Basic size for testing. Needs to be
 										   // fullscreen in the end
+			Logger.d("MainController", "loadFrame", "Fullscreen mode disabled due to debugging.");
 		} else {
 			this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			this.frame.setUndecorated(true);
@@ -78,24 +78,30 @@ public class MainController extends AbstractController {
 	 * Loads the custom look and feel.
 	 */
 	private void loadLookAndFeel() {
-		SynthLookAndFeel lookAndFeel = new SynthLookAndFeel();
-		try {
-			lookAndFeel.load(new File("resources/theme/manifest.xml").toURI().toURL());
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			UIManager.setLookAndFeel(lookAndFeel);
-		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (!Logger.debugModeActive()) {
+			SynthLookAndFeel lookAndFeel = new SynthLookAndFeel();
+			
+			try {
+				lookAndFeel.load(new File("resources/theme/manifest.xml").toURI().toURL());
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			try {
+				UIManager.setLookAndFeel(lookAndFeel);
+			} catch (UnsupportedLookAndFeelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			Logger.d("MainController", "loadLookAndFeel", "Look and feel disabled due to debugging.");
 		}
 	}
 
