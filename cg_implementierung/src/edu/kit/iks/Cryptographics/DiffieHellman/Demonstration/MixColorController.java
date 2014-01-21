@@ -4,7 +4,6 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class MixColorController extends AbstractVisualizationController {
-	private MixColorView view;
 	
 	public MixColorController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
