@@ -1,5 +1,6 @@
 package edu.kit.iks.CryptographicsLib;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -51,6 +52,8 @@ public class PopoverView extends JPanel {
 	 */
 	final private static int CORNER_RADIUS = 20;
 	
+	private Color borderColor;
+	
 	/**
 	 * The arrow location of the popover.
 	 */
@@ -86,6 +89,8 @@ public class PopoverView extends JPanel {
 		
 		this.setOpaque(false);
 		this.setMaximumSize(new Dimension(500, 500));
+		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.9f));
+		this.setBorderColor(Color.LIGHT_GRAY);
 		
 		// Create close button.
 		GridBagConstraints closeConstraints = new GridBagConstraints();
@@ -177,8 +182,15 @@ public class PopoverView extends JPanel {
         final Area shape = this.createShape();
         Graphics2D g2d = (Graphics2D)g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setPaint(Color.BLUE);
+        
+        // Fill.
+        g2d.setPaint(this.getBackground());
         g2d.fill(shape);
+        
+        // Stroke.
+        g2d.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        g2d.setPaint(this.getBorderColor());
+        g2d.draw(shape);
     }
 
 	private Area createShape() {
@@ -290,5 +302,14 @@ public class PopoverView extends JPanel {
 		
 		this.setSize(size);
 		this.setLocation(location);
+	}
+	
+	public void setBorderColor(Color color) {
+		this.borderColor = color;
+		this.repaint();
+	}
+	
+	public Color getBorderColor() {
+		return this.borderColor;
 	}
 }
