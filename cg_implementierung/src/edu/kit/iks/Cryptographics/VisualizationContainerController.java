@@ -218,7 +218,7 @@ public class VisualizationContainerController extends AbstractController {
 				
 			}
 		});
-		this.helpPopoverView.present();
+		this.helpPopoverView.present(this.getView().getHelpButton());
 	}
 	
 	/**

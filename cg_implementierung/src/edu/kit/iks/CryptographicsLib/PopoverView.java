@@ -1,18 +1,22 @@
 package edu.kit.iks.CryptographicsLib;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.geom.Area;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.RoundRectangle2D;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 /**
  * An instance of this class represents the view of a popover
@@ -20,6 +24,17 @@ import javax.swing.JPanel;
  * @author Christian Dreher
  */
 public class PopoverView extends JPanel {
+	/**
+	 * Defines the possible locations of a popover arrow. 
+	 */
+	private enum ArrowLocation {
+	    TOP, RIGHT, BOTTOM, LEFT 
+	};
+	
+	/**
+	 * The arrow location of the popover.
+	 */
+	private ArrowLocation arrowLocation = ArrowLocation.TOP;
 	
 	/**
 	 * Serial Version UID
@@ -36,6 +51,8 @@ public class PopoverView extends JPanel {
 	 */
 	private JPanel contentView;
 	
+	private Point anchorPoint;
+	
 	/**
 	 * The shared container view
 	 */
@@ -47,18 +64,21 @@ public class PopoverView extends JPanel {
 	public PopoverView() {
 		super(new GridBagLayout());
 		
+		this.setOpaque(false);
+		this.setMaximumSize(new Dimension(500, 500));
+		
+		// Create close button.
 		GridBagConstraints closeConstraints = new GridBagConstraints();
 		closeConstraints.gridx = 0;
 		closeConstraints.gridy = 0;
-		closeConstraints.insets = new Insets(20, 0, 0, 0);
 		this.closeButton = new JButton("Close");
 		this.add(this.closeButton, closeConstraints);
 		
+		// Create content view.
 		GridBagConstraints contentConstraints = new GridBagConstraints();
 		contentConstraints.gridx = 0;
 		contentConstraints.gridy = 1;
 		contentConstraints.gridwidth = 3;
-		contentConstraints.insets = new Insets(0, 0, 20, 0);
 		this.contentView = new JPanel();
 		this.contentView.setOpaque(false);
 		this.add(this.contentView, contentConstraints);
@@ -72,7 +92,7 @@ public class PopoverView extends JPanel {
 	 * @return the closeButton button to return.
 	 */
 	public JButton getCloseButton() {
-		return closeButton;
+		return this.closeButton;
 	}
 	
 	/**
@@ -82,7 +102,7 @@ public class PopoverView extends JPanel {
 	 * @return the content view.
 	 */
 	public JPanel getContentView() {
-		return contentView;
+		return this.contentView;
 	}
 	
 	/**
@@ -96,17 +116,30 @@ public class PopoverView extends JPanel {
 		PopoverView.containerView = containerView;
 		
 		// Configure container.
+		containerView.setLayout(null);
 		containerView.setVisible(true);
 	}
 	
 	/**
-	 * Presents a popover in the container 
+	 * Presents a popover in the container
+	 * 
+	 * @param originComponent the origin of the popover is where the arrow of the popover should point to
 	 */
-	public void present() {
+	public void present(JComponent anchorComponent) {
 		this.validate();
 		
+		// Calculate the anchorPoint. The origin is in the center of the component.
+		double x = anchorComponent.getLocation().getX();
+		x += anchorComponent.getSize().getWidth() / 2;
+		double y = anchorComponent.getLocation().getY();
+		y += anchorComponent.getSize().getHeight() / 2;
+		this.anchorPoint = new Point((int)x, (int)y);
+		
+		// Position in container view.
 		PopoverView.containerView.add(this);
 		PopoverView.containerView.validate();
+		
+		this.prepareForPresentation();
 	}
 	
 	/**
@@ -118,7 +151,7 @@ public class PopoverView extends JPanel {
 		PopoverView.containerView.repaint();
 	}
 	
-	protected void paintComponent (Graphics g) {
+	protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         
         final Area shape = this.createShape();
@@ -134,16 +167,112 @@ public class PopoverView extends JPanel {
 		final double cornerRadius = 20.0;
 		
 		// Create the basic rounded shape.
-		Area shape = new Area(new RoundRectangle2D.Double(0.0, arrowHeight, this.getSize().getWidth(), this.getSize().getHeight() - arrowHeight, cornerRadius, cornerRadius));
+		Area shape = null;
+		switch (this.arrowLocation) {
+			case TOP:
+				shape = new Area(new RoundRectangle2D.Double(0.0, arrowHeight, this.getSize().getWidth(), this.getSize().getHeight() - arrowHeight, cornerRadius, cornerRadius));
+				break;
+				
+			case RIGHT:
+				shape = new Area(new RoundRectangle2D.Double(0.0, 0.0, this.getSize().getWidth() - arrowHeight, this.getSize().getHeight(), cornerRadius, cornerRadius));
+				break;
+				
+			case BOTTOM:
+				shape = new Area(new RoundRectangle2D.Double(0.0, 0.0, this.getSize().getWidth(), this.getSize().getHeight() - arrowHeight, cornerRadius, cornerRadius));
+				break;
+				
+			case LEFT:
+				shape = new Area(new RoundRectangle2D.Double(arrowHeight, 0.0, this.getSize().getWidth() - arrowHeight, this.getSize().getHeight(), cornerRadius, cornerRadius));
+				break;
+		}
 		
-		// Draw the arrow.
+		// Create the arrow path.
 	    GeneralPath path = new GeneralPath(GeneralPath.WIND_EVEN_ODD);
-	    path.moveTo(this.getSize().getWidth() / 2 - arrowWidth / 2, arrowHeight);
-	    path.lineTo(this.getSize().getWidth() / 2, 0);
-	    path.lineTo(this.getSize().getWidth() / 2 + arrowWidth / 2, arrowHeight);
+	    switch (this.arrowLocation) {
+			case TOP:
+				path.moveTo(this.getSize().getWidth() / 2 - arrowWidth / 2, arrowHeight);
+				path.lineTo(this.getSize().getWidth() / 2, 0);
+			    path.lineTo(this.getSize().getWidth() / 2 + arrowWidth / 2, arrowHeight);
+			    break;
+				
+			case RIGHT:
+				path.moveTo(this.getSize().getWidth() - arrowHeight, this.getSize().getHeight() / 2 - arrowWidth / 2);
+				path.lineTo(this.getSize().getWidth(), this.getSize().getHeight() / 2);
+			    path.lineTo(this.getSize().getWidth() - arrowHeight, this.getSize().getHeight() / 2 + arrowWidth / 2);
+			    break;
+				
+			case BOTTOM:
+				path.moveTo(this.getSize().getWidth() / 2 - arrowWidth / 2, this.getSize().getHeight() - arrowHeight);
+				path.lineTo(this.getSize().getWidth() / 2, this.getSize().getHeight());
+			    path.lineTo(this.getSize().getWidth() / 2 + arrowWidth / 2, this.getSize().getHeight() - arrowHeight);
+			    break;
+				
+			case LEFT:
+				path.moveTo(arrowHeight, this.getSize().getHeight() / 2 - arrowWidth / 2);
+				path.lineTo(0, this.getSize().getHeight() / 2);
+			    path.lineTo(arrowHeight, this.getSize().getHeight() / 2 + arrowWidth / 2);
+			    break;
+	    }
 	    path.closePath();
-	    shape.add(new Area (path));
+	    shape.add(new Area(path));
 
 	    return shape;
+	}
+	
+	/**
+	 * Prepares a popover for presentation by calculation its bounds and the proper
+	 * arrow location. 
+	 */
+	private void prepareForPresentation() {
+		Dimension containerSize = PopoverView.containerView.getSize();
+		Point center = new Point((int)(containerSize.getWidth() / 2), (int)(containerSize.getHeight() / 2));
+		double offsetY = center.getY() - this.anchorPoint.getY();
+		
+		// Figure out arrow location. LEFT and RIGHT is currently not supported.
+		if (offsetY < 0.0) {
+			this.arrowLocation = ArrowLocation.BOTTOM;
+		} else {
+			this.arrowLocation = ArrowLocation.TOP;
+		}
+		
+		this.updateBorder();
+		this.updateBounds();
+		this.repaint();
+	}
+	
+	private void updateBorder() {
+		Border border;
+		switch (this.arrowLocation) {
+			case TOP: border = BorderFactory.createEmptyBorder(40, 20, 20, 20); break;
+			case BOTTOM: border = BorderFactory.createEmptyBorder(20, 20, 40, 20); break;
+			case LEFT: border = BorderFactory.createEmptyBorder(20, 40, 20, 20); break;
+			case RIGHT: border = BorderFactory.createEmptyBorder(20, 20, 20, 40); break;
+			default: border = BorderFactory.createEmptyBorder(0, 0, 0, 0); break;
+		}
+		
+		this.setBorder(border);
+	}
+	
+	private void updateBounds() {
+		Dimension size = this.getPreferredSize();
+		Point location;
+		switch (this.arrowLocation) {
+			case TOP:
+				location = new Point((int)(this.anchorPoint.getX() - size.getWidth() / 2), (int)this.anchorPoint.getY());
+				break;
+				
+			case BOTTOM:
+				location = new Point((int)(this.anchorPoint.getX() - size.getWidth() / 2), (int)(this.anchorPoint.getY() - size.getHeight()));
+				break;
+				
+			case LEFT:
+			case RIGHT:
+			default:
+				location = new Point(0, 0);
+				break;
+		}
+		
+		this.setSize(size);
+		this.setLocation(location);
 	}
 }
