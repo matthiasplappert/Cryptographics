@@ -9,6 +9,10 @@ import edu.kit.iks.CryptographicsLib.Logger;
  */
 public class Main {
 	
+	/**
+	 * Flag to define whether to enter debug mode or not.
+	 * Must be set to false in production.
+	 */
 	private static boolean debugMode = true;
 	
 	/**
