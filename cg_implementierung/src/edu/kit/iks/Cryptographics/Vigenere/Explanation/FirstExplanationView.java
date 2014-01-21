@@ -1,12 +1,6 @@
 package edu.kit.iks.Cryptographics.Vigenere.Explanation;
 
-import java.awt.Image;
-
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
