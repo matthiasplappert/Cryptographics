@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
@@ -70,7 +71,7 @@ public class HistogramController extends AbstractVisualizationController {
 	 * @return The view of this controller
 	 */
 	@Override
-	public JComponent getView() {
+	public JPanel getView() {
 		return this.view;
 	}
 

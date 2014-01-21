@@ -1,9 +1,9 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.AbstractController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class ExplainAimController extends AbstractController {
+public class ExplainAimController extends AbstractVisualizationController {
 	private ExplainAimView view;
 	
 	public ExplainAimController(AbstractVisualizationInfo visualizationInfo) {
@@ -23,5 +23,6 @@ public class ExplainAimController extends AbstractController {
 		this.view = new ExplainAimView();
 
 	}
+
 
 }
