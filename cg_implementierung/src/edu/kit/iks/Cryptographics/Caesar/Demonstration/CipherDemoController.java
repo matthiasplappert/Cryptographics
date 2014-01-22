@@ -30,13 +30,12 @@ import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 public class CipherDemoController extends AbstractVisualizationController {
 
 	private int animationStep;
-	
-	
+
 	/**
      * 
      */
 	private Element cipherDemoResource;
-	
+
 	/**
 	 * @param visualizationInfo
 	 */
@@ -46,26 +45,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 	@Override
 	public void loadView() {
-		CaesarVisualizationInfo vsInfo = (CaesarVisualizationInfo) this
-				.getVisualizationInfo();
-		this.cipherDemoResource = vsInfo.getResources().getChild("CipherDemo");
-		GridBagLayout introLayout = new GridBagLayout();
-		GridBagConstraints c = new GridBagConstraints();
 		this.view = new CipherDemoView();
-		this.getView().setLayout(introLayout);
-        this.animationStep = 1;
-
-		c.gridx = 0;
-		c.gridy = 2;
-		introLayout.setConstraints(this.getView().getBackButton(), c);
-		c.gridx = 2;
-		c.gridy = 2;
-		introLayout.setConstraints(this.getView().getNextButton(), c);
-		this.getView().setProceed(new JButton("proceed"));
-		this.getView().add(this.getView().getProceed());
-		
-		this.getView().setExplanations(new JLabel("Demonstration of the cipher"));
-		this.getView().add(this.getView().getExplanations());
 
 		this.getView().getBackButton().addActionListener(new ActionListener() {
 			/*
@@ -158,14 +138,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 	 */
 	private void step1() {
 		this.animationStep++;
-		this.getView().setUserInput(new JLabel(cipherDemoResource.getChild("input").getAttributeValue("content")));
-		this.getView().add(this.getView().getUserInput());
-		
-		this.getView().setAlphabet(new AlphabetStripView());
-		this.getView().add(this.getView().getAlphabet());
-		
-		this.getView().getExplanations().setText("Lets encrypt the given string " + this.getView().getUserInput().getText());
-		
+
 		this.getView().validate();
 	}
 
@@ -199,8 +172,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Not sure if much Help needed here.";
 	}
 
 	/**
