@@ -30,13 +30,12 @@ import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 public class CipherDemoController extends AbstractVisualizationController {
 
 	private int animationStep;
-	
-	
+
 	/**
      * 
      */
 	private Element cipherDemoResource;
-	
+
 	/**
 	 * @param visualizationInfo
 	 */
@@ -47,7 +46,6 @@ public class CipherDemoController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.view = new CipherDemoView();
-		
 
 		this.getView().getBackButton().addActionListener(new ActionListener() {
 			/*
@@ -140,7 +138,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 	 */
 	private void step1() {
 		this.animationStep++;
-		
+
 		this.getView().validate();
 	}
 
@@ -174,8 +172,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Not sure if much Help needed here.";
 	}
 
 	/**
