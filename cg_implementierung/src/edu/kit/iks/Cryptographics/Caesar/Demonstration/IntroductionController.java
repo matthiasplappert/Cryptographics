@@ -58,8 +58,11 @@ public class IntroductionController extends AbstractVisualizationController {
 		return (IntroductionView) this.view;
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationController#getHelp()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * edu.kit.iks.CryptographicsLib.AbstractVisualizationController#getHelp()
 	 */
 	@Override
 	public String getHelp() {
@@ -72,8 +75,8 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.animationStep = 1;
 		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
 		this.introResource = vsInfo.getResources().getChild("Introduction");
-        this.view = new IntroductionView();
-        
+		this.view = new IntroductionView();
+
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
@@ -154,8 +157,28 @@ public class IntroductionController extends AbstractVisualizationController {
 	 */
 	private void step1() {
 		this.animationStep++;
+		this.getView()
+				.getExplanation()
+				.setText(
+						this.getView().getExplanation().getText()
+								+ " Zu seinem Unglück reitete der Bote durch den Wald, wo Obelix seine Wildschweine jagte.<br>");
 
-		this.getView().firstAnimation();
+		// set the alignment of the masterPlan image.
+		GridBagConstraints courierConstraint = new GridBagConstraints();
+		courierConstraint.anchor = GridBagConstraints.PAGE_END;
+		courierConstraint.gridx = 0;
+		courierConstraint.gridy = 2;
+		courierConstraint.fill = GridBagConstraints.VERTICAL;
+
+		// take the image from the xml-resource.
+		this.getView().setCourier(
+				new ImageView(introResource.getChild("courierImage")
+						.getAttributeValue("path")));
+		this.getView().add(this.getView().getCourier(), courierConstraint);
+
+		this.getView().validate();
+
+		// this.getView().firstAnimation();
 
 	}
 
@@ -164,14 +187,26 @@ public class IntroductionController extends AbstractVisualizationController {
 	 */
 	private void step2() {
 		this.animationStep++;
+		this.getView()
+				.getExplanation()
+				.setText(
+						this.getView().getExplanation().getText()
+								+ " Als Obelix den Boten sah beförderte er ihn via Luftlinie direkt nach Rom zurück! <br>");
 
-		this.getView().setInterceptor(new ImageView(getCaesarResource().getChild(
-				"interceptorImage").getAttributeValue("path")));
-		this.getView().add(this.getView().getInterceptor());
-		this.getView().getExplanation().setText("Caesar's orders gets intercepted.");
-		this.getView().validate();
+		// set the alignment of the masterPlan image.
+		GridBagConstraints obelixConstraint = new GridBagConstraints();
+		obelixConstraint.anchor = GridBagConstraints.PAGE_END;
+		obelixConstraint.gridx = 0;
+		obelixConstraint.gridy = 1;
+		obelixConstraint.fill = GridBagConstraints.VERTICAL;
 
-		this.getView().secondAnimation();
+		// take the image from the xml-resource.
+		this.getView().setObelix(
+				new ImageView(introResource.getChild("obelixImage")
+						.getAttributeValue("path")));
+		this.getView().add(this.getView().getObelix(), obelixConstraint);
+
+		// this.getView().secondAnimation();
 	}
 
 	/**
@@ -179,7 +214,15 @@ public class IntroductionController extends AbstractVisualizationController {
 	 */
 	private void step3() {
 		this.animationStep++;
-		this.getView().getExplanation().setText("PLAN CROSSED");
+		this.getView()
+				.getExplanation()
+				.setText(
+						this.getView().getExplanation().getText()
+								+ " Beim Lesen der Schriftrolle, die der Bote dabei hatte, erkannte Obelix Caesar's Pläne für <br> "
+								+ "den nächsten Angriff und die Gallier besiegten Caesar erneut. Caesar kochte vor Wut. <br>"
+								+ "Es ist zu beachten, dass dieser Text gewisse geschichtlichte Ungenauigkeiten auweist.<br>"
+								+ "Obelix konnte zum Beispiel kein Römisch!");
+
 		this.getView().validate();
 	}
 
@@ -187,16 +230,7 @@ public class IntroductionController extends AbstractVisualizationController {
 	 * 
 	 */
 	private void animationDone() {
-		this.getView().remove(this.getView().getCaesarImg());
-		this.getView().setCaesarImg(null);
-		this.getView().remove(this.getView().getInterceptor());
-		this.getView().setInterceptor(null);
-		this.getView().remove(this.getView().getExplanation());
-		this.getView().setExplanation(null);
-		this.getView().remove(this.getView().getProceed());
-		this.getView().setProceed(null);
-		this.getView().add(new JLabel("Animation is done and Caesar is very sad"));
-		this.getView().revalidate();
+
 	}
 
 	/**

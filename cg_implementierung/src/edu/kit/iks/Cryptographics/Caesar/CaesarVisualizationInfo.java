@@ -36,8 +36,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 		SAXBuilder saxBuilder = new SAXBuilder();
 
 		// obtain file object
-		File file = new File(
-				"./resources/caesar/CaesarResources.xml");
+		File file = new File("./resources/caesar/CaesarResources.xml");
 
 		try {
 			// converted file to document object
@@ -73,7 +72,10 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	 * edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getDescription()
 	 */
 	public String getDescription() {
-		return null;
+		return "Get to know how Ceasar fooled his enemys that "
+				+ "intercepted his orders and see one of the oldest "
+				+ "attempts to make confidential material unreadable "
+				+ "for undesireable readers";
 	}
 
 	/*
@@ -138,7 +140,8 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	}
 
 	/**
-	 * @param resources the resources to set
+	 * @param resources
+	 *            the resources to set
 	 */
 	public void setResources(Element caesarResources) {
 		this.caesarResources = caesarResources;

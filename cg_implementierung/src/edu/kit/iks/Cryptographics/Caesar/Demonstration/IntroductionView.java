@@ -1,24 +1,17 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import javax.swing.Timer;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-import org.jdom2.Document;
 import org.jdom2.Element;
-import org.jdom2.JDOMException;
-import org.jdom2.input.SAXBuilder;
 
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.ImageView;
@@ -53,10 +46,11 @@ public class IntroductionView extends VisualizationView {
 	 * Labels that will contain img for animation.
 	 */
 	private ImageView caesarImg;
+	private ImageView masterPlan;
 	private ImageView courier;
 	private ImageView orders;
 	private ImageView cipher;
-	private ImageView interceptor;
+	private ImageView obelix;
 
 	int x;
 	private int y;
@@ -75,62 +69,70 @@ public class IntroductionView extends VisualizationView {
 	private JLabel explanation;
 
 	/**
-	 * 
+	 * Constructor of this View.
 	 */
 	public IntroductionView() {
 		super();
+		// load the resources from the xml, that can be accessed over the
+		// visualizationInfo
 		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
 		Element introResource = vsInfo.getResources().getChild("Introduction");
-		this.animationContainer = new JPanel();
+
+		// no need of BackButton. Button for returning to start screen already
+		// the "Exit" button.
 		this.getBackButton().setVisible(false);
-		this.getNextButton().setText("Go to Caesar's idea!");
+		this.getNextButton().setText(
+				"Forget the story, i want to know how the cipher works!");
 
 		this.introLayout = new GridBagLayout();
 		GridBagConstraints nextConstraint = new GridBagConstraints();
 		this.setLayout(introLayout);
 
-		nextConstraint.anchor = nextConstraint.FIRST_LINE_START;
-		nextConstraint.weightx = 0;
-		nextConstraint.weighty = 0;
+		// set the alignment of NextButton.
+		nextConstraint.anchor = GridBagConstraints.FIRST_LINE_END;
+		nextConstraint.weightx = 1.0;
+		nextConstraint.weighty = 1.0;
 		nextConstraint.gridx = 0;
-		nextConstraint.gridy = 0;
+		nextConstraint.gridy = 1;
 		introLayout.setConstraints(this.getNextButton(), nextConstraint);
 
+		// set the alignment of the proceed Button, that is needed to proceed in
+		// animation.
 		GridBagConstraints proceedConstraint = new GridBagConstraints();
-		proceedConstraint.anchor = proceedConstraint.PAGE_START;
-		proceedConstraint.weightx = 0.5;
-		proceedConstraint.weighty = 0.5;
+		proceedConstraint.anchor = GridBagConstraints.CENTER;
+		proceedConstraint.weightx = 1.0;
+		proceedConstraint.weighty = 1.0;
 		proceedConstraint.gridx = 0;
 		proceedConstraint.gridy = 0;
-		this.setProceed(new JButton("Forward the animation!"));
+		this.setProceed(new JButton("How does the legend go on?"));
 		this.add(this.proceed, proceedConstraint);
 
-		this.setExplanation(new JLabel());
-		this.add(this.explanation);
+		// set the alignment of the masterPlan image.
+		GridBagConstraints planConstraint = new GridBagConstraints();
+		planConstraint.anchor = GridBagConstraints.LINE_START;
+		planConstraint.weightx = 1.0;
+		planConstraint.weighty = 1.0;
+		planConstraint.gridx = 0;
+		planConstraint.gridy = 0;
 
-		GridBagConstraints caesarImgConstraint = new GridBagConstraints();
-		caesarImgConstraint.anchor = caesarImgConstraint.LINE_START;
-		caesarImgConstraint.weightx = 0.1;
-		caesarImgConstraint.weighty = 0.5;
-		caesarImgConstraint.gridx = 0;
-		caesarImgConstraint.gridy = 0;
-		
-		this.setCaesarImg(new ImageView(introResource.getChild("caesarImage")
+		// take the image from the xml-resource.
+		this.setMasterPlan(new ImageView(introResource.getChild("masterPlan")
 				.getAttributeValue("path")));
-		this.add(this.caesarImg, caesarImgConstraint);
+		this.add(this.masterPlan, planConstraint);
+
+		// set the alignment of the Explanations.
 		GridBagConstraints explanationConstraint = new GridBagConstraints();
-		
-		explanationConstraint.anchor = explanationConstraint.PAGE_END;
-		explanationConstraint.weightx = 0.5;
-		explanationConstraint.weighty = 0;
+		explanationConstraint.anchor = GridBagConstraints.PAGE_START;
+		explanationConstraint.weightx = 1.0;
+		explanationConstraint.weighty = 1.0;
 		explanationConstraint.gridx = 0;
 		explanationConstraint.gridy = 0;
-		introLayout.setConstraints(this.explanation, explanationConstraint);
-		this.explanation
-				.setText("Caesar makes up a big plan and sends his orders by his messenger.");
+		this.setExplanation(new JLabel(
+				"<html><body>Eines Tages, etwa 70 v.Chr , tüftelte Caesar einen ultra-mega-großen-master-plan <br>"
+						+ " aus um Gallien endlich zu erobern. Und schickte diesen an seine Armee in Gallien. <br>"));
+		this.add(this.explanation, explanationConstraint);
 
-		this.x = 0;
-		this.y = 0;
+		// layout the component of the Panel.
 		this.validate();
 
 	}
@@ -143,9 +145,9 @@ public class IntroductionView extends VisualizationView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (getCaesarImg().getX() < 400) {
-				animate();
+					animate();
 				} else {
-				getTimer().stop();
+					getTimer().stop();
 				}
 			}
 		});
@@ -156,10 +158,12 @@ public class IntroductionView extends VisualizationView {
 	public void animate() {
 		x += 10;
 		int y = getCaesarImg().getY();
-		getCaesarImg().setBounds( x, y, getPreferredSize().width, getPreferredSize().height);
-		getCaesarImg().validate();	
+		getCaesarImg().setBounds(x, y, getPreferredSize().width,
+				getPreferredSize().height);
+		getCaesarImg().validate();
 		this.repaint();
 	}
+
 	/**
 	 * 
 	 */
@@ -182,7 +186,7 @@ public class IntroductionView extends VisualizationView {
 	}
 
 	/**
-	 * @param explanation
+	 * @param jTextField
 	 *            the explanation to set
 	 */
 	public void setExplanation(JLabel explanation) {
@@ -222,16 +226,16 @@ public class IntroductionView extends VisualizationView {
 	/**
 	 * @return the interceptor
 	 */
-	public ImageView getInterceptor() {
-		return interceptor;
+	public ImageView getObelix() {
+		return obelix;
 	}
 
 	/**
 	 * @param interceptor
 	 *            the interceptor to set
 	 */
-	public void setInterceptor(ImageView interceptor) {
-		this.interceptor = interceptor;
+	public void setObelix(ImageView interceptor) {
+		this.obelix = interceptor;
 	}
 
 	/**
@@ -299,6 +303,21 @@ public class IntroductionView extends VisualizationView {
 	 */
 	public GridBagLayout getIntroLayout() {
 		return introLayout;
+	}
+
+	/**
+	 * @return the masterPlan
+	 */
+	public ImageView getMasterPlan() {
+		return masterPlan;
+	}
+
+	/**
+	 * @param masterPlan
+	 *            the masterPlan to set
+	 */
+	public void setMasterPlan(ImageView masterPlan) {
+		this.masterPlan = masterPlan;
 	}
 
 }
