@@ -52,8 +52,8 @@ public class IntroductionView extends VisualizationView {
 	private ImageView cipher;
 	private ImageView obelix;
 
-	//needed only for animations.
-	//private Timer timer;
+	// needed only for animations.
+	// private Timer timer;
 
 	/**
 	 * Button needed for proceeding the stepwise animations.
@@ -90,26 +90,26 @@ public class IntroductionView extends VisualizationView {
 		// no need of BackButton. Button for returning to start screen already
 		// the "Exit" button.
 		this.getBackButton().setVisible(false);
-		this.getNextButton().setText("flies away! --->");
+		this.getNextButton().setText("Skip the introduction!");
 
 		// set the alignment of NextButton.
-		// nextConstraint.anchor = GridBagConstraints.FIRST_LINE_START;
-		// nextConstraint.weightx = 1.0;
-		// nextConstraint.weighty = 1.0;
-		nextConstraint.gridx = 5;
+		nextConstraint.anchor = GridBagConstraints.NORTHEAST;
+		nextConstraint.weightx = 1.0;
+		nextConstraint.weighty = 0.1;
+		nextConstraint.gridx = 1;
 		nextConstraint.gridy = 0;
 		introLayout.setConstraints(this.getNextButton(), nextConstraint);
 
 		// set the alignment of the proceed Button, that is needed to proceed in
 		// animation.
 		GridBagConstraints proceedConstraint = new GridBagConstraints();
-		// proceedConstraint.anchor = GridBagConstraints.FIRST_LINE_START;
-		// proceedConstraint.weightx = 1.0;
-		// proceedConstraint.weighty = 1.0;
+		//proceedConstraint.anchor = GridBagConstraints.FIRST_LINE_START;
+		proceedConstraint.weightx = 1.0;
+		proceedConstraint.weighty = 0.1;
 		proceedConstraint.gridx = 1;
 		proceedConstraint.gridy = 2;
 		proceedConstraint.gridwidth = 3;
-		this.setProceed(new JButton("How does the legend go on?"));
+		this.setProceed(new JButton("Tell me more."));
 		this.add(this.proceed, proceedConstraint);
 
 		// set the alignment of the masterPlan image.
@@ -142,8 +142,8 @@ public class IntroductionView extends VisualizationView {
 		this.validate();
 
 	}
-	
-           //Animations stubs.
+
+	// Animations stubs.
 	/*
 	 * public void firstAnimation() { this.timer = new Timer(50, new
 	 * ActionListener() {
