@@ -77,61 +77,71 @@ public class IntroductionView extends VisualizationView {
 		// visualizationInfo
 		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
 		Element introResource = vsInfo.getResources().getChild("Introduction");
-
+		
+		this.introLayout = new GridBagLayout();
+		GridBagConstraints nextConstraint = new GridBagConstraints();
+		this.setLayout(introLayout);
+		
+		this.animationContainer = new JPanel(new GridBagLayout());
+		GridBagConstraints animationConstraints = new GridBagConstraints();
+		animationConstraints.gridx = 0;
+		animationConstraints.gridy = 0;
+		animationConstraints.gridwidth = 3;
+		this.add(animationContainer, animationConstraints);
+		
 		// no need of BackButton. Button for returning to start screen already
 		// the "Exit" button.
 		this.getBackButton().setVisible(false);
 		this.getNextButton().setText(
-				"Forget the story, i want to know how the cipher works!");
-
-		this.introLayout = new GridBagLayout();
-		GridBagConstraints nextConstraint = new GridBagConstraints();
-		this.setLayout(introLayout);
+				"flies away! --->");
 
 		// set the alignment of NextButton.
-		nextConstraint.anchor = GridBagConstraints.FIRST_LINE_END;
-		nextConstraint.weightx = 1.0;
-		nextConstraint.weighty = 1.0;
-		nextConstraint.gridx = 0;
-		nextConstraint.gridy = 1;
+		//nextConstraint.anchor = GridBagConstraints.FIRST_LINE_START;
+		//nextConstraint.weightx = 1.0;
+		//nextConstraint.weighty = 1.0;
+		nextConstraint.gridx = 5;
+		nextConstraint.gridy = 0;
 		introLayout.setConstraints(this.getNextButton(), nextConstraint);
 
 		// set the alignment of the proceed Button, that is needed to proceed in
 		// animation.
 		GridBagConstraints proceedConstraint = new GridBagConstraints();
-		proceedConstraint.anchor = GridBagConstraints.CENTER;
-		proceedConstraint.weightx = 1.0;
-		proceedConstraint.weighty = 1.0;
-		proceedConstraint.gridx = 0;
-		proceedConstraint.gridy = 0;
+		//proceedConstraint.anchor = GridBagConstraints.FIRST_LINE_START;
+		//proceedConstraint.weightx = 1.0;
+		//proceedConstraint.weighty = 1.0;
+		proceedConstraint.gridx = 1;
+		proceedConstraint.gridy = 2;
+		proceedConstraint.gridwidth = 3;
 		this.setProceed(new JButton("How does the legend go on?"));
 		this.add(this.proceed, proceedConstraint);
 
 		// set the alignment of the masterPlan image.
 		GridBagConstraints planConstraint = new GridBagConstraints();
-		planConstraint.anchor = GridBagConstraints.LINE_START;
-		planConstraint.weightx = 1.0;
-		planConstraint.weighty = 1.0;
-		planConstraint.gridx = 0;
+		//planConstraint.anchor = GridBagConstraints.FIRST_LINE_START;
+		//planConstraint.weightx = 1.0;
+		//planConstraint.weighty = 1.0;
+		planConstraint.gridx = 1;
 		planConstraint.gridy = 0;
 
 		// take the image from the xml-resource.
 		this.setMasterPlan(new ImageView(introResource.getChild("masterPlan")
 				.getAttributeValue("path")));
-		this.add(this.masterPlan, planConstraint);
+		this.animationContainer.add(this.masterPlan, planConstraint);
 
 		// set the alignment of the Explanations.
 		GridBagConstraints explanationConstraint = new GridBagConstraints();
-		explanationConstraint.anchor = GridBagConstraints.PAGE_START;
-		explanationConstraint.weightx = 1.0;
-		explanationConstraint.weighty = 1.0;
-		explanationConstraint.gridx = 0;
-		explanationConstraint.gridy = 0;
+		//explanationConstraint.anchor = GridBagConstraints.FIRST_LINE_START;
+		//explanationConstraint.weightx = 1.0;
+		//explanationConstraint.weighty = 1.0;
+		explanationConstraint.gridx = 1;
+		explanationConstraint.gridy = 1;
+		explanationConstraint.gridwidth = 5;
 		this.setExplanation(new JLabel(
 				"<html><body>Eines Tages, etwa 70 v.Chr , tüftelte Caesar einen ultra-mega-großen-master-plan <br>"
 						+ " aus um Gallien endlich zu erobern. Und schickte diesen an seine Armee in Gallien. <br>"));
 		this.add(this.explanation, explanationConstraint);
 
+	
 		// layout the component of the Panel.
 		this.validate();
 

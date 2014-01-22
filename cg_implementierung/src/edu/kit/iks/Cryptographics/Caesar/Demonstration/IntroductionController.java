@@ -165,18 +165,17 @@ public class IntroductionController extends AbstractVisualizationController {
 
 		// set the alignment of the masterPlan image.
 		GridBagConstraints courierConstraint = new GridBagConstraints();
-		courierConstraint.anchor = GridBagConstraints.PAGE_END;
-		courierConstraint.gridx = 0;
-		courierConstraint.gridy = 2;
-		courierConstraint.fill = GridBagConstraints.VERTICAL;
+		//courierConstraint.anchor = GridBagConstraints.PAGE_END;
+		//courierConstraint.weightx = 0.1;
+		courierConstraint.gridx = 2;
+		courierConstraint.gridy = 0;
+		//courierConstraint.fill = GridBagConstraints.HORIZONTAL;
 
 		// take the image from the xml-resource.
 		this.getView().setCourier(
 				new ImageView(introResource.getChild("courierImage")
 						.getAttributeValue("path")));
-		this.getView().add(this.getView().getCourier(), courierConstraint);
-
-		this.getView().validate();
+		this.getView().getAnimationContainer().add(this.getView().getCourier(), courierConstraint);
 
 		// this.getView().firstAnimation();
 
@@ -195,16 +194,17 @@ public class IntroductionController extends AbstractVisualizationController {
 
 		// set the alignment of the masterPlan image.
 		GridBagConstraints obelixConstraint = new GridBagConstraints();
-		obelixConstraint.anchor = GridBagConstraints.PAGE_END;
-		obelixConstraint.gridx = 0;
-		obelixConstraint.gridy = 1;
-		obelixConstraint.fill = GridBagConstraints.VERTICAL;
+		//obelixConstraint.anchor = GridBagConstraints.PAGE_END;
+		//obelixConstraint.weightx = 1.0;
+		obelixConstraint.gridx = 3;
+		obelixConstraint.gridy = 0;
+		//obelixConstraint.fill = GridBagConstraints.VERTICAL;
 
 		// take the image from the xml-resource.
 		this.getView().setObelix(
 				new ImageView(introResource.getChild("obelixImage")
 						.getAttributeValue("path")));
-		this.getView().add(this.getView().getObelix(), obelixConstraint);
+		this.getView().getAnimationContainer().add(this.getView().getObelix(), obelixConstraint);
 
 		// this.getView().secondAnimation();
 	}
