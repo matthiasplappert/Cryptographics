@@ -34,7 +34,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	@Override
 	public float getTimelineOffset() {
 		// TODO Auto-generated method stub
-		return 0.0f;
+		return 0.99f;
 	}
 
 	@Override
