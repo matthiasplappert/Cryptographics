@@ -58,6 +58,7 @@ public class ExplainAimView extends VisualizationView {
 	
 	@Override
 	protected void paintComponent(Graphics g) {
+		// TODO remove hardcoded colors and do it dynamically
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.drawLine(450, 180, 800, 180);

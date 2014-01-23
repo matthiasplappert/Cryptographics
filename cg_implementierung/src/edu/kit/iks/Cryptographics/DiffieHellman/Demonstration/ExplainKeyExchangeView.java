@@ -21,6 +21,8 @@ public class ExplainKeyExchangeView extends VisualizationView {
 	
 	private int x1, y1;
 	private int x2, y2;
+	private int x3, y3;
+	private int x4, y4;
 	/**
 	 * 
 	 */
@@ -32,6 +34,10 @@ public class ExplainKeyExchangeView extends VisualizationView {
 		this.y1 = 50;
 		this.x2 = 200;
 		this.y2 = 50;
+		this.x3 = 400;
+		this.y3 = 50;
+		this.x4 = 580;
+		this.y4 = 50;
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.WHITE);
 		this.keyExchangeExplain = new JLabel();
@@ -51,6 +57,16 @@ public class ExplainKeyExchangeView extends VisualizationView {
 					x2 -= 3;
 				} else {
 					x2 = 200;
+				}
+				if(x3 > 400) {
+					x3 -= 3;
+				} else {
+					x3 = 490;
+				}
+				if(x4 < 580) {
+					x4 += 3;
+				} else {
+					x4 = 490;
 				}
 				repaint();
 			}});
@@ -76,6 +92,23 @@ public class ExplainKeyExchangeView extends VisualizationView {
 		area1.intersect(area2);
 		g2.setPaint(Color.ORANGE);
 		g2.fill(area1);
+		
+		Ellipse2D.Double ellip3 = new Ellipse2D.Double(x3, y3, 100, 100);
+		g2.setPaint(Color.YELLOW);
+		g2.fill(ellip3);
+
+		Ellipse2D.Double ellip4 = new Ellipse2D.Double(x4, y4, 100, 100);
+		g2.setPaint(Color.RED);
+		g2.fill(ellip4);
+		Area area3 = new Area(ellip3);
+		Area area4 = new Area(ellip4);
+		area3.intersect(area4);
+		g2.setPaint(Color.ORANGE);
+		g2.fill(area3);
+		
+		g2.setPaint(Color.BLACK);
+		g2.drawString("easy", 100, 20);
+		g2.drawString("hard", 600, 20);
 		return;
 	}
 }
