@@ -21,7 +21,9 @@ public class OnewayView extends VisualizationView {
 		this.setLayout(new GridBagLayout());
 		this.setBackground(Color.WHITE);
 		this.onewayExplain = new JLabel();
-		this.onewayExplain.setText("To achive this, we use something called one-way function");
+		this.onewayExplain.setText("<html><div style=\"width:200px\">To achive this, we use " +
+				"something called one-way function. This function is easy to compute" +
+				"in one direction, but difficult to reverse.</div></html>");
 		this.add(onewayExplain);
 	}
 

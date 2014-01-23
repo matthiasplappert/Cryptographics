@@ -136,6 +136,11 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 	}
 
+	private void animationDone() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * Explain the elements on the screen. Only explanations are shown.
 	 */

@@ -43,12 +43,12 @@ public class ExplainKeyExchangeView extends VisualizationView {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(x1 < 110) {
-					x1 += 5;
+					x1 += 3;
 				} else {
 					x1 = 20;
 				}
 				if(x2 > 110) {
-					x2 -= 5;
+					x2 -= 3;
 				} else {
 					x2 = 200;
 				}
