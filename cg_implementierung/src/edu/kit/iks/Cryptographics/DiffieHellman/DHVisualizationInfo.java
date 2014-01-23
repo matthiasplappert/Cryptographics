@@ -36,7 +36,7 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 
 	@Override
 	public float getTimelineOffset() {
-		return 0.0f;
+		return 0.66f;
 	}
 
 	@Override

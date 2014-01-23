@@ -54,4 +54,19 @@ public class VisualizationView extends JPanel {
 	public JButton getBackButton() {
 		return backButton;
 	}
+
+	/**
+	 * @param nextButton the nextButton to set
+	 */
+	public void setNextButton(JButton nextButton) {
+		this.nextButton = nextButton;
+	}
+
+	/**
+	 * @param backButton the backButton to set
+	 */
+	public void setBackButton(JButton backButton) {
+		this.backButton = backButton;
+	}
+	
 }

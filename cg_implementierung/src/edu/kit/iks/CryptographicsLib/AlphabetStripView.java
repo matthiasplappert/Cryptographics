@@ -35,13 +35,13 @@ public class AlphabetStripView extends JPanel {
 		
 		JLabel currNum;
 		for (int i = 0; i < 26; i++) {
-			currNum = new JLabel("" + (i+1));
+			currNum = new JLabel("" + (i));
 			currNum.setVerticalAlignment(JLabel.CENTER);
 			currNum.setHorizontalAlignment(JLabel.CENTER);
 			this.add(currNum);
 		}
 		
-		Dimension d = new Dimension(20 * 26, 20);
+		Dimension d = new Dimension(25 * 26, 25);
 		this.setPreferredSize(d);
 	}
 }
