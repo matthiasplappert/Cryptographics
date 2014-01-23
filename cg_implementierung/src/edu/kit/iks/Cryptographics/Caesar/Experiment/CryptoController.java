@@ -21,11 +21,6 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 public class CryptoController extends AbstractVisualizationController {
 
 	/**
-	 * The according View.
-	 */
-	private CryptoView view;
-
-	/**
 	 * Model that is needed for computations.
 	 */
 	private CryptoModel model;
@@ -44,7 +39,8 @@ public class CryptoController extends AbstractVisualizationController {
 	public void loadView() {
 		this.view = new CryptoView();
 		this.model = new CryptoModel();
-		this.view.getInput().addActionListener(new ActionListener() {
+
+		this.getView().getInput().addActionListener(new ActionListener() {
 
 			/*
 			 * @see
@@ -53,10 +49,11 @@ public class CryptoController extends AbstractVisualizationController {
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				getView().start(getView().getInput().getText());
 				// TODO: Delegate Input for further checks to the model.
 			}
 		});
-		this.view.getBackButton().addActionListener(new ActionListener() {
+		this.getView().getBackButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)
@@ -66,7 +63,7 @@ public class CryptoController extends AbstractVisualizationController {
 				containerController.presentPreviousVisualizationController();
 			}
 		});
-		this.view.getNextButton().addActionListener(new ActionListener() {
+		this.getView().getNextButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)
@@ -78,7 +75,7 @@ public class CryptoController extends AbstractVisualizationController {
 		});
 
 	}
-
+	
 	/**
 	 * Method for delegating user's input to the model for the needed
 	 * computations and checks.
@@ -92,8 +89,8 @@ public class CryptoController extends AbstractVisualizationController {
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return "If you only see the textfield then put your string in it. Else you've already " +
+				"done it and now you need to encrypt/decrypt the given String.";
 	}
 
 	/**
@@ -102,8 +99,8 @@ public class CryptoController extends AbstractVisualizationController {
 	 * @return The view of this controller
 	 */
 	@Override
-	public JComponent getView() {
-		return this.view;
+	public CryptoView getView() {
+		return (CryptoView) this.view;
 	}
 
 	/**

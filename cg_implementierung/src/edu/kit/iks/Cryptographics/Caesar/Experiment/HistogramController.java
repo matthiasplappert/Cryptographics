@@ -18,12 +18,6 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
  */
 public class HistogramController extends AbstractVisualizationController {
 	/**
-	 * Contains all elements of the gui for the demonstration of caesar's
-	 * disadvantages.
-	 */
-	private HistogramView view;
-
-	/**
 	 * Constructor
 	 * 
 	 * @param visualizationInfo
@@ -41,7 +35,9 @@ public class HistogramController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.view = new HistogramView();
-		this.view.getBackButton().addActionListener(new ActionListener() {
+		
+		
+		this.getView().getBackButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)
@@ -51,7 +47,7 @@ public class HistogramController extends AbstractVisualizationController {
 				containerController.presentPreviousVisualizationController();
 			}
 		});
-		this.view.getNextButton().addActionListener(new ActionListener() {
+		this.getView().getNextButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)
@@ -64,20 +60,63 @@ public class HistogramController extends AbstractVisualizationController {
 	}
 
 	/**
+	 * Explanations and animations are shown that explain histograms.
+	 */
+	public void startAnimations() {
+		step1();
+		// stop.
+		step2();
+		// stop.
+		step3();
+		// stop.
+		step4();
+		// done.
+	}
+
+	/**
+	 * Explain why the Caesar cipher is not appropriate nowadays.
+	 */
+	private void step1() {
+
+	}
+
+	/**
+	 * Explain what histograms are.
+	 */
+	private void step2() {
+
+	}
+
+	/**
+	 * Explain how they are used and how to read from them.
+	 */
+	private void step3() {
+
+	}
+
+	/**
+	 * Explain how to decrypt big text that was ciphered with Caesar without a
+	 * key.
+	 */
+	private void step4() {
+
+	}
+
+	/**
 	 * Gets the view
 	 * 
 	 * @return The view of this controller
 	 */
 	@Override
-	public JComponent getView() {
-		return this.view;
+	public HistogramView getView() {
+		return (HistogramView) this.view;
 	}
 
 	/**
 	 * Called when all Explanations are done.
 	 */
 	private void lastExperiment() {
-		this.view.getIncrement().addActionListener(new ActionListener() {
+		this.getView().getIncrement().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)
@@ -86,7 +125,7 @@ public class HistogramController extends AbstractVisualizationController {
 				// step back
 			}
 		});
-		this.view.getDecrement().addActionListener(new ActionListener() {
+		this.getView().getDecrement().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
 			 * .event.ActionEvent)

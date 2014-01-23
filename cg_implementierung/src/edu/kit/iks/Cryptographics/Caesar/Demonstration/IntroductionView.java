@@ -53,7 +53,9 @@ public class IntroductionView extends VisualizationView {
 	private ImageView obelix;
 
 	// needed only for animations.
-	// private Timer timer;
+	private Timer timer;
+	private int x;
+	private int y;
 
 	/**
 	 * Button needed for proceeding the stepwise animations.
@@ -80,11 +82,13 @@ public class IntroductionView extends VisualizationView {
 		GridBagConstraints nextConstraint = new GridBagConstraints();
 		this.setLayout(introLayout);
 
+		// set the container for the animations.
 		this.animationContainer = new JPanel(new GridBagLayout());
 		GridBagConstraints animationConstraints = new GridBagConstraints();
 		animationConstraints.gridx = 0;
 		animationConstraints.gridy = 0;
 		animationConstraints.gridwidth = 3;
+		animationConstraints.fill = GridBagConstraints.BOTH;
 		this.add(animationContainer, animationConstraints);
 
 		// no need of BackButton. Button for returning to start screen already
@@ -103,7 +107,7 @@ public class IntroductionView extends VisualizationView {
 		// set the alignment of the proceed Button, that is needed to proceed in
 		// animation.
 		GridBagConstraints proceedConstraint = new GridBagConstraints();
-		//proceedConstraint.anchor = GridBagConstraints.FIRST_LINE_START;
+		// proceedConstraint.anchor = GridBagConstraints.FIRST_LINE_START;
 		proceedConstraint.weightx = 1.0;
 		proceedConstraint.weighty = 0.1;
 		proceedConstraint.gridx = 1;
@@ -114,9 +118,9 @@ public class IntroductionView extends VisualizationView {
 
 		// set the alignment of the masterPlan image.
 		GridBagConstraints planConstraint = new GridBagConstraints();
-		// planConstraint.anchor = GridBagConstraints.FIRST_LINE_START;
+		// planConstraint.anchor = GridBagConstraints.WEST;
 		// planConstraint.weightx = 1.0;
-		// planConstraint.weighty = 1.0;
+		// planConstraint.weighty = 0.1;
 		planConstraint.gridx = 1;
 		planConstraint.gridy = 0;
 
@@ -144,18 +148,31 @@ public class IntroductionView extends VisualizationView {
 	}
 
 	// Animations stubs.
-	/*
-	 * public void firstAnimation() { this.timer = new Timer(50, new
-	 * ActionListener() {
-	 * 
-	 * @Override public void actionPerformed(ActionEvent e) { if
-	 * (getCaesarImg().getX() < 400) { animate(); } else { getTimer().stop(); }
-	 * } }); x = getCaesarImg().getX(); this.timer.start(); }
-	 * 
-	 * public void animate() { x += 10; int y = getCaesarImg().getY();
-	 * getCaesarImg().setBounds(x, y, getPreferredSize().width,
-	 * getPreferredSize().height); getCaesarImg().validate(); this.repaint(); }
-	 */
+
+	public void firstAnimation() {
+		this.timer = new Timer(50, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (getCourier().getX() < 400) {
+					animate();
+				} else {
+					getTimer().stop();
+				}
+			}
+		});
+		x = getCourier().getX();
+		this.timer.start();
+	}
+
+	public void animate() {
+		x += 10;
+		int y = getCourier().getY();
+		getCourier().setBounds(x, y, getPreferredSize().width,
+				getPreferredSize().height);
+		getCourier().validate();
+		this.repaint();
+	}
 
 	/**
 	 * @return the proceed
@@ -297,6 +314,20 @@ public class IntroductionView extends VisualizationView {
 	 */
 	public void setMasterPlan(ImageView masterPlan) {
 		this.masterPlan = masterPlan;
+	}
+
+	/**
+	 * @return the timer
+	 */
+	public Timer getTimer() {
+		return timer;
+	}
+
+	/**
+	 * @param timer the timer to set
+	 */
+	public void setTimer(Timer timer) {
+		this.timer = timer;
 	}
 
 }

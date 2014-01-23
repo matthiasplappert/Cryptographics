@@ -67,8 +67,8 @@ public class IntroductionController extends AbstractVisualizationController {
 	@Override
 	public String getHelp() {
 
-		return "If you want to hear the awesome legend about caesar " +
-				"and obelix press the button below the text. Else try the next button!";
+		return "If you want to hear the awesome legend about caesar "
+				+ "and obelix press the button below the text. Else try the next button!";
 	}
 
 	@Override
@@ -158,19 +158,25 @@ public class IntroductionController extends AbstractVisualizationController {
 	 */
 	private void step1() {
 		this.animationStep++;
+		this.getView().getAnimationContainer()
+				.remove(this.getView().getMasterPlan());
+		this.getView().setMasterPlan(null);
 		this.getView()
 				.getExplanation()
 				.setText(
-						this.getView().getExplanation().getText()
-								+ " Zu seinem Unglück reitete der Bote durch den Wald, wo Obelix seine Wildschweine jagte.<br>");
+						"<html><body>Zu seinem Unglück reitete der Bote durch den Wald, wo Obelix seine Wildschweine jagte.<br>");
 
+		this.getView().getAnimationContainer().setBackground(Color.GREEN);
 		// set the alignment of the masterPlan image.
 		GridBagConstraints courierConstraint = new GridBagConstraints();
 		// courierConstraint.anchor = GridBagConstraints.PAGE_END;
 		// courierConstraint.weightx = 0.1;
-		courierConstraint.gridx = 2;
+		courierConstraint.anchor = GridBagConstraints.WEST;
+		courierConstraint.weightx = 1.0;
+		courierConstraint.weighty = 0.1;
+		courierConstraint.gridx = 0;
 		courierConstraint.gridy = 0;
-		// courierConstraint.fill = GridBagConstraints.HORIZONTAL;
+	    courierConstraint.fill = GridBagConstraints.HORIZONTAL;
 
 		// take the image from the xml-resource.
 		this.getView().setCourier(
@@ -179,7 +185,8 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView().getAnimationContainer()
 				.add(this.getView().getCourier(), courierConstraint);
 
-		// this.getView().firstAnimation();
+		this.getView().getAnimationContainer().repaint();
+		this.getView().firstAnimation();
 
 	}
 
@@ -191,8 +198,7 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						this.getView().getExplanation().getText()
-								+ " Als Obelix den Boten sah beförderte er ihn via Luftlinie direkt nach Rom zurück! <br>");
+						"<html><body>Als Obelix den Boten sah beförderte er ihn via Luftlinie direkt nach Rom zurück! <br>");
 
 		// set the alignment of the masterPlan image.
 		GridBagConstraints obelixConstraint = new GridBagConstraints();
@@ -220,8 +226,7 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						this.getView().getExplanation().getText()
-								+ " Beim Lesen der Schriftrolle, die der Bote dabei hatte, erkannte Obelix Caesar's Pläne für <br> "
+						"<html><body>Beim Lesen der Schriftrolle, die der Bote dabei hatte, erkannte Obelix Caesar's Pläne für <br> "
 								+ "den nächsten Angriff und die Gallier besiegten Caesar erneut. Caesar kochte vor Wut. <br>");
 
 		this.getView().validate();
@@ -234,8 +239,7 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						this.getView().getExplanation().getText()
-								+ "Es ist zu beachten, dass dieser Text gewisse geschichtlichte Ungenauigkeiten auweist.<br>"
+						"<html><body>Es ist zu beachten, dass dieser Text gewisse geschichtlichte Ungenauigkeiten auweist.<br>"
 								+ "Obelix konnte zum Beispiel kein Römisch!");
 		GridBagLayout introLayout = (GridBagLayout) this.getView().getLayout();
 		this.getView().getNextButton().setText("To caesar's idea");
