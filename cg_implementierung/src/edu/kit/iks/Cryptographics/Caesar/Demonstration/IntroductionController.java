@@ -238,6 +238,7 @@ public class IntroductionController extends AbstractVisualizationController {
 								+ "Es ist zu beachten, dass dieser Text gewisse geschichtlichte Ungenauigkeiten auweist.<br>"
 								+ "Obelix konnte zum Beispiel kein Römisch!");
 		GridBagLayout introLayout = (GridBagLayout) this.getView().getLayout();
+		this.getView().getNextButton().setText("To caesar's idea");
 		GridBagConstraints finishConstraint = new GridBagConstraints();
 		finishConstraint.gridx = 1;
 		finishConstraint.gridy = 2;
