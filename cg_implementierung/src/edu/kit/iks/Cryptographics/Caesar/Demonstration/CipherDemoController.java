@@ -131,7 +131,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 			step3();
 			break;
 		case 4:
-			animationDone();
+		//	animationDone();
 		}
 
 	}
