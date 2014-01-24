@@ -19,6 +19,7 @@ import org.jdom2.Element;
 
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
@@ -83,6 +84,8 @@ public class CryptoView extends VisualizationView {
 	 */
 	private AlphabetStripView alphabet;
 
+	private KeyboardView keyboard;
+
 	/**
 	 * Constructor.
 	 */
@@ -94,6 +97,8 @@ public class CryptoView extends VisualizationView {
 		// set the layout to GridBagLayout.
 		GridBagLayout introLayout = new GridBagLayout();
 		this.setLayout(introLayout);
+
+		this.keyboard = new KeyboardView();
 
 		// setups the next and back buttons.
 		setupNavigation();
@@ -181,6 +186,22 @@ public class CryptoView extends VisualizationView {
 		 */
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
 
+	}
+
+	/**
+	 * Creates the keyboard and shows it in the main container.
+	 */
+	public void createKeyboard() {
+		GridBagConstraints kbConst = new GridBagConstraints();
+		kbConst.anchor = GridBagConstraints.PAGE_END;
+		kbConst.weightx = 1.0;
+		kbConst.weighty = 0.5;
+		kbConst.gridx = 0;
+		kbConst.gridy = 0;
+		kbConst.gridwidth = 11;
+		kbConst.gridheight = 3;
+		this.add(this.keyboard, kbConst);
+		this.validate();
 	}
 
 	public void start(char[] inputChars) {
@@ -418,6 +439,20 @@ public class CryptoView extends VisualizationView {
 	 */
 	public AlphabetStripView getAlphabet() {
 		return alphabet;
+	}
+
+	/**
+	 * @return the keyboard
+	 */
+	public KeyboardView getKeyboard() {
+		return keyboard;
+	}
+
+	/**
+	 * @param keyboard the keyboard to set
+	 */
+	public void setKeyboard(KeyboardView keyboard) {
+		this.keyboard = keyboard;
 	}
 
 }
