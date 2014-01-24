@@ -226,6 +226,7 @@ public class CryptoView extends VisualizationView {
 			this.userOutput[i].setName("" + inputChars[i]);           // needed later when checking if the
 			// encrypted char of the plain letter
 			// was valid!
+			this.userOutput[i].setBorder(null);
 			GridBagConstraints outConst = new GridBagConstraints();
 			// outConst.weightx = 0.5;
 			// outConst.weighty = 0.1;
@@ -233,7 +234,7 @@ public class CryptoView extends VisualizationView {
 			outConst.gridy = 1;
 			outConst.ipadx = 20;
 			outConst.ipady = 20;
-			outConst.insets = new Insets(10, 10, 10, 10);
+			outConst.insets = new Insets(25, 25, 25, 25);
 			// outConst.gridwidth = 4;
 			// outConst.fill = GridBagConstraints.HORIZONTAL;
 			this.inOutPanel.add(userOutput[i], outConst);
@@ -264,23 +265,6 @@ public class CryptoView extends VisualizationView {
 
 		// build the new view.
 		this.validate();
-	}
-
-	/**
-	 * Enlightens the needed JLabel.
-	 */
-	private void lightsOn(JLabel label) {
-		// on/off
-	}
-
-	/**
-	 * Sets the character c as the content of the JLabel label.
-	 * 
-	 * @param label
-	 * @param c
-	 */
-	private void setContent(JLabel label, char c) {
-
 	}
 
 	/**
