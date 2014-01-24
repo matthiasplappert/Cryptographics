@@ -1,14 +1,14 @@
 package edu.kit.iks.CryptographicsLib;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 
 /**
  * @author Matthias Jaenicke.
@@ -17,7 +17,12 @@ import javax.swing.JPanel;
  * Beneath it is matched by a corresponding strip of the numbers from 1 to 26.
  */
 public class AlphabetStripView extends JPanel {
-	private static JPanel strip;
+	private JLabel[] chars;
+	private JLabel[] nums;
+	
+	private static final Border normalBorder = BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.lightGray, Color.gray);
+//	private static final Border normalBorder = BorderFactory.createLineBorder(Color.black);
+	private static final Border highlightBorder = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED, Color.lightGray.darker(), Color.gray.darker());
 	
 	/**
 	 * Generates the alphabet strip with default dimension
@@ -49,26 +54,62 @@ public class AlphabetStripView extends JPanel {
 		
 		// Puts the 26 characters of the alphabet in the first row
 		int asciiA = 65;
-		JLabel currChar;
+		chars = new JLabel[26];
 		for (int i = 0; i < 26; i++) {
-			currChar = new JLabel(String.valueOf((char)(i+asciiA)));
-			currChar.setBorder(BorderFactory.createLineBorder(Color.black));
-			currChar.setVerticalAlignment(JLabel.CENTER);
-			currChar.setHorizontalAlignment(JLabel.CENTER);
-			this.add(currChar);
+			chars[i] = new JLabel(String.valueOf((char)(i+asciiA)));
+//			chars[i].setBorder(BorderFactory.createLineBorder(Color.black));
+			chars[i].setBorder(normalBorder);
+			chars[i].setVerticalAlignment(JLabel.CENTER);
+			chars[i].setHorizontalAlignment(JLabel.CENTER);
+			this.add(chars[i]);
 		}
 		
 		// Puts the numbers from 1 to 26 in the second row
-		JLabel currNum;
+		nums = new JLabel[26];
 		for (int i = 0; i < 26; i++) {
-			currNum = new JLabel("" + (i+1));
-			currNum.setBorder(BorderFactory.createLineBorder(Color.black));
-			currNum.setVerticalAlignment(JLabel.CENTER);
-			currNum.setHorizontalAlignment(JLabel.CENTER);
-			this.add(currNum);
+			nums[i] = new JLabel("" + (i+1));
+//			nums[i].setBorder(BorderFactory.createLineBorder(Color.black));
+			nums[i].setBorder(normalBorder);
+			nums[i].setVerticalAlignment(JLabel.CENTER);
+			nums[i].setHorizontalAlignment(JLabel.CENTER);
+			this.add(nums[i]);
 		}
 		
 		Dimension d = new Dimension(width * 26, height * 2);
 		this.setPreferredSize(d);
+	}
+	
+	/**
+	 * Highlights the char and its number with the given key
+	 * @param key number between 0 and 25
+	 */
+	public void highlight(int key) {
+		
+		assert(key >= 0 && key < 26);
+		chars[key].setBorder(highlightBorder);
+//		chars[key].setBackground(Color.yellow);
+		chars[key].setForeground(Color.red);
+		nums[key].setBorder(highlightBorder);
+//		nums[key].setBackground(Color.yellow);
+		nums[key].setForeground(Color.red);
+		
+		this.repaint();
+	}
+	
+	/**
+	 * Reverts highlighting of the char and its number with the given key
+	 * @param key number between 0 and 25
+	 */
+	public void unHighlight(int key) {
+
+		assert(key >= 0 && key < 26);
+		chars[key].setBorder(normalBorder);
+//		chars[key].setBackground(Color.yellow);
+		chars[key].setForeground(Color.black);
+		nums[key].setBorder(normalBorder);
+//		nums[key].setBackground(Color.yellow);
+		nums[key].setForeground(Color.black);
+		
+		this.repaint();
 	}
 }
