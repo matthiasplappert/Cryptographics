@@ -207,7 +207,10 @@ public class CryptoView extends VisualizationView {
 		this.add(this.alphabet, alphConst);
 
 		// setup the explanations.
-		this.explanations = new JLabel("<html><body>" + "Your turn comrade!");
+		this.explanations = new JLabel("<html><body>"
+				+ "Your turn comrade! Remember: You need to add to each <br>"
+				+ "number that is assigned to a letter + 3 and see what <br>"
+				+ "letter the result is. For Example A(0) + 3 = D(3).");
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.LAST_LINE_START;
 		expConst.weightx = 0.5;
@@ -265,8 +268,8 @@ public class CryptoView extends VisualizationView {
 			this.userOutput[i].setFont(new Font("Arial", 2, 25));
 			this.userOutput[i].setName("" + inputChars[i]);
 			this.userOutput[i].setPreferredSize(new Dimension(25, 25));
-			//TODO: Limit the userOutput JTextField to input size 1!
-			
+			// TODO: Limit the userOutput JTextField to input size 1!
+
 			// this.userOutput[i].setInputVerifier(new InputVerifier() {
 			//
 			// @Override

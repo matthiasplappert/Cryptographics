@@ -30,6 +30,11 @@ public class CryptoController extends AbstractVisualizationController {
 	 */
 	private CryptoModel model;
 
+	/**
+	 * Needed
+	 */
+	private int editableFields;
+
 	private boolean decryptionPhase;
 
 	/**
@@ -53,6 +58,7 @@ public class CryptoController extends AbstractVisualizationController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				char[] string = getModel().generateString();
+				setEditableFields(string.length);
 				// TODO: String generator!
 				getView().start(string);
 
@@ -100,7 +106,7 @@ public class CryptoController extends AbstractVisualizationController {
 					char[] inputChars = new char[input.length()];
 					input = input.toUpperCase();
 					input.getChars(0, input.length(), inputChars, 0);
-
+					setEditableFields(inputChars.length);
 					// load the view!
 					getView().start(inputChars);
 
@@ -168,8 +174,20 @@ public class CryptoController extends AbstractVisualizationController {
 								userOutput.setBorder(BorderFactory
 										.createLineBorder(Color.green));
 								userOutput.setEditable(false);
-								getView().getExplanations().setText(
-										"Great!!!! Go on!");
+								setEditableFields(getEditableFields() - 1);
+
+								if (getEditableFields() == 0) {
+									// User encrypted all characters valid.
+									getView()
+											.getExplanations()
+											.setText(
+													"<html><body>All done right!!! Great job comrade. Now you are one step more to destroying the capitalism!<br>"
+															+ "Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
+															+ "are superior to your power!");
+								} else {
+									getView().getExplanations().setText(
+											"Great!!!! Go on!");
+								}
 							} else {
 								// TODO: user encrypted invalid! Need another try.
 								userOutput.setBorder(BorderFactory
@@ -223,6 +241,21 @@ public class CryptoController extends AbstractVisualizationController {
 	 */
 	private void proceed() {
 
+	}
+
+	/**
+	 * @return the editableFields
+	 */
+	public int getEditableFields() {
+		return editableFields;
+	}
+
+	/**
+	 * @param editableFields
+	 *            the editableFields to set
+	 */
+	public void setEditableFields(int editableFields) {
+		this.editableFields = editableFields;
 	}
 
 }

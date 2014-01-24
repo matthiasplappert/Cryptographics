@@ -39,8 +39,14 @@ public class HistogramView extends VisualizationView {
 	private JButton increment;
 	private JButton decrement;
 
+	/**
+	 * Container for the inc/dec Buttons.
+	 */
 	private JPanel keyControl;
 
+	/**
+	 * Container for the next/back buttons.
+	 */
 	private JPanel navigationPanel;
 
 	/**
