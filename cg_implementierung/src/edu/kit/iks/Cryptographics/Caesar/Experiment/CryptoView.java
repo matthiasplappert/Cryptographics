@@ -8,7 +8,9 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 
+import javax.swing.InputVerifier;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -263,6 +265,19 @@ public class CryptoView extends VisualizationView {
 			this.userOutput[i].setFont(new Font("Arial", 2, 25));
 			this.userOutput[i].setName("" + inputChars[i]);
 			this.userOutput[i].setPreferredSize(new Dimension(25, 25));
+			//TODO: Limit the userOutput JTextField to input size 1!
+			
+			// this.userOutput[i].setInputVerifier(new InputVerifier() {
+			//
+			// @Override
+			// public boolean verify(JComponent input) {
+			// JTextField output = (JTextField) input;
+			// if (output.getText().length() == 1) {
+			// return true;
+			// }
+			// return false;
+			// }
+			// });
 			// needed later when checking if the
 			// encrypted char of the plain letter
 			// was valid!
