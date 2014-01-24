@@ -52,8 +52,12 @@ public class CryptoController extends AbstractVisualizationController {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				char[] string = { 'A', 'N', 'N', 'A' };
+				char[] string = getModel().generateString();
+				// TODO: String generator!
 				getView().start(string);
+
+				// generate ActionListener.
+				generateListener(string);
 
 			}
 
@@ -100,40 +104,8 @@ public class CryptoController extends AbstractVisualizationController {
 					// load the view!
 					getView().start(inputChars);
 
-					// TODO: Generate Listener for the userOutput JTextfield
-					for (int i = 0; i < inputChars.length; i++) {
-						getView().getUserOutput()[i]
-								.addActionListener(new ActionListener() {
-
-									@Override
-									public void actionPerformed(ActionEvent e) {
-										// TODO: let the Model check for validity.
-										JTextField userOutput = (JTextField) e
-												.getSource();
-
-										if (getModel().checkValidChar(
-												userOutput.getName(),
-												userOutput.getText())) {
-											// user encrypted the given char successful.
-											userOutput.setBorder(BorderFactory
-													.createLineBorder(Color.green));
-											userOutput.setEditable(false);
-											getView()
-													.getExplanations()
-													.setText("Great!!!! Go on!");
-										} else {
-											// TODO: user encrypted invalid! Need another try.
-											userOutput.setBorder(BorderFactory
-													.createLineBorder(Color.red));
-											getView()
-													.getExplanations()
-													.setText(
-															"You picked the wrong letter!! Try another one!");
-										}
-									}
-
-								});
-					}
+					// Generate Listener for the userOutput JTextfield
+					generateListener(inputChars);
 				} else {
 					// TODO: Input was invalid. Pls make another one.
 					getView().getExplanations().setText(
@@ -171,6 +143,46 @@ public class CryptoController extends AbstractVisualizationController {
 			}
 		});
 
+	}
+
+	/**
+	 * Function for generating ActionListener for the needed input fields, after the user typed a
+	 * string to encrypt.
+	 * 
+	 * @param inputChars
+	 */
+	public void generateListener(char[] inputChars) {
+		// Generate Listener for the userOutput JTextfield
+		for (int i = 0; i < inputChars.length; i++) {
+			getView().getUserOutput()[i]
+					.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							// TODO: let the Model check for validity.
+							JTextField userOutput = (JTextField) e.getSource();
+
+							if (getModel().checkValidChar(userOutput.getName(),
+									userOutput.getText())) {
+								// user encrypted the given char successful.
+								userOutput.setBorder(BorderFactory
+										.createLineBorder(Color.green));
+								userOutput.setEditable(false);
+								getView().getExplanations().setText(
+										"Great!!!! Go on!");
+							} else {
+								// TODO: user encrypted invalid! Need another try.
+								userOutput.setBorder(BorderFactory
+										.createLineBorder(Color.red));
+								getView()
+										.getExplanations()
+										.setText(
+												"You picked the wrong letter!! Try another one!");
+							}
+						}
+
+					});
+		}
 	}
 
 	/**

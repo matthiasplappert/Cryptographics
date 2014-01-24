@@ -37,11 +37,20 @@ public class CryptoModel {
 	 * @param input
 	 */
 	public boolean handleInput(String input) {
-		//TODO: something intelligent with the input.
-		if (input.length() < 10 /*&&  input.matches("A-Z,a-z")*/) {
+		// TODO: something intelligent with the input.
+		if (input.length() < 10 /* && input.matches("A-Z,a-z") */) {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * @return
+	 */
+	public char[] generateString() {
+		// TODO: Generate a random name!
+		char[] string = { 'A', 'N', 'N', 'A' };
+		return string;
 	}
 
 	/**
