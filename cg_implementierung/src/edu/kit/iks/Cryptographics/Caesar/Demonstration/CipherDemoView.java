@@ -3,6 +3,7 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -98,26 +99,26 @@ public class CipherDemoView extends VisualizationView {
 		// set up the alignment of the button back;
 		this.setBackButton(new JButton("Back to Introduction!"));
 		/*
-		 * GridBagConstraints backConst = new GridBagConstraints();
-		 * backConst.weightx = 1.0; backConst.weighty = 0.1; backConst.gridx =
-		 * 0; backConst.gridy = 0; backConst.gridwidth = 3;
+		 * GridBagConstraints backConst = new GridBagConstraints(); backConst.weightx = 1.0;
+		 * backConst.weighty = 0.1; backConst.gridx = 0; backConst.gridy = 0; backConst.gridwidth =
+		 * 3;
 		 */
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
 		this.setNextButton(new JButton("Try it yourself!"));
 		/*
-		 * GridBagConstraints nextConst = new GridBagConstraints();
-		 * nextConst.weightx = 1.0; nextConst.weighty = 0.1; nextConst.gridx =
-		 * 10; nextConst.gridy = 1; nextConst.gridwidth = 3;
+		 * GridBagConstraints nextConst = new GridBagConstraints(); nextConst.weightx = 1.0;
+		 * nextConst.weighty = 0.1; nextConst.gridx = 10; nextConst.gridy = 1; nextConst.gridwidth =
+		 * 3;
 		 */
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
 
 		// set up the Input and output fields. Because this is a demonstration
 		// the fields
 		// are filled by the programm and are not editable by the user.
-		this.userInput = new JTextField[4];
-		this.userOutput = new JTextField[4];
+		this.userInput = new JTextField[10];
+		this.userOutput = new JTextField[10];
 		this.inOutPanel = new JPanel(new GridBagLayout());
 		GridBagConstraints panelConst = new GridBagConstraints();
 		panelConst.anchor = GridBagConstraints.PAGE_START;
@@ -125,29 +126,49 @@ public class CipherDemoView extends VisualizationView {
 		panelConst.weighty = 0.5;
 		panelConst.gridx = 1;
 		panelConst.gridy = 1;
-		panelConst.gridwidth = 4;
+		panelConst.gridwidth = 40;
 		panelConst.gridheight = 2;
 		// panelConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(inOutPanel, panelConst);
-		for (int i = 0; i < 4; i++) {
-			// fields where the generated input that will be encrypted is
-			// presented.
-			this.userInput[i] = new JTextField("A");
+
+		// TODO: Resize the JTextField to 25*25 pixel!
+		for (int i = 0; i < 10; i++) {
+			// fields where the input will be encrypted
+			this.userInput[i] = new JTextField();
+			this.userInput[i].setText("A");
+			this.userInput[i].setBorder(null);
+			this.userInput[i].setFont(new Font("Arial", 2, 25));
 			this.userInput[i].setEditable(false);
 			GridBagConstraints inputConst = new GridBagConstraints();
+			// inputConst.weightx = 0.5;
+			// inputConst.weighty = 0.1;
+			inputConst.insets = new Insets(5, 5, 5, 5);
 			inputConst.gridx = i;
 			inputConst.gridy = 0;
+			inputConst.ipadx = 20;
+			inputConst.ipady = 20;
+			// inputConst.gridwidth = 4;
 			// inputConst.fill = GridBagConstraints.HORIZONTAL;
 			this.inOutPanel.add(userInput[i], inputConst);
 
 			// fields where the encrypted input is put in.
-			this.userOutput[i] = new JTextField("X");
-			this.userOutput[i].setEditable(false);
+			this.userOutput[i] = new JTextField("D");
+			this.userOutput[i].setFont(new Font("Arial", 2, 25));
+			this.userOutput[i].setName("A");           // needed later when checking if the
+			this.userOutput[i].setEditable(false);                            // encrypted char of the plain letter
+			// was valid!
 			GridBagConstraints outConst = new GridBagConstraints();
+			// outConst.weightx = 0.5;
+			// outConst.weighty = 0.1;
 			outConst.gridx = i;
 			outConst.gridy = 1;
+			outConst.ipadx = 20;
+			outConst.ipady = 20;
+			outConst.insets = new Insets(10, 10, 10, 10);
+			// outConst.gridwidth = 4;
 			// outConst.fill = GridBagConstraints.HORIZONTAL;
 			this.inOutPanel.add(userOutput[i], outConst);
+			this.inOutPanel.validate();
 		}
 
 		// setup the aligment of the button proceed.
@@ -283,7 +304,8 @@ public class CipherDemoView extends VisualizationView {
 	}
 
 	/**
-	 * @param inOutPanel the inOutPanel to set
+	 * @param inOutPanel
+	 *            the inOutPanel to set
 	 */
 	public void setInOutPanel(JPanel inOutPanel) {
 		this.inOutPanel = inOutPanel;

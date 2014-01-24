@@ -71,7 +71,7 @@ public class HistogramView extends VisualizationView {
 		// load the resources from the xml, that can be accessed over the
 		// visualizationInfo
 		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
-		Element histResource = vsInfo.getResources().getChild("Introduction");
+		Element histResource = vsInfo.getResources().getChild("Histogram");
 
 		GridBagLayout layout = new GridBagLayout();
 		GridBagConstraints nextConstraint = new GridBagConstraints();
