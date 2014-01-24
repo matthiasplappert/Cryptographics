@@ -3,6 +3,8 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -76,6 +78,116 @@ public class CipherDemoView extends VisualizationView {
 		GridBagLayout introLayout = new GridBagLayout();
 		this.setLayout(introLayout);
 
+		// setup the back and next Buttons.
+		setupNavigation();
+
+		// setup the fields for the demonstratoin of the encryption.
+		char[] chars = { 'A', 'N', 'N', 'A' };  // TODO: need the user of a generator to generate
+												// random strings dynamically.
+		setupInOutElements(chars);
+
+		// setup the aligment of the button proceed.
+		GridBagConstraints proceedConst = new GridBagConstraints();
+		this.proceed = new JButton("Proceed!");
+		proceedConst.anchor = GridBagConstraints.PAGE_END;
+		proceedConst.gridx = 2;
+		proceedConst.gridy = 3;
+		proceedConst.gridwidth = 3;
+		this.add(this.proceed, proceedConst);
+
+		// setup the alphabet.
+		this.alphabet = new AlphabetStripView();
+		GridBagConstraints alphConst = new GridBagConstraints();
+		alphConst.anchor = GridBagConstraints.CENTER;
+		alphConst.gridx = 1;
+		alphConst.gridy = 1;
+		alphConst.gridwidth = 26;
+		alphConst.gridheight = 2;
+		alphConst.fill = GridBagConstraints.HORIZONTAL;
+		this.add(this.alphabet, alphConst);
+
+		// setup the explanation label.
+		this.explanations = new JLabel(
+				"<html><body>"
+						+ "Now let's see how caesar encrypted his messages, so noone could cross his plans.<br>"
+						+ "Click the button 'Proceed!' to proceed the explanation.");
+		GridBagConstraints expConst = new GridBagConstraints();
+		expConst.anchor = GridBagConstraints.LAST_LINE_START;
+		expConst.weightx = 0.5;
+		expConst.weighty = 0.1;
+		expConst.gridx = 0;
+		expConst.gridy = 0;
+		expConst.gridwidth = 4;
+		this.add(this.explanations, expConst);
+
+		this.validate();
+	}
+
+	private void setupInOutElements(char[] inputChars) {
+
+		// set up the Input and output fields. Because this is a demonstration
+		// the fields
+		// are filled by the programm and are not editable by the user.
+		this.userInput = new JTextField[inputChars.length];
+		this.userOutput = new JTextField[inputChars.length];
+		this.inOutPanel = new JPanel(new GridBagLayout());
+		GridBagConstraints panelConst = new GridBagConstraints();
+		panelConst.anchor = GridBagConstraints.PAGE_START;
+		panelConst.weightx = 0.5;
+		panelConst.weighty = 0.5;
+		panelConst.gridx = 1;
+		panelConst.gridy = 1;
+		panelConst.gridwidth = inputChars.length * 4;
+		panelConst.gridheight = 2;
+		// panelConst.fill = GridBagConstraints.HORIZONTAL;
+		this.add(inOutPanel, panelConst);
+
+		for (int i = 0; i < inputChars.length; i++) {
+			// fields where the input will be encrypted
+			this.userInput[i] = new JTextField();
+			this.userInput[i].setText("" + inputChars[i]);
+			this.userInput[i].setBorder(null);
+			this.userInput[i].setFont(new Font("Arial", 2, 25));
+			this.userInput[i].setEditable(false);
+			this.userInput[i].setPreferredSize(new Dimension(25, 25));
+			GridBagConstraints inputConst = new GridBagConstraints();
+			// inputConst.weightx = 0.5;
+			// inputConst.weighty = 0.1;
+			inputConst.insets = new Insets(25, 25, 25, 25);
+			inputConst.gridx = i;
+			inputConst.gridy = 0;
+			inputConst.ipadx = 20;
+			inputConst.ipady = 20;
+			// inputConst.gridwidth = 4;
+			// inputConst.fill = GridBagConstraints.HORIZONTAL;
+			this.inOutPanel.add(userInput[i], inputConst);
+
+			// fields where the encrypted input is put in.
+			this.userOutput[i] = new JTextField();
+			this.userOutput[i].setEditable(false);
+			this.userOutput[i].setFont(new Font("Arial", 2, 25));
+			this.userOutput[i].setName("" + inputChars[i]);
+			this.userOutput[i].setPreferredSize(new Dimension(25, 25));
+			// needed later when checking if the
+			// encrypted char of the plain letter
+			// was valid!
+			this.userOutput[i].setBorder(null);
+			GridBagConstraints outConst = new GridBagConstraints();
+			// outConst.weightx = 0.5;
+			// outConst.weighty = 0.1;
+			outConst.gridx = i;
+			outConst.gridy = 1;
+			outConst.ipadx = 20;
+			outConst.ipady = 20;
+			outConst.insets = new Insets(25, 25, 25, 25);
+			// outConst.gridwidth = 4;
+			// outConst.fill = GridBagConstraints.HORIZONTAL;
+			this.inOutPanel.add(userOutput[i], outConst);
+			this.inOutPanel.validate();
+		}
+	}
+
+	private void setupNavigation() {
 		// set up a container for the navigation Buttons (Next and Back).
 		this.navigationPanel = new JPanel(new BorderLayout());
 		GridBagConstraints navConst = new GridBagConstraints();
@@ -96,93 +208,24 @@ public class CipherDemoView extends VisualizationView {
 		this.remove(this.getNextButton());
 
 		// set up the alignment of the button back;
-		this.setBackButton(new JButton("Back to Introduction!"));
+		this.setBackButton(new JButton("Back to Demonstration!"));
 		/*
-		 * GridBagConstraints backConst = new GridBagConstraints();
-		 * backConst.weightx = 1.0; backConst.weighty = 0.1; backConst.gridx =
-		 * 0; backConst.gridy = 0; backConst.gridwidth = 3;
+		 * GridBagConstraints backConst = new GridBagConstraints(); backConst.weightx = 1.0;
+		 * backConst.weighty = 0.1; backConst.gridx = 0; backConst.gridy = 0; backConst.gridwidth =
+		 * 3;
 		 */
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
-		this.setNextButton(new JButton("Try it yourself!"));
+		this.setNextButton(new JButton("Go to Encryption!"));
+
 		/*
-		 * GridBagConstraints nextConst = new GridBagConstraints();
-		 * nextConst.weightx = 1.0; nextConst.weighty = 0.1; nextConst.gridx =
-		 * 10; nextConst.gridy = 1; nextConst.gridwidth = 3;
+		 * GridBagConstraints nextConst = new GridBagConstraints(); nextConst.weightx = 1.0;
+		 * nextConst.weighty = 0.1; nextConst.gridx = 10; nextConst.gridy = 1; nextConst.gridwidth =
+		 * 3;
 		 */
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
 
-		// set up the Input and output fields. Because this is a demonstration
-		// the fields
-		// are filled by the programm and are not editable by the user.
-		this.userInput = new JTextField[4];
-		this.userOutput = new JTextField[4];
-		this.inOutPanel = new JPanel(new GridBagLayout());
-		GridBagConstraints panelConst = new GridBagConstraints();
-		panelConst.anchor = GridBagConstraints.PAGE_START;
-		panelConst.weightx = 0.5;
-		panelConst.weighty = 0.5;
-		panelConst.gridx = 1;
-		panelConst.gridy = 1;
-		panelConst.gridwidth = 4;
-		panelConst.gridheight = 2;
-		// panelConst.fill = GridBagConstraints.HORIZONTAL;
-		this.add(inOutPanel, panelConst);
-		for (int i = 0; i < 4; i++) {
-			// fields where the generated input that will be encrypted is
-			// presented.
-			this.userInput[i] = new JTextField("A");
-			this.userInput[i].setEditable(false);
-			GridBagConstraints inputConst = new GridBagConstraints();
-			inputConst.gridx = i;
-			inputConst.gridy = 0;
-			// inputConst.fill = GridBagConstraints.HORIZONTAL;
-			this.inOutPanel.add(userInput[i], inputConst);
-
-			// fields where the encrypted input is put in.
-			this.userOutput[i] = new JTextField("X");
-			this.userOutput[i].setEditable(false);
-			GridBagConstraints outConst = new GridBagConstraints();
-			outConst.gridx = i;
-			outConst.gridy = 1;
-			// outConst.fill = GridBagConstraints.HORIZONTAL;
-			this.inOutPanel.add(userOutput[i], outConst);
-		}
-
-		// setup the aligment of the button proceed.
-		GridBagConstraints proceedConst = new GridBagConstraints();
-		this.proceed = new JButton("Proceed!");
-		proceedConst.gridx = 2;
-		proceedConst.gridy = 3;
-		proceedConst.gridwidth = 3;
-		this.add(this.proceed, proceedConst);
-
-		// setup the alphabet.
-		this.alphabet = new AlphabetStripView();
-		GridBagConstraints alphConst = new GridBagConstraints();
-		alphConst.anchor = GridBagConstraints.CENTER;
-		alphConst.gridx = 1;
-		alphConst.gridy = 1;
-		alphConst.gridwidth = 26;
-		alphConst.gridheight = 2;
-		alphConst.fill = GridBagConstraints.HORIZONTAL;
-		this.add(this.alphabet, alphConst);
-
-		this.explanations = new JLabel(
-				"<html><body>"
-						+ "Now let's see how caesar encrypted his messages, so noone could cross his plans.<br>"
-						+ "Click the button 'Proceed!' to proceed the explanation.");
-		GridBagConstraints expConst = new GridBagConstraints();
-		expConst.anchor = GridBagConstraints.LAST_LINE_START;
-		expConst.weightx = 0.5;
-		expConst.weighty = 0.1;
-		expConst.gridx = 0;
-		expConst.gridy = 0;
-		expConst.gridwidth = 4;
-		this.add(this.explanations, expConst);
-
-		this.validate();
 	}
 
 	/**
@@ -283,7 +326,8 @@ public class CipherDemoView extends VisualizationView {
 	}
 
 	/**
-	 * @param inOutPanel the inOutPanel to set
+	 * @param inOutPanel
+	 *            the inOutPanel to set
 	 */
 	public void setInOutPanel(JPanel inOutPanel) {
 		this.inOutPanel = inOutPanel;

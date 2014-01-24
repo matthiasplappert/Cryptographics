@@ -34,11 +34,6 @@ public class CipherDemoController extends AbstractVisualizationController {
 	private int animationStep;
 
 	/**
-     * 
-     */
-	private Element cipherDemoResource;
-
-	/**
 	 * @param visualizationInfo
 	 */
 	public CipherDemoController(AbstractVisualizationInfo visualizationInfo) {
@@ -134,11 +129,6 @@ public class CipherDemoController extends AbstractVisualizationController {
 		//	animationDone();
 		}
 
-	}
-
-	private void animationDone() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	/**
