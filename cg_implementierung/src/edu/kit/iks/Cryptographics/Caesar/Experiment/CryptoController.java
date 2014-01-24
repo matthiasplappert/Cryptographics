@@ -57,7 +57,7 @@ public class CryptoController extends AbstractVisualizationController {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				char[] string = getModel().generateString();
+				char[] string = getModel().generatePlainText();
 				setEditableFields(string.length);
 				// TODO: String generator!
 				getView().start(string);
@@ -135,13 +135,25 @@ public class CryptoController extends AbstractVisualizationController {
 			 */
 			public void actionPerformed(ActionEvent event) {
 				if (!decryptionPhase) {
+					//TODO: implement unloadView();
+					unloadView();
 					// start Decryption!
 					decryptionPhase = true;
+					// TODO: generate a random cipher.
+					char[] string = getModel().generateCipher();
+					setEditableFields(string.length);
+					getView().start(string);
+
+					// generate ActionListener.
+					generateListener(string);
+
+					// set the explanations.
 					getView()
 							.getExplanations()
 							.setText(
 									"The stage for decryption is not finished yet, to skip click next or exit!!");
 					getView().getNextButton().setText("Go to histograms!");
+
 				} else {
 					VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
 					containerController.presentNextVisualizationController();
@@ -213,6 +225,10 @@ public class CryptoController extends AbstractVisualizationController {
 			proceed();
 	}
 
+	@Override
+	public void unloadView() {
+	  	
+	}
 	@Override
 	public String getHelp() {
 		return "If you only see the textfield then put your string in it. Else you've already "

@@ -217,7 +217,7 @@ public class CipherDemoView extends VisualizationView {
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
-		this.setNextButton(new JButton("Go to Decryption!"));
+		this.setNextButton(new JButton("Go to Encryption!"));
 
 		/*
 		 * GridBagConstraints nextConst = new GridBagConstraints(); nextConst.weightx = 1.0;

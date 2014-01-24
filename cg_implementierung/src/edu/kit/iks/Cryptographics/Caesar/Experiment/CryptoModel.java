@@ -47,10 +47,20 @@ public class CryptoModel {
 	/**
 	 * @return
 	 */
-	public char[] generateString() {
+	public char[] generatePlainText() {
 		// TODO: Generate a random name!
 		char[] string = { 'A', 'N', 'N', 'A' };
 		return string;
+	}
+	
+	/**
+	 * @return
+	 */
+	public char[] generateCipher() {
+		//TODO: generate a random cipher.
+		char[] cipher = {'D', 'Q', 'Q', 'D'};
+		return cipher;
+		
 	}
 
 	/**
