@@ -48,10 +48,7 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
 public class CryptoView extends VisualizationView {
 	// TODO: The View is almost the same as the one in the CryptoDemoView!!!
 	// Need to refactor when possible!
-	/**
-	 * Dies Das ananas.
-	 */
-	private static final long serialVersionUID = 1L;
+	private JButton introduction;
 
 	/**
 	 * Explanation textfield.
@@ -185,6 +182,9 @@ public class CryptoView extends VisualizationView {
 		 * 3;
 		 */
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
+
+		// this.introduction = new JButton("Back to Introduction");
+		// this.navigationPanel.add(this.introduction, BorderLayout.WEST);
 
 	}
 
@@ -449,7 +449,8 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
-	 * @param keyboard the keyboard to set
+	 * @param keyboard
+	 *            the keyboard to set
 	 */
 	public void setKeyboard(KeyboardView keyboard) {
 		this.keyboard = keyboard;
