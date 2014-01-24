@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Caesar>
-	<Introduction id="caesarId">
-      <caesarImage  path="./resources/caesar/caesar.png"/>
-      <ordersImage  path="./resources/caesar/orders.jpg"/>
-      <courierImage path="./resources/caesar/courier.jpg"/>
-      <interceptorImage path="./resources/caesar/interceptor.png"/>
+	<Introduction>
+		<masterPlan path="./resources/caesar/caesar.png" />
+		<ordersImage path="./resources/caesar/orders.jpg" />
+		<courierImage path="./resources/caesar/courier.png" />
+		<obelixImage path="./resources/caesar/obelix.png" />
 	</Introduction>
 	<CipherDemo>
-	<input content="Anna"/>
+		<input content="Anna" />
 	</CipherDemo>
-	
+	<Encrypt>
+
+	</Encrypt>
+	<Decrypt>
+
+	</Decrypt>
+	<Histogram>
+
+	</Histogram>
 </Caesar>

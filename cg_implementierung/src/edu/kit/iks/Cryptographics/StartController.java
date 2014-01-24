@@ -59,12 +59,15 @@ public class StartController extends AbstractController {
 		GridBagConstraints welcomeViewLayout = new GridBagConstraints();
 		welcomeViewLayout.fill = GridBagConstraints.HORIZONTAL;
 		welcomeViewLayout.gridy = 0;
-		welcomeViewLayout.ipady = 600; // TODO: remove hardcode...
+		welcomeViewLayout.weighty = 0.95f;
 		this.welcomeView = new WelcomeView();
 		this.view.add(this.welcomeView, welcomeViewLayout);
 
 		// Add timeline view and its layout
 		GridBagConstraints timelineViewLayout = new GridBagConstraints();
+		timelineViewLayout.fill = GridBagConstraints.HORIZONTAL;
+		timelineViewLayout.weightx = 1.0f;
+		timelineViewLayout.weighty = 0.05f;
 		timelineViewLayout.gridy = 1;
 		this.timelineView = new TimelineView(visualizationInfos);
 		this.view.add(this.timelineView, timelineViewLayout);
