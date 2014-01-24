@@ -1,6 +1,7 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -166,10 +167,10 @@ public class CryptoView extends VisualizationView {
 		expConst.gridy = 1;
 		expConst.gridwidth = 4;
 		this.add(this.explanations, expConst);
-		
+
 		// build the user interface.
 		this.inOutPanel.validate();
-		
+
 		// build elements.
 		this.validate();
 	}
@@ -183,63 +184,8 @@ public class CryptoView extends VisualizationView {
 		this.explanations = null;
 		this.repaint();
 
-		// set up the Input and output fields. Because this is a demonstration
-		// the fields
-		// are filled by the programm and are not editable by the user.
-		this.userInput = new JTextField[inputChars.length];
-		this.userOutput = new JTextField[inputChars.length];
-		this.inOutPanel = new JPanel(new GridBagLayout());
-		GridBagConstraints panelConst = new GridBagConstraints();
-		panelConst.anchor = GridBagConstraints.PAGE_START;
-		panelConst.weightx = 0.5;
-		panelConst.weighty = 0.5;
-		panelConst.gridx = 1;
-		panelConst.gridy = 1;
-		panelConst.gridwidth = inputChars.length * 4;
-		panelConst.gridheight = 2;
-		// panelConst.fill = GridBagConstraints.HORIZONTAL;
-		this.add(inOutPanel, panelConst);
-
-		// TODO: Resize the JTextField to 25*25 pixel!
-		for (int i = 0; i < inputChars.length; i++) {
-			// fields where the input will be encrypted
-			this.userInput[i] = new JTextField();
-			this.userInput[i].setText("" + inputChars[i]);
-			this.userInput[i].setBorder(null);
-			this.userInput[i].setFont(new Font("Arial", 2, 25));
-			this.userInput[i].setEditable(false);
-			GridBagConstraints inputConst = new GridBagConstraints();
-			// inputConst.weightx = 0.5;
-			// inputConst.weighty = 0.1;
-			inputConst.insets = new Insets(5, 5, 5, 5);
-			inputConst.gridx = i;
-			inputConst.gridy = 0;
-			inputConst.ipadx = 20;
-			inputConst.ipady = 20;
-			// inputConst.gridwidth = 4;
-			// inputConst.fill = GridBagConstraints.HORIZONTAL;
-			this.inOutPanel.add(userInput[i], inputConst);
-
-			// fields where the encrypted input is put in.
-			this.userOutput[i] = new JTextField();
-			this.userOutput[i].setFont(new Font("Arial", 2, 25));
-			this.userOutput[i].setName("" + inputChars[i]);           // needed later when checking if the
-			// encrypted char of the plain letter
-			// was valid!
-			this.userOutput[i].setBorder(null);
-			GridBagConstraints outConst = new GridBagConstraints();
-			// outConst.weightx = 0.5;
-			// outConst.weighty = 0.1;
-			outConst.gridx = i;
-			outConst.gridy = 1;
-			outConst.ipadx = 20;
-			outConst.ipady = 20;
-			outConst.insets = new Insets(25, 25, 25, 25);
-			// outConst.gridwidth = 4;
-			// outConst.fill = GridBagConstraints.HORIZONTAL;
-			this.inOutPanel.add(userOutput[i], outConst);
-			this.inOutPanel.validate();
-		}
+		// setupInOut()!
+		setupInOutElements(inputChars);
 
 		// setup the alphabet.
 		this.alphabet = new AlphabetStripView();
@@ -265,6 +211,69 @@ public class CryptoView extends VisualizationView {
 
 		// build the new view.
 		this.validate();
+	}
+
+	private void setupInOutElements(char[] inputChars) {
+
+		// set up the Input and output fields. Because this is a demonstration
+		// the fields
+		// are filled by the programm and are not editable by the user.
+		this.userInput = new JTextField[inputChars.length];
+		this.userOutput = new JTextField[inputChars.length];
+		this.inOutPanel = new JPanel(new GridBagLayout());
+		GridBagConstraints panelConst = new GridBagConstraints();
+		panelConst.anchor = GridBagConstraints.PAGE_START;
+		panelConst.weightx = 0.5;
+		panelConst.weighty = 0.5;
+		panelConst.gridx = 1;
+		panelConst.gridy = 1;
+		panelConst.gridwidth = inputChars.length * 4;
+		panelConst.gridheight = 2;
+		// panelConst.fill = GridBagConstraints.HORIZONTAL;
+		this.add(inOutPanel, panelConst);
+
+		for (int i = 0; i < inputChars.length; i++) {
+			// fields where the input will be encrypted
+			this.userInput[i] = new JTextField();
+			this.userInput[i].setText("" + inputChars[i]);
+			this.userInput[i].setBorder(null);
+			this.userInput[i].setFont(new Font("Arial", 2, 25));
+			this.userInput[i].setEditable(false);
+			this.userInput[i].setPreferredSize(new Dimension(25, 25));
+			GridBagConstraints inputConst = new GridBagConstraints();
+			// inputConst.weightx = 0.5;
+			// inputConst.weighty = 0.1;
+			inputConst.insets = new Insets(25, 25, 25, 25);
+			inputConst.gridx = i;
+			inputConst.gridy = 0;
+			inputConst.ipadx = 20;
+			inputConst.ipady = 20;
+			// inputConst.gridwidth = 4;
+			// inputConst.fill = GridBagConstraints.HORIZONTAL;
+			this.inOutPanel.add(userInput[i], inputConst);
+
+			// fields where the encrypted input is put in.
+			this.userOutput[i] = new JTextField();
+			this.userOutput[i].setFont(new Font("Arial", 2, 25));
+			this.userOutput[i].setName("" + inputChars[i]);
+			this.userOutput[i].setPreferredSize(new Dimension(25, 25));
+			// needed later when checking if the
+			// encrypted char of the plain letter
+			// was valid!
+			this.userOutput[i].setBorder(null);
+			GridBagConstraints outConst = new GridBagConstraints();
+			// outConst.weightx = 0.5;
+			// outConst.weighty = 0.1;
+			outConst.gridx = i;
+			outConst.gridy = 1;
+			outConst.ipadx = 20;
+			outConst.ipady = 20;
+			outConst.insets = new Insets(25, 25, 25, 25);
+			// outConst.gridwidth = 4;
+			// outConst.fill = GridBagConstraints.HORIZONTAL;
+			this.inOutPanel.add(userOutput[i], outConst);
+			this.inOutPanel.validate();
+		}
 	}
 
 	/**
