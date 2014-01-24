@@ -65,6 +65,7 @@ public class HistogramView extends VisualizationView {
 	 * Key that is being incremented and decremented.
 	 */
 	private JLabel key;
+	private int keyValue;
 
 	/**
 	 * Label that will contain a histogram image that will be explained to the user.
@@ -82,7 +83,7 @@ public class HistogramView extends VisualizationView {
 
 		GridBagLayout layout = new GridBagLayout();
 		this.setLayout(layout);
-
+        this.keyValue = 0;
 		// setup the navigation.
 		setupNavigation();
 
@@ -106,8 +107,11 @@ public class HistogramView extends VisualizationView {
 		keyConst.weighty = 0.5;
 		keyConst.gridx = 0;
 		keyConst.gridy = 0;
-		keyConst.gridwidth = 4;
+		keyConst.gridwidth = 5;
 		this.add(this.keyControl, keyConst);
+		//key
+		this.key = new JLabel("0");
+		this.keyControl.add(this.key);
 		// increment.
 		this.increment = new JButton("+1");
 		this.keyControl.add(this.increment);
@@ -291,5 +295,19 @@ public class HistogramView extends VisualizationView {
 	 */
 	public void setHistogram(CharacterFrequencyDiagramView histogram) {
 		this.histogram = histogram;
+	}
+
+	/**
+	 * @return the keyValue
+	 */
+	public int getKeyValue() {
+		return keyValue;
+	}
+
+	/**
+	 * @param keyValue the keyValue to set
+	 */
+	public void setKeyValue(int keyValue) {
+		this.keyValue = keyValue;
 	}
 }
