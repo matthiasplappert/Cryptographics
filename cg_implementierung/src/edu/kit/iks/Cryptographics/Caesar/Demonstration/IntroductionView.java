@@ -46,15 +46,19 @@ public class IntroductionView extends VisualizationView {
 	 * Labels that will contain img for animation.
 	 */
 	private ImageView caesarImg;
-	private ImageView masterPlan;
+	private ImageView caesarIdeaImg;
+	private ImageView backgroundImg;
 	private ImageView courier;
-	private ImageView orders;
-	private ImageView cipher;
+	private int xCoordCourier;
+	private ImageView caesarEvil;
+	
+	private ImageView boar;
 	private ImageView obelix;
+	private ImageView orders;
+
 
 	// needed only for animations.
 	private Timer timer;
-	private int x;
 	private int y;
 
 	/**
@@ -87,7 +91,7 @@ public class IntroductionView extends VisualizationView {
 		GridBagConstraints animationConstraints = new GridBagConstraints();
 		animationConstraints.gridx = 0;
 		animationConstraints.gridy = 0;
-		animationConstraints.gridwidth = 3;
+		animationConstraints.gridwidth = 10;
 		animationConstraints.fill = GridBagConstraints.BOTH;
 		this.add(animationContainer, animationConstraints);
 
@@ -125,9 +129,9 @@ public class IntroductionView extends VisualizationView {
 		planConstraint.gridy = 0;
 
 		// take the image from the xml-resource.
-		this.setMasterPlan(new ImageView(introResource.getChild("masterPlan")
+		this.setCaesarIdeaImg(new ImageView(introResource.getChild("CaesarIdea")
 				.getAttributeValue("path")));
-		this.animationContainer.add(this.masterPlan, planConstraint);
+		this.animationContainer.add(this.caesarIdeaImg, planConstraint);
 
 		// set the alignment of the Explanations.
 		GridBagConstraints explanationConstraint = new GridBagConstraints();
@@ -154,21 +158,21 @@ public class IntroductionView extends VisualizationView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (getCourier().getX() < 400) {
+				if (getCourier().getX() < (getAnimationContainer().getWidth() - 200)) {
 					animate();
 				} else {
 					getTimer().stop();
 				}
 			}
 		});
-		x = getCourier().getX();
+		xCoordCourier = getCourier().getX();
 		this.timer.start();
 	}
 
 	public void animate() {
-		x += 10;
+		xCoordCourier += 10;
 		int y = getCourier().getY();
-		getCourier().setBounds(x, y, getPreferredSize().width,
+		getCourier().setBounds(xCoordCourier, y, getPreferredSize().width,
 				getPreferredSize().height);
 		getCourier().validate();
 		this.repaint();
@@ -209,21 +213,6 @@ public class IntroductionView extends VisualizationView {
 	 */
 	public void setCaesarImg(ImageView caesarImg) {
 		this.caesarImg = caesarImg;
-	}
-
-	/**
-	 * @return the cipher
-	 */
-	public ImageView getCipher() {
-		return cipher;
-	}
-
-	/**
-	 * @param cipher
-	 *            the cipher to set
-	 */
-	public void setCipher(ImageView cipher) {
-		this.cipher = cipher;
 	}
 
 	/**
@@ -304,16 +293,16 @@ public class IntroductionView extends VisualizationView {
 	/**
 	 * @return the masterPlan
 	 */
-	public ImageView getMasterPlan() {
-		return masterPlan;
+	public ImageView getCaesarIdeaImg() {
+		return caesarIdeaImg;
 	}
 
 	/**
-	 * @param masterPlan
+	 * @param caesarIdaImg
 	 *            the masterPlan to set
 	 */
-	public void setMasterPlan(ImageView masterPlan) {
-		this.masterPlan = masterPlan;
+	public void setCaesarIdeaImg(ImageView caesarIdaImg) {
+		this.caesarIdeaImg = caesarIdaImg;
 	}
 
 	/**
@@ -328,6 +317,62 @@ public class IntroductionView extends VisualizationView {
 	 */
 	public void setTimer(Timer timer) {
 		this.timer = timer;
+	}
+
+	/**
+	 * @return the background
+	 */
+	public ImageView getBackgroundImg() {
+		return backgroundImg;
+	}
+
+	/**
+	 * @param background the background to set
+	 */
+	public void setBackgroundImg(ImageView background) {
+		this.backgroundImg = background;
+	}
+
+	/**
+	 * @return the xCoord
+	 */
+	public int getxCoordCourier() {
+		return xCoordCourier;
+	}
+
+	/**
+	 * @param xCoord the xCoord to set
+	 */
+	public void setxCoordCourier(int xCoord) {
+		this.xCoordCourier = xCoord;
+	}
+
+	/**
+	 * @return the boar
+	 */
+	public ImageView getBoar() {
+		return boar;
+	}
+
+	/**
+	 * @param boar the boar to set
+	 */
+	public void setBoar(ImageView boar) {
+		this.boar = boar;
+	}
+
+	/**
+	 * @return the caesarEvil
+	 */
+	public ImageView getCaesarEvil() {
+		return caesarEvil;
+	}
+
+	/**
+	 * @param caesarEvil the caesarEvil to set
+	 */
+	public void setCaesarEvil(ImageView caesarEvil) {
+		this.caesarEvil = caesarEvil;
 	}
 
 }

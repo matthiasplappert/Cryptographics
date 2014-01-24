@@ -1,30 +1,21 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-import org.jdom2.Element;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
-import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 
 /**
- * Controller for the last step of demonstration phase. Controls the needed
- * elements from CaesarUpperView, !!see CaesarUpperView for more details!!.
+ * Controller for the last step of demonstration phase. Controls the needed elements from
+ * CaesarUpperView, !!see CaesarUpperView for more details!!.
  * 
  * @author Wasilij Beskorovajnov.
  * 
@@ -47,8 +38,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 		this.getView().getBackButton().addActionListener(new ActionListener() {
 			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
-			 * .event.ActionEvent)
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
 			 */
 			public void actionPerformed(ActionEvent event) {
 				VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
@@ -57,8 +47,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 		});
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
-			 * .event.ActionEvent)
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
 			 */
 			public void actionPerformed(ActionEvent event) {
 				VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
@@ -109,8 +98,8 @@ public class CipherDemoController extends AbstractVisualizationController {
 	}
 
 	/**
-	 * Function for performing the needed animations. After each step the
-	 * animation stops and continues when user wishes.
+	 * Function for performing the needed animations. After each step the animation stops and
+	 * continues when user wishes.
 	 * 
 	 * @param c
 	 */
@@ -126,7 +115,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 			step3();
 			break;
 		case 4:
-		//	animationDone();
+			// animationDone();
 		}
 
 	}
@@ -192,10 +181,10 @@ public class CipherDemoController extends AbstractVisualizationController {
 	 * Describe that decryption is the same way as encryption.
 	 */
 	private void step4() {
-      this.animationStep++;
-      String firstLetter = this.getView().getUserInput()[0].getText();
-    //  this.getView().getExplanations().setText("The first letter is "+firstLetter+""
-      
+		this.animationStep++;
+		String firstLetter = this.getView().getUserInput()[0].getText();
+		// this.getView().getExplanations().setText("The first letter is "+firstLetter+""
+
 	}
 
 	/**

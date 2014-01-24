@@ -63,6 +63,11 @@ public class CipherDemoView extends VisualizationView {
 	 * Button needed for proceeding the stepwise animations.
 	 */
 	private JButton proceed;
+	
+	/**
+	 * XML-root element for cipherdemoView elements.
+	 */
+	private Element cipherDemoResource;
 
 	/**
 	 * Constructor.
@@ -73,7 +78,7 @@ public class CipherDemoView extends VisualizationView {
 		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
 		Element cipherDemoResource = vsInfo.getResources().getChild(
 				"CipherDemo");
-
+    
 		// set the layout to GridBagLayout.
 		GridBagLayout introLayout = new GridBagLayout();
 		this.setLayout(introLayout);
