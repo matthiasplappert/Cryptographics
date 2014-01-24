@@ -3,6 +3,7 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,11 +17,10 @@ import edu.kit.iks.CryptographicsLib.CharacterFrequencyDiagramView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
- * This view represents the last view of the experiment phase. The elements
- * contained here allow the user to break a given caesar cipher and have the
- * purpose to show him the disadvantages of the caesar cipher, in particular how
- * easy it is to break it. In additional user gets an animation presented that
- * describe what histogramms are and how they could help him solving his task to
+ * This view represents the last view of the experiment phase. The elements contained here allow the
+ * user to break a given caesar cipher and have the purpose to show him the disadvantages of the
+ * caesar cipher, in particular how easy it is to break it. In additional user gets an animation
+ * presented that describe what histogramms are and how they could help him solving his task to
  * break the cipher.
  * 
  * @author Wasilij Beskorovajnov.
@@ -44,7 +44,9 @@ public class HistogramView extends VisualizationView {
 	private JPanel navigationPanel;
 
 	/**
-	 * Labels that contain an encrypted characters for demonstration purpose.
+	 * TODO: Because the cipher will be a smaller plain text it is benefitial to put it in one
+	 * bigger JTextField than in many smaller ones. Labels that contain an encrypted characters for
+	 * demonstration purpose.
 	 */
 	private JTextField[] cipher;
 
@@ -59,8 +61,7 @@ public class HistogramView extends VisualizationView {
 	private JLabel key;
 
 	/**
-	 * Label that will contain a histogram image that will be explained to the
-	 * user.
+	 * Label that will contain a histogram image that will be explained to the user.
 	 */
 	private CharacterFrequencyDiagramView histogram;
 
@@ -74,9 +75,49 @@ public class HistogramView extends VisualizationView {
 		Element histResource = vsInfo.getResources().getChild("Histogram");
 
 		GridBagLayout layout = new GridBagLayout();
-		GridBagConstraints nextConstraint = new GridBagConstraints();
 		this.setLayout(layout);
 
+		// setup the navigation.
+		setupNavigation();
+
+		// set the alignment of the Explanations.
+		GridBagConstraints explanationConstraint = new GridBagConstraints();
+		explanationConstraint.anchor = GridBagConstraints.FIRST_LINE_START;
+		explanationConstraint.weightx = 1.0;
+		explanationConstraint.weighty = 1.0;
+		explanationConstraint.gridx = 0;
+		explanationConstraint.gridy = 1;
+		explanationConstraint.gridwidth = 5;
+		this.setExplanations(new JLabel(
+				"<html><body> Explanations for the histograms experiment!"));
+		this.add(this.explanations, explanationConstraint);
+
+		// setup the Panel for buttons for incrementing/decrementing the key.
+		this.keyControl = new JPanel(new GridLayout(1, 1));
+		GridBagConstraints keyConst = new GridBagConstraints();
+		keyConst.anchor = GridBagConstraints.PAGE_END;
+		keyConst.weightx = 0.5;
+		keyConst.weighty = 0.5;
+		keyConst.gridx = 0;
+		keyConst.gridy = 0;
+		keyConst.gridwidth = 4;
+		this.add(this.keyControl, keyConst);
+		// increment.
+		this.increment = new JButton("+1");
+		this.keyControl.add(this.increment);
+		// decrement.
+		this.decrement = new JButton("-1");
+		this.keyControl.add(this.decrement);
+		// layout the buttons.
+		this.keyControl.validate();
+
+		// TODO:Histogram UI-Element not implemented yet!
+		// this.histogram = new CharacterFrequencyDiagramView({1,2,3,4,5});
+
+		this.validate();
+	}
+
+	private void setupNavigation() {
 		// set up a container for the navigation Buttons (Next and Back).
 		this.navigationPanel = new JPanel(new BorderLayout());
 		GridBagConstraints navConst = new GridBagConstraints();
@@ -97,41 +138,25 @@ public class HistogramView extends VisualizationView {
 		this.remove(this.getNextButton());
 
 		// set up the alignment of the button back;
-		this.setBackButton(new JButton("Back to the experiment!"));
+		this.setBackButton(new JButton("Back to Experiment!"));
 		/*
-		 * GridBagConstraints backConst = new GridBagConstraints();
-		 * backConst.weightx = 1.0; backConst.weighty = 0.1; backConst.gridx =
-		 * 0; backConst.gridy = 0; backConst.gridwidth = 3;
+		 * GridBagConstraints backConst = new GridBagConstraints(); backConst.weightx = 1.0;
+		 * backConst.weighty = 0.1; backConst.gridx = 0; backConst.gridy = 0; backConst.gridwidth =
+		 * 3;
 		 */
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
-		this.setNextButton(new JButton("Skip the histograms!"));
+		this.setNextButton(new JButton(
+				"Skip the histograms(Visualization Done)!"));
 
 		/*
-		 * GridBagConstraints nextConst = new GridBagConstraints();
-		 * nextConst.weightx = 1.0; nextConst.weighty = 0.1; nextConst.gridx =
-		 * 10; nextConst.gridy = 1; nextConst.gridwidth = 3;
+		 * GridBagConstraints nextConst = new GridBagConstraints(); nextConst.weightx = 1.0;
+		 * nextConst.weighty = 0.1; nextConst.gridx = 10; nextConst.gridy = 1; nextConst.gridwidth =
+		 * 3;
 		 */
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
-		this.navigationPanel.validate();
 
-		// set the alignment of the Explanations.
-		GridBagConstraints explanationConstraint = new GridBagConstraints();
-		explanationConstraint.anchor = GridBagConstraints.FIRST_LINE_START;
-		explanationConstraint.weightx = 1.0;
-		explanationConstraint.weighty = 1.0;
-		explanationConstraint.gridx = 1;
-		explanationConstraint.gridy = 1;
-		explanationConstraint.gridwidth = 5;
-		this.setExplanations(new JLabel(
-				"<html><body> Explanations for the histograms experiment!"));
-		this.add(this.explanations, explanationConstraint);
-		
-		//TODO:Histogram UI-Element not implemented yet!
-		//this.histogram = new CharacterFrequencyDiagramView({1,2,3,4,5});
-
-		this.validate();
 	}
 
 	/**
@@ -216,7 +241,8 @@ public class HistogramView extends VisualizationView {
 	}
 
 	/**
-	 * @param keyControl the keyControl to set
+	 * @param keyControl
+	 *            the keyControl to set
 	 */
 	public void setKeyControl(JPanel keyControl) {
 		this.keyControl = keyControl;
@@ -230,28 +256,32 @@ public class HistogramView extends VisualizationView {
 	}
 
 	/**
-	 * @param navigationPanel the navigationPanel to set
+	 * @param navigationPanel
+	 *            the navigationPanel to set
 	 */
 	public void setNavigationPanel(JPanel navigationPanel) {
 		this.navigationPanel = navigationPanel;
 	}
 
 	/**
-	 * @param increment the increment to set
+	 * @param increment
+	 *            the increment to set
 	 */
 	public void setIncrement(JButton increment) {
 		this.increment = increment;
 	}
 
 	/**
-	 * @param decrement the decrement to set
+	 * @param decrement
+	 *            the decrement to set
 	 */
 	public void setDecrement(JButton decrement) {
 		this.decrement = decrement;
 	}
 
 	/**
-	 * @param histogram the histogram to set
+	 * @param histogram
+	 *            the histogram to set
 	 */
 	public void setHistogram(CharacterFrequencyDiagramView histogram) {
 		this.histogram = histogram;

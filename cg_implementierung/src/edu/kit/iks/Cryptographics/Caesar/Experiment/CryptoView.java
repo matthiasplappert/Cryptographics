@@ -298,16 +298,6 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
-	 * Inserts the input from the user or the generated input from the program into the JLabel Array
-	 * and displays it.
-	 * 
-	 * @param input
-	 */
-	public void insertInput(String input) {
-
-	}
-
-	/**
 	 * @return input
 	 */
 	public JTextField getInput() {
