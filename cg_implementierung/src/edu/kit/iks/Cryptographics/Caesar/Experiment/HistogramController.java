@@ -157,9 +157,11 @@ public class HistogramController extends AbstractVisualizationController {
 			public void mouseClicked(MouseEvent e) {
 				//TODO: need the valid bahviour.
 				int key = getView().getKeyValue();
-				key = Math.abs((key - 1) % 26);
+				key = (key - 1) % 26;
+				if (key > 0) {
 					getView().setKeyValue(key);
 					getView().getKey().setText("" + key);
+				}
 			}
 
 			@Override
