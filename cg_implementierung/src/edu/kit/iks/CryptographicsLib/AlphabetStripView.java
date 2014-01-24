@@ -61,22 +61,14 @@ public class AlphabetStripView extends JPanel {
 		// Puts the numbers from 1 to 26 in the second row
 		JLabel currNum;
 		for (int i = 0; i < 26; i++) {
-<<<<<<< HEAD
 			currNum = new JLabel("" + (i+1));
 			currNum.setBorder(BorderFactory.createLineBorder(Color.black));
-=======
-			currNum = new JLabel("" + (i));
->>>>>>> origin/master
 			currNum.setVerticalAlignment(JLabel.CENTER);
 			currNum.setHorizontalAlignment(JLabel.CENTER);
 			this.add(currNum);
 		}
 		
-<<<<<<< HEAD
 		Dimension d = new Dimension(width * 26, height * 2);
-=======
-		Dimension d = new Dimension(25 * 26, 25);
->>>>>>> origin/master
 		this.setPreferredSize(d);
 	}
 }
