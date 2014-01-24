@@ -93,43 +93,8 @@ public class CryptoView extends VisualizationView {
 		GridBagLayout introLayout = new GridBagLayout();
 		this.setLayout(introLayout);
 
-		// set up a container for the navigation Buttons (Next and Back).
-		this.navigationPanel = new JPanel(new BorderLayout());
-		GridBagConstraints navConst = new GridBagConstraints();
-		navConst.anchor = GridBagConstraints.NORTH;
-		navConst.weightx = 1.0;
-		navConst.weighty = 0.1;
-		navConst.gridx = 0;
-		navConst.gridy = 0;
-		navConst.gridwidth = 13;
-		navConst.gridheight = 1;
-		navConst.fill = GridBagConstraints.HORIZONTAL;
-		this.add(this.navigationPanel, navConst);
-
-		// TODO: dont instantiate the buttons in the upper class.
-		// First need to remove the buttons because they are added in the upper
-		// class.
-		this.remove(this.getBackButton());
-		this.remove(this.getNextButton());
-
-		// set up the alignment of the button back;
-		this.setBackButton(new JButton("Back to Demonstration!"));
-		/*
-		 * GridBagConstraints backConst = new GridBagConstraints(); backConst.weightx = 1.0;
-		 * backConst.weighty = 0.1; backConst.gridx = 0; backConst.gridy = 0; backConst.gridwidth =
-		 * 3;
-		 */
-		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
-
-		// set up the aligment of the button Next;
-		this.setNextButton(new JButton("Go to Decryption!"));
-
-		/*
-		 * GridBagConstraints nextConst = new GridBagConstraints(); nextConst.weightx = 1.0;
-		 * nextConst.weighty = 0.1; nextConst.gridx = 10; nextConst.gridy = 1; nextConst.gridwidth =
-		 * 3;
-		 */
-		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
+		// setups the next and back buttons.
+		setupNavigation();
 
 		// set the Container for the user interface.
 		this.inOutPanel = new JPanel(new GridLayout(2, 2));
@@ -175,6 +140,47 @@ public class CryptoView extends VisualizationView {
 		this.validate();
 	}
 
+	private void setupNavigation() {
+		// set up a container for the navigation Buttons (Next and Back).
+		this.navigationPanel = new JPanel(new BorderLayout());
+		GridBagConstraints navConst = new GridBagConstraints();
+		navConst.anchor = GridBagConstraints.NORTH;
+		navConst.weightx = 1.0;
+		navConst.weighty = 0.1;
+		navConst.gridx = 0;
+		navConst.gridy = 0;
+		navConst.gridwidth = 13;
+		navConst.gridheight = 1;
+		navConst.fill = GridBagConstraints.HORIZONTAL;
+		this.add(this.navigationPanel, navConst);
+
+		// TODO: dont instantiate the buttons in the upper class.
+		// First need to remove the buttons because they are added in the upper
+		// class.
+		this.remove(this.getBackButton());
+		this.remove(this.getNextButton());
+
+		// set up the alignment of the button back;
+		this.setBackButton(new JButton("Back to Demonstration!"));
+		/*
+		 * GridBagConstraints backConst = new GridBagConstraints(); backConst.weightx = 1.0;
+		 * backConst.weighty = 0.1; backConst.gridx = 0; backConst.gridy = 0; backConst.gridwidth =
+		 * 3;
+		 */
+		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
+
+		// set up the aligment of the button Next;
+		this.setNextButton(new JButton("Go to Decryption!"));
+
+		/*
+		 * GridBagConstraints nextConst = new GridBagConstraints(); nextConst.weightx = 1.0;
+		 * nextConst.weighty = 0.1; nextConst.gridx = 10; nextConst.gridy = 1; nextConst.gridwidth =
+		 * 3;
+		 */
+		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
+
+	}
+
 	public void start(char[] inputChars) {
 		// User input will be now filled into the boxes. This field is not
 		// needed anymore.
@@ -199,7 +205,7 @@ public class CryptoView extends VisualizationView {
 		this.add(this.alphabet, alphConst);
 
 		// setup the explanations.
-		this.explanations = new JLabel("<html><body>" + "Your turn my friend!");
+		this.explanations = new JLabel("<html><body>" + "Your turn comrade!");
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.LAST_LINE_START;
 		expConst.weightx = 0.5;
