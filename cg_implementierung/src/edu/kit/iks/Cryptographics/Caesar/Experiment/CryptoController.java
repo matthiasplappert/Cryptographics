@@ -35,7 +35,7 @@ public class CryptoController extends AbstractVisualizationController {
 	 */
 	private int editableFields;
 
-	private boolean decryptionPhase;
+	private boolean decryptionPhase = false;
 
 	/**
 	 * Constructor.
@@ -44,7 +44,6 @@ public class CryptoController extends AbstractVisualizationController {
 	 */
 	public CryptoController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		decryptionPhase = false;
 
 	}
 
@@ -125,6 +124,13 @@ public class CryptoController extends AbstractVisualizationController {
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
 			 */
 			public void actionPerformed(ActionEvent event) {
+				// When switching back from demonstration to
+				// experiment in the encryption phase, the variable will remain set to true when not
+				// reset.
+				if (decryptionPhase) {
+					decryptionPhase = false;
+				}
+				//load next state.
 				VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
 				containerController.presentPreviousVisualizationController();
 			}
@@ -135,15 +141,14 @@ public class CryptoController extends AbstractVisualizationController {
 			 */
 			public void actionPerformed(ActionEvent event) {
 				if (!decryptionPhase) {
-					//TODO: implement unloadView();
-					unloadView();
+					// TODO: implement unloadView();
+					unloadInOut();
 					// start Decryption!
 					decryptionPhase = true;
 					// TODO: generate a random cipher.
 					char[] string = getModel().generateCipher();
 					setEditableFields(string.length);
-					getView().start(string);
-
+					getView().setupInOutElements(string);
 					// generate ActionListener.
 					generateListener(string);
 
@@ -155,11 +160,24 @@ public class CryptoController extends AbstractVisualizationController {
 					getView().getNextButton().setText("Go to histograms!");
 
 				} else {
+					//load the previous state.
 					VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
 					containerController.presentNextVisualizationController();
 				}
 			}
+
 		});
+
+	}
+
+	/**
+	 * 
+	 */
+	public void unloadInOut() {
+		this.getView().remove(this.getView().getInOutPanel());
+		this.getView().setInOutPanel(null);
+		this.getView().revalidate();
+		this.getView().repaint();
 
 	}
 
@@ -179,9 +197,14 @@ public class CryptoController extends AbstractVisualizationController {
 						public void actionPerformed(ActionEvent e) {
 							// TODO: let the Model check for validity.
 							JTextField userOutput = (JTextField) e.getSource();
-
-							if (getModel().checkValidChar(userOutput.getName(),
-									userOutput.getText())) {
+							// standart key for the caesar cipher. +3 when encrypting. -3 when
+							// decrypting.
+							int key = 3;
+							if (isDecryptionPhase()) {
+								key = -3;
+							}
+							if (getModel().checkValidChar(key,
+									userOutput.getName(), userOutput.getText())) {
 								// user encrypted the given char successful.
 								userOutput.setBorder(BorderFactory
 										.createLineBorder(Color.green));
@@ -227,8 +250,9 @@ public class CryptoController extends AbstractVisualizationController {
 
 	@Override
 	public void unloadView() {
-	  	
+
 	}
+
 	@Override
 	public String getHelp() {
 		return "If you only see the textfield then put your string in it. Else you've already "
@@ -272,6 +296,13 @@ public class CryptoController extends AbstractVisualizationController {
 	 */
 	public void setEditableFields(int editableFields) {
 		this.editableFields = editableFields;
+	}
+
+	/**
+	 * @return the decryptionPhase
+	 */
+	public boolean isDecryptionPhase() {
+		return decryptionPhase;
 	}
 
 }

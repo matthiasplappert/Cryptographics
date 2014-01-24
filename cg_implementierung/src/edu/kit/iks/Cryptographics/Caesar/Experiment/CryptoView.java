@@ -224,7 +224,7 @@ public class CryptoView extends VisualizationView {
 		this.validate();
 	}
 
-	private void setupInOutElements(char[] inputChars) {
+	public void setupInOutElements(char[] inputChars) {
 
 		// set up the Input and output fields. Because this is a demonstration
 		// the fields

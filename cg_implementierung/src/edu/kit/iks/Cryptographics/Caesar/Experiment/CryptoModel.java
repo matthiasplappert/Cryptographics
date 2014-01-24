@@ -25,9 +25,9 @@ public class CryptoModel {
 	 * 
 	 * @param input
 	 */
-	public boolean checkValidChar(String plain, String enc) {
+	public boolean checkValidChar(int key, String plain, String enc) {
 		// plain is the character to encrypt and enc is the corresponding cipher.
-		if ((((int) plain.charAt(0) + 3) % (26 + 65)) == ((int) enc.charAt(0))) {
+		if ((((int) plain.charAt(0) + key) % (26 + 65)) == ((int) enc.charAt(0))) {
 			return true;
 		}
 		return false;
