@@ -60,7 +60,9 @@ public class HistogramView extends VisualizationView {
 	 * bigger JTextField than in many smaller ones. Labels that contain an encrypted characters for
 	 * demonstration purpose.
 	 */
-	private JTextField cipher;
+	private JLabel cipher;
+
+	private JLabel plain;
 
 	/**
 	 * Explanations of the animations.
@@ -73,7 +75,10 @@ public class HistogramView extends VisualizationView {
 	 * Key that is being incremented and decremented.
 	 */
 	private JLabel key;
+
 	private int keyValue;
+
+	private int secretKey;
 
 	/**
 	 * Label that will contain a histogram image that will be explained to the user.
@@ -117,8 +122,14 @@ public class HistogramView extends VisualizationView {
 						+ "It is also called 'breaking' the cipher if you try to decrypt without a given key parameter. The following <br>"
 						+ "experiments will teach you how to break caesar's cipher.<br>"));
 		this.add(this.explanations, explanationConstraint);
-        this.explanations.setBorder(BorderFactory.createLineBorder(Color.red));
-		// setup the aligment of the button proceed.
+		
+		// setup the proceed button.
+		setupProceed();
+
+		this.validate();
+	}
+
+	public void setupProceed() {
 		GridBagConstraints proceedConst = new GridBagConstraints();
 		this.proceed = new JButton("Proceed!");
 		proceedConst.anchor = GridBagConstraints.PAGE_END;
@@ -126,11 +137,9 @@ public class HistogramView extends VisualizationView {
 		proceedConst.gridy = 3;
 		proceedConst.gridwidth = 3;
 		this.add(this.proceed, proceedConst);
-
-		this.validate();
 	}
 
-	private void setupHistogram() {
+	public void setupHistogram() {
 		// TODO:Histogram UI-Element not implemented yet!
 		int[] quantities = { 1, 2, 3, 4, 5 };
 		this.histogram = new CharacterFrequencyDiagramView(quantities);
@@ -139,14 +148,17 @@ public class HistogramView extends VisualizationView {
 		this.add(histogram);
 
 		this.validate();
+		this.repaint();
 	}
 
 	public void setupBruteForce() {
 		// GridBagLayout layout = (GridBagLayout) this.getLayout();
 		this.remove(this.explanations);
+		this.remove(proceed);
+		this.proceed = null;
 
 		GridBagConstraints expConst = new GridBagConstraints();
-		//expConst.anchor = GridBagConstraints.FIRST_LINE_START;
+		// expConst.anchor = GridBagConstraints.FIRST_LINE_START;
 		expConst.gridx = 0;
 		expConst.gridy = 1;
 		this.add(this.explanations, expConst);
@@ -154,7 +166,7 @@ public class HistogramView extends VisualizationView {
 		this.keyValue = 1;
 		// setup the Panel for buttons for incrementing/decrementing the key.
 		this.keyControl = new JPanel(new GridBagLayout());
-		this.keyControl.setBorder(BorderFactory.createLineBorder(Color.green));
+		// this.keyControl.setBorder(BorderFactory.createLineBorder(Color.green));
 		GridBagConstraints keyConst = new GridBagConstraints();
 		keyConst.anchor = GridBagConstraints.PAGE_START;
 		keyConst.weightx = 0.5;
@@ -163,11 +175,11 @@ public class HistogramView extends VisualizationView {
 		keyConst.gridy = 2;
 		keyConst.gridwidth = 5;
 		keyConst.gridheight = 3;
-		//keyConst.fill = GridBagConstraints.HORIZONTAL;
+		// keyConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.keyControl, keyConst);
 		// key
 		this.key = new JLabel("1");
-		this.key.setPreferredSize(new Dimension(100,50));
+		this.key.setPreferredSize(new Dimension(100, 50));
 		this.key.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints keyLabelConst = new GridBagConstraints();
 		keyLabelConst.gridx = 2;
@@ -175,7 +187,7 @@ public class HistogramView extends VisualizationView {
 		this.keyControl.add(this.key, keyLabelConst);
 		// increment.
 		this.increment = new JButton("+1");
-		this.increment.setPreferredSize(new Dimension(100,50));
+		this.increment.setPreferredSize(new Dimension(100, 50));
 		this.increment.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints incConst = new GridBagConstraints();
 		incConst.gridx = 3;
@@ -183,18 +195,29 @@ public class HistogramView extends VisualizationView {
 		this.keyControl.add(this.increment, incConst);
 		// decrement.
 		this.decrement = new JButton("-1");
-		this.decrement.setPreferredSize(new Dimension(100,50));
+		this.decrement.setPreferredSize(new Dimension(100, 50));
 		this.decrement.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints decConst = new GridBagConstraints();
 		decConst.gridx = 3;
 		decConst.gridy = 2;
 		this.keyControl.add(this.decrement, decConst);
-		
-		this.cipher = new JTextField("DDDDDDD DDDDDDDDD");
+
+		// TODO: Need a valid cipher and key generator!
+		this.cipher = new JLabel("FSSF");
+		this.secretKey = 5;
+		this.cipher.setPreferredSize(new Dimension(100, 50));
+		this.cipher.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints cipherConst = new GridBagConstraints();
 		cipherConst.gridx = 0;
 		cipherConst.gridy = 0;
 		this.keyControl.add(this.cipher, cipherConst);
+		this.plain = new JLabel("");
+		this.plain.setPreferredSize(new Dimension(100, 50));
+		this.plain.setFont(new Font("Arial", 2, 25));
+		GridBagConstraints plainConst = new GridBagConstraints();
+		plainConst.gridx = 0;
+		plainConst.gridy = 2;
+		this.keyControl.add(this.plain, plainConst);
 		// layout the buttons.
 		this.validate();
 	}
@@ -259,7 +282,7 @@ public class HistogramView extends VisualizationView {
 	/**
 	 * @return the cipher
 	 */
-	public JTextField getCipher() {
+	public JLabel getCipher() {
 		return cipher;
 	}
 
@@ -267,7 +290,7 @@ public class HistogramView extends VisualizationView {
 	 * @param cipher
 	 *            the cipher to set
 	 */
-	public void setCipher(JTextField cipher) {
+	public void setCipher(JLabel cipher) {
 		this.cipher = cipher;
 	}
 
@@ -412,5 +435,35 @@ public class HistogramView extends VisualizationView {
 	 */
 	public void setHistResource(Element histResource) {
 		this.histResource = histResource;
+	}
+
+	/**
+	 * @return the plain
+	 */
+	public JLabel getPlain() {
+		return plain;
+	}
+
+	/**
+	 * @param plain
+	 *            the plain to set
+	 */
+	public void setPlain(JLabel plain) {
+		this.plain = plain;
+	}
+
+	/**
+	 * @return the secretKey
+	 */
+	public int getSecretKey() {
+		return secretKey;
+	}
+
+	/**
+	 * @param secretKey
+	 *            the secretKey to set
+	 */
+	public void setSecretKey(int secretKey) {
+		this.secretKey = secretKey;
 	}
 }

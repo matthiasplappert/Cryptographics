@@ -21,6 +21,29 @@ public class CryptoModel {
 	}
 
 	/**
+	 * @param key
+	 * @param cipher
+	 * @return
+	 */
+	public String decrypt(int key, String cipher) {
+
+		String plain = "";
+
+		for (int i = 0; i < cipher.length(); i++) {
+			if ((int) cipher.charAt(i) < 65 || (int) cipher.charAt(i) > 90) {
+				continue;
+			}
+			int offset = (int) cipher.charAt(i);
+			if (((int) cipher.charAt(i) - key) < 65) {
+				offset = offset + 25;
+			}
+			plain += String.valueOf((char) (offset - key));
+		}
+		return plain;
+
+	}
+
+	/**
 	 * Check if the character was encrypted valid.
 	 * 
 	 * @param input
@@ -28,11 +51,11 @@ public class CryptoModel {
 	public boolean checkValidChar(int key, String plain, String enc) {
 		// plain is the character to encrypt and enc is the corresponding cipher.
 		int offset = (int) plain.charAt(0);
-		if (((int) plain.charAt(0) + key) < 65 ) {
+		if (((int) plain.charAt(0) + key) < 65) {
 			offset = offset + 25;
 		}
 		if ((offset + key) == ((int) enc.charAt(0))) {
-          return true;
+			return true;
 		}
 		return false;
 	}
