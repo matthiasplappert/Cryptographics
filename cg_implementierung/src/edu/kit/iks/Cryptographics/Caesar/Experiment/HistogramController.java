@@ -19,6 +19,11 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
  * 
  */
 public class HistogramController extends AbstractVisualizationController {
+
+	private CryptoModel model;
+	
+	private int step;
+
 	/**
 	 * Constructor
 	 * 
@@ -37,9 +42,11 @@ public class HistogramController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.view = new HistogramView();
+		this.model = new CryptoModel();
+		this.step = 0;
 
-		lastExperiment();
-
+		genProceedListener();
+		
 		this.getView().getBackButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
@@ -60,47 +67,86 @@ public class HistogramController extends AbstractVisualizationController {
 		});
 	}
 
-	/**
-	 * Explanations and animations are shown that explain histograms.
-	 */
-	public void startAnimations() {
-		step1();
-		// stop.
-		step2();
-		// stop.
-		step3();
-		// stop.
-		step4();
-		// done.
+	private void genProceedListener() {
+		this.getView().getProceed().addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (getStep() < 1) {
+				getView().setupBruteForce();
+				genListenerBF();
+				} else {
+					getView().setupHistogram();
+				}
+
+			}
+		});
 	}
-
-	/**
-	 * Explain why the Caesar cipher is not appropriate nowadays.
-	 */
-	private void step1() {
-
-	}
-
-	/**
-	 * Explain what histograms are.
-	 */
-	private void step2() {
-
-	}
-
-	/**
-	 * Explain how they are used and how to read from them.
-	 */
-	private void step3() {
-
-	}
-
-	/**
-	 * Explain how to decrypt big text that was ciphered with Caesar without a key.
-	 */
-	private void step4() {
-
-	}
+	// /**
+	// * Explanations and animations are shown that explain histograms.
+	// */
+	// public void startAnimations() {
+	// step1();
+	// // stop.
+	// step2();
+	// // stop.
+	// step3();
+	// // stop.
+	// step4();
+	// // done.
+	// }
+	//
+	// /**
+	// * Explain why the Caesar cipher is not appropriate nowadays.
+	// */
+	// private void step1() {
+	//
+	// }
+	//
+	// /**
+	// * Explain what histograms are.
+	// */
+	// private void step2() {
+	//
+	// }
+	//
+	// /**
+	// * Explain how they are used and how to read from them.
+	// */
+	// private void step3() {
+	//
+	// }
+	//
+	// /**
+	// * Explain how to decrypt big text that was ciphered with Caesar without a key.
+	// */
+	// private void step4() {
+	//
+	// }
 
 	/**
 	 * Gets the view
@@ -113,18 +159,30 @@ public class HistogramController extends AbstractVisualizationController {
 	}
 
 	/**
-	 * Called when all Explanations are done.
+	 * Generates the action listener for the brute force stage.
 	 */
-	public void lastExperiment() {
+	public void genListenerBF() {
 		this.getView().getIncrement().addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int key = getView().getKeyValue();
-				key = (key + 1) % 26;
-				getView().setKeyValue(key);
-				getView().getKey().setText("" + key);
+				int key = getView().getKeyValue() + 1;
+				if (key != getView().getSecretKey()) {
+					getView().setKeyValue(key);
+					getView().getKey().setText("" + key);
+					getView().getPlain().setText(
+							(getModel().decrypt(key, getView().getCipher()
+									.getText())));
 
+				} else {
+					getView().getExplanations().setText(
+							"<html><body> Congratulations you found the secret key and are now able<br>"
+									+ "to read the secret message.");
+					
+					getView().setupProceed();
+					setStep(1);
+					
+				}
 			}
 
 			@Override
@@ -155,12 +213,14 @@ public class HistogramController extends AbstractVisualizationController {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//TODO: need the valid bahviour.
-				int key = getView().getKeyValue();
-				key = (key - 1) % 26;
+				// TODO: need the valid bahviour.
+				int key = getView().getKeyValue() - 1;
 				if (key > 0) {
 					getView().setKeyValue(key);
 					getView().getKey().setText("" + key);
+					getView().getPlain().setText(
+							(getModel().decrypt(key, getView().getCipher()
+									.getText())));
 				}
 			}
 
@@ -188,6 +248,35 @@ public class HistogramController extends AbstractVisualizationController {
 
 			}
 		});
+	}
+
+	/**
+	 * @return the model
+	 */
+	public CryptoModel getModel() {
+		return model;
+	}
+
+	/**
+	 * @param model
+	 *            the model to set
+	 */
+	public void setModel(CryptoModel model) {
+		this.model = model;
+	}
+
+	/**
+	 * @return the step
+	 */
+	public int getStep() {
+		return step;
+	}
+
+	/**
+	 * @param step the step to set
+	 */
+	public void setStep(int step) {
+		this.step = step;
 	}
 
 }

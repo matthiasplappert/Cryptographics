@@ -2,29 +2,25 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import org.jdom2.Element;
-
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
-import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
+import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoModel;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 
 /**
- * Controller for the last step of demonstration phase. Controls the needed
- * elements from CaesarUpperView, !!see CaesarUpperView for more details!!.
+ * Controller for the last step of demonstration phase. Controls the needed elements from
+ * CaesarUpperView, !!see CaesarUpperView for more details!!.
  * 
  * @author Wasilij Beskorovajnov.
  * 
@@ -32,6 +28,10 @@ import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 public class CipherDemoController extends AbstractVisualizationController {
 
 	private int animationStep;
+
+	private CryptoModel model;
+
+	private int editableFields;
 
 	/**
 	 * @param visualizationInfo
@@ -43,12 +43,85 @@ public class CipherDemoController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.view = new CipherDemoView();
+		this.model = new CryptoModel();
 		this.animationStep = 1;
 
+		for (int i = 1; i < this.getView().getUserOutput().length; i++) {
+			this.getView().getUserOutput()[i]
+					.addFocusListener(new FocusListener() {
+
+						@Override
+						public void focusLost(FocusEvent e) {
+							// TODO Auto-generated method stub
+
+						}
+
+						@Override
+						public void focusGained(FocusEvent e) {
+							// TODO Auto-generated method stub
+
+						}
+					});
+			this.getView().getUserOutput()[i]
+					.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							// TODO: let the Model check for validity.
+							JTextField userOutput = (JTextField) e.getSource();
+							// standart key for the caesar cipher. +3 when encrypting. -3 when
+							// decrypting.
+							if (getModel().checkValidChar(3,
+									userOutput.getName(), userOutput.getText())) {
+								// user encrypted the given char successful.
+								userOutput.setBorder(BorderFactory
+										.createLineBorder(Color.green));
+								userOutput.setEditable(false);
+								setEditableFields(getEditableFields() - 1);
+								if (getEditableFields() == 0) {
+									// User encrypted all characters valid.
+									getView()
+											.getExplanations()
+											.setText(
+													"<html><body>Great work oh mighty Caesar. May your enemies shutter over your intelligence.");
+									getView().remove(getView().getProceed());
+									getView().setProceed(null);
+									getView().remove(getView().getAlphabet());
+									getView().setAlphabet(null);
+									getView().getNavigationPanel().remove(
+											getView().getNextButton());
+									GridBagConstraints nextConst = new GridBagConstraints();
+									nextConst.anchor = GridBagConstraints.CENTER;
+									nextConst.weightx = 1.0;
+									nextConst.weighty = 0.1;
+									nextConst.gridx = 1;
+									nextConst.gridy = 1;
+									nextConst.gridwidth = 26;
+									nextConst.gridheight = 2;
+                                    //nextConst.fill = GridBagConstraints.HORIZONTAL;
+									getView().add(getView().getNextButton(),
+											nextConst);
+									getView().validate();
+								} else {
+									getView().getExplanations().setText(
+											"Great!!!! Go on!");
+
+								}
+							} else {
+								// TODO: user encrypted invalid! Need another try.
+								userOutput.setBorder(BorderFactory
+										.createLineBorder(Color.red));
+								getView()
+										.getExplanations()
+										.setText(
+												"You picked the wrong letter!! Try another one!");
+							}
+						}
+					});
+		}
 		this.getView().getBackButton().addActionListener(new ActionListener() {
 			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
-			 * .event.ActionEvent)
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
 			 */
 			public void actionPerformed(ActionEvent event) {
 				VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
@@ -57,8 +130,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 		});
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
-			 * .event.ActionEvent)
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
 			 */
 			public void actionPerformed(ActionEvent event) {
 				VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
@@ -109,8 +181,8 @@ public class CipherDemoController extends AbstractVisualizationController {
 	}
 
 	/**
-	 * Function for performing the needed animations. After each step the
-	 * animation stops and continues when user wishes.
+	 * Function for performing the needed animations. After each step the animation stops and
+	 * continues when user wishes.
 	 * 
 	 * @param c
 	 */
@@ -126,7 +198,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 			step3();
 			break;
 		case 4:
-		//	animationDone();
+			// animationDone();
 		}
 
 	}
@@ -140,14 +212,14 @@ public class CipherDemoController extends AbstractVisualizationController {
 				.getExplanations()
 				.setText(
 						"<html><body> "
-								+ "In the middle of the screen you see the german alphabet(red). When it comes to encrypting <br>"
-								+ "or decrypting readable text it is very helpful to have an alphabet at hand. The numbers <br>"
-								+ "below the letters make it possible to 'calculate' with letters. For expample if you want <br>"
-								+ "to add A + B you look for the numbers of those letters and add them. Here you have A = 1, <br>"
-								+ "B = 2, so the result would be 1 + 2 = 3. Then you look to the alphabet and see that C has <br>"
-								+ "the number 3. The result of adding A + B would be C!");
-		this.getView().getAlphabet()
-				.setBorder(BorderFactory.createLineBorder(Color.red));
+								+ "Because of your inferior intelligence you look at the first letter of your name: C.<br>"
+								+ "Then you look at the 3rd letter after C and take F. Great!! Now you encrypted the <br>"
+								+ "first letter of your name.");
+		this.getView().getUserInput()[0].setBorder(BorderFactory
+				.createLineBorder(Color.green));
+		this.getView().getUserOutput()[0].setBorder(BorderFactory
+				.createLineBorder(Color.green));
+		this.getView().getUserOutput()[0].setText("F");
 		this.getView().validate();
 	}
 
@@ -156,16 +228,19 @@ public class CipherDemoController extends AbstractVisualizationController {
 	 */
 	private void step2() {
 		this.animationStep++;
+		this.getView().getUserInput()[0].setBorder(null);
+		this.getView().getUserOutput()[0].setBorder(null);
 		this.getView()
 				.getExplanations()
 				.setText(
 						"<html><body>"
-								+ "The boxes above the alphabet (green) contain a small sequence of letters to encrypt and finally <br>"
-								+ "the encrypted letters. The upper boxes are the input and the lower one the output. In the next <br>"
-								+ "step we will start to encrypt the given word.");
-		this.getView().getAlphabet().setBorder(null);
-		this.getView().getInOutPanel()
-				.setBorder(BorderFactory.createLineBorder(Color.green));
+								+ "As you saw in the first step you need to add to your letter position in the alphabet 3<br>"
+								+ " and then you get the position of the needed letter. For example C has the position 2 <br>"
+								+ "if you add 2+3 you get 5, which corresponds to the letter F. Now encrypt the next letter.<br>"
+								+ "To acomplish this click on the white area and type the needed letter.");
+		this.getView().getUserInput()[1].setBorder(BorderFactory
+				.createLineBorder(Color.green));
+		this.getView().getUserOutput()[1].setEditable(true);
 		this.getView().validate();
 	}
 
@@ -174,16 +249,19 @@ public class CipherDemoController extends AbstractVisualizationController {
 	 */
 	private void step3() {
 		this.animationStep++;
-		this.getView().getInOutPanel().setBorder(null);
+		this.editableFields = (this.getView().getUserInput().length - 2);
+		this.getView().getUserInput()[1].setBorder(null);
+		this.getView().getUserOutput()[1].setBorder(null);
+		for (int i = 2; i < this.getView().getUserInput().length; i++) {
+			this.getView().getUserOutput()[i].setEditable(true);
+		}
 		this.getView()
 				.getExplanations()
 				.setText(
 						"<html><body>"
-								+ "The main idea caesar used was to substitute each letter with the one that is 3 positions next to him.<br>"
-								+ "Lets see at out input. The first letter is 'A'. If caesar wanted to encrypt this letter he looked 3 <br>"
-								+ "positions next to it and found 'C'. Alternatively and also more elegant is just to look for the number <br>"
-								+ "of the letter A and add to it 3 and see what letter correspond to this number. Here we would have A = 0 <br>"
-								+ "and 0 + 3 = 3, this is the letter 'C'. Let's see what our example looks like when we encrypt it. Click proceed");
+								+ "Oh mighty Caesar. No one will ever be able to destroy you! Because of that fact lets end <br>"
+								+ "this childish games and finish the rest of the fields fast. Then we can send the courier again<br>"
+								+ "but this time your enemies will have no idea who wrote it and you will conquer the world.");
 		this.getView().validate();
 
 	}
@@ -192,10 +270,10 @@ public class CipherDemoController extends AbstractVisualizationController {
 	 * Describe that decryption is the same way as encryption.
 	 */
 	private void step4() {
-      this.animationStep++;
-      String firstLetter = this.getView().getUserInput()[0].getText();
-    //  this.getView().getExplanations().setText("The first letter is "+firstLetter+""
-      
+		this.animationStep++;
+		String firstLetter = this.getView().getUserInput()[0].getText();
+		// this.getView().getExplanations().setText("The first letter is "+firstLetter+""
+
 	}
 
 	/**
@@ -218,5 +296,43 @@ public class CipherDemoController extends AbstractVisualizationController {
 	@Override
 	public CipherDemoView getView() {
 		return (CipherDemoView) this.view;
+	}
+
+	/**
+	 * @return the model
+	 */
+	public CryptoModel getModel() {
+		return model;
+	}
+
+	/**
+	 * @param model
+	 *            the model to set
+	 */
+	public void setModel(CryptoModel model) {
+		this.model = model;
+	}
+
+	/**
+	 * @return the editableFields
+	 */
+	public int getEditableFields() {
+		return editableFields;
+	}
+
+	/**
+	 * @param editableFields
+	 *            the editableFields to set
+	 */
+	public void setEditableFields(int editableFields) {
+		this.editableFields = editableFields;
+	}
+
+	/**
+	 * @param animationStep
+	 *            the animationStep to set
+	 */
+	public void setAnimationStep(int animationStep) {
+		this.animationStep = animationStep;
 	}
 }

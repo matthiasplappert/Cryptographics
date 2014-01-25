@@ -10,11 +10,9 @@ import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JTextField;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
-import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
@@ -55,14 +53,17 @@ public class CryptoController extends AbstractVisualizationController {
 		this.view = new CryptoView();
 		this.model = new CryptoModel();
 
+		// Create all needed ActionListener.
 		this.getView().getGenerator().addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				char[] string = getModel().generatePlainText();
+				int key = getModel().generateKey();
 				setEditableFields(string.length);
-				// TODO: String generator!
-				getView().start(string);
+
+				// TODO: String and Key generator!
+				getView().start(string, key);
 
 				// generate ActionListener.
 				generateListener(string);
@@ -94,20 +95,81 @@ public class CryptoController extends AbstractVisualizationController {
 			}
 
 		});
-		this.getView().getInput().addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				popupKeyboard();
-				
-			}
-
+		this.getView().getKey().addFocusListener(new FocusListener() {
+			// TODO: make the strings to set dynamically. Avoid hard code.
 			@Override
 			public void focusLost(FocusEvent e) {
-				// TODO Auto-generated method stub
-				
+				if (getView().getKey().isEditable()) {
+					getView().getKey().setText("Key");
+				}
+
 			}
-			
+
+			// TODO: make the strings to set dynamically. Avoid hard code.
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (getView().getKey().isEditable()) {
+					getView().getKey().setText("");
+					popupKeyboard();
+				}
+			}
+		});
+		this.getView().getKey().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					// TODO: Need to take the explanation from other resources. At the moment it
+					// leads to invalid behaviour.
+					String explanationContent = getView().getExplanations()
+							.getText();
+					int key = Integer.parseInt(getView().getKey().getText());
+					if (getModel().handleKeyInput(key)) {
+						getView()
+								.getExplanations()
+								.setText(
+										explanationContent
+												+ "<br>"
+												+ "<br>This key is ok. Now put your name into the bigger box to the left.");
+						getView().getKey().setBorder(
+								BorderFactory.createLineBorder(Color.green));
+						getView().getKey().setEditable(false);
+					} else {
+						getView()
+								.getExplanations()
+								.setText(
+										explanationContent
+												+ "<br>"
+												+ "<br>This key is not valid. Please put a number between 1 and 25.<br>"
+												+ "For demonstration purposes the keys between -1 and -25 are not necessary<br>"
+												+ "therefore not possible, but could be used as keys too. And 0 as key has no<br>"
+												+ " sense, if you dont understand why, then go back to Introduction.");
+						getView().getKey().setBorder(
+								BorderFactory.createLineBorder(Color.red));
+					}
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+		this.getView().getInput().addFocusListener(new FocusListener() {
+			// TODO: make the strings to set dynamically. Avoid hard code.
+			@Override
+			public void focusGained(FocusEvent e) {
+				getView().getInput().setText("");
+				popupKeyboard();
+
+			}
+
+			// TODO: make the strings to set dynamically. Avoid hard code.
+			@Override
+			public void focusLost(FocusEvent e) {
+				getView().getInput().setText("Put your name here.");
+
+			}
+
 		});
 		this.getView().getInput().addActionListener(new ActionListener() {
 
@@ -116,19 +178,32 @@ public class CryptoController extends AbstractVisualizationController {
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// TODO: At the moment the user has to put first the key and then his name. It is
+				// invalid behaviour. There must be no order what to put in first. Need some more
+				// checks.
+
 				String input = getView().getInput().getText();
 				// TODO: check input for validity!
 				if (getModel().handleInput(input)) {
 					// refactor the input into an character array.
-					char[] inputChars = new char[input.length()];
-					input = input.toUpperCase();
-					input.getChars(0, input.length(), inputChars, 0);
-					setEditableFields(inputChars.length);
-					// load the view!
-					getView().start(inputChars);
+					try {
+						int key = Integer
+								.parseInt(getView().getKey().getText());
+						char[] inputChars = new char[input.length()];
+						input = input.toUpperCase();
+						input.getChars(0, input.length(), inputChars, 0);
+						setEditableFields(inputChars.length);
+						getView().getKey().setBorder(null);
 
-					// Generate Listener for the userOutput JTextfield
-					generateListener(inputChars);
+						// load the view!
+						getView().start(inputChars, key);
+
+						// Generate Listener for the userOutput JTextfield
+						generateListener(inputChars);
+					} catch (NumberFormatException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				} else {
 					// TODO: Input was invalid. Pls make another one.
 					getView().getExplanations().setText(
@@ -148,7 +223,7 @@ public class CryptoController extends AbstractVisualizationController {
 				if (decryptionPhase) {
 					decryptionPhase = false;
 				}
-				//load next state.
+				// load next state.
 				VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
 				containerController.presentPreviousVisualizationController();
 			}
@@ -159,6 +234,7 @@ public class CryptoController extends AbstractVisualizationController {
 			 */
 			public void actionPerformed(ActionEvent event) {
 				if (!decryptionPhase) {
+					int key = -(getModel().generateKey());
 					// TODO: implement unloadView();
 					unloadInOut();
 					// start Decryption!
@@ -166,7 +242,7 @@ public class CryptoController extends AbstractVisualizationController {
 					// TODO: generate a random cipher.
 					char[] string = getModel().generateCipher();
 					setEditableFields(string.length);
-					getView().setupInOutElements(string);
+					getView().setupInOutElements(string, key);
 					// generate ActionListener.
 					generateListener(string);
 
@@ -178,7 +254,7 @@ public class CryptoController extends AbstractVisualizationController {
 					getView().getNextButton().setText("Go to histograms!");
 
 				} else {
-					//load the previous state.
+					// load the previous state.
 					VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
 					containerController.presentNextVisualizationController();
 				}
@@ -198,36 +274,38 @@ public class CryptoController extends AbstractVisualizationController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				JButton source = (JButton) e.getSource();
-				getView().getInput().setText(getView().getInput().getText() + source.getText());
-				
+				getView().getInput().setText(
+						getView().getInput().getText() + source.getText());
+
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
 	}
+
 	/**
 	 * 
 	 */
@@ -257,39 +335,45 @@ public class CryptoController extends AbstractVisualizationController {
 							JTextField userOutput = (JTextField) e.getSource();
 							// standart key for the caesar cipher. +3 when encrypting. -3 when
 							// decrypting.
-							int key = 3;
-							if (isDecryptionPhase()) {
-								key = -3;
-							}
-							if (getModel().checkValidChar(key,
-									userOutput.getName(), userOutput.getText())) {
-								// user encrypted the given char successful.
-								userOutput.setBorder(BorderFactory
-										.createLineBorder(Color.green));
-								userOutput.setEditable(false);
-								setEditableFields(getEditableFields() - 1);
+							int key = 0;
+							try {
+								key = Integer.parseInt(getView().getKey()
+										.getText());
+								if (getModel().checkValidChar(key,
+										userOutput.getName(),
+										userOutput.getText())) {
+									// user encrypted the given char successful.
+									userOutput.setBorder(BorderFactory
+											.createLineBorder(Color.green));
+									userOutput.setEditable(false);
+									setEditableFields(getEditableFields() - 1);
 
-								if (getEditableFields() == 0) {
-									// User encrypted all characters valid.
+									if (getEditableFields() == 0) {
+										// User encrypted all characters valid.
+										getView()
+												.getExplanations()
+												.setText(
+														"<html><body>All done right!!! Great job comrade. Now you are one step more to destroying the capitalism!<br>"
+																+ "Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
+																+ "are superior to your power!");
+									} else {
+										getView().getExplanations().setText(
+												"Great!!!! Go on!");
+									}
+								} else {
+									// TODO: user encrypted invalid! Need another try.
+									userOutput.setBorder(BorderFactory
+											.createLineBorder(Color.red));
 									getView()
 											.getExplanations()
 											.setText(
-													"<html><body>All done right!!! Great job comrade. Now you are one step more to destroying the capitalism!<br>"
-															+ "Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
-															+ "are superior to your power!");
-								} else {
-									getView().getExplanations().setText(
-											"Great!!!! Go on!");
+													"You picked the wrong letter!! Try another one!");
 								}
-							} else {
-								// TODO: user encrypted invalid! Need another try.
-								userOutput.setBorder(BorderFactory
-										.createLineBorder(Color.red));
-								getView()
-										.getExplanations()
-										.setText(
-												"You picked the wrong letter!! Try another one!");
+							} catch (NumberFormatException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
 							}
+
 						}
 
 					});

@@ -20,6 +20,7 @@ import org.jdom2.Element;
 
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
@@ -31,11 +32,6 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
 public class CipherDemoView extends VisualizationView {
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6762667303208572310L;
-
-	/**
 	 * Explanation textfield.
 	 */
 	private JLabel explanations;
@@ -43,6 +39,10 @@ public class CipherDemoView extends VisualizationView {
 	private JPanel inOutPanel;
 
 	private JPanel navigationPanel;
+	
+	private ImageView caesarHappy;
+	
+	private ImageView caesarFrustrated;
 
 	/**
 	 * Input from the user for encryption.
@@ -65,14 +65,18 @@ public class CipherDemoView extends VisualizationView {
 	private JButton proceed;
 
 	/**
+	 * XML-root element for cipherdemoView elements.
+	 */
+	private Element cipherDemoResource;
+
+	/**
 	 * Constructor.
 	 */
 	public CipherDemoView() {
 		super();
 		// load the resources.
 		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
-		Element cipherDemoResource = vsInfo.getResources().getChild(
-				"CipherDemo");
+		this.cipherDemoResource = vsInfo.getResources().getChild("CipherDemo");
 
 		// set the layout to GridBagLayout.
 		GridBagLayout introLayout = new GridBagLayout();
@@ -82,8 +86,9 @@ public class CipherDemoView extends VisualizationView {
 		setupNavigation();
 
 		// setup the fields for the demonstratoin of the encryption.
-		char[] chars = { 'A', 'N', 'N', 'A' };  // TODO: need the user of a generator to generate
-												// random strings dynamically.
+		char[] chars = { 'C', 'A', 'E', 'S', 'A', 'R' };  // TODO: need a generator to
+															// generate
+		// random strings dynamically.
 		setupInOutElements(chars);
 
 		// setup the aligment of the button proceed.
@@ -109,8 +114,8 @@ public class CipherDemoView extends VisualizationView {
 		// setup the explanation label.
 		this.explanations = new JLabel(
 				"<html><body>"
-						+ "Now let's see how caesar encrypted his messages, so noone could cross his plans.<br>"
-						+ "Click the button 'Proceed!' to proceed the explanation.");
+						+ "Imagine now you are the mighty caesar!! Of course your first idea is to substitute each <br>"
+						+ "letter from your name with some other from the alphabet. But which one?");
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.LAST_LINE_START;
 		expConst.weightx = 0.5;
@@ -208,7 +213,7 @@ public class CipherDemoView extends VisualizationView {
 		this.remove(this.getNextButton());
 
 		// set up the alignment of the button back;
-		this.setBackButton(new JButton("Back to Demonstration!"));
+		this.setBackButton(new JButton("Back to Introduction!"));
 		/*
 		 * GridBagConstraints backConst = new GridBagConstraints(); backConst.weightx = 1.0;
 		 * backConst.weighty = 0.1; backConst.gridx = 0; backConst.gridy = 0; backConst.gridwidth =
@@ -331,6 +336,62 @@ public class CipherDemoView extends VisualizationView {
 	 */
 	public void setInOutPanel(JPanel inOutPanel) {
 		this.inOutPanel = inOutPanel;
+	}
+
+	/**
+	 * @return the navigationPanel
+	 */
+	public JPanel getNavigationPanel() {
+		return navigationPanel;
+	}
+
+	/**
+	 * @param navigationPanel the navigationPanel to set
+	 */
+	public void setNavigationPanel(JPanel navigationPanel) {
+		this.navigationPanel = navigationPanel;
+	}
+
+	/**
+	 * @return the caesarHappy
+	 */
+	public ImageView getCaesarHappy() {
+		return caesarHappy;
+	}
+
+	/**
+	 * @param caesarHappy the caesarHappy to set
+	 */
+	public void setCaesarHappy(ImageView caesarHappy) {
+		this.caesarHappy = caesarHappy;
+	}
+
+	/**
+	 * @return the caesarFrustrated
+	 */
+	public ImageView getCaesarFrustrated() {
+		return caesarFrustrated;
+	}
+
+	/**
+	 * @param caesarFrustrated the caesarFrustrated to set
+	 */
+	public void setCaesarFrustrated(ImageView caesarFrustrated) {
+		this.caesarFrustrated = caesarFrustrated;
+	}
+
+	/**
+	 * @return the cipherDemoResource
+	 */
+	public Element getCipherDemoResource() {
+		return cipherDemoResource;
+	}
+
+	/**
+	 * @param cipherDemoResource the cipherDemoResource to set
+	 */
+	public void setCipherDemoResource(Element cipherDemoResource) {
+		this.cipherDemoResource = cipherDemoResource;
 	}
 
 }
