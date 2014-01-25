@@ -27,7 +27,22 @@ public class CryptoModel {
 	 */
 	public boolean checkValidChar(int key, String plain, String enc) {
 		// plain is the character to encrypt and enc is the corresponding cipher.
-		if ((((int) plain.charAt(0) + key) % (26 + 65)) == ((int) enc.charAt(0))) {
+		int offset = (int) plain.charAt(0);
+		if (((int) plain.charAt(0) + key) < 65 ) {
+			offset = offset + 25;
+		}
+		if ((offset + key) == ((int) enc.charAt(0))) {
+          return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @param key
+	 * @return
+	 */
+	public boolean handleKeyInput(int key) {
+		if (key > 0 && key < 26) {
 			return true;
 		}
 		return false;
@@ -52,15 +67,15 @@ public class CryptoModel {
 		char[] string = { 'A', 'N', 'N', 'A' };
 		return string;
 	}
-	
+
 	/**
 	 * @return
 	 */
 	public char[] generateCipher() {
-		//TODO: generate a random cipher.
-		char[] cipher = {'D', 'Q', 'Q', 'D'};
+		// TODO: generate a random cipher.
+		char[] cipher = { 'D', 'Q', 'Q', 'D' };
 		return cipher;
-		
+
 	}
 
 	/**
@@ -85,5 +100,10 @@ public class CryptoModel {
 	public boolean decryptAndCheck(String cipher, String plaintext) {
 		// something intelligent and fully uncreative.
 		return true;
+	}
+
+	public int generateKey() {
+		// TODO: Need a random key generator.
+		return 5;
 	}
 }

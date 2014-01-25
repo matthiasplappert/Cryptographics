@@ -48,8 +48,8 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
 public class CryptoView extends VisualizationView {
 	// TODO: The View is almost the same as the one in the CryptoDemoView!!!
 	// Need to refactor when possible!
-	private JButton introduction;
 
+	// private JButton introduction;
 	/**
 	 * Explanation textfield.
 	 */
@@ -64,7 +64,11 @@ public class CryptoView extends VisualizationView {
 	 */
 	private JTextField input;
 
+	private JTextField key;
+
 	private JButton generator;
+
+	private JButton proceed;
 
 	/**
 	 * Input from the user for encryption.
@@ -83,58 +87,54 @@ public class CryptoView extends VisualizationView {
 
 	private KeyboardView keyboard;
 
+	private Element cryptoResource;
+
 	/**
 	 * Constructor.
 	 */
 	public CryptoView() {
 		// load the resources.
 		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
-		Element cipherDemoResource = vsInfo.getResources().getChild("Encrypt");
+		this.cryptoResource = vsInfo.getResources().getChild("Encrypt");
 
 		// set the layout to GridBagLayout.
 		GridBagLayout introLayout = new GridBagLayout();
 		this.setLayout(introLayout);
-
+		GridBagConstraints viewConst = new GridBagConstraints();
+		viewConst.weightx = 1.0;
+		viewConst.weighty = 1.0;
+		viewConst.gridwidth = 3;
+		viewConst.gridheight = 4;
+		introLayout.setConstraints(this, viewConst);
 		this.keyboard = new KeyboardView();
 
 		// setups the next and back buttons.
 		setupNavigation();
 
-		// set the Container for the user interface.
-		this.inOutPanel = new JPanel(new GridLayout(2, 2));
-		// this.input.setName("sdf");
-		// this.input.setAlignmentY(JTextField.TOP_ALIGNMENT);
-		GridBagConstraints inConst = new GridBagConstraints();
-		inConst.anchor = GridBagConstraints.CENTER;
-		inConst.weightx = 0.5;
-		inConst.weighty = 0.5;
-		inConst.gridx = 0;
-		inConst.gridy = 0;
-		inConst.gridheight = 2;
-		inConst.gridwidth = 2;
-		this.add(this.inOutPanel, inConst);
-
-		// add the input field.
-		this.input = new JTextField(JTextField.NORTH_EAST);
-		this.inOutPanel.add(this.input);
-
-		// add the button for generating input if the user is too lazy.
-		this.generator = new JButton("Generate letters!");
-		this.generator.setVerticalAlignment(JButton.BOTTOM);
-		this.inOutPanel.add(this.generator);
+		// setup the input/output elements for further steps.
+		setupInOut();
 
 		// setup the explanations.
 		this.explanations = new JLabel(
 				"<html><body> "
-						+ "Pls put a small string into the white field. For example your name! <br>"
-						+ "In the next step you will encrypt it. Or let the button generate you a string.");
+						+ "Ok. Previously you saw that you can encrypt a message with the traditional Caesar cipher<br>"
+						+ "when you shift each letter 3 positions next in the alphabet. Lets think a little further.<br>"
+						+ "When we can shift 3 positions to substitute A with D, then we can also shift 1,2,4,5,6,...,25 positions.<br>"
+						+ "And substitute A with some other letter. The shif value is called the 'Key'. The Key in the examples before was 3.<br>"
+						+ "The key is needed when you want to decrypt a cipher. Without the key it would costs much more effort<br>"
+						+ " and in most cases uneligible. <br>"
+						+ "Now you have 2 options:<br>"
+						+ "<br>"
+						+ "1. You put you own key and plaintext into the textfield.<br>"
+						+ "<br>"
+						+ "2.Or you just click generate and this awesome programm generates you everything you need with real real complex calculations.");
 		GridBagConstraints expConst = new GridBagConstraints();
-		expConst.anchor = GridBagConstraints.FIRST_LINE_START;
+		expConst.anchor = GridBagConstraints.PAGE_START;
 		expConst.weightx = 0.5;
-		expConst.weighty = 0.1;
+		expConst.weighty = 1.0;
 		expConst.gridx = 0;
-		expConst.gridy = 1;
-		expConst.gridwidth = 4;
+		expConst.gridy = 2;
+		expConst.gridwidth = 2;
 		this.add(this.explanations, expConst);
 
 		// build the user interface.
@@ -142,6 +142,51 @@ public class CryptoView extends VisualizationView {
 
 		// build elements.
 		this.validate();
+	}
+
+	private void setupInOut() {
+		// set the Container for the user interface.
+		this.inOutPanel = new JPanel(new GridBagLayout());
+		// this.input.setAlignmentY(JTextField.TOP_ALIGNMENT);
+		GridBagConstraints inConst = new GridBagConstraints();
+		inConst.anchor = GridBagConstraints.CENTER;
+		inConst.weightx = 0.5;
+		inConst.weighty = 0.5;
+		inConst.gridx = 0;
+		inConst.gridy = 0;
+		inConst.gridheight = 4;
+		inConst.gridwidth = 3;
+		this.add(this.inOutPanel, inConst);
+
+		// add the input field.
+		this.input = new JTextField("Put your name here.");
+		this.input.setPreferredSize(new Dimension(150, 25));
+		GridBagConstraints inputConst = new GridBagConstraints();
+		// inputConst.anchor = GridBagConstraints.FIRST_LINE_START;
+		// inputConst.weightx = 1.0;
+		// inputConst.weighty = 0.1;
+		inputConst.gridx = 0;
+		inputConst.gridy = 0;
+		inputConst.insets = new Insets(0, 0, 0, 50);
+		this.inOutPanel.add(this.input, inputConst);
+		// add the key-input field.
+		this.key = new JTextField("Key");
+		this.key.setPreferredSize(new Dimension(25, 25));
+		GridBagConstraints keyConst = new GridBagConstraints();
+		keyConst.gridx = 2;
+		keyConst.gridy = 0;
+		this.inOutPanel.add(this.key, keyConst);
+
+		// add the button for generating input if the user is too lazy.
+		this.generator = new JButton("Generate letters!");
+		GridBagConstraints genConst = new GridBagConstraints();
+		genConst.weightx = 1.0;
+		genConst.gridx = 0;
+		genConst.gridy = 1;
+		genConst.gridwidth = 3;
+		genConst.fill = GridBagConstraints.HORIZONTAL;
+		// this.generator.setVerticalAlignment(JButton.BOTTOM);
+		this.inOutPanel.add(this.generator, genConst);
 	}
 
 	private void setupNavigation() {
@@ -204,7 +249,12 @@ public class CryptoView extends VisualizationView {
 		this.validate();
 	}
 
-	public void start(char[] inputChars) {
+	/**
+	 * Called when the user done the needed input in a valid way.
+	 * 
+	 * @param inputChars
+	 */
+	public void start(char[] inputChars, int key) {
 		// User input will be now filled into the boxes. This field is not
 		// needed anymore.
 		this.remove(this.inOutPanel);
@@ -214,7 +264,7 @@ public class CryptoView extends VisualizationView {
 		this.repaint();
 
 		// setupInOut()!
-		setupInOutElements(inputChars);
+		setupInOutElements(inputChars, key);
 
 		// setup the alphabet.
 		this.alphabet = new AlphabetStripView();
@@ -245,7 +295,7 @@ public class CryptoView extends VisualizationView {
 		this.validate();
 	}
 
-	public void setupInOutElements(char[] inputChars) {
+	public void setupInOutElements(char[] inputChars, int key) {
 
 		// set up the Input and output fields. Because this is a demonstration
 		// the fields
@@ -264,7 +314,22 @@ public class CryptoView extends VisualizationView {
 		// panelConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(inOutPanel, panelConst);
 
-		for (int i = 0; i < inputChars.length; i++) {
+		for (int i = 0; i <= inputChars.length; i++) {
+			// called only in the last iteration, when all Elements are already created.
+			if (i == inputChars.length) {
+				GridBagConstraints keyConst = new GridBagConstraints();
+				this.key.setText("" + key);
+				this.key.setPreferredSize(new Dimension(25, 25));
+				this.key.setFont(new Font("Arial", 2, 25));
+				this.key.setEditable(false);
+				keyConst.insets = new Insets(25, 25, 25, 25);
+				keyConst.gridx = i;
+				keyConst.gridy = 0;
+				keyConst.ipadx = 20;
+				keyConst.ipady = 20;
+				this.inOutPanel.add(this.key, keyConst);
+				break;
+			}
 			// fields where the input will be encrypted
 			this.userInput[i] = new JTextField();
 			this.userInput[i].setText("" + inputChars[i]);
@@ -454,6 +519,51 @@ public class CryptoView extends VisualizationView {
 	 */
 	public void setKeyboard(KeyboardView keyboard) {
 		this.keyboard = keyboard;
+	}
+
+	/**
+	 * @return the key
+	 */
+	public JTextField getKey() {
+		return key;
+	}
+
+	/**
+	 * @param key
+	 *            the key to set
+	 */
+	public void setKey(JTextField key) {
+		this.key = key;
+	}
+
+	/**
+	 * @return the proceed
+	 */
+	public JButton getProceed() {
+		return proceed;
+	}
+
+	/**
+	 * @param proceed
+	 *            the proceed to set
+	 */
+	public void setProceed(JButton proceed) {
+		this.proceed = proceed;
+	}
+
+	/**
+	 * @return the cryptoResource
+	 */
+	public Element getCryptoResource() {
+		return cryptoResource;
+	}
+
+	/**
+	 * @param cryptoResource
+	 *            the cryptoResource to set
+	 */
+	public void setCryptoResource(Element cryptoResource) {
+		this.cryptoResource = cryptoResource;
 	}
 
 }
