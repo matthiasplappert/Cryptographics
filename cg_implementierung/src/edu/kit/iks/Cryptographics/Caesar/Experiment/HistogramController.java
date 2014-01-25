@@ -19,6 +19,8 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
  * 
  */
 public class HistogramController extends AbstractVisualizationController {
+	private CryptoModel model;
+
 	/**
 	 * Constructor
 	 * 
@@ -39,38 +41,38 @@ public class HistogramController extends AbstractVisualizationController {
 		this.view = new HistogramView();
 
 		this.getView().getProceed().addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				getView().setupBruteForce();
-				
+
 			}
 		});
-		
+
 		this.getView().getBackButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
@@ -186,7 +188,7 @@ public class HistogramController extends AbstractVisualizationController {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//TODO: need the valid bahviour.
+				// TODO: need the valid bahviour.
 				int key = getView().getKeyValue();
 				key = (key - 1) % 26;
 				if (key > 0) {
