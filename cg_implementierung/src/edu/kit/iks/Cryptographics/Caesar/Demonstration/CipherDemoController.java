@@ -213,7 +213,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 				.setText(
 						"<html><body> "
 								+ "Because of your inferior intelligence you look at the first letter of your name: C.<br>"
-								+ "Then you look at the 3rd letter after C and take G. Great!! Now you encrypted the <br>"
+								+ "Then you look at the 3rd letter after C and take F. Great!! Now you encrypted the <br>"
 								+ "first letter of your name.");
 		this.getView().getUserInput()[0].setBorder(BorderFactory
 				.createLineBorder(Color.green));
@@ -236,7 +236,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 						"<html><body>"
 								+ "As you saw in the first step you need to add to your letter position in the alphabet 3<br>"
 								+ " and then you get the position of the needed letter. For example C has the position 2 <br>"
-								+ "if you add 2+3 you get 5, which corresponds to the letter G. Now encrypt the next letter.<br>"
+								+ "if you add 2+3 you get 5, which corresponds to the letter F. Now encrypt the next letter.<br>"
 								+ "To acomplish this click on the white area and type the needed letter.");
 		this.getView().getUserInput()[1].setBorder(BorderFactory
 				.createLineBorder(Color.green));
