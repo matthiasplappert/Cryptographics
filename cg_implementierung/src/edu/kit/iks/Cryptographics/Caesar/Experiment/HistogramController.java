@@ -21,7 +21,7 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 public class HistogramController extends AbstractVisualizationController {
 
 	private CryptoModel model;
-	
+
 	private int step;
 
 	/**
@@ -46,7 +46,7 @@ public class HistogramController extends AbstractVisualizationController {
 		this.step = 0;
 
 		genProceedListener();
-		
+
 		this.getView().getBackButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
@@ -96,9 +96,9 @@ public class HistogramController extends AbstractVisualizationController {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (getStep() < 1) {
-				getView().setupBruteForce();
-				genListenerBF();
+				if (getStep() == 0) {
+					getView().setupBruteForce();
+					genListenerBF();
 				} else {
 					getView().setupHistogram();
 				}
@@ -106,6 +106,7 @@ public class HistogramController extends AbstractVisualizationController {
 			}
 		});
 	}
+
 	// /**
 	// * Explanations and animations are shown that explain histograms.
 	// */
@@ -178,10 +179,11 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().getExplanations().setText(
 							"<html><body> Congratulations you found the secret key and are now able<br>"
 									+ "to read the secret message.");
-					
-					getView().setupProceed();
+
 					setStep(1);
-					
+					getView().setupProceed();
+					genProceedListener();
+
 				}
 			}
 
@@ -273,7 +275,8 @@ public class HistogramController extends AbstractVisualizationController {
 	}
 
 	/**
-	 * @param step the step to set
+	 * @param step
+	 *            the step to set
 	 */
 	public void setStep(int step) {
 		this.step = step;

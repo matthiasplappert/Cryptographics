@@ -140,12 +140,18 @@ public class HistogramView extends VisualizationView {
 	}
 
 	public void setupHistogram() {
+		this.remove(this.keyControl);
+		this.keyControl = null;
+		this.remove(this.proceed);
+		
 		// TODO:Histogram UI-Element not implemented yet!
 		int[] quantities = { 1, 2, 3, 4, 5 };
 		this.histogram = new CharacterFrequencyDiagramView(quantities);
 		this.histogram.setBackground(Color.green);
 		this.histogram.setPreferredSize(new Dimension(200, 200));
 		this.add(histogram);
+		
+		this.explanations.setText("<html><body> Here histograms are shown and how to use them to break caesar in one step");
 
 		this.validate();
 		this.repaint();
@@ -155,7 +161,6 @@ public class HistogramView extends VisualizationView {
 		// GridBagLayout layout = (GridBagLayout) this.getLayout();
 		this.remove(this.explanations);
 		this.remove(proceed);
-		this.proceed = null;
 
 		GridBagConstraints expConst = new GridBagConstraints();
 		// expConst.anchor = GridBagConstraints.FIRST_LINE_START;
