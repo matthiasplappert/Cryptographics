@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -59,7 +60,7 @@ public class HistogramView extends VisualizationView {
 	 * bigger JTextField than in many smaller ones. Labels that contain an encrypted characters for
 	 * demonstration purpose.
 	 */
-	private JTextField[] cipher;
+	private JTextField cipher;
 
 	/**
 	 * Explanations of the animations.
@@ -116,7 +117,7 @@ public class HistogramView extends VisualizationView {
 						+ "It is also called 'breaking' the cipher if you try to decrypt without a given key parameter. The following <br>"
 						+ "experiments will teach you how to break caesar's cipher.<br>"));
 		this.add(this.explanations, explanationConstraint);
-
+        this.explanations.setBorder(BorderFactory.createLineBorder(Color.red));
 		// setup the aligment of the button proceed.
 		GridBagConstraints proceedConst = new GridBagConstraints();
 		this.proceed = new JButton("Proceed!");
@@ -145,7 +146,7 @@ public class HistogramView extends VisualizationView {
 		this.remove(this.explanations);
 
 		GridBagConstraints expConst = new GridBagConstraints();
-		expConst.anchor = GridBagConstraints.FIRST_LINE_START;
+		//expConst.anchor = GridBagConstraints.FIRST_LINE_START;
 		expConst.gridx = 0;
 		expConst.gridy = 1;
 		this.add(this.explanations, expConst);
@@ -153,13 +154,14 @@ public class HistogramView extends VisualizationView {
 		this.keyValue = 1;
 		// setup the Panel for buttons for incrementing/decrementing the key.
 		this.keyControl = new JPanel(new GridBagLayout());
+		this.keyControl.setBorder(BorderFactory.createLineBorder(Color.green));
 		GridBagConstraints keyConst = new GridBagConstraints();
-		keyConst.anchor = GridBagConstraints.LINE_END;
+		keyConst.anchor = GridBagConstraints.PAGE_START;
 		keyConst.weightx = 0.5;
 		keyConst.weighty = 0.5;
-		keyConst.gridx = 0;
-		keyConst.gridy = 0;
-		keyConst.gridwidth = 2;
+		keyConst.gridx = 1;
+		keyConst.gridy = 2;
+		keyConst.gridwidth = 5;
 		keyConst.gridheight = 3;
 		//keyConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.keyControl, keyConst);
@@ -168,7 +170,7 @@ public class HistogramView extends VisualizationView {
 		this.key.setPreferredSize(new Dimension(100,50));
 		this.key.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints keyLabelConst = new GridBagConstraints();
-		keyLabelConst.gridx = 0;
+		keyLabelConst.gridx = 2;
 		keyLabelConst.gridy = 1;
 		this.keyControl.add(this.key, keyLabelConst);
 		// increment.
@@ -176,7 +178,7 @@ public class HistogramView extends VisualizationView {
 		this.increment.setPreferredSize(new Dimension(100,50));
 		this.increment.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints incConst = new GridBagConstraints();
-		incConst.gridx = 1;
+		incConst.gridx = 3;
 		incConst.gridy = 0;
 		this.keyControl.add(this.increment, incConst);
 		// decrement.
@@ -184,9 +186,15 @@ public class HistogramView extends VisualizationView {
 		this.decrement.setPreferredSize(new Dimension(100,50));
 		this.decrement.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints decConst = new GridBagConstraints();
-		decConst.gridx = 1;
+		decConst.gridx = 3;
 		decConst.gridy = 2;
 		this.keyControl.add(this.decrement, decConst);
+		
+		this.cipher = new JTextField("DDDDDDD DDDDDDDDD");
+		GridBagConstraints cipherConst = new GridBagConstraints();
+		cipherConst.gridx = 0;
+		cipherConst.gridy = 0;
+		this.keyControl.add(this.cipher, cipherConst);
 		// layout the buttons.
 		this.validate();
 	}
@@ -251,7 +259,7 @@ public class HistogramView extends VisualizationView {
 	/**
 	 * @return the cipher
 	 */
-	public JTextField[] getCipher() {
+	public JTextField getCipher() {
 		return cipher;
 	}
 
@@ -259,7 +267,7 @@ public class HistogramView extends VisualizationView {
 	 * @param cipher
 	 *            the cipher to set
 	 */
-	public void setCipher(JTextField[] cipher) {
+	public void setCipher(JTextField cipher) {
 		this.cipher = cipher;
 	}
 
