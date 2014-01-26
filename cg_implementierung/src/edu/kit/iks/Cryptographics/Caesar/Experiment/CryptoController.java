@@ -52,6 +52,7 @@ public class CryptoController extends AbstractVisualizationController {
 	public void loadView() {
 		this.view = new CryptoView();
 		this.model = new CryptoModel();
+		this.editableFields = 2;
 
 		// Create all needed ActionListener.
 		this.getView().getGenerator().addMouseListener(new MouseListener() {
@@ -101,6 +102,7 @@ public class CryptoController extends AbstractVisualizationController {
 			public void focusLost(FocusEvent e) {
 				if (getView().getKey().isEditable()) {
 					getView().getKey().setText("Key");
+					getView().remove(getView().getKeyboard());
 				}
 
 			}
@@ -124,7 +126,8 @@ public class CryptoController extends AbstractVisualizationController {
 					String explanationContent = getView().getExplanations()
 							.getText();
 					int key = Integer.parseInt(getView().getKey().getText());
-					if (getModel().handleKeyInput(key)) {
+					if (getModel().handleKeyInput(key)
+							&& (getEditableFields() - 1) != 0) {
 						getView()
 								.getExplanations()
 								.setText(
@@ -134,6 +137,27 @@ public class CryptoController extends AbstractVisualizationController {
 						getView().getKey().setBorder(
 								BorderFactory.createLineBorder(Color.green));
 						getView().getKey().setEditable(false);
+						setEditableFields((getEditableFields() - 1));
+					} else if (getModel().handleKeyInput(key)
+							&& (getEditableFields() - 1) == 0) {
+						try {
+							String input = getView().getInput().getText();
+							char[] inputChars = new char[input.length()];
+							input = input.toUpperCase();
+							input.getChars(0, input.length(), inputChars, 0);
+							setEditableFields(inputChars.length);
+							getView().getKey().setBorder(null);
+
+							// load the view!
+							getView().start(inputChars, key);
+
+							// Generate Listener for the userOutput JTextfield
+							generateListener(inputChars);
+						} catch (NumberFormatException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+
 					} else {
 						getView()
 								.getExplanations()
@@ -158,16 +182,20 @@ public class CryptoController extends AbstractVisualizationController {
 			// TODO: make the strings to set dynamically. Avoid hard code.
 			@Override
 			public void focusGained(FocusEvent e) {
-				getView().getInput().setText("");
-				popupKeyboard();
+				if (getView().getInput().isEditable()) {
+					getView().getInput().setText("");
+					popupKeyboard();
+				}
 
 			}
 
 			// TODO: make the strings to set dynamically. Avoid hard code.
 			@Override
 			public void focusLost(FocusEvent e) {
-				getView().getInput().setText("Put your name here.");
-
+				if (getView().getInput().isEditable()) {
+					getView().getInput().setText("Put your name here.");
+					getView().remove(getView().getKeyboard());
+				}
 			}
 
 		});
@@ -181,10 +209,25 @@ public class CryptoController extends AbstractVisualizationController {
 				// TODO: At the moment the user has to put first the key and then his name. It is
 				// invalid behaviour. There must be no order what to put in first. Need some more
 				// checks.
-
+				String explanationContent = getView().getExplanations()
+						.getText();
 				String input = getView().getInput().getText();
+
 				// TODO: check input for validity!
-				if (getModel().handleInput(input)) {
+				if (getModel().handleInput(input) && (getEditableFields() - 1) != 0) {
+					getView()
+							.getExplanations()
+							.setText(
+									explanationContent
+											+ "<br>"
+											+ "<br>This input is ok. Now only the key is left.");
+					getView().getInput().setBorder(
+							BorderFactory.createLineBorder(Color.green));
+					getView().getInput().setEditable(false);
+					setEditableFields((getEditableFields() - 1));
+				} else if (getModel().handleInput(input)
+						&& (getEditableFields() - 1) == 0) {
+
 					// refactor the input into an character array.
 					try {
 						int key = Integer
