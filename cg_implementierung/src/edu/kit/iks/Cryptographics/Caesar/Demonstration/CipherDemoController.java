@@ -78,14 +78,13 @@ public class CipherDemoController extends AbstractVisualizationController {
 										.createLineBorder(Color.green));
 								userOutput.setEditable(false);
 								setEditableFields(getEditableFields() - 1);
-								if (getEditableFields() == 0) {
+								if (getEditableFields() == 0
+										&& getAnimationStep() == 4) {
 									// User encrypted all characters valid.
 									getView()
 											.getExplanations()
 											.setText(
 													"<html><body>Great work oh mighty Caesar. May your enemies shutter over your intelligence.");
-									getView().remove(getView().getProceed());
-									getView().setProceed(null);
 									getView().remove(getView().getAlphabet());
 									getView().setAlphabet(null);
 									getView().getNavigationPanel().remove(
@@ -98,13 +97,23 @@ public class CipherDemoController extends AbstractVisualizationController {
 									nextConst.gridy = 1;
 									nextConst.gridwidth = 26;
 									nextConst.gridheight = 2;
-                                    //nextConst.fill = GridBagConstraints.HORIZONTAL;
+									// nextConst.fill = GridBagConstraints.HORIZONTAL;
 									getView().add(getView().getNextButton(),
 											nextConst);
 									getView().validate();
+								} else if (getEditableFields() == 0
+										&& getAnimationStep() == 3) {
+									getView().getProceed().setVisible(true);
+									getView()
+											.getExplanations()
+											.setText(
+													"<html><body>Great work oh mighty Caesar. May your enemies shutter over your intelligence. Click proceed.");
+									getView().validate();
 								} else {
 									getView().getExplanations().setText(
-											"Great!!!! Go on!");
+											"Great you picked the right one.! Only "
+													+ getEditableFields()
+													+ " left");
 
 								}
 							} else {
@@ -228,6 +237,8 @@ public class CipherDemoController extends AbstractVisualizationController {
 	 */
 	private void step2() {
 		this.animationStep++;
+		this.editableFields = 1;
+		this.getView().getProceed().setVisible(false);
 		this.getView().getUserInput()[0].setBorder(null);
 		this.getView().getUserOutput()[0].setBorder(null);
 		this.getView()
@@ -250,6 +261,8 @@ public class CipherDemoController extends AbstractVisualizationController {
 	private void step3() {
 		this.animationStep++;
 		this.editableFields = (this.getView().getUserInput().length - 2);
+		this.getView().remove(this.getView().getProceed());
+		this.getView().setProceed(null);
 		this.getView().getUserInput()[1].setBorder(null);
 		this.getView().getUserOutput()[1].setBorder(null);
 		for (int i = 2; i < this.getView().getUserInput().length; i++) {

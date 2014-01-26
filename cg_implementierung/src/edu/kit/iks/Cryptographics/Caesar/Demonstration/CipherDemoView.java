@@ -94,6 +94,8 @@ public class CipherDemoView extends VisualizationView {
 		// setup the aligment of the button proceed.
 		GridBagConstraints proceedConst = new GridBagConstraints();
 		this.proceed = new JButton("Proceed!");
+		this.proceed.setPreferredSize(new Dimension(250, 50));
+		this.proceed.setFont(new Font("Arial", 2, 25));
 		proceedConst.anchor = GridBagConstraints.PAGE_END;
 		proceedConst.gridx = 2;
 		proceedConst.gridy = 3;
@@ -116,6 +118,7 @@ public class CipherDemoView extends VisualizationView {
 				"<html><body>"
 						+ "Imagine now you are the mighty caesar!! Of course your first idea is to substitute each <br>"
 						+ "letter from your name with some other from the alphabet. But which one?");
+		this.explanations.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.LAST_LINE_START;
 		expConst.weightx = 0.5;
@@ -214,6 +217,8 @@ public class CipherDemoView extends VisualizationView {
 
 		// set up the alignment of the button back;
 		this.setBackButton(new JButton("Back to Introduction!"));
+		this.getBackButton().setPreferredSize(new Dimension(300, 50));
+		this.getBackButton().setFont(new Font("Arial", 2, 25));
 		/*
 		 * GridBagConstraints backConst = new GridBagConstraints(); backConst.weightx = 1.0;
 		 * backConst.weighty = 0.1; backConst.gridx = 0; backConst.gridy = 0; backConst.gridwidth =
@@ -223,6 +228,8 @@ public class CipherDemoView extends VisualizationView {
 
 		// set up the aligment of the button Next;
 		this.setNextButton(new JButton("Go to Encryption!"));
+		this.getNextButton().setPreferredSize(new Dimension(300, 50));
+		this.getNextButton().setFont(new Font("Arial", 2, 25));
 
 		/*
 		 * GridBagConstraints nextConst = new GridBagConstraints(); nextConst.weightx = 1.0;

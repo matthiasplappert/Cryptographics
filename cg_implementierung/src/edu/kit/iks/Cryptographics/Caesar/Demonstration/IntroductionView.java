@@ -1,5 +1,7 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -99,6 +101,8 @@ public class IntroductionView extends VisualizationView {
 		// the "Exit" button.
 		this.getBackButton().setVisible(false);
 		this.getNextButton().setText("Skip the introduction!");
+		this.getNextButton().setPreferredSize(new Dimension(350, 50));
+		this.getNextButton().setFont(new Font("Arial", 2, 25));
 
 		// set the alignment of NextButton.
 		nextConstraint.anchor = GridBagConstraints.NORTHEAST;
@@ -118,6 +122,8 @@ public class IntroductionView extends VisualizationView {
 		proceedConstraint.gridy = 2;
 		proceedConstraint.gridwidth = 3;
 		this.setProceed(new JButton("Tell me more."));
+		this.proceed.setPreferredSize(new Dimension(250, 50));
+		this.proceed.setFont(new Font("Arial", 2, 25));
 		this.add(this.proceed, proceedConstraint);
 
 		// set the alignment of the masterPlan image.
@@ -144,6 +150,7 @@ public class IntroductionView extends VisualizationView {
 		this.setExplanation(new JLabel(
 				"<html><body>Eines Tages, etwa 70 v.Chr , tüftelte Caesar einen ultra-mega-großen-master-plan <br>"
 						+ " aus um Gallien endlich zu erobern. Und schickte diesen an seine Armee in Gallien. <br>"));
+		this.explanation.setFont(new Font("Arial", 2, 20));
 		this.add(this.explanation, explanationConstraint);
 
 		// layout the component of the Panel.

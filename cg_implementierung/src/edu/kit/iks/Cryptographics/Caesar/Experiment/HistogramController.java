@@ -168,14 +168,12 @@ public class HistogramController extends AbstractVisualizationController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int key = getView().getKeyValue() + 1;
-				if (key != getView().getSecretKey()) {
-					getView().setKeyValue(key);
-					getView().getKey().setText("" + key);
-					getView().getPlain().setText(
-							(getModel().decrypt(key, getView().getCipher()
-									.getText())));
-
-				} else {
+				getView().setKeyValue(key);
+				getView().getKey().setText("" + key);
+				getView().getPlain().setText(
+						(getModel().decrypt(key, getView().getCipher()
+								.getText())));
+				if (key == getView().getSecretKey()) {
 					getView().getExplanations().setText(
 							"<html><body> Congratulations you found the secret key and are now able<br>"
 									+ "to read the secret message.");
@@ -183,7 +181,6 @@ public class HistogramController extends AbstractVisualizationController {
 					setStep(1);
 					getView().setupProceed();
 					genProceedListener();
-
 				}
 			}
 
