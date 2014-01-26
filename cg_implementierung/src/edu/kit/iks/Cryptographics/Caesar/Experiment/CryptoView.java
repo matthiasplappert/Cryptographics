@@ -213,8 +213,8 @@ public class CryptoView extends VisualizationView {
 		this.remove(this.getNextButton());
 
 		// set up the alignment of the button back;
-		this.setBackButton(new JButton("Back to Introduction!"));
-		this.getBackButton().setPreferredSize(new Dimension(300, 50));
+		this.setBackButton(new JButton("Back to demonstration"));
+		this.getBackButton().setPreferredSize(new Dimension(350, 50));
 		this.getBackButton().setFont(new Font("Arial", 2, 25));
 		/*
 		 * GridBagConstraints backConst = new GridBagConstraints(); backConst.weightx = 1.0;
@@ -224,7 +224,7 @@ public class CryptoView extends VisualizationView {
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
-		this.setNextButton(new JButton("Go to Encryption!"));
+		this.setNextButton(new JButton("Go to decryption"));
 		this.getNextButton().setPreferredSize(new Dimension(300, 50));
 		this.getNextButton().setFont(new Font("Arial", 2, 25));
 		/*
