@@ -53,6 +53,8 @@ public class CryptoController extends AbstractVisualizationController {
 		this.view = new CryptoView();
 		this.model = new CryptoModel();
 		this.editableFields = 2;
+		getView().createKeyboard();
+		getView().getKeyboard().setVisible(false);
 
 		// Create all needed ActionListener.
 		this.getView().getGenerator().addMouseListener(new MouseListener() {
@@ -102,7 +104,7 @@ public class CryptoController extends AbstractVisualizationController {
 			public void focusLost(FocusEvent e) {
 				if (getView().getKey().isEditable()) {
 					getView().getKey().setText("Key");
-					getView().remove(getView().getKeyboard());
+					getView().getKeyboard().setVisible(false);
 				}
 
 			}
@@ -112,7 +114,7 @@ public class CryptoController extends AbstractVisualizationController {
 			public void focusGained(FocusEvent e) {
 				if (getView().getKey().isEditable()) {
 					getView().getKey().setText("");
-					popupKeyboard();
+					getView().getKeyboard().setVisible(true);
 				}
 			}
 		});
@@ -184,7 +186,7 @@ public class CryptoController extends AbstractVisualizationController {
 			public void focusGained(FocusEvent e) {
 				if (getView().getInput().isEditable()) {
 					getView().getInput().setText("");
-					popupKeyboard();
+					getView().getKeyboard().setVisible(true);
 				}
 
 			}
@@ -194,7 +196,7 @@ public class CryptoController extends AbstractVisualizationController {
 			public void focusLost(FocusEvent e) {
 				if (getView().getInput().isEditable()) {
 					getView().getInput().setText("Put your name here.");
-					getView().remove(getView().getKeyboard());
+					getView().getKeyboard().setVisible(false);
 				}
 			}
 
@@ -206,15 +208,13 @@ public class CryptoController extends AbstractVisualizationController {
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO: At the moment the user has to put first the key and then his name. It is
-				// invalid behaviour. There must be no order what to put in first. Need some more
-				// checks.
 				String explanationContent = getView().getExplanations()
 						.getText();
 				String input = getView().getInput().getText();
 
 				// TODO: check input for validity!
-				if (getModel().handleInput(input) && (getEditableFields() - 1) != 0) {
+				if (getModel().handleInput(input)
+						&& (getEditableFields() - 1) != 0) {
 					getView()
 							.getExplanations()
 							.setText(
@@ -244,11 +244,9 @@ public class CryptoController extends AbstractVisualizationController {
 						// Generate Listener for the userOutput JTextfield
 						generateListener(inputChars);
 					} catch (NumberFormatException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				} else {
-					// TODO: Input was invalid. Pls make another one.
 					getView().getExplanations().setText(
 							"Your input is invalid. Please try another one!");
 				}
@@ -305,48 +303,6 @@ public class CryptoController extends AbstractVisualizationController {
 
 		});
 
-	}
-
-	/**
-	 * 
-	 */
-	public void popupKeyboard() {
-		getView().createKeyboard();
-		getView().getKeyboard().addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				JButton source = (JButton) e.getSource();
-				getView().getInput().setText(
-						getView().getInput().getText() + source.getText());
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-		});
 	}
 
 	/**
