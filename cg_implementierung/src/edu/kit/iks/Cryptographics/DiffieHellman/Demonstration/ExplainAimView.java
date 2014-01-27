@@ -60,11 +60,7 @@ public class ExplainAimView extends VisualizationView {
 		// TODO remove hardcoded colors and do it dynamically
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2.drawLine(450, 180, 800, 180);
-		g2.drawLine(625, 60, 625, 180);
-		g2.drawString("Alice", 400, 180);
-		g2.drawString("Bob", 810, 180);
-		g2.drawString("Eve", 610, 50);
+		drawChannel(g2);
 		Ellipse2D.Double ellip = new Ellipse2D.Double(x1, y1, 50, 50);
 		g2.setPaint(Color.BLUE);
 		g2.fill(ellip);
@@ -73,6 +69,14 @@ public class ExplainAimView extends VisualizationView {
 			g2.fill(ellip2);
 		}
 		
+	}
+
+	private void drawChannel(Graphics2D g2) {
+		g2.drawLine(450, 180, 800, 180);
+		g2.drawLine(625, 60, 625, 180);
+		g2.drawString("Alice", 400, 180);
+		g2.drawString("Bob", 810, 180);
+		g2.drawString("Eve", 610, 50);
 	}
 
 }
