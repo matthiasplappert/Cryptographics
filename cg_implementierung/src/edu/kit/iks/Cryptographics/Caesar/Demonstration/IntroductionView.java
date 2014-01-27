@@ -1,5 +1,6 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -31,11 +32,6 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
  * 
  */
 public class IntroductionView extends VisualizationView {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7214639660774564585L;
 
 	private GridBagLayout introLayout;
 
@@ -122,7 +118,7 @@ public class IntroductionView extends VisualizationView {
 		proceedConstraint.gridy = 2;
 		proceedConstraint.gridwidth = 3;
 		this.setProceed(new JButton("Tell me more."));
-		this.proceed.setPreferredSize(new Dimension(250, 50));
+		this.proceed.setPreferredSize(new Dimension(500, 50));
 		this.proceed.setFont(new Font("Arial", 2, 25));
 		this.add(this.proceed, proceedConstraint);
 

@@ -72,7 +72,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 							// standart key for the caesar cipher. +3 when encrypting. -3 when
 							// decrypting.
 							if (getModel().checkValidChar(3,
-									userOutput.getName(), userOutput.getText())) {
+									userOutput.getName(), userOutput.getText(), true)) {
 								// user encrypted the given char successful.
 								userOutput.setBorder(BorderFactory
 										.createLineBorder(Color.green));

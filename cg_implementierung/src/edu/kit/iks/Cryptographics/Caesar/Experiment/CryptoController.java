@@ -123,8 +123,7 @@ public class CryptoController extends AbstractVisualizationController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					// TODO: Need to take the explanation from other resources. At the moment it
-					// leads to invalid behaviour.
+					// TODO: Need to take the explanation from other resources.
 					String explanationContent = getView().getExplanations()
 							.getText();
 					int key = Integer.parseInt(getView().getKey().getText());
@@ -168,7 +167,7 @@ public class CryptoController extends AbstractVisualizationController {
 												+ "<br>"
 												+ "<br>This key is not valid. Please put a number between 1 and 25.<br>"
 												+ "For demonstration purposes the keys between -1 and -25 are not necessary<br>"
-												+ "therefore not possible, but could be used as keys too. And 0 as key has no<br>"
+												+ "therefore not possible, but could be used in general as keys too. And 0 as key has no<br>"
 												+ " sense, if you dont understand why, then go back to Introduction.");
 						getView().getKey().setBorder(
 								BorderFactory.createLineBorder(Color.red));
@@ -275,15 +274,16 @@ public class CryptoController extends AbstractVisualizationController {
 			 */
 			public void actionPerformed(ActionEvent event) {
 				if (!decryptionPhase) {
-					int key = -(getModel().generateKey());
+					int key = getModel().generateKey();
 					// TODO: implement unloadView();
-					unloadInOut();
+					// unloadInOut();
 					// start Decryption!
 					decryptionPhase = true;
 					// TODO: generate a random cipher.
 					char[] string = getModel().generateCipher();
 					setEditableFields(string.length);
-					getView().setupInOutElements(string, key);
+					getView().start(string, key);
+
 					// generate ActionListener.
 					generateListener(string);
 
@@ -291,7 +291,13 @@ public class CryptoController extends AbstractVisualizationController {
 					getView()
 							.getExplanations()
 							.setText(
-									"The stage for decryption is not finished yet, to skip click next or exit!!");
+									"<html><body>In the steps before you learned how to encrypt a given message.<br>"
+											+ "But what does it help you to encrypt messages when noone can decrypt them?<br>"
+											+ "Now we are going to help us by ourselves. Lets think logically. When we shift<br>"
+											+ "a letter to 3 positions forwards, then we can get back to it when we shift the given<br>"
+											+ "cipher 3 positions back! The important fact is also that we can shift up to 25 positions back<br>"
+											+ "as we can shift 25 positions forward. Lets try this one. Remember: The key you added <br>"
+											+ "while encrypting, now needs to be substracted!");
 					getView().getNextButton().setText("Go to histograms!");
 
 				} else {
@@ -311,8 +317,6 @@ public class CryptoController extends AbstractVisualizationController {
 	public void unloadInOut() {
 		this.getView().remove(this.getView().getInOutPanel());
 		this.getView().setInOutPanel(null);
-		this.getView().revalidate();
-		this.getView().repaint();
 
 	}
 
@@ -325,6 +329,22 @@ public class CryptoController extends AbstractVisualizationController {
 	public void generateListener(char[] inputChars) {
 		// Generate Listener for the userOutput JTextfield
 		for (int i = 0; i < inputChars.length; i++) {
+			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
+				@Override
+				public void focusLost(FocusEvent e) {
+					if (getView().getKey().isEditable()) {
+						getView().getKeyboard().setVisible(false);
+					}
+
+				}
+
+				@Override
+				public void focusGained(FocusEvent e) {
+					if (getView().getKey().isEditable()) {
+						getView().getKeyboard().setVisible(true);
+					}
+				}
+			});
 			getView().getUserOutput()[i]
 					.addActionListener(new ActionListener() {
 
@@ -340,25 +360,30 @@ public class CryptoController extends AbstractVisualizationController {
 										.getText());
 								if (getModel().checkValidChar(key,
 										userOutput.getName(),
-										userOutput.getText())) {
+										userOutput.getText(), true)
+										&& (getEditableFields() - 1) != 0) {
 									// user encrypted the given char successful.
 									userOutput.setBorder(BorderFactory
 											.createLineBorder(Color.green));
 									userOutput.setEditable(false);
 									setEditableFields(getEditableFields() - 1);
+									getView().getExplanations().setText(
+											"Great. That one was right. You have "
+													+ getEditableFields()
+													+ " left!");
 
-									if (getEditableFields() == 0) {
-										// User encrypted all characters valid.
-										getView()
-												.getExplanations()
-												.setText(
-														"<html><body>All done right!!! Great job comrade. Now you are one step more to destroying the capitalism!<br>"
-																+ "Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
-																+ "are superior to your power!");
-									} else {
-										getView().getExplanations().setText(
-												"Great!!!! Go on!");
-									}
+								} else if (getModel().checkValidChar(key,
+										userOutput.getName(),
+										userOutput.getText(), true)
+										&& (getEditableFields() - 1) == 0) {
+									// User encrypted all characters valid.
+									getView()
+											.getExplanations()
+											.setText(
+													"<html><body>All done right!!! Great job comrade. Now you are one step more to destroying the capitalism!<br>"
+															+ "Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
+															+ "are superior to your power!");
+
 								} else {
 									// TODO: user encrypted invalid! Need another try.
 									userOutput.setBorder(BorderFactory
