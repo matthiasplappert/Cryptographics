@@ -1,6 +1,5 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
-import java.awt.Color;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -19,7 +18,6 @@ public class OnewayView extends VisualizationView {
 	public OnewayView() {
 		super();
 		this.setLayout(new GridBagLayout());
-		this.setBackground(Color.WHITE);
 		this.onewayExplain = new JLabel();
 		this.onewayExplain.setText("<html><div style=\"width:200px\">To achive this, we use " +
 				"something called one-way function. This function is easy to compute" +

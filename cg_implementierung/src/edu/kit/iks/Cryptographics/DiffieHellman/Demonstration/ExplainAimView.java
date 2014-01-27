@@ -29,7 +29,6 @@ public class ExplainAimView extends VisualizationView {
 	public ExplainAimView() {
 		super();
 		this.setLayout(new GridBagLayout());
-		this.setBackground(Color.WHITE);
 		this.aimExplain = new JLabel();
 		this.aimExplain.setText("<html><div style=\"width:200px\">Our aim is to exchange a secret on a public channel, " +
 				"without Eve getting the secret too. Therefore we can't simply send the secret, as shown" +

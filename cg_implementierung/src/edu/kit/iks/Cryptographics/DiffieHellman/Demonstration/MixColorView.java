@@ -16,7 +16,6 @@ public class MixColorView extends VisualizationView {
 	
 	public MixColorView() {
 		this.setLayout(new GridBagLayout());
-		this.setBackground(Color.WHITE);
 		this.mixExplain = new JLabel();
 		this.mixExplain.setText("Mix the color");
 		this.add(mixExplain);

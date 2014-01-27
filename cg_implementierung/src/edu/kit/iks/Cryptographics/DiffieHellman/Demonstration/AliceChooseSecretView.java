@@ -18,7 +18,6 @@ public class AliceChooseSecretView extends VisualizationView {
 	public AliceChooseSecretView() {
 		super();
 		this.setLayout(new GridBagLayout());
-		this.setBackground(Color.WHITE);
 		this.aliceExplain = new JLabel();
 		this.aliceExplain.setText("Alice chooses a color");
 		this.add(aliceExplain);
