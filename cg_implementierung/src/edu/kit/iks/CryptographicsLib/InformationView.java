@@ -37,6 +37,9 @@ public class InformationView extends JPanel {
 	public InformationView(URL path, Image qrCode) {
 		this.qrCode = qrCode;
 		this.path = path;
+		
+		ImageView view = new ImageView(qrCode);
+		this.add(view);
 	}
 	
 	/**

@@ -62,7 +62,7 @@ public class SecondController extends AbstractVisualizationController {
 			@Override
 			public void mouseClicked(MouseEvent event) {
 				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
-				containerController.presentStartController();
+				containerController.presentNextVisualizationController();
 			}
 
 			@Override
