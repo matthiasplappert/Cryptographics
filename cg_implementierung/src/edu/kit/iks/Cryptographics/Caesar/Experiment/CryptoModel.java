@@ -48,13 +48,16 @@ public class CryptoModel {
 	 * 
 	 * @param input
 	 */
-	public boolean checkValidChar(int key, String plain, String enc, boolean encryption) {
+	public boolean checkValidChar(int key, String plain, String enc,
+			boolean encryption) {
 		// plain is the character to encrypt and enc is the corresponding cipher.
-		int offset = (int) plain.charAt(0);
-		if (((int) plain.charAt(0) + key) < 65) {
-			offset = offset + 25;
+		int offset = ((int) plain.charAt(0)) - 65;
+		if (!encryption) {
+			if (((int) plain.charAt(0) + key) < 65) {
+				offset = offset + 25;
+			}
 		}
-		if ((offset + key) % (65+25) == ((int) enc.charAt(0))) {
+		if (((offset + key) % 25) + 64 == ((int) enc.charAt(0))) {
 			return true;
 		}
 		return false;

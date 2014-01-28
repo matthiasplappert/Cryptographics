@@ -39,9 +39,9 @@ public class CipherDemoView extends VisualizationView {
 	private JPanel inOutPanel;
 
 	private JPanel navigationPanel;
-	
+
 	private ImageView caesarHappy;
-	
+
 	private ImageView caesarFrustrated;
 
 	/**
@@ -85,10 +85,9 @@ public class CipherDemoView extends VisualizationView {
 		// setup the back and next Buttons.
 		setupNavigation();
 
+		// TODO: need a generator to generate random strings dynamically.
 		// setup the fields for the demonstratoin of the encryption.
-		char[] chars = { 'C', 'A', 'E', 'S', 'A', 'R' };  // TODO: need a generator to
-															// generate
-		// random strings dynamically.
+		char[] chars = { 'C', 'A', 'E', 'S', 'A', 'R' };
 		setupInOutElements(chars);
 
 		// setup the aligment of the button proceed.
@@ -353,7 +352,8 @@ public class CipherDemoView extends VisualizationView {
 	}
 
 	/**
-	 * @param navigationPanel the navigationPanel to set
+	 * @param navigationPanel
+	 *            the navigationPanel to set
 	 */
 	public void setNavigationPanel(JPanel navigationPanel) {
 		this.navigationPanel = navigationPanel;
@@ -367,7 +367,8 @@ public class CipherDemoView extends VisualizationView {
 	}
 
 	/**
-	 * @param caesarHappy the caesarHappy to set
+	 * @param caesarHappy
+	 *            the caesarHappy to set
 	 */
 	public void setCaesarHappy(ImageView caesarHappy) {
 		this.caesarHappy = caesarHappy;
@@ -381,7 +382,8 @@ public class CipherDemoView extends VisualizationView {
 	}
 
 	/**
-	 * @param caesarFrustrated the caesarFrustrated to set
+	 * @param caesarFrustrated
+	 *            the caesarFrustrated to set
 	 */
 	public void setCaesarFrustrated(ImageView caesarFrustrated) {
 		this.caesarFrustrated = caesarFrustrated;
@@ -395,7 +397,8 @@ public class CipherDemoView extends VisualizationView {
 	}
 
 	/**
-	 * @param cipherDemoResource the cipherDemoResource to set
+	 * @param cipherDemoResource
+	 *            the cipherDemoResource to set
 	 */
 	public void setCipherDemoResource(Element cipherDemoResource) {
 		this.cipherDemoResource = cipherDemoResource;

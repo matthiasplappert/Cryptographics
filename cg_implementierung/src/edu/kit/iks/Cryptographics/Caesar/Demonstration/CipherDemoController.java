@@ -34,6 +34,8 @@ public class CipherDemoController extends AbstractVisualizationController {
 	private int editableFields;
 
 	/**
+	 * Constructor.
+	 * 
 	 * @param visualizationInfo
 	 */
 	public CipherDemoController(AbstractVisualizationInfo visualizationInfo) {
@@ -72,7 +74,8 @@ public class CipherDemoController extends AbstractVisualizationController {
 							// standart key for the caesar cipher. +3 when encrypting. -3 when
 							// decrypting.
 							if (getModel().checkValidChar(3,
-									userOutput.getName(), userOutput.getText(), true)) {
+									userOutput.getName(), userOutput.getText(),
+									true)) {
 								// user encrypted the given char successful.
 								userOutput.setBorder(BorderFactory
 										.createLineBorder(Color.green));
@@ -279,22 +282,15 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 	}
 
-	/**
-	 * Describe that decryption is the same way as encryption.
-	 */
-	private void step4() {
-		this.animationStep++;
-		String firstLetter = this.getView().getUserInput()[0].getText();
-		// this.getView().getExplanations().setText("The first letter is "+firstLetter+""
-
-	}
-
-	/**
-	 * 
-	 */
-	private void encryptExample() {
-
-	}
+	// /**
+	// * Describe that decryption is the same way as encryption.
+	// */
+	// private void step4() {
+	// this.animationStep++;
+	// String firstLetter = this.getView().getUserInput()[0].getText();
+	// // this.getView().getExplanations().setText("The first letter is "+firstLetter+""
+	//
+	// }
 
 	@Override
 	public String getHelp() {

@@ -20,7 +20,7 @@ import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
-/**
+/**TODO: Need new comments.
  * This is the first view the user gets presented when he requests the
  * visualization of Caesar's cipher. Here the user gets to know what problems
  * Caesar faced when his enemies could intercept and read his orders. The
@@ -154,32 +154,32 @@ public class IntroductionView extends VisualizationView {
 
 	}
 
-	// Animations stubs.
-
-	public void firstAnimation() {
-		this.timer = new Timer(50, new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (getCourier().getX() < (getAnimationContainer().getWidth() - 200)) {
-					animate();
-				} else {
-					getTimer().stop();
-				}
-			}
-		});
-		xCoordCourier = getCourier().getX();
-		this.timer.start();
-	}
-
-	public void animate() {
-		xCoordCourier += 10;
-		int y = getCourier().getY();
-		getCourier().setBounds(xCoordCourier, y, getPreferredSize().width,
-				getPreferredSize().height);
-		getCourier().validate();
-		this.repaint();
-	}
+	// // Animations stubs.
+	//
+	// public void firstAnimation() {
+	// this.timer = new Timer(50, new ActionListener() {
+	//
+	// @Override
+	// public void actionPerformed(ActionEvent e) {
+	// if (getCourier().getX() < (getAnimationContainer().getWidth() - 200)) {
+	// animate();
+	// } else {
+	// getTimer().stop();
+	// }
+	// }
+	// });
+	// xCoordCourier = getCourier().getX();
+	// this.timer.start();
+	// }
+	//
+	// public void animate() {
+	// xCoordCourier += 10;
+	// int y = getCourier().getY();
+	// getCourier().setBounds(xCoordCourier, y, getPreferredSize().width,
+	// getPreferredSize().height);
+	// getCourier().validate();
+	// this.repaint();
+	// }
 
 	/**
 	 * @return the proceed
