@@ -241,17 +241,17 @@ public class CryptoView extends VisualizationView {
 	 * Creates the keyboard and shows it in the main container.
 	 */
 	public void createKeyboard() {
-		this.keyboard = new KeyboardView();
-		GridBagConstraints kbConst = new GridBagConstraints();
-		kbConst.anchor = GridBagConstraints.PAGE_END;
-		kbConst.weightx = 1.0;
-		kbConst.weighty = 0.5;
-		kbConst.gridx = 0;
-		kbConst.gridy = 0;
-		kbConst.gridwidth = 11;
-		kbConst.gridheight = 3;
-		this.add(this.keyboard, kbConst);
-		this.validate();
+//		this.keyboard = new KeyboardView();
+//		GridBagConstraints kbConst = new GridBagConstraints();
+//		kbConst.anchor = GridBagConstraints.PAGE_END;
+//		kbConst.weightx = 1.0;
+//		kbConst.weighty = 0.5;
+//		kbConst.gridx = 0;
+//		kbConst.gridy = 0;
+//		kbConst.gridwidth = 11;
+//		kbConst.gridheight = 3;
+//		this.add(this.keyboard, kbConst);
+//		this.validate();
 	}
 
 	/**
