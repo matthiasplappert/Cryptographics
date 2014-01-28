@@ -102,7 +102,10 @@ public class PopoverView extends JPanel {
 		GridBagConstraints closeConstraints = new GridBagConstraints();
 		closeConstraints.gridx = 0;
 		closeConstraints.gridy = 0;
-		this.closeButton = new JButton("Close");
+		// \u00D7 is the unicode for the times "x" (prettier close icon as just x)
+		this.closeButton = new JButton("\u00D7");
+		// Name to enable applying custom style with synth
+		this.closeButton.setName("closeButton");
 		this.add(this.closeButton, closeConstraints);
 		
 		// Create content view.
