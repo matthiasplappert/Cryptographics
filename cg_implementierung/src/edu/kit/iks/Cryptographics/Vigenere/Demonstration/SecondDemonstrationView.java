@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
+import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 
 public class SecondDemonstrationView extends VisualizationView {
 	private static final long serialVersionUID = 6294968461280032987L;
@@ -32,11 +33,50 @@ public class SecondDemonstrationView extends VisualizationView {
 	private JLabel charSecond;
 	private JLabel charFinished;
 	
+	private JLabel explanation;
+	
 	private JButton proceed;
 	private AlphabetStripView alphabet;
+	
+	public void setTextField(int i, String character) {
+		this.textCharEncrypted[i].setText(character);
+		this.indexCharEncrypted[i].setText("" + VigenereModel.characterToInt(character));
+		Dimension size = this.indexCharEncrypted[i].getPreferredSize();
+		this.indexCharEncrypted[i].setSize(size);
+		this.validate();
+	}
+	public void setHighlighted(int i) {
+		this.alphabet.highlight(i);
+	}
+	
+	public void setUnHighlighted(int i) {
+		this.alphabet.unHighlight(i);
+	}
+	
+	public void setEncryptedCharsVisible(boolean b) {
+		for (int i = 0; i < this.indexCharEncrypted.length; i++) {
+			this.indexCharEncrypted[i].setVisible(b);
+			this.textCharEncrypted[i].setVisible(b);
+		}
+	}
+	
+	public void setCalculatorVisible(boolean b) {
+		this.charFirst.setVisible(b);
+		this.charSecond.setVisible(b);
+		this.charFinished.setVisible(b);
+	}
+	
+	public void setKeyVisible(boolean b) {
+		this.vigenereKeyDesc.setVisible(b);
+	}
+
+	public void setExplanation(String explanation) {
+		this.explanation.setText(explanation);
+	}
 
 	public SecondDemonstrationView() {
 		this.setLayout(null);
+		this.add(this.explanation = new JLabel("<html><div width=\"1200\">Now we want to encrypt 'ANNA'. First of all we add the position of evey character, as you can see in the bottom, in the alphabet under each character.</div></html>"));
 		this.add(new JLabel("VIGENERE INTRODUCTION2"));
 		this.vigenereKeyDesc = new JLabel("Vigenere Key: " + this.vigenereKey);
 		this.proceed = new JButton("Proceed");
@@ -52,10 +92,10 @@ public class SecondDemonstrationView extends VisualizationView {
 			this.add(this.textCharPlain[i]);
 
 		this.indexCharPlain = new JLabel[4];
-		this.indexCharPlain[0] = new JLabel("1");
+		this.indexCharPlain[0] = new JLabel(" 1");
 		this.indexCharPlain[1] = new JLabel("14");
 		this.indexCharPlain[2] = new JLabel("14");
-		this.indexCharPlain[3] = new JLabel("1");
+		this.indexCharPlain[3] = new JLabel(" 1");
 		for (int i = 0; i < this.indexCharPlain.length; i++)
 			this.add(this.indexCharPlain[i]);
 
@@ -68,10 +108,10 @@ public class SecondDemonstrationView extends VisualizationView {
 			this.add(this.textCharEncrypted[i]);
 
 		this.indexCharEncrypted = new JLabel[4];
-		this.indexCharEncrypted[0] = new JLabel();
-		this.indexCharEncrypted[1] = new JLabel();
-		this.indexCharEncrypted[2] = new JLabel();
-		this.indexCharEncrypted[3] = new JLabel();
+		this.indexCharEncrypted[0] = new JLabel("  ");
+		this.indexCharEncrypted[1] = new JLabel("  ");
+		this.indexCharEncrypted[2] = new JLabel("  ");
+		this.indexCharEncrypted[3] = new JLabel("  ");
 		for (int i = 0; i < this.indexCharEncrypted.length; i++)
 			this.add(this.indexCharEncrypted[i]);
 
@@ -86,10 +126,15 @@ public class SecondDemonstrationView extends VisualizationView {
 		this.add(this.charSecond = new JLabel("Key-Char: 14"));
 		this.add(this.charFinished = new JLabel("Result: 15"));
 		
+		setCalculatorVisible(false);
+		setEncryptedCharsVisible(false);
+		setKeyVisible(false);
+		
 		this.vigenereKeyDesc.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		this.charFirst.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		this.charSecond.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		this.charFinished.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+		this.explanation.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		
 		for (int i = 0; i < this.textCharPlain.length; i++)
 			this.textCharPlain[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
@@ -187,6 +232,10 @@ public class SecondDemonstrationView extends VisualizationView {
 		
 		size = this.charFinished.getPreferredSize();
 		this.charFinished.setBounds(900, 260,
+	             size.width, size.height);
+		
+		size = this.explanation.getPreferredSize();
+		this.explanation.setBounds(10, 10,
 	             size.width, size.height);
 		
 		size = this.getBackButton().getPreferredSize();
