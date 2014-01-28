@@ -30,6 +30,7 @@ public class ExplainAimView extends VisualizationView {
 		this.cc = new ColorChannel(460, 155, 600, 155);
 		this.cc.setPreferredSize(new Dimension(900, 700));
 		this.add(this.cc);
+		this.cc.sendToAlice();
 	}
 	
 
