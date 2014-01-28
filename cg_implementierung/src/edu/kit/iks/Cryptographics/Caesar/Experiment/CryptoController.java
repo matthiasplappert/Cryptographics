@@ -373,9 +373,10 @@ public class CryptoController extends AbstractVisualizationController {
 							try {
 								key = Integer.parseInt(getView().getKey()
 										.getText());
+								
 								if (getModel().checkValidChar(key,
 										userOutput.getName(),
-										userOutput.getText(), true)
+										userOutput.getText(), !decryptionPhase)
 										&& (getEditableFields() - 1) != 0) {
 									// user encrypted the given char successful.
 									userOutput.setBorder(BorderFactory
