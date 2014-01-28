@@ -1,8 +1,16 @@
 package edu.kit.iks.CryptographicsLib;
 
 import java.awt.Image;
-import java.net.URL;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
+
+import javax.imageio.ImageIO;
+
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
 
 /**
  * Abstract visualization information
@@ -77,9 +85,14 @@ abstract public class AbstractVisualizationInfo {
 	 * 
 	 * @return Additional information as file URL to display HTML
 	 */
-	public URL getAdditionalInformationFileURL() {
+	public String getAdditionalInformationFileURL() {
 		return null;
 	}
+	
+	/**
+	 * The QR code. Will be generated lazily.
+	 */
+	private Image qrCode = null;
 
 	/**
 	 * Gets the QR code as image 
@@ -87,7 +100,34 @@ abstract public class AbstractVisualizationInfo {
 	 * @return QR code as image 
 	 */
 	public Image getQrCode() {
-		return null;
+		if (this.qrCode == null) {
+			this.generateQrCode();
+		}
+		return this.qrCode;
+	}
+	
+	/**
+	 * Generates the QR code.
+	 */
+	private void generateQrCode() {
+		// Get the text
+		String text = this.getQRCodeContent();
+		
+		// Generate QR code to output stream.
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		QRCode.from(text).to(ImageType.PNG).writeTo(output);
+		
+		// Create BufferedImage from input stream.
+		byte[] data = output.toByteArray();
+		ByteArrayInputStream input = new ByteArrayInputStream(data);
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.qrCode = image;
 	}
 	
 	/**
