@@ -84,6 +84,7 @@ public class VisualizationContainerView extends JPanel {
 		contentConstraints.fill = GridBagConstraints.BOTH;
 		contentConstraints.gridwidth = 3;
 	    this.contentView = new JPanel(new BorderLayout());
+	    this.contentView.setName("visualizationContainerContent");
 	    this.add(this.contentView, contentConstraints);
 	    
 	    this.validate();

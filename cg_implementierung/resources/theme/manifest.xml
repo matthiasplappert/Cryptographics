@@ -7,7 +7,24 @@
       <color value="BLACK" type="FOREGROUND" />
     </state>
   </style>
-  <bind style="defaultStyle" type="region" key=".*" />
+  
+  <!-- Visualization container controller content style -->
+  <style id="containerControllerHeaderStyle">
+    <opaque value="TRUE"/>
+    <state>
+      <color value="#f0f0f0" type="BACKGROUND" />
+      <color value="BLACK" type="FOREGROUND" />
+    </state>
+  </style>
+  
+  <!-- Visualization container controller content area style -->
+  <style id="containerControllerContentStyle">
+    <opaque value="TRUE"/>
+    <state>
+      <color value="WHITE" type="BACKGROUND" />
+      <color value="BLACK" type="FOREGROUND" />
+    </state>
+  </style>
 
   <!-- The default button style -->
   <style id="defaultButton">
@@ -19,21 +36,27 @@
       <color value="WHITE" type="TEXT_FOREGROUND" />
     </state>
   </style>
-  <bind style="defaultButton" type="region" key="Button" />
   
   <!-- Visualization button -->
   <style id="visualizationButtonStyle">
     <font name="Verdana" size="16" style="NORMAL" />
   </style>
-  <bind style="visualizationButtonStyle" type="name" key="visualizationButton" />
   
   <!-- Close button -->
   <style id="closeButtonStyle">
     <font name="Verdana" size="20" style="BOLD" />
     <state>
+      <!-- Override default button background image to none -->
       <imagePainter method="buttonBackground" path="" sourceInsets="0 0 0 0" />
       <color value="#777777" type="TEXT_FOREGROUND" />
     </state>
   </style>
+  
+  <!-- Bindings -->
+  <bind style="defaultStyle" type="region" key=".*" />
+  <bind style="containerControllerHeaderStyle" type="name" key="visualizationContainerController" />
+  <bind style="containerControllerContentStyle" type="name" key="visualizationContainerContent" />
+  <bind style="defaultButton" type="region" key="Button" />
+  <bind style="visualizationButtonStyle" type="name" key="visualizationButton" />
   <bind style="closeButtonStyle" type="name" key="closeButton" />
  </synth>
