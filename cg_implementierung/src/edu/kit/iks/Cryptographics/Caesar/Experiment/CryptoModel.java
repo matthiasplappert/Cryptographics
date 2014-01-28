@@ -1,5 +1,7 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
+import java.util.Random;
+
 /**
  * Model of the last step of Caesar Introduction phase and the first two steps of the experiment.
  * 
@@ -22,22 +24,27 @@ public class CryptoModel {
 
 	/**
 	 * @param key
-	 * @param cipher
+	 * @param text
 	 * @return
 	 */
-	public String decrypt(int key, String cipher) {
+	public String decrypt(int key, String text, boolean encryption) {
 
 		String plain = "";
 
-		for (int i = 0; i < cipher.length(); i++) {
-			if ((int) cipher.charAt(i) < 65 || (int) cipher.charAt(i) > 90) {
-				continue;
-			}
-			int offset = (int) cipher.charAt(i);
-			if (((int) cipher.charAt(i) - key) < 65) {
-				offset = offset + 25;
-			}
-			plain += String.valueOf((char) (offset - key));
+		for (int i = 0; i < text.length(); i++) {
+			// if ((int) text.charAt(i) < 65 || (int) text.charAt(i) > 90) {
+			// continue;
+			// }
+			 if (!encryption) {
+				 key = -1*key;
+				 }
+			int offset = ((int) text.charAt(i)) - 65;
+			
+//			if (((int) cipher.charAt(i) - key) < 65) {
+//				offset = offset + 25;
+//			}
+			
+			plain += String.valueOf((char)((Math.abs((offset + key) % 26)) + 65));
 		}
 		return plain;
 
@@ -52,12 +59,10 @@ public class CryptoModel {
 			boolean encryption) {
 		// plain is the character to encrypt and enc is the corresponding cipher.
 		int offset = ((int) plain.charAt(0)) - 65;
-		if (!encryption) {
-			if (((int) plain.charAt(0) + key) < 65) {
-				offset = offset + 25;
-			}
-		}
-		if (((offset + key) % 25) + 64 == ((int) enc.charAt(0))) {
+		 if (!encryption) {
+		 key = -1*key;
+		 }
+		if ((Math.abs((offset + key) % 26)) + 65 == ((int) enc.charAt(0))) {
 			return true;
 		}
 		return false;
@@ -88,21 +93,24 @@ public class CryptoModel {
 	/**
 	 * @return
 	 */
-	public char[] generatePlainText() {
+	public String getRandomPlainText() {
 		// TODO: Generate a random name!
-		char[] string = { 'A', 'N', 'N', 'A' };
-		return string;
+		String[] plainTextPool = {"ANNA", "HANNAH", "BANANA", "KOKOS", "KRYPTOCHEF", "HAMSTER", "WASILIJ", "SECRET", "EIPSILON"};
+		int index = (int) ((Math.random()*1000) % plainTextPool.length);
+		return plainTextPool[index];
 	}
 
-	/**
-	 * @return
-	 */
-	public char[] generateCipher() {
-		// TODO: generate a random cipher.
-		char[] cipher = { 'D', 'Q', 'Q', 'D' };
-		return cipher;
-
-	}
+//	/**
+//	 * @return
+//	 */
+//	public char[] getRandomCipher() {
+//		// TODO: generate a random cipher.
+//		String[] cipherPool = {"EXSFOBCSDI10", "JYFWAVSVNPRBT7", "XELCGBPURS13", "NKRRU6" };
+//		int index = (int ) Math.random() % cipherPool.length;
+//		char[] cipher = cipherPool[index].toCharArray();
+//		return cipher;
+//
+//	}
 
 	/**
 	 * @return the inputStep
@@ -130,6 +138,6 @@ public class CryptoModel {
 
 	public int generateKey() {
 		// TODO: Need a random key generator.
-		return 3;
+		return (int) (Math.random()*1000) % 26;
 	}
 }

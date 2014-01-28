@@ -103,7 +103,6 @@ public class CryptoView extends VisualizationView {
 		viewConst.gridwidth = 3;
 		viewConst.gridheight = 4;
 		introLayout.setConstraints(this, viewConst);
-		this.keyboard = new KeyboardView();
 
 		// setups the next and back buttons.
 		setupNavigation();
@@ -125,7 +124,7 @@ public class CryptoView extends VisualizationView {
 						+ "1. You put you own key and plaintext into the textfield.<br>"
 						+ "<br>"
 						+ "2.Or you just click generate and this awesome programm generates you everything you need with real real complex calculations.");
-		this.explanations.setFont(new Font("Arial", 2, 20));
+//		this.explanations.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.PAGE_START;
 		expConst.weightx = 0.5;
@@ -243,6 +242,7 @@ public class CryptoView extends VisualizationView {
 	 * Creates the keyboard and shows it in the main container.
 	 */
 	public void createKeyboard() {
+		this.keyboard = new KeyboardView();
 		GridBagConstraints kbConst = new GridBagConstraints();
 		kbConst.anchor = GridBagConstraints.PAGE_END;
 		kbConst.weightx = 1.0;
@@ -295,7 +295,7 @@ public class CryptoView extends VisualizationView {
 						+ "26 is obvious bigger then 25. Then you subtract 26 - 25 = 1. This is your cipher. <br>"
 						+ "It is also called modulo calculation. for example 26 mod 25 = 1. But this is a little more complex<br>"
 						+ "Therefore not important here. You will see more in the vigenere Visualization.");
-		this.explanations.setFont(new Font("Arial", 2, 20));
+//		this.explanations.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.LAST_LINE_START;
 		expConst.weightx = 0.5;

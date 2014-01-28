@@ -7,8 +7,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.geom.Area;
 import java.awt.geom.GeneralPath;
@@ -30,7 +30,7 @@ public class PopoverView extends JPanel {
 	 * Defines the possible locations of a popover arrow. 
 	 */
 	private enum ArrowLocation {
-	    TOP, RIGHT, BOTTOM, LEFT 
+	    TOP, BOTTOM 
 	};
 	
 	/**
@@ -52,6 +52,11 @@ public class PopoverView extends JPanel {
 	 * The corner radius of the popover.
 	 */
 	final private static int CORNER_RADIUS = 20;
+	
+	/**
+	 * The minimum padding between the container and the popover.
+	 */
+	final private static int MINIMUM_CONTAINER_PADDING = 5;
 	
 	private Color borderColor;
 	
@@ -97,7 +102,10 @@ public class PopoverView extends JPanel {
 		GridBagConstraints closeConstraints = new GridBagConstraints();
 		closeConstraints.gridx = 0;
 		closeConstraints.gridy = 0;
-		this.closeButton = new JButton("Close");
+		// \u00D7 is the unicode for the times "x" (prettier close icon as just x)
+		this.closeButton = new JButton("\u00D7");
+		// Name to enable applying custom style with synth
+		this.closeButton.setName("closeButton");
 		this.add(this.closeButton, closeConstraints);
 		
 		// Create content view.
@@ -202,44 +210,31 @@ public class PopoverView extends JPanel {
 				shape = new Area(new RoundRectangle2D.Double(0.0, ARROW_HEIGHT, this.getSize().getWidth(), this.getSize().getHeight() - ARROW_HEIGHT, CORNER_RADIUS, CORNER_RADIUS));
 				break;
 				
-			case RIGHT:
-				shape = new Area(new RoundRectangle2D.Double(0.0, 0.0, this.getSize().getWidth() - ARROW_HEIGHT, this.getSize().getHeight(), CORNER_RADIUS, CORNER_RADIUS));
-				break;
-				
 			case BOTTOM:
 				shape = new Area(new RoundRectangle2D.Double(0.0, 0.0, this.getSize().getWidth(), this.getSize().getHeight() - ARROW_HEIGHT, CORNER_RADIUS, CORNER_RADIUS));
 				break;
-				
-			case LEFT:
-				shape = new Area(new RoundRectangle2D.Double(ARROW_HEIGHT, 0.0, this.getSize().getWidth() - ARROW_HEIGHT, this.getSize().getHeight(), CORNER_RADIUS, CORNER_RADIUS));
-				break;
 		}
+		
+		// Calculate the offset for the arrow.
+		int centerLocationX = (int)(this.getLocation().getX() + this.getWidth() / 2); 
+		int offsetX = (int)(this.anchorPoint.getX() - centerLocationX);
 		
 		// Create the arrow path.
 	    GeneralPath path = new GeneralPath(GeneralPath.WIND_EVEN_ODD);
+	    Point arrowLocation = null;
 	    switch (this.arrowLocation) {
 			case TOP:
-				path.moveTo(this.getSize().getWidth() / 2 - ARROW_WIDTH / 2, ARROW_HEIGHT);
-				path.lineTo(this.getSize().getWidth() / 2, 0);
-			    path.lineTo(this.getSize().getWidth() / 2 + ARROW_WIDTH / 2, ARROW_HEIGHT);
-			    break;
-				
-			case RIGHT:
-				path.moveTo(this.getSize().getWidth() - ARROW_HEIGHT, this.getSize().getHeight() / 2 - ARROW_WIDTH / 2);
-				path.lineTo(this.getSize().getWidth(), this.getSize().getHeight() / 2);
-			    path.lineTo(this.getSize().getWidth() - ARROW_HEIGHT, this.getSize().getHeight() / 2 + ARROW_WIDTH / 2);
+				arrowLocation = new Point((int)(this.getSize().getWidth() / 2 + offsetX), ARROW_HEIGHT);
+				path.moveTo(arrowLocation.getX() - ARROW_WIDTH / 2, arrowLocation.getY());
+				path.lineTo(arrowLocation.getX(), arrowLocation.getY() - ARROW_HEIGHT);
+			    path.lineTo(arrowLocation.getX() + ARROW_WIDTH / 2, arrowLocation.getY());
 			    break;
 				
 			case BOTTOM:
-				path.moveTo(this.getSize().getWidth() / 2 - ARROW_WIDTH / 2, this.getSize().getHeight() - ARROW_HEIGHT);
-				path.lineTo(this.getSize().getWidth() / 2, this.getSize().getHeight());
-			    path.lineTo(this.getSize().getWidth() / 2 + ARROW_WIDTH / 2, this.getSize().getHeight() - ARROW_HEIGHT);
-			    break;
-				
-			case LEFT:
-				path.moveTo(ARROW_HEIGHT, this.getSize().getHeight() / 2 - ARROW_WIDTH / 2);
-				path.lineTo(0, this.getSize().getHeight() / 2);
-			    path.lineTo(ARROW_HEIGHT, this.getSize().getHeight() / 2 + ARROW_WIDTH / 2);
+				arrowLocation = new Point((int)(this.getSize().getWidth() / 2 + offsetX), (int)(this.getSize().getHeight() - ARROW_HEIGHT));
+				path.moveTo(arrowLocation.getX() - ARROW_WIDTH / 2, arrowLocation.getY());
+				path.lineTo(arrowLocation.getX(), arrowLocation.getY() + ARROW_HEIGHT);
+			    path.lineTo(arrowLocation.getX() + ARROW_WIDTH / 2, arrowLocation.getY());
 			    break;
 	    }
 	    path.closePath();
@@ -257,7 +252,7 @@ public class PopoverView extends JPanel {
 		Point center = new Point((int)(containerSize.getWidth() / 2), (int)(containerSize.getHeight() / 2));
 		double offsetY = center.getY() - this.anchorPoint.getY();
 		
-		// Figure out arrow location. LEFT and RIGHT is currently not supported.
+		// Figure out arrow location.
 		if (offsetY < 0.0) {
 			this.arrowLocation = ArrowLocation.BOTTOM;
 		} else {
@@ -274,8 +269,6 @@ public class PopoverView extends JPanel {
 		switch (this.arrowLocation) {
 			case TOP: border = BorderFactory.createEmptyBorder(INSET + ARROW_HEIGHT, INSET, INSET, INSET); break;
 			case BOTTOM: border = BorderFactory.createEmptyBorder(INSET, INSET, INSET + ARROW_HEIGHT, INSET); break;
-			case LEFT: border = BorderFactory.createEmptyBorder(INSET, INSET + ARROW_HEIGHT, INSET, INSET); break;
-			case RIGHT: border = BorderFactory.createEmptyBorder(INSET, INSET, INSET, INSET + ARROW_HEIGHT); break;
 			default: border = BorderFactory.createEmptyBorder(0, 0, 0, 0); break;
 		}
 		
@@ -284,6 +277,8 @@ public class PopoverView extends JPanel {
 	
 	private void updateBounds() {
 		Dimension size = this.getPreferredSize();
+		
+		// First, try to align the popover horizontally centered to the anchor.
 		Point location;
 		switch (this.arrowLocation) {
 			case TOP:
@@ -294,15 +289,23 @@ public class PopoverView extends JPanel {
 				location = new Point((int)(this.anchorPoint.getX() - size.getWidth() / 2), (int)(this.anchorPoint.getY() - size.getHeight()));
 				break;
 				
-			case LEFT:
-			case RIGHT:
 			default:
 				location = new Point(0, 0);
 				break;
 		}
+		Rectangle bounds = new Rectangle(location, size);
 		
-		this.setSize(size);
-		this.setLocation(location);
+		// Check if the bounds fit into the container.
+		Rectangle containerBounds = PopoverView.containerView.getBounds();
+		if (!containerBounds.contains(bounds)) {
+			if (bounds.getX() < MINIMUM_CONTAINER_PADDING) {
+				bounds.setLocation(MINIMUM_CONTAINER_PADDING, (int)bounds.getY());
+			} else if (bounds.getX() + bounds.getWidth() > containerBounds.getWidth() - MINIMUM_CONTAINER_PADDING) {
+				bounds.setLocation((int)(containerBounds.getWidth() - MINIMUM_CONTAINER_PADDING - bounds.getWidth()), (int)bounds.getY());
+			}
+		}
+		
+		this.setBounds(bounds);
 	}
 	
 	public void setBorderColor(Color color) {

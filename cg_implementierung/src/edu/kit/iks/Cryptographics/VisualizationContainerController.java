@@ -1,11 +1,16 @@
 package edu.kit.iks.Cryptographics;
 
+import java.awt.AWTEvent;
 import java.awt.BorderLayout;
+import java.awt.Toolkit;
+import java.awt.event.AWTEventListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
@@ -39,6 +44,27 @@ public class VisualizationContainerController extends AbstractController {
 	 * Container to display the actual visualization of a procedure
 	 */
 	private VisualizationContainerView view;
+	
+	/**
+	 * The timer used to detect an idle user. This is used to figure out when to
+	 * present the idle popover, so it's step 1.
+	 */
+	private Timer idleDetectionTimer;
+	
+	/**
+	 * The timer used to reset the state. This is step two of the idle detection.
+	 */
+	private Timer resetTimer;
+	
+	/**
+	 * The global event listener used for detecting an idle user.
+	 */
+	private AWTEventListener idleDetectionListener;
+	
+	/**
+	 * The popover presented to warn the user before going back to the main screen.
+	 */
+	private IdlePopoverView idlePopoverView;
 
 	/**
 	 * List of all child classes
@@ -62,6 +88,16 @@ public class VisualizationContainerController extends AbstractController {
 			AbstractVisualizationInfo visualizationInfo) {
 		this.visualizationInfo = visualizationInfo;
 		this.childClasses = this.visualizationInfo.getControllerClasses();
+		this.idleDetectionListener = new AWTEventListener() {
+			@Override
+			public void eventDispatched(AWTEvent e) {
+				cancelIdleDetectionTimer();
+				if (idlePopoverView == null) {
+					startIdleDetectionTimer();
+				}
+			}
+		};
+		this.startIdleDetectionTimer();
 
 		// Create an array that can hold all visualization controllers.
 		// The controller's will be instantiated on demand (lazily).
@@ -83,6 +119,9 @@ public class VisualizationContainerController extends AbstractController {
 	 */
 	@Override
 	public void loadView() {
+		// Observe global mouse events.
+		Toolkit.getDefaultToolkit().addAWTEventListener(this.idleDetectionListener, AWTEvent.MOUSE_MOTION_EVENT_MASK);
+		
 		this.view = new VisualizationContainerView();
 		this.view.getNameLabel().setText(this.getVisualizationInfo().getName());
 		
@@ -157,14 +196,26 @@ public class VisualizationContainerController extends AbstractController {
 	 */
 	@Override
 	public void unloadView() {
+		// Remove observer.
+		Toolkit.getDefaultToolkit().removeAWTEventListener(this.idleDetectionListener);
+		
+		// Cancel timers.
+		this.cancelIdleDetectionTimer();
+		this.cancelResetTimer();
+		
 		if (this.helpPopoverView != null) {
 			this.dismissHelpPopover();
+		}
+		
+		if (this.idlePopoverView != null) {
+			this.dismissIdlePopover();
 		}
 		
 		this.view.removeAll();
 		this.view.revalidate();
 		
 		this.helpPopoverView = null;
+		this.idlePopoverView = null;
 		this.view = null;
 	}
 
@@ -175,6 +226,125 @@ public class VisualizationContainerController extends AbstractController {
 	public VisualizationContainerView getView() {
 		return this.view;
 	}
+	
+	/**
+	 * Creates and presents a new idle popover. The idle popover is presented
+	 * after the program things that the user is idle. It displays a count-down
+	 * after which it resets itself.  
+	 */
+	public void presentIdlePopover() {
+		if (this.helpPopoverView != null) {
+			this.dismissHelpPopover();
+		}
+		if (this.idlePopoverView != null) {
+			this.dismissIdlePopover();
+		}
+		
+		// Create popover.
+		this.idlePopoverView = new IdlePopoverView(Configuration.getInstance().getResetTimeout());
+		this.idlePopoverView.present(this.getView().getExitButton());
+		
+		// Create mouse listeners for buttons.
+		MouseListener listener = new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dismissIdlePopover();
+				startIdleDetectionTimer();
+			}
+		};
+		this.idlePopoverView.getCloseButton().addMouseListener(listener);
+		this.idlePopoverView.getContinueButton().addMouseListener(listener);
+		
+		this.startResetTimer();
+	}
+	
+	/**
+	 * Dismisses the active idle popover.
+	 */
+	public void dismissIdlePopover() {
+		this.idlePopoverView.dismiss();
+		this.idlePopoverView = null;
+		this.cancelResetTimer();
+	}
+	
+	/**
+	 * Cancels the reset timer.
+	 */
+	private void cancelResetTimer() {
+		if (this.resetTimer != null) {
+			this.resetTimer.cancel();
+			this.resetTimer = null;
+		}
+	}
+	
+	/**
+	 * Starts the reset timer. After the timer fires, the program
+	 * will present the start controller.
+	 */
+	private void startResetTimer() {
+		if (this.resetTimer == null) {
+			this.resetTimer = new Timer();
+			this.resetTimer.schedule(new TimerTask() {
+				@Override
+				public void run() {
+					MainController mainController = (MainController) getParentController();
+					mainController.presentStartAction();
+				}
+			}, Configuration.getInstance().getResetTimeout());
+		}
+	}
+	
+	/**
+	 * Cancels an idle detection timer.
+	 */
+	private void cancelIdleDetectionTimer() {
+		if (this.idleDetectionTimer != null) {
+			this.idleDetectionTimer.cancel();
+			this.idleDetectionTimer = null;
+		}
+	}
+	
+	/**
+	 * Starts the idle detection timer. The idle detection fires if a user
+	 * doesn't perform any input for a given period of time.
+	 */
+	private void startIdleDetectionTimer() {
+		if (this.idleDetectionTimer == null) {
+			// Create a new timer if the idle popover is currently not already active.
+			this.idleDetectionTimer = new Timer();
+			this.idleDetectionTimer.schedule(new TimerTask() {
+				@Override
+				public void run() {
+					presentIdlePopover();
+				}
+			}, Configuration.getInstance().getIdleTimeout());
+		}
+	}
 
 	/**
 	 * Shows a popover displaying given help.
@@ -184,6 +354,10 @@ public class VisualizationContainerController extends AbstractController {
 		if (this.helpPopoverView != null) {
 			this.dismissHelpPopover();
 		}
+		if (this.idlePopoverView != null) {
+			this.dismissIdlePopover();
+		}
+		
 		String helpText = this.getCurrentVisualizationController().getHelp();
 		if (helpText == null) {
 			// Do not present help if no help is available.
@@ -344,6 +518,9 @@ public class VisualizationContainerController extends AbstractController {
 		return controller;
 	}
 
+	/**
+	 * Presents the start controller
+	 */
 	public void presentStartController() {
 		if (this.helpPopoverView != null) {
 			this.dismissHelpPopover();

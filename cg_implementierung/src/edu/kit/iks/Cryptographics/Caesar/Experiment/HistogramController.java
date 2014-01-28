@@ -172,7 +172,7 @@ public class HistogramController extends AbstractVisualizationController {
 				getView().getKey().setText("" + key);
 				getView().getPlain().setText(
 						(getModel().decrypt(key, getView().getCipher()
-								.getText())));
+								.getText(), false)));
 				if (key == getView().getSecretKey()) {
 					getView().getExplanations().setText(
 							"<html><body> Congratulations you found the secret key and are now able<br>"
@@ -219,7 +219,7 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().getKey().setText("" + key);
 					getView().getPlain().setText(
 							(getModel().decrypt(key, getView().getCipher()
-									.getText())));
+									.getText(), false)));
 				}
 			}
 
