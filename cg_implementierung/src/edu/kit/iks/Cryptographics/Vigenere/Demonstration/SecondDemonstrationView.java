@@ -25,7 +25,7 @@ public class SecondDemonstrationView extends VisualizationView {
 
 	// Visulisation of the Key
 	private JLabel vigenereKeyDesc;
-	private String vigenereKey = "OKOK";
+	private String vigenereKey = "OKAY";
 
 	// Visualisation of calculation of the indexes
 	private JLabel charFirst;
@@ -82,7 +82,14 @@ public class SecondDemonstrationView extends VisualizationView {
 		this.add(this.alphabet);
 		this.add(this.proceed);
 		
+		this.add(this.charFirst = new JLabel("Plaintext-Char: 1"));
+		this.add(this.charSecond = new JLabel("Key-Char: 14"));
+		this.add(this.charFinished = new JLabel("Result: 15"));
+		
 		this.vigenereKeyDesc.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+		this.charFirst.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+		this.charSecond.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+		this.charFinished.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		
 		for (int i = 0; i < this.textCharPlain.length; i++)
 			this.textCharPlain[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
@@ -167,16 +174,25 @@ public class SecondDemonstrationView extends VisualizationView {
 	             size.width, size.height);
 		
 		size = this.alphabet.getPreferredSize();
-		this.alphabet.setBounds(100, 420,
+		this.alphabet.setBounds(100, 520,
+	             size.width, size.height);
+		
+		size = this.charFirst.getPreferredSize();
+		this.charFirst.setBounds(900, 160,
+	             size.width, size.height);
+		
+		size = this.charSecond.getPreferredSize();
+		this.charSecond.setBounds(900, 210,
+	             size.width, size.height);
+		
+		size = this.charFinished.getPreferredSize();
+		this.charFinished.setBounds(900, 260,
 	             size.width, size.height);
 		
 		size = this.getBackButton().getPreferredSize();
 		this.getBackButton().setBounds(30, 600,
 	             size.width, size.height);
 		
-		size = this.getBackButton().getPreferredSize();
-		this.getBackButton().setBounds(30, 600,
-	             size.width, size.height);
 		
 		size = this.getNextButton().getPreferredSize();
 		this.getNextButton().setBounds(1100, 600,
