@@ -40,13 +40,15 @@ public class CryptoModel {
 		
 			int offset = ((int) text.charAt(i)) - 64;
 
+			//Overflow when decrypting.
 			if ((offset + key) < 0) {
-				offset = offset + 25;
+				offset = offset + 26;
 			}
-            int sign = (offset + key) % 27;
+            int sign = (offset + key) % 26;
             if (sign == 0) {
             	sign++;
             }
+            
 			plain += String
 					.valueOf((char)(sign + 64));
 		}
