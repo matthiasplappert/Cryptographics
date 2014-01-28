@@ -400,12 +400,8 @@ public class HistogramView extends VisualizationView {
 	}
 
 	/**
-<<<<<<< Updated upstream
 	 * @param keyValue
 	 *            the keyValue to set
-=======
-	 * @param keyValue the keyValue to set
->>>>>>> Stashed changes
 	 */
 	public void setKeyValue(int keyValue) {
 		this.keyValue = keyValue;

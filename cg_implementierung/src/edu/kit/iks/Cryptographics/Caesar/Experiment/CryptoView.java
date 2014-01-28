@@ -514,7 +514,7 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
-	 * @return the alphabet
+	 * @return the inOutPanel
 	 */
 	public AlphabetStripView getAlphabet() {
 		return alphabet;
