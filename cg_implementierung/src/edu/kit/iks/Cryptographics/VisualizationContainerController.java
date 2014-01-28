@@ -1,11 +1,16 @@
 package edu.kit.iks.Cryptographics;
 
+import java.awt.AWTEvent;
 import java.awt.BorderLayout;
+import java.awt.Toolkit;
+import java.awt.event.AWTEventListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
@@ -39,6 +44,13 @@ public class VisualizationContainerController extends AbstractController {
 	 * Container to display the actual visualization of a procedure
 	 */
 	private VisualizationContainerView view;
+	
+	/**
+	 * The timer used to detect a user timeout.
+	 */
+	private Timer timeoutTimer;
+	
+	private AWTEventListener timeoutListener;
 
 	/**
 	 * List of all child classes
@@ -62,6 +74,22 @@ public class VisualizationContainerController extends AbstractController {
 			AbstractVisualizationInfo visualizationInfo) {
 		this.visualizationInfo = visualizationInfo;
 		this.childClasses = this.visualizationInfo.getControllerClasses();
+		this.timeoutListener = new AWTEventListener() {
+			@Override
+			public void eventDispatched(AWTEvent e) {
+				System.out.println("resetting timer");
+				if (timeoutTimer != null) {
+					timeoutTimer.cancel();
+				}
+				timeoutTimer = new Timer();
+				timeoutTimer.schedule(new TimerTask() {
+					@Override
+					public void run() {
+						System.out.println("timeout!");
+					}
+				}, 1000);
+			}
+		};
 
 		// Create an array that can hold all visualization controllers.
 		// The controller's will be instantiated on demand (lazily).
@@ -83,6 +111,9 @@ public class VisualizationContainerController extends AbstractController {
 	 */
 	@Override
 	public void loadView() {
+		// Observe global mouse events.
+		Toolkit.getDefaultToolkit().addAWTEventListener(this.timeoutListener, AWTEvent.MOUSE_MOTION_EVENT_MASK);
+		
 		this.view = new VisualizationContainerView();
 		this.view.getNameLabel().setText(this.getVisualizationInfo().getName());
 		
@@ -157,6 +188,13 @@ public class VisualizationContainerController extends AbstractController {
 	 */
 	@Override
 	public void unloadView() {
+		// Remove observer.
+		Toolkit.getDefaultToolkit().removeAWTEventListener(this.timeoutListener);
+		if (this.timeoutTimer != null) {
+			this.timeoutTimer.cancel();
+			this.timeoutTimer = null;
+		}
+		
 		if (this.helpPopoverView != null) {
 			this.dismissHelpPopover();
 		}
