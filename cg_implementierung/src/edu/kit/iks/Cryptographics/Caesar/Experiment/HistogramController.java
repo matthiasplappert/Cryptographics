@@ -150,6 +150,48 @@ public class HistogramController extends AbstractVisualizationController {
 	// }
 
 	/**
+	 * Explanations and animations are shown that explain histograms.
+	 */
+	public void startAnimations() {
+		step1();
+		// stop.
+		step2();
+		// stop.
+		step3();
+		// stop.
+		step4();
+		// done.
+	}
+
+	/**
+	 * Explain why the Caesar cipher is not appropriate nowadays.
+	 */
+	private void step1() {
+
+	}
+
+	/**
+	 * Explain what histograms are.
+	 */
+	private void step2() {
+
+	}
+
+	/**
+	 * Explain how they are used and how to read from them.
+	 */
+	private void step3() {
+
+	}
+
+	/**
+	 * Explain how to decrypt big text that was ciphered with Caesar without a key.
+	 */
+	private void step4() {
+
+	}
+
+	/**
 	 * Gets the view
 	 * 
 	 * @return The view of this controller

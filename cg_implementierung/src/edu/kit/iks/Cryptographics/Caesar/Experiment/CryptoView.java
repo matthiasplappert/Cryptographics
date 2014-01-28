@@ -483,8 +483,8 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
-	 * @param userOutput
-	 *            the userOutput to set
+	 * @param explanations
+	 *            the explanations to set
 	 */
 	public void setUserOutput(JTextField[] userOutput) {
 		this.userOutput = userOutput;

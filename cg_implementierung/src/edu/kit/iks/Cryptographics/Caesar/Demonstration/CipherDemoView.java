@@ -32,6 +32,14 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
 public class CipherDemoView extends VisualizationView {
 
 	/**
+<<<<<<< Updated upstream
+=======
+	 * 
+	 */
+	private static final long serialVersionUID = 6762667303208572310L;
+
+	/**
+>>>>>>> Stashed changes
 	 * Explanation textfield.
 	 */
 	private JLabel explanations;

@@ -75,7 +75,6 @@ public class HistogramView extends VisualizationView {
 	 * Key that is being incremented and decremented.
 	 */
 	private JLabel key;
-
 	private int keyValue;
 
 	private int secretKey;
@@ -401,8 +400,12 @@ public class HistogramView extends VisualizationView {
 	}
 
 	/**
+<<<<<<< Updated upstream
 	 * @param keyValue
 	 *            the keyValue to set
+=======
+	 * @param keyValue the keyValue to set
+>>>>>>> Stashed changes
 	 */
 	public void setKeyValue(int keyValue) {
 		this.keyValue = keyValue;
