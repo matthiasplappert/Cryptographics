@@ -373,7 +373,7 @@ public class CryptoController extends AbstractVisualizationController {
 							try {
 								key = Integer.parseInt(getView().getKey()
 										.getText());
-								
+
 								if (getModel().checkValidChar(key,
 										userOutput.getName(),
 										userOutput.getText(), !decryptionPhase)
@@ -390,9 +390,12 @@ public class CryptoController extends AbstractVisualizationController {
 
 								} else if (getModel().checkValidChar(key,
 										userOutput.getName(),
-										userOutput.getText(), true)
+										userOutput.getText(), !decryptionPhase)
 										&& (getEditableFields() - 1) == 0) {
 									// User encrypted all characters valid.
+									userOutput.setBorder(BorderFactory
+											.createLineBorder(Color.green));
+									userOutput.setEditable(false);
 									getView()
 											.getExplanations()
 											.setText(
