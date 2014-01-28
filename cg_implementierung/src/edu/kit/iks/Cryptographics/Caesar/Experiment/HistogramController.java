@@ -97,7 +97,9 @@ public class HistogramController extends AbstractVisualizationController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (getStep() == 0) {
-					getView().setupBruteForce();
+					int secret = getModel().generateKey();
+					getView().setSecretKey(secret);
+					getView().setupBruteForce(getModel().getRandomCipher(secret));
 					genListenerBF();
 				} else {
 					getView().setupHistogram();
@@ -171,16 +173,18 @@ public class HistogramController extends AbstractVisualizationController {
 				getView().setKeyValue(key);
 				getView().getKey().setText("" + key);
 				getView().getPlain().setText(
-						(getModel().decrypt(key, getView().getCipher()
-								.getText(), false)));
-				if (key == getView().getSecretKey()) {
+						(getModel().enc(key, getView().getCipher().getText(),
+								false)));
+				if (key == getView().getSecretKey() && key < 27) {
 					getView().getExplanations().setText(
 							"<html><body> Congratulations you found the secret key and are now able<br>"
-									+ "to read the secret message.");
+									+ "to read the secret message. The Key was "+ key);
 
 					setStep(1);
 					getView().setupProceed();
 					genProceedListener();
+				} else {
+
 				}
 			}
 
@@ -218,7 +222,7 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().setKeyValue(key);
 					getView().getKey().setText("" + key);
 					getView().getPlain().setText(
-							(getModel().decrypt(key, getView().getCipher()
+							(getModel().enc(key, getView().getCipher()
 									.getText(), false)));
 				}
 			}

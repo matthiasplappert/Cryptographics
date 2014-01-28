@@ -3,7 +3,6 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -75,7 +74,7 @@ public class HistogramView extends VisualizationView {
 	 * Key that is being incremented and decremented.
 	 */
 	private JLabel key;
-	
+
 	private int keyValue;
 
 	private int secretKey;
@@ -121,7 +120,7 @@ public class HistogramView extends VisualizationView {
 						+ "<br>"
 						+ "It is also called 'breaking' the cipher if you try to decrypt without a given key parameter. The following <br>"
 						+ "experiments will teach you how to break caesar's cipher.<br>"));
-		this.explanations.setFont(new Font("Arial", 2, 20));
+		// this.explanations.setFont(new Font("Arial", 2, 20));
 		this.add(this.explanations, explanationConstraint);
 
 		// setup the proceed button.
@@ -134,7 +133,7 @@ public class HistogramView extends VisualizationView {
 		GridBagConstraints proceedConst = new GridBagConstraints();
 		this.proceed = new JButton("Proceed!");
 		this.proceed.setPreferredSize(new Dimension(250, 50));
-		this.proceed.setFont(new Font("Arial", 2, 25));
+		// this.proceed.setFont(new Font("Arial", 2, 25));
 		proceedConst.anchor = GridBagConstraints.PAGE_END;
 		proceedConst.gridx = 2;
 		proceedConst.gridy = 3;
@@ -143,33 +142,33 @@ public class HistogramView extends VisualizationView {
 	}
 
 	public void setupHistogram() {
-		this.remove(this.keyControl);
-		this.keyControl = null;
-		this.remove(this.proceed);
-
-		// TODO:Histogram UI-Element not implemented yet!
-		int[] quantities = { 1, 2, 3, 4, 5 };
-		this.histogram = new CharacterFrequencyDiagramView(quantities);
-		this.histogram.setBackground(Color.green);
-		this.histogram.setPreferredSize(new Dimension(200, 200));
-		this.add(histogram);
-
-		this.explanations
-				.setText("<html><body> Here histograms are shown and how to use them to break caesar in one step");
-		this.validate();
-		this.repaint();
+		// this.remove(this.keyControl);
+		// this.keyControl = null;
+		// this.remove(this.proceed);
+		//
+		// // TODO:Histogram UI-Element not implemented yet!
+		// int[] quantities = { 1, 2, 3, 4, 5 };
+		// this.histogram = new CharacterFrequencyDiagramView(quantities);
+		// this.histogram.setBackground(Color.green);
+		// this.histogram.setPreferredSize(new Dimension(200, 200));
+		// this.add(histogram);
+		//
+		// this.explanations
+		// .setText("<html><body> Here histograms are shown and how to use them to break caesar in one step");
+		// this.validate();
+		// this.repaint();
 	}
 
-	public void setupBruteForce() {
+	public void setupBruteForce(String cipher) {
 		// GridBagLayout layout = (GridBagLayout) this.getLayout();
-		//this.remove(this.explanations);
+		// this.remove(this.explanations);
 		this.remove(proceed);
 
-//		GridBagConstraints expConst = new GridBagConstraints();
-//		// expConst.anchor = GridBagConstraints.FIRST_LINE_START;
-//		expConst.gridx = 0;
-//		expConst.gridy = 1;
-//		this.add(this.explanations, expConst);
+		// GridBagConstraints expConst = new GridBagConstraints();
+		// // expConst.anchor = GridBagConstraints.FIRST_LINE_START;
+		// expConst.gridx = 0;
+		// expConst.gridy = 1;
+		// this.add(this.explanations, expConst);
 
 		this.keyValue = 1;
 		// setup the Panel for buttons for incrementing/decrementing the key.
@@ -188,7 +187,7 @@ public class HistogramView extends VisualizationView {
 		// key
 		this.key = new JLabel("1");
 		this.key.setPreferredSize(new Dimension(100, 50));
-		this.key.setFont(new Font("Arial", 2, 25));
+		// this.key.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints keyLabelConst = new GridBagConstraints();
 		keyLabelConst.gridx = 2;
 		keyLabelConst.gridy = 1;
@@ -196,7 +195,7 @@ public class HistogramView extends VisualizationView {
 		// increment.
 		this.increment = new JButton("+1");
 		this.increment.setPreferredSize(new Dimension(100, 50));
-		this.increment.setFont(new Font("Arial", 2, 25));
+		// this.increment.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints incConst = new GridBagConstraints();
 		incConst.gridx = 3;
 		incConst.gridy = 0;
@@ -204,24 +203,24 @@ public class HistogramView extends VisualizationView {
 		// decrement.
 		this.decrement = new JButton("-1");
 		this.decrement.setPreferredSize(new Dimension(100, 50));
-		this.decrement.setFont(new Font("Arial", 2, 25));
+		// this.decrement.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints decConst = new GridBagConstraints();
 		decConst.gridx = 3;
 		decConst.gridy = 2;
 		this.keyControl.add(this.decrement, decConst);
 
 		// TODO: Need a valid cipher and key generator!
-		this.cipher = new JLabel("FSSF");
-		this.secretKey = 5;
+		this.cipher = new JLabel(cipher);
+		//this.secretKey = 5;
 		this.cipher.setPreferredSize(new Dimension(100, 50));
-		this.cipher.setFont(new Font("Arial", 2, 25));
+		// this.cipher.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints cipherConst = new GridBagConstraints();
 		cipherConst.gridx = 0;
 		cipherConst.gridy = 0;
 		this.keyControl.add(this.cipher, cipherConst);
 		this.plain = new JLabel("");
 		this.plain.setPreferredSize(new Dimension(100, 50));
-		this.plain.setFont(new Font("Arial", 2, 25));
+		// this.plain.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints plainConst = new GridBagConstraints();
 		plainConst.gridx = 0;
 		plainConst.gridy = 2;
@@ -253,14 +252,14 @@ public class HistogramView extends VisualizationView {
 		// set up the alignment of the button back;
 		this.setBackButton(new JButton("Back to Experiment!"));
 		this.getBackButton().setPreferredSize(new Dimension(300, 50));
-		this.getBackButton().setFont(new Font("Arial", 2, 25));
+		// this.getBackButton().setFont(new Font("Arial", 2, 25));
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
 		this.setNextButton(new JButton(
 				"Skip the histograms(Visualization Done)!"));
 		this.getNextButton().setPreferredSize(new Dimension(300, 50));
-		this.getNextButton().setFont(new Font("Arial", 2, 25));
+		// this.getNextButton().setFont(new Font("Arial", 2, 25));
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
 
 	}
