@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -86,7 +85,7 @@ abstract public class AbstractVisualizationInfo {
 	 * 
 	 * @return Additional information as file URL to display HTML
 	 */
-	public URL getAdditionalInformationFileURL() {
+	public String getAdditionalInformationFileURL() {
 		return null;
 	}
 	

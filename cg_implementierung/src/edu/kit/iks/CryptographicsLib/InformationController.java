@@ -1,7 +1,6 @@
 package edu.kit.iks.CryptographicsLib;
 
 import java.awt.Image;
-import java.net.URL;
 
 /**
  * Controller for each procedure displaying further
@@ -33,7 +32,7 @@ public class InformationController extends AbstractVisualizationController {
 	 */
 	@Override
 	public void loadView() {
-		URL path = this.getVisualizationInfo().getAdditionalInformationFileURL();
+		String path = this.getVisualizationInfo().getAdditionalInformationFileURL();
 		Image qrCode = this.getVisualizationInfo().getQrCode();
 		
 		this.view = new InformationView(path, qrCode);
@@ -45,8 +44,7 @@ public class InformationController extends AbstractVisualizationController {
 	 */
 	@Override
 	public String getHelp() {
-		// TODO: implement me!
-		return null;
+		return "Here you can learn more about " + this.getVisualizationInfo().getName() + ". You can also scan the QR code at the bottom of the page to take additional information home. Once you're done, just click the exit button.";
 	}
 	
 	/*
