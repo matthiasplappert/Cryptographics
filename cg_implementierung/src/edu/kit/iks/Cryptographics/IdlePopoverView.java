@@ -2,6 +2,7 @@ package edu.kit.iks.Cryptographics;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -88,6 +89,7 @@ public class IdlePopoverView extends PopoverView {
 		GridBagConstraints countdownConstraints = new GridBagConstraints();
 		countdownConstraints.gridx = 0;
 		countdownConstraints.gridy = 1;
+		countdownConstraints.insets = new Insets(20, 0, 20, 0);
 		this.countdownLabel = new JLabel();
 		this.updateCountdownLabel();
 		this.getContentView().add(this.countdownLabel, countdownConstraints);
