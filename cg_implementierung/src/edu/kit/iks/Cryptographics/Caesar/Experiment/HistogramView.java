@@ -142,24 +142,24 @@ public class HistogramView extends VisualizationView {
 	}
 
 	public void setupHistogram() {
-		this.remove(this.keyControl);
-		this.keyControl = null;
-		this.remove(this.proceed);
-
-		// TODO:Histogram UI-Element not implemented yet!
-		int[] quantities = { 1, 2, 3, 4, 5 };
-		this.histogram = new CharacterFrequencyDiagramView(quantities);
-		this.histogram.setBackground(Color.green);
-		this.histogram.setPreferredSize(new Dimension(200, 200));
-		this.add(histogram);
-
-		this.explanations
-				.setText("<html><body> Here histograms are shown and how to use them to break caesar in one step");
-		this.validate();
-		this.repaint();
+		// this.remove(this.keyControl);
+		// this.keyControl = null;
+		// this.remove(this.proceed);
+		//
+		// // TODO:Histogram UI-Element not implemented yet!
+		// int[] quantities = { 1, 2, 3, 4, 5 };
+		// this.histogram = new CharacterFrequencyDiagramView(quantities);
+		// this.histogram.setBackground(Color.green);
+		// this.histogram.setPreferredSize(new Dimension(200, 200));
+		// this.add(histogram);
+		//
+		// this.explanations
+		// .setText("<html><body> Here histograms are shown and how to use them to break caesar in one step");
+		// this.validate();
+		// this.repaint();
 	}
 
-	public void setupBruteForce() {
+	public void setupBruteForce(String cipher) {
 		// GridBagLayout layout = (GridBagLayout) this.getLayout();
 		// this.remove(this.explanations);
 		this.remove(proceed);
@@ -210,8 +210,8 @@ public class HistogramView extends VisualizationView {
 		this.keyControl.add(this.decrement, decConst);
 
 		// TODO: Need a valid cipher and key generator!
-		this.cipher = new JLabel("FSSF");
-		this.secretKey = 5;
+		this.cipher = new JLabel(cipher);
+		//this.secretKey = 5;
 		this.cipher.setPreferredSize(new Dimension(100, 50));
 		// this.cipher.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints cipherConst = new GridBagConstraints();

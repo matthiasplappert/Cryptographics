@@ -21,28 +21,34 @@ public class CryptoModel {
 	}
 
 	/**
+	 * Function for decrypting and encrypting.
+	 * 
 	 * @param key
 	 * @param text
 	 * @return
 	 */
-	public String decrypt(int key, String text, boolean encryption) {
+	public String enc(int key, String text, boolean encryption) {
 
 		String plain = "";
-
+		if (!encryption) {
+			key = -1 * key;
+		}
 		for (int i = 0; i < text.length(); i++) {
 			// if ((int) text.charAt(i) < 65 || (int) text.charAt(i) > 90) {
 			// continue;
 			// }
-			 if (!encryption) {
-				 key = -1*key;
-				 }
-			int offset = ((int) text.charAt(i)) - 65;
-			
-//			if (((int) cipher.charAt(i) - key) < 65) {
-//				offset = offset + 25;
-//			}
-			
-			plain += String.valueOf((char)((Math.abs((offset + key) % 26)) + 65));
+		
+			int offset = ((int) text.charAt(i)) - 64;
+
+			if ((offset + key) < 0) {
+				offset = offset + 25;
+			}
+            int sign = (offset + key) % 27;
+            if (sign == 0) {
+            	sign++;
+            }
+			plain += String
+					.valueOf((char)(sign + 64));
 		}
 		return plain;
 
@@ -57,9 +63,9 @@ public class CryptoModel {
 			boolean encryption) {
 		// plain is the character to encrypt and enc is the corresponding cipher.
 		int offset = ((int) plain.charAt(0)) - 65;
-		 if (!encryption) {
-		 key = -1*key;
-		 }
+		if (!encryption) {
+			key = -1 * key;
+		}
 		if ((Math.abs((offset + key) % 26)) + 65 == ((int) enc.charAt(0))) {
 			return true;
 		}
@@ -93,9 +99,15 @@ public class CryptoModel {
 	 */
 	public String getRandomPlainText() {
 		// TODO: Generate a random name!
-		String[] plainTextPool = {"ANNA", "HANNAH", "BANANA", "KOKOS", "KRYPTO", "HAMSTER", "WASILIJ", "SECRET", "EIPSILON"};
-		int index = (int) ((Math.random()*1000) % plainTextPool.length);
+		String[] plainTextPool = { "ANNA", "HANNAH", "BANANA", "KOKOS",
+				"KRYPTOCHEF", "HAMSTER", "WASILIJ", "SECRET", "EIPSILON" };
+		int index = (int) ((Math.random() * 1000) % plainTextPool.length);
 		return plainTextPool[index];
+	}
+
+	public String getRandomCipher(int key) {
+		String plain = getRandomPlainText();
+		return enc(key, plain, true);
 	}
 
 	/**
@@ -113,9 +125,11 @@ public class CryptoModel {
 		this.inputStep = inputStep;
 	}
 
-
 	public int generateKey() {
-		// TODO: Need a random key generator.
-		return (int) (Math.random()*1000) % 26;
+		int key = 0;
+		do {
+			key = (int) (Math.random() * 1000) % 26;
+		} while (key == 0);
+		return key;
 	}
 }

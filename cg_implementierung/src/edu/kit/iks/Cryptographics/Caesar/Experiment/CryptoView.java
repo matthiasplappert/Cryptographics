@@ -326,7 +326,7 @@ public class CryptoView extends VisualizationView {
 		panelConst.gridheight = 2;
 		// panelConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(inOutPanel, panelConst);
-
+        
 		for (int i = 0; i <= inputChars.length; i++) {
 			// called only in the last iteration, when all Elements are already created.
 			if (i == inputChars.length) {
