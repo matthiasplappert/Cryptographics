@@ -483,8 +483,8 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
-	 * @param explanations
-	 *            the explanations to set
+	 * @param userOutput
+	 *            the userOutput to set
 	 */
 	public void setUserOutput(JTextField[] userOutput) {
 		this.userOutput = userOutput;
@@ -514,7 +514,7 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
-	 * @return the inOutPanel
+	 * @return the alphabet
 	 */
 	public AlphabetStripView getAlphabet() {
 		return alphabet;
