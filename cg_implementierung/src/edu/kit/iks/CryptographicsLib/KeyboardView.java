@@ -1,13 +1,15 @@
 package edu.kit.iks.CryptographicsLib;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  * @author Matthias Jaenicke.
@@ -22,12 +24,16 @@ public class KeyboardView extends JPanel implements ActionListener{
 	private JPanel secondRow;
 	private JPanel thirdRow;
 	
+	private JTextField textField;
+	
 	private static JButton[] keysFirstRow;
 	private static JButton[] keysSecondRow;
 	private static JButton[] keysThirdRow;
 	
-	public KeyboardView() {
+	public KeyboardView(JTextField textField) {
 		super();
+		
+		this.textField = textField;
 		
 		BoxLayout layout = new BoxLayout(this, BoxLayout.Y_AXIS);
 		this.setLayout(layout);
@@ -44,14 +50,21 @@ public class KeyboardView extends JPanel implements ActionListener{
 		String[] charactersFirstRow = {"Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P", "Back"};
 		String[] charactersSecondRow = {"A", "S", "D", "F", "G", "H", "J", "K", "L", "Enter"};
 		String[] charactersThirdRow = {"Y", "X", "C", "V", "B", "N", "M"};
-//		Dimension keySize = new Dimension(47, 25);
-		keysFirstRow = new JButton[charactersFirstRow.length];
-		keysSecondRow = new JButton[charactersSecondRow.length];
+
+		keysFirstRow = new JButton[charactersFirstRow.length + 1];
+		keysSecondRow = new JButton[charactersSecondRow.length + 1];
 		keysThirdRow = new JButton[charactersThirdRow.length];
+		
+//		Dimension keySize = new Dimension(35, 25);
+		Insets keyMargin = new Insets(0, 5, 0, 5);
+		Font keyFont = new Font("Arial", Font.PLAIN, 14);
+		
 		
 		for (int i = 0; i < charactersFirstRow.length; i++) {
 			keysFirstRow[i] = new JButton(charactersFirstRow[i]);
 //			keysFirstRow[i].setPreferredSize(keySize);
+			keysFirstRow[i].setMargin(keyMargin);
+			keysFirstRow[i].setFont(keyFont);
 			keysFirstRow[i].addActionListener(this);
 			firstRow.add(keysFirstRow[i]);
 			
@@ -61,6 +74,8 @@ public class KeyboardView extends JPanel implements ActionListener{
 		for (int i = 0; i < charactersSecondRow.length; i++) {
 			keysSecondRow[i] = new JButton(charactersSecondRow[i]);
 //			keysSecondRow[i].setPreferredSize(keySize);
+			keysSecondRow[i].setMargin(keyMargin);
+			keysSecondRow[i].setFont(keyFont);
 			keysSecondRow[i].addActionListener(this);
 			secondRow.add(keysSecondRow[i]);
 		}
@@ -69,6 +84,8 @@ public class KeyboardView extends JPanel implements ActionListener{
 		for (int i = 0; i < charactersThirdRow.length; i++) {
 			keysThirdRow[i] = new JButton(charactersThirdRow[i]);
 //			keysThirdRow[i].setPreferredSize(keySize);
+			keysThirdRow[i].setMargin(keyMargin);
+			keysThirdRow[i].setFont(keyFont);
 			keysThirdRow[i].addActionListener(this);
 			thirdRow.add(keysThirdRow[i]);
 		}
@@ -80,8 +97,24 @@ public class KeyboardView extends JPanel implements ActionListener{
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		for (int i = 0; i < keysFirstRow.length; i++) {
+			if (e.getSource().equals(keysFirstRow[i])) {
+				textField.setText(textField.getText() + keysFirstRow[i].getText());
+			}
+		}
+		
+		for (int i = 0; i < keysSecondRow.length; i++) {
+			if (e.getSource().equals(keysSecondRow[i])) {
+				textField.setText(textField.getText() + keysSecondRow[i].getText());
+			}
+		}
+		
+		for (int i = 0; i < keysThirdRow.length; i++) {
+			if (e.getSource().equals(keysThirdRow[i])) {
+				textField.setText(textField.getText() + keysThirdRow[i].getText());
+			}
+		}
 		
 	}
 }
