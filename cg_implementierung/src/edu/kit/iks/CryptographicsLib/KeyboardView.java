@@ -117,14 +117,18 @@ public class KeyboardView extends JPanel implements ActionListener {
 						+ keysThirdRow[i].getText());
 			}
 		}
-		//Listener for the Buttons Enter and Back.
+		// Listener for the Buttons Enter and Back.
 		if (e.getSource().equals(keysSecondRow[keysSecondRow.length - 2])) {
 			textField.getActionListeners()[0].actionPerformed(e);
 		} else if (e.getSource().equals(keysFirstRow[keysFirstRow.length - 2])) {
 			char[] newContent = new char[textField.getText().length()];
-			textField.getText().getChars(0, textField.getText().length()-1,
+			textField.getText().getChars(0, textField.getText().length() - 1,
 					newContent, 0);
-			textField.setText(String.copyValueOf(newContent));
+			if (newContent.length < 1) {
+				textField.setText(String.copyValueOf(newContent));
+			} else {
+				textField.setText("");
+			}
 		}
 	}
 }

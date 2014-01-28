@@ -58,13 +58,15 @@ public class CipherDemoController extends AbstractVisualizationController {
 			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
 				@Override
 				public void focusLost(FocusEvent e) {
-					JTextField output = (JTextField) e.getSource();
-					getView().remove(getView().getKeyboard());
-					getView().setKeyboard(null);
-					getView().validate();
+					if (getView().getKeyboard() != null) {
+						JTextField output = (JTextField) e.getSource();
+						getView().remove(getView().getKeyboard());
+						getView().setKeyboard(null);
+						getView().validate();
 
-					if (output.isEditable()) {
-						output.setBorder(null);
+						if (output.isEditable()) {
+							output.setBorder(null);
+						}
 					}
 				}
 

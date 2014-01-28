@@ -90,7 +90,7 @@ public class CryptoModel {
 	 */
 	public boolean handleInput(String input) {
 		// TODO: something intelligent with the input.
-		if (input.length() < 10) {
+		if (input.length() < 10 && input.length() > 0) {
 			return true;
 		}
 		return false;
