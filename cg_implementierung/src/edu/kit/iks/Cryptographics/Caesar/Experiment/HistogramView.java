@@ -75,7 +75,7 @@ public class HistogramView extends VisualizationView {
 	 * Key that is being incremented and decremented.
 	 */
 	private JLabel key;
-
+	
 	private int keyValue;
 
 	private int secretKey;
