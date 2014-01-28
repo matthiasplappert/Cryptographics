@@ -1,7 +1,5 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
-import java.util.Random;
-
 /**
  * Model of the last step of Caesar Introduction phase and the first two steps of the experiment.
  * 
@@ -84,7 +82,7 @@ public class CryptoModel {
 	 */
 	public boolean handleInput(String input) {
 		// TODO: something intelligent with the input.
-		if (input.length() < 10 /* && input.matches("A-Z,a-z") */) {
+		if (input.length() < 10) {
 			return true;
 		}
 		return false;
@@ -95,22 +93,10 @@ public class CryptoModel {
 	 */
 	public String getRandomPlainText() {
 		// TODO: Generate a random name!
-		String[] plainTextPool = {"ANNA", "HANNAH", "BANANA", "KOKOS", "KRYPTOCHEF", "HAMSTER", "WASILIJ", "SECRET", "EIPSILON"};
+		String[] plainTextPool = {"ANNA", "HANNAH", "BANANA", "KOKOS", "KRYPTO", "HAMSTER", "WASILIJ", "SECRET", "EIPSILON"};
 		int index = (int) ((Math.random()*1000) % plainTextPool.length);
 		return plainTextPool[index];
 	}
-
-//	/**
-//	 * @return
-//	 */
-//	public char[] getRandomCipher() {
-//		// TODO: generate a random cipher.
-//		String[] cipherPool = {"EXSFOBCSDI10", "JYFWAVSVNPRBT7", "XELCGBPURS13", "NKRRU6" };
-//		int index = (int ) Math.random() % cipherPool.length;
-//		char[] cipher = cipherPool[index].toCharArray();
-//		return cipher;
-//
-//	}
 
 	/**
 	 * @return the inputStep
@@ -127,14 +113,6 @@ public class CryptoModel {
 		this.inputStep = inputStep;
 	}
 
-	/**
-	 * @param cipher
-	 * @param plaintext
-	 */
-	public boolean decryptAndCheck(String cipher, String plaintext) {
-		// something intelligent and fully uncreative.
-		return true;
-	}
 
 	public int generateKey() {
 		// TODO: Need a random key generator.

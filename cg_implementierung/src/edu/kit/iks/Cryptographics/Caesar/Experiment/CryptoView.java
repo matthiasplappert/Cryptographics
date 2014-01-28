@@ -2,7 +2,6 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -159,7 +158,7 @@ public class CryptoView extends VisualizationView {
 		// add the input field.
 		this.input = new JTextField("Put your name here.");
 		this.input.setPreferredSize(new Dimension(250, 50));
-		this.input.setFont(new Font("Arial", 2, 25));
+		//this.input.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints inputConst = new GridBagConstraints();
 		// inputConst.anchor = GridBagConstraints.FIRST_LINE_START;
 		// inputConst.weightx = 1.0;
@@ -171,7 +170,7 @@ public class CryptoView extends VisualizationView {
 		// add the key-input field.
 		this.key = new JTextField("Key");
 		this.key.setPreferredSize(new Dimension(50, 50));
-		this.key.setFont(new Font("Arial", 2, 20));
+		//this.key.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints keyConst = new GridBagConstraints();
 		keyConst.gridx = 2;
 		keyConst.gridy = 0;
@@ -180,7 +179,7 @@ public class CryptoView extends VisualizationView {
 		// add the button for generating input if the user is too lazy.
 		this.generator = new JButton("Generate letters!");
 		this.generator.setPreferredSize(new Dimension(300, 50));
-		this.generator.setFont(new Font("Arial", 2, 25));
+		//this.generator.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints genConst = new GridBagConstraints();
 		genConst.weightx = 1.0;
 		genConst.gridx = 0;
@@ -214,7 +213,7 @@ public class CryptoView extends VisualizationView {
 		// set up the alignment of the button back;
 		this.setBackButton(new JButton("Back to demonstration"));
 		this.getBackButton().setPreferredSize(new Dimension(350, 50));
-		this.getBackButton().setFont(new Font("Arial", 2, 25));
+		//this.getBackButton().setFont(new Font("Arial", 2, 25));
 		/*
 		 * GridBagConstraints backConst = new GridBagConstraints(); backConst.weightx = 1.0;
 		 * backConst.weighty = 0.1; backConst.gridx = 0; backConst.gridy = 0; backConst.gridwidth =
@@ -225,7 +224,7 @@ public class CryptoView extends VisualizationView {
 		// set up the aligment of the button Next;
 		this.setNextButton(new JButton("Go to decryption"));
 		this.getNextButton().setPreferredSize(new Dimension(300, 50));
-		this.getNextButton().setFont(new Font("Arial", 2, 25));
+		//this.getNextButton().setFont(new Font("Arial", 2, 25));
 		/*
 		 * GridBagConstraints nextConst = new GridBagConstraints(); nextConst.weightx = 1.0;
 		 * nextConst.weighty = 0.1; nextConst.gridx = 10; nextConst.gridy = 1; nextConst.gridwidth =
@@ -334,7 +333,7 @@ public class CryptoView extends VisualizationView {
 				GridBagConstraints keyConst = new GridBagConstraints();
 				this.key.setText("" + key);
 				this.key.setPreferredSize(new Dimension(25, 25));
-				this.key.setFont(new Font("Arial", 2, 25));
+				//this.key.setFont(new Font("Arial", 2, 25));
 				this.key.setEditable(false);
 				keyConst.insets = new Insets(25, 25, 25, 25);
 				keyConst.gridx = i;
@@ -348,7 +347,7 @@ public class CryptoView extends VisualizationView {
 			this.userInput[i] = new JTextField();
 			this.userInput[i].setText("" + inputChars[i]);
 			this.userInput[i].setBorder(null);
-			this.userInput[i].setFont(new Font("Arial", 2, 25));
+			//this.userInput[i].setFont(new Font("Arial", 2, 25));
 			this.userInput[i].setEditable(false);
 			this.userInput[i].setPreferredSize(new Dimension(25, 25));
 			GridBagConstraints inputConst = new GridBagConstraints();
@@ -365,7 +364,7 @@ public class CryptoView extends VisualizationView {
 
 			// fields where the encrypted input is put in.
 			this.userOutput[i] = new JTextField();
-			this.userOutput[i].setFont(new Font("Arial", 2, 25));
+			//this.userOutput[i].setFont(new Font("Arial", 2, 25));
 			this.userOutput[i].setName("" + inputChars[i]);
 			this.userOutput[i].setPreferredSize(new Dimension(25, 25));
 			// TODO: Limit the userOutput JTextField to input size 1!
