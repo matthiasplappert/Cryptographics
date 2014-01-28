@@ -44,7 +44,6 @@ public class AlphabetStripView extends JPanel {
 		generateStrip(width, height);
 	}
 
-
 	private void generateStrip(int width, int height) {
 
 		// A layout with 2 rows and 26 columns. The desired form is simply 
