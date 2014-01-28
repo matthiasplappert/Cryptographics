@@ -24,6 +24,14 @@ public class ColorChannel extends JPanel {
 	/* the color to send */
 	private Color color = Color.BLUE;
 	
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
 	/* diameter of the ellipses2d circles */
 	private int diameter = 50;
 	
