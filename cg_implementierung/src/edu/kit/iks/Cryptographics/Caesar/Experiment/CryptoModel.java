@@ -52,12 +52,10 @@ public class CryptoModel {
 			boolean encryption) {
 		// plain is the character to encrypt and enc is the corresponding cipher.
 		int offset = ((int) plain.charAt(0)) - 65;
-		if (!encryption) {
-			if (((int) plain.charAt(0) + key) < 65) {
-				offset = offset + 25;
-			}
-		}
-		if (((offset + key) % 25) + 64 == ((int) enc.charAt(0))) {
+		 if (!encryption) {
+		 key = -1*key;
+		 }
+		if ((Math.abs((offset + key) % 26)) + 65 == ((int) enc.charAt(0))) {
 			return true;
 		}
 		return false;

@@ -103,6 +103,8 @@ public class CryptoController extends AbstractVisualizationController {
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (getView().getKey().isEditable()) {
+					JTextField output = (JTextField) e.getSource();
+					output.setBorder(null);
 					getView().getKey().setText("Key");
 					getView().getKeyboard().setVisible(false);
 				}
@@ -113,6 +115,9 @@ public class CryptoController extends AbstractVisualizationController {
 			@Override
 			public void focusGained(FocusEvent e) {
 				if (getView().getKey().isEditable()) {
+					JTextField output = (JTextField) e.getSource();
+					output.setBorder(BorderFactory.createLineBorder(Color.blue,
+							5));
 					getView().getKey().setText("");
 					getView().getKeyboard().setVisible(true);
 				}
@@ -184,6 +189,9 @@ public class CryptoController extends AbstractVisualizationController {
 			@Override
 			public void focusGained(FocusEvent e) {
 				if (getView().getInput().isEditable()) {
+					JTextField output = (JTextField) e.getSource();
+					output.setBorder(BorderFactory.createLineBorder(Color.blue,
+							5));
 					getView().getInput().setText("");
 					getView().getKeyboard().setVisible(true);
 				}
@@ -194,6 +202,8 @@ public class CryptoController extends AbstractVisualizationController {
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (getView().getInput().isEditable()) {
+					JTextField output = (JTextField) e.getSource();
+					output.setBorder(null);
 					getView().getInput().setText("Put your name here.");
 					getView().getKeyboard().setVisible(false);
 				}
@@ -332,7 +342,9 @@ public class CryptoController extends AbstractVisualizationController {
 			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
 				@Override
 				public void focusLost(FocusEvent e) {
-					if (getView().getKey().isEditable()) {
+					JTextField output = (JTextField) e.getSource();
+					if (output.isEditable()) {
+						output.setBorder(null);
 						getView().getKeyboard().setVisible(false);
 					}
 
@@ -340,7 +352,10 @@ public class CryptoController extends AbstractVisualizationController {
 
 				@Override
 				public void focusGained(FocusEvent e) {
-					if (getView().getKey().isEditable()) {
+					JTextField output = (JTextField) e.getSource();
+					if (output.isEditable()) {
+						output.setBorder(BorderFactory.createLineBorder(
+								Color.blue, 5));
 						getView().getKeyboard().setVisible(true);
 					}
 				}
@@ -358,9 +373,10 @@ public class CryptoController extends AbstractVisualizationController {
 							try {
 								key = Integer.parseInt(getView().getKey()
 										.getText());
+								
 								if (getModel().checkValidChar(key,
 										userOutput.getName(),
-										userOutput.getText(), true)
+										userOutput.getText(), !decryptionPhase)
 										&& (getEditableFields() - 1) != 0) {
 									// user encrypted the given char successful.
 									userOutput.setBorder(BorderFactory

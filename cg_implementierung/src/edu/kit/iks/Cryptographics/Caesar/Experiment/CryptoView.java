@@ -103,7 +103,6 @@ public class CryptoView extends VisualizationView {
 		viewConst.gridwidth = 3;
 		viewConst.gridheight = 4;
 		introLayout.setConstraints(this, viewConst);
-		this.keyboard = new KeyboardView();
 
 		// setups the next and back buttons.
 		setupNavigation();
@@ -243,6 +242,7 @@ public class CryptoView extends VisualizationView {
 	 * Creates the keyboard and shows it in the main container.
 	 */
 	public void createKeyboard() {
+		this.keyboard = new KeyboardView();
 		GridBagConstraints kbConst = new GridBagConstraints();
 		kbConst.anchor = GridBagConstraints.PAGE_END;
 		kbConst.weightx = 1.0;
