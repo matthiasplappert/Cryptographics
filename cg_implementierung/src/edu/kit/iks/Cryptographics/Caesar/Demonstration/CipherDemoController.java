@@ -47,23 +47,30 @@ public class CipherDemoController extends AbstractVisualizationController {
 		this.view = new CipherDemoView();
 		this.model = new CryptoModel();
 		this.animationStep = 1;
+		getView().createKeyboard();
 
 		for (int i = 1; i < this.getView().getUserOutput().length; i++) {
-			this.getView().getUserOutput()[i]
-					.addFocusListener(new FocusListener() {
+			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
+				@Override
+				public void focusLost(FocusEvent e) {
+					JTextField output = (JTextField) e.getSource();
+					if (output.isEditable()) {
+						output.setBorder(null);
+						getView().getKeyboard().setVisible(false);
+					}
 
-						@Override
-						public void focusLost(FocusEvent e) {
-							// TODO Auto-generated method stub
+				}
 
-						}
-
-						@Override
-						public void focusGained(FocusEvent e) {
-							// TODO Auto-generated method stub
-
-						}
-					});
+				@Override
+				public void focusGained(FocusEvent e) {
+					JTextField output = (JTextField) e.getSource();
+					if (output.isEditable()) {
+						output.setBorder(BorderFactory.createLineBorder(
+								Color.blue, 5));
+						getView().getKeyboard().setVisible(true);
+					}
+				}
+			});
 			this.getView().getUserOutput()[i]
 					.addActionListener(new ActionListener() {
 

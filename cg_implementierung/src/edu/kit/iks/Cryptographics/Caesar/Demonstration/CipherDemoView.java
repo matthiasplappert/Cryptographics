@@ -21,6 +21,7 @@ import org.jdom2.Element;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.ImageView;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
@@ -43,6 +44,8 @@ public class CipherDemoView extends VisualizationView {
 	private ImageView caesarHappy;
 
 	private ImageView caesarFrustrated;
+	
+	private KeyboardView keyboard;
 
 	/**
 	 * Input from the user for encryption.
@@ -82,6 +85,7 @@ public class CipherDemoView extends VisualizationView {
 		GridBagLayout introLayout = new GridBagLayout();
 		this.setLayout(introLayout);
 
+		createKeyboard();
 		// setup the back and next Buttons.
 		setupNavigation();
 
@@ -127,6 +131,24 @@ public class CipherDemoView extends VisualizationView {
 		expConst.gridwidth = 4;
 		this.add(this.explanations, expConst);
 
+		this.validate();
+	}
+	
+	/**
+	 * Creates the keyboard and shows it in the main container.
+	 */
+	public void createKeyboard() {
+		this.keyboard = new KeyboardView();
+		GridBagConstraints kbConst = new GridBagConstraints();
+		kbConst.anchor = GridBagConstraints.PAGE_END;
+		kbConst.weightx = 1.0;
+		kbConst.weighty = 0.5;
+		kbConst.gridx = 0;
+		kbConst.gridy = 0;
+		kbConst.gridwidth = 11;
+		kbConst.gridheight = 3;
+		this.add(this.keyboard, kbConst);
+		this.keyboard.setVisible(false);
 		this.validate();
 	}
 
@@ -402,6 +424,20 @@ public class CipherDemoView extends VisualizationView {
 	 */
 	public void setCipherDemoResource(Element cipherDemoResource) {
 		this.cipherDemoResource = cipherDemoResource;
+	}
+
+	/**
+	 * @return the keyboard
+	 */
+	public KeyboardView getKeyboard() {
+		return keyboard;
+	}
+
+	/**
+	 * @param keyboard the keyboard to set
+	 */
+	public void setKeyboard(KeyboardView keyboard) {
+		this.keyboard = keyboard;
 	}
 
 }
