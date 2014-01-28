@@ -19,6 +19,7 @@ public class ExplainAimView extends VisualizationView {
 	private static final long serialVersionUID = 5986978581223106407L;
 
 	public ExplainAimView() {
+		// TODO move some stuff out of the constructor into a start method
 		super();
 		this.setLayout(new GridBagLayout());
 		this.aimExplain = new JLabel();
@@ -30,7 +31,14 @@ public class ExplainAimView extends VisualizationView {
 		this.cc = new ColorChannel(460, 155, 600, 155);
 		this.cc.setPreferredSize(new Dimension(900, 700));
 		this.add(this.cc);
-		this.cc.sendToAlice();
+		this.cc.sendToAlice(new NextStepCallback() {
+
+			@Override
+			public void callback() {
+				cc.sendToBob(null);
+			}			
+			
+		});
 	}
 	
 

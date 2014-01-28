@@ -18,12 +18,24 @@ public class ColorChannel extends JPanel {
 	 */
 	private static final long serialVersionUID = 4073013433018353584L;
 	
+	/* the coordinates of the circles */
 	private int x1, y1, x2, y2;
 	
+	/* the color to send */
+	private Color color = Color.BLUE;
+	
+	/* diameter of the ellipses2d circles */
 	private int diameter = 50;
 	
+	/* while sending these values will be true */
 	private boolean sendAlice, sendBob;
 	
+	/* who has which color will be painted, if true */
+	private boolean keepColor;
+	
+	/* use timer for firing events so that values will be
+	 * changed when sending colors
+	 */
 	private Timer timer;
 	
 	public ColorChannel(int a1, int b1, int a2, int b2) {
@@ -38,11 +50,11 @@ public class ColorChannel extends JPanel {
 		// TODO remove hardcoded colors and do it dynamically
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g2.setPaint(color);
 		
 		drawChannel(g2, 450, 800, 180, 60);
 		if (sendAlice) {
 			Ellipse2D.Double ellip = new Ellipse2D.Double(x1, y1, diameter, diameter);
-			g2.setPaint(Color.BLUE);
 			g2.fill(ellip);
 			if(x1 < 600) {
 				Ellipse2D.Double ellip2 = new Ellipse2D.Double(x2, y2, diameter, diameter);
@@ -50,7 +62,6 @@ public class ColorChannel extends JPanel {
 			}
 		} else if (sendBob) {
 			Ellipse2D.Double ellip = new Ellipse2D.Double(x1, y1, diameter, diameter);
-			g2.setPaint(Color.BLUE);
 			g2.fill(ellip);
 			if(x1 > 600) {
 				Ellipse2D.Double ellip2 = new Ellipse2D.Double(x2, y2, diameter, diameter);
@@ -69,8 +80,12 @@ public class ColorChannel extends JPanel {
 		g2.drawString("Eve", (x1+x2)/2 - 15, x4-10);
 	}
 	
-	public void sendToBob() {
+	// TODO refactor sendToBob and sendToAlice into one method
+	public void sendToBob(final NextStepCallback cb) {
 		if(sendAlice) {
+			/* don't want to send colors
+			 * if others are being send
+			 */
 			return;
 		}
 		this.sendBob = true;
@@ -88,6 +103,9 @@ public class ColorChannel extends JPanel {
 					} else if (y2 < 63 && x1 > 750) {
 						sendBob = false;
 						timer.stop();
+						if(cb != null) {
+							cb.callback();
+						}
 					}
 				}
 				repaint();
@@ -96,8 +114,11 @@ public class ColorChannel extends JPanel {
 		timer.start();
 	}
 	
-	public void sendToAlice() {
+	public void sendToAlice(final NextStepCallback cb) {
 		if(sendBob) {
+			/* don't want to send if there
+			 * is already colors to be sent
+			 */
 			return;
 		}
 		this.sendAlice = true;
@@ -115,6 +136,9 @@ public class ColorChannel extends JPanel {
 					} else if (y2 < 63 && x1 < 460) {
 						sendAlice = false;
 						timer.stop();
+						if(cb != null) {
+							cb.callback();
+						}
 					}
 				}
 				repaint();
