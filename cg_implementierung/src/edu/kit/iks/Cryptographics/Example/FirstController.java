@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.VisualizationButton;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 public class FirstController extends AbstractVisualizationController {
