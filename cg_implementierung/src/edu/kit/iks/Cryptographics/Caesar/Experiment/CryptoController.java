@@ -149,7 +149,6 @@ public class CryptoController extends AbstractVisualizationController {
 						try {
 							String input = getView().getInput().getText();
 							char[] inputChars = new char[input.length()];
-							input = input.toUpperCase();
 							input.getChars(0, input.length(), inputChars, 0);
 							setEditableFields(inputChars.length);
 							getView().getKey().setBorder(null);
