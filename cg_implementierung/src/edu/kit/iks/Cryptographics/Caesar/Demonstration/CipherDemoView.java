@@ -21,6 +21,7 @@ import org.jdom2.Element;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.ImageView;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
@@ -39,10 +40,12 @@ public class CipherDemoView extends VisualizationView {
 	private JPanel inOutPanel;
 
 	private JPanel navigationPanel;
-	
+
 	private ImageView caesarHappy;
-	
+
 	private ImageView caesarFrustrated;
+	
+	private KeyboardView keyboard;
 
 	/**
 	 * Input from the user for encryption.
@@ -82,18 +85,20 @@ public class CipherDemoView extends VisualizationView {
 		GridBagLayout introLayout = new GridBagLayout();
 		this.setLayout(introLayout);
 
+		createKeyboard();
 		// setup the back and next Buttons.
 		setupNavigation();
 
+		// TODO: need a generator to generate random strings dynamically.
 		// setup the fields for the demonstratoin of the encryption.
-		char[] chars = { 'C', 'A', 'E', 'S', 'A', 'R' };  // TODO: need a generator to
-															// generate
-		// random strings dynamically.
+		char[] chars = { 'C', 'A', 'E', 'S', 'A', 'R' };
 		setupInOutElements(chars);
 
 		// setup the aligment of the button proceed.
 		GridBagConstraints proceedConst = new GridBagConstraints();
 		this.proceed = new JButton("Proceed!");
+		this.proceed.setPreferredSize(new Dimension(250, 50));
+		this.proceed.setFont(new Font("Arial", 2, 25));
 		proceedConst.anchor = GridBagConstraints.PAGE_END;
 		proceedConst.gridx = 2;
 		proceedConst.gridy = 3;
@@ -116,6 +121,7 @@ public class CipherDemoView extends VisualizationView {
 				"<html><body>"
 						+ "Imagine now you are the mighty caesar!! Of course your first idea is to substitute each <br>"
 						+ "letter from your name with some other from the alphabet. But which one?");
+		this.explanations.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.LAST_LINE_START;
 		expConst.weightx = 0.5;
@@ -125,6 +131,24 @@ public class CipherDemoView extends VisualizationView {
 		expConst.gridwidth = 4;
 		this.add(this.explanations, expConst);
 
+		this.validate();
+	}
+	
+	/**
+	 * Creates the keyboard and shows it in the main container.
+	 */
+	public void createKeyboard() {
+		this.keyboard = new KeyboardView();
+		GridBagConstraints kbConst = new GridBagConstraints();
+		kbConst.anchor = GridBagConstraints.PAGE_END;
+		kbConst.weightx = 1.0;
+		kbConst.weighty = 0.5;
+		kbConst.gridx = 0;
+		kbConst.gridy = 0;
+		kbConst.gridwidth = 11;
+		kbConst.gridheight = 3;
+		this.add(this.keyboard, kbConst);
+		this.keyboard.setVisible(false);
 		this.validate();
 	}
 
@@ -214,6 +238,8 @@ public class CipherDemoView extends VisualizationView {
 
 		// set up the alignment of the button back;
 		this.setBackButton(new JButton("Back to Introduction!"));
+		this.getBackButton().setPreferredSize(new Dimension(300, 50));
+		this.getBackButton().setFont(new Font("Arial", 2, 25));
 		/*
 		 * GridBagConstraints backConst = new GridBagConstraints(); backConst.weightx = 1.0;
 		 * backConst.weighty = 0.1; backConst.gridx = 0; backConst.gridy = 0; backConst.gridwidth =
@@ -223,6 +249,8 @@ public class CipherDemoView extends VisualizationView {
 
 		// set up the aligment of the button Next;
 		this.setNextButton(new JButton("Go to Encryption!"));
+		this.getNextButton().setPreferredSize(new Dimension(300, 50));
+		this.getNextButton().setFont(new Font("Arial", 2, 25));
 
 		/*
 		 * GridBagConstraints nextConst = new GridBagConstraints(); nextConst.weightx = 1.0;
@@ -346,7 +374,8 @@ public class CipherDemoView extends VisualizationView {
 	}
 
 	/**
-	 * @param navigationPanel the navigationPanel to set
+	 * @param navigationPanel
+	 *            the navigationPanel to set
 	 */
 	public void setNavigationPanel(JPanel navigationPanel) {
 		this.navigationPanel = navigationPanel;
@@ -360,7 +389,8 @@ public class CipherDemoView extends VisualizationView {
 	}
 
 	/**
-	 * @param caesarHappy the caesarHappy to set
+	 * @param caesarHappy
+	 *            the caesarHappy to set
 	 */
 	public void setCaesarHappy(ImageView caesarHappy) {
 		this.caesarHappy = caesarHappy;
@@ -374,7 +404,8 @@ public class CipherDemoView extends VisualizationView {
 	}
 
 	/**
-	 * @param caesarFrustrated the caesarFrustrated to set
+	 * @param caesarFrustrated
+	 *            the caesarFrustrated to set
 	 */
 	public void setCaesarFrustrated(ImageView caesarFrustrated) {
 		this.caesarFrustrated = caesarFrustrated;
@@ -388,10 +419,25 @@ public class CipherDemoView extends VisualizationView {
 	}
 
 	/**
-	 * @param cipherDemoResource the cipherDemoResource to set
+	 * @param cipherDemoResource
+	 *            the cipherDemoResource to set
 	 */
 	public void setCipherDemoResource(Element cipherDemoResource) {
 		this.cipherDemoResource = cipherDemoResource;
+	}
+
+	/**
+	 * @return the keyboard
+	 */
+	public KeyboardView getKeyboard() {
+		return keyboard;
+	}
+
+	/**
+	 * @param keyboard the keyboard to set
+	 */
+	public void setKeyboard(KeyboardView keyboard) {
+		this.keyboard = keyboard;
 	}
 
 }

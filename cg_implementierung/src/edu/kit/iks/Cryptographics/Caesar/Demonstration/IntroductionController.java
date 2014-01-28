@@ -59,11 +59,6 @@ public class IntroductionController extends AbstractVisualizationController {
 		return (IntroductionView) this.view;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationController#getHelp()
-	 */
 	@Override
 	public String getHelp() {
 
@@ -116,7 +111,7 @@ public class IntroductionController extends AbstractVisualizationController {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				animationProceed(getAnimationStep());
+				animationStart(getAnimationStep());
 
 			}
 		});
@@ -124,18 +119,11 @@ public class IntroductionController extends AbstractVisualizationController {
 	}
 
 	/**
-	 * Needed for dispatching the clickEvent from the button to activate the animation of the view.
-	 */
-	public void animationProceed(int step) {
-		this.animationStart(step);
-	}
-
-	/**
 	 * TODO: Need a less dirty solution. Method for intern state handling.
 	 * 
 	 * @param c
 	 */
-	private void animationStart(int step) {
+	public void animationStart(int step) {
 		switch (step) {
 		case 1:
 			step1();
