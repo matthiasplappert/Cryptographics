@@ -124,7 +124,7 @@ public class CryptoView extends VisualizationView {
 						+ "1. You put you own key and plaintext into the textfield.<br>"
 						+ "<br>"
 						+ "2.Or you just click generate and this awesome programm generates you everything you need with real real complex calculations.");
-		this.explanations.setFont(new Font("Arial", 2, 20));
+//		this.explanations.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.PAGE_START;
 		expConst.weightx = 0.5;
@@ -295,7 +295,7 @@ public class CryptoView extends VisualizationView {
 						+ "26 is obvious bigger then 25. Then you subtract 26 - 25 = 1. This is your cipher. <br>"
 						+ "It is also called modulo calculation. for example 26 mod 25 = 1. But this is a little more complex<br>"
 						+ "Therefore not important here. You will see more in the vigenere Visualization.");
-		this.explanations.setFont(new Font("Arial", 2, 20));
+//		this.explanations.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.LAST_LINE_START;
 		expConst.weightx = 0.5;
