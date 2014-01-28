@@ -121,8 +121,9 @@ public class HistogramView extends VisualizationView {
 						+ "<br>"
 						+ "It is also called 'breaking' the cipher if you try to decrypt without a given key parameter. The following <br>"
 						+ "experiments will teach you how to break caesar's cipher.<br>"));
+		this.explanations.setFont(new Font("Arial", 2, 20));
 		this.add(this.explanations, explanationConstraint);
-		
+
 		// setup the proceed button.
 		setupProceed();
 
@@ -132,6 +133,8 @@ public class HistogramView extends VisualizationView {
 	public void setupProceed() {
 		GridBagConstraints proceedConst = new GridBagConstraints();
 		this.proceed = new JButton("Proceed!");
+		this.proceed.setPreferredSize(new Dimension(250, 50));
+		this.proceed.setFont(new Font("Arial", 2, 25));
 		proceedConst.anchor = GridBagConstraints.PAGE_END;
 		proceedConst.gridx = 2;
 		proceedConst.gridy = 3;
@@ -143,30 +146,30 @@ public class HistogramView extends VisualizationView {
 		this.remove(this.keyControl);
 		this.keyControl = null;
 		this.remove(this.proceed);
-		
+
 		// TODO:Histogram UI-Element not implemented yet!
 		int[] quantities = { 1, 2, 3, 4, 5 };
 		this.histogram = new CharacterFrequencyDiagramView(quantities);
 		this.histogram.setBackground(Color.green);
 		this.histogram.setPreferredSize(new Dimension(200, 200));
 		this.add(histogram);
-		
-		this.explanations.setText("<html><body> Here histograms are shown and how to use them to break caesar in one step");
 
+		this.explanations
+				.setText("<html><body> Here histograms are shown and how to use them to break caesar in one step");
 		this.validate();
 		this.repaint();
 	}
 
 	public void setupBruteForce() {
 		// GridBagLayout layout = (GridBagLayout) this.getLayout();
-		this.remove(this.explanations);
+		//this.remove(this.explanations);
 		this.remove(proceed);
 
-		GridBagConstraints expConst = new GridBagConstraints();
-		// expConst.anchor = GridBagConstraints.FIRST_LINE_START;
-		expConst.gridx = 0;
-		expConst.gridy = 1;
-		this.add(this.explanations, expConst);
+//		GridBagConstraints expConst = new GridBagConstraints();
+//		// expConst.anchor = GridBagConstraints.FIRST_LINE_START;
+//		expConst.gridx = 0;
+//		expConst.gridy = 1;
+//		this.add(this.explanations, expConst);
 
 		this.keyValue = 1;
 		// setup the Panel for buttons for incrementing/decrementing the key.
@@ -249,22 +252,15 @@ public class HistogramView extends VisualizationView {
 
 		// set up the alignment of the button back;
 		this.setBackButton(new JButton("Back to Experiment!"));
-		/*
-		 * GridBagConstraints backConst = new GridBagConstraints(); backConst.weightx = 1.0;
-		 * backConst.weighty = 0.1; backConst.gridx = 0; backConst.gridy = 0; backConst.gridwidth =
-		 * 3;
-		 */
+		this.getBackButton().setPreferredSize(new Dimension(300, 50));
+		this.getBackButton().setFont(new Font("Arial", 2, 25));
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
 		this.setNextButton(new JButton(
 				"Skip the histograms(Visualization Done)!"));
-
-		/*
-		 * GridBagConstraints nextConst = new GridBagConstraints(); nextConst.weightx = 1.0;
-		 * nextConst.weighty = 0.1; nextConst.gridx = 10; nextConst.gridy = 1; nextConst.gridwidth =
-		 * 3;
-		 */
+		this.getNextButton().setPreferredSize(new Dimension(300, 50));
+		this.getNextButton().setFont(new Font("Arial", 2, 25));
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
 
 	}

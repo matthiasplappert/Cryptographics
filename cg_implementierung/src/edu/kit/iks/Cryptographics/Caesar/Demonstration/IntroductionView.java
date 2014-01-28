@@ -1,5 +1,8 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -17,7 +20,7 @@ import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
-/**
+/**TODO: Need new comments.
  * This is the first view the user gets presented when he requests the
  * visualization of Caesar's cipher. Here the user gets to know what problems
  * Caesar faced when his enemies could intercept and read his orders. The
@@ -29,11 +32,6 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
  * 
  */
 public class IntroductionView extends VisualizationView {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7214639660774564585L;
 
 	private GridBagLayout introLayout;
 
@@ -99,6 +97,8 @@ public class IntroductionView extends VisualizationView {
 		// the "Exit" button.
 		this.getBackButton().setVisible(false);
 		this.getNextButton().setText("Skip the introduction!");
+		this.getNextButton().setPreferredSize(new Dimension(350, 50));
+		this.getNextButton().setFont(new Font("Arial", 2, 25));
 
 		// set the alignment of NextButton.
 		nextConstraint.anchor = GridBagConstraints.NORTHEAST;
@@ -118,6 +118,8 @@ public class IntroductionView extends VisualizationView {
 		proceedConstraint.gridy = 2;
 		proceedConstraint.gridwidth = 3;
 		this.setProceed(new JButton("Tell me more."));
+		this.proceed.setPreferredSize(new Dimension(500, 50));
+		this.proceed.setFont(new Font("Arial", 2, 25));
 		this.add(this.proceed, proceedConstraint);
 
 		// set the alignment of the masterPlan image.
@@ -144,6 +146,7 @@ public class IntroductionView extends VisualizationView {
 		this.setExplanation(new JLabel(
 				"<html><body>Eines Tages, etwa 70 v.Chr , tüftelte Caesar einen ultra-mega-großen-master-plan <br>"
 						+ " aus um Gallien endlich zu erobern. Und schickte diesen an seine Armee in Gallien. <br>"));
+		this.explanation.setFont(new Font("Arial", 2, 20));
 		this.add(this.explanation, explanationConstraint);
 
 		// layout the component of the Panel.
@@ -151,32 +154,32 @@ public class IntroductionView extends VisualizationView {
 
 	}
 
-	// Animations stubs.
-
-	public void firstAnimation() {
-		this.timer = new Timer(50, new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (getCourier().getX() < (getAnimationContainer().getWidth() - 200)) {
-					animate();
-				} else {
-					getTimer().stop();
-				}
-			}
-		});
-		xCoordCourier = getCourier().getX();
-		this.timer.start();
-	}
-
-	public void animate() {
-		xCoordCourier += 10;
-		int y = getCourier().getY();
-		getCourier().setBounds(xCoordCourier, y, getPreferredSize().width,
-				getPreferredSize().height);
-		getCourier().validate();
-		this.repaint();
-	}
+	// // Animations stubs.
+	//
+	// public void firstAnimation() {
+	// this.timer = new Timer(50, new ActionListener() {
+	//
+	// @Override
+	// public void actionPerformed(ActionEvent e) {
+	// if (getCourier().getX() < (getAnimationContainer().getWidth() - 200)) {
+	// animate();
+	// } else {
+	// getTimer().stop();
+	// }
+	// }
+	// });
+	// xCoordCourier = getCourier().getX();
+	// this.timer.start();
+	// }
+	//
+	// public void animate() {
+	// xCoordCourier += 10;
+	// int y = getCourier().getY();
+	// getCourier().setBounds(xCoordCourier, y, getPreferredSize().width,
+	// getPreferredSize().height);
+	// getCourier().validate();
+	// this.repaint();
+	// }
 
 	/**
 	 * @return the proceed

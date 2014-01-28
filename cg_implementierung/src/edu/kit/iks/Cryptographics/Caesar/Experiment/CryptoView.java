@@ -125,13 +125,15 @@ public class CryptoView extends VisualizationView {
 						+ "1. You put you own key and plaintext into the textfield.<br>"
 						+ "<br>"
 						+ "2.Or you just click generate and this awesome programm generates you everything you need with real real complex calculations.");
+		this.explanations.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.PAGE_START;
 		expConst.weightx = 0.5;
 		expConst.weighty = 1.0;
 		expConst.gridx = 0;
-		expConst.gridy = 2;
+		expConst.gridy = 1;
 		expConst.gridwidth = 2;
+		expConst.gridheight = 1;
 		this.add(this.explanations, expConst);
 
 		// build the user interface.
@@ -148,16 +150,17 @@ public class CryptoView extends VisualizationView {
 		GridBagConstraints inConst = new GridBagConstraints();
 		inConst.anchor = GridBagConstraints.CENTER;
 		inConst.weightx = 0.5;
-		inConst.weighty = 0.5;
+		inConst.weighty = 1.0;
 		inConst.gridx = 0;
-		inConst.gridy = 0;
-		inConst.gridheight = 4;
+		inConst.gridy = 2;
+		inConst.gridheight = 5;
 		inConst.gridwidth = 3;
 		this.add(this.inOutPanel, inConst);
 
 		// add the input field.
 		this.input = new JTextField("Put your name here.");
-		this.input.setPreferredSize(new Dimension(150, 25));
+		this.input.setPreferredSize(new Dimension(250, 50));
+		this.input.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints inputConst = new GridBagConstraints();
 		// inputConst.anchor = GridBagConstraints.FIRST_LINE_START;
 		// inputConst.weightx = 1.0;
@@ -168,7 +171,8 @@ public class CryptoView extends VisualizationView {
 		this.inOutPanel.add(this.input, inputConst);
 		// add the key-input field.
 		this.key = new JTextField("Key");
-		this.key.setPreferredSize(new Dimension(25, 25));
+		this.key.setPreferredSize(new Dimension(50, 50));
+		this.key.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints keyConst = new GridBagConstraints();
 		keyConst.gridx = 2;
 		keyConst.gridy = 0;
@@ -176,12 +180,14 @@ public class CryptoView extends VisualizationView {
 
 		// add the button for generating input if the user is too lazy.
 		this.generator = new JButton("Generate letters!");
+		this.generator.setPreferredSize(new Dimension(300, 50));
+		this.generator.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints genConst = new GridBagConstraints();
 		genConst.weightx = 1.0;
 		genConst.gridx = 0;
 		genConst.gridy = 1;
 		genConst.gridwidth = 3;
-		genConst.fill = GridBagConstraints.HORIZONTAL;
+		// genConst.fill = GridBagConstraints.BOTH;
 		// this.generator.setVerticalAlignment(JButton.BOTTOM);
 		this.inOutPanel.add(this.generator, genConst);
 	}
@@ -207,7 +213,9 @@ public class CryptoView extends VisualizationView {
 		this.remove(this.getNextButton());
 
 		// set up the alignment of the button back;
-		this.setBackButton(new JButton("Back to Demonstration!"));
+		this.setBackButton(new JButton("Back to demonstration"));
+		this.getBackButton().setPreferredSize(new Dimension(350, 50));
+		this.getBackButton().setFont(new Font("Arial", 2, 25));
 		/*
 		 * GridBagConstraints backConst = new GridBagConstraints(); backConst.weightx = 1.0;
 		 * backConst.weighty = 0.1; backConst.gridx = 0; backConst.gridy = 0; backConst.gridwidth =
@@ -216,8 +224,9 @@ public class CryptoView extends VisualizationView {
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
-		this.setNextButton(new JButton("Go to Decryption!"));
-
+		this.setNextButton(new JButton("Go to decryption"));
+		this.getNextButton().setPreferredSize(new Dimension(300, 50));
+		this.getNextButton().setFont(new Font("Arial", 2, 25));
 		/*
 		 * GridBagConstraints nextConst = new GridBagConstraints(); nextConst.weightx = 1.0;
 		 * nextConst.weighty = 0.1; nextConst.gridx = 10; nextConst.gridy = 1; nextConst.gridwidth =
@@ -275,10 +284,18 @@ public class CryptoView extends VisualizationView {
 		this.add(this.alphabet, alphConst);
 
 		// setup the explanations.
-		this.explanations = new JLabel("<html><body>"
-				+ "Your turn comrade! Remember: You need to add to each <br>"
-				+ "number that is assigned to a letter + 3 and see what <br>"
-				+ "letter the result is. For Example A(0) + 3 = D(3).");
+		this.explanations = new JLabel(
+				"<html><body>"
+						+ "Now it is up to you. Test your skills. Remember the key is "
+						+ key
+						+ ".<br>"
+						+ "You need to add the key to the position of the letter your want to shift to get<br>"
+						+ "the needed cipher. If you get a bigger number then 25 you need to subtract 25 from it. <br>"
+						+ "For example: You want to encrypt x with the key 3. When you add 3 to X you get 23 + 3 = 26. <br>"
+						+ "26 is obvious bigger then 25. Then you subtract 26 - 25 = 1. This is your cipher. <br>"
+						+ "It is also called modulo calculation. for example 26 mod 25 = 1. But this is a little more complex<br>"
+						+ "Therefore not important here. You will see more in the vigenere Visualization.");
+		this.explanations.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.LAST_LINE_START;
 		expConst.weightx = 0.5;
