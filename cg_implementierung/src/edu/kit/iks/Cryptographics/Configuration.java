@@ -36,7 +36,7 @@ public class Configuration {
 	 * @return the timeout in milliseconds
 	 */
 	public long getIdleTimeout() {
-		return 5 * 60* 1000;
+		return 5 * 60 * 1000;
 	}
 	
 	/**
