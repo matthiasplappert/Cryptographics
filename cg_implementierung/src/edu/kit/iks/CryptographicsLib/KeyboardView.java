@@ -51,8 +51,8 @@ public class KeyboardView extends JPanel implements ActionListener {
 				"K", "L", "Enter" };
 		String[] charactersThirdRow = { "Y", "X", "C", "V", "B", "N", "M" };
 
-		keysFirstRow = new JButton[charactersFirstRow.length + 1];
-		keysSecondRow = new JButton[charactersSecondRow.length + 1];
+		keysFirstRow = new JButton[charactersFirstRow.length];
+		keysSecondRow = new JButton[charactersSecondRow.length];
 		keysThirdRow = new JButton[charactersThirdRow.length];
 
 		// Dimension keySize = new Dimension(35, 25);
@@ -97,14 +97,14 @@ public class KeyboardView extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		for (int i = 0; i < (keysFirstRow.length - 2); i++) {
+		for (int i = 0; i < (keysFirstRow.length - 1); i++) {
 			if (e.getSource().equals(keysFirstRow[i])) {
 				textField.setText(textField.getText()
 						+ keysFirstRow[i].getText());
 			}
 		}
 
-		for (int i = 0; i < (keysSecondRow.length - 2); i++) {
+		for (int i = 0; i < (keysSecondRow.length - 1); i++) {
 			if (e.getSource().equals(keysSecondRow[i])) {
 				textField.setText(textField.getText()
 						+ keysSecondRow[i].getText());
@@ -118,9 +118,9 @@ public class KeyboardView extends JPanel implements ActionListener {
 			}
 		}
 		// Listener for the Buttons Enter and Back.
-		if (e.getSource().equals(keysSecondRow[keysSecondRow.length - 2])) {
+		if (e.getSource().equals(keysSecondRow[keysSecondRow.length - 1])) {
 			textField.getActionListeners()[0].actionPerformed(e);
-		} else if (e.getSource().equals(keysFirstRow[keysFirstRow.length - 2])) {
+		} else if (e.getSource().equals(keysFirstRow[keysFirstRow.length - 1])) {
 			char[] newContent = new char[textField.getText().length()];
 			textField.getText().getChars(0, textField.getText().length() - 1,
 					newContent, 0);
