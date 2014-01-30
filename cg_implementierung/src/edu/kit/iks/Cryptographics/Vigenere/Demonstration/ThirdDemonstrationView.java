@@ -67,6 +67,12 @@ public class ThirdDemonstrationView extends VisualizationView{
 		this.validate();
 	}
 	
+	public void setCalculatorVisible(boolean b) {
+		this.charFirst.setVisible(b);
+		this.charSecond.setVisible(b);
+		this.charFinished.setVisible(b);
+	}
+	
 	public void setExplanation(String explanation) {
 		this.explanation.setText(explanation);
 		Dimension size = this.explanation.getPreferredSize();
