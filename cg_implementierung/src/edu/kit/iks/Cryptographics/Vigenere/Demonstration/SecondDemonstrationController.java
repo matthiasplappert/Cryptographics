@@ -29,6 +29,10 @@ public class SecondDemonstrationController extends AbstractVisualizationControll
 				state--;
 				Logger.d("SecondDemonstrationController", "loadView()", "State: " + state);
 				switch (state) {
+				case -1:
+					VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+					containerController.presentPreviousVisualizationController();
+					break;
 				case 0:
 					getView().setExplanation("<html><div width=\"1200\">Now we want to encrypt 'ANNA'. First of all we add the position of evey character, as you can see in the bottom, in the alphabet under each character.</div></html>");
 					getView().setKeyVisible(false);
