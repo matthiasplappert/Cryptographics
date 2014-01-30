@@ -18,12 +18,11 @@ public class ColorChannel extends JPanel {
 	 */
 	private static final long serialVersionUID = 4073013433018353584L;
 	
-	/* the coordinates of the circles
-	 * 460, 155, 600, 155
-	 */
+	/* the coordinates of the circles */
 	private int x1, y1, x2, y2;
+	/* the x coordinates for the communications lines */
 	private int leftEnd, rightEnd, middle;
-	private int yPosition, height;
+	private int yPosition, height, middleCircle, rightCircle;
 	private final int originalx1, originaly1, originalx2, originaly2;
 	
 	/* the color to send */
@@ -61,11 +60,13 @@ public class ColorChannel extends JPanel {
 		this.height = height;
 		this.leftEnd = leftEnd;
 		this.rightEnd = rightEnd;
+		this.rightCircle = rightEnd-diameter;
 		this.originalx1 = leftEnd;
-		this.originaly1 = yPosition;
+		this.originaly1 = yPosition-diameter/2;
 		this.middle = (leftEnd+rightEnd)/2;
-		this.originalx2 = this.middle;
-		this.originaly2 = yPosition;
+		this.middleCircle = this.middle-diameter/2;
+		this.originalx2 = this.middle-diameter/2;
+		this.originaly2 = yPosition-diameter/2;
 		this.x1 = originalx1;
 		this.y1 = originaly1;
 		this.x2 = originalx2;
@@ -84,14 +85,14 @@ public class ColorChannel extends JPanel {
 		if (sendAlice) {
 			Ellipse2D.Double ellip = new Ellipse2D.Double(x1, y1, diameter, diameter);
 			g2.fill(ellip);
-			if(x1 < this.middle) {
+			if(x1 < this.middleCircle) {
 				Ellipse2D.Double ellip2 = new Ellipse2D.Double(x2, y2, diameter, diameter);
 				g2.fill(ellip2);
 			}
 		} else if (sendBob) {
 			Ellipse2D.Double ellip = new Ellipse2D.Double(x1, y1, diameter, diameter);
 			g2.fill(ellip);
-			if(x1 > this.middle) {
+			if(x1 > this.middleCircle) {
 				Ellipse2D.Double ellip2 = new Ellipse2D.Double(x2, y2, diameter, diameter);
 				g2.fill(ellip2);
 			}
@@ -118,19 +119,19 @@ public class ColorChannel extends JPanel {
 		}
 		this.sendBob = true;
 		//TODO remove hardcoded values
-		this.x1 = this.originalx1;
-		this.x2 = this.originalx2;
+		this.x1 = this.leftEnd;
+		this.x2 = this.middleCircle;
 		this.y2 = this.originaly2;
 		timer = new Timer(50, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO remove hardcoded values
-				if(x1 < rightEnd) {
+				if(x1 < rightCircle) {
 					x1 += 3;
-					if (x1 > middle && y2 > height) {
+					if (x1 > middleCircle && y2 > height) {
 						y2 -= 3;
-					} else if (y2 < height && x1 > rightEnd) {
+					} else if (y2 < height && x1 > rightCircle) {
 						sendBob = false;
 						timer.stop();
 						if(cb != null) {
@@ -155,16 +156,17 @@ public class ColorChannel extends JPanel {
 			return;
 		}
 		this.sendAlice = true;
-		this.x1 = this.rightEnd;
-		this.x2 = this.middle;
-		this.y2 = this.yPosition;
+		this.x1 = this.rightCircle;
+		this.x2 = this.middleCircle;
+		//TODO refactor
+		this.y2 = this.originaly2;
 		timer = new Timer(50, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(x1 > leftEnd) {
 					x1 -= 3;
-					if (x1 < middle && y2 > height) {
+					if (x1 < middleCircle && y2 > height) {
 						y2 -= 3;
 					} else if (y2 < height && x1 < leftEnd) {
 						sendAlice = false;
