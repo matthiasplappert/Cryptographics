@@ -2,13 +2,7 @@ package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.Insets;
-
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import org.jdom2.Element;
 
 import edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo;

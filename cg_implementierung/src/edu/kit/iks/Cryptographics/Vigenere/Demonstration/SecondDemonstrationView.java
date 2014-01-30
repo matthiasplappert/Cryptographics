@@ -2,11 +2,8 @@ package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
