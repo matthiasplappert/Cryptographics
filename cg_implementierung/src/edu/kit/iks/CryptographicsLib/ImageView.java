@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -57,7 +58,8 @@ public class ImageView extends JPanel{
      */
     public ImageView(String filePath) {
     	try {                
-            image = ImageIO.read(new File(filePath));
+    		InputStream is = this.getClass().getResourceAsStream(filePath);
+            image = ImageIO.read(is);
          } catch (IOException e) {
         	 e.printStackTrace();
          }
