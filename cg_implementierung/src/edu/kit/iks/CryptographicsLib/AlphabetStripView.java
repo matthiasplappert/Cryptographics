@@ -111,4 +111,10 @@ public class AlphabetStripView extends JPanel {
 		
 		this.repaint();
 	}
+	
+	public void unHighlightAll() {
+		for (int i = 0; i < chars.length; i++) {
+			unHighlight(i);
+		}
+	}
 }

@@ -38,6 +38,21 @@ public class SecondDemonstrationView extends VisualizationView {
 	private JButton proceed;
 	private AlphabetStripView alphabet;
 	
+	public void setCalculator(int a, int b) {
+		int sum = ((a + b) % 26);
+		Dimension size;
+		this.charFirst.setText("Plaintext-Char: " + a);
+		this.charSecond.setText("Key-Char: "+ b);
+		this.charFinished.setText("Result: " + sum);
+		size = this.charFirst.getPreferredSize();
+		this.charFirst.setSize(size);
+		size = this.charSecond.getPreferredSize();
+		this.charSecond.setSize(size);
+		size = this.charFinished.getPreferredSize();
+		this.charFinished.setSize(size);
+		this.validate();
+	}
+
 	public void setTextField(int i, String character) {
 		this.textCharEncrypted[i].setText(character);
 		this.indexCharEncrypted[i].setText("" + VigenereModel.characterToInt(character));
@@ -45,14 +60,11 @@ public class SecondDemonstrationView extends VisualizationView {
 		this.indexCharEncrypted[i].setSize(size);
 		this.validate();
 	}
-	public void setHighlighted(int i) {
-		this.alphabet.highlight(i);
+
+	public AlphabetStripView getAlphabet() {
+		return alphabet;
 	}
-	
-	public void setUnHighlighted(int i) {
-		this.alphabet.unHighlight(i);
-	}
-	
+
 	public void setEncryptedCharsVisible(boolean b) {
 		for (int i = 0; i < this.indexCharEncrypted.length; i++) {
 			this.indexCharEncrypted[i].setVisible(b);
@@ -87,7 +99,7 @@ public class SecondDemonstrationView extends VisualizationView {
 		this.textCharPlain[0] = new JTextField("A");
 		this.textCharPlain[1] = new JTextField("N");
 		this.textCharPlain[2] = new JTextField("N");
-		this.textCharPlain[3] = new JTextField("A");
+		this.textCharPlain[3] = new JTextField("E");
 		for (int i = 0; i < this.textCharPlain.length; i++)
 			this.add(this.textCharPlain[i]);
 
@@ -95,7 +107,7 @@ public class SecondDemonstrationView extends VisualizationView {
 		this.indexCharPlain[0] = new JLabel(" 1");
 		this.indexCharPlain[1] = new JLabel("14");
 		this.indexCharPlain[2] = new JLabel("14");
-		this.indexCharPlain[3] = new JLabel(" 1");
+		this.indexCharPlain[3] = new JLabel(" 5");
 		for (int i = 0; i < this.indexCharPlain.length; i++)
 			this.add(this.indexCharPlain[i]);
 
@@ -121,10 +133,6 @@ public class SecondDemonstrationView extends VisualizationView {
 		this.add(this.vigenereKeyDesc);
 		this.add(this.alphabet);
 		this.add(this.proceed);
-		
-		this.add(this.charFirst = new JLabel("Plaintext-Char: 1"));
-		this.add(this.charSecond = new JLabel("Key-Char: 14"));
-		this.add(this.charFinished = new JLabel("Result: 15"));
 		
 		setCalculatorVisible(false);
 		setEncryptedCharsVisible(false);
