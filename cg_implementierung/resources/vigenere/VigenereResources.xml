@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Resources>
 	<vigenere id="vigenereId">
-      <vigenereImage  path="./resources/vigenere/vigenere.png"/>
-      <moduloImage  path="./resources/vigenere/modulo.png"/>
+      <vigenereImage  path="/vigenere/vigenere.png"/>
+      <moduloImage  path="/vigenere/modulo.png"/>
 	</vigenere>
 </Resources>

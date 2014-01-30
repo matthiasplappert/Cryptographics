@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Caesar>
 	<Introduction>
-		<CaesarIdea path="./resources/caesar/caesar.png" />
-		<Courier path="./resources/caesar/courier.png" />
-		<ForestBackground path="./resources/caesar/forest.png" />
-		<Boar path="./resources/caesar/boar.png" />
-		<Obelix path="./resources/caesar/obelix.png" />
-		<Orders path="./resources/caesar/orders.gif" />
+		<CaesarIdea path="/caesar/caesar.png" />
+		<Courier path="/caesar/courier.png" />
+		<ForestBackground path="/caesar/forest.png" />
+		<Boar path="/caesar/boar.png" />
+		<Obelix path="/caesar/obelix.png" />
+		<Orders path="/caesar/orders.gif" />
 	</Introduction>
 	<CipherDemo>
 		<input content="Anna" />

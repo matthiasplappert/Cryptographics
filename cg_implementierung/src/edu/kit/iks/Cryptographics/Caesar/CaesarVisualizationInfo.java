@@ -2,6 +2,7 @@ package edu.kit.iks.Cryptographics.Caesar;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,11 +37,11 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 		SAXBuilder saxBuilder = new SAXBuilder();
 
 		// obtain file object
-		File file = new File("./resources/caesar/CaesarResources.xml");
+		InputStream is = this.getClass().getResourceAsStream("/caesar/CaesarResources.xml");
 
 		try {
 			// converted file to document object
-			Document document = saxBuilder.build(file);
+			Document document = saxBuilder.build(is);
 
 			// get root node from xml
 			this.caesarResources = document.getRootElement();
