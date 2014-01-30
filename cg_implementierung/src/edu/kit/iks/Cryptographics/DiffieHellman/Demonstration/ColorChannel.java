@@ -24,9 +24,13 @@ public class ColorChannel extends JPanel {
 	private int leftEnd, rightEnd, middle;
 	private int yPosition, height, middleCircle, rightCircle;
 	private final int originalx1, originaly1, originalx2, originaly2;
+	/* kept colors */
+	private Ellipse2DwithColor[][] keptColors;
+	private int numOfKeptColors;
 	
 	/* the color to send */
-	private Color color = Color.BLUE;
+	private Color color = Color.BLACK;
+	private Color channelColor = Color.BLACK;
 	
 	public Color getColor() {
 		return color;
@@ -56,6 +60,9 @@ public class ColorChannel extends JPanel {
 	private Timer timer;
 	
 	public ColorChannel(int leftEnd, int rightEnd, int yPosition, int height) {
+		this.keepColor = true;
+		this.keptColors = new Ellipse2DwithColor[3][3];
+		this.numOfKeptColors = 0;
 		this.yPosition = yPosition;
 		this.height = height;
 		this.leftEnd = leftEnd;
@@ -78,22 +85,33 @@ public class ColorChannel extends JPanel {
 		// TODO remove hardcoded colors and do it dynamically
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2.setPaint(color);
+		g2.setPaint(channelColor);
 		
 		//450, 800, 180, 60
 		drawChannel(g2, this.leftEnd, this.rightEnd, this.yPosition, this.height);
+		for(int i=0; i < 3; i++) {
+			for(int j=0; j < 3; j++) {
+				if(keptColors[i][j] == null) {
+					break;
+				}
+				g2.setPaint(keptColors[i][j].getColor());
+				g2.fill(keptColors[i][j]);
+			}
+		}
 		if (sendAlice) {
-			Ellipse2D.Double ellip = new Ellipse2D.Double(x1, y1, diameter, diameter);
+			Ellipse2DwithColor ellip = new Ellipse2DwithColor(x1, y1, diameter, diameter, color);
+			g2.setPaint(ellip.getColor());
 			g2.fill(ellip);
 			if(x1 < this.middleCircle) {
-				Ellipse2D.Double ellip2 = new Ellipse2D.Double(x2, y2, diameter, diameter);
+				Ellipse2DwithColor ellip2 = new Ellipse2DwithColor(x2, y2, diameter, diameter, color);
 				g2.fill(ellip2);
 			}
 		} else if (sendBob) {
-			Ellipse2D.Double ellip = new Ellipse2D.Double(x1, y1, diameter, diameter);
+			Ellipse2DwithColor ellip = new Ellipse2DwithColor(x1, y1, diameter, diameter, color);
 			g2.fill(ellip);
+			g2.setPaint(ellip.getColor());
 			if(x1 > this.middleCircle) {
-				Ellipse2D.Double ellip2 = new Ellipse2D.Double(x2, y2, diameter, diameter);
+				Ellipse2DwithColor ellip2 = new Ellipse2DwithColor(x2, y2, diameter, diameter, color);
 				g2.fill(ellip2);
 			}
 			
@@ -138,7 +156,10 @@ public class ColorChannel extends JPanel {
 							cb.callback();
 						}
 						if(keepColor) {
-							
+							numOfKeptColors++;
+							for(int i=0; i < 3; i++) {
+								keptColors[numOfKeptColors][i] = new Ellipse2DwithColor(computeXCoordinate(numOfKeptColors, i), computeYCoordinate(numOfKeptColors, i), diameter, diameter, color);
+							}
 						}
 					}
 				}
@@ -175,7 +196,10 @@ public class ColorChannel extends JPanel {
 							cb.callback();
 						}
 						if(keepColor) {
-							
+							numOfKeptColors++;
+							for(int i=0; i < 3; i++) {
+								keptColors[numOfKeptColors][i] = new Ellipse2DwithColor(computeXCoordinate(numOfKeptColors, i), computeYCoordinate(numOfKeptColors, i), diameter, diameter, color);
+							}
 						}
 					}
 				}
@@ -183,6 +207,41 @@ public class ColorChannel extends JPanel {
 			}
 		});
 		timer.start();
+	}
+	
+	private int computeXCoordinate(int numOfKeptColors, int i) {
+		switch(i) {
+		case 0:
+			//alice
+			return leftEnd-numOfKeptColors*diameter;
+		case 1:
+			//bob
+			return rightCircle+numOfKeptColors*diameter;
+		case 2:
+			//eve
+			return middleCircle+numOfKeptColors*diameter;
+		}
+		//error
+		return -1;
+	}
+	
+	private int computeYCoordinate(int numOfKeptColors, int i) {
+		switch(i) {
+		case 0:
+		case 1:
+			//alice
+			//bob
+			return yPosition+diameter/2;
+		case 2:
+			//eve
+			return height-diameter/2;
+		}
+		//error
+		return -1;
+	}
+	
+	public void choosePrivateColor() {
+		
 	}
 
 }

@@ -1,5 +1,6 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -32,10 +33,12 @@ public class ExplainAimView extends VisualizationView {
 		this.cc.setPreferredSize(new Dimension(900, 700));
 		this.add(this.cc);
 		//TODO try not to do work in constructor
+		this.cc.setColor(Color.BLUE);
 		this.cc.sendToAlice(new NextStepCallback() {
 
 			@Override
 			public void callback() {
+				cc.setColor(Color.RED);
 				cc.sendToBob(null);
 			}			
 			
