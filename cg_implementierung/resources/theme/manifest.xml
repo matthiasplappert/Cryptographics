@@ -32,7 +32,7 @@
     <insets top="10" left="10" right="10" bottom="10" />
     <font name="Verdana" size="16" style="BOLD" />
     <state>
-      <imagePainter method="buttonBackground" path="button.png" sourceInsets="8 8 8 8" />
+      <imagePainter method="buttonBackground" path="/theme/button.png" sourceInsets="8 8 8 8" />
       <color value="WHITE" type="TEXT_FOREGROUND" />
     </state>
   </style>
