@@ -80,7 +80,6 @@ public class CipherDemoView extends VisualizationView {
 		GridBagLayout introLayout = new GridBagLayout();
 		this.setLayout(introLayout);
 
-		createKeyboard();
 		// setup the back and next Buttons.
 		setupNavigation();
 
@@ -132,8 +131,8 @@ public class CipherDemoView extends VisualizationView {
 	/**
 	 * Creates the keyboard and shows it in the main container.
 	 */
-	public void createKeyboard() {
-		this.keyboard = new KeyboardView();
+	public void createKeyboard(JTextField input) {
+		this.keyboard = new KeyboardView(input);
 		GridBagConstraints kbConst = new GridBagConstraints();
 		kbConst.anchor = GridBagConstraints.PAGE_END;
 		kbConst.weightx = 1.0;
@@ -143,7 +142,7 @@ public class CipherDemoView extends VisualizationView {
 		kbConst.gridwidth = 11;
 		kbConst.gridheight = 3;
 		this.add(this.keyboard, kbConst);
-		this.keyboard.setVisible(false);
+		this.keyboard.setVisible(true);
 		this.validate();
 	}
 
