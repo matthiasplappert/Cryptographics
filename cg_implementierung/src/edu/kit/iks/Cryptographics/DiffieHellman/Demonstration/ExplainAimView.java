@@ -28,7 +28,7 @@ public class ExplainAimView extends VisualizationView {
 				"in the figure above as Eve would get the secret too. Thus we need" +
 				"to exchange the secret in a different way</div></html>");
 		this.add(aimExplain);
-		this.cc = new ColorChannel(460, 155, 600, 155);
+		this.cc = new ColorChannel(460, 800, 150, 60);
 		this.cc.setPreferredSize(new Dimension(900, 700));
 		this.add(this.cc);
 		this.cc.sendToAlice(new NextStepCallback() {

@@ -18,8 +18,13 @@ public class ColorChannel extends JPanel {
 	 */
 	private static final long serialVersionUID = 4073013433018353584L;
 	
-	/* the coordinates of the circles */
+	/* the coordinates of the circles
+	 * 460, 155, 600, 155
+	 */
 	private int x1, y1, x2, y2;
+	private int leftEnd, rightEnd, middle;
+	private int yPosition, height;
+	private final int originalx1, originaly1, originalx2, originaly2;
 	
 	/* the color to send */
 	private Color color = Color.BLUE;
@@ -28,6 +33,9 @@ public class ColorChannel extends JPanel {
 		return color;
 	}
 
+	/* let the user of this class
+	 * choose the color to send
+	 */
 	public void setColor(Color color) {
 		this.color = color;
 	}
@@ -38,7 +46,9 @@ public class ColorChannel extends JPanel {
 	/* while sending these values will be true */
 	private boolean sendAlice, sendBob;
 	
-	/* who has which color will be painted, if true */
+	/* when true, all received colors will still
+	 * be drawn next to the receivers, so that we
+	 * know which person  got which color */
 	private boolean keepColor;
 	
 	/* use timer for firing events so that values will be
@@ -46,11 +56,20 @@ public class ColorChannel extends JPanel {
 	 */
 	private Timer timer;
 	
-	public ColorChannel(int a1, int b1, int a2, int b2) {
-		this.x1 = a1;
-		this.y1 = b1;
-		this.x2 = a2;
-		this.y2 = b2;
+	public ColorChannel(int leftEnd, int rightEnd, int yPosition, int height) {
+		this.yPosition = yPosition;
+		this.height = height;
+		this.leftEnd = leftEnd;
+		this.rightEnd = rightEnd;
+		this.originalx1 = leftEnd;
+		this.originaly1 = yPosition;
+		this.middle = (leftEnd+rightEnd)/2;
+		this.originalx2 = this.middle;
+		this.originaly2 = yPosition;
+		this.x1 = originalx1;
+		this.y1 = originaly1;
+		this.x2 = originalx2;
+		this.y2 = originaly2;
 	}
 	
 	@Override
@@ -60,18 +79,19 @@ public class ColorChannel extends JPanel {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.setPaint(color);
 		
-		drawChannel(g2, 450, 800, 180, 60);
+		//450, 800, 180, 60
+		drawChannel(g2, this.leftEnd, this.rightEnd, this.yPosition, this.height);
 		if (sendAlice) {
 			Ellipse2D.Double ellip = new Ellipse2D.Double(x1, y1, diameter, diameter);
 			g2.fill(ellip);
-			if(x1 < 600) {
+			if(x1 < this.middle) {
 				Ellipse2D.Double ellip2 = new Ellipse2D.Double(x2, y2, diameter, diameter);
 				g2.fill(ellip2);
 			}
 		} else if (sendBob) {
 			Ellipse2D.Double ellip = new Ellipse2D.Double(x1, y1, diameter, diameter);
 			g2.fill(ellip);
-			if(x1 > 600) {
+			if(x1 > this.middle) {
 				Ellipse2D.Double ellip2 = new Ellipse2D.Double(x2, y2, diameter, diameter);
 				g2.fill(ellip2);
 			}
@@ -97,22 +117,27 @@ public class ColorChannel extends JPanel {
 			return;
 		}
 		this.sendBob = true;
-		this.x1 = 460;
-		this.x2 = 600;
-		this.y2 = 155;
+		//TODO remove hardcoded values
+		this.x1 = this.originalx1;
+		this.x2 = this.originalx2;
+		this.y2 = this.originaly2;
 		timer = new Timer(50, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(x1 < 750) {
+				//TODO remove hardcoded values
+				if(x1 < rightEnd) {
 					x1 += 3;
-					if (x1 > 600 && y2 > 63) {
+					if (x1 > middle && y2 > height) {
 						y2 -= 3;
-					} else if (y2 < 63 && x1 > 750) {
+					} else if (y2 < height && x1 > rightEnd) {
 						sendBob = false;
 						timer.stop();
 						if(cb != null) {
 							cb.callback();
+						}
+						if(keepColor) {
+							
 						}
 					}
 				}
@@ -130,22 +155,25 @@ public class ColorChannel extends JPanel {
 			return;
 		}
 		this.sendAlice = true;
-		this.x1 = 750;
-		this.x2 = 600;
-		this.y2 = 155;
+		this.x1 = this.rightEnd;
+		this.x2 = this.middle;
+		this.y2 = this.yPosition;
 		timer = new Timer(50, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(x1 > 460) {
+				if(x1 > leftEnd) {
 					x1 -= 3;
-					if (x1 < 600 && y2 > 63) {
+					if (x1 < middle && y2 > height) {
 						y2 -= 3;
-					} else if (y2 < 63 && x1 < 460) {
+					} else if (y2 < height && x1 < leftEnd) {
 						sendAlice = false;
 						timer.stop();
 						if(cb != null) {
 							cb.callback();
+						}
+						if(keepColor) {
+							
 						}
 					}
 				}
