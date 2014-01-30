@@ -31,6 +31,7 @@ public class ExplainAimView extends VisualizationView {
 		this.cc = new ColorChannel(460, 800, 150, 60);
 		this.cc.setPreferredSize(new Dimension(900, 700));
 		this.add(this.cc);
+		//TODO try not to do work in constructor
 		this.cc.sendToAlice(new NextStepCallback() {
 
 			@Override

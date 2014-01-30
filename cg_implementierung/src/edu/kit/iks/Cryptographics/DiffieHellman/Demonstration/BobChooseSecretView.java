@@ -1,6 +1,5 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
-import java.awt.Color;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
