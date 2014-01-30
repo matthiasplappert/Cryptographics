@@ -34,15 +34,9 @@ public class ExplainAimView extends VisualizationView {
 		this.add(this.cc);
 		//TODO try not to do work in constructor
 		this.cc.setColor(Color.BLUE);
-		this.cc.sendToAlice(new NextStepCallback() {
-
-			@Override
-			public void callback() {
-				cc.setColor(Color.RED);
-				cc.sendToBob(null);
-			}			
-			
-		});
+		this.cc.setKeepColor(false);
+		this.cc.setRepeat(true);
+		this.cc.sendToBob(null);
 	}
 	
 

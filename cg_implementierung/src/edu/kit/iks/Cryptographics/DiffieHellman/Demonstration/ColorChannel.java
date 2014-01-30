@@ -30,7 +30,20 @@ public class ColorChannel extends JPanel {
 	/* the color to send */
 	private Color color = Color.BLACK;
 	private Color channelColor = Color.BLACK;
+
+	/* repeat the sending of the color
+	 * if true
+	 */
+	private boolean repeat;
 	
+	public boolean isRepeat() {
+		return repeat;
+	}
+
+	public void setRepeat(boolean repeat) {
+		this.repeat = repeat;
+	}
+
 	public Color getColor() {
 		return color;
 	}
@@ -53,13 +66,20 @@ public class ColorChannel extends JPanel {
 	 * know which person  got which color */
 	private boolean keepColor;
 	
+	public boolean isKeepColor() {
+		return keepColor;
+	}
+
+	public void setKeepColor(boolean keepColor) {
+		this.keepColor = keepColor;
+	}
+
 	/* use timer for firing events so that values will be
 	 * changed when sending colors
 	 */
 	private Timer timer;
 	
 	public ColorChannel(int leftEnd, int rightEnd, int yPosition, int height) {
-		this.keepColor = true;
 		this.keptColors = new Ellipse2DwithColor[3][3];
 		this.numOfKeptColors = 0;
 		this.yPosition = yPosition;
@@ -158,7 +178,7 @@ public class ColorChannel extends JPanel {
 					} else if (y2 < height && x1 > rightCircle) {
 						sendBob = false;
 						timer.stop();
-						if(keepColor) {
+						if(keepColor && !repeat) {
 							numOfKeptColors++;
 							for(int i=0; i < 3; i++) {
 								keptColors[numOfKeptColors][i] = new Ellipse2DwithColor(computeXCoordinate(numOfKeptColors, i), computeYCoordinate(numOfKeptColors, i), diameter, diameter, color);
@@ -166,6 +186,13 @@ public class ColorChannel extends JPanel {
 						}
 						if(cb != null) {
 							cb.callback();
+						} else if (repeat) {
+							// set to orignal values, to start all over
+							sendBob = true;
+							x1 = leftEnd;
+							x2 = middleCircle;
+							y2 = originaly2;
+							timer.start();
 						}
 					}
 				}
@@ -208,6 +235,13 @@ public class ColorChannel extends JPanel {
 						}
 						if(cb != null) {
 							cb.callback();
+						} else if (repeat) {
+							// set to orignal values, to start all over
+							sendAlice = true;
+							x1 = rightCircle;
+							x2 = middleCircle;
+							y2 = originaly2;
+							timer.start();
 						}
 					}
 				}
