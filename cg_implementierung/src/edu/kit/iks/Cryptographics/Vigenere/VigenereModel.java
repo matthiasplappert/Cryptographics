@@ -8,7 +8,7 @@ public class VigenereModel {
 	
 	static public int characterToInt(String character) {
 		if (character.length() == 1) {
-			return (int)character.charAt(0) - 65;
+			return (int)character.charAt(0) - 64;
 		} else {
 			return 0;
 		}
