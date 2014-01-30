@@ -2,6 +2,7 @@ package edu.kit.iks.Cryptographics.Vigenere;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,13 +26,11 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	public VigenereVisualizationInfo() {
 		SAXBuilder saxBuilder = new SAXBuilder();
 
-		// obtain file object
-		File file = new File(
-				"./resources/vigenere/VigenereResources.xml");
+		InputStream is = this.getClass().getResourceAsStream("/vigenere/VigenereResources.xml");
 
 		try {
 			// converted file to document object
-			Document document = saxBuilder.build(file);
+			Document document = saxBuilder.build(is);
 
 			// get root node from xml
 			this.vigenereResources = document.getRootElement().getChild("vigenere");

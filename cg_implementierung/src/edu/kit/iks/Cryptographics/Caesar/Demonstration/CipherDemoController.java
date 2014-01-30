@@ -9,6 +9,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
@@ -47,18 +49,25 @@ public class CipherDemoController extends AbstractVisualizationController {
 		this.view = new CipherDemoView();
 		this.model = new CryptoModel();
 		this.animationStep = 1;
-		getView().createKeyboard();
 
 		for (int i = 1; i < this.getView().getUserOutput().length; i++) {
+			// Needed for delegating to the inner type ActionListener, when the actionEvent from the
+			// Button "ENTER" on the KEayboard is fired.
+			final JTextField userOutput = getView().getUserOutput()[i];
+
 			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
 				@Override
 				public void focusLost(FocusEvent e) {
-					JTextField output = (JTextField) e.getSource();
-					if (output.isEditable()) {
-						output.setBorder(null);
-						getView().getKeyboard().setVisible(false);
-					}
+					if (getView().getKeyboard() != null) {
+						JTextField output = (JTextField) e.getSource();
+						getView().remove(getView().getKeyboard());
+						getView().setKeyboard(null);
+						getView().validate();
 
+						if (output.isEditable()) {
+							output.setBorder(null);
+						}
+					}
 				}
 
 				@Override
@@ -67,17 +76,18 @@ public class CipherDemoController extends AbstractVisualizationController {
 					if (output.isEditable()) {
 						output.setBorder(BorderFactory.createLineBorder(
 								Color.blue, 5));
-						getView().getKeyboard().setVisible(true);
+						getView().createKeyboard(output);
 					}
 				}
 			});
+
 			this.getView().getUserOutput()[i]
 					.addActionListener(new ActionListener() {
 
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							// TODO: let the Model check for validity.
-							JTextField userOutput = (JTextField) e.getSource();
+
 							// standart key for the caesar cipher. +3 when encrypting. -3 when
 							// decrypting.
 							if (getModel().checkValidChar(3,

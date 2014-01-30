@@ -21,9 +21,12 @@ public class Main {
 	 * @param args  Arguments
 	 */
 	public static void main(String[] args) {
+		
 		if (Main.debugMode) {
 			Logger.setDebugMode();
 		}
+		
+		Logger.l("Cryptographics launched");
 		Logger.d("Main", "main", "Debugger running.");
 		
 		MainController mainController = new MainController();

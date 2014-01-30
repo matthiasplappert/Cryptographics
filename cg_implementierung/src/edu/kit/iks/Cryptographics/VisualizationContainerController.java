@@ -15,6 +15,7 @@ import java.util.TimerTask;
 import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Logger;
 
 /**
  * An instance of this class is a wrapper for visualization controller to
@@ -156,6 +157,7 @@ public class VisualizationContainerController extends AbstractController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				MainController mainController = (MainController) getParentController();
+				Logger.l("User went back to start screen");
 				mainController.presentStartAction();
 			}
 		});
@@ -316,6 +318,7 @@ public class VisualizationContainerController extends AbstractController {
 				public void run() {
 					MainController mainController = (MainController) getParentController();
 					mainController.presentStartAction();
+					Logger.l("Reset due to user inactivity");
 				}
 			}, Configuration.getInstance().getResetTimeout());
 		}

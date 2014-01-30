@@ -3,6 +3,7 @@ package edu.kit.iks.Cryptographics;
 import java.awt.BorderLayout;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.text.ParseException;
 
@@ -82,14 +83,10 @@ public class MainController extends AbstractController {
 			SynthLookAndFeel lookAndFeel = new SynthLookAndFeel();
 			
 			try {
-				lookAndFeel.load(new File("resources/theme/manifest.xml").toURI().toURL());
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				InputStream is = this.getClass().getResourceAsStream("/theme/manifest.xml");
+				
+				lookAndFeel.load(is, this.getClass());
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

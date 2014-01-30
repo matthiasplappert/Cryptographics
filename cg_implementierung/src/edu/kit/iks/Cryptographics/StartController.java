@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.VisualizationButton;
 import edu.kit.iks.CryptographicsLib.VisualizationInfoLoader;
 
@@ -230,12 +231,10 @@ public class StartController extends AbstractController {
 	 *            Object of {VisualizationInfo} containing the data to
 	 *            instantiate related controllers from
 	 */
-	public void startVisualizationAction(
-			AbstractVisualizationInfo visualizationInfo) {
+	public void startVisualizationAction(AbstractVisualizationInfo visualizationInfo) {
 		this.dismissPopoverAction();
-		
-		MainController mainController = (MainController) this
-				.getParentController();
+		MainController mainController = (MainController) this.getParentController();
+		Logger.l("User chose " + visualizationInfo.getId());
 		mainController.presentVisualizationAction(visualizationInfo);
 	}
 
