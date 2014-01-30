@@ -21,10 +21,13 @@ public class Main {
 	 * @param args  Arguments
 	 */
 	public static void main(String[] args) {
+		
 		if (Main.debugMode) {
 			Logger.setDebugMode();
 		}
+		
 		Logger.d("Main", "main", "Debugger running.");
+		Logger.l("Cryptographics launched");
 		
 		MainController mainController = new MainController();
 		mainController.loadView();
