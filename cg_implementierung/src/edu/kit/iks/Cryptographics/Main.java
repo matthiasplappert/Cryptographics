@@ -26,8 +26,8 @@ public class Main {
 			Logger.setDebugMode();
 		}
 		
-		Logger.d("Main", "main", "Debugger running.");
 		Logger.l("Cryptographics launched");
+		Logger.d("Main", "main", "Debugger running.");
 		
 		MainController mainController = new MainController();
 		mainController.loadView();
