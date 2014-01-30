@@ -55,7 +55,11 @@ public class SecondDemonstrationView extends VisualizationView {
 
 	public void setTextField(int i, String character) {
 		this.textCharEncrypted[i].setText(character);
-		this.indexCharEncrypted[i].setText("" + VigenereModel.characterToInt(character));
+		if (character.isEmpty()) {
+			this.indexCharEncrypted[i].setText("");
+		} else { 
+			this.indexCharEncrypted[i].setText("" + VigenereModel.characterToInt(character));
+		}
 		Dimension size = this.indexCharEncrypted[i].getPreferredSize();
 		this.indexCharEncrypted[i].setSize(size);
 		this.validate();
