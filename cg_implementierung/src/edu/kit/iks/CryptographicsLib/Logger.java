@@ -45,6 +45,10 @@ public class Logger {
 		long unixTimestamp = date.getTime();
 		String unixTimeString = String.valueOf(unixTimestamp);
 		
+		if (Logger.debugModeActive()) {
+			Logger.d("Logger", "l", "Log occured: " + logEntry);
+		}
+		
     	Logger.writeLogFileLine(logEntry, unixTimeString);
 	}
 	
