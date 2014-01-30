@@ -79,10 +79,20 @@ public class ColorMix extends JPanel {
 					
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
-						// TODO Auto-generated method stub
-						
+						if(x1 < middle) {
+							x1 += 3;
+						} else {
+							timer.stop();
+						}
+						if(x2 > middle) {
+							x2 -= 3;
+						} else {
+							timer.stop();
+						}
+						repaint();
 					}
 				});
+				timer.start();
 			}
 		} else {
 			timer.stop();
