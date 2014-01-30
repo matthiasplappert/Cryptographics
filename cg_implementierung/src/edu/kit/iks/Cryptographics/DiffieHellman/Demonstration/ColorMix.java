@@ -112,7 +112,13 @@ public class ColorMix extends JPanel {
 	}
 
 	private void mixColors(Color color, Color color2) {
-		this.mixedColor= new Color(color.getRGB() | color2.getRGB());
+		int r1 = color.getRed();
+		int r2 = color2.getRed();
+		int g1 = color.getGreen();
+		int g2 = color2.getGreen();
+		int b1 = color.getBlue();
+		int b2 = color2.getBlue();
+		this.mixedColor= new Color((r1+r2)/2, (g1+g2)/2, (b1+b2)/2);
 	}
 
 }
