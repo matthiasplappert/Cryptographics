@@ -80,7 +80,7 @@ public class ColorChannel extends JPanel {
 	private Timer timer;
 	
 	public ColorChannel(int leftEnd, int rightEnd, int yPosition, int height) {
-		this.keptColors = new Ellipse2DwithColor[3][3];
+		this.keptColors = new Ellipse2DwithColor[7][3];
 		this.numOfKeptColors = 0;
 		this.yPosition = yPosition;
 		this.height = height;
@@ -179,10 +179,10 @@ public class ColorChannel extends JPanel {
 						sendBob = false;
 						timer.stop();
 						if(keepColor && !repeat) {
-							numOfKeptColors++;
 							for(int i=0; i < 3; i++) {
 								keptColors[numOfKeptColors][i] = new Ellipse2DwithColor(computeXCoordinate(numOfKeptColors, i), computeYCoordinate(numOfKeptColors, i), diameter, diameter, color);
 							}
+							numOfKeptColors++;
 						}
 						if(cb != null) {
 							cb.callback();
@@ -228,13 +228,15 @@ public class ColorChannel extends JPanel {
 						sendAlice = false;
 						timer.stop();
 						if(keepColor) {
-							numOfKeptColors++;
 							for(int i=0; i < 3; i++) {
 								keptColors[numOfKeptColors][i] = new Ellipse2DwithColor(computeXCoordinate(numOfKeptColors, i), computeYCoordinate(numOfKeptColors, i), diameter, diameter, color);
 							}
+							numOfKeptColors++;
 						}
 						if(cb != null) {
+							timer.stop();
 							cb.callback();
+							timer.stop();
 						} else if (repeat) {
 							// set to orignal values, to start all over
 							sendAlice = true;

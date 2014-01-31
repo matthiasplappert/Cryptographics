@@ -22,9 +22,21 @@ public class ColorMix extends JPanel {
 	/* our two circles */
 	private Ellipse2DwithColor ellip1, ellip2;
 	
+	public void setEllipColor(int which, Color color) {
+		if(which == 1) {
+			ellip1.setColor(color);
+		} else if (which == 2) {
+			ellip2.setColor(color);
+		}
+	}
+	
 	/* the mix of colors of ellip1 and ellip2 */
 	private Color mixedColor;
 	
+	public Color getMixedColor() {
+		return mixedColor;
+	}
+
 	/* coordinates of the circles */
 	private int x1, y1, x2, y2;
 	
@@ -51,9 +63,13 @@ public class ColorMix extends JPanel {
 		this.ellip2 = new Ellipse2DwithColor(x2, y2, diameter, diameter, color2);
 	}
 	
-	public void mixColors(boolean mix, boolean repeat) {
+	public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb) {
 		this.mixcolors = mix;
 		this.repeat = repeat;
+		this.x1 = 50;
+		this.y1 = 50;
+		this.x2 = 300;
+		this.y2 = 50;
 		if(mixcolors) {
 			if(repeat) {
 				this.timer = new Timer(50, new ActionListener() {
@@ -83,11 +99,17 @@ public class ColorMix extends JPanel {
 							x1 += 3;
 						} else {
 							timer.stop();
+							if (cb != null) {
+								cb.callback();
+							}
 						}
 						if(x2 > middle) {
 							x2 -= 3;
 						} else {
 							timer.stop();
+							if (cb != null) {
+								cb.callback();	
+							}
 						}
 						repaint();
 					}
@@ -105,23 +127,25 @@ public class ColorMix extends JPanel {
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
-		ellip1.setFrame(x1, y1, diameter, diameter);
-		g2.setPaint(ellip1.getColor());
-		g2.fill(ellip1);
-		
-		ellip2.setFrame(x2, y2, diameter, diameter);
-		g2.setPaint(ellip2.getColor());
-		g2.fill(ellip2);
-		
-		Area area1 = new Area(ellip1);
-		Area area2 = new Area(ellip2);
-		area1.intersect(area2);
-		mixColors(ellip1.getColor(), ellip2.getColor());
-		g2.setPaint(mixedColor);
-		g2.fill(area1);
+		if(mixcolors) {
+			ellip1.setFrame(x1, y1, diameter, diameter);
+			g2.setPaint(ellip1.getColor());
+			g2.fill(ellip1);
+			
+			ellip2.setFrame(x2, y2, diameter, diameter);
+			g2.setPaint(ellip2.getColor());
+			g2.fill(ellip2);
+			
+			Area area1 = new Area(ellip1);
+			Area area2 = new Area(ellip2);
+			area1.intersect(area2);
+			computeMixedColor(ellip1.getColor(), ellip2.getColor());
+			g2.setPaint(mixedColor);
+			g2.fill(area1);
+		}
 	}
 
-	private void mixColors(Color color, Color color2) {
+	private void computeMixedColor(Color color, Color color2) {
 		int r1 = color.getRed();
 		int r2 = color2.getRed();
 		int g1 = color.getGreen();
