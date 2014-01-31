@@ -288,19 +288,24 @@ public class HistogramController extends AbstractVisualizationController {
 						getView().getPlainText().setText(decryptedCipher);
 
 						if (key == getView().getSecretKey()) {
+							getView().getKeyInput().setEditable(false);
 							getView()
 									.getKeyInput()
 									.setBorder(
 											BorderFactory
 													.createLineBorder(Color.green));
+							getView()
+									.getExplanations()
+									.setText(
+											"<html><body>"
+													+ "Congratulations you found the right key!!! See how easy it is with histograms?<br>"
+													+ "If you want to try one more click proceed. Else you can to next to further information<br>"
+													+ "There you can learn more about caesar's cipher.");
 						} else {
 							getView().getKeyInput().setBorder(
 									BorderFactory.createLineBorder(Color.red));
 						}
 
-						getView().validate();
-						getView().repaint();
-						getView().requestFocus();
 					} else {
 						getView().getKeyInput().setBorder(
 								BorderFactory.createLineBorder(Color.red));
