@@ -141,9 +141,12 @@ public class HistogramView extends VisualizationView {
 		this.proceed.setPreferredSize(new Dimension(250, 50));
 		// this.proceed.setFont(new Font("Arial", 2, 25));
 		proceedConst.anchor = GridBagConstraints.PAGE_END;
-		proceedConst.gridx = 2;
-		proceedConst.gridy = 3;
+		proceedConst.weightx = 0.1;
+		proceedConst.weighty = 0.5;
+		proceedConst.gridx = 0;
+		proceedConst.gridy = 0;
 		proceedConst.gridwidth = 3;
+		proceedConst.insets = new Insets(10, 10, 10, 10);
 		this.add(this.proceed, proceedConst);
 		this.validate();
 	}
@@ -165,13 +168,20 @@ public class HistogramView extends VisualizationView {
 		this.validate();
 	}
 
+	public void unloadHistogram() {
+		this.remove(this.histogramContainer);
+		this.histogramContainer.remove(this.cipherText);
+		this.histogramContainer.remove(this.keyInput);
+		this.histogramContainer.remove(this.plainText);
+		this.histogramContainer = null;
+		this.cipherText = null;
+		this.plainText = null;
+		this.keyInput = null;
+		this.revalidate();
+	}
+	
 	public void setupHistogram(String text, String cipher) {
-		this.remove(this.keyControl);
-		this.keyControl = null;
-		this.remove(this.proceed);
-		this.remove(this.explanations);
-        
-		this.histogramCipher = cipher;
+		this.remove(proceed);
 		
 		this.histogramContainer = new JPanel(new GridBagLayout());
 		// this.histogramContainer.setPreferredSize(new Dimension(600, 300));
@@ -192,7 +202,7 @@ public class HistogramView extends VisualizationView {
 		textConst.insets = new Insets(0, 5, 0, 5);
 		this.histogramContainer.add(cipherText, textConst);
 		
-		this.plainText = new JLabel(cipher);
+		this.plainText = new JLabel();
 		GridBagConstraints plainConst = new GridBagConstraints();
 		plainConst.gridx = 0;
 		plainConst.gridy = 0;
@@ -219,26 +229,36 @@ public class HistogramView extends VisualizationView {
 		// histCipherConst.weightx = 0;
 		// histCipherConst.weighty = 1.0;
 		histCipherConst.gridx = 2;
-		histCipherConst.gridy = 0;
+		histCipherConst.gridy = 1;
 		// histCipherConst.insets = new Insets(50, 0, 50, 0);
 		// histCipherConst.gridheight = 1;
 		// histCipherConst.gridwidth = 4;
 		// histCipherConst.fill = GridBagConstraints.HORIZONTAL;
 		this.histogramContainer.add(histogramCipher, histCipherConst);
-
+        JLabel cipherHistCaption = new JLabel("This is the histogram for the given cipher!");
+        GridBagConstraints cipherHistCaptionConst = new GridBagConstraints();
+        cipherHistCaptionConst.gridx = 2;
+        cipherHistCaptionConst.gridy = 0;
+        this.histogramContainer.add(cipherHistCaption, cipherHistCaptionConst);
+		
 		CharacterFrequencyDiagramView histogramPlain = new CharacterFrequencyDiagramView(
 				text, 600, 100);
 		GridBagConstraints histPlainConst = new GridBagConstraints();
 		// histPlainConst.weightx = 0;
 		// histPlainConst.weighty = 1.0;
 		histPlainConst.gridx = 2;
-		histPlainConst.gridy = 1;
+		histPlainConst.gridy = 3;
 		// histPlainConst.insets = new Insets(50, 0, 50, 0);
 		// histPlainConst.gridheight = 1;
 		// histPlainConst.gridwidth = 4;
 		// histPlainConst.fill = GridBagConstraints.HORIZONTAL;
 		this.histogramContainer.add(histogramPlain, histPlainConst);
-
+        JLabel plainHistCaption  = new JLabel("This is a histogram of a normal english text.");
+        GridBagConstraints plainHistCaptionConst = new GridBagConstraints();
+        plainHistCaptionConst.gridx = 2;
+        plainHistCaptionConst.gridy = 2;
+        this.histogramContainer.add(plainHistCaption, plainHistCaptionConst);
+		
 		this.histogramContainer.validate();
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.LINE_START;
