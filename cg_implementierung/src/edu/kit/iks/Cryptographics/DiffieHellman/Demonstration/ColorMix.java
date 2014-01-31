@@ -48,7 +48,7 @@ public class ColorMix extends JPanel {
 
 	private boolean repeat;
 	
-	private Timer timer;
+	private Timer[] timer = {null, null, null, null, null};
 
 	private int middle;
 	
@@ -63,7 +63,7 @@ public class ColorMix extends JPanel {
 		this.ellip2 = new Ellipse2DwithColor(x2, y2, diameter, diameter, color2);
 	}
 	
-	public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb) {
+	public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb, final int l) {
 		this.mixcolors = mix;
 		this.repeat = repeat;
 		this.x1 = 50;
@@ -72,7 +72,7 @@ public class ColorMix extends JPanel {
 		this.y2 = 50;
 		if(mixcolors) {
 			if(repeat) {
-				this.timer = new Timer(50, new ActionListener() {
+				this.timer[l] = new Timer(50, new ActionListener() {
 				
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
@@ -89,16 +89,16 @@ public class ColorMix extends JPanel {
 						repaint();
 					}
 				});
-				timer.start();
+				timer[l].start();
 			} else {
-				this.timer = new Timer(50, new ActionListener() {
+				this.timer[l] = new Timer(50, new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						if(x1 < middle) {
 							x1 += 3;
 						} else {
-							timer.stop();
+							timer[l].stop();
 							if (cb != null) {
 								cb.callback();
 							}
@@ -106,7 +106,7 @@ public class ColorMix extends JPanel {
 						if(x2 > middle) {
 							x2 -= 3;
 						} else {
-							timer.stop();
+							timer[l].stop();
 							if (cb != null) {
 								cb.callback();	
 							}
@@ -114,10 +114,10 @@ public class ColorMix extends JPanel {
 						repaint();
 					}
 				});
-				timer.start();
+				timer[l].start();
 			}
 		} else {
-			timer.stop();
+			timer[l].stop();
 		}
 	}
 	

@@ -24,7 +24,7 @@ public class MixColorView extends VisualizationView {
 		this.mc = new ColorMix(Color.RED, Color.YELLOW, 50);
 		this.mc.setPreferredSize(new Dimension(900, 700));
 		this.add(this.mc);
-		this.mc.mixColors(true, false, null);
+		this.mc.mixColors(true, false, null, 0);
 	}
 
 }

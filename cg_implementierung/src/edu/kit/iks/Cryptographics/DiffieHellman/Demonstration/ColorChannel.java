@@ -20,7 +20,7 @@ public class ColorChannel extends JPanel {
 	private int x1, y1, x2, y2;
 	/* the x coordinates for the communications lines */
 	private int leftEnd, rightEnd, middle;
-	private int yPosition, height, middleCircle, rightCircle;
+	private int yPosition, myheight, middleCircle, rightCircle;
 	private final int originalx1, originaly1, originalx2, originaly2;
 	/* kept colors */
 	private Ellipse2DwithColor[][] keptColors;
@@ -73,17 +73,15 @@ public class ColorChannel extends JPanel {
 	public void setKeepColor(boolean keepColor) {
 		this.keepColor = keepColor;
 	}
-
-	/* use timer for firing events so that values will be
-	 * changed when sending colors
-	 */
-	private Timer timer;
 	
-	public ColorChannel(int leftEnd, int rightEnd, int yPosition, int height) {
+	private Timer[] timer = {null, null, null, null, null};
+
+	
+	public ColorChannel(int leftEnd, int rightEnd, int yPosition, int myheight) {
 		this.keptColors = new Ellipse2DwithColor[7][3];
 		this.numOfKeptColors = 0;
 		this.yPosition = yPosition;
-		this.height = height;
+		this.myheight = myheight;
 		this.leftEnd = leftEnd;
 		this.rightEnd = rightEnd;
 		this.rightCircle = rightEnd-diameter;
@@ -109,7 +107,7 @@ public class ColorChannel extends JPanel {
 		g2.setPaint(channelColor);
 		
 		//450, 800, 180, 60
-		drawChannel(g2, this.leftEnd, this.rightEnd, this.yPosition, this.height);
+		drawChannel(g2, this.leftEnd, this.rightEnd, this.yPosition, this.myheight);
 		for(int i=0; i < 3; i++) {
 			for(int j=0; j < 3; j++) {
 				if(keptColors[i][j] == null) {
@@ -152,7 +150,7 @@ public class ColorChannel extends JPanel {
 	}
 	
 	// TODO refactor sendToBob and sendToAlice into one method
-	public void sendToBob(final NextStepCallback cb) {
+	public void sendToBob(final NextStepCallback cb, final int l) {
 		if(sendAlice) {
 			/* don't want to send colors
 			 * if others are being send
@@ -166,18 +164,18 @@ public class ColorChannel extends JPanel {
 		this.x1 = this.leftEnd;
 		this.x2 = this.middleCircle;
 		this.y2 = this.originaly2;
-		timer = new Timer(50, new ActionListener() {
+		timer[l] = new Timer(50, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO remove hardcoded values
 				if(x1 < rightCircle) {
 					x1 += 3;
-					if (x1 > middleCircle && y2 > height) {
+					if (x1 > middleCircle && y2 > myheight) {
 						y2 -= 3;
-					} else if (y2 < height && x1 > rightCircle) {
+					} else if (y2 < myheight && x1 > rightCircle) {
 						sendBob = false;
-						timer.stop();
+						timer[l].stop();
 						if(keepColor && !repeat) {
 							for(int i=0; i < 3; i++) {
 								keptColors[numOfKeptColors][i] = new Ellipse2DwithColor(computeXCoordinate(numOfKeptColors, i), computeYCoordinate(numOfKeptColors, i), diameter, diameter, color);
@@ -192,17 +190,17 @@ public class ColorChannel extends JPanel {
 							x1 = leftEnd;
 							x2 = middleCircle;
 							y2 = originaly2;
-							timer.start();
+							timer[l].start();
 						}
 					}
 				}
 				repaint();
 			}
 		});
-		timer.start();
+		timer[l].start();
 	}
 	
-	public void sendToAlice(final NextStepCallback cb) {
+	public void sendToAlice(final NextStepCallback cb, final int l) {
 		if(sendBob) {
 			/* don't want to send if there
 			 * is already colors to be sent
@@ -216,17 +214,17 @@ public class ColorChannel extends JPanel {
 		this.x2 = this.middleCircle;
 		//TODO refactor
 		this.y2 = this.originaly2;
-		timer = new Timer(50, new ActionListener() {
+		timer[l] = new Timer(50, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(x1 > leftEnd) {
 					x1 -= 3;
-					if (x1 < middleCircle && y2 > height) {
+					if (x1 < middleCircle && y2 > myheight) {
 						y2 -= 3;
-					} else if (y2 < height && x1 < leftEnd) {
+					} else if (y2 < myheight && x1 < leftEnd) {
 						sendAlice = false;
-						timer.stop();
+						timer[l].stop();
 						if(keepColor) {
 							for(int i=0; i < 3; i++) {
 								keptColors[numOfKeptColors][i] = new Ellipse2DwithColor(computeXCoordinate(numOfKeptColors, i), computeYCoordinate(numOfKeptColors, i), diameter, diameter, color);
@@ -234,23 +232,21 @@ public class ColorChannel extends JPanel {
 							numOfKeptColors++;
 						}
 						if(cb != null) {
-							timer.stop();
 							cb.callback();
-							timer.stop();
 						} else if (repeat) {
 							// set to orignal values, to start all over
 							sendAlice = true;
 							x1 = rightCircle;
 							x2 = middleCircle;
 							y2 = originaly2;
-							timer.start();
+							timer[l].start();
 						}
 					}
 				}
 				repaint();
 			}
 		});
-		timer.start();
+		timer[l].start();
 	}
 	
 	private int computeXCoordinate(int numOfKeptColors, int i) {
@@ -278,7 +274,7 @@ public class ColorChannel extends JPanel {
 			return yPosition+diameter/2;
 		case 2:
 			//eve
-			return height-diameter/2;
+			return myheight-diameter/2;
 		}
 		//error
 		return -1;
@@ -286,6 +282,10 @@ public class ColorChannel extends JPanel {
 	
 	public void choosePrivateColor() {
 		
+	}
+
+	public Timer[] getTimer() {
+		return this.timer;
 	}
 
 }

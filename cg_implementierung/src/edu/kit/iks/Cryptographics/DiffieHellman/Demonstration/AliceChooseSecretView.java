@@ -57,15 +57,15 @@ public class AliceChooseSecretView extends VisualizationView {
 									@Override
 									public void callback() {
 										cc.setColor(cm.getMixedColor());
-										cc.sendToAlice(null);										
+										cc.sendToAlice(null, 3);										
 									}
-								});
+								}, 1);
 							}
-						});
+						}, 1);
 					}
-				});			
+				}, 0);			
 			}
-		});
+		}, 0);
 	}
 
 }
