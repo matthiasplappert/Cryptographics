@@ -1,6 +1,5 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
-import java.awt.Color;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -17,7 +16,6 @@ public class BobChooseSecretView extends VisualizationView{
 	public BobChooseSecretView() {
 		super();
 		this.setLayout(new GridBagLayout());
-		this.setBackground(Color.WHITE);
 		this.bobExplain = new JLabel();
 		this.bobExplain.setText("Bob chooses a color");
 		this.add(bobExplain);

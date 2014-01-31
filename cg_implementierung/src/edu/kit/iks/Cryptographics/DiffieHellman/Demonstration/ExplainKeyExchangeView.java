@@ -39,7 +39,6 @@ public class ExplainKeyExchangeView extends VisualizationView {
 		this.x4 = 580;
 		this.y4 = 50;
 		this.setLayout(new GridBagLayout());
-		this.setBackground(Color.WHITE);
 		this.keyExchangeExplain = new JLabel();
 		this.keyExchangeExplain.setText("<html><div style=\"width:200px;\">We use a simple analogy as the one-way function." +
 				"Mixing colors is an easy process, determining which colors were" +

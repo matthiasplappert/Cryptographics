@@ -27,7 +27,7 @@ public class ExplainAimController extends AbstractVisualizationController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				getView().stopAllTimer();
 				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
 			}
 		});
