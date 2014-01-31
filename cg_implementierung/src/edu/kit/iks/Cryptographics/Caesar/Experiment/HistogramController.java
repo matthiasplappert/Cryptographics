@@ -135,7 +135,8 @@ public class HistogramController extends AbstractVisualizationController {
 				} else {
 					// Build the new experiment.
 					setStep(getStep() + 1);
-
+                    getView().unloadHistogram();
+                    
 					int key = getModel().generateKey();
 					String plainText = getModel().getRandomText();
 					String cipher = getModel().enc(key, plainText);
