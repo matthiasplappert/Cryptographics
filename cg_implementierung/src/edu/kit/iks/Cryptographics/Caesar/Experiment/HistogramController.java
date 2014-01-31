@@ -301,6 +301,7 @@ public class HistogramController extends AbstractVisualizationController {
 													+ "Congratulations you found the right key!!! See how easy it is with histograms?<br>"
 													+ "If you want to try one more click proceed. Else you can to next to further information<br>"
 													+ "There you can learn more about caesar's cipher.");
+							getView().add(getView().getProceed());
 						} else {
 							getView().getKeyInput().setBorder(
 									BorderFactory.createLineBorder(Color.red));
