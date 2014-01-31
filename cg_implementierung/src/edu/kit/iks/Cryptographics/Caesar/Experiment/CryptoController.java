@@ -107,7 +107,6 @@ public class CryptoController extends AbstractVisualizationController {
 
 					if (getView().getKey().isEditable()) {
 						getView().getKey().setBorder(null);
-						getView().getKey().setText("Key");
 					}
 				}
 
@@ -117,8 +116,8 @@ public class CryptoController extends AbstractVisualizationController {
 			@Override
 			public void focusGained(FocusEvent e) {
 				if (getView().getKey().isEditable()) {
-					getView().getKey().setBorder(BorderFactory.createLineBorder(
-							Color.blue, 5));
+					getView().getKey().setBorder(
+							BorderFactory.createLineBorder(Color.blue, 5));
 					getView().createKeyboard(getView().getKey());
 				}
 			}
@@ -144,6 +143,12 @@ public class CryptoController extends AbstractVisualizationController {
 								BorderFactory.createLineBorder(Color.green));
 						getView().getKey().setEditable(false);
 						setEditableFields((getEditableFields() - 1));
+
+						if (getView().getKeyboard() != null) {
+							getView().remove(getView().getKeyboard());
+							getView().setKeyboard(null);
+							getView().validate();
+						}
 					} else if (getModel().handleKeyInput(key)
 							&& (getEditableFields() - 1) == 0) {
 						try {
@@ -188,8 +193,8 @@ public class CryptoController extends AbstractVisualizationController {
 			@Override
 			public void focusGained(FocusEvent e) {
 				if (getView().getInput().isEditable()) {
-					getView().getInput().setBorder(BorderFactory.createLineBorder(
-							Color.blue, 5));
+					getView().getInput().setBorder(
+							BorderFactory.createLineBorder(Color.blue, 5));
 					getView().createKeyboard(getView().getInput());
 				}
 			}
@@ -233,6 +238,13 @@ public class CryptoController extends AbstractVisualizationController {
 							BorderFactory.createLineBorder(Color.green));
 					getView().getInput().setEditable(false);
 					setEditableFields((getEditableFields() - 1));
+
+					if (getView().getKeyboard() != null) {
+						getView().remove(getView().getKeyboard());
+						getView().setKeyboard(null);
+						getView().validate();
+					}
+
 				} else if (getModel().handleInput(input)
 						&& (getEditableFields() - 1) == 0) {
 
@@ -341,22 +353,24 @@ public class CryptoController extends AbstractVisualizationController {
 	public void generateListener(char[] inputChars) {
 		// Generate Listener for the userOutput JTextfield
 		for (int i = 0; i < inputChars.length; i++) {
-			
+
 			// Needed for delegating to the inner type ActionListener, when the actionEvent from the
 			// Button "ENTER" on the KEayboard is fired.
 			final JTextField userOutput = getView().getUserOutput()[i];
-			
+
 			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
 				@Override
 				public void focusLost(FocusEvent e) {
 					JTextField output = (JTextField) e.getSource();
-					getView().remove(getView().getKeyboard());
-					getView().setKeyboard(null);
-					getView().validate();
-					if (output.isEditable()) {
-						output.setBorder(null);
-					}
+					if (getView().getKeyboard() != null) {
+						getView().remove(getView().getKeyboard());
+						getView().setKeyboard(null);
+						getView().validate();
 
+						if (output.isEditable()) {
+							output.setBorder(null);
+						}
+					}
 				}
 
 				@Override
@@ -365,7 +379,8 @@ public class CryptoController extends AbstractVisualizationController {
 					if (output.isEditable()) {
 						output.setBorder(BorderFactory.createLineBorder(
 								Color.blue, 5));
-						getView().createKeyboard(output);					}
+						getView().createKeyboard(output);
+					}
 				}
 			});
 			getView().getUserOutput()[i]

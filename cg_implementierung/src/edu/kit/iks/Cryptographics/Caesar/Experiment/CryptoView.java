@@ -1,11 +1,13 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -59,9 +61,11 @@ public class CryptoView extends VisualizationView {
 	 * Textfield for user input. Used in experiment.
 	 */
 	private JTextField input;
+	private JLabel inputCaption;
 
 	private JTextField key;
-
+    private JLabel keyCaption;
+    
 	private JButton generator;
 
 	private JButton proceed;
@@ -151,12 +155,12 @@ public class CryptoView extends VisualizationView {
 		inConst.weighty = 1.0;
 		inConst.gridx = 0;
 		inConst.gridy = 2;
-		inConst.gridheight = 5;
+		inConst.gridheight = 6;
 		inConst.gridwidth = 3;
 		this.add(this.inOutPanel, inConst);
 
 		// add the input field.
-		this.input = new JTextField("Put your name here.");
+		this.input = new JTextField();
 		this.input.setPreferredSize(new Dimension(250, 50));
 		//this.input.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints inputConst = new GridBagConstraints();
@@ -164,17 +168,42 @@ public class CryptoView extends VisualizationView {
 		// inputConst.weightx = 1.0;
 		// inputConst.weighty = 0.1;
 		inputConst.gridx = 0;
-		inputConst.gridy = 0;
+		inputConst.gridy = 1;
 		inputConst.insets = new Insets(0, 0, 0, 50);
 		this.inOutPanel.add(this.input, inputConst);
+		this.input.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		//add the caption of the input field.
+		this.inputCaption = new JLabel("Put your name in here!");
+		GridBagConstraints capConst = new GridBagConstraints();
+		// inputConst.anchor = GridBagConstraints.FIRST_LINE_START;
+		// inputConst.weightx = 1.0;
+		// inputConst.weighty = 0.1;
+		capConst.gridx = 0;
+		capConst.gridy = 0;
+		capConst.insets = new Insets(0, 0, 0, 50);
+		this.inOutPanel.add(this.inputCaption, capConst);
+		
 		// add the key-input field.
-		this.key = new JTextField("Key");
+		this.key = new JTextField();
 		this.key.setPreferredSize(new Dimension(50, 50));
 		//this.key.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints keyConst = new GridBagConstraints();
 		keyConst.gridx = 2;
-		keyConst.gridy = 0;
+		keyConst.gridy = 1;
 		this.inOutPanel.add(this.key, keyConst);
+		this.key.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		//add the caption for the input field.
+		this.keyCaption = new JLabel("Key");
+		GridBagConstraints keyCapConst = new GridBagConstraints();
+		// inputConst.anchor = GridBagConstraints.FIRST_LINE_START;
+		// inputConst.weightx = 1.0;
+		// inputConst.weighty = 0.1;
+		keyCapConst.gridx = 2;
+		keyCapConst.gridy = 0;
+		//keyCapConst.fill = GridBagConstraints.HORIZONTAL;
+		this.inOutPanel.add(this.keyCaption, keyCapConst);
 
 		// add the button for generating input if the user is too lazy.
 		this.generator = new JButton("Generate letters!");
@@ -183,7 +212,7 @@ public class CryptoView extends VisualizationView {
 		GridBagConstraints genConst = new GridBagConstraints();
 		genConst.weightx = 1.0;
 		genConst.gridx = 0;
-		genConst.gridy = 1;
+		genConst.gridy = 2;
 		genConst.gridwidth = 3;
 		// genConst.fill = GridBagConstraints.BOTH;
 		// this.generator.setVerticalAlignment(JButton.BOTTOM);

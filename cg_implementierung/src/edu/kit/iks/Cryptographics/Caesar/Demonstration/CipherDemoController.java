@@ -52,7 +52,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 		for (int i = 1; i < this.getView().getUserOutput().length; i++) {
 			// Needed for delegating to the inner type ActionListener, when the actionEvent from the
-			// Button "ENTER" on the KEayboard is fired.
+			// Button "ENTER" on the Keyboard is fired.
 			final JTextField userOutput = getView().getUserOutput()[i];
 
 			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
