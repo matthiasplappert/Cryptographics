@@ -141,9 +141,12 @@ public class HistogramView extends VisualizationView {
 		this.proceed.setPreferredSize(new Dimension(250, 50));
 		// this.proceed.setFont(new Font("Arial", 2, 25));
 		proceedConst.anchor = GridBagConstraints.PAGE_END;
-		proceedConst.gridx = 2;
-		proceedConst.gridy = 3;
+		proceedConst.weightx = 0.1;
+		proceedConst.weighty = 0.5;
+		proceedConst.gridx = 0;
+		proceedConst.gridy = 0;
 		proceedConst.gridwidth = 3;
+		proceedConst.insets = new Insets(10, 10, 10, 10);
 		this.add(this.proceed, proceedConst);
 		this.validate();
 	}
@@ -165,12 +168,20 @@ public class HistogramView extends VisualizationView {
 		this.validate();
 	}
 
+	public void unloadHistogram() {
+		this.remove(this.histogramContainer);
+		this.histogramContainer.remove(this.cipherText);
+		this.histogramContainer.remove(this.keyInput);
+		this.histogramContainer.remove(this.plainText);
+		this.histogramContainer = null;
+		this.cipherText = null;
+		this.plainText = null;
+		this.keyInput = null;
+		this.revalidate();
+	}
+	
 	public void setupHistogram(String text, String cipher) {
-		this.remove(this.keyControl);
-		this.keyControl = null;
-		this.remove(this.proceed);
-		this.remove(this.explanations);
-        
+		this.remove(proceed);
 		this.histogramCipher = cipher;
 		
 		this.histogramContainer = new JPanel(new GridBagLayout());

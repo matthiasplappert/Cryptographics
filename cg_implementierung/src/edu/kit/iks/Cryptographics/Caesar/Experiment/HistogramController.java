@@ -110,9 +110,15 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().setSecretKey(secret);
 					getView().setupBruteForce(
 							getModel().getRandomCipher(secret));
-					genListenerBF();
+					genListenerBruteForce();
 
-				} else {
+				} else if (getStep() == 1) {
+					// Build the new experiment.
+					setStep(2);
+					getView().remove(getView().getKeyControl());
+					getView().setKeyControl(null);
+					getView().remove(getView().getExplanations());
+
 					String plainText = getModel().getRandomText();
 					String cipher = getModel().enc(3, plainText);
 					getView().setSecretKey(3);
@@ -120,6 +126,30 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().setupHistogram(plainText,
 							getModel().formatString(cipher));
 					generateHistogramInputListener();
+
+//					// destroy yourself. Not needed anymore.
+//					getView().remove(getView().getProceed());
+//					getView().setProceed(null);
+//					getView().validate();
+
+				} else {
+					// Build the new experiment.
+					setStep(getStep() + 1);
+
+					int key = getModel().generateKey();
+					String plainText = getModel().getRandomText();
+					String cipher = getModel().enc(key, plainText);
+					getView().setSecretKey(key);
+					getView().setHistogramCipher(cipher);
+					getView().setupHistogram(plainText,
+							getModel().formatString(cipher));
+					generateHistogramInputListener();
+
+					getView().revalidate();
+//					// destroy yourself. Not needed anymore.
+//					getView().remove(getView().getProceed());
+//					getView().setProceed(null);
+//					getView().validate();
 				}
 
 			}
@@ -139,7 +169,7 @@ public class HistogramController extends AbstractVisualizationController {
 	/**
 	 * Generates the action listener for the brute force stage.
 	 */
-	public void genListenerBF() {
+	public void genListenerBruteForce() {
 		this.getView().getIncrement().addMouseListener(new MouseListener() {
 
 			@Override
@@ -163,13 +193,14 @@ public class HistogramController extends AbstractVisualizationController {
 
 						setStep(1);
 						// getView().setupProceed();
-						GridBagConstraints proceedConst = new GridBagConstraints();
+						// GridBagConstraints proceedConst = new GridBagConstraints();
 						// proceedConst.anchor = GridBagConstraints.PAGE_END;
 						// proceedConst.gridx = 2;
 						// proceedConst.gridy = 3;
 						// proceedConst.gridwidth = 3;
-						getView().add(getView().getProceed(), proceedConst);
-						getView().validate();
+						getView().setupProceed();
+						genProceedListener();
+						
 
 					} else {
 						// TODO:
@@ -301,7 +332,10 @@ public class HistogramController extends AbstractVisualizationController {
 													+ "Congratulations you found the right key!!! See how easy it is with histograms?<br>"
 													+ "If you want to try one more click proceed. Else you can to next to further information<br>"
 													+ "There you can learn more about caesar's cipher.");
-							getView().add(getView().getProceed());
+							getView().setupProceed();
+							genProceedListener();
+							getView().remove(getView().getKeyboard());
+							getView().setKeyboard(null);
 						} else {
 							getView().getKeyInput().setBorder(
 									BorderFactory.createLineBorder(Color.red));
