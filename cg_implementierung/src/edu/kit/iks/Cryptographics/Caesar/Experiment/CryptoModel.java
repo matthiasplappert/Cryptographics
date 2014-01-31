@@ -8,14 +8,11 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
  */
 public class CryptoModel {
 
-	/**
-	 * Indicates whether input from the user is needed or not.
-	 */
-	private boolean inputStep = false;
-
 	private final int ASCII_A = 'A';
 
 	private final int MODULO = 26;
+
+	private final int MAX_LINE_LENGTH = 35;
 
 	/**
 	 * Constructor.
@@ -24,9 +21,20 @@ public class CryptoModel {
 
 	}
 
-	public String dec(int key, String cipher) {
-
-		return enc(-key, cipher);
+	/**
+	 * @param stringToFormat
+	 * @return
+	 */
+	public String formatString(String stringToFormat) {
+		String formattedString = "<html><body>";
+		for (int i = 0; i < stringToFormat.length(); i++) {
+			if ((i % MAX_LINE_LENGTH) == 0) {
+                 formattedString += "<br>";
+			} else {
+				formattedString += stringToFormat.charAt(i);
+			}
+		}
+		return formattedString;
 	}
 
 	/**
@@ -42,9 +50,9 @@ public class CryptoModel {
 		for (int i = 0; i < text.length(); i++) {
 			if (text.charAt(i) != ' ') {
 				int offset = ((int) text.charAt(i)) - ASCII_A;
-				int character = ((offset + MODULO) + key) % MODULO;
 
-				cipher += String.valueOf((char) (character + ASCII_A));
+				cipher += String
+						.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_A));
 			} else {
 				cipher += " ";
 			}
@@ -55,34 +63,36 @@ public class CryptoModel {
 
 	/**
 	 * @param key
+	 * @param cipher
+	 * @return
+	 */
+	public String dec(int key, String cipher) {
+		return enc(-key, cipher);
+	}
+
+	/**
+	 * @param key
 	 * @return
 	 */
 	public boolean isKeyValid(int key) {
-		if (key > 0 && key <= 26) {
-			return true;
-		}
-		return false;
+		return (key > 0 && key <= 26);
 	}
 
 	/**
 	 * @param input
 	 */
 	public boolean isInputValid(String input) {
-		// TODO: something intelligent with the input.
-		if (input.length() < 10 && input.length() > 0) {
-			return true;
-		}
-		return false;
+		return (input.length() < 10 && input.length() > 0);
 	}
 
 	/**
 	 * @return
 	 */
 	public String getRandomPlainSequence() {
-		// TODO: Generate a random name!
 		String[] plainTextPool = { "ANNA", "HANNAH", "BANANA", "KOKOS",
 				"KRYPTOCHEF", "HAMSTER", "WASILIJ", "SECRET", "EPSILON" };
-		int index = (int) ((Math.random() * 1000) % plainTextPool.length);
+
+		int index = generateRandomInt(0, plainTextPool.length);
 		return plainTextPool[index];
 	}
 
@@ -109,25 +119,15 @@ public class CryptoModel {
 	}
 
 	/**
-	 * @return the inputStep
+	 * @param a
+	 * @param b
+	 * @return
 	 */
-	public boolean isInputStep() {
-		return inputStep;
-	}
-
-	/**
-	 * @param inputStep
-	 *            the inputStep to set
-	 */
-	public void setInputStep(boolean inputStep) {
-		this.inputStep = inputStep;
+	private int generateRandomInt(int a, int b) {
+		return (int) (a + ((int) (b - a) * Math.random()));
 	}
 
 	public int generateKey() {
-		int key = 0;
-		do {
-			key = (int) (Math.random() * 1000) % 26;
-		} while (key == 0);
-		return key;
+		return generateRandomInt(1, 26);
 	}
 }
