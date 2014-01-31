@@ -136,6 +136,9 @@ public class IntroductionController extends AbstractVisualizationController {
 			break;
 		case 4:
 			step4();
+			break;
+		default:
+        System.out.println("Invalid animation step!!!! Check why!");
 		}
 	}
 
@@ -288,7 +291,7 @@ public class IntroductionController extends AbstractVisualizationController {
 								+ "Zur Beruhigung ließ Caesar erstmal ein paar arme Schweine auspeitschen und anschließend fiel<br>"
 								+ "ihm ein idiotensicherer Plan ein: Bei seinem nächsten Brief wird er seinen Namen verschlüsseln.<br>"
 								+ " Muhahaha! Helfe ihm dabei!!");
-		
+
 		GridBagLayout introLayout = (GridBagLayout) this.getView().getLayout();
 		this.getView().getNextButton().setText("To caesar's idea");
 		GridBagConstraints finishConstraint = new GridBagConstraints();

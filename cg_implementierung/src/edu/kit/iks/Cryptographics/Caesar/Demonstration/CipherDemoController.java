@@ -86,13 +86,11 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							// TODO: let the Model check for validity.
 
 							// standart key for the caesar cipher. +3 when encrypting. -3 when
 							// decrypting.
-							if (getModel().checkValidChar(3,
-									userOutput.getName(), userOutput.getText(),
-									true)) {
+							
+							if (getModel().enc(3, userOutput.getName()).equals(userOutput.getText())) {
 								// user encrypted the given char successful.
 								userOutput.setBorder(BorderFactory
 										.createLineBorder(Color.green));

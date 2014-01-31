@@ -110,7 +110,7 @@ public class HistogramController extends AbstractVisualizationController {
 
 				} else {
 					String plainText = getModel().getRandomText();
-					getView().setupHistogram(plainText, getModel().enc(3, plainText, true));
+					getView().setupHistogram(plainText, getModel().enc(3, plainText));
 					generateHistogramInputListener();
 				}
 
@@ -140,8 +140,8 @@ public class HistogramController extends AbstractVisualizationController {
 				getView().setKeyValue(key);
 				getView().getKey().setText("" + key);
 				getView().getPlain().setText(
-						(getModel().enc(key, getView().getCipher().getText(),
-								false)));
+						(getModel().dec(key, getView().getCipher().getText()
+								)));
 				if (key == getView().getSecretKey() && key < 27) {
 					getView()
 							.getExplanations()
@@ -197,8 +197,8 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().setKeyValue(key);
 					getView().getKey().setText("" + key);
 					getView().getPlain().setText(
-							(getModel().enc(key, getView().getCipher()
-									.getText(), false)));
+							(getModel().dec(key, getView().getCipher()
+									.getText())));
 				}
 			}
 

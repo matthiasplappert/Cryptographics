@@ -59,7 +59,8 @@ public class CryptoController extends AbstractVisualizationController {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				char[] string = getModel().getRandomPlainSequence().toCharArray();
+				char[] string = getModel().getRandomPlainSequence()
+						.toCharArray();
 				int key = getModel().generateKey();
 				setEditableFields(string.length);
 
@@ -131,43 +132,46 @@ public class CryptoController extends AbstractVisualizationController {
 					String explanationContent = getView().getExplanations()
 							.getText();
 					int key = Integer.parseInt(getView().getKey().getText());
-					if (getModel().handleKeyInput(key)
-							&& (getEditableFields() - 1) != 0) {
-						getView()
-								.getExplanations()
-								.setText(
-										explanationContent
-												+ "<br>"
-												+ "<br>This key is ok. Now put your name into the bigger box to the left.");
-						getView().getKey().setBorder(
-								BorderFactory.createLineBorder(Color.green));
-						getView().getKey().setEditable(false);
-						setEditableFields((getEditableFields() - 1));
 
-						if (getView().getKeyboard() != null) {
-							getView().remove(getView().getKeyboard());
-							getView().setKeyboard(null);
-							getView().validate();
+					if (getModel().isKeyValid(key)) {
+						if ((getEditableFields() - 1) != 0) {
+							getView()
+									.getExplanations()
+									.setText(
+											explanationContent
+													+ "<br>"
+													+ "<br>This key is ok. Now put your name into the bigger box to the left.");
+							getView()
+									.getKey()
+									.setBorder(
+											BorderFactory
+													.createLineBorder(Color.green));
+							getView().getKey().setEditable(false);
+							setEditableFields((getEditableFields() - 1));
+
+							if (getView().getKeyboard() != null) {
+								getView().remove(getView().getKeyboard());
+								getView().setKeyboard(null);
+								getView().validate();
+							}
+						} else {
+							try {
+								String input = getView().getInput().getText();
+								char[] inputChars = new char[input.length()];
+								input.getChars(0, input.length(), inputChars, 0);
+								setEditableFields(inputChars.length);
+								getView().getKey().setBorder(null);
+
+								// load the view!
+								getView().start(inputChars, key);
+
+								// Generate Listener for the userOutput JTextfield
+								generateListener(inputChars);
+							} catch (NumberFormatException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 						}
-					} else if (getModel().handleKeyInput(key)
-							&& (getEditableFields() - 1) == 0) {
-						try {
-							String input = getView().getInput().getText();
-							char[] inputChars = new char[input.length()];
-							input.getChars(0, input.length(), inputChars, 0);
-							setEditableFields(inputChars.length);
-							getView().getKey().setBorder(null);
-
-							// load the view!
-							getView().start(inputChars, key);
-
-							// Generate Listener for the userOutput JTextfield
-							generateListener(inputChars);
-						} catch (NumberFormatException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-
 					} else {
 						getView()
 								.getExplanations()
@@ -226,45 +230,45 @@ public class CryptoController extends AbstractVisualizationController {
 				String input = getView().getInput().getText();
 
 				// TODO: check input for validity!
-				if (getModel().handleInput(input)
-						&& (getEditableFields() - 1) != 0) {
-					getView()
-							.getExplanations()
-							.setText(
-									explanationContent
-											+ "<br>"
-											+ "<br>This input is ok. Now only the key is left.");
-					getView().getInput().setBorder(
-							BorderFactory.createLineBorder(Color.green));
-					getView().getInput().setEditable(false);
-					setEditableFields((getEditableFields() - 1));
+				if (getModel().isInputValid(input)) {
+					if ((getEditableFields() - 1) != 0) {
+						getView()
+								.getExplanations()
+								.setText(
+										explanationContent
+												+ "<br>"
+												+ "<br>This input is ok. Now only the key is left.");
+						getView().getInput().setBorder(
+								BorderFactory.createLineBorder(Color.green));
+						getView().getInput().setEditable(false);
+						setEditableFields((getEditableFields() - 1));
 
-					if (getView().getKeyboard() != null) {
-						getView().remove(getView().getKeyboard());
-						getView().setKeyboard(null);
-						getView().validate();
-					}
+						if (getView().getKeyboard() != null) {
+							getView().remove(getView().getKeyboard());
+							getView().setKeyboard(null);
+							getView().validate();
+						}
 
-				} else if (getModel().handleInput(input)
-						&& (getEditableFields() - 1) == 0) {
+					} else {
 
-					// refactor the input into an character array.
-					try {
-						int key = Integer
-								.parseInt(getView().getKey().getText());
-						char[] inputChars = new char[input.length()];
-						input = input.toUpperCase();
-						input.getChars(0, input.length(), inputChars, 0);
-						setEditableFields(inputChars.length);
-						getView().getKey().setBorder(null);
+						// refactor the input into an character array.
+						try {
+							int key = Integer.parseInt(getView().getKey()
+									.getText());
+							char[] inputChars = new char[input.length()];
+							input = input.toUpperCase();
+							input.getChars(0, input.length(), inputChars, 0);
+							setEditableFields(inputChars.length);
+							getView().getKey().setBorder(null);
 
-						// load the view!
-						getView().start(inputChars, key);
+							// load the view!
+							getView().start(inputChars, key);
 
-						// Generate Listener for the userOutput JTextfield
-						generateListener(inputChars);
-					} catch (NumberFormatException e1) {
-						e1.printStackTrace();
+							// Generate Listener for the userOutput JTextfield
+							generateListener(inputChars);
+						} catch (NumberFormatException e1) {
+							e1.printStackTrace();
+						}
 					}
 				} else {
 					getView().getExplanations().setText(
@@ -296,14 +300,14 @@ public class CryptoController extends AbstractVisualizationController {
 			public void actionPerformed(ActionEvent event) {
 				if (!decryptionPhase) {
 					int key = getModel().generateKey();
+
 					// TODO: implement unloadView();
 					// unloadInOut();
 					// start Decryption!
 					decryptionPhase = true;
 					// TODO: generate a random cipher.
 					char[] cipher = getModel().enc(key,
-							getModel().getRandomPlainSequence(), true)
-							.toCharArray();
+							getModel().getRandomPlainSequence()).toCharArray();
 
 					setEditableFields(cipher.length);
 					getView().start(cipher, key);
@@ -388,43 +392,40 @@ public class CryptoController extends AbstractVisualizationController {
 
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							// TODO: let the Model check for validity.
-							// standart key for the caesar cipher. +3 when encrypting. -3 when
-							// decrypting.
-							int key = 0;
+
 							try {
-								key = Integer.parseInt(getView().getKey()
+								int key = Integer.parseInt(getView().getKey()
 										.getText());
 
-								if (getModel().checkValidChar(key,
-										userOutput.getName(),
-										userOutput.getText(), !decryptionPhase)
-										&& (getEditableFields() - 1) != 0) {
-									// user encrypted the given char successful.
-									userOutput.setBorder(BorderFactory
-											.createLineBorder(Color.green));
-									userOutput.setEditable(false);
-									setEditableFields(getEditableFields() - 1);
-									getView().getExplanations().setText(
-											"Great. That one was right. You have "
-													+ getEditableFields()
-													+ " left!");
+								if (decryptionPhase)
+									;
+								key = -key;
 
-								} else if (getModel().checkValidChar(key,
-										userOutput.getName(),
-										userOutput.getText(), !decryptionPhase)
-										&& (getEditableFields() - 1) == 0) {
-									// User encrypted all characters valid.
-									userOutput.setBorder(BorderFactory
-											.createLineBorder(Color.green));
-									userOutput.setEditable(false);
-									getView()
-											.getExplanations()
-											.setText(
-													"<html><body>All done right!!! Great job comrade. Now you are one step more to destroying the capitalism!<br>"
-															+ "Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
-															+ "are superior to your power!");
+								if (getModel().enc(key, userOutput.getName())
+										.equals(userOutput.getText())) {
+									if ((getEditableFields() - 1) != 0) {
+										// user encrypted the given char successful.
+										userOutput.setBorder(BorderFactory
+												.createLineBorder(Color.green));
+										userOutput.setEditable(false);
+										setEditableFields(getEditableFields() - 1);
+										getView().getExplanations().setText(
+												"Great. That one was right. You have "
+														+ getEditableFields()
+														+ " left!");
 
+									} else {
+										// User encrypted all characters valid.
+										userOutput.setBorder(BorderFactory
+												.createLineBorder(Color.green));
+										userOutput.setEditable(false);
+										getView()
+												.getExplanations()
+												.setText(
+														"<html><body>All done right!!! Great job comrade. Now you are one step more to destroying the capitalism!<br>"
+																+ "Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
+																+ "are superior to your power!");
+									}
 								} else {
 									// TODO: user encrypted invalid! Need another try.
 									userOutput.setBorder(BorderFactory
@@ -451,7 +452,7 @@ public class CryptoController extends AbstractVisualizationController {
 	 * @param input
 	 */
 	public void delegateAndHandleInput(String input) {
-		if (this.model.handleInput(input))
+		if (this.model.isInputValid(input))
 			proceed();
 	}
 
