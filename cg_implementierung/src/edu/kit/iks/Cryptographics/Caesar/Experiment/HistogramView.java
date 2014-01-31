@@ -164,6 +164,7 @@ public class HistogramView extends VisualizationView {
 		containerConst.gridwidth = 10;
 		this.add(histogramContainer, containerConst);
 
+		// TODO: No idea how to add line breaks dynamically.
 		JLabel cipherText = new JLabel(
 				"<html><body>WKLV EDU GLDJUDP KDV D YHUWLFDO EHDP<br>"
 						+ " IRU HDFK FKDUDFWHU ALWK WKH EHDP IRU WKH PRVW XVHG<br>"
@@ -550,7 +551,8 @@ public class HistogramView extends VisualizationView {
 	}
 
 	/**
-	 * @param keyInput the keyInput to set
+	 * @param keyInput
+	 *            the keyInput to set
 	 */
 	public void setKeyInput(JTextField keyInput) {
 		this.keyInput = keyInput;
