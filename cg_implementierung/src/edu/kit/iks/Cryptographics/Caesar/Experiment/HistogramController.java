@@ -109,6 +109,7 @@ public class HistogramController extends AbstractVisualizationController {
 				} else {
 					String plainText = getModel().getRandomText();
 					getView().setupHistogram(plainText, getModel().enc(3, plainText, true));
+					generateHistogramInputListener();
 				}
 
 			}
@@ -225,6 +226,16 @@ public class HistogramController extends AbstractVisualizationController {
 		});
 	}
 
+	public void generateHistogramInputListener() {
+		this.getView().getKeyInput().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
 	/**
 	 * @return the model
 	 */

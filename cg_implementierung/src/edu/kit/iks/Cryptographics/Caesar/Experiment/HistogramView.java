@@ -45,6 +45,8 @@ public class HistogramView extends VisualizationView {
 
 	private JButton proceed;
 
+	private JTextField keyInput;
+
 	/**
 	 * Container for the inc/dec Buttons.
 	 */
@@ -163,21 +165,25 @@ public class HistogramView extends VisualizationView {
 		this.add(histogramContainer, containerConst);
 
 		JLabel cipherText = new JLabel(
-				"<html><body>Placeholder for the cipher. <br>"
-						+ "No idea how to put dynamically linebreaks<br>"
-						+ " into a bigger text -> TODO.");
+				"<html><body>WKLV EDU GLDJUDP KDV D YHUWLFDO EHDP<br>"
+						+ " IRU HDFK FKDUDFWHU ALWK WKH EHDP IRU WKH PRVW XVHG<br>"
+						+ " FKDUDFWHU EHLQJ DW PDALPXP KHLJKW RI WKH GLDJUDPK HDFK<br>"
+						+ "RWKHU EHDP KDV D FRUUHVSRQGLQJ IUDFWLRQ RI WKLV KHLJKW <br>"
+						+ "WKH HTXLYDOHQW FKDUDFWHUV DUH GLVSODBHG EHQHDWK HDFK EHDP<br>"
+						+ " WKH QXPEHU RI RFFXUUHQFHV RI HDFK FKDUDFWHU LV GLVSODBHG<br>"
+						+ " ALWKLQ RU DERYH HDFK EHDP");
 		GridBagConstraints textConst = new GridBagConstraints();
 		textConst.gridx = 0;
 		textConst.gridy = 0;
 		this.histogramContainer.add(cipherText, textConst);
 
-		JTextField inputKey = new JTextField("Key");
-		inputKey.setPreferredSize(new Dimension(50,50));
+		this.keyInput = new JTextField("Key");
+		this.keyInput.setPreferredSize(new Dimension(50, 50));
 		GridBagConstraints keyConst = new GridBagConstraints();
 		keyConst.gridx = 0;
 		keyConst.gridy = 1;
-		this.histogramContainer.add(inputKey, keyConst);
-		
+		this.histogramContainer.add(this.keyInput, keyConst);
+
 		CharacterFrequencyDiagramView histogramCipher = new CharacterFrequencyDiagramView(
 				cipher, 600, 100);
 		GridBagConstraints histCipherConst = new GridBagConstraints();
@@ -185,7 +191,7 @@ public class HistogramView extends VisualizationView {
 		// histCipherConst.weighty = 1.0;
 		histCipherConst.gridx = 1;
 		histCipherConst.gridy = 1;
-//		histCipherConst.insets = new Insets(50, 0, 50, 0);
+		// histCipherConst.insets = new Insets(50, 0, 50, 0);
 		// histCipherConst.gridheight = 1;
 		// histCipherConst.gridwidth = 4;
 		// histCipherConst.fill = GridBagConstraints.HORIZONTAL;
@@ -198,22 +204,22 @@ public class HistogramView extends VisualizationView {
 		// histPlainConst.weighty = 1.0;
 		histPlainConst.gridx = 1;
 		histPlainConst.gridy = 0;
-//		histPlainConst.insets = new Insets(50, 0, 50, 0);
+		// histPlainConst.insets = new Insets(50, 0, 50, 0);
 		// histPlainConst.gridheight = 1;
 		// histPlainConst.gridwidth = 4;
 		// histPlainConst.fill = GridBagConstraints.HORIZONTAL;
 		this.histogramContainer.add(histogramPlain, histPlainConst);
 
 		this.histogramContainer.validate();
-		 GridBagConstraints expConst = new GridBagConstraints();
-		 expConst.anchor = GridBagConstraints.LINE_START;
-		 expConst.weightx = 1.0;
-		 expConst.weighty = 0.1;
-		 expConst.gridx = 0;
-		 expConst.gridy = 0;
-		 expConst.gridwidth = 3;
-		 expConst.gridheight = 1;
-		 expConst.insets = new Insets(50,0,50,0);
+		GridBagConstraints expConst = new GridBagConstraints();
+		expConst.anchor = GridBagConstraints.LINE_START;
+		expConst.weightx = 1.0;
+		expConst.weighty = 0.1;
+		expConst.gridx = 0;
+		expConst.gridy = 0;
+		expConst.gridwidth = 3;
+		expConst.gridheight = 1;
+		expConst.insets = new Insets(50, 0, 50, 0);
 		this.explanations
 				.setText("<html><body> Here you see some diagrams. The one diagram at the top <br>"
 						+ "is a diagram of a normal english text. Maybe with some grammatical errors<br>"
@@ -534,5 +540,19 @@ public class HistogramView extends VisualizationView {
 	 */
 	public void setHistogramContainer(JPanel histogramContainer) {
 		this.histogramContainer = histogramContainer;
+	}
+
+	/**
+	 * @return the keyInput
+	 */
+	public JTextField getKeyInput() {
+		return keyInput;
+	}
+
+	/**
+	 * @param keyInput the keyInput to set
+	 */
+	public void setKeyInput(JTextField keyInput) {
+		this.keyInput = keyInput;
 	}
 }
