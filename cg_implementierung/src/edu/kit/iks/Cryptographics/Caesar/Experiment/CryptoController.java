@@ -386,11 +386,10 @@ public class CryptoController extends AbstractVisualizationController {
 							try {
 								int key = Integer.parseInt(getView().getKey()
 										.getText());
-
-								if (decryptionPhase)
-									;
-								key = -key;
-
+								// enc with negative key is the same as dec method. See cryptoModel.
+								if (decryptionPhase) {
+									key = -key;
+								}
 								if (getModel().enc(key, userOutput.getName())
 										.equals(userOutput.getText())) {
 									if ((getEditableFields() - 1) != 0) {

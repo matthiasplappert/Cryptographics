@@ -127,16 +127,16 @@ public class HistogramController extends AbstractVisualizationController {
 							getModel().formatString(cipher));
 					generateHistogramInputListener();
 
-//					// destroy yourself. Not needed anymore.
-//					getView().remove(getView().getProceed());
-//					getView().setProceed(null);
-//					getView().validate();
+					// // destroy yourself. Not needed anymore.
+					// getView().remove(getView().getProceed());
+					// getView().setProceed(null);
+					// getView().validate();
 
 				} else {
 					// Build the new experiment.
 					setStep(getStep() + 1);
-                    getView().unloadHistogram();
-                    
+					getView().unloadHistogram();
+
 					int key = getModel().generateKey();
 					String plainText = getModel().getRandomText();
 					String cipher = getModel().enc(key, plainText);
@@ -147,10 +147,10 @@ public class HistogramController extends AbstractVisualizationController {
 					generateHistogramInputListener();
 
 					getView().revalidate();
-//					// destroy yourself. Not needed anymore.
-//					getView().remove(getView().getProceed());
-//					getView().setProceed(null);
-//					getView().validate();
+					// // destroy yourself. Not needed anymore.
+					// getView().remove(getView().getProceed());
+					// getView().setProceed(null);
+					// getView().validate();
 				}
 
 			}
@@ -201,7 +201,6 @@ public class HistogramController extends AbstractVisualizationController {
 						// proceedConst.gridwidth = 3;
 						getView().setupProceed();
 						genProceedListener();
-						
 
 					} else {
 						// TODO:

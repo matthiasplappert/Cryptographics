@@ -13,6 +13,9 @@ public class CryptoModel {
 	private final int MODULO = 26;
 
 	private final int MAX_LINE_LENGTH = 35;
+	
+	//number of chars in <html><body>
+	private final int HTML_HEADER_LENGTH = 12;
 
 	/**
 	 * Constructor.
@@ -35,6 +38,22 @@ public class CryptoModel {
 			}
 		}
 		return formattedString;
+	}
+	
+	/**
+	 * @param stringToClear
+	 * @return
+	 */
+	public String clearString(String stringToClear) {
+		String clearedString = "";
+		for (int i = HTML_HEADER_LENGTH; i < stringToClear.length(); i++) {
+			if ((i % MAX_LINE_LENGTH) == 0) {
+				clearedString += " ";
+			} else {
+				clearedString += stringToClear.charAt(i);
+			}
+		}
+		return clearedString;
 	}
 
 	/**
@@ -110,10 +129,10 @@ public class CryptoModel {
 	 * @return
 	 */
 	public String getRandomText() {
-		String[] textPool = { "This bar diagram has a vertical beam for each character "
-				+ "with the beam for the most used character being at maximum height of the diagram. "
-				+ "Each other beam has a corresponding fraction of this height The equivalent "
-				+ "characters are displayed beneath each beam The number of occurrences of each "
+		String[] textPool = { "This bar diagram has a vertical beam for each character"
+				+ "with the beam for the most used character being at maximum height of the diagram"
+				+ "Each other beam has a corresponding fraction of this height The equivalent"
+				+ "characters are displayed beneath each beam The number of occurrences of each"
 				+ "character is displayed within or above each beam" };
 		return textPool[0].toUpperCase();
 	}

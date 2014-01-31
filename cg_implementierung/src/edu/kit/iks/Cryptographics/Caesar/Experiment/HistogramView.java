@@ -182,7 +182,6 @@ public class HistogramView extends VisualizationView {
 	
 	public void setupHistogram(String text, String cipher) {
 		this.remove(proceed);
-		this.histogramCipher = cipher;
 		
 		this.histogramContainer = new JPanel(new GridBagLayout());
 		// this.histogramContainer.setPreferredSize(new Dimension(600, 300));
@@ -203,7 +202,7 @@ public class HistogramView extends VisualizationView {
 		textConst.insets = new Insets(0, 5, 0, 5);
 		this.histogramContainer.add(cipherText, textConst);
 		
-		this.plainText = new JLabel(cipher);
+		this.plainText = new JLabel();
 		GridBagConstraints plainConst = new GridBagConstraints();
 		plainConst.gridx = 0;
 		plainConst.gridy = 0;
