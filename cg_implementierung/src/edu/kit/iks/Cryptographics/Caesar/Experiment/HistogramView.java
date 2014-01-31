@@ -18,6 +18,7 @@ import org.jdom2.Element;
 
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.CharacterFrequencyDiagramView;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
@@ -47,6 +48,8 @@ public class HistogramView extends VisualizationView {
 
 	private JTextField keyInput;
 
+	private KeyboardView keyboard;
+
 	/**
 	 * Container for the inc/dec Buttons.
 	 */
@@ -57,14 +60,11 @@ public class HistogramView extends VisualizationView {
 	 */
 	private JPanel navigationPanel;
 
-	/**
-	 * TODO: Because the cipher will be a smaller plain text it is benefitial to put it in one
-	 * bigger JTextField than in many smaller ones. Labels that contain an encrypted characters for
-	 * demonstration purpose.
-	 */
 	private JLabel cipher;
+	
+	private JLabel cipherText;
 
-	private JLabel plain;
+	private JLabel plainText;
 
 	/**
 	 * Explanations of the animations.
@@ -86,6 +86,8 @@ public class HistogramView extends VisualizationView {
 	 * Label that will contain a histogram image that will be explained to the user.
 	 */
 	private JPanel histogramContainer;
+
+	private String histogramCipher;
 
 	/**
 	 * Constructor.
@@ -146,12 +148,31 @@ public class HistogramView extends VisualizationView {
 		this.validate();
 	}
 
+	/**
+	 * Creates the keyboard and shows it in the main container.
+	 */
+	public void createKeyboard(JTextField input) {
+		this.keyboard = new KeyboardView(input);
+		GridBagConstraints kbConst = new GridBagConstraints();
+		kbConst.anchor = GridBagConstraints.PAGE_END;
+		kbConst.weightx = 1.0;
+		kbConst.weighty = 0.5;
+		kbConst.gridx = 0;
+		kbConst.gridy = 0;
+		kbConst.gridwidth = 11;
+		kbConst.gridheight = 3;
+		this.add(this.keyboard, kbConst);
+		this.validate();
+	}
+
 	public void setupHistogram(String text, String cipher) {
 		this.remove(this.keyControl);
 		this.keyControl = null;
 		this.remove(this.proceed);
 		this.remove(this.explanations);
-
+        
+		this.histogramCipher = cipher;
+		
 		this.histogramContainer = new JPanel(new GridBagLayout());
 		// this.histogramContainer.setPreferredSize(new Dimension(600, 300));
 		GridBagConstraints containerConst = new GridBagConstraints();
@@ -161,36 +182,43 @@ public class HistogramView extends VisualizationView {
 		containerConst.gridx = 0;
 		containerConst.gridy = 1;
 		containerConst.gridheight = 10;
-		containerConst.gridwidth = 10;
+		containerConst.gridwidth = 20;
 		this.add(histogramContainer, containerConst);
 
-		// TODO: No idea how to add line breaks dynamically.
-		JLabel cipherText = new JLabel(
-				"<html><body>WKLV EDU GLDJUDP KDV D YHUWLFDO EHDP<br>"
-						+ " IRU HDFK FKDUDFWHU ALWK WKH EHDP IRU WKH PRVW XVHG<br>"
-						+ " FKDUDFWHU EHLQJ DW PDALPXP KHLJKW RI WKH GLDJUDPK HDFK<br>"
-						+ "RWKHU EHDP KDV D FRUUHVSRQGLQJ IUDFWLRQ RI WKLV KHLJKW <br>"
-						+ "WKH HTXLYDOHQW FKDUDFWHUV DUH GLVSODBHG EHQHDWK HDFK EHDP<br>"
-						+ " WKH QXPEHU RI RFFXUUHQFHV RI HDFK FKDUDFWHU LV GLVSODBHG<br>"
-						+ " ALWKLQ RU DERYH HDFK EHDP");
+		this.cipherText = new JLabel(cipher);
 		GridBagConstraints textConst = new GridBagConstraints();
-		textConst.gridx = 0;
+		textConst.gridx = 1;
 		textConst.gridy = 0;
+		textConst.insets = new Insets(0, 5, 0, 5);
 		this.histogramContainer.add(cipherText, textConst);
+		
+		this.plainText = new JLabel(cipher);
+		GridBagConstraints plainConst = new GridBagConstraints();
+		plainConst.gridx = 0;
+		plainConst.gridy = 0;
+		plainConst.insets = new Insets(0, 5, 0, 5);
+		this.histogramContainer.add(plainText, plainConst);
 
-		this.keyInput = new JTextField("Key");
-		this.keyInput.setPreferredSize(new Dimension(50, 50));
+		this.keyInput = new JTextField();
+		this.keyInput.setPreferredSize(new Dimension(100, 50));
+		this.keyInput.setBorder(BorderFactory.createLineBorder(Color.black));
 		GridBagConstraints keyConst = new GridBagConstraints();
-		keyConst.gridx = 0;
-		keyConst.gridy = 1;
+		keyConst.gridx = 1;
+		keyConst.gridy = 2;
 		this.histogramContainer.add(this.keyInput, keyConst);
+
+		JLabel keyCaption = new JLabel("Type your key here: ");
+		GridBagConstraints capConst = new GridBagConstraints();
+		capConst.gridx = 1;
+		capConst.gridy = 1;
+		this.histogramContainer.add(keyCaption, capConst);
 
 		CharacterFrequencyDiagramView histogramCipher = new CharacterFrequencyDiagramView(
 				cipher, 600, 100);
 		GridBagConstraints histCipherConst = new GridBagConstraints();
 		// histCipherConst.weightx = 0;
 		// histCipherConst.weighty = 1.0;
-		histCipherConst.gridx = 1;
+		histCipherConst.gridx = 2;
 		histCipherConst.gridy = 0;
 		// histCipherConst.insets = new Insets(50, 0, 50, 0);
 		// histCipherConst.gridheight = 1;
@@ -203,7 +231,7 @@ public class HistogramView extends VisualizationView {
 		GridBagConstraints histPlainConst = new GridBagConstraints();
 		// histPlainConst.weightx = 0;
 		// histPlainConst.weighty = 1.0;
-		histPlainConst.gridx = 1;
+		histPlainConst.gridx = 2;
 		histPlainConst.gridy = 1;
 		// histPlainConst.insets = new Insets(50, 0, 50, 0);
 		// histPlainConst.gridheight = 1;
@@ -222,9 +250,17 @@ public class HistogramView extends VisualizationView {
 		expConst.gridheight = 1;
 		expConst.insets = new Insets(50, 0, 50, 0);
 		this.explanations
-				.setText("<html><body> Here you see some diagrams. The one diagram at the bottom <br>"
-						+ "is a diagram of a normal english text. Maybe with some grammatical errors<br>"
-						+ " and ähh 'falsche Zeichensetzung' but nvm. It doesn't matter actually. ");
+				.setText("<html><body> Here you see some diagrams. These ones are called 'Histograms' <br>"
+						+ "Above each letter you can see columns with a number above. The number says how many<br>"
+						+ "times you can count the given letter in a given text!"
+						+ "The one diagram at the bottom is a diagram of a normal english text. <br>"
+						+ "Maybe with some grammatical errors and ähh 'falsche Zeichensetzung' but nvm. It doesn't matter actually. <br>"
+						+ "As you can see the letters A and E have the biggest numbers. That is because they are the most<br>"
+						+ "frequent in an english Text.The histogram above shows the histogram of the given cipher left of it.<br>"
+						+ "If you compare this to the histogram above it you notice that now D and H are the most frequent<br>"
+						+ "That means that the letters A and E could have been shifted to D and H. If we substract backwards.<br>"
+						+ "D - A = 4 - 1 = 3. Here you have the key of the given cipher. Now type the key in the inputfield and click enter.<br>"
+						+ "The programm will decrypt the cipher with the key you put in.");
 		this.add(this.explanations, expConst);
 
 		this.validate();
@@ -292,13 +328,13 @@ public class HistogramView extends VisualizationView {
 		cipherConst.gridx = 0;
 		cipherConst.gridy = 0;
 		this.keyControl.add(this.cipher, cipherConst);
-		this.plain = new JLabel("");
-		this.plain.setPreferredSize(new Dimension(100, 50));
+		this.plainText = new JLabel("");
+		this.plainText.setPreferredSize(new Dimension(100, 50));
 		// this.plain.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints plainConst = new GridBagConstraints();
 		plainConst.gridx = 0;
 		plainConst.gridy = 2;
-		this.keyControl.add(this.plain, plainConst);
+		this.keyControl.add(this.plainText, plainConst);
 
 		// layout the buttons.
 		this.repaint();
@@ -501,16 +537,16 @@ public class HistogramView extends VisualizationView {
 	/**
 	 * @return the plain
 	 */
-	public JLabel getPlain() {
-		return plain;
+	public JLabel getPlainText() {
+		return plainText;
 	}
 
 	/**
 	 * @param plain
 	 *            the plain to set
 	 */
-	public void setPlain(JLabel plain) {
-		this.plain = plain;
+	public void setPlainText(JLabel plaintext) {
+		this.plainText = plaintext;
 	}
 
 	/**
@@ -556,5 +592,49 @@ public class HistogramView extends VisualizationView {
 	 */
 	public void setKeyInput(JTextField keyInput) {
 		this.keyInput = keyInput;
+	}
+
+	/**
+	 * @return the keyboard
+	 */
+	public KeyboardView getKeyboard() {
+		return keyboard;
+	}
+
+	/**
+	 * @param keyboard
+	 *            the keyboard to set
+	 */
+	public void setKeyboard(KeyboardView keyboard) {
+		this.keyboard = keyboard;
+	}
+
+	/**
+	 * @return the histogramCipher
+	 */
+	public String getHistogramCipher() {
+		return histogramCipher;
+	}
+
+	/**
+	 * @param histogramCipher
+	 *            the histogramCipher to set
+	 */
+	public void setHistogramCipher(String histogramCipher) {
+		this.histogramCipher = histogramCipher;
+	}
+
+	/**
+	 * @return the cipherText
+	 */
+	public JLabel getCipherText() {
+		return cipherText;
+	}
+
+	/**
+	 * @param cipherText the cipherText to set
+	 */
+	public void setCipherText(JLabel cipherText) {
+		this.cipherText = cipherText;
 	}
 }

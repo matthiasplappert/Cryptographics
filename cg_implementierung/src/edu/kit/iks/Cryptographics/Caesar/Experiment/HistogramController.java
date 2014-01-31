@@ -1,5 +1,6 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
@@ -9,8 +10,11 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JTextField;
+
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
@@ -110,7 +114,11 @@ public class HistogramController extends AbstractVisualizationController {
 
 				} else {
 					String plainText = getModel().getRandomText();
-					getView().setupHistogram(plainText, getModel().enc(3, plainText));
+					String cipher = getModel().enc(3, plainText);
+					getView().setSecretKey(3);
+					getView().setHistogramCipher(cipher);
+					getView().setupHistogram(plainText,
+							getModel().formatString(cipher));
 					generateHistogramInputListener();
 				}
 
@@ -137,29 +145,37 @@ public class HistogramController extends AbstractVisualizationController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int key = getView().getKeyValue() + 1;
-				getView().setKeyValue(key);
-				getView().getKey().setText("" + key);
-				getView().getPlain().setText(
-						(getModel().dec(key, getView().getCipher().getText()
-								)));
-				if (key == getView().getSecretKey() && key < 27) {
-					getView()
-							.getExplanations()
-							.setText(
-									"<html><body> Congratulations you found the secret key and are now able<br>"
-											+ "to read the secret message. The Key was "
-											+ key);
+				if (key < 27) {
 
-					setStep(1);
-					//getView().setupProceed();
-					GridBagConstraints proceedConst = new GridBagConstraints();
-//					proceedConst.anchor = GridBagConstraints.PAGE_END;
-//					proceedConst.gridx = 2;
-//					proceedConst.gridy = 3;
-//					proceedConst.gridwidth = 3;
-					getView().add(getView().getProceed(), proceedConst);
-					
-					getView().validate();
+					getView().setKeyValue(key);
+					getView().getKey().setText("" + key);
+					getView().getPlainText().setText(
+							(getModel().dec(key, getView().getCipher()
+									.getText())));
+
+					if (key == getView().getSecretKey()) {
+						getView()
+								.getExplanations()
+								.setText(
+										"<html><body> Congratulations you found the secret key and are now able<br>"
+												+ "to read the secret message. The Key was "
+												+ key);
+
+						setStep(1);
+						// getView().setupProceed();
+						GridBagConstraints proceedConst = new GridBagConstraints();
+						// proceedConst.anchor = GridBagConstraints.PAGE_END;
+						// proceedConst.gridx = 2;
+						// proceedConst.gridy = 3;
+						// proceedConst.gridwidth = 3;
+						getView().add(getView().getProceed(), proceedConst);
+						getView().validate();
+
+					} else {
+						// TODO:
+					}
+				} else {
+					// TODO:
 				}
 			}
 
@@ -196,7 +212,7 @@ public class HistogramController extends AbstractVisualizationController {
 				if (key > 0) {
 					getView().setKeyValue(key);
 					getView().getKey().setText("" + key);
-					getView().getPlain().setText(
+					getView().getPlainText().setText(
 							(getModel().dec(key, getView().getCipher()
 									.getText())));
 				}
@@ -230,29 +246,74 @@ public class HistogramController extends AbstractVisualizationController {
 
 	public void generateHistogramInputListener() {
 		this.getView().getKeyInput().addFocusListener(new FocusListener() {
-			
+
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				if (getView().getKeyboard() != null) {
+					getView().remove(getView().getKeyboard());
+					getView().setKeyboard(null);
+					getView().validate();
+
+					if (getView().getKeyInput().isEditable()) {
+						getView().getKeyInput().setBorder(null);
+					}
+				}
+
 			}
-			
+
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				if (getView().getKeyInput().isEditable()) {
+					getView().getKeyInput().setBorder(
+							BorderFactory.createLineBorder(Color.blue, 5));
+					getView().createKeyboard(getView().getKeyInput());
+				}
 			}
+
 		});
-		
+
+		// Not really much input checking necessary because the keyboard has only numerical values.
 		this.getView().getKeyInput().addActionListener(new ActionListener() {
-			
+
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				
+			public void actionPerformed(ActionEvent e) {
+				try {
+					int key = Integer.parseInt(getView().getKeyInput()
+							.getText());
+					if (getModel().isKeyValid(key)) {
+						String decryptedCipher = getModel().dec(key,
+								getView().getHistogramCipher());
+						decryptedCipher = getModel().formatString(
+								decryptedCipher);
+						getView().getPlainText().setText(decryptedCipher);
+
+						if (key == getView().getSecretKey()) {
+							getView()
+									.getKeyInput()
+									.setBorder(
+											BorderFactory
+													.createLineBorder(Color.green));
+						} else {
+							getView().getKeyInput().setBorder(
+									BorderFactory.createLineBorder(Color.red));
+						}
+
+						getView().validate();
+						getView().repaint();
+						getView().requestFocus();
+					} else {
+						getView().getKeyInput().setBorder(
+								BorderFactory.createLineBorder(Color.red));
+					}
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 			}
 		});
 	}
+
 	/**
 	 * @return the model
 	 */

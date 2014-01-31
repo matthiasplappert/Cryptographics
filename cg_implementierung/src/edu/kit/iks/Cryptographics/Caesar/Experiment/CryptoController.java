@@ -148,12 +148,7 @@ public class CryptoController extends AbstractVisualizationController {
 													.createLineBorder(Color.green));
 							getView().getKey().setEditable(false);
 							setEditableFields((getEditableFields() - 1));
-
-							if (getView().getKeyboard() != null) {
-								getView().remove(getView().getKeyboard());
-								getView().setKeyboard(null);
-								getView().validate();
-							}
+							getView().requestFocus();
 						} else {
 							try {
 								String input = getView().getInput().getText();
@@ -242,12 +237,7 @@ public class CryptoController extends AbstractVisualizationController {
 								BorderFactory.createLineBorder(Color.green));
 						getView().getInput().setEditable(false);
 						setEditableFields((getEditableFields() - 1));
-
-						if (getView().getKeyboard() != null) {
-							getView().remove(getView().getKeyboard());
-							getView().setKeyboard(null);
-							getView().validate();
-						}
+						getView().requestFocus();
 
 					} else {
 

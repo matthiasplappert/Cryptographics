@@ -12,11 +12,29 @@ public class CryptoModel {
 
 	private final int MODULO = 26;
 
+	private final int MAX_LINE_LENGTH = 35;
+
 	/**
 	 * Constructor.
 	 */
 	public CryptoModel() {
 
+	}
+
+	/**
+	 * @param stringToFormat
+	 * @return
+	 */
+	public String formatString(String stringToFormat) {
+		String formattedString = "<html><body>";
+		for (int i = 0; i < stringToFormat.length(); i++) {
+			if ((i % MAX_LINE_LENGTH) == 0) {
+                 formattedString += "<br>";
+			} else {
+				formattedString += stringToFormat.charAt(i);
+			}
+		}
+		return formattedString;
 	}
 
 	/**
@@ -33,7 +51,8 @@ public class CryptoModel {
 			if (text.charAt(i) != ' ') {
 				int offset = ((int) text.charAt(i)) - ASCII_A;
 
-				cipher += String.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_A));
+				cipher += String
+						.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_A));
 			} else {
 				cipher += " ";
 			}
@@ -41,7 +60,7 @@ public class CryptoModel {
 		return cipher;
 
 	}
-	
+
 	/**
 	 * @param key
 	 * @param cipher
@@ -55,7 +74,7 @@ public class CryptoModel {
 	 * @param key
 	 * @return
 	 */
-	public boolean isKeyValid(int key) {		
+	public boolean isKeyValid(int key) {
 		return (key > 0 && key <= 26);
 	}
 
@@ -73,7 +92,7 @@ public class CryptoModel {
 		String[] plainTextPool = { "ANNA", "HANNAH", "BANANA", "KOKOS",
 				"KRYPTOCHEF", "HAMSTER", "WASILIJ", "SECRET", "EPSILON" };
 
-		int index = generateRandomInt(0,plainTextPool.length);
+		int index = generateRandomInt(0, plainTextPool.length);
 		return plainTextPool[index];
 	}
 
@@ -105,9 +124,9 @@ public class CryptoModel {
 	 * @return
 	 */
 	private int generateRandomInt(int a, int b) {
-		return (int) (a + ((int) (b -a) * Math.random()));
+		return (int) (a + ((int) (b - a) * Math.random()));
 	}
-	
+
 	public int generateKey() {
 		return generateRandomInt(1, 26);
 	}
