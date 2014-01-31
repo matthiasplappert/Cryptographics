@@ -229,26 +229,36 @@ public class HistogramView extends VisualizationView {
 		// histCipherConst.weightx = 0;
 		// histCipherConst.weighty = 1.0;
 		histCipherConst.gridx = 2;
-		histCipherConst.gridy = 0;
+		histCipherConst.gridy = 1;
 		// histCipherConst.insets = new Insets(50, 0, 50, 0);
 		// histCipherConst.gridheight = 1;
 		// histCipherConst.gridwidth = 4;
 		// histCipherConst.fill = GridBagConstraints.HORIZONTAL;
 		this.histogramContainer.add(histogramCipher, histCipherConst);
-
+        JLabel cipherHistCaption = new JLabel("This is the histogram for the given cipher!");
+        GridBagConstraints cipherHistCaptionConst = new GridBagConstraints();
+        cipherHistCaptionConst.gridx = 2;
+        cipherHistCaptionConst.gridy = 0;
+        this.histogramContainer.add(cipherHistCaption, cipherHistCaptionConst);
+		
 		CharacterFrequencyDiagramView histogramPlain = new CharacterFrequencyDiagramView(
 				text, 600, 100);
 		GridBagConstraints histPlainConst = new GridBagConstraints();
 		// histPlainConst.weightx = 0;
 		// histPlainConst.weighty = 1.0;
 		histPlainConst.gridx = 2;
-		histPlainConst.gridy = 1;
+		histPlainConst.gridy = 3;
 		// histPlainConst.insets = new Insets(50, 0, 50, 0);
 		// histPlainConst.gridheight = 1;
 		// histPlainConst.gridwidth = 4;
 		// histPlainConst.fill = GridBagConstraints.HORIZONTAL;
 		this.histogramContainer.add(histogramPlain, histPlainConst);
-
+        JLabel plainHistCaption  = new JLabel("This is a histogram of a normal english text.");
+        GridBagConstraints plainHistCaptionConst = new GridBagConstraints();
+        plainHistCaptionConst.gridx = 2;
+        plainHistCaptionConst.gridy = 2;
+        this.histogramContainer.add(plainHistCaption, plainHistCaptionConst);
+		
 		this.histogramContainer.validate();
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.LINE_START;
