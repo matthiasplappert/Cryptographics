@@ -190,7 +190,7 @@ public class HistogramView extends VisualizationView {
 		// histCipherConst.weightx = 0;
 		// histCipherConst.weighty = 1.0;
 		histCipherConst.gridx = 1;
-		histCipherConst.gridy = 1;
+		histCipherConst.gridy = 0;
 		// histCipherConst.insets = new Insets(50, 0, 50, 0);
 		// histCipherConst.gridheight = 1;
 		// histCipherConst.gridwidth = 4;
@@ -203,7 +203,7 @@ public class HistogramView extends VisualizationView {
 		// histPlainConst.weightx = 0;
 		// histPlainConst.weighty = 1.0;
 		histPlainConst.gridx = 1;
-		histPlainConst.gridy = 0;
+		histPlainConst.gridy = 1;
 		// histPlainConst.insets = new Insets(50, 0, 50, 0);
 		// histPlainConst.gridheight = 1;
 		// histPlainConst.gridwidth = 4;
@@ -221,7 +221,7 @@ public class HistogramView extends VisualizationView {
 		expConst.gridheight = 1;
 		expConst.insets = new Insets(50, 0, 50, 0);
 		this.explanations
-				.setText("<html><body> Here you see some diagrams. The one diagram at the top <br>"
+				.setText("<html><body> Here you see some diagrams. The one diagram at the bottom <br>"
 						+ "is a diagram of a normal english text. Maybe with some grammatical errors<br>"
 						+ " and ähh 'falsche Zeichensetzung' but nvm. It doesn't matter actually. ");
 		this.add(this.explanations, expConst);
