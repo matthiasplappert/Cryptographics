@@ -37,20 +37,22 @@ public class CryptoModel {
 			// if ((int) text.charAt(i) < 65 || (int) text.charAt(i) > 90) {
 			// continue;
 			// }
-		
+        if (text.charAt(i) != ' ') {
 			int offset = ((int) text.charAt(i)) - 64;
 
-			//Overflow when decrypting.
+			// Overflow when decrypting.
 			if ((offset + key) < 0) {
 				offset = offset + 26;
 			}
-            int sign = (offset + key) % 26;
-            if (sign == 0) {
-            	sign++;
-            }
-            
-			plain += String
-					.valueOf((char)(sign + 64));
+			int sign = (offset + key) % 26;
+			if (sign == 0) {
+				sign++;
+			}
+        
+			plain += String.valueOf((char) (sign + 64));
+        } else {
+        	plain += " ";
+        }
 		}
 		return plain;
 
@@ -99,17 +101,34 @@ public class CryptoModel {
 	/**
 	 * @return
 	 */
-	public String getRandomPlainText() {
+	public String getRandomPlainSequence() {
 		// TODO: Generate a random name!
 		String[] plainTextPool = { "ANNA", "HANNAH", "BANANA", "KOKOS",
-				"KRYPTOCHEF", "HAMSTER", "WASILIJ", "SECRET", "EIPSILON" };
+				"KRYPTOCHEF", "HAMSTER", "WASILIJ", "SECRET", "EPSILON" };
 		int index = (int) ((Math.random() * 1000) % plainTextPool.length);
 		return plainTextPool[index];
 	}
 
+	/**
+	 * @param key
+	 * @return
+	 */
 	public String getRandomCipher(int key) {
-		String plain = getRandomPlainText();
+		String plain = getRandomPlainSequence();
 		return enc(key, plain, true);
+	}
+
+	// TODO: Not so much random at the moment.
+	/**
+	 * @return
+	 */
+	public String getRandomText() {
+		String[] textPool = { "This bar diagram has a vertical beam for each character "
+				+ "with the beam for the most used character being at maximum height of the diagram. "
+				+ "Each other beam has a corresponding fraction of this height The equivalent "
+				+ "characters are displayed beneath each beam The number of occurrences of each "
+				+ "character is displayed within or above each beam" };
+		return textPool[0].toUpperCase();
 	}
 
 	/**

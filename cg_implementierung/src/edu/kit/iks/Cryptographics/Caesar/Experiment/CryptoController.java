@@ -59,7 +59,7 @@ public class CryptoController extends AbstractVisualizationController {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				char[] string = getModel().getRandomPlainText().toCharArray();
+				char[] string = getModel().getRandomPlainSequence().toCharArray();
 				int key = getModel().generateKey();
 				setEditableFields(string.length);
 
@@ -302,7 +302,7 @@ public class CryptoController extends AbstractVisualizationController {
 					decryptionPhase = true;
 					// TODO: generate a random cipher.
 					char[] cipher = getModel().enc(key,
-							getModel().getRandomPlainText(), true)
+							getModel().getRandomPlainSequence(), true)
 							.toCharArray();
 
 					setEditableFields(cipher.length);

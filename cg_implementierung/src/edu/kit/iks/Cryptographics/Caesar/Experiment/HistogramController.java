@@ -1,10 +1,13 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
@@ -99,57 +102,18 @@ public class HistogramController extends AbstractVisualizationController {
 				if (getStep() == 0) {
 					int secret = getModel().generateKey();
 					getView().setSecretKey(secret);
-					getView().setupBruteForce(getModel().getRandomCipher(secret));
+					getView().setupBruteForce(
+							getModel().getRandomCipher(secret));
 					genListenerBF();
+
 				} else {
-					getView().setupHistogram();
+					String plainText = getModel().getRandomText();
+					getView().setupHistogram(plainText, getModel().enc(3, plainText, true));
 				}
 
 			}
 		});
 	}
-
-	// /**
-	// * Explanations and animations are shown that explain histograms.
-	// */
-	// public void startAnimations() {
-	// step1();
-	// // stop.
-	// step2();
-	// // stop.
-	// step3();
-	// // stop.
-	// step4();
-	// // done.
-	// }
-	//
-	// /**
-	// * Explain why the Caesar cipher is not appropriate nowadays.
-	// */
-	// private void step1() {
-	//
-	// }
-	//
-	// /**
-	// * Explain what histograms are.
-	// */
-	// private void step2() {
-	//
-	// }
-	//
-	// /**
-	// * Explain how they are used and how to read from them.
-	// */
-	// private void step3() {
-	//
-	// }
-	//
-	// /**
-	// * Explain how to decrypt big text that was ciphered with Caesar without a key.
-	// */
-	// private void step4() {
-	//
-	// }
 
 	/**
 	 * Gets the view
@@ -176,15 +140,23 @@ public class HistogramController extends AbstractVisualizationController {
 						(getModel().enc(key, getView().getCipher().getText(),
 								false)));
 				if (key == getView().getSecretKey() && key < 27) {
-					getView().getExplanations().setText(
-							"<html><body> Congratulations you found the secret key and are now able<br>"
-									+ "to read the secret message. The Key was "+ key);
+					getView()
+							.getExplanations()
+							.setText(
+									"<html><body> Congratulations you found the secret key and are now able<br>"
+											+ "to read the secret message. The Key was "
+											+ key);
 
 					setStep(1);
-					getView().setupProceed();
-					genProceedListener();
-				} else {
-
+					//getView().setupProceed();
+					GridBagConstraints proceedConst = new GridBagConstraints();
+//					proceedConst.anchor = GridBagConstraints.PAGE_END;
+//					proceedConst.gridx = 2;
+//					proceedConst.gridy = 3;
+//					proceedConst.gridwidth = 3;
+					getView().add(getView().getProceed(), proceedConst);
+					
+					getView().validate();
 				}
 			}
 

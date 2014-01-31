@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -82,7 +83,7 @@ public class HistogramView extends VisualizationView {
 	/**
 	 * Label that will contain a histogram image that will be explained to the user.
 	 */
-	private CharacterFrequencyDiagramView histogram;
+	private JPanel histogramContainer;
 
 	/**
 	 * Constructor.
@@ -132,6 +133,7 @@ public class HistogramView extends VisualizationView {
 	public void setupProceed() {
 		GridBagConstraints proceedConst = new GridBagConstraints();
 		this.proceed = new JButton("Proceed!");
+
 		this.proceed.setPreferredSize(new Dimension(250, 50));
 		// this.proceed.setFont(new Font("Arial", 2, 25));
 		proceedConst.anchor = GridBagConstraints.PAGE_END;
@@ -139,30 +141,94 @@ public class HistogramView extends VisualizationView {
 		proceedConst.gridy = 3;
 		proceedConst.gridwidth = 3;
 		this.add(this.proceed, proceedConst);
+		this.validate();
 	}
 
-	public void setupHistogram() {
-		// this.remove(this.keyControl);
-		// this.keyControl = null;
-		// this.remove(this.proceed);
-		//
-		// // TODO:Histogram UI-Element not implemented yet!
-		// int[] quantities = { 1, 2, 3, 4, 5 };
-		// this.histogram = new CharacterFrequencyDiagramView(quantities);
-		// this.histogram.setBackground(Color.green);
-		// this.histogram.setPreferredSize(new Dimension(200, 200));
-		// this.add(histogram);
-		//
-		// this.explanations
-		// .setText("<html><body> Here histograms are shown and how to use them to break caesar in one step");
-		// this.validate();
-		// this.repaint();
+	public void setupHistogram(String text, String cipher) {
+		this.remove(this.keyControl);
+		this.keyControl = null;
+		this.remove(this.proceed);
+		this.remove(this.explanations);
+
+		this.histogramContainer = new JPanel(new GridBagLayout());
+		// this.histogramContainer.setPreferredSize(new Dimension(600, 300));
+		GridBagConstraints containerConst = new GridBagConstraints();
+		containerConst.anchor = GridBagConstraints.LINE_END;
+		containerConst.weightx = 0.5;
+		containerConst.weighty = 0.5;
+		containerConst.gridx = 0;
+		containerConst.gridy = 1;
+		containerConst.gridheight = 10;
+		containerConst.gridwidth = 10;
+		this.add(histogramContainer, containerConst);
+
+		JLabel cipherText = new JLabel(
+				"<html><body>Placeholder for the cipher. <br>"
+						+ "No idea how to put dynamically linebreaks<br>"
+						+ " into a bigger text -> TODO.");
+		GridBagConstraints textConst = new GridBagConstraints();
+		textConst.gridx = 0;
+		textConst.gridy = 0;
+		this.histogramContainer.add(cipherText, textConst);
+
+		JTextField inputKey = new JTextField("Key");
+		inputKey.setPreferredSize(new Dimension(50,50));
+		GridBagConstraints keyConst = new GridBagConstraints();
+		keyConst.gridx = 0;
+		keyConst.gridy = 1;
+		this.histogramContainer.add(inputKey, keyConst);
+		
+		CharacterFrequencyDiagramView histogramCipher = new CharacterFrequencyDiagramView(
+				cipher, 600, 100);
+		GridBagConstraints histCipherConst = new GridBagConstraints();
+		// histCipherConst.weightx = 0;
+		// histCipherConst.weighty = 1.0;
+		histCipherConst.gridx = 1;
+		histCipherConst.gridy = 1;
+//		histCipherConst.insets = new Insets(50, 0, 50, 0);
+		// histCipherConst.gridheight = 1;
+		// histCipherConst.gridwidth = 4;
+		// histCipherConst.fill = GridBagConstraints.HORIZONTAL;
+		this.histogramContainer.add(histogramCipher, histCipherConst);
+
+		CharacterFrequencyDiagramView histogramPlain = new CharacterFrequencyDiagramView(
+				text, 600, 100);
+		GridBagConstraints histPlainConst = new GridBagConstraints();
+		// histPlainConst.weightx = 0;
+		// histPlainConst.weighty = 1.0;
+		histPlainConst.gridx = 1;
+		histPlainConst.gridy = 0;
+//		histPlainConst.insets = new Insets(50, 0, 50, 0);
+		// histPlainConst.gridheight = 1;
+		// histPlainConst.gridwidth = 4;
+		// histPlainConst.fill = GridBagConstraints.HORIZONTAL;
+		this.histogramContainer.add(histogramPlain, histPlainConst);
+
+		this.histogramContainer.validate();
+		 GridBagConstraints expConst = new GridBagConstraints();
+		 expConst.anchor = GridBagConstraints.LINE_START;
+		 expConst.weightx = 1.0;
+		 expConst.weighty = 0.1;
+		 expConst.gridx = 0;
+		 expConst.gridy = 0;
+		 expConst.gridwidth = 3;
+		 expConst.gridheight = 1;
+		 expConst.insets = new Insets(50,0,50,0);
+		this.explanations
+				.setText("<html><body> Here you see some diagrams. The one diagram at the top <br>"
+						+ "is a diagram of a normal english text. Maybe with some grammatical errors<br>"
+						+ " and ähh 'falsche Zeichensetzung' but nvm. It doesn't matter actually. ");
+		this.add(this.explanations, expConst);
+
+		this.validate();
+		this.repaint();
 	}
 
 	public void setupBruteForce(String cipher) {
 		// GridBagLayout layout = (GridBagLayout) this.getLayout();
 		// this.remove(this.explanations);
 		this.remove(proceed);
+		// this.proceed = null;
 
 		// GridBagConstraints expConst = new GridBagConstraints();
 		// // expConst.anchor = GridBagConstraints.FIRST_LINE_START;
@@ -171,6 +237,7 @@ public class HistogramView extends VisualizationView {
 		// this.add(this.explanations, expConst);
 
 		this.keyValue = 1;
+
 		// setup the Panel for buttons for incrementing/decrementing the key.
 		this.keyControl = new JPanel(new GridBagLayout());
 		// this.keyControl.setBorder(BorderFactory.createLineBorder(Color.green));
@@ -184,6 +251,7 @@ public class HistogramView extends VisualizationView {
 		keyConst.gridheight = 3;
 		// keyConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.keyControl, keyConst);
+
 		// key
 		this.key = new JLabel("1");
 		this.key.setPreferredSize(new Dimension(100, 50));
@@ -209,9 +277,8 @@ public class HistogramView extends VisualizationView {
 		decConst.gridy = 2;
 		this.keyControl.add(this.decrement, decConst);
 
-		// TODO: Need a valid cipher and key generator!
 		this.cipher = new JLabel(cipher);
-		//this.secretKey = 5;
+		// this.secretKey = 5;
 		this.cipher.setPreferredSize(new Dimension(100, 50));
 		// this.cipher.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints cipherConst = new GridBagConstraints();
@@ -225,7 +292,9 @@ public class HistogramView extends VisualizationView {
 		plainConst.gridx = 0;
 		plainConst.gridy = 2;
 		this.keyControl.add(this.plain, plainConst);
+
 		// layout the buttons.
+		this.repaint();
 		this.validate();
 	}
 
@@ -262,13 +331,6 @@ public class HistogramView extends VisualizationView {
 		// this.getNextButton().setFont(new Font("Arial", 2, 25));
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
 
-	}
-
-	/**
-	 * @return the histogram
-	 */
-	public CharacterFrequencyDiagramView getHistogram() {
-		return histogram;
 	}
 
 	/**
@@ -385,14 +447,6 @@ public class HistogramView extends VisualizationView {
 	}
 
 	/**
-	 * @param histogram
-	 *            the histogram to set
-	 */
-	public void setHistogram(CharacterFrequencyDiagramView histogram) {
-		this.histogram = histogram;
-	}
-
-	/**
 	 * @return the keyValue
 	 */
 	public int getKeyValue() {
@@ -465,5 +519,20 @@ public class HistogramView extends VisualizationView {
 	 */
 	public void setSecretKey(int secretKey) {
 		this.secretKey = secretKey;
+	}
+
+	/**
+	 * @return the histogramContainer
+	 */
+	public JPanel getHistogramContainer() {
+		return histogramContainer;
+	}
+
+	/**
+	 * @param histogramContainer
+	 *            the histogramContainer to set
+	 */
+	public void setHistogramContainer(JPanel histogramContainer) {
+		this.histogramContainer = histogramContainer;
 	}
 }
