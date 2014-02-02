@@ -169,29 +169,31 @@ public class ColorChannel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO remove hardcoded values
+				System.out.println("timer " + l);
 				if(x1 < rightCircle) {
 					x1 += 3;
 					if (x1 > middleCircle && y2 > myheight) {
 						y2 -= 3;
-					} else if (y2 < myheight && x1 > rightCircle) {
-						sendBob = false;
-						timer[l].stop();
-						if(keepColor && !repeat) {
-							for(int i=0; i < 3; i++) {
-								keptColors[numOfKeptColors][i] = new Ellipse2DwithColor(computeXCoordinate(numOfKeptColors, i), computeYCoordinate(numOfKeptColors, i), diameter, diameter, color);
-							}
-							numOfKeptColors++;
+					}
+				} else {
+					sendBob = false;
+					timer[l].stop();
+					if(keepColor && !repeat) {
+						for(int i=0; i < 3; i++) {
+							keptColors[numOfKeptColors][i] = new Ellipse2DwithColor(computeXCoordinate(numOfKeptColors, i), computeYCoordinate(numOfKeptColors, i), diameter, diameter, color);
 						}
-						if(cb != null) {
-							cb.callback();
-						} else if (repeat) {
-							// set to orignal values, to start all over
-							sendBob = true;
-							x1 = leftEnd;
-							x2 = middleCircle;
-							y2 = originaly2;
-							timer[l].start();
-						}
+						numOfKeptColors++;
+					}
+					if(cb != null) {
+						System.out.println("called callback");
+						cb.callback();
+					} else if (repeat) {
+						// set to orignal values, to start all over
+						sendBob = true;
+						x1 = leftEnd;
+						x2 = middleCircle;
+						y2 = originaly2;
+						timer[l].start();
 					}
 				}
 				repaint();
@@ -218,29 +220,30 @@ public class ColorChannel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("timer " + l);
 				if(x1 > leftEnd) {
 					x1 -= 3;
 					if (x1 < middleCircle && y2 > myheight) {
 						y2 -= 3;
-					} else if (y2 < myheight && x1 < leftEnd) {
-						sendAlice = false;
-						timer[l].stop();
-						if(keepColor) {
-							for(int i=0; i < 3; i++) {
-								keptColors[numOfKeptColors][i] = new Ellipse2DwithColor(computeXCoordinate(numOfKeptColors, i), computeYCoordinate(numOfKeptColors, i), diameter, diameter, color);
-							}
-							numOfKeptColors++;
+					}
+				} else {
+					sendAlice = false;
+					timer[l].stop();
+					if(keepColor) {
+						for(int i=0; i < 3; i++) {
+							keptColors[numOfKeptColors][i] = new Ellipse2DwithColor(computeXCoordinate(numOfKeptColors, i), computeYCoordinate(numOfKeptColors, i), diameter, diameter, color);
 						}
-						if(cb != null) {
-							cb.callback();
-						} else if (repeat) {
-							// set to orignal values, to start all over
-							sendAlice = true;
-							x1 = rightCircle;
-							x2 = middleCircle;
-							y2 = originaly2;
-							timer[l].start();
-						}
+						numOfKeptColors++;
+					}
+					if(cb != null) {
+						cb.callback();
+					} else if (repeat) {
+						// set to orignal values, to start all over
+						sendAlice = true;
+						x1 = rightCircle;
+						x2 = middleCircle;
+						y2 = originaly2;
+						timer[l].start();
 					}
 				}
 				repaint();
