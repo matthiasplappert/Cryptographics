@@ -75,6 +75,8 @@ public class ColorChannel extends JPanel {
 	}
 	
 	private Timer[] timer = {null, null, null, null, null};
+	
+	private boolean[] calledCallback = {false, false, false, false, false};
 
 	
 	public ColorChannel(int leftEnd, int rightEnd, int yPosition, int myheight) {
@@ -169,7 +171,10 @@ public class ColorChannel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO remove hardcoded values
-				System.out.println("timer " + l);
+				System.out.println("timer " + l + " in colorchannel");
+				if(calledCallback[l]) {
+					return;
+				}
 				if(x1 < rightCircle) {
 					x1 += 3;
 					if (x1 > middleCircle && y2 > myheight) {
@@ -186,6 +191,7 @@ public class ColorChannel extends JPanel {
 					}
 					if(cb != null) {
 						System.out.println("called callback");
+						calledCallback[l] = true;
 						cb.callback();
 					} else if (repeat) {
 						// set to orignal values, to start all over
@@ -220,7 +226,10 @@ public class ColorChannel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("timer " + l);
+				System.out.println("timer " + l + " in colorchannel");
+				if(calledCallback[l]) {
+					return;
+				}
 				if(x1 > leftEnd) {
 					x1 -= 3;
 					if (x1 < middleCircle && y2 > myheight) {
@@ -236,6 +245,7 @@ public class ColorChannel extends JPanel {
 						numOfKeptColors++;
 					}
 					if(cb != null) {
+						calledCallback[l] = true;
 						cb.callback();
 					} else if (repeat) {
 						// set to orignal values, to start all over
