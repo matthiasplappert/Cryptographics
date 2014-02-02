@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -23,7 +25,7 @@ public class ColorChannel extends JPanel {
 	private int yPosition, myheight, middleCircle, rightCircle;
 	private final int originalx1, originaly1, originalx2, originaly2;
 	/* kept colors */
-	private Ellipse2DwithColor[][] keptColors;
+	private ArrayList<Ellipse2DwithColor> keptColors;
 	private Ellipse2DwithColor ellip, ellip2;
 	private int numOfKeptColors;
 	
@@ -80,7 +82,7 @@ public class ColorChannel extends JPanel {
 
 	
 	public ColorChannel(int leftEnd, int rightEnd, int yPosition, int myheight) {
-		this.keptColors = new Ellipse2DwithColor[7][3];
+		this.keptColors = new ArrayList<>();
 		this.numOfKeptColors = 0;
 		this.yPosition = yPosition;
 		this.myheight = myheight;
@@ -110,14 +112,9 @@ public class ColorChannel extends JPanel {
 		
 		//450, 800, 180, 60
 		drawChannel(g2, this.leftEnd, this.rightEnd, this.yPosition, this.myheight);
-		for(int i=0; i < 3; i++) {
-			for(int j=0; j < 3; j++) {
-				if(keptColors[i][j] == null) {
-					break;
-				}
-				g2.setPaint(keptColors[i][j].getColor());
-				g2.fill(keptColors[i][j]);
-			}
+		for(Ellipse2DwithColor circle : keptColors) {
+			g2.setPaint(circle.getColor());
+			g2.fill(circle);
 		}
 		if (sendAlice) {
 			
@@ -185,9 +182,8 @@ public class ColorChannel extends JPanel {
 					timer[l].stop();
 					if(keepColor && !repeat) {
 						for(int i=0; i < 3; i++) {
-							keptColors[numOfKeptColors][i] = new Ellipse2DwithColor(computeXCoordinate(numOfKeptColors, i), computeYCoordinate(numOfKeptColors, i), diameter, diameter, color);
+							keptColors.add(new Ellipse2DwithColor(computeXCoordinate(keptColors.size()/3, i), computeYCoordinate(keptColors.size()/3, i), diameter, diameter, color));
 						}
-						numOfKeptColors++;
 					}
 					if(cb != null) {
 						System.out.println("called callback");
@@ -240,9 +236,8 @@ public class ColorChannel extends JPanel {
 					timer[l].stop();
 					if(keepColor) {
 						for(int i=0; i < 3; i++) {
-							keptColors[numOfKeptColors][i] = new Ellipse2DwithColor(computeXCoordinate(numOfKeptColors, i), computeYCoordinate(numOfKeptColors, i), diameter, diameter, color);
+							keptColors.add(new Ellipse2DwithColor(computeXCoordinate(keptColors.size()/3, i), computeYCoordinate(keptColors.size()/3, i), diameter, diameter, color));
 						}
-						numOfKeptColors++;
 					}
 					if(cb != null) {
 						calledCallback[l] = true;
