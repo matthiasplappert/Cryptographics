@@ -27,7 +27,8 @@ public class ColorChannel extends JPanel {
 	/* kept colors */
 	private ArrayList<Ellipse2DwithColor> keptColors;
 	private Ellipse2DwithColor ellip, ellip2;
-	private int numOfKeptColors;
+	
+	private int[] numOfCircles;
 	
 	/* the color to send */
 	private Color color = Color.BLACK;
@@ -82,8 +83,8 @@ public class ColorChannel extends JPanel {
 
 	
 	public ColorChannel(int leftEnd, int rightEnd, int yPosition, int myheight) {
+		this.numOfCircles = new int[3];
 		this.keptColors = new ArrayList<>();
-		this.numOfKeptColors = 0;
 		this.yPosition = yPosition;
 		this.myheight = myheight;
 		this.leftEnd = leftEnd;
@@ -182,7 +183,7 @@ public class ColorChannel extends JPanel {
 					timer[l].stop();
 					if(keepColor && !repeat) {
 						for(int i=0; i < 3; i++) {
-							keptColors.add(new Ellipse2DwithColor(computeXCoordinate(keptColors.size()/3, i), computeYCoordinate(keptColors.size()/3, i), diameter, diameter, color));
+							chooseColor(color, i);
 						}
 					}
 					if(cb != null) {
@@ -236,7 +237,7 @@ public class ColorChannel extends JPanel {
 					timer[l].stop();
 					if(keepColor) {
 						for(int i=0; i < 3; i++) {
-							keptColors.add(new Ellipse2DwithColor(computeXCoordinate(keptColors.size()/3, i), computeYCoordinate(keptColors.size()/3, i), diameter, diameter, color));
+							chooseColor(color, i);
 						}
 					}
 					if(cb != null) {
@@ -288,8 +289,9 @@ public class ColorChannel extends JPanel {
 		return -1;
 	}
 	
-	public void choosePrivateColor() {
-		
+	public void chooseColor(Color color, int i) {
+		this.keptColors.add(new Ellipse2DwithColor(computeXCoordinate(numOfCircles[i], i), computeYCoordinate(numOfCircles[i], i), diameter, diameter, color));
+		this.numOfCircles[i]++;
 	}
 
 	public Timer[] getTimer() {
