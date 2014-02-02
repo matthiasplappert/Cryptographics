@@ -74,9 +74,9 @@ public class ColorChannel extends JPanel {
 		this.keepColor = keepColor;
 	}
 	
-	private Timer[] timer = {null, null, null, null, null};
+	volatile private Timer[] timer = {null, null, null, null, null};
 	
-	private boolean[] calledCallback = {false, false, false, false, false};
+	volatile private boolean[] calledCallback = {false, false, false, false, false};
 
 	
 	public ColorChannel(int leftEnd, int rightEnd, int yPosition, int myheight) {
@@ -199,7 +199,7 @@ public class ColorChannel extends JPanel {
 						x1 = leftEnd;
 						x2 = middleCircle;
 						y2 = originaly2;
-						timer[l].start();
+						timer[l].restart();
 					}
 				}
 				repaint();
@@ -253,7 +253,7 @@ public class ColorChannel extends JPanel {
 						x1 = rightCircle;
 						x2 = middleCircle;
 						y2 = originaly2;
-						timer[l].start();
+						timer[l].restart();
 					}
 				}
 				repaint();
