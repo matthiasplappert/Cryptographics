@@ -16,6 +16,7 @@ public class ColorChannel extends JPanel {
 	/**
 	 * 
 	 */
+
 	private static final long serialVersionUID = 4073013433018353584L;
 	
 	/* the coordinates of the circles */
