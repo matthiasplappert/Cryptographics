@@ -87,15 +87,13 @@ public class MainController extends AbstractController {
 				
 				lookAndFeel.load(is, this.getClass());
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.e(e);
 			}
 			
 			try {
 				UIManager.setLookAndFeel(lookAndFeel);
 			} catch (UnsupportedLookAndFeelException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.e(e);
 			}
 		} else {
 			Logger.d("MainController", "loadLookAndFeel", "Look and feel disabled due to debugging.");

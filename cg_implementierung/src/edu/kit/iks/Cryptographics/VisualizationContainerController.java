@@ -516,7 +516,7 @@ public class VisualizationContainerController extends AbstractController {
 		} catch (InstantiationException | IllegalAccessException
 				| NoSuchMethodException | SecurityException
 				| IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
+			Logger.e(e);
 		}
 
 		this.visualizationControllers[index] = controller;
