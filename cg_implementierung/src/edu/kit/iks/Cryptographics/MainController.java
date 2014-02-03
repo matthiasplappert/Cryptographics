@@ -128,7 +128,7 @@ public class MainController extends AbstractController {
 	private void loadFrame() {
 		this.frame = new JFrame("Cryptographics");
 		
-		if (Logger.debugModeActive()) {
+		if (Logger.isDebugModeActive()) {
 			this.frame.setSize(1366, 768); // Basic size for debugging
 			Logger.d("MainController", "loadFrame", "Fullscreen mode disabled due to debugging.");
 			this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -149,7 +149,7 @@ public class MainController extends AbstractController {
 	 * Loads the custom look and feel.
 	 */
 	private void loadLookAndFeel() {
-		if (!Logger.debugModeActive()) {
+		if (!Logger.isDebugModeActive()) {
 			SynthLookAndFeel lookAndFeel = new SynthLookAndFeel();
 			
 			try {
@@ -174,7 +174,7 @@ public class MainController extends AbstractController {
 	 * Disables the cursor
 	 */
 	private void disableCursor() {
-		if (!Logger.debugModeActive()) {
+		if (!Logger.isDebugModeActive()) {
 			Cursor nullCursor = null;
 			Toolkit toolkit = Toolkit.getDefaultToolkit();
 			Dimension dimension = toolkit.getBestCursorSize(1, 1);
