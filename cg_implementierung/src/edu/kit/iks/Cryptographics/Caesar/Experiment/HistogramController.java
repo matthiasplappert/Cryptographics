@@ -13,6 +13,7 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
+import edu.kit.iks.CryptographicsLib.Logger;
 
 /**
  * Controller for the last step of the experiment phase. User can try to break the caesar cipher.
@@ -275,8 +276,7 @@ public class HistogramController extends AbstractVisualizationController {
 								BorderFactory.createLineBorder(Color.red));
 					}
 				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					Logger.e(e1);
 				}
 
 			}
