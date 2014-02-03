@@ -13,7 +13,6 @@ public class ExplainKeyExchangeController extends AbstractVisualizationControlle
 	
 	public ExplainKeyExchangeController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

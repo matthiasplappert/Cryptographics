@@ -11,8 +11,6 @@ public class MixColorController extends AbstractVisualizationController {
 	
 	public MixColorController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		view = new MixColorView();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

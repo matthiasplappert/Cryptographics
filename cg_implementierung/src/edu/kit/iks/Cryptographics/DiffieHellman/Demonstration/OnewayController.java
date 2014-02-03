@@ -12,18 +12,16 @@ public class OnewayController extends AbstractVisualizationController {
 	
 	public OnewayController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
+		// TODO Implement help String
 		return null;
 	}
 
 	@Override
 	public void loadView() {
-		// TODO Auto-generated method stub
 		view = new OnewayView();
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			
@@ -38,7 +36,6 @@ public class OnewayController extends AbstractVisualizationController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				((VisualizationContainerController) getParentController()).presentPreviousVisualizationController();
 			}
 		});

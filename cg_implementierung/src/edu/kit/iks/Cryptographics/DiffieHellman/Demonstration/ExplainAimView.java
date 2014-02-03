@@ -6,8 +6,6 @@ import java.awt.GridBagLayout;
 
 
 import javax.swing.JLabel;
-import javax.swing.Timer;
-
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 public class ExplainAimView extends VisualizationView {
@@ -40,16 +38,12 @@ public class ExplainAimView extends VisualizationView {
 		this.cc.setColor(Color.BLUE);
 		this.cc.setKeepColor(false);
 		this.cc.setRepeat(true);
-		this.cc.sendToBob(null, 0);
+		this.cc.sendToBob(null, 0, false);
 	}
 
-	public void stopAllTimer() {
-		Timer[] timer = cc.getTimer();
-		for(int i=0; i < timer.length; i++) {
-			if(timer[i] != null) {
-				timer[i].stop();
-			}
-		}
+	
+	public ColorChannel getColorChannel() {
+		return this.cc;
 	}
 	
 

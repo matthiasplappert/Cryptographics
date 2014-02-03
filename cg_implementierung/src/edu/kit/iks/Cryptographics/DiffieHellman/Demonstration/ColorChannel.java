@@ -16,6 +16,7 @@ public class ColorChannel extends JPanel {
 	/**
 	 * 
 	 */
+
 	private static final long serialVersionUID = 4073013433018353584L;
 	
 	/* the coordinates of the circles */
@@ -27,11 +28,15 @@ public class ColorChannel extends JPanel {
 	/* kept colors */
 	private ArrayList<Ellipse2DwithColor> keptColors;
 	private Ellipse2DwithColor ellip, ellip2;
-	private int numOfKeptColors;
+	
+	/* the circles that are displayed next to alice, bob and eve */
+	private int[] numOfCircles;
 	
 	/* the color to send */
 	private Color color = Color.BLACK;
 	private Color channelColor = Color.BLACK;
+	
+	private boolean firstCallAlice, firstCallBob;
 
 	/* repeat the sending of the color
 	 * if true
@@ -76,14 +81,16 @@ public class ColorChannel extends JPanel {
 		this.keepColor = keepColor;
 	}
 	
-	volatile private Timer[] timer = {null, null, null, null, null};
+	private Timer[] timer = {null, null, null, null, null};
 	
-	volatile private boolean[] calledCallback = {false, false, false, false, false};
+	private boolean[] calledCallback = {false, false, false, false, false};
 
 	
 	public ColorChannel(int leftEnd, int rightEnd, int yPosition, int myheight) {
+		this.firstCallAlice = true;
+		this.firstCallBob = true;
+		this.numOfCircles = new int[3];
 		this.keptColors = new ArrayList<>();
-		this.numOfKeptColors = 0;
 		this.yPosition = yPosition;
 		this.myheight = myheight;
 		this.leftEnd = leftEnd;
@@ -149,7 +156,9 @@ public class ColorChannel extends JPanel {
 	}
 	
 	// TODO refactor sendToBob and sendToAlice into one method
-	public void sendToBob(final NextStepCallback cb, final int l) {
+	// TODO enhance so that eve gets the keept color immediately after it arrived,
+	// instead of waiting for arrival of the message to bob/alice 
+	public void sendToBob(final NextStepCallback cb, final int l, final boolean keepFirst) {
 		if(sendAlice) {
 			/* don't want to send colors
 			 * if others are being send
@@ -172,6 +181,11 @@ public class ColorChannel extends JPanel {
 				if(calledCallback[l]) {
 					return;
 				}
+				if(firstCallBob && !repeat && keepFirst) {
+					chooseColor(color, 0);
+					System.out.println("in first call bob");
+					firstCallBob = false;
+				}
 				if(x1 < rightCircle) {
 					x1 += 3;
 					if (x1 > middleCircle && y2 > myheight) {
@@ -179,17 +193,20 @@ public class ColorChannel extends JPanel {
 					}
 				} else {
 					sendBob = false;
+					firstCallBob = true;
 					timer[l].stop();
 					if(keepColor && !repeat) {
-						for(int i=0; i < 3; i++) {
-							keptColors.add(new Ellipse2DwithColor(computeXCoordinate(keptColors.size()/3, i), computeYCoordinate(keptColors.size()/3, i), diameter, diameter, color));
+						for(int i=1; i < 3; i++) {
+							chooseColor(color, i);
 						}
 					}
 					if(cb != null) {
-						System.out.println("called callback");
+						System.out.println("called callback in sendToBob");
 						calledCallback[l] = true;
+						System.out.println("calledCallback is " + calledCallback[l]);
 						cb.callback();
 					} else if (repeat) {
+						System.out.println("repeat now");
 						// set to orignal values, to start all over
 						sendBob = true;
 						x1 = leftEnd;
@@ -204,7 +221,7 @@ public class ColorChannel extends JPanel {
 		timer[l].start();
 	}
 	
-	public void sendToAlice(final NextStepCallback cb, final int l) {
+	public void sendToAlice(final NextStepCallback cb, final int l, final boolean keepFirst) {
 		if(sendBob) {
 			/* don't want to send if there
 			 * is already colors to be sent
@@ -226,6 +243,11 @@ public class ColorChannel extends JPanel {
 				if(calledCallback[l]) {
 					return;
 				}
+				if(firstCallAlice && !repeat && keepFirst) {
+					chooseColor(color, 1);
+					System.out.println("in first call alice");
+					firstCallAlice = false;
+				}
 				if(x1 > leftEnd) {
 					x1 -= 3;
 					if (x1 < middleCircle && y2 > myheight) {
@@ -233,16 +255,19 @@ public class ColorChannel extends JPanel {
 					}
 				} else {
 					sendAlice = false;
+					firstCallAlice = true;
 					timer[l].stop();
 					if(keepColor) {
-						for(int i=0; i < 3; i++) {
-							keptColors.add(new Ellipse2DwithColor(computeXCoordinate(keptColors.size()/3, i), computeYCoordinate(keptColors.size()/3, i), diameter, diameter, color));
-						}
+						chooseColor(color, 0);
+						chooseColor(color, 2);
 					}
 					if(cb != null) {
+						System.out.println("called Callback in sendToAlice");
 						calledCallback[l] = true;
+						System.out.println("calledCallback is " + calledCallback[l]);
 						cb.callback();
 					} else if (repeat) {
+						System.out.println("repeat now");
 						// set to orignal values, to start all over
 						sendAlice = true;
 						x1 = rightCircle;
@@ -267,7 +292,7 @@ public class ColorChannel extends JPanel {
 			return rightCircle+numOfKeptColors*diameter;
 		case 2:
 			//eve
-			return middleCircle+numOfKeptColors*diameter;
+			return middleCircle+(numOfKeptColors+1)*diameter;
 		}
 		//error
 		return -1;
@@ -288,12 +313,22 @@ public class ColorChannel extends JPanel {
 		return -1;
 	}
 	
-	public void choosePrivateColor() {
-		
+	public void chooseColor(Color color, int i) {
+		this.keptColors.add(new Ellipse2DwithColor(computeXCoordinate(numOfCircles[i], i), computeYCoordinate(numOfCircles[i], i), diameter, diameter, color));
+		this.numOfCircles[i]++;
+		repaint();
 	}
 
 	public Timer[] getTimer() {
 		return this.timer;
+	}
+	
+	public void stopAllTimer() {
+		for(int i=0; i < timer.length; i++) {
+			if(timer[i] != null) {
+				timer[i].stop();
+			}
+		}
 	}
 
 }

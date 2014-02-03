@@ -46,8 +46,6 @@ public class ColorMix extends JPanel {
 	/* true if we should mix the colors */
 	private boolean mixcolors;
 
-	private boolean repeat;
-	
 	private Timer[] timer = {null, null, null, null, null};
 	
 	private boolean[] calledCallback = {false, false, false, false, false};
@@ -67,7 +65,6 @@ public class ColorMix extends JPanel {
 	
 	public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb, final int l) {
 		this.mixcolors = mix;
-		this.repeat = repeat;
 		this.x1 = 50;
 		this.y1 = 50;
 		this.x2 = 300;

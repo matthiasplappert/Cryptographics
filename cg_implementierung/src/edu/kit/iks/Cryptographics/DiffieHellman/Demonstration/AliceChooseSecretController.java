@@ -37,7 +37,7 @@ public class AliceChooseSecretController extends AbstractVisualizationController
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				((VisualizationContainerController) getParentController()).presentPreviousVisualizationController();
 			}
 		});
@@ -49,7 +49,7 @@ public class AliceChooseSecretController extends AbstractVisualizationController
 	 */
 	@Override
 	public void unloadView() {
-		// TODO add method to stop all timers!
+		this.getView().getColorChannel().stopAllTimer();
 		this.view = null;
 	}
 	

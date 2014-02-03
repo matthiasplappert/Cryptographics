@@ -11,7 +11,6 @@ public class BobChooseSecretController extends AbstractVisualizationController {
 	
 	public BobChooseSecretController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		view = new BobChooseSecretView();
 		// TODO Auto-generated constructor stub
 	}
 
