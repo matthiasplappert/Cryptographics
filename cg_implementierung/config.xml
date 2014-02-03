@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <idleTimeout>300000</idleTimeout>
+  <resetTimeout>60000</resetTimeout>
+  <debugMode>false</debugMode>
+  <fullscreenMode>true</fullscreenMode>
+  <lookAndFeel>true</lookAndFeel>
+  <mouseCursor>false</mouseCursor>
+  <languageCode>en_US</languageCode>
+</config>

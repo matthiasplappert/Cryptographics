@@ -64,13 +64,13 @@ public class MainController extends AbstractController {
 	private void loadFrame() {
 		this.frame = new JFrame("Cryptographics");
 		
-		if (Logger.debugModeActive()) {
-			this.frame.setSize(1366, 768); // Basic size for testing. Needs to be
-										   // fullscreen in the end
-			Logger.d("MainController", "loadFrame", "Fullscreen mode disabled due to debugging.");
-		} else {
+		if (Configuration.getInstance().isFullscreenModeEnabled()) {
 			this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			this.frame.setUndecorated(true);
+		} else {
+			// Basic size for testing. Needs to be fullscreen in the end
+			this.frame.setSize(1366, 768);
+			Logger.d("MainController", "loadFrame", "Fullscreen mode disabled.");
 		}
 		
 		this.frame.setVisible(true);
@@ -85,7 +85,7 @@ public class MainController extends AbstractController {
 	 * Loads the custom look and feel.
 	 */
 	private void loadLookAndFeel() {
-		if (!Logger.debugModeActive()) {
+		if (Configuration.getInstance().isLookAndFeelEnabled()) {
 			SynthLookAndFeel lookAndFeel = new SynthLookAndFeel();
 			
 			try {
