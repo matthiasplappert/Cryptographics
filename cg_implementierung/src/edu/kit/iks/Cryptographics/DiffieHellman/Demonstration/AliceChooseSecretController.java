@@ -49,12 +49,6 @@ public class AliceChooseSecretController extends AbstractVisualizationController
 	 */
 	@Override
 	public void unloadView() {
-		// TODO add method to stop all timers!
-		this.view = null;
-	}
-	
-	@Override
-	public void unloadView() {
 		this.getView().getColorChannel().stopAllTimer();
 		this.view = null;
 	}
