@@ -1,7 +1,15 @@
 package edu.kit.iks.Cryptographics;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.text.ParseException;
 
 import javax.swing.JFrame;
@@ -25,6 +33,12 @@ import edu.kit.iks.CryptographicsLib.PopoverView;
 public class MainController extends AbstractController {
 
 	/**
+	 * Gets the configurations supplied by the instance
+	 * itself or overwritten by the config.xml file
+	 */
+	private Configuration config = Configuration.getInstance();
+	
+	/**
 	 * A sandbox for subcontrollers to inflate their contents
 	 */
 	private JFrame frame;
@@ -47,6 +61,7 @@ public class MainController extends AbstractController {
 	public void loadView() {
 		this.loadLookAndFeel();
 		this.loadFrame();
+		this.disableCursor();
 	}
 	
 	/*
@@ -56,54 +71,6 @@ public class MainController extends AbstractController {
 	@Override
 	public void unloadView() {
 		this.frame = null;
-	}
-
-	/**
-	 * Loads the JFrame
-	 */
-	private void loadFrame() {
-		this.frame = new JFrame("Cryptographics");
-		
-		if (Configuration.getInstance().isFullscreenModeEnabled()) {
-			this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-			this.frame.setUndecorated(true);
-		} else {
-			// Basic size for testing. Needs to be fullscreen in the end
-			this.frame.setSize(1366, 768);
-			Logger.d("MainController", "loadFrame", "Fullscreen mode disabled.");
-		}
-		
-		this.frame.setVisible(true);
-		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		// Extract the glassPane. We use this for displaying popovers.
-		JPanel popoverContainerView = (JPanel)this.frame.getGlassPane();
-		PopoverView.setContainerView(popoverContainerView);
-	}
-	
-	/**
-	 * Loads the custom look and feel.
-	 */
-	private void loadLookAndFeel() {
-		if (Configuration.getInstance().isLookAndFeelEnabled()) {
-			SynthLookAndFeel lookAndFeel = new SynthLookAndFeel();
-			
-			try {
-				InputStream is = this.getClass().getResourceAsStream("/theme/manifest.xml");
-				
-				lookAndFeel.load(is, this.getClass());
-			} catch (ParseException e) {
-				Logger.e(e);
-			}
-			
-			try {
-				UIManager.setLookAndFeel(lookAndFeel);
-			} catch (UnsupportedLookAndFeelException e) {
-				Logger.e(e);
-			}
-		} else {
-			Logger.d("MainController", "loadLookAndFeel", "Look and feel disabled due to debugging.");
-		}
 	}
 
 	/**
@@ -159,5 +126,76 @@ public class MainController extends AbstractController {
 		this.frame.getContentPane().revalidate();
 		this.frame.getContentPane().repaint();
 		this.frame.revalidate();
+	}
+	
+	/**
+	 * Loads the JFrame
+	 */
+	private void loadFrame() {
+		this.frame = new JFrame("Cryptographics");
+		
+		if (this.config.isFullscreenModeEnabled()) {
+			this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			this.frame.setUndecorated(true);
+			this.frame.setAlwaysOnTop(true);
+		} else {
+			this.frame.setSize(1366, 768); // Basic size for debugging
+			Logger.d("MainController", "loadFrame", "Fullscreen mode disabled due to debugging.");
+		}
+		
+		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frame.setVisible(true);
+		
+		// Extract the glassPane. We use this for displaying popovers.
+		JPanel popoverContainerView = (JPanel)this.frame.getGlassPane();
+		PopoverView.setContainerView(popoverContainerView);
+	}
+	
+	/**
+	 * Loads the custom look and feel.
+	 */
+	private void loadLookAndFeel() {
+		if (this.config.isLookAndFeelEnabled()) {
+			SynthLookAndFeel lookAndFeel = new SynthLookAndFeel();
+			
+			try {
+				InputStream is = this.getClass().getResourceAsStream("/theme/manifest.xml");
+				
+				lookAndFeel.load(is, this.getClass());
+			} catch (ParseException e) {
+				Logger.e(e);
+			}
+			
+			try {
+				UIManager.setLookAndFeel(lookAndFeel);
+			} catch (UnsupportedLookAndFeelException e) {
+				Logger.e(e);
+			}
+		} else {
+			Logger.d("MainController", "loadLookAndFeel", "Look and feel disabled due to debugging.");
+		}
+	}
+	
+	/**
+	 * Disables the cursor
+	 */
+	private void disableCursor() {
+		if (!this.config.isMouseCursorEnabled()) {
+			Cursor nullCursor = null;
+			Toolkit toolkit = Toolkit.getDefaultToolkit();
+			Dimension dimension = toolkit.getBestCursorSize(1, 1);
+			
+			if ((dimension.width | dimension.height) != 0) {
+				nullCursor = toolkit.createCustomCursor(new BufferedImage(dimension.width,
+						dimension.height,
+						BufferedImage.TYPE_INT_ARGB),
+						new Point(0, 0),
+						"nullCursor");
+			}
+			
+			this.frame.setCursor(nullCursor);
+		} else {
+			Logger.d("MainController", "disableCursor", "Curser is visible due to debugging.");
+		}
 	}
 }
