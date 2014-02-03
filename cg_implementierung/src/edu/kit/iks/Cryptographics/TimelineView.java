@@ -1,17 +1,13 @@
 package edu.kit.iks.Cryptographics;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.VisualizationButton;
 
 /**

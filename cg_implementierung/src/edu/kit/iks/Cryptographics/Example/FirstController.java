@@ -2,7 +2,6 @@ package edu.kit.iks.Cryptographics.Example;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 
@@ -10,6 +9,7 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
+import edu.kit.iks.CryptographicsLib.MouseClickListener;
 
 public class FirstController extends AbstractVisualizationController {
 
@@ -26,36 +26,11 @@ public class FirstController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		VisualizationView v = new VisualizationView();
-		v.getNextButton().addMouseListener(new MouseListener() {
-
+		v.getNextButton().addMouseListener(new MouseClickListener() {
 			@Override
-			public void mouseClicked(MouseEvent event) {
+			public void clicked(MouseEvent event) {
 				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
 				containerController.presentNextVisualizationController();
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
 			}
 		});
 		
