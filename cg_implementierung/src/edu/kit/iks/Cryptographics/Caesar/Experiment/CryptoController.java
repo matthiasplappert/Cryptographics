@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.MouseClickListener;
 
 /**
  * Controller for the first and second step of the experiment phase. When user has to put input and
@@ -55,10 +56,9 @@ public class CryptoController extends AbstractVisualizationController {
 		this.editableFields = 2;
 
 		// Create all needed ActionListener.
-		this.getView().getGenerator().addMouseListener(new MouseListener() {
-
+		this.getView().getGenerator().addMouseListener(new MouseClickListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void clicked(MouseEvent e) {
 				char[] string = getModel().getRandomPlainSequence()
 						.toCharArray();
 				int key = getModel().generateKey();
@@ -69,33 +69,7 @@ public class CryptoController extends AbstractVisualizationController {
 
 				// generate ActionListener.
 				generateListener(string);
-
 			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
 		});
 		this.getView().getKey().addFocusListener(new FocusListener() {
 			// TODO: make the strings to set dynamically. Avoid hard code.

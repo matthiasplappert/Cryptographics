@@ -1,10 +1,7 @@
 package edu.kit.iks.Cryptographics;
 
 import java.awt.BorderLayout;
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.text.ParseException;
 
 import javax.swing.JFrame;
