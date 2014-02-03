@@ -68,8 +68,7 @@ public class InformationView extends JPanel {
 	    try {
 	    	editorPane.setPage(this.url);
 	    } catch(Exception e) {
-	    	// TODO handle
-	    	e.printStackTrace();
+	    	Logger.e(e);
 	    }
 	    JScrollPane scrollPane = new JScrollPane(editorPane); 
 
