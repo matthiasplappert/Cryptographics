@@ -18,6 +18,7 @@ import edu.kit.iks.Cryptographics.Vigenere.Explanation.FirstExplanationControlle
 import edu.kit.iks.Cryptographics.Vigenere.Explanation.SecondExplanationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.InformationController;
+import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
 public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
@@ -34,12 +35,8 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 
 			// get root node from xml
 			this.vigenereResources = document.getRootElement().getChild("vigenere");
-		} catch (JDOMException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (JDOMException | IOException e) {
+			Logger.e(e);
 		}
 	}
 	

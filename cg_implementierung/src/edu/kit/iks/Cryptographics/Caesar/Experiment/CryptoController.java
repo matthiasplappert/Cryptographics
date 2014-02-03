@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Logger;
 
 /**
  * Controller for the first and second step of the experiment phase. When user has to put input and
@@ -163,8 +164,7 @@ public class CryptoController extends AbstractVisualizationController {
 								// Generate Listener for the userOutput JTextfield
 								generateListener(inputChars);
 							} catch (NumberFormatException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
+								Logger.e(e1);
 							}
 						}
 					} else {
@@ -181,8 +181,7 @@ public class CryptoController extends AbstractVisualizationController {
 								BorderFactory.createLineBorder(Color.red));
 					}
 				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					Logger.e(e1);
 				}
 
 			}
@@ -425,8 +424,7 @@ public class CryptoController extends AbstractVisualizationController {
 													"You picked the wrong letter!! Try another one!");
 								}
 							} catch (NumberFormatException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
+								Logger.e(e1);
 							}
 
 						}
