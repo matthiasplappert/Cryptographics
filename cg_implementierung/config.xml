@@ -2,9 +2,9 @@
 <config>
   <idleTimeout>300000</idleTimeout>
   <resetTimeout>60000</resetTimeout>
-  <debugModeEnabled>true</debugModeEnabled>
-  <fullscreenModeEnabled>true</fullscreenModeEnabled>
-  <lookAndFeelEnabled>true</lookAndFeelEnabled>
-  <mouseCursorEnabled>false</mouseCursorEnabled>
+  <debugMode>false</debugMode>
+  <fullscreenMode>true</fullscreenMode>
+  <lookAndFeel>true</lookAndFeel>
+  <mouseCursor>false</mouseCursor>
   <languageCode>en_US</languageCode>
 </config>
