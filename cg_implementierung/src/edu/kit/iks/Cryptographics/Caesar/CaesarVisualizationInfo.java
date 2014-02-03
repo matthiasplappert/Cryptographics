@@ -17,6 +17,7 @@ import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoController;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.HistogramController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.InformationController;
+import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
 /**
@@ -45,12 +46,8 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 
 			// get root node from xml
 			this.caesarResources = document.getRootElement();
-		} catch (JDOMException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (JDOMException | IOException e) {
+			Logger.e(e);
 		}
 	}
 
