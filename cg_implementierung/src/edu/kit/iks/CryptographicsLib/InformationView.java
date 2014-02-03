@@ -4,10 +4,14 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 
-import javax.swing.JEditorPane;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.text.html.HTMLEditorKit;
 
 /**
  * View of the information page
@@ -60,27 +64,39 @@ public class InformationView extends JPanel {
 	}
 	
 	private void loadWebView() {
-	    final JEditorPane editorPane = new JEditorPane();
-	    editorPane.setEditable(false);
+		final JFXPanel fxPanel = new JFXPanel();
+		GridBagConstraints fxConstraints = new GridBagConstraints();
+        fxConstraints.gridx = 0;
+        fxConstraints.gridy = 0;
+        fxConstraints.weightx = 1.0;
+        fxConstraints.weighty = 0.9;
+        fxConstraints.fill = GridBagConstraints.BOTH;
+        this.add(fxPanel, fxConstraints);
+        
+        Platform.runLater(new Runnable() { // this will run initFX as JavaFX-Thread
+            @Override
+            public void run() {
+                initFX(fxPanel);
+            }
+        });
+    }
 
-	    // Use HTML.
-	    editorPane.setEditorKitForContentType("text/html", new HTMLEditorKit());
-	    try {
-	    	editorPane.setPage(this.url);
-	    } catch(Exception e) {
-	    	Logger.e(e);
-	    }
-	    JScrollPane scrollPane = new JScrollPane(editorPane); 
+    /* Creates a WebView and fires up google.com */
+    private void initFX(final JFXPanel fxPanel) {
+    	// TODO properly size and configure
+        Group group = new Group();
+        Scene scene = new Scene(group);
+        fxPanel.setScene(scene);
 
-	    // Add the scroll pane.
-	    GridBagConstraints scrollConstraints = new GridBagConstraints();
-	    scrollConstraints.gridx = 0;
-	    scrollConstraints.gridy = 0;
-	    scrollConstraints.weighty = 0.9;
-	    scrollConstraints.weightx = 1.0;
-	    scrollConstraints.fill = GridBagConstraints.BOTH;
-	    this.add(scrollPane, scrollConstraints);
-	}
+        WebView webView = new WebView();
+        group.getChildren().add(webView);
+        webView.setMinSize(800, 600);
+        webView.setMaxSize(800, 600);
+
+        // Obtain the webEngine to navigate.
+        WebEngine webEngine = webView.getEngine();
+        webEngine.load("http://www.google.com/");
+    }
 	
 	/**
 	 * Gets the file path to the local HTML file with further information
