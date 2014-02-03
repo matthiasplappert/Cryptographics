@@ -3,11 +3,12 @@ package edu.kit.iks.Cryptographics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 
 import edu.kit.iks.CryptographicsLib.PopoverView;
 
@@ -61,18 +62,20 @@ public class IdlePopoverView extends PopoverView {
 		this.remainingTime = initialTime;
 		
 		// Create a timer to update the view periodically.
-		this.updateTimer = new Timer();
-		this.updateTimer.schedule(new TimerTask() {
+		this.updateTimer = new Timer(1000, new ActionListener() {
+
 			@Override
-			public void run() {
+			public void actionPerformed(ActionEvent e) {
 				if (remainingTime > 0) {
 					remainingTime -= 1000;
 					updateCountdownLabel();
 				} else {
-					updateTimer.cancel();
+					updateTimer.stop();
+					updateTimer = null;
 				}
 			}
-		}, 1000, 1000);
+		});
+		this.updateTimer.start();
 		
 		// Configure layout.
 		this.getContentView().setLayout(new GridBagLayout());
