@@ -25,6 +25,15 @@ public class ChoosePublicColorController extends AbstractVisualizationController
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+	}
 
 	@Override
 	public ChoosePublicColorView getView() {

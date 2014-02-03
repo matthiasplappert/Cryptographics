@@ -28,6 +28,15 @@ public class ChooseSecretColorController extends AbstractVisualizationController
 		
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+	}
+	
 	@Override
 	public ChooseSecretColorView getView() {
 		return (ChooseSecretColorView) this.view;

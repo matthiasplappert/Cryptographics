@@ -2,7 +2,6 @@ package edu.kit.iks.Cryptographics.Example;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 
@@ -10,6 +9,7 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
+import edu.kit.iks.CryptographicsLib.MouseClickListener;
 
 public class SecondController extends AbstractVisualizationController {
 
@@ -25,68 +25,18 @@ public class SecondController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		VisualizationView v = new VisualizationView();
-		v.getBackButton().addMouseListener(new MouseListener() {
-
+		v.getBackButton().addMouseListener(new MouseClickListener() {
 			@Override
-			public void mouseClicked(MouseEvent event) {
+			public void clicked(MouseEvent event) {
 				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
 				containerController.presentPreviousVisualizationController();
 			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
 		});
-		v.getNextButton().addMouseListener(new MouseListener() {
-
+		v.getNextButton().addMouseListener(new MouseClickListener() {
 			@Override
-			public void mouseClicked(MouseEvent event) {
+			public void clicked(MouseEvent event) {
 				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
 				containerController.presentNextVisualizationController();
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
 			}
 		});
 		
@@ -95,5 +45,13 @@ public class SecondController extends AbstractVisualizationController {
 		this.view.setBackground(Color.RED);
 		this.view.validate();
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+	}
 }

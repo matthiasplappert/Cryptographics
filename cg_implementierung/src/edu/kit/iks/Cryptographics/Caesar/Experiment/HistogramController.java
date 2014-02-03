@@ -1,24 +1,19 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JTextField;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
-import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.MouseClickListener;
+import edu.kit.iks.CryptographicsLib.Logger;
 
 /**
  * Controller for the last step of the experiment phase. User can try to break the caesar cipher.
@@ -76,35 +71,20 @@ public class HistogramController extends AbstractVisualizationController {
 		});
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+		this.model = null;
+	}
+	
 	private void genProceedListener() {
-		this.getView().getProceed().addMouseListener(new MouseListener() {
-
+		this.getView().getProceed().addMouseListener(new MouseClickListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void clicked(MouseEvent e) {
 				if (getStep() == 0) {
 					int secret = getModel().generateKey();
 					getView().setSecretKey(secret);
@@ -171,10 +151,9 @@ public class HistogramController extends AbstractVisualizationController {
 	 * Generates the action listener for the brute force stage.
 	 */
 	public void genListenerBruteForce() {
-		this.getView().getIncrement().addMouseListener(new MouseListener() {
-
+		this.getView().getIncrement().addMouseListener(new MouseClickListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void clicked(MouseEvent e) {
 				int key = getView().getKeyValue() + 1;
 				if (key < 27) {
 
@@ -209,35 +188,10 @@ public class HistogramController extends AbstractVisualizationController {
 					// TODO:
 				}
 			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
 		});
-		this.getView().getDecrement().addMouseListener(new MouseListener() {
-
+		this.getView().getDecrement().addMouseListener(new MouseClickListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void clicked(MouseEvent e) {
 				// TODO: need the valid bahviour.
 				int key = getView().getKeyValue() - 1;
 				if (key > 0) {
@@ -247,30 +201,6 @@ public class HistogramController extends AbstractVisualizationController {
 							(getModel().dec(key, getView().getCipher()
 									.getText())));
 				}
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
 			}
 		});
 	}
@@ -346,8 +276,7 @@ public class HistogramController extends AbstractVisualizationController {
 								BorderFactory.createLineBorder(Color.red));
 					}
 				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					Logger.e(e1);
 				}
 
 			}

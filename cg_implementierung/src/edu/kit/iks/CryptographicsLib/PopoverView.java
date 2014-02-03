@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
@@ -102,6 +103,7 @@ public class PopoverView extends JPanel {
 		GridBagConstraints closeConstraints = new GridBagConstraints();
 		closeConstraints.gridx = 0;
 		closeConstraints.gridy = 0;
+		closeConstraints.insets = new Insets(0, 0, 0, 0);
 		// \u00D7 is the unicode for the times "x" (prettier close icon as just x)
 		this.closeButton = new JButton("\u00D7");
 		// Name to enable applying custom style with synth
@@ -113,6 +115,7 @@ public class PopoverView extends JPanel {
 		contentConstraints.gridx = 0;
 		contentConstraints.gridy = 1;
 		contentConstraints.gridwidth = 3;
+		contentConstraints.insets = new Insets(0, INSET, INSET, INSET);
 		this.contentView = new JPanel();
 		this.contentView.setOpaque(false);
 		this.add(this.contentView, contentConstraints);
@@ -264,11 +267,14 @@ public class PopoverView extends JPanel {
 		this.repaint();
 	}
 	
+	/**
+	 * We use a border to account for the arrow. 
+	 */
 	private void updateBorder() {
 		Border border;
 		switch (this.arrowLocation) {
-			case TOP: border = BorderFactory.createEmptyBorder(INSET + ARROW_HEIGHT, INSET, INSET, INSET); break;
-			case BOTTOM: border = BorderFactory.createEmptyBorder(INSET, INSET, INSET + ARROW_HEIGHT, INSET); break;
+			case TOP: border = BorderFactory.createEmptyBorder(ARROW_HEIGHT, 0, 0, 0); break;
+			case BOTTOM: border = BorderFactory.createEmptyBorder(0, 0, ARROW_HEIGHT, 0); break;
 			default: border = BorderFactory.createEmptyBorder(0, 0, 0, 0); break;
 		}
 		

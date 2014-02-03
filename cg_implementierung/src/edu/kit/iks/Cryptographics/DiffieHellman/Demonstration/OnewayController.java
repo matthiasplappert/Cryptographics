@@ -41,6 +41,16 @@ public class OnewayController extends AbstractVisualizationController {
 		});
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		// TODO stop all timers!
+		this.view = null;
+	}
+	
 	@Override
 	public OnewayView getView() {
 		return (OnewayView) this.view;

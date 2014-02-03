@@ -22,6 +22,7 @@ import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.ImageView;
+import edu.kit.iks.CryptographicsLib.MouseClickListener;
 
 /**
  * This class is the controller of the view CFirstView.
@@ -83,39 +84,23 @@ public class IntroductionController extends AbstractVisualizationController {
 			}
 		});
 
-		this.getView().getProceed().addMouseListener(new MouseListener() {
-
+		this.getView().getProceed().addMouseListener(new MouseClickListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void clicked(MouseEvent e) {
 				animationStart(getAnimationStep());
-
 			}
 		});
 
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+		this.introResource = null;
 	}
 
 	/**

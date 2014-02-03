@@ -7,7 +7,6 @@ import java.awt.event.AWTEventListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -18,6 +17,7 @@ import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Logger;
+import edu.kit.iks.CryptographicsLib.MouseClickListener;
 
 /**
  * An instance of this class is a wrapper for visualization controller to
@@ -130,69 +130,18 @@ public class VisualizationContainerController extends AbstractController {
 		this.view.setName("visualizationContainerController");
 		this.view.getNameLabel().setText(this.getVisualizationInfo().getName());
 		
-		this.view.getExitButton().addMouseListener(new MouseListener() {
-
+		this.view.getExitButton().addMouseListener(new MouseClickListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void clicked(MouseEvent e) {
 				MainController mainController = (MainController) getParentController();
 				Logger.l("User went back to start screen");
 				mainController.presentStartAction();
 			}
 		});
-		this.view.getHelpButton().addMouseListener(new MouseListener() {
-
+		this.view.getHelpButton().addMouseListener(new MouseClickListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void clicked(MouseEvent e) {
 				presentHelpPopover();
-
 			}
 		});
 	}
@@ -251,34 +200,9 @@ public class VisualizationContainerController extends AbstractController {
 		this.idlePopoverView.present(this.getView().getExitButton());
 		
 		// Create mouse listeners for buttons.
-		MouseListener listener = new MouseListener() {
-			
+		MouseClickListener listener = new MouseClickListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void clicked(MouseEvent e) {
 				dismissIdlePopover();
 				startIdleDetectionTimer();
 			}
@@ -380,36 +304,10 @@ public class VisualizationContainerController extends AbstractController {
 		}
 		
 		this.helpPopoverView = new HelpPopoverView(helpText);
-		this.helpPopoverView.getCloseButton().addMouseListener(new MouseListener() {
-			
+		this.helpPopoverView.getCloseButton().addMouseListener(new MouseClickListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void clicked(MouseEvent e) {
 				dismissHelpPopover();
-				
 			}
 		});
 		this.helpPopoverView.present(this.getView().getHelpButton());
@@ -526,7 +424,7 @@ public class VisualizationContainerController extends AbstractController {
 		} catch (InstantiationException | IllegalAccessException
 				| NoSuchMethodException | SecurityException
 				| IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
+			Logger.e(e);
 		}
 
 		this.visualizationControllers[index] = controller;

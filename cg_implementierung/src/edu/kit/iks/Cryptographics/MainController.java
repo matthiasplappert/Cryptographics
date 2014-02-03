@@ -1,10 +1,7 @@
 package edu.kit.iks.Cryptographics;
 
 import java.awt.BorderLayout;
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.text.ParseException;
 
 import javax.swing.JFrame;
@@ -51,6 +48,15 @@ public class MainController extends AbstractController {
 		this.loadLookAndFeel();
 		this.loadFrame();
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.frame = null;
+	}
 
 	/**
 	 * Loads the JFrame
@@ -87,15 +93,13 @@ public class MainController extends AbstractController {
 				
 				lookAndFeel.load(is, this.getClass());
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.e(e);
 			}
 			
 			try {
 				UIManager.setLookAndFeel(lookAndFeel);
 			} catch (UnsupportedLookAndFeelException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Logger.e(e);
 			}
 		} else {
 			Logger.d("MainController", "loadLookAndFeel", "Look and feel disabled due to debugging.");

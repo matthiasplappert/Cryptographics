@@ -37,6 +37,15 @@ public class InformationController extends AbstractVisualizationController {
 		
 		this.view = new InformationView(path, qrCode);
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+	}
 
 	/*
 	 * (non-Javadoc)

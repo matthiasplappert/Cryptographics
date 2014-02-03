@@ -2,15 +2,11 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
@@ -19,6 +15,7 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoModel;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.MouseClickListener;
 
 /**
  * Controller for the last step of demonstration phase. Controls the needed elements from
@@ -165,39 +162,24 @@ public class CipherDemoController extends AbstractVisualizationController {
 			}
 		});
 
-		this.getView().getProceed().addMouseListener(new MouseListener() {
-
+		this.getView().getProceed().addMouseListener(new MouseClickListener() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void clicked(MouseEvent e) {
 				animationStart(getAnimationStep());
 			}
 		});
 
 		this.getView().validate();
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+		this.model = null;
 	}
 
 	/**

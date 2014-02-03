@@ -28,6 +28,15 @@ public class MixFinalSecretController extends AbstractVisualizationController {
 		
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+	}
+	
 	@Override
 	public MixFinalSecretView getView() {
 		return (MixFinalSecretView) this.view;

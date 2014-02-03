@@ -34,6 +34,16 @@ public class MixColorController extends AbstractVisualizationController {
 
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		// TODO stop all timers!
+		this.view = null;
+	}
+	
 	@Override
 	public MixColorView getView() {
 		return (MixColorView) this.view;
