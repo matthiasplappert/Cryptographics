@@ -141,9 +141,9 @@ public class MainController extends AbstractController {
 		} else {
 			this.frame.setSize(1366, 768); // Basic size for debugging
 			Logger.d("MainController", "loadFrame", "Fullscreen mode disabled due to debugging.");
-			this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 		
+		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setVisible(true);
 		
 		// Extract the glassPane. We use this for displaying popovers.
