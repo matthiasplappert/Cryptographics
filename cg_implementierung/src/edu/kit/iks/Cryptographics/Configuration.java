@@ -35,7 +35,7 @@ public class Configuration {
 	 * Returns the time in milliseconds after that a user is considered idle.
 	 * @return the timeout in milliseconds
 	 */
-	public long getIdleTimeout() {
+	public int getIdleTimeout() {
 		return 5 * 60 * 1000;
 	}
 	
@@ -44,7 +44,7 @@ public class Configuration {
 	 * detected as idle.
 	 * @return the timeout in milliseconds
 	 */
-	public long getResetTimeout() {
+	public int getResetTimeout() {
 		return 60 * 1000;
 	}
 }

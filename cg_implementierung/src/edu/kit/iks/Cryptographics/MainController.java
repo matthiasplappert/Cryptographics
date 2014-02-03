@@ -51,6 +51,15 @@ public class MainController extends AbstractController {
 		this.loadLookAndFeel();
 		this.loadFrame();
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.frame = null;
+	}
 
 	/**
 	 * Loads the JFrame

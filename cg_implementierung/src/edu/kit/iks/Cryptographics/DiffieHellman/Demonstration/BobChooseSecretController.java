@@ -47,6 +47,16 @@ public class BobChooseSecretController extends AbstractVisualizationController {
 
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		// TODO stop all timers!
+		this.view = null;
+	}
+	
 	@Override
 	public BobChooseSecretView getView() {
 		return (BobChooseSecretView) this.view;
