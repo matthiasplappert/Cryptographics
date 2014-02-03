@@ -37,6 +37,11 @@ public class ExplainAimController extends AbstractVisualizationController {
 	}
 	
 	@Override
+	public void unloadView() {
+		this.getView().stopAllTimer();
+	}
+	
+	@Override
 	public ExplainAimView getView() {
 		return (ExplainAimView) this.view;
 		

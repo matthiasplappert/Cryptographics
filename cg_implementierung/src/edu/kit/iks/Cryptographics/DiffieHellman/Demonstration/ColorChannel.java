@@ -77,9 +77,9 @@ public class ColorChannel extends JPanel {
 		this.keepColor = keepColor;
 	}
 	
-	volatile private Timer[] timer = {null, null, null, null, null};
+	private Timer[] timer = {null, null, null, null, null};
 	
-	volatile private boolean[] calledCallback = {false, false, false, false, false};
+	private boolean[] calledCallback = {false, false, false, false, false};
 
 	
 	public ColorChannel(int leftEnd, int rightEnd, int yPosition, int myheight) {
@@ -187,8 +187,9 @@ public class ColorChannel extends JPanel {
 						}
 					}
 					if(cb != null) {
-						System.out.println("called callback");
-						calledCallback[l] = true;
+						System.out.println("called callback in sendToBob");
+//						calledCallback[l] = true;
+						System.out.println("calledCallback is " + calledCallback[l]);
 						cb.callback();
 					} else if (repeat) {
 						// set to orignal values, to start all over
@@ -241,7 +242,9 @@ public class ColorChannel extends JPanel {
 						}
 					}
 					if(cb != null) {
-						calledCallback[l] = true;
+						System.out.println("called Callback in sendToAlice");
+//						calledCallback[l] = true;
+						System.out.println("calledCallback is " + calledCallback[l]);
 						cb.callback();
 					} else if (repeat) {
 						// set to orignal values, to start all over

@@ -12,7 +12,6 @@ public class AliceChooseSecretController extends AbstractVisualizationController
 	
 	public AliceChooseSecretController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		view = new AliceChooseSecretView();
 	}
 
 	@Override
