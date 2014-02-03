@@ -139,8 +139,7 @@ public class StartController extends AbstractController {
 		this.popoverView.getCloseButton().addMouseListener(new MouseClickListener() {
 			@Override
 			public void clicked(MouseEvent event) {
-				VisualizationButton startButton = (VisualizationButton)event.getSource();
-				startVisualizationAction(startButton.getVisualizationInfo());
+				dismissPopoverAction();
 			}
 		});
 	}
