@@ -1,5 +1,16 @@
 package edu.kit.iks.Cryptographics;
 
+import java.io.File;
+import java.io.IOException;
+
+
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+
+import edu.kit.iks.CryptographicsLib.Logger;
+
 /**
  * This class allows to configure certain parameters of the application
  * at a central place.
@@ -13,11 +24,72 @@ public class Configuration {
 	 */
 	static private Configuration sharedInstance = null;
 	
+	private int idleTimeout = 5 * 60 * 1000;
+	
+	private int resetTimeout = 60 * 1000;
+	
+	private boolean debugModeEnabled = false;
+	
+	private boolean fullscreenModeEnabled = true;
+	
+	private boolean lookAndFeelEnabled = true;
+	
+	private boolean mouseCursorEnabled = false;
+	
+	private String languageCode = "en_US";
+	
 	/**
 	 * Marked as private to enforce singleton pattern.
 	 */
-	private Configuration() {
-		super();
+	private Configuration(String path) {
+		try {
+			// Load document.
+			SAXBuilder saxBuilder = new SAXBuilder();
+			Document document = saxBuilder.build(new File(path));
+
+			// Get root element.
+			Element element = document.getRootElement();
+			for (Element child : element.getChildren()) {
+				String value = child.getValue();
+				String name = child.getName();
+				switch (name) {
+					case "idleTimeout":
+						this.idleTimeout = Integer.parseInt(value);
+						break;
+						
+					case "resetTimeout":
+						this.resetTimeout = Integer.parseInt(value);
+						break;
+						
+					case "debugModeEnabled":
+						this.debugModeEnabled = Boolean.parseBoolean(value);
+						break;
+						
+					case "fullscreenModeEnabled":
+						this.fullscreenModeEnabled = Boolean.parseBoolean(value);
+						break;
+						
+					case "lookAndFeelEnabled":
+						this.lookAndFeelEnabled = Boolean.parseBoolean(value);
+						break;
+						
+					case "mouseCursorEnabled":
+						this.mouseCursorEnabled = Boolean.parseBoolean(value);
+						break;
+						
+					case "languageCode":
+						this.languageCode = value;
+						break;
+						
+					default:
+						Logger.d("Configuration", "Configuration", "Unknown configuration element " + child.getName() + ". Skipping.");
+						break;
+				}
+			}
+		} catch (JDOMException | IOException e) {
+			// Could not read configuration. Use default values.
+			Logger.e(e);
+		}
 	}
 	
 	/**
@@ -26,7 +98,7 @@ public class Configuration {
 	 */
 	static public Configuration getInstance() {
 		if (sharedInstance == null) {
-			sharedInstance = new Configuration();
+			sharedInstance = new Configuration("config.xml");
 		}
 		return sharedInstance;
 	}
@@ -36,7 +108,7 @@ public class Configuration {
 	 * @return the timeout in milliseconds
 	 */
 	public int getIdleTimeout() {
-		return 5 * 60 * 1000;
+		return this.idleTimeout;
 	}
 	
 	/**
@@ -45,7 +117,7 @@ public class Configuration {
 	 * @return the timeout in milliseconds
 	 */
 	public int getResetTimeout() {
-		return 60 * 1000;
+		return this.resetTimeout;
 	}
 	
 	/**
@@ -53,7 +125,7 @@ public class Configuration {
 	 * @return true if the debug mode is enabled 
 	 */
 	public boolean isDebugModeEnabled() {
-		return true;
+		return this.debugModeEnabled;
 	}
 	
 	/**
@@ -64,7 +136,7 @@ public class Configuration {
 	 */
 	public boolean isMouseCursorEnabled() {
 		if (this.isDebugModeEnabled()) {
-			return true;
+			return this.mouseCursorEnabled;
 		} else {
 			return false;
 		}
@@ -78,7 +150,7 @@ public class Configuration {
 	 */
 	public boolean isLookAndFeelEnabled() {
 		if (this.isDebugModeEnabled()) {
-			return false;
+			return this.lookAndFeelEnabled;
 		} else {
 			return true;
 		}
@@ -91,7 +163,7 @@ public class Configuration {
 	 */
 	public boolean isFullscreenModeEnabled() {
 		if (this.isDebugModeEnabled()) {
-			return false;
+			return this.fullscreenModeEnabled;
 		} else {
 			return true;
 		}
@@ -102,6 +174,6 @@ public class Configuration {
 	 * @return the ISO 639-1 language code
 	 */
 	public String getLanguageCode() {
-		return "de_DE";
+		return this.languageCode;
 	}
 }
