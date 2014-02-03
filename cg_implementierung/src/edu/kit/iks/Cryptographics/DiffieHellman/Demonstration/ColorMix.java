@@ -49,6 +49,8 @@ public class ColorMix extends JPanel {
 	private boolean repeat;
 	
 	private Timer[] timer = {null, null, null, null, null};
+	
+	private boolean[] calledCallback = {false, false, false, false, false};
 
 	private int middle;
 	
@@ -95,19 +97,21 @@ public class ColorMix extends JPanel {
 					
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
+						System.out.println("timer in colormix " + l);
+						if(calledCallback[l]) {
+							return;
+						}
 						if(x1 < middle) {
 							x1 += 3;
-						} else {
-							timer[l].stop();
-							if (cb != null) {
-								cb.callback();
-							}
 						}
 						if(x2 > middle) {
 							x2 -= 3;
-						} else {
+						}
+						if(x2 <= middle && x1 >= middle) {
 							timer[l].stop();
 							if (cb != null) {
+								calledCallback[l] = true;
+								System.out.println("called callback in colormix");
 								cb.callback();	
 							}
 						}
