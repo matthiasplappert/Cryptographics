@@ -10,7 +10,6 @@ public class ExplainAimController extends AbstractVisualizationController {
 	
 	public ExplainAimController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		
 	}
 
 	@Override
@@ -27,7 +26,6 @@ public class ExplainAimController extends AbstractVisualizationController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getView().stopAllTimer();
 				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
 			}
 		});
@@ -38,7 +36,8 @@ public class ExplainAimController extends AbstractVisualizationController {
 	
 	@Override
 	public void unloadView() {
-		this.getView().stopAllTimer();
+		this.getView().getColorChannel().stopAllTimer();
+		this.view = null;
 	}
 	
 	@Override
