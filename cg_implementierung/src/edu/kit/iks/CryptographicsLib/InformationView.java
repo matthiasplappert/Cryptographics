@@ -94,8 +94,9 @@ public class InformationView extends JPanel {
         webView.setMaxSize(800, 600);
 
         // Obtain the webEngine to navigate.
+        // TODO use actual HTML
         WebEngine webEngine = webView.getEngine();
-        webEngine.load("http://www.google.com/");
+        webEngine.loadContent("<html><body><h2>Test</h2></body></html>");
     }
 	
 	/**
