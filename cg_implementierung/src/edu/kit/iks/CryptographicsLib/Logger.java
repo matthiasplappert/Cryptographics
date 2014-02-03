@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Date;
 
 public class Logger {
@@ -17,6 +19,11 @@ public class Logger {
 	 * Name of the log file 
 	 */
 	private static final String LOG_FILE_NAME = "statistics.csv";
+	
+	/**
+	 * Name of the error log file
+	 */
+	private static final String ERROR_LOG_FILE = "error.log";
 	
 	/**
 	 * Check whether debug mode is activated or not
@@ -41,15 +48,13 @@ public class Logger {
 	 * @param logEntry Action which should be logged
 	 */
 	public static void l(String logEntry) {
-		Date date = new java.util.Date();
-		long unixTimestamp = date.getTime();
-		String unixTimeString = String.valueOf(unixTimestamp);
+		String unixTimestamp = Logger.getUnixTimestamp();
 		
 		if (Logger.debugModeActive()) {
-			Logger.d("Logger", "l", "Log occured: " + logEntry);
+			System.out.println("[Log]: (write '" + Logger.LOG_FILE_NAME + "') " + logEntry);
 		}
 		
-    	Logger.writeLogFileLine(logEntry, unixTimeString);
+    	Logger.writeLogFileLine(logEntry, unixTimestamp);
 	}
 	
 	/**
@@ -67,6 +72,25 @@ public class Logger {
 	}
 	
 	/**
+	 * In production mode, this method writes exceptions into the error log file,
+	 * in debug mode, this method prints the stacktrace into the console.
+	 * 
+	 * @param exception Exception to trace
+	 */
+	public static void e(Exception exception) {
+		if (Logger.debugMode) {
+			exception.printStackTrace();
+		} else {
+			String unixTimestamp = getUnixTimestamp();
+			
+			StringWriter stacktrace = new StringWriter();
+			exception.printStackTrace(new PrintWriter(stacktrace));
+			
+			writeErrorLogFileLine(stacktrace.toString(), unixTimestamp);
+		}
+	}
+	
+	/**
 	 * Helper method to write a new line into the logfile. Creates a logfile, if
 	 * it doesn't exist already
 	 * 
@@ -75,25 +99,73 @@ public class Logger {
 	 */
 	private static void writeLogFileLine(String logEntry, String formattedDate) {
 		
-    	try {
-    		String logEntryLine = logEntry + ";" + formattedDate + "\n";
+		String logEntryLine = logEntry + ";" + formattedDate + "\n";
+		File file = new File(Logger.LOG_FILE_NAME);
  
-    		File file = new File(Logger.LOG_FILE_NAME);
+		// If file doesn't exists, then create it and append header
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			Logger.writeLogFileLine("Performed action", "Unix Timestamp (milliseconds)");
+		}
  
-    		// If file doesn't exists, then create it and append header
-    		if(!file.exists()) {
-    			file.createNewFile();
-    			Logger.writeLogFileLine("Performed action", "Unix Timestamp (milliseconds)");
-    		}
+		Logger.writeFile(file, logEntryLine);
+	}
+	
+	private static void writeErrorLogFileLine(String error, String formattedDate) {
+		
+		File file = new File(Logger.ERROR_LOG_FILE);
+		
+		String lines = "Exception occured at " + formattedDate + "\n"
+    				+ error;
  
-    		// true = append file
-    		FileWriter fileWritter = new FileWriter(file.getName(), true);
-    	    BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
-    	    bufferWritter.write(logEntryLine);
-    	    bufferWritter.close();
- 
+		// If file doesn't exists, then create it and append header
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			lines = "\n\n==============================\n" + lines;
+		}
+		
+		Logger.writeFile(file, lines);
+	}
+	
+	/**
+	 * Writes a line to a file. If more than one file needs to be written,
+	 * don't run this method in a loop. Rather indicate new lines with \n
+	 * and pass one string to this method instead.
+	 * 
+	 * @param file The file to write the line
+	 * @param lines The line(s) to write
+	 */
+	private static void writeFile(File file, String lines) {
+		try {
+			// true = append file
+			FileWriter fileWritter = new FileWriter(file.getName(), true);
+		    BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
+		    bufferWritter.write(lines);
+		    bufferWritter.close();
     	} catch (IOException e) {
     		e.printStackTrace();
     	}
+	}
+	
+	/**
+	 * Helper method to get unix timestamp
+	 * 
+	 * @return String of unix timestamp
+	 */
+	private static String getUnixTimestamp() {
+		Date date = new java.util.Date();
+		long unixTimestamp = date.getTime();
+		
+		return String.valueOf(unixTimestamp);
 	}
 }
