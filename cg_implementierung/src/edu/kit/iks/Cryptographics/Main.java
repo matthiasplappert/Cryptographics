@@ -10,29 +10,22 @@ import edu.kit.iks.CryptographicsLib.Logger;
  * @author Christian Dreher
  */
 public class Main {
-	
-	/**
-	 * Flag to define whether to enter debug mode or not.
-	 * Must be set to false in production.
-	 */
-	private static boolean debugMode = true;
-	
 	/**
 	 * Main method (hook for Java to start from)
 	 * 
 	 * @param args  Arguments
 	 */
 	public static void main(String[] args) {
-		
-		if (Main.debugMode) {
+		// Configure logger.
+		if (Configuration.getInstance().isDebugModeEnabled()) {
 			Logger.setDebugMode();
 		}
 		
 		Logger.l("Cryptographics launched");
 		Logger.d("Main", "main", "Debugger running.");
 		
+		// Run app on the AWT event queue.
 		SwingUtilities.invokeLater(new Runnable() {
-
 			@Override
 			public void run() {
 				MainController mainController = new MainController();

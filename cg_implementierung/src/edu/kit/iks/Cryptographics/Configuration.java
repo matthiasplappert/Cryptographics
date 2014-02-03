@@ -47,4 +47,61 @@ public class Configuration {
 	public int getResetTimeout() {
 		return 60 * 1000;
 	}
+	
+	/**
+	 * Returns true if the debug mode should be used.
+	 * @return true if the debug mode is enabled 
+	 */
+	public boolean isDebugModeEnabled() {
+		return true;
+	}
+	
+	/**
+	 * Returns true if the mouse cursor should be visible. This setting
+	 * will always return false if debug mode is disabled.
+	 * 
+	 * @return true if the mouse cursor should be visible
+	 */
+	public boolean isMouseCursorEnabled() {
+		if (this.isDebugModeEnabled()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Returns true if the look and feel should be enabled. This setting
+	 * will always return true if debug mode is disabled.
+	 * 
+	 * @return true if the look and feel should be enabled
+	 */
+	public boolean isLookAndFeelEnabled() {
+		if (this.isDebugModeEnabled()) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	/**
+	 * Returns true if the fullscreen mode should be enabled. This setting
+	 * will always return true if debug mode is disabled.
+	 * @return
+	 */
+	public boolean isFullscreenModeEnabled() {
+		if (this.isDebugModeEnabled()) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	/**
+	 * Returns the ISO 639-1 language code used for localization.
+	 * @return the ISO 639-1 language code
+	 */
+	public String getLanguageCode() {
+		return "de_DE";
+	}
 }

@@ -30,7 +30,7 @@ public class Logger {
 	 * 
 	 * @return {true}, if debug mode is activated, {false} if not
 	 */
-	public static boolean debugModeActive() {
+	public static boolean isDebugModeActive() {
 		return Logger.debugMode;
 	}
 	
@@ -50,7 +50,7 @@ public class Logger {
 	public static void l(String logEntry) {
 		String unixTimestamp = Logger.getUnixTimestamp();
 		
-		if (Logger.debugModeActive()) {
+		if (Logger.isDebugModeActive()) {
 			System.out.println("[Log]: (write '" + Logger.LOG_FILE_NAME + "') " + logEntry);
 		}
 		
