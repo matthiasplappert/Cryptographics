@@ -151,6 +151,7 @@ public class ColorChannel extends JPanel {
 	
 	// TODO refactor sendToBob and sendToAlice into one method
 	public void sendToBob(final NextStepCallback cb, final int l) {
+		System.out.println("send to bob!");
 		if(sendAlice) {
 			/* don't want to send colors
 			 * if others are being send
@@ -169,6 +170,7 @@ public class ColorChannel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO remove hardcoded values
+				System.out.println(arg0);
 				if(x1 < rightCircle) {
 					x1 += 3;
 					if (x1 > middleCircle && y2 > myheight) {
@@ -190,6 +192,7 @@ public class ColorChannel extends JPanel {
 							x1 = leftEnd;
 							x2 = middleCircle;
 							y2 = originaly2;
+							System.out.println("repeat!");
 							timer[l].start();
 						}
 					}

@@ -124,6 +124,15 @@ public class ThirdDemonstrationController extends AbstractVisualizationControlle
 		});
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+	}
+	
 	@Override
 	public ThirdDemonstrationView getView() {
 		return (ThirdDemonstrationView)this.view;

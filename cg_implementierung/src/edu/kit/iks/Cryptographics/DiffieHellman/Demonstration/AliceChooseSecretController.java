@@ -12,7 +12,6 @@ public class AliceChooseSecretController extends AbstractVisualizationController
 	
 	public AliceChooseSecretController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		view = new AliceChooseSecretView();
 	}
 
 	@Override
@@ -42,7 +41,16 @@ public class AliceChooseSecretController extends AbstractVisualizationController
 				((VisualizationContainerController) getParentController()).presentPreviousVisualizationController();
 			}
 		});
-
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		// TODO add method to stop all timers!
+		this.view = null;
 	}
 	
 	@Override

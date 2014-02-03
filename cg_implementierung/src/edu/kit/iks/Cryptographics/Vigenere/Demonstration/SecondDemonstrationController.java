@@ -139,6 +139,15 @@ public class SecondDemonstrationController extends AbstractVisualizationControll
 		});
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+	}
+	
 	@Override
 	public SecondDemonstrationView getView() {
 		return (SecondDemonstrationView) this.view;

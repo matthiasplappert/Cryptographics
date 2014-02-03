@@ -46,6 +46,16 @@ public class ExplainKeyExchangeController extends AbstractVisualizationControlle
 
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		// TODO stop all timers!
+		this.view = null;
+	}
+	
 	@Override
 	public ExplainKeyExchangeView getView() {
 		return (ExplainKeyExchangeView) this.view;
