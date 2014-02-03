@@ -33,6 +33,12 @@ import edu.kit.iks.CryptographicsLib.PopoverView;
 public class MainController extends AbstractController {
 
 	/**
+	 * Gets the configurations supplied by the instance
+	 * itself or overwritten by the config.xml file
+	 */
+	private Configuration config = Configuration.getInstance();
+	
+	/**
 	 * A sandbox for subcontrollers to inflate their contents
 	 */
 	private JFrame frame;
@@ -128,14 +134,14 @@ public class MainController extends AbstractController {
 	private void loadFrame() {
 		this.frame = new JFrame("Cryptographics");
 		
-		if (Logger.isDebugModeActive()) {
-			this.frame.setSize(1366, 768); // Basic size for debugging
-			Logger.d("MainController", "loadFrame", "Fullscreen mode disabled due to debugging.");
-			this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		} else {
+		if (this.config.isFullscreenModeEnabled()) {
 			this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			this.frame.setUndecorated(true);
 			this.frame.setAlwaysOnTop(true);
+		} else {
+			this.frame.setSize(1366, 768); // Basic size for debugging
+			Logger.d("MainController", "loadFrame", "Fullscreen mode disabled due to debugging.");
+			this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 		
 		this.frame.setVisible(true);
@@ -149,7 +155,7 @@ public class MainController extends AbstractController {
 	 * Loads the custom look and feel.
 	 */
 	private void loadLookAndFeel() {
-		if (!Logger.isDebugModeActive()) {
+		if (this.config.isLookAndFeelEnabled()) {
 			SynthLookAndFeel lookAndFeel = new SynthLookAndFeel();
 			
 			try {
@@ -174,7 +180,7 @@ public class MainController extends AbstractController {
 	 * Disables the cursor
 	 */
 	private void disableCursor() {
-		if (!Logger.isDebugModeActive()) {
+		if (!this.config.isMouseCursorEnabled()) {
 			Cursor nullCursor = null;
 			Toolkit toolkit = Toolkit.getDefaultToolkit();
 			Dimension dimension = toolkit.getBestCursorSize(1, 1);
