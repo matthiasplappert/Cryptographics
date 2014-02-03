@@ -4,13 +4,15 @@ import java.awt.AWTEvent;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+
+import javax.swing.Timer;
 
 import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
@@ -92,7 +94,7 @@ public class VisualizationContainerController extends AbstractController {
 		this.idleDetectionListener = new AWTEventListener() {
 			@Override
 			public void eventDispatched(AWTEvent e) {
-				cancelIdleDetectionTimer();
+				stopIdleDetectionTimer();
 				if (idlePopoverView == null) {
 					startIdleDetectionTimer();
 				}
@@ -203,9 +205,9 @@ public class VisualizationContainerController extends AbstractController {
 		// Remove observer.
 		Toolkit.getDefaultToolkit().removeAWTEventListener(this.idleDetectionListener);
 		
-		// Cancel timers.
-		this.cancelIdleDetectionTimer();
-		this.cancelResetTimer();
+		// Stop timers.
+		this.stopIdleDetectionTimer();
+		this.stopResetTimer();
 		
 		if (this.helpPopoverView != null) {
 			this.dismissHelpPopover();
@@ -293,15 +295,15 @@ public class VisualizationContainerController extends AbstractController {
 	public void dismissIdlePopover() {
 		this.idlePopoverView.dismiss();
 		this.idlePopoverView = null;
-		this.cancelResetTimer();
+		this.stopResetTimer();
 	}
 	
 	/**
-	 * Cancels the reset timer.
+	 * Stops the reset timer.
 	 */
-	private void cancelResetTimer() {
+	private void stopResetTimer() {
 		if (this.resetTimer != null) {
-			this.resetTimer.cancel();
+			this.resetTimer.stop();
 			this.resetTimer = null;
 		}
 	}
@@ -312,24 +314,29 @@ public class VisualizationContainerController extends AbstractController {
 	 */
 	private void startResetTimer() {
 		if (this.resetTimer == null) {
-			this.resetTimer = new Timer();
-			this.resetTimer.schedule(new TimerTask() {
+			int delay = Configuration.getInstance().getResetTimeout();
+			this.resetTimer = new Timer(delay, new ActionListener() {
+
 				@Override
-				public void run() {
+				public void actionPerformed(ActionEvent arg0) {
+					stopResetTimer();
+					
 					MainController mainController = (MainController) getParentController();
 					mainController.presentStartAction();
 					Logger.l("Reset due to user inactivity");
 				}
-			}, Configuration.getInstance().getResetTimeout());
+				
+			});
+			this.resetTimer.start();
 		}
 	}
 	
 	/**
-	 * Cancels an idle detection timer.
+	 * Stops an idle detection timer.
 	 */
-	private void cancelIdleDetectionTimer() {
+	private void stopIdleDetectionTimer() {
 		if (this.idleDetectionTimer != null) {
-			this.idleDetectionTimer.cancel();
+			this.idleDetectionTimer.stop();
 			this.idleDetectionTimer = null;
 		}
 	}
@@ -341,13 +348,16 @@ public class VisualizationContainerController extends AbstractController {
 	private void startIdleDetectionTimer() {
 		if (this.idleDetectionTimer == null) {
 			// Create a new timer if the idle popover is currently not already active.
-			this.idleDetectionTimer = new Timer();
-			this.idleDetectionTimer.schedule(new TimerTask() {
+			int delay = Configuration.getInstance().getIdleTimeout();
+			this.idleDetectionTimer = new Timer(delay, new ActionListener() {
+
 				@Override
-				public void run() {
+				public void actionPerformed(ActionEvent e) {
+					stopIdleDetectionTimer();
 					presentIdlePopover();
 				}
-			}, Configuration.getInstance().getIdleTimeout());
+			});
+			this.idleDetectionTimer.start();
 		}
 	}
 

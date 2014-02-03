@@ -1,5 +1,7 @@
 package edu.kit.iks.Cryptographics;
 
+import javax.swing.SwingUtilities;
+
 import edu.kit.iks.CryptographicsLib.Logger;
 
 /**
@@ -29,8 +31,14 @@ public class Main {
 		Logger.l("Cryptographics launched");
 		Logger.d("Main", "main", "Debugger running.");
 		
-		MainController mainController = new MainController();
-		mainController.loadView();
-		mainController.presentStartAction();
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				MainController mainController = new MainController();
+				mainController.loadView();
+				mainController.presentStartAction();
+			}
+		});
 	}
 }
