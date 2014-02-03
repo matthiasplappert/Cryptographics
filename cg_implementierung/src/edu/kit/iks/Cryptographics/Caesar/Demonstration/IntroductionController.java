@@ -117,6 +117,16 @@ public class IntroductionController extends AbstractVisualizationController {
 		});
 
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+		this.introResource = null;
+	}
 
 	/**
 	 * TODO: Need a less dirty solution. Method for intern state handling.

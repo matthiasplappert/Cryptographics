@@ -2,7 +2,6 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -198,6 +197,16 @@ public class CipherDemoController extends AbstractVisualizationController {
 		});
 
 		this.getView().validate();
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+		this.model = null;
 	}
 
 	/**

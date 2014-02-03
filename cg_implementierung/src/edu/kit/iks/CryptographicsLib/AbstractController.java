@@ -58,9 +58,7 @@ abstract public class AbstractController {
 	/**
 	 * Unloads the view of this controller
 	 */
-	public void unloadView() {
-		this.view = null;
-	}
+	abstract public void unloadView();
 
 	/**
 	 * Gets the view

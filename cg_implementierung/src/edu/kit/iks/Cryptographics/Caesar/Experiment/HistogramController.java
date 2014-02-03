@@ -76,6 +76,16 @@ public class HistogramController extends AbstractVisualizationController {
 		});
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+		this.model = null;
+	}
+	
 	private void genProceedListener() {
 		this.getView().getProceed().addMouseListener(new MouseListener() {
 

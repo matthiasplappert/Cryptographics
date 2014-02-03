@@ -45,9 +45,18 @@ public class SecondExperimentController extends AbstractVisualizationController 
 		});
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+	}
+	
 	@Override
 	public String getHelp() {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}	
 }

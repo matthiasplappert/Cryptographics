@@ -50,4 +50,13 @@ public class FirstExperimentController extends AbstractVisualizationController {
 			}
 		});
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+	}
 }

@@ -26,6 +26,15 @@ public class SendRightColorController extends AbstractVisualizationController {
 		
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+	}
+	
 	@Override
 	public SendRightColorView getView() {
 		return (SendRightColorView) this.view;
