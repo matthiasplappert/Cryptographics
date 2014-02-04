@@ -24,7 +24,13 @@ public class ColorChannel extends JPanel {
 	/* the x coordinates for the communications lines */
 	private int leftEnd, rightEnd, middle;
 	private int yPosition, myheight, middleCircle, rightCircle;
-	private final int originalx1, originaly1, originalx2, originaly2;
+	private int originalx1;
+
+	private int originaly1;
+
+	private int originalx2;
+
+	private int originaly2;
 	/* kept colors */
 	private ArrayList<Ellipse2DwithColor> keptColors;
 	private Ellipse2DwithColor ellip, ellip2;
@@ -329,6 +335,28 @@ public class ColorChannel extends JPanel {
 				timer[i].stop();
 			}
 		}
+	}
+
+	public void loadView() {
+		this.leftEnd = (int) (0.1*this.getWidth());
+		this.rightEnd = (int) (0.9*this.getWidth());
+		this.yPosition = (int) (0.9*this.getHeight());
+		this.myheight = (int) (0.1*this.getHeight());
+		this.rightCircle = rightEnd-diameter;
+		this.originalx1 = leftEnd;
+		this.originaly1 = yPosition-diameter/2;
+		this.middle = (leftEnd+rightEnd)/2;
+		this.middleCircle = this.middle-diameter/2;
+		this.originalx2 = this.middle-diameter/2;
+		this.originaly2 = yPosition-diameter/2;
+		this.x1 = originalx1;
+		this.y1 = originaly1;
+		this.x2 = originalx2;
+		this.y2 = originaly2;
+		ellip.setFrame(x1, y2, diameter, diameter);
+		ellip2.setFrame(x1, y2, diameter, diameter);
+		this.setBackground(Color.BLACK);
+		repaint();
 	}
 
 }

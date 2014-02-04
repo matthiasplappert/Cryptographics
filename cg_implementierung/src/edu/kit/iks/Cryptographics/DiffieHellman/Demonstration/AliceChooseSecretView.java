@@ -2,6 +2,7 @@ package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
@@ -24,17 +25,34 @@ public class AliceChooseSecretView extends VisualizationView {
 	
 	public AliceChooseSecretView() {
 		super();
+		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
 		this.aliceExplain = new JLabel();
 		this.aliceExplain.setText("<html><div style=\"width:120px\"Alice chooses a public color and sends it to Bob" +
 				"Eve listens to the channel and gets a copy</div></html>");
-		this.add(aliceExplain);
+		gbc.weightx = 0.5;
+		gbc.weighty = 0.1;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		this.add(aliceExplain, gbc);
 		this.cc = new ColorChannel(100, 500, 150, 60);
-		this.cc.setPreferredSize(new Dimension(700, 700));
-		this.add(this.cc);
+		
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.fill = GridBagConstraints.BOTH;
+		this.add(this.cc, gbc);
+
 		this.cm = new ColorMix(Color.BLUE, Color.GREEN, 50);
-		this.cm.setPreferredSize(new Dimension(300, 300));
-		this.add(this.cm);
+		
+		gbc.weightx = 0.5;
+		gbc.weighty = 0.5;
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		this.add(this.cm, gbc);
+		this.cc.loadView();
+		System.out.println(this.cc.getSize());
 		this.cc.setRepeat(false);
 		this.cc.setKeepColor(true);
 		this.cc.setColor(Color.BLUE);
@@ -67,6 +85,8 @@ public class AliceChooseSecretView extends VisualizationView {
 			}
 		}, 0, true);
 	}
+
+
 
 
 
