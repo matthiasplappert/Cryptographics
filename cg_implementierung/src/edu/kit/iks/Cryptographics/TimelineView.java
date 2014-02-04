@@ -23,12 +23,6 @@ public class TimelineView extends JPanel {
 	private static final long serialVersionUID = -4974243564527826198L;
 
 	/**
-	 * List of all {VisualizationInfo}-objects containing the metadata 
-	 * to display on the timeline
-	 */
-	private List<AbstractVisualizationInfo> visualizationInfos;
-
-	/**
 	 * Buttons to open the popover of a specific procedure to eventually 
 	 * start their visualization
 	 */
@@ -54,8 +48,6 @@ public class TimelineView extends JPanel {
 		
 		this.buttons = new VisualizationButton[visualizationInfos.size()];
 		AbstractVisualizationInfo vInfo;
-		this.visualizationInfos = visualizationInfos;
-		
 		int j = 0;
 
 		// Constraints for wrapper-panel

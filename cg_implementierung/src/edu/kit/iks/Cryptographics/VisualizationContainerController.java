@@ -72,6 +72,7 @@ public class VisualizationContainerController extends AbstractController {
 	/**
 	 * List of all child classes
 	 */
+	@SuppressWarnings("rawtypes")
 	List<Class> childClasses;
 	
 	/**
@@ -411,6 +412,7 @@ public class VisualizationContainerController extends AbstractController {
 	private AbstractVisualizationController loadVisualizationController(
 			int index) {
 		Constructor<AbstractVisualizationController> controllerConstructor = null;
+		@SuppressWarnings("unchecked")
 		Class<AbstractVisualizationController> controllerClass = childClasses
 				.get(index);
 		AbstractVisualizationController controller = null;
