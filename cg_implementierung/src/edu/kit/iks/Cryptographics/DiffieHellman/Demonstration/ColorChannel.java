@@ -1,6 +1,7 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -92,15 +93,12 @@ public class ColorChannel extends JPanel {
 	private boolean[] calledCallback = {false, false, false, false, false};
 
 	
-	public ColorChannel(int leftEnd, int rightEnd, int yPosition, int myheight) {
-		this.firstCallAlice = true;
-		this.firstCallBob = true;
-		this.numOfCircles = new int[3];
-		this.keptColors = new ArrayList<>();
-		this.yPosition = yPosition;
-		this.myheight = myheight;
-		this.leftEnd = leftEnd;
-		this.rightEnd = rightEnd;
+	public ColorChannel(Dimension dimension) {
+		this.setSize(dimension);
+		this.leftEnd = (int) (0.25*this.getWidth());
+		this.rightEnd = (int) (0.75*this.getWidth());
+		this.yPosition = (int) (0.75*this.getHeight());
+		this.myheight = (int) (0.25*this.getHeight());
 		this.rightCircle = rightEnd-diameter;
 		this.originalx1 = leftEnd;
 		this.originaly1 = yPosition-diameter/2;
@@ -112,6 +110,10 @@ public class ColorChannel extends JPanel {
 		this.y1 = originaly1;
 		this.x2 = originalx2;
 		this.y2 = originaly2;
+		this.firstCallAlice = true;
+		this.firstCallBob = true;
+		this.numOfCircles = new int[3];
+		this.keptColors = new ArrayList<>();
 		ellip = new Ellipse2DwithColor(x1, y1, diameter, diameter);
 		ellip2 = new Ellipse2DwithColor(x1, y1, diameter, diameter);
 	}
@@ -338,10 +340,10 @@ public class ColorChannel extends JPanel {
 	}
 
 	public void loadView() {
-		this.leftEnd = (int) (0.1*this.getWidth());
-		this.rightEnd = (int) (0.9*this.getWidth());
-		this.yPosition = (int) (0.9*this.getHeight());
-		this.myheight = (int) (0.1*this.getHeight());
+		this.leftEnd = (int) (0.25*this.getWidth());
+		this.rightEnd = (int) (0.75*this.getWidth());
+		this.yPosition = (int) (0.75*this.getHeight());
+		this.myheight = (int) (0.25*this.getHeight());
 		this.rightCircle = rightEnd-diameter;
 		this.originalx1 = leftEnd;
 		this.originaly1 = yPosition-diameter/2;
@@ -356,7 +358,6 @@ public class ColorChannel extends JPanel {
 		ellip.setFrame(x1, y2, diameter, diameter);
 		ellip2.setFrame(x1, y2, diameter, diameter);
 		this.setBackground(Color.BLACK);
-		repaint();
 	}
 
 }

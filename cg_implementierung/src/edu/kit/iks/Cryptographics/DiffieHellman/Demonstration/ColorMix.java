@@ -2,6 +2,7 @@ package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -51,13 +52,26 @@ public class ColorMix extends JPanel {
 	private boolean[] calledCallback = {false, false, false, false, false};
 
 	private int middle;
+
+	private int originalx1;
+
+	private int originaly1;
+
+	private int originalx2;
+
+	private int originaly2;
 	
-	public ColorMix(Color color1, Color color2, int diameter) {
+	public ColorMix(Color color1, Color color2, int diameter, Dimension dimension) {
+		this.setSize(dimension);
 		this.diameter = diameter;
-		this.x1 = 50;
-		this.y1 = 50;
-		this.x2 = 300;
-		this.y2 = 50;
+		this.originalx1 = diameter;
+		this.originaly1 = dimension.height-diameter;
+		this.originalx2 = dimension.width-diameter;
+		this.originaly2 = dimension.height-diameter;
+		this.x1 = originalx1;
+		this.y1= originaly1;
+		this.x2 = originalx2;
+		this.y2 = originaly2;
 		this.middle = (x1+x2)/2;
 		this.ellip1 = new Ellipse2DwithColor(x1, y1, diameter, diameter, color1);
 		this.ellip2 = new Ellipse2DwithColor(x2, y2, diameter, diameter, color2);
@@ -65,10 +79,10 @@ public class ColorMix extends JPanel {
 	
 	public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb, final int l) {
 		this.mixcolors = mix;
-		this.x1 = 50;
-		this.y1 = 50;
-		this.x2 = 300;
-		this.y2 = 50;
+		this.x1 = originalx1;
+		this.y1 = originaly1;
+		this.x2 = originalx2;
+		this.y2 = originaly2;
 		if(mixcolors) {
 			if(repeat) {
 				this.timer[l] = new Timer(50, new ActionListener() {
@@ -78,12 +92,12 @@ public class ColorMix extends JPanel {
 						if(x1 < middle) {
 							x1 += 3;
 						} else {
-							x1 = 50;
+							x1 = originalx1;
 						}
 						if(x2 > middle) {
 							x2 -= 3;
 						} else {
-							x2 = 300;
+							x2 = originalx2;
 						}
 						repaint();
 					}

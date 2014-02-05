@@ -30,32 +30,33 @@ public class AliceChooseSecretView extends VisualizationView {
 		this.aliceExplain = new JLabel();
 		this.aliceExplain.setText("<html><div style=\"width:120px\"Alice chooses a public color and sends it to Bob" +
 				"Eve listens to the channel and gets a copy</div></html>");
-		gbc.weightx = 0.5;
+		gbc.weightx = 0.3;
 		gbc.weighty = 0.1;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		this.add(aliceExplain, gbc);
-		this.cc = new ColorChannel(100, 500, 150, 60);
+		this.cc = new ColorChannel(new Dimension(700, 200));
 		
-		gbc.weightx = 1.0;
-		gbc.weighty = 1.0;
+		gbc.weightx = 0.3;
+		gbc.weighty = 0.3;
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.fill = GridBagConstraints.BOTH;
 		this.add(this.cc, gbc);
 
-		this.cm = new ColorMix(Color.BLUE, Color.GREEN, 50);
+		this.cm = new ColorMix(Color.BLUE, Color.GREEN, 50, new Dimension(300, 200));
 		
-		gbc.weightx = 0.5;
-		gbc.weighty = 0.5;
+		gbc.weightx = 0.3;
+		gbc.weighty = 0.3;
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		this.add(this.cm, gbc);
 		this.cc.loadView();
-		System.out.println(this.cc.getSize());
 		this.cc.setRepeat(false);
 		this.cc.setKeepColor(true);
 		this.cc.setColor(Color.BLUE);
+		this.validate();
+		
 		this.cc.sendToBob(new NextStepCallback() {
 			
 			@Override
