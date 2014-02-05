@@ -89,49 +89,77 @@ public class HistogramController extends AbstractVisualizationController {
 				if (getStep() == 0) {
 					int secret = getModel().generateKey();
 					getView().setSecretKey(secret);
-					getView().setupBruteForce(
-							getModel().getRandomCipher(secret));
+					getView().setupKeyControlPanel();
+					getView().setupIncrementDecrement();
+					getView().setupCipherPlainLabels(getModel().getRandomCipher(secret));
+					getView().setupBruteForce();
 					genListenerBruteForce();
+					getView().getKeyControl().setBorder(BorderFactory.createLineBorder(Color.orange, 5));
 
 				} else if (getStep() == 1) {
-					// Build the new experiment.
-					setStep(2);
+					// unload the old explanations.
+					getView().unloadExplanationPanel();
 					getView().remove(getView().getKeyControl());
 					getView().setKeyControl(null);
-					getView().remove(getView().getExplanations());
 
-					String plainText = getModel().getRandomText();
-					String cipher = getModel().enc(3, plainText);
-					getView().setSecretKey(3);
-					getView().setHistogramCipher(cipher);
-					getView().setupHistogram(plainText,
-							getModel().formatString(cipher));
-					generateHistogramInputListener();
+					String explanation = "<html><body>"
+							+ "The diagram you see here shows the frequency of each letter in the text you are<br>"
+							+ "reading at the moment. It is called a Histogram. If you would count all E's in <br>"
+							+ "this explanation you would get the number you see in the diagram on the column above<br>"
+							+ "the letter E. Let's assume that this explanation is a normal english text and that in<br>"
+							+ "all english texts E is the most frequent letter! Now the program will encrypt this<br>"
+							+ "explanationwith an unknown key in a most awesome way and we will see the histogram of<br>"
+							+ "the cipher. Click Proceed and see the magic!";
 
-					// // destroy yourself. Not needed anymore.
-					// getView().remove(getView().getProceed());
-					// getView().setProceed(null);
-					// getView().validate();
+					getView().setupExplanationPanel();
+					getView().setupExplanations(explanation);
+					getView().setupProceed();
+					genProceedListener();
+
+					// Build the new experiment.
+					setStep(2);
+
+					String clearPlainText = getModel().clearString(explanation);
+
+					getView().setupHistogramContainer();
+					getView().setupPlainHistogram(clearPlainText);
+
+					getView().revalidate();
+					getView().repaint();
+				} else if (getStep() == 2) {
+					setStep(3);
+					String clearExplanation = getModel().clearString(getView().getExplanations().getText()).toUpperCase();
+					String clearCipher = getModel().enc(3,clearExplanation);
+					getView()
+							.getExplanations()
+							.setText(
+									"<html><body>"
+											+ "If you remember not so long ago, when you looked at the histogram of a normal english text<br>"
+											+ "the letter 'E' was the most frequent one. When you look at the histogram of the cipher youy<br>"
+											+ "you can see that now 'H' is the most frequent one. If we think a little further it is logical<br>"
+											+ "to assume that when the program encrypted the letter 'E' on position 5 in the alphabet was shifted<br>"
+											+ "3 positions forward to the position 8 and is now the letter 'H'! Now we can assume that the key<br>"
+											+ "was 'H' - 'E' = 8 - 5 = 3! And now we are able to decrypt the cipher. Type the key 3 in the inputfield<br>"
+											+ "and let the program decrypt the whole text with this key!");
+
+					getView().setupCipherHistogram(clearCipher);
+					getView().unloadProceed();
+					getView().setupKeyInput();
+					getView().validate();
+					getView().repaint();
 
 				} else {
 					// Build the new experiment.
-					setStep(getStep() + 1);
-					getView().unloadHistogram();
-
-					int key = getModel().generateKey();
-					String plainText = getModel().getRandomText();
-					String cipher = getModel().enc(key, plainText);
-					getView().setSecretKey(key);
-					getView().setHistogramCipher(cipher);
-					getView().setupHistogram(plainText,
-							getModel().formatString(cipher));
-					generateHistogramInputListener();
-
-					getView().revalidate();
-					// // destroy yourself. Not needed anymore.
-					// getView().remove(getView().getProceed());
-					// getView().setProceed(null);
-					// getView().validate();
+					// setStep(getStep() + 1);
+					// getView().unloadHistogram();
+					//
+					// int key = getModel().generateKey();
+					// String plainText = getModel().getRandomText();
+					// String cipher = getModel().enc(key, plainText);
+					// getView().setSecretKey(key);
+					// getView().setHistogramCipher(cipher);
+					//
+					// getView().revalidate();
 				}
 
 			}
@@ -172,29 +200,31 @@ public class HistogramController extends AbstractVisualizationController {
 									getView().getKeyControl().setBorder(
 											BorderFactory.createLineBorder(
 													Color.green, 5));
-									String explanations = "<html><body> Congratulations you found the secret key and are now able<br>"
-											+ "to read the secret message. The Key was "
-											+ key;
-									getView().unloadExplanations();
+									getView()
+											.getAnnouncement()
+											.setText(
+													"<html><body> Congratulations you found the secret key and are now able<br>"
+															+ "to read the secret message. The Key was "
+															+ key);
 									setStep(1);
-									getView().setupExplanations(explanations);
+									getView().setupProceed();
 									genProceedListener();
 									getView().revalidate();
 
 								} else {
 									getView()
-											.getExplanations()
+											.getAnnouncement()
 											.setText(
 													"Sorry, this one doesn't work! Try another one.");
-									getView()
-											.getKeyControl()
-											.setBorder(
-													BorderFactory
-															.createLineBorder(Color.orange, 5));
+									getView().getKeyControl().setBorder(
+											BorderFactory.createLineBorder(
+													Color.orange, 5));
 								}
+							} else {
+								// Also nothing to do ;)
 							}
 						} else {
-							// Nothing to do here.
+							// Nothing to do here ;)
 						}
 					}
 				});
