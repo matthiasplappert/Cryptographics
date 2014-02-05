@@ -164,7 +164,7 @@ public class HistogramView extends VisualizationView {
 		this.proceed.setPreferredSize(new Dimension(250, 50));
 		proceedConst.gridx = 3;
 		proceedConst.gridy = 6;
-		proceedConst.gridwidth = 3;
+		proceedConst.gridwidth = 6;
 		proceedConst.insets = new Insets(10, 0, 10, 0);
 		this.explanationPanel.add(this.proceed, proceedConst);
 

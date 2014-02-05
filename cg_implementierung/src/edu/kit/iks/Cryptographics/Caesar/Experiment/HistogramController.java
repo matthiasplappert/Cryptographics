@@ -174,7 +174,6 @@ public class HistogramController extends AbstractVisualizationController {
 					 getView().setHistogramCipher(cipher);
 					 getView().setSecretKey(key);
 					 getView().unloadProceed();
-					 getView().revalidate();
 				}
 
 			}
