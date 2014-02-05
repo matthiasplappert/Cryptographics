@@ -394,7 +394,7 @@ public class HistogramView extends VisualizationView {
 		keyConst.gridy = 0;
 		keyConst.gridwidth = 3;
 		keyConst.gridheight = 4;
-		keyConst.insets = new Insets(200, 0, 0, 0);
+		keyConst.insets = new Insets(250, 0, 0, 0);
 		// keyConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.keyControl, keyConst);
 	}
