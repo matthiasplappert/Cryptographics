@@ -319,6 +319,7 @@ public class HistogramController extends AbstractVisualizationController {
 							genProceedListener();
 							getView().remove(getView().getKeyboard());
 							getView().setKeyboard(null);
+						
 						} else {
 							getView().getKeyInput().setBorder(
 									BorderFactory.createLineBorder(Color.red));

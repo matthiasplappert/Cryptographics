@@ -112,8 +112,7 @@ public class HistogramView extends VisualizationView {
 		GridBagConstraints viewConst = new GridBagConstraints();
 		viewConst.weightx = 1.0;
 		viewConst.weighty = 1.0;
-		viewConst.gridheight = 6;
-		viewConst.gridwidth = 6;
+		viewConst.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(this, viewConst);
 
 		// setup the navigation.
@@ -162,6 +161,7 @@ public class HistogramView extends VisualizationView {
 		this.proceed = new JButton("Proceed");
 		GridBagConstraints proceedConst = new GridBagConstraints();
 		this.proceed.setPreferredSize(new Dimension(250, 50));
+		this.proceed.setMinimumSize(new Dimension(100, 50));
 		proceedConst.gridx = 3;
 		proceedConst.gridy = 6;
 		proceedConst.gridwidth = 6;
@@ -220,7 +220,7 @@ public class HistogramView extends VisualizationView {
 	public void setupHistogramContainer() {
 		this.histogramContainer = new JPanel(new GridBagLayout());
 		GridBagConstraints containerConst = new GridBagConstraints();
-		containerConst.anchor = GridBagConstraints.CENTER;
+		containerConst.anchor = GridBagConstraints.PAGE_END;
 		containerConst.weightx = 1.0;
 		containerConst.weighty = 1.0;
 		containerConst.gridx = 0;
@@ -237,26 +237,26 @@ public class HistogramView extends VisualizationView {
 		this.validate();
 	}
 	public void setupKeyInput() {
-//		JLabel keyCaption = new JLabel(
-//				"<html><body>Type your key in this&darr; box and click 'Enter'.");
-//		GridBagConstraints capConst = new GridBagConstraints();
-//		capConst.gridx = 1;
-//		capConst.gridy = 0;
-//		capConst.gridwidth = 3;
-//		capConst.insets = new Insets(0, 100, 0, 100);
-//		capConst.fill = GridBagConstraints.HORIZONTAL;
-//		this.histogramContainer.add(keyCaption, capConst);
+		JLabel keyCaption = new JLabel(
+				"<html><body>Type your key in this&darr; box and click 'Enter'.");
+		GridBagConstraints capConst = new GridBagConstraints();
+		capConst.gridx = 0;
+		capConst.gridy = 0;
+		capConst.gridwidth = 3;
+		capConst.insets = new Insets(0, 475, 0, 100);
+		capConst.fill = GridBagConstraints.HORIZONTAL;
+		this.histogramContainer.add(keyCaption, capConst);
 
 		this.keyInput = new JTextField();
-		this.keyInput.setSize(new Dimension(100, 50));
+		this.keyInput.setMinimumSize(new Dimension(50, 50));
 		this.keyInput.setBorder(BorderFactory.createLineBorder(Color.black));
 		GridBagConstraints keyConst = new GridBagConstraints();
 		keyConst.gridx = 0;
-		keyConst.gridy = 0;
+		keyConst.gridy = 1;
 		keyConst.gridwidth = 3;
 		keyConst.gridheight = 2;
 		keyConst.insets = new Insets(5, 50, 5, 50);
-		keyConst.fill = GridBagConstraints.BOTH;
+	//	keyConst.fill = GridBagConstraints.BOTH;
 		this.histogramContainer.add(this.keyInput, keyConst);
 	}
 
@@ -533,6 +533,7 @@ public class HistogramView extends VisualizationView {
 		// set up the alignment of the button back;
 		this.setBackButton(new JButton("Back to Experiment!"));
 		this.getBackButton().setPreferredSize(new Dimension(300, 50));
+		this.getBackButton().setMaximumSize(new Dimension(300, 50));
 		// this.getBackButton().setFont(new Font("Arial", 2, 25));
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
@@ -540,6 +541,7 @@ public class HistogramView extends VisualizationView {
 		this.setNextButton(new JButton(
 				"Skip the histograms(Visualization Done)!"));
 		this.getNextButton().setPreferredSize(new Dimension(300, 50));
+		this.getNextButton().setMinimumSize(new Dimension(300, 50));
 		// this.getNextButton().setFont(new Font("Arial", 2, 25));
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
 
