@@ -12,67 +12,71 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class ColorChannel extends JPanel {
+/*
+ * This is the Communication Channel for
+ * the Diffie Hellman Analogy.
+ * In this JPanel we exchange colors and compute
+ * a shared secret similar like in real DH 
+ */
 
-	/**
-	 * 
-	 */
+public class ColorChannel extends JPanel {
 
 	private static final long serialVersionUID = 4073013433018353584L;
 	
+	/*
+	 * the private color of alice
+	 * and bob
+	 */
 	private Color[] privateColor;
 	
 	/* the coordinates of the circles */
 	private int x1, y1, x2, y2;
+	
 	/* the x coordinates for the communications lines */
 	private int leftEnd, rightEnd, middle;
-	private int yPosition, myheight, middleCircle, rightCircle;
-	private int originalx1;
-
-	private int originaly1;
-
-	private int originalx2;
-
-	private int originaly2;
-	/* kept colors */
+	
+	/* the y coordinates for the communications lines 
+	 * middleCircle and rightCircle are basically
+	 * the same like middle and rightEnd but corrected
+	 * by the size of the circles */
+	private int lowerEnd, upperEnd, middleCircle, rightCircle;
+	
+	/* 
+	 * the original coordinate values, not sure
+	 * if we need this
+	 */
+	private int originalx1, originaly1, originalx2, originaly2;
+	
+	/* kept colors are drawn to the screen*/
 	private ArrayList<Ellipse2DwithColor> keptColors;
+	
+	/* those are used for sending over the channel */
 	private Ellipse2DwithColor ellip, ellip2;
 	
-	/* the circles that are displayed next to alice, bob and eve */
+	/* the circles that are displayed next to alice, bob and eve,
+	 * need to know how many each one has */
 	private int[] numOfCircles;
 	
-	/* the color to send */
-	private Color color = Color.BLACK;
+	/* the color to send next */
+	private Color colorNextToSend = Color.BLACK;
+	
+	/* the color of the channel, that means the lines */
 	private Color channelColor = Color.BLACK;
 	
-	private boolean firstCallAlice, firstCallBob;
+	/* is this the firstCall of the sendMethod,
+	 * first means the first timer event
+	 */
+	private boolean firstTimerEventAlice, firstTimerEventBob;
 
 	/* repeat the sending of the color
 	 * if true
 	 */
-	private boolean repeat;
-	
-	public boolean isRepeat() {
-		return repeat;
-	}
+	private boolean repeatPeriodically;
 
-	public void setRepeat(boolean repeat) {
-		this.repeat = repeat;
-	}
 
-	public Color getColor() {
-		return color;
-	}
-
-	/* let the user of this class
-	 * choose the color to send
-	 */
-	public void setColor(Color color) {
-		this.color = color;
-	}
 
 	/* diameter of the ellipses2d circles */
-	private int diameter = 50;
+	private int circleSize = 50;
 	
 	/* while sending these values will be true */
 	private boolean sendAlice, sendBob;
@@ -80,47 +84,55 @@ public class ColorChannel extends JPanel {
 	/* when true, all received colors will still
 	 * be drawn next to the receivers, so that we
 	 * know which person  got which color */
-	private boolean keepColor;
+	private boolean keepCircles;
 	
-	public boolean isKeepColor() {
-		return keepColor;
-	}
-
-	public void setKeepColor(boolean keepColor) {
-		this.keepColor = keepColor;
-	}
-	
+	/*
+	 * Every sendToBob or sendToAlice call
+	 * should use another timer in this array,
+	 * originally tried to solve a bug with
+	 * this, this probably can be refactored/removed
+	 */
 	private Timer[] timer = {null, null, null, null, null};
 	
+	/*
+	 * this was used for debugging the timer bug.
+	 * this probably can be removed, if tested
+	 * enough after removal
+	 */
 	private boolean[] calledCallback = {false, false, false, false, false};
 
-	
-	public ColorChannel(Dimension dimension, int diameter) {
-		this.privateColor = new Color[2];
-		this.diameter = diameter;
+	/*
+	 * Constructor takes the size of JPanel, and
+	 * the size of the circles. From there
+	 * it computes the position for the communication
+	 * channel
+	 */
+	public ColorChannel(Dimension dimension, int circleSize) {
 		this.setSize(dimension);
 		this.setPreferredSize(dimension);
+		this.privateColor = new Color[2];
+		this.circleSize = circleSize;
 		this.leftEnd = (int) (0.25*this.getWidth());
 		this.rightEnd = (int) (0.75*this.getWidth());
-		this.yPosition = (int) (0.75*this.getHeight());
-		this.myheight = (int) (0.25*this.getHeight());
-		this.rightCircle = rightEnd-diameter;
+		this.lowerEnd = (int) (0.75*this.getHeight());
+		this.upperEnd = (int) (0.25*this.getHeight());
+		this.rightCircle = rightEnd-circleSize;
 		this.originalx1 = leftEnd;
-		this.originaly1 = yPosition-diameter/2;
+		this.originaly1 = lowerEnd-circleSize/2;
 		this.middle = (leftEnd+rightEnd)/2;
-		this.middleCircle = this.middle-diameter/2;
-		this.originalx2 = this.middle-diameter/2;
-		this.originaly2 = yPosition-diameter/2;
+		this.middleCircle = this.middle-circleSize/2;
+		this.originalx2 = this.middle-circleSize/2;
+		this.originaly2 = lowerEnd-circleSize/2;
 		this.x1 = originalx1;
 		this.y1 = originaly1;
 		this.x2 = originalx2;
 		this.y2 = originaly2;
-		this.firstCallAlice = true;
-		this.firstCallBob = true;
+		this.firstTimerEventAlice = true;
+		this.firstTimerEventBob = true;
 		this.numOfCircles = new int[3];
 		this.keptColors = new ArrayList<>();
-		ellip = new Ellipse2DwithColor(x1, y1, diameter, diameter);
-		ellip2 = new Ellipse2DwithColor(x1, y1, diameter, diameter);
+		ellip = new Ellipse2DwithColor(x1, y1, circleSize, circleSize);
+		ellip2 = new Ellipse2DwithColor(x1, y1, circleSize, circleSize);
 	}
 	
 	@Override
@@ -130,28 +142,27 @@ public class ColorChannel extends JPanel {
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.setPaint(channelColor);
 		
-		//450, 800, 180, 60
-		drawChannel(g2, this.leftEnd, this.rightEnd, this.yPosition, this.myheight);
+		drawChannel(g2, this.leftEnd, this.rightEnd, this.lowerEnd, this.upperEnd);
 		for(Ellipse2DwithColor circle : keptColors) {
 			g2.setPaint(circle.getColor());
 			g2.fill(circle);
 		}
 		if (sendAlice) {
 			
-			ellip.setFrame(x1, y1, diameter, diameter);
+			ellip.setFrame(x1, y1, circleSize, circleSize);
 			g2.setPaint(ellip.getColor());
 			g2.fill(ellip);
 			if(x1 < this.middleCircle) {
-				ellip2.setFrame(x2, y2, diameter, diameter);
+				ellip2.setFrame(x2, y2, circleSize, circleSize);
 				g2.setPaint(ellip2.getColor());
 				g2.fill(ellip2);
 			}
 		} else if (sendBob) {
-			ellip.setFrame(x1, y1, diameter, diameter);
+			ellip.setFrame(x1, y1, circleSize, circleSize);
 			g2.setPaint(ellip.getColor());
 			g2.fill(ellip);
 			if(x1 > this.middleCircle) {
-				ellip2.setFrame(x2, y2, diameter, diameter);
+				ellip2.setFrame(x2, y2, circleSize, circleSize);
 				g2.setPaint(ellip2.getColor());
 				g2.fill(ellip2);
 			}
@@ -160,6 +171,10 @@ public class ColorChannel extends JPanel {
 		
 	}
 
+	/* 
+	 * draw the communication channels, that means the lines that
+	 * represents those
+	 */
 	private void drawChannel(Graphics2D g2, int x1, int x2, int x3, int x4) {
 		g2.drawLine(x1, x3, x2, x3);
 		g2.drawLine((x1+x2)/2, x4, (x1+x2)/2, x3);
@@ -179,8 +194,8 @@ public class ColorChannel extends JPanel {
 			return;
 		}
 		this.sendBob = true;
-		this.ellip.setColor(this.color);
-		this.ellip2.setColor(this.color);
+		this.ellip.setColor(this.colorNextToSend);
+		this.ellip2.setColor(this.colorNextToSend);
 		//TODO remove hardcoded values
 		this.x1 = this.leftEnd;
 		this.x2 = this.middleCircle;
@@ -194,23 +209,23 @@ public class ColorChannel extends JPanel {
 				if(calledCallback[l]) {
 					return;
 				}
-				if(firstCallBob && !repeat && keepFirst) {
-					chooseColor(color, 0);
+				if(firstTimerEventBob && !repeatPeriodically && keepFirst) {
+					chooseColorToKeep(colorNextToSend, 0);
 					System.out.println("in first call bob");
-					firstCallBob = false;
+					firstTimerEventBob = false;
 				}
 				if(x1 < rightCircle) {
 					x1 += 3;
-					if (x1 > middleCircle && y2 > myheight) {
+					if (x1 > middleCircle && y2 > upperEnd) {
 						y2 -= 3;
 					}
 				} else {
 					sendBob = false;
-					firstCallBob = true;
+					firstTimerEventBob = true;
 					timer[l].stop();
-					if(keepColor && !repeat) {
+					if(keepCircles && !repeatPeriodically) {
 						for(int i=1; i < 3; i++) {
-							chooseColor(color, i);
+							chooseColorToKeep(colorNextToSend, i);
 						}
 					}
 					if(cb != null) {
@@ -218,7 +233,7 @@ public class ColorChannel extends JPanel {
 						calledCallback[l] = true;
 						System.out.println("calledCallback is " + calledCallback[l]);
 						cb.callback();
-					} else if (repeat) {
+					} else if (repeatPeriodically) {
 						System.out.println("repeat now");
 						// set to orignal values, to start all over
 						sendBob = true;
@@ -242,8 +257,8 @@ public class ColorChannel extends JPanel {
 			return;
 		}
 		this.sendAlice = true;
-		this.ellip.setColor(this.color);
-		this.ellip2.setColor(this.color);
+		this.ellip.setColor(this.colorNextToSend);
+		this.ellip2.setColor(this.colorNextToSend);
 		this.x1 = this.rightCircle;
 		this.x2 = this.middleCircle;
 		//TODO refactor
@@ -256,30 +271,30 @@ public class ColorChannel extends JPanel {
 				if(calledCallback[l]) {
 					return;
 				}
-				if(firstCallAlice && !repeat && keepFirst) {
-					chooseColor(color, 1);
+				if(firstTimerEventAlice && !repeatPeriodically && keepFirst) {
+					chooseColorToKeep(colorNextToSend, 1);
 					System.out.println("in first call alice");
-					firstCallAlice = false;
+					firstTimerEventAlice = false;
 				}
 				if(x1 > leftEnd) {
 					x1 -= 3;
-					if (x1 < middleCircle && y2 > myheight) {
+					if (x1 < middleCircle && y2 > upperEnd) {
 						y2 -= 3;
 					}
 				} else {
 					sendAlice = false;
-					firstCallAlice = true;
+					firstTimerEventAlice = true;
 					timer[l].stop();
-					if(keepColor) {
-						chooseColor(color, 0);
-						chooseColor(color, 2);
+					if(keepCircles) {
+						chooseColorToKeep(colorNextToSend, 0);
+						chooseColorToKeep(colorNextToSend, 2);
 					}
 					if(cb != null) {
 						System.out.println("called Callback in sendToAlice");
 						calledCallback[l] = true;
 						System.out.println("calledCallback is " + calledCallback[l]);
 						cb.callback();
-					} else if (repeat) {
+					} else if (repeatPeriodically) {
 						System.out.println("repeat now");
 						// set to orignal values, to start all over
 						sendAlice = true;
@@ -295,40 +310,51 @@ public class ColorChannel extends JPanel {
 		timer[l].start();
 	}
 	
-	private int computeXCoordinate(int numOfKeptColors, int i) {
-		switch(i) {
+	/*
+	 * compute the horizontal position of the next circle to add
+	 * to alice/bob/eve
+	 */
+	private int computeXCoordinate(int numOfKeptColors, int who) {
+		switch(who) {
 		case 0:
 			//alice
-			return leftEnd-numOfKeptColors*diameter;
+			return leftEnd-numOfKeptColors*circleSize;
 		case 1:
 			//bob
-			return rightCircle+numOfKeptColors*diameter;
+			return rightCircle+numOfKeptColors*circleSize;
 		case 2:
 			//eve
-			return middleCircle+(numOfKeptColors+1)*diameter;
+			return middleCircle+(numOfKeptColors+1)*circleSize;
 		}
 		//error
 		return -1;
 	}
 	
-	private int computeYCoordinate(int numOfKeptColors, int i) {
-		switch(i) {
+	/*
+	 * copmute the vertical position of the next circle to add
+	 * to alice/bob/eve
+	 */
+	private int computeYCoordinate(int numOfKeptColors, int who) {
+		switch(who) {
 		case 0:
 		case 1:
 			//alice
 			//bob
-			return yPosition+diameter/2;
+			return lowerEnd+circleSize/2;
 		case 2:
 			//eve
-			return myheight-diameter/2;
+			return upperEnd-circleSize/2;
 		}
 		//error
 		return -1;
 	}
 	
-	public void chooseColor(Color color, int i) {
-		this.keptColors.add(new Ellipse2DwithColor(computeXCoordinate(numOfCircles[i], i), computeYCoordinate(numOfCircles[i], i), diameter, diameter, color));
-		this.numOfCircles[i]++;
+	/*
+	 * add a circle to alice/bob/eve
+	 */
+	public void chooseColorToKeep(Color color, int who) {
+		this.keptColors.add(new Ellipse2DwithColor(computeXCoordinate(numOfCircles[who], who), computeYCoordinate(numOfCircles[who], who), circleSize, circleSize, color));
+		this.numOfCircles[who]++;
 		repaint();
 	}
 
@@ -336,6 +362,10 @@ public class ColorChannel extends JPanel {
 		return this.timer;
 	}
 	
+	/*
+	 * we need to stop the timer, since garbage collector won't do that
+	 * for us
+	 */
 	public void stopAllTimer() {
 		for(int i=0; i < timer.length; i++) {
 			if(timer[i] != null) {
@@ -344,30 +374,64 @@ public class ColorChannel extends JPanel {
 		}
 	}
 
+	/*
+	 * basically does the same like in the constructor
+	 * might remove this therefore
+	 */
 	public void loadView() {
 		this.leftEnd = (int) (0.25*this.getWidth());
 		this.rightEnd = (int) (0.75*this.getWidth());
-		this.yPosition = (int) (0.75*this.getHeight());
-		this.myheight = (int) (0.25*this.getHeight());
-		this.rightCircle = rightEnd-diameter;
+		this.lowerEnd = (int) (0.75*this.getHeight());
+		this.upperEnd = (int) (0.25*this.getHeight());
+		this.rightCircle = rightEnd-circleSize;
 		this.originalx1 = leftEnd;
-		this.originaly1 = yPosition-diameter/2;
+		this.originaly1 = lowerEnd-circleSize/2;
 		this.middle = (leftEnd+rightEnd)/2;
-		this.middleCircle = this.middle-diameter/2;
-		this.originalx2 = this.middle-diameter/2;
-		this.originaly2 = yPosition-diameter/2;
+		this.middleCircle = this.middle-circleSize/2;
+		this.originalx2 = this.middle-circleSize/2;
+		this.originaly2 = lowerEnd-circleSize/2;
 		this.x1 = originalx1;
 		this.y1 = originaly1;
 		this.x2 = originalx2;
 		this.y2 = originaly2;
-		ellip.setFrame(x1, y2, diameter, diameter);
-		ellip2.setFrame(x1, y2, diameter, diameter);
-		this.setBackground(Color.BLACK);
+		ellip.setFrame(x1, y2, circleSize, circleSize);
+		ellip2.setFrame(x1, y2, circleSize, circleSize);
 	}
 	
+	/*
+	 * choose the private colors,
+	 * so that we can use them later
+	 * to mix the final shared secret
+	 */
 	public void choosePrivateColor(Color color, int who) {
 		this.privateColor[who] = color;
-		this.chooseColor(color, who);
+		this.chooseColorToKeep(color, who);
+	}
+	
+	public boolean isRepeat() {
+		return repeatPeriodically;
 	}
 
+	public void setRepeat(boolean repeat) {
+		this.repeatPeriodically = repeat;
+	}
+	
+	public Color getColor() {
+		return colorNextToSend;
+	}
+
+	/* let the user of this class
+	 * choose the color to send
+	 */
+	public void setColorNextToSend(Color color) {
+		this.colorNextToSend = color;
+	}
+	
+	public boolean isKeepColor() {
+		return keepCircles;
+	}
+
+	public void setKeepColor(boolean keepColor) {
+		this.keepCircles = keepColor;
+	}
 }

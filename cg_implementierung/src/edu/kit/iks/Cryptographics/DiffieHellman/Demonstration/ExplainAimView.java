@@ -55,7 +55,7 @@ public class ExplainAimView extends VisualizationView {
 //		gbc.fill = GridBagConstraints.BOTH;
 		this.add(this.cc, gbc);
 		//TODO try not to do work in constructor
-		this.cc.setColor(Color.BLUE);
+		this.cc.setColorNextToSend(Color.BLUE);
 		this.cc.setKeepColor(false);
 		this.cc.setRepeat(true);
 		this.cc.sendToBob(null, 0, false);
