@@ -93,8 +93,10 @@ public class ColorChannel extends JPanel {
 	private boolean[] calledCallback = {false, false, false, false, false};
 
 	
-	public ColorChannel(Dimension dimension) {
+	public ColorChannel(Dimension dimension, int diameter) {
+		this.diameter = diameter;
 		this.setSize(dimension);
+		this.setPreferredSize(dimension);
 		this.leftEnd = (int) (0.25*this.getWidth());
 		this.rightEnd = (int) (0.75*this.getWidth());
 		this.yPosition = (int) (0.75*this.getHeight());

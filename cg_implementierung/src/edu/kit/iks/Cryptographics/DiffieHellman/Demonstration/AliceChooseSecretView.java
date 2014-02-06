@@ -35,7 +35,7 @@ public class AliceChooseSecretView extends VisualizationView {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		this.add(aliceExplain, gbc);
-		this.cc = new ColorChannel(new Dimension(700, 200));
+		this.cc = new ColorChannel(new Dimension(700, 200), 80);
 		
 		gbc.weightx = 0.3;
 		gbc.weighty = 0.3;
@@ -44,7 +44,7 @@ public class AliceChooseSecretView extends VisualizationView {
 		gbc.fill = GridBagConstraints.BOTH;
 		this.add(this.cc, gbc);
 
-		this.cm = new ColorMix(Color.BLUE, Color.GREEN, 50, new Dimension(300, 200));
+		this.cm = new ColorMix(Color.BLUE, Color.GREEN, 50, new Dimension(300, 300));
 		
 		gbc.weightx = 0.3;
 		gbc.weighty = 0.3;
