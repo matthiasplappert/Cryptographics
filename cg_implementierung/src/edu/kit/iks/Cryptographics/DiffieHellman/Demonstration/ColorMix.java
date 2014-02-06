@@ -63,6 +63,7 @@ public class ColorMix extends JPanel {
 	
 	public ColorMix(Color color1, Color color2, int diameter, Dimension dimension) {
 		this.setSize(dimension);
+		this.setPreferredSize(dimension);
 		this.diameter = diameter;
 		this.originalx1 = diameter;
 		this.originaly1 = dimension.height-diameter;

@@ -35,7 +35,7 @@ public class AliceChooseSecretView extends VisualizationView {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		this.add(aliceExplain, gbc);
-		this.cc = new ColorChannel(new Dimension(700, 200), 80);
+		this.cc = new ColorChannel(new Dimension(700, 200), 70);
 		
 		gbc.weightx = 0.3;
 		gbc.weighty = 0.3;
