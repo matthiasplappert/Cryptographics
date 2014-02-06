@@ -92,14 +92,7 @@ public class ColorChannel extends JPanel {
 	 * originally tried to solve a bug with
 	 * this, this probably can be refactored/removed
 	 */
-	private Timer[] timer = {null, null, null, null, null};
-	
-	/*
-	 * this was used for debugging the timer bug.
-	 * this probably can be removed, if tested
-	 * enough after removal
-	 */
-	private boolean[] calledCallback = {false, false, false, false, false};
+	private Timer timer;
 
 	/*
 	 * Constructor takes the size of JPanel, and
@@ -200,15 +193,12 @@ public class ColorChannel extends JPanel {
 		this.x1 = this.leftEnd;
 		this.x2 = this.middleCircle;
 		this.y2 = this.originaly2;
-		timer[l] = new Timer(50, new ActionListener() {
+		timer = new Timer(50, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO remove hardcoded values
 				System.out.println("timer " + l + " in colorchannel");
-				if(calledCallback[l]) {
-					return;
-				}
 				if(firstTimerEventBob && !repeatPeriodically && keepFirst) {
 					chooseColorToKeep(colorNextToSend, 0);
 					System.out.println("in first call bob");
@@ -222,7 +212,7 @@ public class ColorChannel extends JPanel {
 				} else {
 					sendBob = false;
 					firstTimerEventBob = true;
-					timer[l].stop();
+					timer.stop();
 					if(keepCircles && !repeatPeriodically) {
 						for(int i=1; i < 3; i++) {
 							chooseColorToKeep(colorNextToSend, i);
@@ -230,8 +220,6 @@ public class ColorChannel extends JPanel {
 					}
 					if(cb != null) {
 						System.out.println("called callback in sendToBob");
-						calledCallback[l] = true;
-						System.out.println("calledCallback is " + calledCallback[l]);
 						cb.callback();
 					} else if (repeatPeriodically) {
 						System.out.println("repeat now");
@@ -240,13 +228,13 @@ public class ColorChannel extends JPanel {
 						x1 = leftEnd;
 						x2 = middleCircle;
 						y2 = originaly2;
-						timer[l].restart();
+						timer.restart();
 					}
 				}
 				repaint();
 			}
 		});
-		timer[l].start();
+		timer.start();
 	}
 	
 	public void sendToAlice(final NextStepCallback cb, final int l, final boolean keepFirst) {
@@ -263,14 +251,11 @@ public class ColorChannel extends JPanel {
 		this.x2 = this.middleCircle;
 		//TODO refactor
 		this.y2 = this.originaly2;
-		timer[l] = new Timer(50, new ActionListener() {
+		timer = new Timer(50, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("timer " + l + " in colorchannel");
-				if(calledCallback[l]) {
-					return;
-				}
 				if(firstTimerEventAlice && !repeatPeriodically && keepFirst) {
 					chooseColorToKeep(colorNextToSend, 1);
 					System.out.println("in first call alice");
@@ -284,15 +269,13 @@ public class ColorChannel extends JPanel {
 				} else {
 					sendAlice = false;
 					firstTimerEventAlice = true;
-					timer[l].stop();
+					timer.stop();
 					if(keepCircles) {
 						chooseColorToKeep(colorNextToSend, 0);
 						chooseColorToKeep(colorNextToSend, 2);
 					}
 					if(cb != null) {
 						System.out.println("called Callback in sendToAlice");
-						calledCallback[l] = true;
-						System.out.println("calledCallback is " + calledCallback[l]);
 						cb.callback();
 					} else if (repeatPeriodically) {
 						System.out.println("repeat now");
@@ -301,13 +284,13 @@ public class ColorChannel extends JPanel {
 						x1 = rightCircle;
 						x2 = middleCircle;
 						y2 = originaly2;
-						timer[l].restart();
+						timer.restart();
 					}
 				}
 				repaint();
 			}
 		});
-		timer[l].start();
+		timer.start();
 	}
 	
 	/*
@@ -358,7 +341,7 @@ public class ColorChannel extends JPanel {
 		repaint();
 	}
 
-	public Timer[] getTimer() {
+	public Timer getTimer() {
 		return this.timer;
 	}
 	
@@ -366,11 +349,9 @@ public class ColorChannel extends JPanel {
 	 * we need to stop the timer, since garbage collector won't do that
 	 * for us
 	 */
-	public void stopAllTimer() {
-		for(int i=0; i < timer.length; i++) {
-			if(timer[i] != null) {
-				timer[i].stop();
-			}
+	public void stopTimer() {
+		if(timer != null) {
+			timer.stop();
 		}
 	}
 

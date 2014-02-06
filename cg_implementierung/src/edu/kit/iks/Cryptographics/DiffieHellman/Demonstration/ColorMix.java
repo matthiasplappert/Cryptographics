@@ -42,15 +42,8 @@ public class ColorMix extends JPanel {
 	 * though it wasn't the bug, so this is probably useless
 	 * but need to test
 	 */
-	private Timer[] timer = {null, null, null, null, null};
+	private Timer timer;
 	
-	/*
-	 * this was used for debugging the timer bug.
-	 * this probably can be removed, if tested
-	 * enough after removal
-	 */
-	private boolean[] calledCallback = {false, false, false, false, false};
-
 	/* the middle part where the two circles will meet */
 	private int middle;
 
@@ -82,7 +75,7 @@ public class ColorMix extends JPanel {
 		this.y2 = originaly2;
 		if(mixcolors) {
 			if(repeat) {
-				this.timer[l] = new Timer(50, new ActionListener() {
+				this.timer = new Timer(50, new ActionListener() {
 				
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
@@ -99,16 +92,13 @@ public class ColorMix extends JPanel {
 						repaint();
 					}
 				});
-				timer[l].start();
+				timer.start();
 			} else {
-				this.timer[l] = new Timer(50, new ActionListener() {
+				this.timer = new Timer(50, new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						System.out.println("timer in colormix " + l);
-						if(calledCallback[l]) {
-							return;
-						}
 						if(x1 < middle) {
 							x1 += 3;
 						}
@@ -116,9 +106,8 @@ public class ColorMix extends JPanel {
 							x2 -= 3;
 						}
 						if(x2 <= middle && x1 >= middle) {
-							timer[l].stop();
+							timer.stop();
 							if (cb != null) {
-								calledCallback[l] = true;
 								System.out.println("called callback in colormix");
 								cb.callback();	
 							}
@@ -126,10 +115,10 @@ public class ColorMix extends JPanel {
 						repaint();
 					}
 				});
-				timer[l].start();
+				timer.start();
 			}
 		} else {
-			timer[l].stop();
+			timer.stop();
 		}
 	}
 	
