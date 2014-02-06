@@ -179,7 +179,7 @@ public class ColorChannel extends JPanel {
 	// TODO refactor sendToBob and sendToAlice into one method
 	// TODO enhance so that eve gets the keept color immediately after it arrived,
 	// instead of waiting for arrival of the message to bob/alice 
-	public void sendToBob(final NextStepCallback cb, final int l, final boolean keepFirst) {
+	public void sendToBob(final NextStepCallback cb, final boolean keepFirst) {
 		if(sendAlice) {
 			/* don't want to send colors
 			 * if others are being send
@@ -198,7 +198,7 @@ public class ColorChannel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO remove hardcoded values
-				System.out.println("timer " + l + " in colorchannel");
+				System.out.println("timer " + " in colorchannel");
 				if(firstTimerEventBob && !repeatPeriodically && keepFirst) {
 					chooseColorToKeep(colorNextToSend, 0);
 					System.out.println("in first call bob");

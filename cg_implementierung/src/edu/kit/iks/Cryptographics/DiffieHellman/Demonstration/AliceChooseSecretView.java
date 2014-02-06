@@ -92,13 +92,13 @@ public class AliceChooseSecretView extends VisualizationView {
 										cc.setColorNextToSend(cm.getMixedColor());
 										cc.sendToAlice(null, 2, true);										
 									}
-								}, 1);
+								});
 							}
-						}, 1, true);
+						}, true);
 					}
-				}, 0);			
+				});			
 			}
-		}, 0, true);
+		}, true);
 	}
 
 

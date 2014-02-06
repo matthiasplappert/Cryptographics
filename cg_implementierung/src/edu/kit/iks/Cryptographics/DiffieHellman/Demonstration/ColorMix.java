@@ -67,7 +67,7 @@ public class ColorMix extends JPanel {
 		this.ellip2 = new Ellipse2DwithColor(x2, y2, circleSize, circleSize, color2);
 	}
 	
-	public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb, final int l) {
+	public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb) {
 		this.mixcolors = mix;
 		this.x1 = originalx1;
 		this.y1 = originaly1;
@@ -98,7 +98,7 @@ public class ColorMix extends JPanel {
 					
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
-						System.out.println("timer in colormix " + l);
+						System.out.println("timer in colormix ");
 						if(x1 < middle) {
 							x1 += 3;
 						}
