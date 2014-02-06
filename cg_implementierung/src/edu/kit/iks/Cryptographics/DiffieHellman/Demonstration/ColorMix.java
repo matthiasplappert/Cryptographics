@@ -13,30 +13,19 @@ import java.awt.geom.Area;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/*
+ * This view/JPanel allows us to mix two Colors
+ */
+
 public class ColorMix extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4056277049609956169L;
 	
-	/* our two circles */
+	/* our two circles to mix */
 	private Ellipse2DwithColor ellip1, ellip2;
-	
-	public void setEllipColor(int which, Color color) {
-		if(which == 1) {
-			ellip1.setColor(color);
-		} else if (which == 2) {
-			ellip2.setColor(color);
-		}
-	}
 	
 	/* the mix of colors of ellip1 and ellip2 */
 	private Color mixedColor;
-	
-	public Color getMixedColor() {
-		return mixedColor;
-	}
 
 	/* coordinates of the circles */
 	private int x1, y1, x2, y2;
@@ -47,35 +36,42 @@ public class ColorMix extends JPanel {
 	/* true if we should mix the colors */
 	private boolean mixcolors;
 
+	/*
+	 * It maybe that one timer is actually is enough
+	 * originally used this as a fix for the timer bug
+	 * though it wasn't the bug, so this is probably useless
+	 * but need to test
+	 */
 	private Timer[] timer = {null, null, null, null, null};
 	
+	/*
+	 * this was used for debugging the timer bug.
+	 * this probably can be removed, if tested
+	 * enough after removal
+	 */
 	private boolean[] calledCallback = {false, false, false, false, false};
 
+	/* the middle part where the two circles will meet */
 	private int middle;
 
-	private int originalx1;
-
-	private int originaly1;
-
-	private int originalx2;
-
-	private int originaly2;
+	/* the original coordinates, so that we can reset them later */
+	private int originalx1, originaly1, originalx2, originaly2;
 	
-	public ColorMix(Color color1, Color color2, int diameter, Dimension dimension) {
+	public ColorMix(Color color1, Color color2, int circleSize, Dimension dimension) {
 		this.setSize(dimension);
 		this.setPreferredSize(dimension);
-		this.diameter = diameter;
-		this.originalx1 = diameter;
-		this.originaly1 = dimension.height-diameter;
-		this.originalx2 = dimension.width-diameter;
-		this.originaly2 = dimension.height-diameter;
+		this.diameter = circleSize;
+		this.originalx1 = circleSize;
+		this.originaly1 = dimension.height-circleSize;
+		this.originalx2 = dimension.width-circleSize;
+		this.originaly2 = dimension.height-circleSize;
 		this.x1 = originalx1;
 		this.y1= originaly1;
 		this.x2 = originalx2;
 		this.y2 = originaly2;
 		this.middle = (x1+x2)/2;
-		this.ellip1 = new Ellipse2DwithColor(x1, y1, diameter, diameter, color1);
-		this.ellip2 = new Ellipse2DwithColor(x2, y2, diameter, diameter, color2);
+		this.ellip1 = new Ellipse2DwithColor(x1, y1, circleSize, circleSize, color1);
+		this.ellip2 = new Ellipse2DwithColor(x2, y2, circleSize, circleSize, color2);
 	}
 	
 	public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb, final int l) {
@@ -171,4 +167,15 @@ public class ColorMix extends JPanel {
 		this.mixedColor= new Color((r1+r2)/2, (g1+g2)/2, (b1+b2)/2);
 	}
 
+	public void setEllipColor(int which, Color color) {
+		if(which == 1) {
+			ellip1.setColor(color);
+		} else if (which == 2) {
+			ellip2.setColor(color);
+		}
+	}
+	
+	public Color getMixedColor() {
+		return mixedColor;
+	}
 }
