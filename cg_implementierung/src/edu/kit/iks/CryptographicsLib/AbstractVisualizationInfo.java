@@ -81,12 +81,15 @@ abstract public class AbstractVisualizationInfo {
 	abstract public List<Class> getControllerClasses();
 
 	/**
-	 * Gets the additional information as file URL to display HTML
+	 * Gets the additional information as file path to display HTML
 	 * 
-	 * @return Additional information as file URL to display HTML
+	 * @return Additional information as file path to display HTML
 	 */
-	public String getAdditionalInformationFileURL() {
-		return null;
+	public String getAdditionalInformationPath() {
+		// Generate path.
+		String language = Configuration.getInstance().getLanguageCode();
+		String path = "/" + this.getId() + "/" + language + "/" + "additional_information.html";  
+		return path;
 	}
 	
 	/**

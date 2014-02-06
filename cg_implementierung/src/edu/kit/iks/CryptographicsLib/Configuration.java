@@ -1,4 +1,4 @@
-package edu.kit.iks.Cryptographics;
+package edu.kit.iks.CryptographicsLib;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,7 +54,7 @@ public class Configuration {
 	/**
 	 * The ISO 639-1 language code.
 	 */
-	private String languageCode = "en_US";
+	private String languageCode = "en";
 	
 	/**
 	 * Marked as private to enforce singleton pattern.

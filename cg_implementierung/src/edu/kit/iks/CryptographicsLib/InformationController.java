@@ -1,6 +1,12 @@
 package edu.kit.iks.CryptographicsLib;
 
 import java.awt.Image;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
+import java.nio.charset.Charset;
 
 /**
  * Controller for each procedure displaying further
@@ -15,6 +21,8 @@ public class InformationController extends AbstractVisualizationController {
 	 */
 	private InformationView view;
 	
+	private String additionalInformationHtml;
+	
 	/**
 	 * Constructor initializing a new instance of {InformationController}
 	 * with given {visualizationInfo}
@@ -24,6 +32,15 @@ public class InformationController extends AbstractVisualizationController {
 	 */
 	public InformationController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
+		
+		// Load the HTML.
+		String path = visualizationInfo.getAdditionalInformationPath();
+		InputStream inputStream = visualizationInfo.getClass().getResourceAsStream(path);
+		System.out.println(path);
+		if (inputStream == null) {
+			System.out.println("no input stream!");
+		}
+		this.additionalInformationHtml = this.getStringFromInputStream(inputStream);
 	}
 	
 	/*
@@ -32,10 +49,8 @@ public class InformationController extends AbstractVisualizationController {
 	 */
 	@Override
 	public void loadView() {
-		String path = this.getVisualizationInfo().getAdditionalInformationFileURL();
 		Image qrCode = this.getVisualizationInfo().getQrCode();
-		
-		this.view = new InformationView(path, qrCode);
+		this.view = new InformationView(this.additionalInformationHtml, qrCode);
 	}
 	
 	/*
@@ -63,5 +78,31 @@ public class InformationController extends AbstractVisualizationController {
 	@Override
 	public InformationView getView() {
 		return this.view;
+	}
+	
+	// convert InputStream to String
+	private static String getStringFromInputStream(InputStream is) {
+		BufferedReader br = null;
+		StringBuilder sb = new StringBuilder();
+
+		String line;
+		try {
+			br = new BufferedReader(new InputStreamReader(is));
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return sb.toString();
 	}
 }
