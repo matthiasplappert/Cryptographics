@@ -26,30 +26,42 @@ public class AliceChooseSecretView extends VisualizationView {
 	public AliceChooseSecretView() {
 		super();
 		GridBagConstraints gbc = new GridBagConstraints();
-		this.setLayout(new GridBagLayout());
-		this.aliceExplain = new JLabel();
-		this.aliceExplain.setText("<html><div style=\"width:120px\"Alice chooses a public color and sends it to Bob" +
-				"Eve listens to the channel and gets a copy</div></html>");
-		gbc.weightx = 0.3;
+		GridBagLayout layout = new GridBagLayout();
+		this.setLayout(layout);
+		
+		gbc.gridx = 2;
+		gbc.gridy = 2;
+		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
+		layout.setConstraints(this.getNextButton(), gbc);
+		
 		gbc.gridx = 0;
-		gbc.gridy = 0;
+		gbc.gridy = 2;
+		layout.setConstraints(this.getBackButton(), gbc);
+		
+		this.aliceExplain = new JLabel();
+		this.aliceExplain.setText("<html><div style=\"width:120px\">Alice chooses a public color and sends it to Bob" +
+				"Eve listens to the channel and gets a copy</div></html>");
+		gbc.weightx = 0.1;
+		gbc.weighty = 0.1;
+		gbc.gridx = 1;
+		gbc.gridy = 2;
 		this.add(aliceExplain, gbc);
 		this.cc = new ColorChannel(new Dimension(700, 200), 70);
 		
-		gbc.weightx = 0.3;
-		gbc.weighty = 0.3;
-		gbc.gridx = 0;
-		gbc.gridy = 1;
+		gbc.weightx = 0.1;
+		gbc.weighty = 0.1;
+		gbc.gridx = 1;
+		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
 		this.add(this.cc, gbc);
 
 		this.cm = new ColorMix(Color.BLUE, Color.GREEN, 50, new Dimension(300, 300));
 		
-		gbc.weightx = 0.3;
-		gbc.weighty = 0.3;
-		gbc.gridx = 0;
-		gbc.gridy = 2;
+		gbc.weightx = 0.1;
+		gbc.weighty = 0.1;
+		gbc.gridx = 2;
+		gbc.gridy = 0;
 		this.add(this.cm, gbc);
 		this.cc.loadView();
 		this.cc.setRepeat(false);
