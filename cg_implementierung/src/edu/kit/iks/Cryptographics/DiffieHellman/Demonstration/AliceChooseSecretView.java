@@ -47,7 +47,7 @@ public class AliceChooseSecretView extends VisualizationView {
 		gbc.gridx = 1;
 		gbc.gridy = 2;
 		this.add(aliceExplain, gbc);
-		this.cc = new ColorChannel(new Dimension(700, 200), 70);
+		this.cc = new ColorChannel(new Dimension(700, 200), 50);
 		
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
@@ -56,7 +56,7 @@ public class AliceChooseSecretView extends VisualizationView {
 		gbc.fill = GridBagConstraints.BOTH;
 		this.add(this.cc, gbc);
 
-		this.cm = new ColorMix(Color.BLUE, Color.GREEN, 50, new Dimension(300, 300));
+		this.cm = new ColorMix(Color.BLUE, Color.GREEN, 50, new Dimension(200, 200));
 		
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
@@ -73,6 +73,7 @@ public class AliceChooseSecretView extends VisualizationView {
 			
 			@Override
 			public void callback() {
+				cc.chooseColor(Color.GREEN, 0);
 				cm.mixColors(true, false, new NextStepCallback() {
 					
 					@Override
@@ -83,6 +84,7 @@ public class AliceChooseSecretView extends VisualizationView {
 							@Override
 							public void callback() {
 								cm.setEllipColor(2, Color.RED);
+								cc.chooseColor(Color.RED, 1);
 								cm.mixColors(true, false, new NextStepCallback() {
 									
 									@Override

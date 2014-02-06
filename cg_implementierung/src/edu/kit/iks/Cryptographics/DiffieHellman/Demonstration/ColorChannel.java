@@ -20,6 +20,8 @@ public class ColorChannel extends JPanel {
 
 	private static final long serialVersionUID = 4073013433018353584L;
 	
+	private Color[] privateColor;
+	
 	/* the coordinates of the circles */
 	private int x1, y1, x2, y2;
 	/* the x coordinates for the communications lines */
@@ -94,6 +96,7 @@ public class ColorChannel extends JPanel {
 
 	
 	public ColorChannel(Dimension dimension, int diameter) {
+		this.privateColor = new Color[2];
 		this.diameter = diameter;
 		this.setSize(dimension);
 		this.setPreferredSize(dimension);
@@ -360,6 +363,11 @@ public class ColorChannel extends JPanel {
 		ellip.setFrame(x1, y2, diameter, diameter);
 		ellip2.setFrame(x1, y2, diameter, diameter);
 		this.setBackground(Color.BLACK);
+	}
+	
+	public void choosePrivateColor(Color color, int who) {
+		this.privateColor[who] = color;
+		this.chooseColor(color, who);
 	}
 
 }
