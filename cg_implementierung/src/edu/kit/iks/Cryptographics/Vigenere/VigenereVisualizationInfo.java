@@ -1,6 +1,5 @@
 package edu.kit.iks.Cryptographics.Vigenere;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import org.jdom2.input.SAXBuilder;
 
 import edu.kit.iks.Cryptographics.Vigenere.Demonstration.*;
 import edu.kit.iks.Cryptographics.Vigenere.Experiment.FirstExperimentController;
-import edu.kit.iks.Cryptographics.Vigenere.Experiment.SecondExperimentController;
 import edu.kit.iks.Cryptographics.Vigenere.Explanation.FirstExplanationController;
 import edu.kit.iks.Cryptographics.Vigenere.Explanation.SecondExplanationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
@@ -78,7 +76,6 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 		controllerClasses.add(SecondDemonstrationController.class);
 		controllerClasses.add(ThirdDemonstrationController.class);
 		controllerClasses.add(FirstExperimentController.class);
-		controllerClasses.add(SecondExperimentController.class);
 		controllerClasses.add(FirstExplanationController.class);
 		controllerClasses.add(SecondExplanationController.class);
 		controllerClasses.add(InformationController.class);
