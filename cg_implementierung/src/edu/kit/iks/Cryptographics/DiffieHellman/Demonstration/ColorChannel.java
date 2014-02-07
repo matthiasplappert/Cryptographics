@@ -29,6 +29,8 @@ public class ColorChannel extends JPanel {
 	 */
 	private Color[] privateColor;
 	
+	private Color[] mixedColor;
+	
 	/* the coordinates of the circles */
 	private int x1, y1, x2, y2;
 	
@@ -387,6 +389,18 @@ public class ColorChannel extends JPanel {
 	public void choosePrivateColor(Color color, int who) {
 		this.privateColor[who] = color;
 		this.chooseColorToKeep(color, who);
+	}
+	
+	public void choosePublicColor() {
+		
+	}
+	
+	public void sendAliceMixedColorToBob(Color mixedColor) {
+		
+	}
+	
+	public void sendBobMixedColorToAlice(Color mixedColor) {
+		
 	}
 	
 	public boolean isRepeat() {
