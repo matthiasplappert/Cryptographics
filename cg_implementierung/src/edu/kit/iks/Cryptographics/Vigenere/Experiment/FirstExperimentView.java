@@ -29,7 +29,11 @@ public class FirstExperimentView extends VisualizationView{
 	private AlphabetStripView alphabet;
 	
 	public AlphabetStripView getAlphabet() {
-		return alphabet;
+		return this.alphabet;
+	}
+	
+	public String getKey() {
+		return this.vigenereKey;
 	}
 	
 	public void setTextField(int i, String character) {
@@ -42,6 +46,18 @@ public class FirstExperimentView extends VisualizationView{
 		Dimension size = this.indexCharDecrypted[i].getPreferredSize();
 		this.indexCharDecrypted[i].setSize(size);
 		this.validate();
+	}
+	
+	public void setTextFieldDisabled(int i) {
+		this.textCharDecrypted[i].setEnabled(false);
+	}
+	
+	public JTextField getTextFieldDecrypted(int i) {
+		return this.textCharDecrypted[i];
+	}
+	
+	public JTextField getTextFieldPlain(int i) {
+		return this.textCharPlain[i];
 	}
 	
 	public void setExplanation(String explanation) {
@@ -59,20 +75,20 @@ public class FirstExperimentView extends VisualizationView{
 		this.alphabet = new AlphabetStripView();
 		
 		this.textCharPlain = new JTextField[5];
-		this.textCharPlain[0] = new JTextField("S");
-		this.textCharPlain[1] = new JTextField("V");
-		this.textCharPlain[2] = new JTextField("R");
-		this.textCharPlain[3] = new JTextField("H");
-		this.textCharPlain[4] = new JTextField("V");
+		this.textCharPlain[0] = new JTextField("T");
+		this.textCharPlain[1] = new JTextField("W");
+		this.textCharPlain[2] = new JTextField("S");
+		this.textCharPlain[3] = new JTextField("I");
+		this.textCharPlain[4] = new JTextField("W");
 		for (int i = 0; i < this.textCharPlain.length; i++)
 			this.add(this.textCharPlain[i]);
 
 		this.indexCharPlain = new JLabel[5];
-		this.indexCharPlain[0] = new JLabel("19");
-		this.indexCharPlain[1] = new JLabel("22");
-		this.indexCharPlain[2] = new JLabel("18");
-		this.indexCharPlain[3] = new JLabel(" 8");
-		this.indexCharPlain[4] = new JLabel("22");
+		this.indexCharPlain[0] = new JLabel("20");
+		this.indexCharPlain[1] = new JLabel("23");
+		this.indexCharPlain[2] = new JLabel("19");
+		this.indexCharPlain[3] = new JLabel(" 9");
+		this.indexCharPlain[4] = new JLabel("23");
 		for (int i = 0; i < this.indexCharPlain.length; i++)
 			this.add(this.indexCharPlain[i]);
 
@@ -131,6 +147,10 @@ public class FirstExperimentView extends VisualizationView{
 		this.textCharPlain[3].setBounds(650, 100,
 	             size.width, size.height);
 		
+		size = this.textCharPlain[4].getPreferredSize();
+		this.textCharPlain[4].setBounds(700, 100,
+	             size.width, size.height);
+		
 		//TROLOLO
 		
 		size = this.indexCharPlain[0].getPreferredSize();
@@ -149,6 +169,10 @@ public class FirstExperimentView extends VisualizationView{
 		this.indexCharPlain[3].setBounds(650, 160,
 	             size.width, size.height);
 		
+		size = this.indexCharPlain[4].getPreferredSize();
+		this.indexCharPlain[4].setBounds(700, 160,
+	             size.width, size.height);
+		
 		//TROLOLOLO 2
 		size.width = 24;
 		size.height = 44;
@@ -162,6 +186,9 @@ public class FirstExperimentView extends VisualizationView{
 	             size.width, size.height);
 
 		this.textCharDecrypted[3].setBounds(650, 250,
+	             size.width, size.height);
+		
+		this.textCharDecrypted[4].setBounds(700, 250,
 	             size.width, size.height);
 		
 		//TROLOLO 3
@@ -182,6 +209,10 @@ public class FirstExperimentView extends VisualizationView{
 		this.indexCharDecrypted[3].setBounds(650, 310,
 	             size.width, size.height);
 		
+		size = this.indexCharDecrypted[4].getPreferredSize();
+		this.indexCharDecrypted[4].setBounds(700, 310,
+	             size.width, size.height);
+		
 		size = this.alphabet.getPreferredSize();
 		this.alphabet.setBounds(100, 520,
 	             size.width, size.height);
@@ -198,5 +229,8 @@ public class FirstExperimentView extends VisualizationView{
 		size = this.getNextButton().getPreferredSize();
 		this.getNextButton().setBounds(1100, 600,
 	             size.width, size.height);
+		
+		getAlphabet().highlight(0);
+		getAlphabet().highlight(19);
 	}
 }
