@@ -126,7 +126,7 @@ public class ColorChannel extends JPanel {
 		this.numOfCircles = new int[3];
 		this.keptColors = new ArrayList<>();
 		ellip = new Ellipse2DwithColor(x1, y1, circleSize, circleSize);
-		ellip2 = new Ellipse2DwithColor(x1, y1, circleSize, circleSize);
+		ellip2 = new Ellipse2DwithColor(x2, y2, circleSize, circleSize);
 	}
 	
 	@Override
@@ -236,7 +236,7 @@ public class ColorChannel extends JPanel {
 		timer.start();
 	}
 	
-	public void sendToAlice(final NextStepCallback cb, final int l, final boolean keepFirst) {
+	public void sendToAlice(final NextStepCallback cb, final boolean keepFirst) {
 		if(sendBob) {
 			/* don't want to send if there
 			 * is already colors to be sent
@@ -372,39 +372,44 @@ public class ColorChannel extends JPanel {
 		this.y1 = originaly1;
 		this.x2 = originalx2;
 		this.y2 = originaly2;
-		ellip.setFrame(x1, y2, circleSize, circleSize);
-		ellip2.setFrame(x1, y2, circleSize, circleSize);
+		ellip.setFrame(x1, y1, circleSize, circleSize);
+		ellip2.setFrame(x2, y2, circleSize, circleSize);
 	}
 	
-	/*
-	 * choose the private colors,
-	 * so that we can use them later
-	 * to mix the final shared secret
-	 */
-	public void choosePrivateColor(Color color, int who) {
-		switch(who) {
-		case 0:
-			this.model.setAlicePrivateColor(color);
-			break;
-		case 1:
-			this.model.setBobPrivateColor(color);
-			break;
-		default:
-			break;
-		}
 
-		this.chooseColorToKeep(color, who);
+	
+	public void choosePublicColor(Color color) {
+		this.model.setPublicColor(color);
+		this.chooseColorToKeep(color, 0);
 	}
 	
-	public void choosePublicColor() {
+	public void chooseAlicePrivateColor(Color color) {
+		this.model.setAlicePrivateColor(color);
+		this.chooseColorToKeep(color, 0);
+	}
+	
+	public void chooseBobPrivateColor(Color color) {
+		this.model.setBobPrivateColor(color);
+		this.chooseColorToKeep(color, 1);
+	}
+	
+	public void sendAliceMixedColorToBob(NextStepCallback cb) {
+		this.model.mixAlicePrivateAndPublic();
+		this.setColorNextToSend(this.model.getAliceMixedColor());
+		this.sendToBob(cb, true);
+	}
+	
+	public void sendBobMixedColorToAlice(NextStepCallback cb) {
+		this.model.mixBobPrivateAndPublic();
+		this.setColorNextToSend(this.model.getBobMixedColor());
+		this.sendToAlice(cb, true);
+	}
+	
+	public void mixAliceFinalSecret() {
 		
 	}
 	
-	public void sendAliceMixedColorToBob(Color mixedColor) {
-		
-	}
-	
-	public void sendBobMixedColorToAlice(Color mixedColor) {
+	public void mixBobFinalSecret() {
 		
 	}
 	
@@ -434,4 +439,5 @@ public class ColorChannel extends JPanel {
 	public void setKeepColor(boolean keepColor) {
 		this.keepCircles = keepColor;
 	}
+	
 }
