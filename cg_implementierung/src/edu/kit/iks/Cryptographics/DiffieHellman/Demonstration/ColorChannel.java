@@ -1,5 +1,6 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -30,6 +31,10 @@ public class ColorChannel extends JPanel {
 	 * remembers the colors of alice,bob,eve
 	 */
 	private Model model;
+	
+	private ColorMix cm1, cm2;
+	
+	private JPanel container;
 	
 	/* the coordinates of the circles */
 	private int x1, y1, x2, y2;
@@ -102,10 +107,19 @@ public class ColorChannel extends JPanel {
 	 * it computes the position for the communication
 	 * channel
 	 */
-	public ColorChannel(Dimension dimension, int circleSize) {
+	public ColorChannel(Dimension d, int circleSize) {
+		container = new JPanel();
+		container.setSize(new Dimension((int)d.getWidth(), (int)d.getHeight()/4));
+		container.setPreferredSize(new Dimension((int)d.getWidth(), (int)d.getHeight()/4));
+		this.cm1 = new ColorMix(circleSize, new Dimension((int)d.getWidth()/2, (int)d.getHeight()/4));
+		this.cm2 = new ColorMix(circleSize, new Dimension((int)d.getWidth()/2, (int)d.getHeight()/4));
+		this.setLayout(new BorderLayout());
+		container.add(cm1);
+		container.add(cm2);
+		this.add(container, BorderLayout.SOUTH);
 		this.model = new Model();
-		this.setSize(dimension);
-		this.setPreferredSize(dimension);
+		this.setSize(d);
+		this.setPreferredSize(d);
 		this.circleSize = circleSize;
 		this.leftEnd = (int) (0.25*this.getWidth());
 		this.rightEnd = (int) (0.75*this.getWidth());
@@ -418,12 +432,20 @@ public class ColorChannel extends JPanel {
 		this.sendToAlice(cb, true);
 	}
 	
-	public void mixAliceFinalSecret() {
-		
+	public void mixAliceFinalSecret(NextStepCallback cb) {
+		assert(model.getBobMixedColor() != null);
+		assert(model.getAlicePrivateColor() != null);
+		this.cm1.setEllipColor(0, model.getBobMixedColor());
+		this.cm1.setEllipColor(1, model.getAlicePrivateColor());
+		this.cm1.mixColors(true, false, cb);
 	}
 	
-	public void mixBobFinalSecret() {
-		
+	public void mixBobFinalSecret(NextStepCallback cb) {
+		assert(model.getAliceMixedColor() != null);
+		assert(model.getBobPrivateColor() != null);
+		this.cm2.setEllipColor(0, model.getAliceMixedColor());
+		this.cm2.setEllipColor(1, model.getBobPrivateColor());
+		this.cm2.mixColors(true, false, cb);
 	}
 	
 	public boolean isRepeat() {
