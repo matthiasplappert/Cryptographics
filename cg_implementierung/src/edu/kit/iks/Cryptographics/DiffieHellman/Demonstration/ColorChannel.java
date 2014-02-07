@@ -103,6 +103,7 @@ public class ColorChannel extends JPanel {
 	 * channel
 	 */
 	public ColorChannel(Dimension dimension, int circleSize) {
+		this.model = new Model();
 		this.setSize(dimension);
 		this.setPreferredSize(dimension);
 		this.circleSize = circleSize;
@@ -380,7 +381,6 @@ public class ColorChannel extends JPanel {
 	
 	public void choosePublicColor(Color color) {
 		this.model.setPublicColor(color);
-		this.chooseColorToKeep(color, 0);
 	}
 	
 	public void chooseAlicePrivateColor(Color color) {
@@ -391,6 +391,19 @@ public class ColorChannel extends JPanel {
 	public void chooseBobPrivateColor(Color color) {
 		this.model.setBobPrivateColor(color);
 		this.chooseColorToKeep(color, 1);
+	}
+	
+	public void mixAlicePrivatePublic() {
+		this.model.mixAlicePrivateAndPublic();
+	}
+	
+	public void mixBobPrivatePublic() {
+		this.model.mixBobPrivateAndPublic();
+	}
+	
+	public void sendPublicColor(NextStepCallback cb) {
+		this.setColorNextToSend(this.model.getPublicColor());
+		this.sendToBob(cb, true);
 	}
 	
 	public void sendAliceMixedColorToBob(NextStepCallback cb) {
@@ -438,6 +451,18 @@ public class ColorChannel extends JPanel {
 
 	public void setKeepColor(boolean keepColor) {
 		this.keepCircles = keepColor;
+	}
+
+	public Color getPublicColor() {
+		return this.model.getPublicColor();
+	}
+
+	public Color getAlicePrivateColor() {
+		return this.model.getAlicePrivateColor();
+	}
+	
+	public Color getBobPrivateColor() {
+		return this.model.getBobPrivateColor();
 	}
 	
 }

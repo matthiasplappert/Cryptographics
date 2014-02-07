@@ -10,7 +10,7 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
 public class MixColorView extends VisualizationView {
 	
 	private JLabel mixExplain;
-	private ColorMix mc;
+	private ColorMix cm;
 	/**
 	 * 
 	 */
@@ -21,10 +21,12 @@ public class MixColorView extends VisualizationView {
 		this.mixExplain = new JLabel();
 		this.mixExplain.setText("Mix the color");
 		this.add(mixExplain);
-		this.mc = new ColorMix(Color.RED, Color.YELLOW, 50, new Dimension(300, 300));
-		this.mc.setPreferredSize(new Dimension(900, 700));
-		this.add(this.mc);
-		this.mc.mixColors(true, false, null);
+		this.cm = new ColorMix(50, new Dimension(300, 300));
+		this.cm.setEllipColor(0, Color.RED);
+		this.cm.setEllipColor(1, Color.YELLOW);
+		this.cm.setPreferredSize(new Dimension(900, 700));
+		this.add(this.cm);
+		this.cm.mixColors(true, false, null);
 	}
 
 }

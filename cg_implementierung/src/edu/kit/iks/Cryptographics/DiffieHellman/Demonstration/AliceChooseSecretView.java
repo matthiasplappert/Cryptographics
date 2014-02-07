@@ -55,8 +55,9 @@ public class AliceChooseSecretView extends VisualizationView {
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
 		this.add(this.cc, gbc);
-
-		this.cm = new ColorMix(Color.BLUE, Color.GREEN, 50, new Dimension(200, 200));
+		
+		this.cc.choosePublicColor(Color.BLUE);
+		this.cm = new ColorMix(50, new Dimension(200, 200));
 		
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
@@ -66,25 +67,27 @@ public class AliceChooseSecretView extends VisualizationView {
 		this.cc.loadView();
 		this.cc.setRepeat(false);
 		this.cc.setKeepColor(true);
-		this.cc.setColorNextToSend(Color.BLUE);
 		this.validate();
 		
-		this.cc.sendToBob(new NextStepCallback() {
+
+		this.cc.sendPublicColor(new NextStepCallback() {
 			
 			@Override
 			public void callback() {
-				cc.chooseColorToKeep(Color.GREEN, 0);
+				cc.chooseAlicePrivateColor(Color.GREEN);
+				cc.mixAlicePrivatePublic();
+				cm.setEllipColor(0, cc.getPublicColor());
+				cm.setEllipColor(1, cc.getAlicePrivateColor());
 				cm.mixColors(true, false, new NextStepCallback() {
 					
 					@Override
 					public void callback() {
-						cc.setColorNextToSend(cm.getMixedColor());
-						cc.sendToBob(new NextStepCallback() {
+						cc.sendAliceMixedColorToBob(new NextStepCallback() {
 							
 							@Override
 							public void callback() {
-								cm.setEllipColor(2, Color.RED);
-								cc.chooseColorToKeep(Color.RED, 1);
+								cc.chooseBobPrivateColor(Color.RED);
+								cm.setEllipColor(1, cc.getBobPrivateColor());
 								cm.mixColors(true, false, new NextStepCallback() {
 									
 									@Override
@@ -94,11 +97,11 @@ public class AliceChooseSecretView extends VisualizationView {
 									}
 								});
 							}
-						}, true);
+						});
 					}
 				});			
 			}
-		}, true);
+		});
 	}
 
 

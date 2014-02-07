@@ -50,7 +50,7 @@ public class ColorMix extends JPanel {
 	/* the original coordinates, so that we can reset them later */
 	private int originalx1, originaly1, originalx2, originaly2;
 	
-	public ColorMix(Color color1, Color color2, int circleSize, Dimension dimension) {
+	public ColorMix(int circleSize, Dimension dimension) {
 		this.setSize(dimension);
 		this.setPreferredSize(dimension);
 		this.diameter = circleSize;
@@ -63,11 +63,13 @@ public class ColorMix extends JPanel {
 		this.x2 = originalx2;
 		this.y2 = originaly2;
 		this.middle = (x1+x2)/2;
-		this.ellip1 = new Ellipse2DwithColor(x1, y1, circleSize, circleSize, color1);
-		this.ellip2 = new Ellipse2DwithColor(x2, y2, circleSize, circleSize, color2);
+		this.ellip1 = new Ellipse2DwithColor(x1, y1, circleSize, circleSize, null);
+		this.ellip2 = new Ellipse2DwithColor(x2, y2, circleSize, circleSize, null);
 	}
 	
 	public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb) {
+		assert(this.ellip1.getColor() != null);
+		assert(this.ellip2.getColor() != null);
 		this.mixcolors = mix;
 		this.x1 = originalx1;
 		this.y1 = originaly1;
@@ -157,9 +159,9 @@ public class ColorMix extends JPanel {
 	}
 
 	public void setEllipColor(int which, Color color) {
-		if(which == 1) {
+		if(which == 0) {
 			ellip1.setColor(color);
-		} else if (which == 2) {
+		} else if (which == 1) {
 			ellip2.setColor(color);
 		}
 	}
