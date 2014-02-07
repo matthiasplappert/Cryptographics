@@ -13,6 +13,8 @@ import java.awt.geom.Area;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import edu.kit.iks.CryptographicsLib.Logger;
+
 /*
  * This view/JPanel allows us to mix two Colors
  */
@@ -100,7 +102,7 @@ public class ColorMix extends JPanel {
 					
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
-						System.out.println("timer in colormix ");
+						Logger.d(this.getClass().getName(), "mixColors", "timer in colormix ");
 						if(x1 < middle) {
 							x1 += 3;
 						}
@@ -110,7 +112,7 @@ public class ColorMix extends JPanel {
 						if(x2 <= middle && x1 >= middle) {
 							timer.stop();
 							if (cb != null) {
-								System.out.println("called callback in colormix");
+								Logger.d(this.getClass().getName(), "mixColors", "called callback in colormix");
 								cb.callback();	
 							}
 						}
