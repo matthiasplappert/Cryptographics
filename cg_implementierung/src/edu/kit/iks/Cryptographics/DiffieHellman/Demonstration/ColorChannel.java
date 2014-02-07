@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import edu.kit.iks.Cryptographics.DiffieHellman.Model;
+import edu.kit.iks.CryptographicsLib.Logger;
+
 /*
  * This is the Communication Channel for
  * the Diffie Hellman Analogy.
@@ -22,14 +25,11 @@ import javax.swing.Timer;
 public class ColorChannel extends JPanel {
 
 	private static final long serialVersionUID = 4073013433018353584L;
-	
+
 	/*
-	 * the private color of alice
-	 * and bob
+	 * remembers the colors of alice,bob,eve
 	 */
-	private Color[] privateColor;
-	
-	private Color[] mixedColor;
+	private Model model;
 	
 	/* the coordinates of the circles */
 	private int x1, y1, x2, y2;
@@ -105,7 +105,6 @@ public class ColorChannel extends JPanel {
 	public ColorChannel(Dimension dimension, int circleSize) {
 		this.setSize(dimension);
 		this.setPreferredSize(dimension);
-		this.privateColor = new Color[2];
 		this.circleSize = circleSize;
 		this.leftEnd = (int) (0.25*this.getWidth());
 		this.rightEnd = (int) (0.75*this.getWidth());
@@ -200,10 +199,9 @@ public class ColorChannel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO remove hardcoded values
-				System.out.println("timer " + " in colorchannel");
+				Logger.d(this.getClass().getName(),"sendToBob" , "timer event");
 				if(firstTimerEventBob && !repeatPeriodically && keepFirst) {
 					chooseColorToKeep(colorNextToSend, 0);
-					System.out.println("in first call bob");
 					firstTimerEventBob = false;
 				}
 				if(x1 < rightCircle) {
@@ -221,10 +219,9 @@ public class ColorChannel extends JPanel {
 						}
 					}
 					if(cb != null) {
-						System.out.println("called callback in sendToBob");
 						cb.callback();
 					} else if (repeatPeriodically) {
-						System.out.println("repeat now");
+						Logger.d(this.getClass().getName(), "", "repeat now");
 						// set to orignal values, to start all over
 						sendBob = true;
 						x1 = leftEnd;
@@ -257,10 +254,9 @@ public class ColorChannel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("timer " + l + " in colorchannel");
+				Logger.d(this.getClass().getName(),"sendToAlice" , "timer event");
 				if(firstTimerEventAlice && !repeatPeriodically && keepFirst) {
 					chooseColorToKeep(colorNextToSend, 1);
-					System.out.println("in first call alice");
 					firstTimerEventAlice = false;
 				}
 				if(x1 > leftEnd) {
@@ -277,10 +273,9 @@ public class ColorChannel extends JPanel {
 						chooseColorToKeep(colorNextToSend, 2);
 					}
 					if(cb != null) {
-						System.out.println("called Callback in sendToAlice");
 						cb.callback();
 					} else if (repeatPeriodically) {
-						System.out.println("repeat now");
+						Logger.d(this.getClass().getName(), "", "repeat now");
 						// set to orignal values, to start all over
 						sendAlice = true;
 						x1 = rightCircle;
@@ -387,7 +382,17 @@ public class ColorChannel extends JPanel {
 	 * to mix the final shared secret
 	 */
 	public void choosePrivateColor(Color color, int who) {
-		this.privateColor[who] = color;
+		switch(who) {
+		case 0:
+			this.model.setAlicePrivateColor(color);
+			break;
+		case 1:
+			this.model.setBobPrivateColor(color);
+			break;
+		default:
+			break;
+		}
+
 		this.chooseColorToKeep(color, who);
 	}
 	
