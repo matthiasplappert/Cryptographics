@@ -2,6 +2,7 @@ package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -12,30 +13,19 @@ import java.awt.geom.Area;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/*
+ * This view/JPanel allows us to mix two Colors
+ */
+
 public class ColorMix extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4056277049609956169L;
 	
-	/* our two circles */
+	/* our two circles to mix */
 	private Ellipse2DwithColor ellip1, ellip2;
-	
-	public void setEllipColor(int which, Color color) {
-		if(which == 1) {
-			ellip1.setColor(color);
-		} else if (which == 2) {
-			ellip2.setColor(color);
-		}
-	}
 	
 	/* the mix of colors of ellip1 and ellip2 */
 	private Color mixedColor;
-	
-	public Color getMixedColor() {
-		return mixedColor;
-	}
 
 	/* coordinates of the circles */
 	private int x1, y1, x2, y2;
@@ -46,58 +36,71 @@ public class ColorMix extends JPanel {
 	/* true if we should mix the colors */
 	private boolean mixcolors;
 
-	private Timer[] timer = {null, null, null, null, null};
+	/*
+	 * It maybe that one timer is actually is enough
+	 * originally used this as a fix for the timer bug
+	 * though it wasn't the bug, so this is probably useless
+	 * but need to test
+	 */
+	private Timer timer;
 	
-	private boolean[] calledCallback = {false, false, false, false, false};
-
+	/* the middle part where the two circles will meet */
 	private int middle;
+
+	/* the original coordinates, so that we can reset them later */
+	private int originalx1, originaly1, originalx2, originaly2;
 	
-	public ColorMix(Color color1, Color color2, int diameter) {
-		this.diameter = diameter;
-		this.x1 = 50;
-		this.y1 = 50;
-		this.x2 = 300;
-		this.y2 = 50;
+	public ColorMix(int circleSize, Dimension dimension) {
+		this.setSize(dimension);
+		this.setPreferredSize(dimension);
+		this.diameter = circleSize;
+		this.originalx1 = circleSize;
+		this.originaly1 = dimension.height-circleSize;
+		this.originalx2 = dimension.width-circleSize;
+		this.originaly2 = dimension.height-circleSize;
+		this.x1 = originalx1;
+		this.y1= originaly1;
+		this.x2 = originalx2;
+		this.y2 = originaly2;
 		this.middle = (x1+x2)/2;
-		this.ellip1 = new Ellipse2DwithColor(x1, y1, diameter, diameter, color1);
-		this.ellip2 = new Ellipse2DwithColor(x2, y2, diameter, diameter, color2);
+		this.ellip1 = new Ellipse2DwithColor(x1, y1, circleSize, circleSize, null);
+		this.ellip2 = new Ellipse2DwithColor(x2, y2, circleSize, circleSize, null);
 	}
 	
-	public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb, final int l) {
+	public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb) {
+		assert(this.ellip1.getColor() != null);
+		assert(this.ellip2.getColor() != null);
 		this.mixcolors = mix;
-		this.x1 = 50;
-		this.y1 = 50;
-		this.x2 = 300;
-		this.y2 = 50;
+		this.x1 = originalx1;
+		this.y1 = originaly1;
+		this.x2 = originalx2;
+		this.y2 = originaly2;
 		if(mixcolors) {
 			if(repeat) {
-				this.timer[l] = new Timer(50, new ActionListener() {
+				this.timer = new Timer(50, new ActionListener() {
 				
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						if(x1 < middle) {
 							x1 += 3;
 						} else {
-							x1 = 50;
+							x1 = originalx1;
 						}
 						if(x2 > middle) {
 							x2 -= 3;
 						} else {
-							x2 = 300;
+							x2 = originalx2;
 						}
 						repaint();
 					}
 				});
-				timer[l].start();
+				timer.start();
 			} else {
-				this.timer[l] = new Timer(50, new ActionListener() {
+				this.timer = new Timer(50, new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
-						System.out.println("timer in colormix " + l);
-						if(calledCallback[l]) {
-							return;
-						}
+						System.out.println("timer in colormix ");
 						if(x1 < middle) {
 							x1 += 3;
 						}
@@ -105,9 +108,8 @@ public class ColorMix extends JPanel {
 							x2 -= 3;
 						}
 						if(x2 <= middle && x1 >= middle) {
-							timer[l].stop();
+							timer.stop();
 							if (cb != null) {
-								calledCallback[l] = true;
 								System.out.println("called callback in colormix");
 								cb.callback();	
 							}
@@ -115,10 +117,10 @@ public class ColorMix extends JPanel {
 						repaint();
 					}
 				});
-				timer[l].start();
+				timer.start();
 			}
 		} else {
-			timer[l].stop();
+			timer.stop();
 		}
 	}
 	
@@ -156,4 +158,15 @@ public class ColorMix extends JPanel {
 		this.mixedColor= new Color((r1+r2)/2, (g1+g2)/2, (b1+b2)/2);
 	}
 
+	public void setEllipColor(int which, Color color) {
+		if(which == 0) {
+			ellip1.setColor(color);
+		} else if (which == 1) {
+			ellip2.setColor(color);
+		}
+	}
+	
+	public Color getMixedColor() {
+		return mixedColor;
+	}
 }

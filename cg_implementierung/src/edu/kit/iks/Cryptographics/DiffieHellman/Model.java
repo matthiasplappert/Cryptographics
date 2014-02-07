@@ -3,9 +3,8 @@ package edu.kit.iks.Cryptographics.DiffieHellman;
 import java.awt.Color;
 
 public class Model {
-	private static Model instance;
 	
-	private Color alicePublicColor;
+	private Color publicColor;
 	
 	private Color alicePrivateColor;
 	
@@ -13,32 +12,20 @@ public class Model {
 	
 	private Color sharedColor;
 	
-	private Color bobPublicColor;
-	
 	private Color bobPrivateColor;
 	
 	private Color bobMixedColor;
 	
-	/**
-	 * Singleton Class to share between different controller states
-	 */
-	private Model() {
+	public Model() {
 		
 	}
 	
-	public static Model getInstance() {
-		if(instance == null) {
-			instance = new Model();
-		}
-		return instance;
+	public Color getPublicColor() {
+		return publicColor;
 	}
 
-	public Color getAlicePublicColor() {
-		return alicePublicColor;
-	}
-
-	public void setAlicePublicColor(Color alicePublicColor) {
-		this.alicePublicColor = alicePublicColor;
+	public void setPublicColor(Color publicColor) {
+		this.publicColor = publicColor;
 	}
 
 	public Color getAlicePrivateColor() {
@@ -61,14 +48,6 @@ public class Model {
 		this.sharedColor = sharedColor;
 	}
 
-	public Color getBobPublicColor() {
-		return bobPublicColor;
-	}
-
-	public void setBobPublicColor(Color bobPublicColor) {
-		this.bobPublicColor = bobPublicColor;
-	}
-
 	public Color getBobPrivateColor() {
 		return bobPrivateColor;
 	}
@@ -82,14 +61,24 @@ public class Model {
 	}
 	
 	public void mixAlicePrivateAndPublic() {
-		
+		this.aliceMixedColor = computeMixedColor(this.alicePrivateColor, this.publicColor);
 	}
 	
 	public void mixBobPrivateAndPublic() {
-		
+		this.bobMixedColor = computeMixedColor(this.bobPrivateColor, publicColor);
 	}
 	
 	public void mixShared() {
-		
+		this.sharedColor = computeMixedColor(this.aliceMixedColor, this.bobPrivateColor);
+	}
+	
+	private Color computeMixedColor(Color color, Color color2) {
+		int r1 = color.getRed();
+		int r2 = color2.getRed();
+		int g1 = color.getGreen();
+		int g2 = color2.getGreen();
+		int b1 = color.getBlue();
+		int b2 = color2.getBlue();
+		return new Color((r1+r2)/2, (g1+g2)/2, (b1+b2)/2);
 	}
 }
