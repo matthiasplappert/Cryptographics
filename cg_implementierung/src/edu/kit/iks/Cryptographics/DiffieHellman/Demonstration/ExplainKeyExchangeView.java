@@ -1,21 +1,10 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.RenderingHints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.geom.Area;
-import java.awt.geom.Ellipse2D;
-
 import javax.swing.JLabel;
-import javax.swing.Timer;
-
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 public class ExplainKeyExchangeView extends VisualizationView {
