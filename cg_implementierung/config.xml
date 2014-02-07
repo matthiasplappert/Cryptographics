@@ -5,6 +5,6 @@
   <debugMode>true</debugMode>
   <fullscreenMode>false</fullscreenMode>
   <lookAndFeel>false</lookAndFeel>
-  <mouseCursor>false</mouseCursor>
+  <mouseCursor>true</mouseCursor>
   <languageCode>en_US</languageCode>
 </config>
