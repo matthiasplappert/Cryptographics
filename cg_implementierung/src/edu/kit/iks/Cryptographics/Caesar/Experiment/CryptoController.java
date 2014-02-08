@@ -271,7 +271,7 @@ public class CryptoController extends AbstractVisualizationController {
 					decryptionPhase = true;
 					// TODO: generate a random cipher.
 					char[] cipher = getModel().enc(key,
-							getModel().getRandomPlainSequence()).toCharArray();
+							getModel().getRandomPlainSequence()).toString().toCharArray();
 
 					setEditableFields(cipher.length);
 					getView().start(cipher, key);

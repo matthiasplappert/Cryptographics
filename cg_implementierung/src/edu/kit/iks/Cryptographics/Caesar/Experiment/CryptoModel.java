@@ -13,10 +13,10 @@ public class CryptoModel {
 	// makes sure only one instance is being generated.
 	private static final CryptoModel model = new CryptoModel();
 
-	//ASCII upper case A code.
+	// ASCII upper case A code.
 	public final int ASCII_UC_A = 'A';
-	
-	//ASCII lower case a code.
+
+	// ASCII lower case a code.
 	public final int ASCII_LC_A = 'a';
 
 	private final int MODULO = 26;
@@ -29,7 +29,7 @@ public class CryptoModel {
 
 	// number of chars in <html><body>.
 	private final int HTML_HEADER_LENGTH = 12;
-	
+
 	private final String HTML_HEADER = "<html><body>";
 
 	// number of chars in <br>.
@@ -50,14 +50,10 @@ public class CryptoModel {
 	 * @param stringToFormat
 	 * @return
 	 */
-	public String insertHtmlBreaks(String stringToFormat) {
-		String formattedString = "<html><body>";
-		for (int i = 1; i < stringToFormat.length(); i++) {
-			if ((i % MAX_LINE_LENGTH) == 0) {
-				formattedString += "<br>";
-			} else {
-				formattedString += stringToFormat.charAt(i);
-			}
+	public String insertHtmlBreaks(String[] textLines) {
+		String formattedString = HTML_HEADER;
+		for (String textline : textLines) {
+			formattedString += textline + "<br>";
 		}
 		return formattedString;
 	}
@@ -66,18 +62,12 @@ public class CryptoModel {
 	 * @param stringToClear
 	 * @return
 	 */
-	public String removeHtmlBreaks(String stringToClear) {
-		String[] breaklessString = stringToClear.substring(HTML_HEADER_LENGTH).split("<br>");
-		String clearedString = "";
-		
-		for (int i = 0; i < breaklessString.length; i++) {
-			clearedString += breaklessString[i];
-		}
-		return clearedString;
+	public String[] removeHtmlBreaks(String stringToClear) {
+		return stringToClear.substring(HTML_HEADER_LENGTH).split("<br>");
 	}
 
 	/**
-	 * Function for decrypting and encrypting.
+	 * Function for decrypting and encrypting of small strings.
 	 * 
 	 * @param key
 	 * @param text
@@ -88,25 +78,63 @@ public class CryptoModel {
 		String cipher = "";
 		for (int i = 0; i < text.length(); i++) {
 			Character c = text.charAt(i);
-		    
+
 			if (Character.isLetter(c)) {
-			if (Character.isUpperCase(c)) {
-				int offset = ((int) text.charAt(i)) - ASCII_UC_A;
+				if (Character.isUpperCase(c)) {
+					int offset = c - ASCII_UC_A;
 
-				cipher += String
-						.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_UC_A));
-			} else {
-				int offset = ((int) text.charAt(i)) - ASCII_LC_A;
+					cipher += String
+							.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_UC_A));
+				} else {
+					int offset = c - ASCII_LC_A;
 
-				cipher += String
-						.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_LC_A));
-			}
-			
-			
+					cipher += String
+							.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_LC_A));
+				}
+
 			} else {
 				cipher += c;
 			}
-			
+
+		}
+		return cipher;
+
+	}
+
+	/**
+	 * Function for encrypting bigger texts.
+	 * 
+	 * @param key
+	 * @param plainTextLines
+	 * @return
+	 */
+	public String[] enc(int key, String[] plainTextLines) {
+
+		String[] cipher = new String[plainTextLines.length];
+
+		for (int i = 0; i < plainTextLines.length; i++) {
+			cipher[i] = "";
+			for (int j = 0; j < plainTextLines[i].length(); j++) {
+				Character c = plainTextLines[i].charAt(j);
+
+				if (Character.isLetter(c)) {
+					if (Character.isUpperCase(c)) {
+						int offset = c - ASCII_UC_A;
+
+						cipher[i] += String
+								.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_UC_A));
+					} else {
+						int offset = c - ASCII_LC_A;
+
+						cipher[i] += String
+								.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_LC_A));
+					}
+
+				} else {
+					cipher[i] += c;
+				}
+
+			}
 		}
 		return cipher;
 
@@ -118,6 +146,15 @@ public class CryptoModel {
 	 * @return
 	 */
 	public String dec(int key, String cipher) {
+		return enc(-key, cipher);
+	}
+
+	/**
+	 * @param key
+	 * @param cipher
+	 * @return
+	 */
+	public String[] dec(int key, String[] cipher) {
 		return enc(-key, cipher);
 	}
 
