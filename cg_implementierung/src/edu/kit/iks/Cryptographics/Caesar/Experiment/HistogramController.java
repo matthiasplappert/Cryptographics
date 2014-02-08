@@ -46,7 +46,7 @@ public class HistogramController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.view = new HistogramView();
-		this.model = new CryptoModel();
+		this.model = CryptoModel.getInstance();
 		this.step = 0;
 
 		genProceedListener();
@@ -91,10 +91,12 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().setSecretKey(secret);
 					getView().setupKeyControlPanel();
 					getView().setupIncrementDecrement();
-					getView().setupCipherPlainLabels(getModel().getRandomCipher(secret));
+					getView().setupCipherPlainLabels(
+							getModel().getRandomCipher(secret));
 					getView().setupBruteForce();
 					genListenerBruteForce();
-					getView().getKeyControl().setBorder(BorderFactory.createLineBorder(Color.orange, 5));
+					getView().getKeyControl().setBorder(
+							BorderFactory.createLineBorder(Color.orange, 5));
 
 				} else if (getStep() == 1) {
 					// unload the old explanations.
@@ -103,13 +105,15 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().setKeyControl(null);
 
 					String explanation = "<html><body>"
-							+ "The diagram you see here shows the frequency of each letter in the text you are<br>"
-							+ "reading at the moment. It is called a Histogram. If you would count all E's in <br>"
-							+ "this explanation you would get the number you see in the diagram on the column above<br>"
-							+ "the letter E. Let's assume that this explanation is a normal english text and that in<br>"
-							+ "all english texts E is the most frequent letter! Now the program will encrypt this<br>"
-							+ "explanationwith an unknown key in a most awesome way and we will see the histogram of<br>"
-							+ "the cipher. Click Proceed and see the magic!";
+							+ "The diagram you see here shows the frequency of each letter<br>"
+							+ "in the text you are reading at the moment. It is called a<br>"
+							+ "Histogram. If you would count all E's in this explanation<br>"
+							+ "you would get the number you see in the diagram on the column<br>"
+							+ "above the letter E. Let's assume that this explanation is a<br>"
+							+ "normal english text and that in all english texts E is the<br>"
+							+ "most frequent letter! Now the program will encrypt this explanation<br>"
+							+ "with an unknown key in a most awesome way and we will see the <br>"
+							+ "histogram of the cipher. Click Proceed and see the magic!";
 
 					getView().setupExplanationPanel();
 					getView().setupExplanations(explanation);
@@ -119,19 +123,18 @@ public class HistogramController extends AbstractVisualizationController {
 					// Build the new experiment.
 					setStep(2);
 
-					String clearPlainText = getModel().clearString(explanation);
-
 					getView().setupHistogramContainer();
-					getView().setupPlainHistogram(clearPlainText);
+					getView().setupPlainHistogram(explanation);
 
 					getView().revalidate();
 					getView().repaint();
 				} else if (getStep() == 2) {
 					setStep(3);
-					String clearExplanation = getModel().clearString(getView().getExplanations().getText()).toUpperCase();
-					String cipher = getModel().enc(3,clearExplanation);
-					String formattedCipher = getModel().formatString(cipher);
-					
+					String[] htmlFreeText = getModel().removeHtmlBreaks(
+							getView().getExplanations().getText());
+					String[] cipher = getModel().enc(3, htmlFreeText);
+					String htmlCipher = getModel().insertHtmlBreaks(cipher);
+
 					getView()
 							.getExplanations()
 							.setText(
@@ -144,7 +147,7 @@ public class HistogramController extends AbstractVisualizationController {
 											+ "was 'H' - 'E' = 8 - 5 = 3! And now we are able to decrypt the cipher. Type the key 3 in the inputfield<br>"
 											+ "and let the program decrypt the whole text with this key!");
 
-					getView().setupCipherHistogram(formattedCipher);
+					getView().setupCipherHistogram(htmlCipher);
 					getView().setHistogramCipher(cipher);
 					getView().setSecretKey(3);
 					getView().unloadProceed();
@@ -155,25 +158,26 @@ public class HistogramController extends AbstractVisualizationController {
 
 				} else {
 					// Build the new experiment.
-					 setStep(getStep() + 1);
-					 getView().unloadCipherHistogram();
-					 getView().unloadKeyInput();
-					 getView().getPlainText().setText("");
-				     getView().requestFocus();
-				     getView().getExplanations().setText("Ok lets try another one!");
-					
-					 
-					 String plainText = getModel().getRandomText();
-					 String clearedPlainText = getModel().clearString(plainText);
-					 int key = getModel().generateKey();
-					 String cipher = getModel().enc(key, clearedPlainText);
-					
-					 getView().setupCipherHistogram(getModel().formatString(cipher));
-                     getView().setupKeyInput();
-                     generateHistogramInputListener();
-					 getView().setHistogramCipher(cipher);
-					 getView().setSecretKey(key);
-					 getView().unloadProceed();
+					setStep(getStep() + 1);
+					getView().unloadCipherHistogram();
+					getView().unloadKeyInput();
+					getView().getPlainText().setText("");
+					getView().requestFocus();
+					getView().getExplanations().setText(
+							"Ok lets try another one!");
+
+					String[] plainText = getModel().removeHtmlBreaks(
+							getModel().getRandomText());
+					int key = getModel().generateKey();
+					String[] cipher = getModel().enc(key, plainText);
+
+					getView().setupCipherHistogram(
+							getModel().insertHtmlBreaks(cipher));
+					getView().setupKeyInput();
+					generateHistogramInputListener();
+					getView().setHistogramCipher(cipher);
+					getView().setSecretKey(key);
+					getView().unloadProceed();
 				}
 
 			}
@@ -269,6 +273,7 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().remove(getView().getKeyboard());
 					getView().setKeyboard(null);
 					getView().validate();
+					getView().repaint();
 
 					if (getView().getKeyInput().isEditable()) {
 						getView().getKeyInput().setBorder(null);
@@ -297,14 +302,13 @@ public class HistogramController extends AbstractVisualizationController {
 					int key = Integer.parseInt(getView().getKeyInput()
 							.getText());
 					if (getModel().isKeyValid(key)) {
-						String decryptedCipher = getModel().dec(key,
+						String[] decryptedCipherLines = getModel().dec(key,
 								getView().getHistogramCipher());
-						decryptedCipher = getModel().formatString(
-								decryptedCipher);
-						getView().getPlainText().setText(decryptedCipher);
+						String decryptedCipherString = getModel()
+								.insertHtmlBreaks(decryptedCipherLines);
+						getView().getPlainText().setText(decryptedCipherString);
 
 						if (key == getView().getSecretKey()) {
-							getView().getKeyInput().setEditable(false);
 							getView()
 									.getKeyInput()
 									.setBorder(
@@ -312,15 +316,16 @@ public class HistogramController extends AbstractVisualizationController {
 													.createLineBorder(Color.green));
 							String explanations = "<html><body>"
 									+ "Congratulations you found the right key!!! See how easy it is with histograms?<br>"
-									+ "If you want to try one more click proceed. Else you can to next to further information<br>"
+									+ "If you want to try one more click proceed. Else you can go next to further information<br>"
 									+ "There you can learn more about caesar's cipher.";
 							getView().getExplanations().setText(explanations);
 							getView().setupProceed();
 							genProceedListener();
-							getView().remove(getView().getKeyboard());
-							getView().setKeyboard(null);
-						
+							getView().requestFocus();
+							getView().validate();
+
 						} else {
+							// TODO: warnings needed.
 							getView().getKeyInput().setBorder(
 									BorderFactory.createLineBorder(Color.red));
 						}
