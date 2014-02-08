@@ -119,7 +119,7 @@ public class HistogramController extends AbstractVisualizationController {
 					// Build the new experiment.
 					setStep(2);
 
-					String clearPlainText = getModel().clearHTMLString(explanation);
+					String clearPlainText = getModel().removeHtmlBreaks(explanation);
 
 					getView().setupHistogramContainer();
 					getView().setupPlainHistogram(clearPlainText);
@@ -128,7 +128,7 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().repaint();
 				} else if (getStep() == 2) {
 					setStep(3);
-					String clearExplanation = getModel().clearHTMLString(getView().getExplanations().getText()).toUpperCase();
+					String clearExplanation = getModel().removeHtmlBreaks(getView().getExplanations().getText()).toUpperCase();
 					String cipher = getModel().enc(3,clearExplanation);
 					String formattedCipher = getModel().insertHtmlBreaks(cipher);
 					
@@ -164,7 +164,7 @@ public class HistogramController extends AbstractVisualizationController {
 					
 					 
 					 String plainText = getModel().getRandomText();
-					 String clearedPlainText = getModel().clearHTMLString(plainText);
+					 String clearedPlainText = getModel().removeHtmlBreaks(plainText);
 					 int key = getModel().generateKey();
 					 String cipher = getModel().enc(key, clearedPlainText);
 					

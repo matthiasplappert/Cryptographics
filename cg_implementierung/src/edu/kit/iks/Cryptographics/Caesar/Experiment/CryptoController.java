@@ -333,7 +333,7 @@ public class CryptoController extends AbstractVisualizationController {
 					JTextField output = (JTextField) e.getSource();
 					int charToEncryptAscii = (int) output.getName().charAt(0);
 					AlphabetStripView viewAlphabet = getView().getAlphabet();
-					viewAlphabet.unHighlight(charToEncryptAscii - getModel().ASCII_A);
+					viewAlphabet.unHighlight(charToEncryptAscii - getModel().ASCII_UC_A);
 					
 					if (getView().getKeyboard() != null) {
 						getView().remove(getView().getKeyboard());
@@ -356,7 +356,7 @@ public class CryptoController extends AbstractVisualizationController {
 						//highlights the character in the alphabet.
 						int charToEncryptAscii = (int) output.getName().charAt(0);
 						AlphabetStripView viewAlphabet = getView().getAlphabet();
-						viewAlphabet.highlight(charToEncryptAscii - getModel().ASCII_A);
+						viewAlphabet.highlight(charToEncryptAscii - getModel().ASCII_UC_A);
 						
 						output.setBorder(BorderFactory.createLineBorder(
 								Color.blue, 5));
