@@ -119,7 +119,7 @@ public class HistogramController extends AbstractVisualizationController {
 					// Build the new experiment.
 					setStep(2);
 
-					String clearPlainText = getModel().clearString(explanation);
+					String clearPlainText = getModel().clearHTMLString(explanation);
 
 					getView().setupHistogramContainer();
 					getView().setupPlainHistogram(clearPlainText);
@@ -128,9 +128,9 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().repaint();
 				} else if (getStep() == 2) {
 					setStep(3);
-					String clearExplanation = getModel().clearString(getView().getExplanations().getText()).toUpperCase();
+					String clearExplanation = getModel().clearHTMLString(getView().getExplanations().getText()).toUpperCase();
 					String cipher = getModel().enc(3,clearExplanation);
-					String formattedCipher = getModel().formatString(cipher);
+					String formattedCipher = getModel().insertHtmlBreaks(cipher);
 					
 					getView()
 							.getExplanations()
@@ -164,11 +164,11 @@ public class HistogramController extends AbstractVisualizationController {
 					
 					 
 					 String plainText = getModel().getRandomText();
-					 String clearedPlainText = getModel().clearString(plainText);
+					 String clearedPlainText = getModel().clearHTMLString(plainText);
 					 int key = getModel().generateKey();
 					 String cipher = getModel().enc(key, clearedPlainText);
 					
-					 getView().setupCipherHistogram(getModel().formatString(cipher));
+					 getView().setupCipherHistogram(getModel().insertHtmlBreaks(cipher));
                      getView().setupKeyInput();
                      generateHistogramInputListener();
 					 getView().setHistogramCipher(cipher);
@@ -299,7 +299,7 @@ public class HistogramController extends AbstractVisualizationController {
 					if (getModel().isKeyValid(key)) {
 						String decryptedCipher = getModel().dec(key,
 								getView().getHistogramCipher());
-						decryptedCipher = getModel().formatString(
+						decryptedCipher = getModel().insertHtmlBreaks(
 								decryptedCipher);
 						getView().getPlainText().setText(decryptedCipher);
 

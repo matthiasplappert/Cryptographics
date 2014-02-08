@@ -13,8 +13,11 @@ public class CryptoModel {
 	// makes sure only one instance is being generated.
 	private static final CryptoModel model = new CryptoModel();
 
-	// public because is being used in other classes. As the whole class does.
-	public final int ASCII_A = 'A';
+	//ASCII upper case A code.
+	public final int ASCII_UC_A = 'A';
+	
+	//ASCII lower case a code.
+	public final int ASCII_LC_A = 'a';
 
 	private final int MODULO = 26;
 
@@ -26,6 +29,8 @@ public class CryptoModel {
 
 	// number of chars in <html><body>.
 	private final int HTML_HEADER_LENGTH = 12;
+	
+	private final String HTML_HEADER = "<html><body>";
 
 	// number of chars in <br>.
 	private final int LINEBREAK_LENGTH = 4;
@@ -45,7 +50,7 @@ public class CryptoModel {
 	 * @param stringToFormat
 	 * @return
 	 */
-	public String formatString(String stringToFormat) {
+	public String insertHtmlBreaks(String stringToFormat) {
 		String formattedString = "<html><body>";
 		for (int i = 1; i < stringToFormat.length(); i++) {
 			if ((i % MAX_LINE_LENGTH) == 0) {
@@ -61,18 +66,12 @@ public class CryptoModel {
 	 * @param stringToClear
 	 * @return
 	 */
-	public String clearString(String stringToClear) {
+	public String removeHtmlBreaks(String stringToClear) {
+		String[] breaklessString = stringToClear.substring(HTML_HEADER_LENGTH).split("<br>");
 		String clearedString = "";
-		for (int i = HTML_HEADER_LENGTH; i < stringToClear.length(); i++) {
-			// remove all linebreaks.
-			if ((i + LINEBREAK_LENGTH) < stringToClear.length()
-					&& Pattern.matches("<br>",
-							stringToClear.subSequence(i, i + LINEBREAK_LENGTH))) {
-				clearedString += " ";
-				i += LINEBREAK_LENGTH;
-			} else {
-				clearedString += stringToClear.charAt(i);
-			}
+		
+		for (int i = 0; i < breaklessString.length; i++) {
+			clearedString += breaklessString[i];
 		}
 		return clearedString;
 	}
@@ -88,14 +87,26 @@ public class CryptoModel {
 
 		String cipher = "";
 		for (int i = 0; i < text.length(); i++) {
-			if (text.charAt(i) != ' ') {
-				int offset = ((int) text.charAt(i)) - ASCII_A;
+			Character c = text.charAt(i);
+		    
+			if (Character.isLetter(c)) {
+			if (Character.isUpperCase(c)) {
+				int offset = ((int) text.charAt(i)) - ASCII_UC_A;
 
 				cipher += String
-						.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_A));
+						.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_UC_A));
 			} else {
-				cipher += " ";
+				int offset = ((int) text.charAt(i)) - ASCII_LC_A;
+
+				cipher += String
+						.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_LC_A));
 			}
+			
+			
+			} else {
+				cipher += c;
+			}
+			
 		}
 		return cipher;
 
