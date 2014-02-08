@@ -273,6 +273,7 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().remove(getView().getKeyboard());
 					getView().setKeyboard(null);
 					getView().validate();
+					getView().repaint();
 
 					if (getView().getKeyInput().isEditable()) {
 						getView().getKeyInput().setBorder(null);
@@ -308,7 +309,6 @@ public class HistogramController extends AbstractVisualizationController {
 						getView().getPlainText().setText(decryptedCipherString);
 
 						if (key == getView().getSecretKey()) {
-							getView().getKeyInput().setEditable(false);
 							getView()
 									.getKeyInput()
 									.setBorder(
@@ -316,13 +316,13 @@ public class HistogramController extends AbstractVisualizationController {
 													.createLineBorder(Color.green));
 							String explanations = "<html><body>"
 									+ "Congratulations you found the right key!!! See how easy it is with histograms?<br>"
-									+ "If you want to try one more click proceed. Else you can to next to further information<br>"
+									+ "If you want to try one more click proceed. Else you can go next to further information<br>"
 									+ "There you can learn more about caesar's cipher.";
 							getView().getExplanations().setText(explanations);
 							getView().setupProceed();
 							genProceedListener();
-							getView().remove(getView().getKeyboard());
-							getView().setKeyboard(null);
+							getView().requestFocus();
+							getView().validate();
 
 						} else {
 							// TODO: warnings needed.

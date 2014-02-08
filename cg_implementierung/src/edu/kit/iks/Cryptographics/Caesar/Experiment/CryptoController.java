@@ -329,8 +329,8 @@ public class CryptoController extends AbstractVisualizationController {
 			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
 				@Override
 				public void focusLost(FocusEvent e) {
-					
 					JTextField output = (JTextField) e.getSource();
+
 					int charToEncryptAscii = (int) output.getName().charAt(0);
 					AlphabetStripView viewAlphabet = getView().getAlphabet();
 					viewAlphabet.unHighlight(charToEncryptAscii - getModel().ASCII_UC_A);
@@ -339,6 +339,7 @@ public class CryptoController extends AbstractVisualizationController {
 						getView().remove(getView().getKeyboard());
 						getView().setKeyboard(null);
 						getView().validate();
+						getView().repaint();
          
 						if (output.isEditable()) {
 							output.setBorder(null);
@@ -350,6 +351,7 @@ public class CryptoController extends AbstractVisualizationController {
 
 				@Override
 				public void focusGained(FocusEvent e) {
+					
 					JTextField output = (JTextField) e.getSource();
 
 					if (output.isEditable()) {
@@ -371,7 +373,7 @@ public class CryptoController extends AbstractVisualizationController {
 
 						@Override
 						public void actionPerformed(ActionEvent e) {
-
+                           if (userOutput.isEditable()) {
 							try {
 								int key = Integer.parseInt(getView().getKey()
 										.getText());
@@ -383,6 +385,7 @@ public class CryptoController extends AbstractVisualizationController {
 										.equals(userOutput.getText())) {
 									if ((getEditableFields() - 1) != 0) {
 										// user encrypted the given char successful.
+										getView().requestFocus();
 										userOutput.setBorder(BorderFactory
 												.createLineBorder(Color.green));
 										userOutput.setEditable(false);
@@ -391,11 +394,13 @@ public class CryptoController extends AbstractVisualizationController {
 												"Great. That one was right. You have "
 														+ getEditableFields()
 														+ " left!");
+										
 
 									} else {
 										// User encrypted all characters valid.
 										userOutput.setBorder(BorderFactory
 												.createLineBorder(Color.green));
+										getView().requestFocus();
 										userOutput.setEditable(false);
 										getView()
 												.getExplanations()
@@ -417,6 +422,7 @@ public class CryptoController extends AbstractVisualizationController {
 								Logger.e(e1);
 							}
 
+						}
 						}
 
 					});
