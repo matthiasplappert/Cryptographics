@@ -127,7 +127,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	@Override
 	public String getQRCodeContent() {
 		// TODO Auto-generated method stub
-		return null;
+		return "www.google.de";
 	}
 
 	/**

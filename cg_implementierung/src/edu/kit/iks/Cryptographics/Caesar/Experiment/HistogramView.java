@@ -87,7 +87,7 @@ public class HistogramView extends VisualizationView {
 	 */
 	private JPanel histogramContainer;
 
-	private String histogramCipher;
+	private String[] histogramCipher;
 
 	private CharacterFrequencyDiagramView plainTextHistogram;
 	private JLabel plainText;
@@ -312,7 +312,7 @@ public class HistogramView extends VisualizationView {
 		this.histogramContainer
 				.add(this.plainTextHistogram, plainTextHistConst);
 
-		this.plainText = new JLabel("Here comes the decrypted plaintext from the cipher.");
+		this.plainText = new JLabel(text);
 		GridBagConstraints plainConst = new GridBagConstraints();
 		plainConst.gridx = 0;
 		plainConst.gridy = 4;
@@ -320,95 +320,6 @@ public class HistogramView extends VisualizationView {
 		plainConst.fill = GridBagConstraints.BOTH;
 		this.histogramContainer.add(this.plainText, plainConst);
 		
-		//
-		// this.cipherText = new JLabel(cipher);
-		// GridBagConstraints textConst = new GridBagConstraints();
-		// textConst.gridx = 1;
-		// textConst.gridy = 0;
-		// textConst.insets = new Insets(0, 5, 0, 5);
-		// this.histogramContainer.add(cipherText, textConst);
-		//
-		// this.plainText = new JLabel();
-		// GridBagConstraints plainConst = new GridBagConstraints();
-		// plainConst.gridx = 0;
-		// plainConst.gridy = 0;
-		// plainConst.insets = new Insets(0, 5, 0, 5);
-		// this.histogramContainer.add(plainText, plainConst);
-		//
-		// this.keyInput = new JTextField();
-		// this.keyInput.setPreferredSize(new Dimension(100, 50));
-		// this.keyInput.setBorder(BorderFactory.createLineBorder(Color.black));
-		// GridBagConstraints keyConst = new GridBagConstraints();
-		// keyConst.gridx = 1;
-		// keyConst.gridy = 2;
-		// this.histogramContainer.add(this.keyInput, keyConst);
-		//
-		// JLabel keyCaption = new JLabel("Type your key here: ");
-		// GridBagConstraints capConst = new GridBagConstraints();
-		// capConst.gridx = 1;
-		// capConst.gridy = 1;
-		// this.histogramContainer.add(keyCaption, capConst);
-		//
-		// CharacterFrequencyDiagramView histogramCipher = new CharacterFrequencyDiagramView(
-		// cipher, 600, 100);
-		// GridBagConstraints histCipherConst = new GridBagConstraints();
-		// // histCipherConst.weightx = 0;
-		// // histCipherConst.weighty = 1.0;
-		// histCipherConst.gridx = 2;
-		// histCipherConst.gridy = 1;
-		// // histCipherConst.insets = new Insets(50, 0, 50, 0);
-		// // histCipherConst.gridheight = 1;
-		// // histCipherConst.gridwidth = 4;
-		// // histCipherConst.fill = GridBagConstraints.HORIZONTAL;
-		// this.histogramContainer.add(histogramCipher, histCipherConst);
-		// JLabel cipherHistCaption = new JLabel(
-		// "This is the histogram for the given cipher!");
-		// GridBagConstraints cipherHistCaptionConst = new GridBagConstraints();
-		// cipherHistCaptionConst.gridx = 2;
-		// cipherHistCaptionConst.gridy = 0;
-		// this.histogramContainer.add(cipherHistCaption, cipherHistCaptionConst);
-		//
-		// CharacterFrequencyDiagramView histogramPlain = new CharacterFrequencyDiagramView(
-		// text, 600, 100);
-		// GridBagConstraints histPlainConst = new GridBagConstraints();
-		// // histPlainConst.weightx = 0;
-		// // histPlainConst.weighty = 1.0;
-		// histPlainConst.gridx = 2;
-		// histPlainConst.gridy = 3;
-		// // histPlainConst.insets = new Insets(50, 0, 50, 0);
-		// // histPlainConst.gridheight = 1;
-		// // histPlainConst.gridwidth = 4;
-		// // histPlainConst.fill = GridBagConstraints.HORIZONTAL;
-		// this.histogramContainer.add(histogramPlain, histPlainConst);
-		// JLabel plainHistCaption = new JLabel(
-		// "This is a histogram of a normal english text.");
-		// GridBagConstraints plainHistCaptionConst = new GridBagConstraints();
-		// plainHistCaptionConst.gridx = 2;
-		// plainHistCaptionConst.gridy = 2;
-		// this.histogramContainer.add(plainHistCaption, plainHistCaptionConst);
-		//
-		// this.histogramContainer.validate();
-		//
-		// String explanation =
-		// "<html><body> Here you see some diagrams. These ones are called 'Histograms' <br>"
-		// +
-		// "Above each letter you can see columns with a number above. The number says how many<br>"
-		// + "times you can count the given letter in a given text!"
-		// + "The one diagram at the bottom is a diagram of a normal english text. <br>"
-		// +
-		// "Maybe with some grammatical errors and ähh 'falsche Zeichensetzung' but nvm. It doesn't matter actually. <br>"
-		// +
-		// "As you can see the letters A and E have the biggest numbers. That is because they are the most<br>"
-		// +
-		// "frequent in an english Text.The histogram above shows the histogram of the given cipher left of it.<br>"
-		// +
-		// "If you compare this to the histogram above it you notice that now D and H are the most frequent<br>"
-		// +
-		// "That means that the letters A and E could have been shifted to D and H. If we substract backwards.<br>"
-		// +
-		// "D - A = 4 - 1 = 3. Here you have the key of the given cipher. Now type the key in the inputfield and click enter.<br>"
-		// + "The programm will decrypt the cipher with the key you put in.";
-		// setupExplanations(explanation);
 
 		this.validate();
 		this.repaint();
@@ -482,18 +393,8 @@ public class HistogramView extends VisualizationView {
 		this.keyControl.add(this.plainText, plainConst);
 	}
 	public void setupBruteForce() {
-		// GridBagLayout layout = (GridBagLayout) this.getLayout();
-		// this.remove(this.explanations);
 		this.explanationPanel.remove(this.proceed);
 		this.proceed = null;
-		// this.proceed = null;
-
-		// GridBagConstraints expConst = new GridBagConstraints();
-		// // expConst.anchor = GridBagConstraints.FIRST_LINE_START;
-		// expConst.gridx = 0;
-		// expConst.gridy = 1;
-		// this.add(this.explanations, expConst);
-
 		this.keyValue = 1;
 
 		this.announcement = new JLabel();
@@ -783,7 +684,7 @@ public class HistogramView extends VisualizationView {
 	/**
 	 * @return the histogramCipher
 	 */
-	public String getHistogramCipher() {
+	public String[] getHistogramCipher() {
 		return histogramCipher;
 	}
 
@@ -791,7 +692,7 @@ public class HistogramView extends VisualizationView {
 	 * @param histogramCipher
 	 *            the histogramCipher to set
 	 */
-	public void setHistogramCipher(String histogramCipher) {
+	public void setHistogramCipher(String[] histogramCipher) {
 		this.histogramCipher = histogramCipher;
 	}
 
