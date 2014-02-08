@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
 import edu.kit.iks.CryptographicsLib.Logger;
 
@@ -328,26 +329,41 @@ public class CryptoController extends AbstractVisualizationController {
 			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
 				@Override
 				public void focusLost(FocusEvent e) {
+					
 					JTextField output = (JTextField) e.getSource();
+					int charToEncryptAscii = (int) output.getName().charAt(0);
+					AlphabetStripView viewAlphabet = getView().getAlphabet();
+					viewAlphabet.unHighlight(charToEncryptAscii - getModel().ASCII_A);
+					
 					if (getView().getKeyboard() != null) {
 						getView().remove(getView().getKeyboard());
 						getView().setKeyboard(null);
 						getView().validate();
-
+         
 						if (output.isEditable()) {
 							output.setBorder(null);
 						}
 					}
+					
+					
 				}
 
 				@Override
 				public void focusGained(FocusEvent e) {
 					JTextField output = (JTextField) e.getSource();
+
 					if (output.isEditable()) {
+						//highlights the character in the alphabet.
+						int charToEncryptAscii = (int) output.getName().charAt(0);
+						AlphabetStripView viewAlphabet = getView().getAlphabet();
+						viewAlphabet.highlight(charToEncryptAscii - getModel().ASCII_A);
+						
 						output.setBorder(BorderFactory.createLineBorder(
 								Color.blue, 5));
 						getView().createKeyboard(output);
 					}
+					
+					
 				}
 			});
 			getView().getUserOutput()[i]

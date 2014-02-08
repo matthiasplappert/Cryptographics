@@ -75,13 +75,15 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 				@Override
 				public void focusGained(FocusEvent e) {
-					//highlights the character in the alphabet.
+					
 					JTextField output = (JTextField) e.getSource();
-					int charToEncryptAscii = (int) output.getName().charAt(0);
-					AlphabetStripView viewAlphabet = getView().getAlphabet();
-					viewAlphabet.highlight(charToEncryptAscii - getModel().ASCII_A);
 					
 					if (output.isEditable()) {
+						//highlights the character in the alphabet.
+						int charToEncryptAscii = (int) output.getName().charAt(0);
+						AlphabetStripView viewAlphabet = getView().getAlphabet();
+						viewAlphabet.highlight(charToEncryptAscii - getModel().ASCII_A);
+						
 						output.setBorder(BorderFactory.createLineBorder(
 								Color.blue, 5));
 						getView().createKeyboard(output);
