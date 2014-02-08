@@ -59,6 +59,18 @@ public class CryptoModel {
 	}
 
 	/**
+	 * @param textLines
+	 * @return
+	 */
+	public String arrayToString(String[] textLines) {
+		String textString = "";
+		for (String textline : textLines) {
+			textString += textline;
+		}
+		return textString;
+	}
+
+	/**
 	 * @param stringToClear
 	 * @return
 	 */
@@ -199,14 +211,16 @@ public class CryptoModel {
 	 */
 	public String getRandomText() {
 		String[] textPool = { "<html><body>"
-				+ "The diagram you see here shows the frequency of each letter in the text you are<br>"
-				+ "reading at the moment. It is called a Histogram. If you would count all E's in <br>"
-				+ "this explanation you would get the number you see in the diagram on the column above<br>"
-				+ "the letter E. Let's assume that this explanation is a normal english text and that in<br>"
-				+ "all english texts E is the most frequent letter! Now the program will encrypt this<br>"
-				+ "explanationwith an unknown key in a most awesome way and we will see the histogram of<br>"
-				+ "the cipher. Click Proceed and see the magic!" };
-		return textPool[0].toUpperCase();
+				+ "The diagram you see here shows the frequency of each letter<br>"
+				+ "in the text you are reading at the moment. It is called a<br>"
+				+ "Histogram. If you would count all E's in this explanation<br>"
+				+ "you would get the number you see in the diagram on the column<br>"
+				+ "above the letter E. Let's assume that this explanation is a<br>"
+				+ "normal english text and that in all english texts E is the<br>"
+				+ "most frequent letter! Now the program will encrypt this explanation<br>"
+				+ "with an unknown key in a most awesome way and we will see the <br>"
+				+ "histogram of the cipher. Click Proceed and see the magic!" };
+		return textPool[0];
 	}
 
 	/**
