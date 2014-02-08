@@ -2,21 +2,25 @@ package edu.kit.iks.Cryptographics;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
-
 import javax.swing.JFrame;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.VisualizationInfoLoader;
 
+/**
+ * Tests for the MainController
+ * 
+ * @author Christian Dreher
+ */
 public class MainControllerTest {
 	
+	/**
+	 * Unit under test
+	 */
 	private MainController uut;
 
 	@Before
