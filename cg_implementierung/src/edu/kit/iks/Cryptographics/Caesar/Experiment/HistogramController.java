@@ -46,7 +46,7 @@ public class HistogramController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.view = new HistogramView();
-		this.model = new CryptoModel();
+		this.model = CryptoModel.getInstance();
 		this.step = 0;
 
 		genProceedListener();

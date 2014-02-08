@@ -15,6 +15,7 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoModel;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
 
 /**
@@ -44,7 +45,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.view = new CipherDemoView();
-		this.model = new CryptoModel();
+		this.model = CryptoModel.getInstance();
 		this.animationStep = 1;
 
 		for (int i = 1; i < this.getView().getUserOutput().length; i++) {
@@ -55,12 +56,17 @@ public class CipherDemoController extends AbstractVisualizationController {
 			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
 				@Override
 				public void focusLost(FocusEvent e) {
+
+					JTextField output = (JTextField) e.getSource();
+					int charToEncryptAscii = (int) output.getName().charAt(0);
+					AlphabetStripView viewAlphabet = getView().getAlphabet();
+					viewAlphabet.unHighlight(charToEncryptAscii - getModel().ASCII_A);
+					
 					if (getView().getKeyboard() != null) {
-						JTextField output = (JTextField) e.getSource();
 						getView().remove(getView().getKeyboard());
 						getView().setKeyboard(null);
 						getView().validate();
-
+         
 						if (output.isEditable()) {
 							output.setBorder(null);
 						}
@@ -69,7 +75,12 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 				@Override
 				public void focusGained(FocusEvent e) {
+					//highlights the character in the alphabet.
 					JTextField output = (JTextField) e.getSource();
+					int charToEncryptAscii = (int) output.getName().charAt(0);
+					AlphabetStripView viewAlphabet = getView().getAlphabet();
+					viewAlphabet.highlight(charToEncryptAscii - getModel().ASCII_A);
+					
 					if (output.isEditable()) {
 						output.setBorder(BorderFactory.createLineBorder(
 								Color.blue, 5));
@@ -86,13 +97,13 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 							// standart key for the caesar cipher. +3 when encrypting. -3 when
 							// decrypting.
-							
 							if (getModel().enc(3, userOutput.getName()).equals(userOutput.getText())) {
 								// user encrypted the given char successful.
 								userOutput.setBorder(BorderFactory
 										.createLineBorder(Color.green));
 								userOutput.setEditable(false);
 								setEditableFields(getEditableFields() - 1);
+								
 								if (getEditableFields() == 0
 										&& getAnimationStep() == 4) {
 									// User encrypted all characters valid.
@@ -112,7 +123,6 @@ public class CipherDemoController extends AbstractVisualizationController {
 									nextConst.gridy = 1;
 									nextConst.gridwidth = 26;
 									nextConst.gridheight = 2;
-									// nextConst.fill = GridBagConstraints.HORIZONTAL;
 									getView().add(getView().getNextButton(),
 											nextConst);
 									getView().validate();
@@ -132,9 +142,9 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 								}
 							} else {
-								// TODO: user encrypted invalid! Need another try.
 								userOutput.setBorder(BorderFactory
 										.createLineBorder(Color.red));
+								userOutput.setText("");
 								getView()
 										.getExplanations()
 										.setText(
@@ -179,7 +189,6 @@ public class CipherDemoController extends AbstractVisualizationController {
 	@Override
 	public void unloadView() {
 		this.view = null;
-		this.model = null;
 	}
 
 	/**

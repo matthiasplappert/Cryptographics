@@ -10,7 +10,11 @@ import java.util.regex.Pattern;
  */
 public class CryptoModel {
 
-	private final int ASCII_A = 'A';
+	// makes sure only one instance is being generated.
+	private static final CryptoModel model = new CryptoModel();
+
+	// public because is being used in other classes. As the whole class does.
+	public final int ASCII_A = 'A';
 
 	private final int MODULO = 26;
 
@@ -29,8 +33,12 @@ public class CryptoModel {
 	/**
 	 * Constructor.
 	 */
-	public CryptoModel() {
+	private CryptoModel() {
 
+	}
+
+	public static CryptoModel getInstance() {
+		return model;
 	}
 
 	/**

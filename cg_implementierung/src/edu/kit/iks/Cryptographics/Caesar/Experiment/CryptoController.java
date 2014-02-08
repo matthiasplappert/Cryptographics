@@ -53,7 +53,7 @@ public class CryptoController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.view = new CryptoView();
-		this.model = new CryptoModel();
+		this.model = CryptoModel.getInstance();
 		this.editableFields = 2;
 
 		// Create all needed ActionListener.
