@@ -21,8 +21,13 @@ import javax.swing.JPanel;
  * The number of occurrences of each character is displayed within or above each beam, 
  * depending on the height of the beam.
  */
-public class CharacterFrequencyDiagramView extends JPanel{
+public class CharacterFrequencyDiagramView extends JPanel {
 
+	/**
+	 * Serial version UID
+	 */
+	private static final long serialVersionUID = -9014431293164765696L;
+	
 	// Quantities of all characters
 	private int [] occurrences;
 	
