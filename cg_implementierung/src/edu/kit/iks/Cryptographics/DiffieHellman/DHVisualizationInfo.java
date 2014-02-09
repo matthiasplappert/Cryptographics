@@ -3,10 +3,8 @@ package edu.kit.iks.Cryptographics.DiffieHellman;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.BobChooseSecretController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainAimController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.AliceChooseSecretController;
-import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.MixColorController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.OnewayController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainKeyExchangeController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.MixFinalSecretController;
@@ -57,8 +55,6 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 		controllerClasses.add(OnewayController.class);
 		controllerClasses.add(ExplainKeyExchangeController.class);
 		controllerClasses.add(AliceChooseSecretController.class);
-		controllerClasses.add(BobChooseSecretController.class);
-		controllerClasses.add(MixColorController.class);
 		controllerClasses.add(YourTurnController.class);
 		controllerClasses.add(ChoosePublicColorController.class);
 		controllerClasses.add(SendColorController.class);

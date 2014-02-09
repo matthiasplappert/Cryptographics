@@ -30,19 +30,39 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
 public class CipherDemoView extends VisualizationView {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * The alphabet.
+	 */
+	private AlphabetStripView alphabet;
+
+	private ImageView caesarFrustrated;
+
+	private ImageView caesarHappy;
+
+	/**
+	 * XML-root element for cipherdemoView elements.
+	 */
+	private Element cipherDemoResource;
+
+	/**
 	 * Explanation textfield.
 	 */
 	private JLabel explanations;
 
 	private JPanel inOutPanel;
 
+	private KeyboardView keyboard;
+
 	private JPanel navigationPanel;
 
-	private ImageView caesarHappy;
-
-	private ImageView caesarFrustrated;
-
-	private KeyboardView keyboard;
+	/**
+	 * Button needed for proceeding the stepwise animations.
+	 */
+	private JButton proceed;
 
 	/**
 	 * Input from the user for encryption.
@@ -53,21 +73,6 @@ public class CipherDemoView extends VisualizationView {
 	 * Output from user interaction.
 	 */
 	private JTextField[] userOutput;
-
-	/**
-	 * The alphabet.
-	 */
-	private AlphabetStripView alphabet;
-
-	/**
-	 * Button needed for proceeding the stepwise animations.
-	 */
-	private JButton proceed;
-
-	/**
-	 * XML-root element for cipherdemoView elements.
-	 */
-	private Element cipherDemoResource;
 
 	/**
 	 * Constructor.
@@ -83,12 +88,12 @@ public class CipherDemoView extends VisualizationView {
 		this.setLayout(introLayout);
 
 		// setup the back and next Buttons.
-		setupNavigation();
+		this.setupNavigation();
 
 		// TODO: need a generator to generate random strings dynamically.
 		// setup the fields for the demonstratoin of the encryption.
 		char[] chars = { 'C', 'A', 'E', 'S', 'A', 'R' };
-		setupInOutElements(chars);
+		this.setupInOutElements(chars);
 
 		// setup the aligment of the button proceed.
 		GridBagConstraints proceedConst = new GridBagConstraints();
@@ -147,6 +152,170 @@ public class CipherDemoView extends VisualizationView {
 		this.validate();
 	}
 
+	/**
+	 * @return the alphabet
+	 */
+	public AlphabetStripView getAlphabet() {
+		return this.alphabet;
+	}
+
+	/**
+	 * @return the caesarFrustrated
+	 */
+	public ImageView getCaesarFrustrated() {
+		return this.caesarFrustrated;
+	}
+
+	/**
+	 * @return the caesarHappy
+	 */
+	public ImageView getCaesarHappy() {
+		return this.caesarHappy;
+	}
+
+	/**
+	 * @return the cipherDemoResource
+	 */
+	public Element getCipherDemoResource() {
+		return this.cipherDemoResource;
+	}
+
+	/**
+	 * @return the explanations
+	 */
+	public JLabel getExplanations() {
+		return this.explanations;
+	}
+
+	/**
+	 * @return the inOutPanel
+	 */
+	public JPanel getInOutPanel() {
+		return this.inOutPanel;
+	}
+
+	/**
+	 * @return the inputPanel
+	 */
+	public JPanel getInputPanel() {
+		return this.inOutPanel;
+	}
+
+	/**
+	 * @return the keyboard
+	 */
+	public KeyboardView getKeyboard() {
+		return this.keyboard;
+	}
+
+	/**
+	 * @return the navigationPanel
+	 */
+	public JPanel getNavigationPanel() {
+		return this.navigationPanel;
+	}
+
+	/**
+	 * @return the proceed
+	 */
+	public JButton getProceed() {
+		return this.proceed;
+	}
+
+	/**
+	 * @return the userInput
+	 */
+	public JLabel[] getUserInput() {
+		return this.userInput;
+	}
+
+	/**
+	 * @return the userOutput
+	 */
+	public JTextField[] getUserOutput() {
+		return this.userOutput;
+	}
+
+	/**
+	 * @param alphabet
+	 *            the alphabet to set
+	 */
+	public void setAlphabet(AlphabetStripView alphabet) {
+		this.alphabet = alphabet;
+	}
+
+	/**
+	 * @param caesarFrustrated
+	 *            the caesarFrustrated to set
+	 */
+	public void setCaesarFrustrated(ImageView caesarFrustrated) {
+		this.caesarFrustrated = caesarFrustrated;
+	}
+
+	/**
+	 * @param caesarHappy
+	 *            the caesarHappy to set
+	 */
+	public void setCaesarHappy(ImageView caesarHappy) {
+		this.caesarHappy = caesarHappy;
+	}
+
+	/**
+	 * @param cipherDemoResource
+	 *            the cipherDemoResource to set
+	 */
+	public void setCipherDemoResource(Element cipherDemoResource) {
+		this.cipherDemoResource = cipherDemoResource;
+	}
+
+	/**
+	 * @param explanations
+	 *            the explanations to set
+	 */
+	public void setExplanations(JLabel explanations) {
+		this.explanations = explanations;
+	}
+
+	/**
+	 * @param inOutPanel
+	 *            the inOutPanel to set
+	 */
+	public void setInOutPanel(JPanel inOutPanel) {
+		this.inOutPanel = inOutPanel;
+	}
+
+	/**
+	 * @param inputPanel
+	 *            the inputPanel to set
+	 */
+	public void setInputPanel(JPanel inputPanel) {
+		this.inOutPanel = inputPanel;
+	}
+
+	/**
+	 * @param keyboard
+	 *            the keyboard to set
+	 */
+	public void setKeyboard(KeyboardView keyboard) {
+		this.keyboard = keyboard;
+	}
+
+	/**
+	 * @param navigationPanel
+	 *            the navigationPanel to set
+	 */
+	public void setNavigationPanel(JPanel navigationPanel) {
+		this.navigationPanel = navigationPanel;
+	}
+
+	/**
+	 * @param proceed
+	 *            the proceed to set
+	 */
+	public void setProceed(JButton proceed) {
+		this.proceed = proceed;
+	}
+
 	private void setupInOutElements(char[] inputChars) {
 
 		// set up the Input and output fields. Because this is a demonstration
@@ -164,7 +333,7 @@ public class CipherDemoView extends VisualizationView {
 		panelConst.gridwidth = inputChars.length * 4;
 		panelConst.gridheight = 2;
 		// panelConst.fill = GridBagConstraints.HORIZONTAL;
-		this.add(inOutPanel, panelConst);
+		this.add(this.inOutPanel, panelConst);
 
 		for (int i = 0; i < inputChars.length; i++) {
 			// fields where the input will be encrypted
@@ -182,7 +351,7 @@ public class CipherDemoView extends VisualizationView {
 			inputConst.ipady = 20;
 			// inputConst.gridwidth = 4;
 			// inputConst.fill = GridBagConstraints.HORIZONTAL;
-			this.inOutPanel.add(userInput[i], inputConst);
+			this.inOutPanel.add(this.userInput[i], inputConst);
 
 			// fields where the encrypted input is put in.
 			this.userOutput[i] = new JTextField();
@@ -206,7 +375,7 @@ public class CipherDemoView extends VisualizationView {
 			outConst.insets = new Insets(25, 25, 25, 25);
 			// outConst.gridwidth = 4;
 			// outConst.fill = GridBagConstraints.HORIZONTAL;
-			this.inOutPanel.add(userOutput[i], outConst);
+			this.inOutPanel.add(this.userOutput[i], outConst);
 			this.inOutPanel.validate();
 		}
 	}
@@ -257,49 +426,6 @@ public class CipherDemoView extends VisualizationView {
 	}
 
 	/**
-	 * @return the proceed
-	 */
-	public JButton getProceed() {
-		return proceed;
-	}
-
-	/**
-	 * @return the explanations
-	 */
-	public JLabel getExplanations() {
-		return explanations;
-	}
-
-	/**
-	 * @return the userInput
-	 */
-	public JLabel[] getUserInput() {
-		return userInput;
-	}
-
-	/**
-	 * @return the userOutput
-	 */
-	public JTextField[] getUserOutput() {
-		return userOutput;
-	}
-
-	/**
-	 * @return the alphabet
-	 */
-	public AlphabetStripView getAlphabet() {
-		return alphabet;
-	}
-
-	/**
-	 * @param explanations
-	 *            the explanations to set
-	 */
-	public void setExplanations(JLabel explanations) {
-		this.explanations = explanations;
-	}
-
-	/**
 	 * @param userInput
 	 *            the userInput to set
 	 */
@@ -313,127 +439,6 @@ public class CipherDemoView extends VisualizationView {
 	 */
 	public void setUserOutput(JTextField[] userOutput) {
 		this.userOutput = userOutput;
-	}
-
-	/**
-	 * @param alphabet
-	 *            the alphabet to set
-	 */
-	public void setAlphabet(AlphabetStripView alphabet) {
-		this.alphabet = alphabet;
-	}
-
-	/**
-	 * @param proceed
-	 *            the proceed to set
-	 */
-	public void setProceed(JButton proceed) {
-		this.proceed = proceed;
-	}
-
-	/**
-	 * @return the inputPanel
-	 */
-	public JPanel getInputPanel() {
-		return inOutPanel;
-	}
-
-	/**
-	 * @param inputPanel
-	 *            the inputPanel to set
-	 */
-	public void setInputPanel(JPanel inputPanel) {
-		this.inOutPanel = inputPanel;
-	}
-
-	/**
-	 * @return the inOutPanel
-	 */
-	public JPanel getInOutPanel() {
-		return inOutPanel;
-	}
-
-	/**
-	 * @param inOutPanel
-	 *            the inOutPanel to set
-	 */
-	public void setInOutPanel(JPanel inOutPanel) {
-		this.inOutPanel = inOutPanel;
-	}
-
-	/**
-	 * @return the navigationPanel
-	 */
-	public JPanel getNavigationPanel() {
-		return navigationPanel;
-	}
-
-	/**
-	 * @param navigationPanel
-	 *            the navigationPanel to set
-	 */
-	public void setNavigationPanel(JPanel navigationPanel) {
-		this.navigationPanel = navigationPanel;
-	}
-
-	/**
-	 * @return the caesarHappy
-	 */
-	public ImageView getCaesarHappy() {
-		return caesarHappy;
-	}
-
-	/**
-	 * @param caesarHappy
-	 *            the caesarHappy to set
-	 */
-	public void setCaesarHappy(ImageView caesarHappy) {
-		this.caesarHappy = caesarHappy;
-	}
-
-	/**
-	 * @return the caesarFrustrated
-	 */
-	public ImageView getCaesarFrustrated() {
-		return caesarFrustrated;
-	}
-
-	/**
-	 * @param caesarFrustrated
-	 *            the caesarFrustrated to set
-	 */
-	public void setCaesarFrustrated(ImageView caesarFrustrated) {
-		this.caesarFrustrated = caesarFrustrated;
-	}
-
-	/**
-	 * @return the cipherDemoResource
-	 */
-	public Element getCipherDemoResource() {
-		return cipherDemoResource;
-	}
-
-	/**
-	 * @param cipherDemoResource
-	 *            the cipherDemoResource to set
-	 */
-	public void setCipherDemoResource(Element cipherDemoResource) {
-		this.cipherDemoResource = cipherDemoResource;
-	}
-
-	/**
-	 * @return the keyboard
-	 */
-	public KeyboardView getKeyboard() {
-		return keyboard;
-	}
-
-	/**
-	 * @param keyboard
-	 *            the keyboard to set
-	 */
-	public void setKeyboard(KeyboardView keyboard) {
-		this.keyboard = keyboard;
 	}
 
 }
