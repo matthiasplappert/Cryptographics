@@ -86,6 +86,9 @@ public class AliceChooseSecretView extends VisualizationView {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						for(ActionListener al : getNextButton().getActionListeners()) {
+							getNextButton().removeActionListener(al);
+						}
 						cc.chooseAlicePrivateColor(Color.GREEN);
 						cc.mixAlicePrivatePublic();
 						cm.setEllipColor(0, cc.getPublicColor());
@@ -100,6 +103,9 @@ public class AliceChooseSecretView extends VisualizationView {
 								getNextButton().addActionListener(new ActionListener() {
 									@Override
 									public void actionPerformed(ActionEvent e) {
+										for(ActionListener al : getNextButton().getActionListeners()) {
+											getNextButton().removeActionListener(al);
+										}
 										cc.sendAliceMixedColorToBob(new NextStepCallback() {
 											
 											@Override
@@ -110,6 +116,9 @@ public class AliceChooseSecretView extends VisualizationView {
 												getNextButton().addActionListener(new ActionListener() {
 													@Override
 													public void actionPerformed(ActionEvent e) {
+														for(ActionListener al : getNextButton().getActionListeners()) {
+															getNextButton().removeActionListener(al);
+														}
 														cc.chooseBobPrivateColor(Color.RED);
 														cm.setEllipColor(1, cc.getBobPrivateColor());
 														cm.mixColors(true, false, new NextStepCallback() {
@@ -122,6 +131,9 @@ public class AliceChooseSecretView extends VisualizationView {
 																getNextButton().addActionListener(new ActionListener() {
 																	@Override
 																	public void actionPerformed(ActionEvent e) {
+																		for(ActionListener al : getNextButton().getActionListeners()) {
+																			getNextButton().removeActionListener(al);
+																		}
 																		cc.setColorNextToSend(cm.getMixedColor());
 																		cc.sendBobMixedColorToAlice(new NextStepCallback() {
 																			
