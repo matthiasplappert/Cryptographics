@@ -1,19 +1,10 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import org.jdom2.Element;
 import org.xnap.commons.i18n.I18n;
@@ -69,9 +60,10 @@ public class IntroductionController extends AbstractVisualizationController {
 
 	@Override
 	public String getHelp() {
+		String help = i18n.tr("If you want to hear the awesome legend about Caesar "
+				+ "and Kryptolix press the button below the text. Else try the next button!");
 
-		return "If you want to hear the awesome legend about caesar "
-				+ "and obelix press the button below the text. Else try the next button!";
+		return help;
 	}
 
 	@Override
@@ -171,8 +163,7 @@ public class IntroductionController extends AbstractVisualizationController {
 				.setText(
 						"<html><body>" +
 							i18n.tr("Unfortunately his courier has taken the way through the forest, where Kryptolix chased<br>" +
-									"the wild boars.")
-						);
+									"the wild boars."));
 
 		// this.getView().getAnimationContainer().setBackground(Color.GREEN);
 
@@ -209,7 +200,7 @@ public class IntroductionController extends AbstractVisualizationController {
 				.setText(
 						"<html><body>" +
 							i18n.tr("When Kryptolix noticed the unsuspecting and whistling roman courier, he punched him via the air-line<br>" +
-								"back to Rom. And saw him losing a scroll."));
+								"back to Rome. And saw him losing a scroll."));
 
 		// set the alignment of boar.
 		GridBagConstraints boarConst = new GridBagConstraints();
@@ -280,11 +271,8 @@ public class IntroductionController extends AbstractVisualizationController {
 				.getExplanation()
 				.setText(
 						"<html><body>" +
-						"Caesar was raging. But while he was toturing some Gauls suddenly a hellacious and an foolproof idea<br>" +
-						"crossed his mind. In his next message he will encrypt his name!! Hue Hue Hue. Help him.");
-//								+ "Zur Beruhigung lieSS Caesar erstmal ein paar arme Schweine auspeitschen und anschlieSSend fiel<br>"
-//								+ "ihm ein idiotensicherer Plan ein: Bei seinem nAEchsten Brief wird er seinen Namen verschlUEsseln.<br>"
-//								+ " Muhahaha! Helfe ihm dabei!!");
+							i18n.tr("Caesar was raging. But while he was toturing some Gauls suddenly a hellacious and an foolproof idea<br>" +
+									"crossed his mind. In his next message he will encrypt his name! Hue Hue Hue. Help him."));
 
 		GridBagLayout introLayout = (GridBagLayout) this.getView().getLayout();
 		this.getView().getNextButton().setText("To caesar's idea");

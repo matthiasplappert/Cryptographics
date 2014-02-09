@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-02-09 22:05+0100\n"
-"PO-Revision-Date: 2014-02-09 22:08+0100\n"
+"POT-Creation-Date: 2014-02-09 22:26+0100\n"
+"PO-Revision-Date: 2014-02-09 22:26+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "Hilfe"
 msgid "Welcome"
 msgstr "Willkommen"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:80
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:82
 msgid ""
 "Get to know how Ceasar fooled his enemys that intercepted his orders and see "
 "one of the oldest attempts to make confidential material unreadable for "
@@ -50,7 +50,16 @@ msgstr ""
 "abgefangen haben, und sehe einen der ersten Versuche, Geheimnisse unlesbar "
 "für unerwünschte Empfänger zu machen"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:173
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:63
+msgid ""
+"If you want to hear the awesome legend about Caesar and Kryptolix press the "
+"button below the text. Else try the next button!"
+msgstr ""
+"Wenn du die großartige Legende über Caesar und Kryptolix, drücke den Button "
+"unterhalb des Texts. Andernfalls überspringe diesen Schritt mit dem "
+"\"Überspringen\"-Button."
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:165
 msgid ""
 "Unfortunately his courier has taken the way through the forest, where "
 "Kryptolix chased<br>the wild boars."
@@ -58,15 +67,15 @@ msgstr ""
 "Zu seinem Unglück ging der Bote durch den Wald, wo Kryptolix seine "
 "Wildschweine jagte."
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:211
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:202
 msgid ""
 "When Kryptolix noticed the unsuspecting and whistling roman courier, he "
-"punched him via the air-line<br>back to Rom. And saw him losing a scroll."
+"punched him via the air-line<br>back to Rome. And saw him losing a scroll."
 msgstr ""
 "Als Kryptolix den nichts ahnenden Boten entdeckte beförderte er ihn via "
 "Luftlinie direkt nach Rom zurück!"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:258
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:246
 msgid ""
 "When reading the scroll the courier lost, Kryptolix identified Caesar's "
 "plans of<br>conquering Gallia and Kryptolix and his awesome friends could "
@@ -75,6 +84,16 @@ msgstr ""
 "Beim Lesen der Schriftrolle, die der Bote dabei hatte, erkannte Kryptolix "
 "Caesar's Pläne für <br> den nächsten Angriff und die Gallier besiegten "
 "Caesar erneut. "
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:274
+msgid ""
+"Caesar was raging. But while he was toturing some Gauls suddenly a "
+"hellacious and an foolproof idea<br>crossed his mind. In his next message he "
+"will encrypt his name! Hue Hue Hue. Help him."
+msgstr ""
+"Zur Beruhigung ließ Caesar erstmal ein paar arme Schweine auspeitschen und "
+"anschließend fiel<br> ihm ein idiotensicherer Plan ein: Bei seinem nächsten "
+"Brief wird er seinen Namen verschlüsseln.<br> Muhahaha! Helfe ihm dabei!"
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:127
 msgid "Tell me more."
