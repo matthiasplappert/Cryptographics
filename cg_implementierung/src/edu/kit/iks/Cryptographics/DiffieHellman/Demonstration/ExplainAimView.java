@@ -44,12 +44,12 @@ public class ExplainAimView extends VisualizationView {
 		gbc.weighty = 0.0;
 		this.add(aimExplain, gbc);
 		
-		this.cc = new ColorChannel(new Dimension(1100, 350), 70);
+		this.cc = new ColorChannel(new Dimension(800, 200), 50);
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
-//		gbc.fill = GridBagConstraints.BOTH;
+		gbc.fill = GridBagConstraints.BOTH;
 		this.add(this.cc, gbc);
 		//TODO try not to do work in constructor
 		this.cc.setColorNextToSend(Color.BLUE);
