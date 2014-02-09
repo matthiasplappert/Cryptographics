@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -17,6 +18,8 @@ public class ChoosePublicColorView extends JPanel {
 	private static final long serialVersionUID = 5764374133753732451L;
 	
 	private JLabel choosePublicLbl;
+	
+	private JButton sendPublic;
 
 	private ColorChannel cc;
 
@@ -64,10 +67,18 @@ public class ChoosePublicColorView extends JPanel {
 		this.chooser = new ColorChooser(new Dimension(50, 50), Color.BLUE, toChooseFrom);
 		
 		gbc.weightx = 0.1;
-		gbc.weightx = 0.1;
+		gbc.weighty = 0.1;
 		gbc.gridx = 3;
 		gbc.gridy = 1;
 		this.add(this.chooser, gbc);
+		
+		this.sendPublic = new JButton("Send Color");
+		
+		gbc.weightx = 0.1;
+		gbc.weighty = 0.1;
+		gbc.gridx = 3;
+		gbc.gridy = 2;
+		this.add(this.sendPublic, gbc);
 	}
 
 }
