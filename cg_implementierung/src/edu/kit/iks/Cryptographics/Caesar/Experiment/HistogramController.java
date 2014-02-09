@@ -109,9 +109,7 @@ public class HistogramController extends AbstractVisualizationController {
 							+ "in the text you are reading at the moment. It is called a<br>"
 							+ "Histogram. If you would count all E's in this explanation<br>"
 							+ "you would get the number you see in the diagram on the column<br>"
-							+ "above the letter E. Let's assume that this explanation is a<br>"
-							+ "normal english text and that in all english texts E is the<br>"
-							+ "most frequent letter! Now the program will encrypt this explanation<br>"
+							+ "above the letter E. Now the program will encrypt this explanation<br>"
 							+ "with an unknown key in a most awesome way and we will see the <br>"
 							+ "histogram of the cipher. Click Proceed and see the magic!";
 
@@ -139,12 +137,15 @@ public class HistogramController extends AbstractVisualizationController {
 							.getExplanations()
 							.setText(
 									"<html><body>"
-											+ "If you remember not so long ago, when you looked at the histogram of a normal english text<br>"
-											+ "the letter 'E' was the most frequent one. When you look at the histogram of the cipher youy<br>"
+											+ "Comrade, as i told you in a chapter before this technique belongs to the science of cryptology<br>"
+											+ "And is a little more complicated than the technique before. Just read carefully.<br>"
+											+ "<br>"
+											+ "If you remember not so long ago, when you looked at the histogram of the last explanation<br>"
+											+ "the letter 'E' was the most frequent one. When you look at the histogram of the cipher you<br>"
 											+ "you can see that now 'H' is the most frequent one. If we think a little further it is logical<br>"
-											+ "to assume that when the program encrypted the letter 'E' on position 5 in the alphabet was shifted<br>"
+											+ "to assume that when the program encrypted, the letter 'E' on position 5 in the alphabet was shifted<br>"
 											+ "3 positions forward to the position 8 and is now the letter 'H'! Now we can assume that the key<br>"
-											+ "was 'H' - 'E' = 8 - 5 = 3! And now we are able to decrypt the cipher. Type the key 3 in the inputfield<br>"
+											+ "was 'H' - 'E' = 8 - 5 = 3 . And now we are able to decrypt the cipher. Type the key 3 in the inputfield<br>"
 											+ "and let the program decrypt the whole text with this key!");
 
 					getView().setupCipherHistogram(htmlCipher);
@@ -178,6 +179,10 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().setHistogramCipher(cipher);
 					getView().setSecretKey(key);
 					getView().unloadProceed();
+					getView().remove(getView().getKeyboard());
+					getView().setKeyboard(null);
+					getView().validate();
+					getView().repaint();
 				}
 
 			}
@@ -221,7 +226,10 @@ public class HistogramController extends AbstractVisualizationController {
 									getView()
 											.getAnnouncement()
 											.setText(
-													"<html><body> Congratulations you found the secret key and are now able<br>"
+													"<html><body>"
+															+ getModel()
+																	.genRandomGrats()
+															+ " You found the secret key and are now able<br>"
 															+ "to read the secret message. The Key was "
 															+ key);
 									setStep(1);
@@ -230,10 +238,8 @@ public class HistogramController extends AbstractVisualizationController {
 									getView().revalidate();
 
 								} else {
-									getView()
-											.getAnnouncement()
-											.setText(
-													"Sorry, this one doesn't work! Try another one.");
+									getView().getAnnouncement().setText(
+											getModel().genRandomBlamings());
 									getView().getKeyControl().setBorder(
 											BorderFactory.createLineBorder(
 													Color.orange, 5));
@@ -308,22 +314,34 @@ public class HistogramController extends AbstractVisualizationController {
 											BorderFactory
 													.createLineBorder(Color.green));
 							String explanations = "<html><body>"
-									+ "Congratulations you found the right key!!! See how easy it is with histograms?<br>"
+									+ getModel().genRandomGrats()
+									+ " You found the right key!!! See how easy it is with histograms?<br>"
 									+ "If you want to try one more click proceed. Else you can go next to further information<br>"
 									+ "There you can learn more about caesar's cipher.";
 							getView().getExplanations().setText(explanations);
 							getView().setupProceed();
 							genProceedListener();
 							getView().requestFocus();
+							getView().remove(getView().getKeyboard());
+							getView().setKeyboard(null);
 							getView().validate();
+							getView().repaint();
 
 						} else {
-							// TODO: warnings needed.
+							String explanations = "<html><body>"
+									+ getModel().genRandomBlamings()
+									+ " The key was wrong.";
+							getView().getExplanations().setText(explanations);
 							getView().getKeyInput().setBorder(
 									BorderFactory.createLineBorder(Color.red));
 						}
 
 					} else {
+						String explanations = "<html><body>"
+								+ getModel().genRandomBlamings()
+								+ " This key is invalid. Please type a number between 1 and 26. If you dont understand why,<br>"
+								+ "then go to the stages before and learn how the cipher works.";
+						getView().getExplanations().setText(explanations);
 						getView().getKeyInput().setBorder(
 								BorderFactory.createLineBorder(Color.red));
 					}

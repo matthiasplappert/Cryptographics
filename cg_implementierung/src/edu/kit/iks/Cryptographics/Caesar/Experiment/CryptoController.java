@@ -407,7 +407,7 @@ public class CryptoController extends AbstractVisualizationController {
 								try {
 									int key = Integer.parseInt(getView()
 											.getKey().getText());
-									
+
 									// If the phase is decrypting use dec, else the phase is
 									// encrypting, therefore use enc.
 									String encryptedOrDecryptedcipher = "";
@@ -418,12 +418,12 @@ public class CryptoController extends AbstractVisualizationController {
 										encryptedOrDecryptedcipher = getModel()
 												.enc(key, userOutput.getName());
 									}
-									
+
 									if ((encryptedOrDecryptedcipher)
 											.equals(userOutput.getText())) {
-									
+
 										if ((getEditableFields() - 1) != 0) {
-											
+
 											// user encrypted the given char successful.
 											userOutput.setBorder(BorderFactory
 													.createLineBorder(Color.green));
@@ -457,12 +457,17 @@ public class CryptoController extends AbstractVisualizationController {
 											getView()
 													.getExplanations()
 													.setText(
-															"<html><body>All done right!!!"
+															"<html><body>All done right! "
 																	+ getModel()
 																			.genRandomGrats()
-																	+ " Now you are one step more to destroying the capitalism!<br>"
-																	+ "Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
-																	+ "are superior to your power!");
+																	+ " Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
+																	+ "are superior to your power. Now lets move on. Click the button in the right top corner.");
+											getView().remove(
+													getView().getKeyboard());
+											getView().setKeyboard(null);
+											getView().validate();
+											getView().repaint();
+
 										}
 									} else {
 										// User encrypted invalid! Need another try.

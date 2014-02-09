@@ -232,9 +232,7 @@ public class CryptoModel {
 				+ "in the text you are reading at the moment. It is called a<br>"
 				+ "Histogram. If you would count all E's in this explanation<br>"
 				+ "you would get the number you see in the diagram on the column<br>"
-				+ "above the letter E. Let's assume that this explanation is a<br>"
-				+ "normal english text and that in all english texts E is the<br>"
-				+ "most frequent letter! Now the program will encrypt this explanation<br>"
+				+ "above the letter E. Now the program will encrypt this explanation<br>"
 				+ "with an unknown key in a most awesome way and we will see the <br>"
 				+ "histogram of the cipher. Click Proceed and see the magic!" };
 		return textPool[0];
