@@ -63,7 +63,7 @@ public class MainController extends AbstractController {
 		// visible
 		this.loadLookAndFeel();
 		this.loadFrame();
-		//this.disableCursor();
+		this.disableCursor();
 	}
 	
 	/*
