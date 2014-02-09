@@ -26,6 +26,9 @@ import edu.kit.iks.CryptographicsLib.PopoverView;
  */
 public class IdlePopoverView extends PopoverView {
 	
+	/**
+	 * Serial version UID
+	 */
 	private static final long serialVersionUID = -4551738579737944993L;
 	
 	/**
