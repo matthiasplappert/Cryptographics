@@ -188,7 +188,7 @@ public class ColorMix extends JPanel {
 		int g2 = color2.getGreen();
 		int b1 = color.getBlue();
 		int b2 = color2.getBlue();
-		this.mixedColor = new Color((r1+r2/2)/2, (g1+g2/2)/2, (b1+b2/2)/2);
+		this.mixedColor = new Color((int)(r1/1.5+r2/3)/2, (int)(g1/1.5+g2/3)/2, (int)(b1/1.5+b2/3)/2);
 	}
 
 	public void setEllipColor(int which, Color color) {
