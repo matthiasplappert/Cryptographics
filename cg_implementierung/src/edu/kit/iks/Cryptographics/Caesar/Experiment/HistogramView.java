@@ -92,10 +92,9 @@ public class HistogramView extends VisualizationView {
 	private CharacterFrequencyDiagramView plainTextHistogram;
 	private JLabel plainText;
 
-	private CharacterFrequencyDiagramView cipherHistogram;	
+	private CharacterFrequencyDiagramView cipherHistogram;
 	private JLabel cipherText;
-	
-	
+
 	private JPanel cipherPlaintextContainer;
 
 	/**
@@ -122,7 +121,12 @@ public class HistogramView extends VisualizationView {
 				+ "The question is now, how do you decrypt without a key?!<br>"
 				+ "<br>"
 				+ "It is also called 'breaking' the cipher if you try to decrypt without a given key parameter. The following <br>"
-				+ "experiments will teach you how to break caesar's cipher.<br>";
+				+ "experiments will teach you how to break caesar's cipher. There are always 2 Options when it comes to this.<br>"
+				+ "<br>"
+				+ "1. The First one is the method called 'Brute Force', it means that you just try simply to decrypt with each possible<br>"
+				+ "key. This one you will see in the next step.<br>"
+				+ "<br>" +
+				"2. The Second one is to use cryptology techniques.";
 
 		setupExplanationPanel();
 		setupExplanations(explanation);
@@ -151,7 +155,7 @@ public class HistogramView extends VisualizationView {
 		explanationPanelConstraint.gridy = 0;
 		explanationPanelConstraint.gridwidth = 6;
 		explanationPanelConstraint.gridheight = 6;
-		explanationPanelConstraint.insets = new Insets(50, 0, 0, 0);
+		explanationPanelConstraint.insets = new Insets(10, 0, 0, 0);
 		explanationPanelConstraint.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.explanationPanel, explanationPanelConstraint);
 	}
@@ -165,7 +169,7 @@ public class HistogramView extends VisualizationView {
 		proceedConst.gridx = 3;
 		proceedConst.gridy = 6;
 		proceedConst.gridwidth = 6;
-		proceedConst.insets = new Insets(10, 0, 10, 0);
+		proceedConst.insets = new Insets(0, 0, 10, 0);
 		this.explanationPanel.add(this.proceed, proceedConst);
 
 		this.explanationPanel.validate();
@@ -196,7 +200,7 @@ public class HistogramView extends VisualizationView {
 	 * Creates the keyboard and shows it in the main container.
 	 */
 	public void createKeyboard(JTextField input) {
-		this.keyboard = new KeyboardView(input);
+		this.keyboard = new KeyboardView(input, KeyboardView.CHAR_MODE);
 		GridBagConstraints kbConst = new GridBagConstraints();
 		kbConst.anchor = GridBagConstraints.PAGE_END;
 		kbConst.weightx = 1.0;
@@ -236,6 +240,7 @@ public class HistogramView extends VisualizationView {
 		this.keyInput = null;
 		this.validate();
 	}
+
 	public void setupKeyInput() {
 		JLabel keyCaption = new JLabel(
 				"<html><body>Type your key in this&darr; box and click 'Enter'.");
@@ -256,7 +261,7 @@ public class HistogramView extends VisualizationView {
 		keyConst.gridwidth = 3;
 		keyConst.gridheight = 2;
 		keyConst.insets = new Insets(5, 50, 5, 50);
-	//	keyConst.fill = GridBagConstraints.BOTH;
+		// keyConst.fill = GridBagConstraints.BOTH;
 		this.histogramContainer.add(this.keyInput, keyConst);
 	}
 
@@ -286,15 +291,15 @@ public class HistogramView extends VisualizationView {
 		cipherConst.insets = new Insets(5, 50, 5, 50);
 		cipherConst.fill = GridBagConstraints.BOTH;
 		this.histogramContainer.add(this.cipherText, cipherConst);
-		
+
 		this.validate();
 		this.repaint();
 	}
 
 	public void setupPlainHistogram(String text) {
 
-		JLabel cipherHistogramHint = new JLabel(
-				"<html><body>&darr;Histogram of a normal english Text.&darr;");
+		JLabel cipherHistogramHint = new JLabel("<html><body>"
+				+ "&darr;Histogram of the explanation.&darr;");
 		GridBagConstraints hintConst = new GridBagConstraints();
 		hintConst.gridx = 0;
 		hintConst.gridy = 2;
@@ -312,14 +317,13 @@ public class HistogramView extends VisualizationView {
 		this.histogramContainer
 				.add(this.plainTextHistogram, plainTextHistConst);
 
-		this.plainText = new JLabel(text);
+		this.plainText = new JLabel();
 		GridBagConstraints plainConst = new GridBagConstraints();
 		plainConst.gridx = 0;
 		plainConst.gridy = 4;
 		plainConst.insets = new Insets(5, 50, 5, 50);
 		plainConst.fill = GridBagConstraints.BOTH;
 		this.histogramContainer.add(this.plainText, plainConst);
-		
 
 		this.validate();
 		this.repaint();
@@ -392,6 +396,7 @@ public class HistogramView extends VisualizationView {
 		plainConst.insets = new Insets(5, 5, 5, 5);
 		this.keyControl.add(this.plainText, plainConst);
 	}
+
 	public void setupBruteForce() {
 		this.explanationPanel.remove(this.proceed);
 		this.proceed = null;
@@ -780,7 +785,8 @@ public class HistogramView extends VisualizationView {
 	}
 
 	/**
-	 * @param cipherPlaintextContainer the cipherPlaintextContainer to set
+	 * @param cipherPlaintextContainer
+	 *            the cipherPlaintextContainer to set
 	 */
 	public void setCipherPlaintextContainer(JPanel cipherPlaintextContainer) {
 		this.cipherPlaintextContainer = cipherPlaintextContainer;

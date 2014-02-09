@@ -16,6 +16,7 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
 import edu.kit.iks.CryptographicsLib.Logger;
 
@@ -67,27 +68,15 @@ public class CryptoController extends AbstractVisualizationController {
 						int key = getModel().generateKey();
 						setEditableFields(string.length);
 
-						// TODO: String and Key generator!
 						getView().start(string, key);
 
-						// generate ActionListener.
 						generateListener(string);
 					}
 				});
 		this.getView().getKey().addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				// if (getView().getKeyboard() != null) {
-				// getView().remove(getView().getKeyboard());
-				// getView().setKeyboard(null);
-				// getView().validate();
-				// getView().repaint();
-				//
-				// if (getView().getKey().isEditable()) {
-				// getView().getKey().setBorder(null);
-				// }
-				// }
-
+				// Nothing to do here.
 			}
 
 			@Override
@@ -109,7 +98,8 @@ public class CryptoController extends AbstractVisualizationController {
 				if (getView().getKey().isEditable()) {
 					getView().getKey().setBorder(
 							BorderFactory.createLineBorder(Color.blue, 5));
-					getView().createKeyboard(getView().getKey());
+					getView().createKeyboard(getView().getKey(),
+							KeyboardView.STRING_MODE);
 				}
 			}
 		});
@@ -181,7 +171,7 @@ public class CryptoController extends AbstractVisualizationController {
 		this.getView().getInput().addFocusListener(new FocusListener() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				
+
 				if (getView().getKey().getBorder() != null
 						&& getView().getKey().isEditable()) {
 					getView().getKey().setBorder(null);
@@ -194,28 +184,19 @@ public class CryptoController extends AbstractVisualizationController {
 					getView().validate();
 					getView().repaint();
 				}
-				
+
 				if (getView().getInput().isEditable()) {
 					getView().getInput().setBorder(
 							BorderFactory.createLineBorder(Color.blue, 5));
-					getView().createKeyboard(getView().getInput());
+					getView().createKeyboard(getView().getInput(),
+							KeyboardView.STRING_MODE);
 				}
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
-//				if (getView().getKeyboard() != null) {
-//					getView().remove(getView().getKeyboard());
-//					getView().setKeyboard(null);
-//					getView().validate();
-//					getView().repaint();
-//
-//					if (getView().getInput().isEditable()) {
-//						getView().getInput().setBorder(null);
-//					}
-//				}
+				// Nothing to do here.
 			}
-
 		});
 		this.getView().getInput().addActionListener(new ActionListener() {
 
@@ -229,7 +210,6 @@ public class CryptoController extends AbstractVisualizationController {
 							.getText();
 					String input = getView().getInput().getText();
 
-					// TODO: check input for validity!
 					if (getModel().isInputValid(input)) {
 						if ((getEditableFields() - 1) != 0) {
 							getView()
@@ -367,23 +347,7 @@ public class CryptoController extends AbstractVisualizationController {
 			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
 				@Override
 				public void focusLost(FocusEvent e) {
-//					JTextField output = (JTextField) e.getSource();
-//
-//					int charToEncryptAscii = (int) output.getName().charAt(0);
-//					AlphabetStripView viewAlphabet = getView().getAlphabet();
-//					viewAlphabet.unHighlight(charToEncryptAscii
-//							- getModel().ASCII_UC_A);
-//
-//					if (getView().getKeyboard() != null) {
-//						getView().remove(getView().getKeyboard());
-//						getView().setKeyboard(null);
-//						getView().validate();
-//						getView().repaint();
-//
-//						if (output.isEditable()) {
-//							output.setBorder(null);
-//						}
-//					}
+					// Nothing to do here.
 
 				}
 
@@ -395,7 +359,8 @@ public class CryptoController extends AbstractVisualizationController {
 
 					for (JTextField outputIterator : userOutput) {
 
-						if (outputIterator.getBorder() != null && getView().getAlphabet() != null) {
+						if (outputIterator.getBorder() != null
+								&& getView().getAlphabet() != null) {
 							int charToEncryptAscii = (int) outputIterator
 									.getName().charAt(0);
 							AlphabetStripView viewAlphabet = getView()
@@ -409,7 +374,7 @@ public class CryptoController extends AbstractVisualizationController {
 
 						}
 					}
-					
+
 					if (getView().getKeyboard() != null) {
 						getView().remove(getView().getKeyboard());
 						getView().setKeyboard(null);
@@ -427,7 +392,8 @@ public class CryptoController extends AbstractVisualizationController {
 
 						output.setBorder(BorderFactory.createLineBorder(
 								Color.blue, 5));
-						getView().createKeyboard(output);
+						getView()
+								.createKeyboard(output, KeyboardView.CHAR_MODE);
 					}
 
 				}
@@ -441,15 +407,23 @@ public class CryptoController extends AbstractVisualizationController {
 								try {
 									int key = Integer.parseInt(getView()
 											.getKey().getText());
-									// enc with negative key is the same as dec method. See
-									// cryptoModel.
+
+									// If the phase is decrypting use dec, else the phase is
+									// encrypting, therefore use enc.
+									String encryptedOrDecryptedcipher = "";
 									if (decryptionPhase) {
-										key = -key;
+										encryptedOrDecryptedcipher = getModel()
+												.dec(key, userOutput.getName());
+									} else {
+										encryptedOrDecryptedcipher = getModel()
+												.enc(key, userOutput.getName());
 									}
-									if (getModel().enc(key,
-											userOutput.getName()).equals(
-											userOutput.getText())) {
+
+									if ((encryptedOrDecryptedcipher)
+											.equals(userOutput.getText())) {
+
 										if ((getEditableFields() - 1) != 0) {
+
 											// user encrypted the given char successful.
 											userOutput.setBorder(BorderFactory
 													.createLineBorder(Color.green));
@@ -458,10 +432,15 @@ public class CryptoController extends AbstractVisualizationController {
 											getView()
 													.getExplanations()
 													.setText(
-															  getModel().genRandomGrats() + " You have "
+															getModel()
+																	.genRandomGrats()
+																	+ " You have "
 																	+ getEditableFields()
 																	+ " left!");
-											getView().getUserOutput()[getView().getUserOutput().length - getEditableFields()].requestFocus();
+											getView().getUserOutput()[getView()
+													.getUserOutput().length
+													- getEditableFields()]
+													.requestFocus();
 										} else {
 											// User encrypted all characters valid.
 											userOutput.setBorder(BorderFactory
@@ -469,20 +448,33 @@ public class CryptoController extends AbstractVisualizationController {
 											getView().requestFocus();
 											userOutput.setEditable(false);
 											getView()
+													.getAlphabet()
+													.unHighlight(
+															userOutput
+																	.getName()
+																	.charAt(0)
+																	- getModel().ASCII_UC_A);
+											getView()
 													.getExplanations()
 													.setText(
-															"<html><body>All done right!!! Great job comrade. Now you are one step more to destroying the capitalism!<br>"
-																	+ "Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
-																	+ "are superior to your power!");
+															"<html><body>All done right! "
+																	+ getModel()
+																			.genRandomGrats()
+																	+ " Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
+																	+ "are superior to your power. Now lets move on. Click the button in the right top corner.");
+											getView().remove(
+													getView().getKeyboard());
+											getView().setKeyboard(null);
+											getView().validate();
+											getView().repaint();
+
 										}
 									} else {
-										// TODO: user encrypted invalid! Need another try.
+										// User encrypted invalid! Need another try.
 										userOutput.setBorder(BorderFactory
 												.createLineBorder(Color.red));
-										getView()
-												.getExplanations()
-												.setText(
-														getModel().genRandomBlamings());
+										getView().getExplanations().setText(
+												getModel().genRandomBlamings());
 									}
 								} catch (NumberFormatException e1) {
 									Logger.e(e1);
