@@ -124,11 +124,19 @@ public class AliceChooseSecretView extends VisualizationView {
 																			
 																			@Override
 																			public void callback() {
-																				cc.mixAliceFinalSecret(new NextStepCallback() {
-																					
+																				for(ActionListener al : getNextButton().getActionListeners()) {
+																					getNextButton().removeActionListener(al);
+																				}
+																				getNextButton().addActionListener(new ActionListener() {
 																					@Override
-																					public void callback() {
-																						cc.mixBobFinalSecret(null);
+																					public void actionPerformed(ActionEvent e) {
+																						cc.mixAliceFinalSecret(new NextStepCallback() {
+																							
+																							@Override
+																							public void callback() {
+																								cc.mixBobFinalSecret(null);
+																							}
+																						});
 																					}
 																				});
 																			}
