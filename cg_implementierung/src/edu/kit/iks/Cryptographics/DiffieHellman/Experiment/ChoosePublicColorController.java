@@ -9,8 +9,6 @@ public class ChoosePublicColorController extends AbstractVisualizationController
 	public ChoosePublicColorController(
 			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		view = new ChoosePublicColorView();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -21,8 +19,7 @@ public class ChoosePublicColorController extends AbstractVisualizationController
 
 	@Override
 	public void loadView() {
-		// TODO Auto-generated method stub
-		
+		view = new ChoosePublicColorView();		
 	}
 	
 	/*
