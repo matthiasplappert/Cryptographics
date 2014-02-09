@@ -155,7 +155,7 @@ public class HistogramView extends VisualizationView {
 		explanationPanelConstraint.gridy = 0;
 		explanationPanelConstraint.gridwidth = 6;
 		explanationPanelConstraint.gridheight = 6;
-		explanationPanelConstraint.insets = new Insets(10, 0, 0, 0);
+		explanationPanelConstraint.insets = new Insets(50, 0, 0, 0);
 		explanationPanelConstraint.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.explanationPanel, explanationPanelConstraint);
 	}
@@ -341,7 +341,7 @@ public class HistogramView extends VisualizationView {
 		keyConst.gridy = 0;
 		keyConst.gridwidth = 3;
 		keyConst.gridheight = 4;
-		keyConst.insets = new Insets(250, 0, 0, 0);
+		keyConst.insets = new Insets(300, 0, 0, 0);
 		// keyConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.keyControl, keyConst);
 	}
@@ -353,7 +353,7 @@ public class HistogramView extends VisualizationView {
 		// this.key.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints keyLabelConst = new GridBagConstraints();
 		keyLabelConst.gridx = 3;
-		keyLabelConst.gridy = 2;
+		keyLabelConst.gridy = 1;
 		keyLabelConst.insets = new Insets(5, 5, 50, 5);
 		// keyLabelConst.fill = GridBagConstraints.HORIZONTAL;
 		this.keyControl.add(this.key, keyLabelConst);
@@ -372,7 +372,7 @@ public class HistogramView extends VisualizationView {
 		// this.decrement.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints decConst = new GridBagConstraints();
 		decConst.gridx = 4;
-		decConst.gridy = 3;
+		decConst.gridy = 2;
 		decConst.insets = new Insets(5, 5, 50, 5);
 		this.keyControl.add(this.decrement, decConst);
 	}
@@ -392,7 +392,7 @@ public class HistogramView extends VisualizationView {
 		// this.plain.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints plainConst = new GridBagConstraints();
 		plainConst.gridx = 0;
-		plainConst.gridy = 3;
+		plainConst.gridy = 2;
 		plainConst.insets = new Insets(5, 5, 5, 5);
 		this.keyControl.add(this.plainText, plainConst);
 	}

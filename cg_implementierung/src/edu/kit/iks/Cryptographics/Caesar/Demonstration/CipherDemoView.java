@@ -1,11 +1,13 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -39,7 +41,7 @@ public class CipherDemoView extends VisualizationView {
 	private ImageView caesarHappy;
 
 	private ImageView caesarFrustrated;
-	
+
 	private KeyboardView keyboard;
 
 	/**
@@ -92,7 +94,7 @@ public class CipherDemoView extends VisualizationView {
 		GridBagConstraints proceedConst = new GridBagConstraints();
 		this.proceed = new JButton("Proceed!");
 		this.proceed.setPreferredSize(new Dimension(250, 50));
-		//this.proceed.setFont(new Font("Arial", 2, 25));
+		// this.proceed.setFont(new Font("Arial", 2, 25));
 		proceedConst.anchor = GridBagConstraints.PAGE_END;
 		proceedConst.gridx = 2;
 		proceedConst.gridy = 3;
@@ -115,7 +117,7 @@ public class CipherDemoView extends VisualizationView {
 				"<html><body>"
 						+ "Imagine now you are the mighty caesar!! Of course your first idea is to substitute each <br>"
 						+ "letter from your name with some other from the alphabet. But which one?");
-		//this.explanations.setFont(new Font("Arial", 2, 20));
+		// this.explanations.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.LAST_LINE_START;
 		expConst.weightx = 0.5;
@@ -127,7 +129,7 @@ public class CipherDemoView extends VisualizationView {
 
 		this.validate();
 	}
-	
+
 	/**
 	 * Creates the keyboard and shows it in the main container.
 	 */
@@ -168,7 +170,7 @@ public class CipherDemoView extends VisualizationView {
 			// fields where the input will be encrypted
 			this.userInput[i] = new JLabel("" + inputChars[i]);
 			this.userInput[i].setBorder(null);
-			//this.userInput[i].setFont(new Font("Arial", 2, 25));
+			// this.userInput[i].setFont(new Font("Arial", 2, 25));
 			this.userInput[i].setPreferredSize(new Dimension(25, 25));
 			GridBagConstraints inputConst = new GridBagConstraints();
 			// inputConst.weightx = 0.5;
@@ -185,13 +187,15 @@ public class CipherDemoView extends VisualizationView {
 			// fields where the encrypted input is put in.
 			this.userOutput[i] = new JTextField();
 			this.userOutput[i].setEditable(false);
-			//this.userOutput[i].setFont(new Font("Arial", 2, 25));
+			// this.userOutput[i].setFont(new Font("Arial", 2, 25));
 			this.userOutput[i].setName("" + inputChars[i]);
 			this.userOutput[i].setPreferredSize(new Dimension(25, 25));
+			this.userOutput[i].setOpaque(true);
+			this.userOutput[i].setBorder(BorderFactory
+					.createLineBorder(Color.darkGray));
 			// needed later when checking if the
 			// encrypted char of the plain letter
 			// was valid!
-			this.userOutput[i].setBorder(null);
 			GridBagConstraints outConst = new GridBagConstraints();
 			// outConst.weightx = 0.5;
 			// outConst.weighty = 0.1;
@@ -230,7 +234,7 @@ public class CipherDemoView extends VisualizationView {
 		// set up the alignment of the button back;
 		this.setBackButton(new JButton("Back to Introduction!"));
 		this.getBackButton().setPreferredSize(new Dimension(300, 50));
-		//this.getBackButton().setFont(new Font("Arial", 2, 25));
+		// this.getBackButton().setFont(new Font("Arial", 2, 25));
 		/*
 		 * GridBagConstraints backConst = new GridBagConstraints(); backConst.weightx = 1.0;
 		 * backConst.weighty = 0.1; backConst.gridx = 0; backConst.gridy = 0; backConst.gridwidth =
@@ -241,7 +245,7 @@ public class CipherDemoView extends VisualizationView {
 		// set up the aligment of the button Next;
 		this.setNextButton(new JButton("Go to Experiment!"));
 		this.getNextButton().setPreferredSize(new Dimension(300, 50));
-		//this.getNextButton().setFont(new Font("Arial", 2, 25));
+		// this.getNextButton().setFont(new Font("Arial", 2, 25));
 
 		/*
 		 * GridBagConstraints nextConst = new GridBagConstraints(); nextConst.weightx = 1.0;
@@ -425,7 +429,8 @@ public class CipherDemoView extends VisualizationView {
 	}
 
 	/**
-	 * @param keyboard the keyboard to set
+	 * @param keyboard
+	 *            the keyboard to set
 	 */
 	public void setKeyboard(KeyboardView keyboard) {
 		this.keyboard = keyboard;

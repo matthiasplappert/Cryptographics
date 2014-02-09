@@ -376,42 +376,21 @@ public class CryptoView extends VisualizationView {
 			this.userInput[i] = new JLabel();
 			this.userInput[i].setText("" + inputChars[i]);
 			this.userInput[i].setBorder(null);
-			//this.userInput[i].setFont(new Font("Arial", 2, 25));
 			this.userInput[i].setPreferredSize(new Dimension(25, 25));
 			GridBagConstraints inputConst = new GridBagConstraints();
-			// inputConst.weightx = 0.5;
-			// inputConst.weighty = 0.1;
 			inputConst.insets = new Insets(25, 25, 25, 25);
 			inputConst.gridx = i;
 			inputConst.gridy = 0;
 			inputConst.ipadx = 20;
 			inputConst.ipady = 20;
-			// inputConst.gridwidth = 4;
-			// inputConst.fill = GridBagConstraints.HORIZONTAL;
 			this.inOutPanel.add(userInput[i], inputConst);
 
 			// fields where the encrypted input is put in.
 			this.userOutput[i] = new JTextField();
-			//this.userOutput[i].setFont(new Font("Arial", 2, 25));
 			this.userOutput[i].setName("" + inputChars[i]);
 			this.userOutput[i].setPreferredSize(new Dimension(25, 25));
-			// TODO: Limit the userOutput JTextField to input size 1!
-
-			// this.userOutput[i].setInputVerifier(new InputVerifier() {
-			//
-			// @Override
-			// public boolean verify(JComponent input) {
-			// JTextField output = (JTextField) input;
-			// if (output.getText().length() == 1) {
-			// return true;
-			// }
-			// return false;
-			// }
-			// });
-			// needed later when checking if the
-			// encrypted char of the plain letter
-			// was valid!
-			this.userOutput[i].setBorder(null);
+            this.userOutput[i].setOpaque(true);
+            this.userOutput[i].setBorder(BorderFactory.createLineBorder(Color.darkGray));
 			GridBagConstraints outConst = new GridBagConstraints();
 			// outConst.weightx = 0.5;
 			// outConst.weighty = 0.1;
