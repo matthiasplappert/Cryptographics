@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -80,6 +82,22 @@ public class ChoosePublicColorView extends JPanel {
 		gbc.gridy = 2;
 		gbc.fill = GridBagConstraints.NONE;
 		this.add(this.sendPublic, gbc);
+		this.sendPublic.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for(ActionListener al : sendPublic.getActionListeners()) {
+					sendPublic.removeActionListener(al);
+				}
+				sendPublicColor();
+			}
+		});
 	}
-
+	
+	private void sendPublicColor() {
+		this.cc.setRepeat(false);
+		this.cc.setKeepColor(true);
+		this.cc.choosePublicColor(this.chooser.getCurrentColor());
+		this.cc.sendPublicColor(null);
+	}
 }

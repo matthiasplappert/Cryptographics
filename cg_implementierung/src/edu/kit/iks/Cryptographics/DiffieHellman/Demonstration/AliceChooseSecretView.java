@@ -72,6 +72,7 @@ public class AliceChooseSecretView extends VisualizationView {
 		this.cc.loadView();
 		this.cc.setRepeat(false);
 		this.cc.setKeepColor(true);
+		//TODO remove validate()?
 		this.validate();
 		
 	}

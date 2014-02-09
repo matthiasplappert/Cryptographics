@@ -79,5 +79,9 @@ public class ColorChooser extends JPanel {
 		}
 		
 	}
+	
+	public Color getCurrentColor() {
+		return this.current.getColor();
+	}
 
 }
