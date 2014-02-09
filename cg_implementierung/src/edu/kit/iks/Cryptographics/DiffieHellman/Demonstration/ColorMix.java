@@ -81,17 +81,17 @@ public class ColorMix extends JPanel {
 		this.y2 = originaly2;
 		if(mixcolors) {
 			if(repeat) {
-				this.timer = new Timer(50, new ActionListener() {
+				this.timer = new Timer(20, new ActionListener() {
 				
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						if(x1 < middle) {
-							x1 += 3;
+							x1 += 1;
 						} else {
 							x1 = originalx1;
 						}
 						if(x2 > middle) {
-							x2 -= 3;
+							x2 -= 1;
 						} else {
 							x2 = originalx2;
 						}
@@ -100,16 +100,16 @@ public class ColorMix extends JPanel {
 				});
 				timer.start();
 			} else {
-				this.timer = new Timer(50, new ActionListener() {
+				this.timer = new Timer(20, new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						Logger.d(this.getClass().getName(), "mixColors", "timer in colormix ");
 						if(x1 < middle) {
-							x1 += 3;
+							x1 += 1;
 						}
 						if(x2 > middle) {
-							x2 -= 3;
+							x2 -= 1;
 						}
 						if(x2 <= middle && x1 >= middle) {
 							timer.stop();
@@ -188,7 +188,7 @@ public class ColorMix extends JPanel {
 		int g2 = color2.getGreen();
 		int b1 = color.getBlue();
 		int b2 = color2.getBlue();
-		this.mixedColor = new Color((r1+r2/2)/2, (g1+g2/2)/2, (b1+b2/2)/2);
+		this.mixedColor = new Color((int)(r1/1.5+r2/3)/2, (int)(g1/1.5+g2/3)/2, (int)(b1/1.5+b2/3)/2);
 	}
 
 	public void setEllipColor(int which, Color color) {
