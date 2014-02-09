@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 
@@ -74,44 +76,53 @@ public class AliceChooseSecretView extends VisualizationView {
 			
 			@Override
 			public void callback() {
-				cc.chooseAlicePrivateColor(Color.GREEN);
-				cc.mixAlicePrivatePublic();
-				cm.setEllipColor(0, cc.getPublicColor());
-				cm.setEllipColor(1, cc.getAlicePrivateColor());
-				cm.mixColors(true, false, new NextStepCallback() {
+				for(ActionListener al : getNextButton().getActionListeners()) {
+					getNextButton().removeActionListener(al);
+				}
+				getNextButton().addActionListener(new ActionListener() {
 					
 					@Override
-					public void callback() {
-						cc.sendAliceMixedColorToBob(new NextStepCallback() {
+					public void actionPerformed(ActionEvent e) {
+						cc.chooseAlicePrivateColor(Color.GREEN);
+						cc.mixAlicePrivatePublic();
+						cm.setEllipColor(0, cc.getPublicColor());
+						cm.setEllipColor(1, cc.getAlicePrivateColor());
+						cm.mixColors(true, false, new NextStepCallback() {
 							
 							@Override
 							public void callback() {
-								cc.chooseBobPrivateColor(Color.RED);
-								cm.setEllipColor(1, cc.getBobPrivateColor());
-								cm.mixColors(true, false, new NextStepCallback() {
+								cc.sendAliceMixedColorToBob(new NextStepCallback() {
 									
 									@Override
 									public void callback() {
-										cc.setColorNextToSend(cm.getMixedColor());
-										cc.sendBobMixedColorToAlice(new NextStepCallback() {
+										cc.chooseBobPrivateColor(Color.RED);
+										cm.setEllipColor(1, cc.getBobPrivateColor());
+										cm.mixColors(true, false, new NextStepCallback() {
 											
 											@Override
 											public void callback() {
-												cc.mixAliceFinalSecret(new NextStepCallback() {
+												cc.setColorNextToSend(cm.getMixedColor());
+												cc.sendBobMixedColorToAlice(new NextStepCallback() {
 													
 													@Override
 													public void callback() {
-														cc.mixBobFinalSecret(null);
+														cc.mixAliceFinalSecret(new NextStepCallback() {
+															
+															@Override
+															public void callback() {
+																cc.mixBobFinalSecret(null);
+															}
+														});
 													}
-												});
+												});										
 											}
-										});										
+										});
 									}
 								});
 							}
 						});
 					}
-				});			
+				});
 			}
 		});
 	}
