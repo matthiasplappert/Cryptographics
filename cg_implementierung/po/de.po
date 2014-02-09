@@ -1,0 +1,32 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cryptographics\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-09 20:06+0100\n"
+"PO-Revision-Date: 2014-02-09 20:07+0100\n"
+"Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
+"Language-Team: Cryptographics-Deutsch <LL@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: src/edu/kit/iks/Cryptographics/IdlePopoverView.java:96
+msgid ""
+"You haven't done anything in a while. To keep this exhibit functional, the "
+"system will reset itself soon. If you want to continue using the system, "
+"just dismiss this dialog."
+msgstr ""
+"Sie haben längere Zeit nichts gemacht. Um das Exponat funktional zu halten, "
+"wird sich das System bald zurücksetzen. Schließen Sie dieses Dialogfenster, "
+"um weiterzumachen."
+
+#: src/edu/kit/iks/Cryptographics/WelcomeView.java:29
+msgid "Welcome"
+msgstr "Willkommen"
