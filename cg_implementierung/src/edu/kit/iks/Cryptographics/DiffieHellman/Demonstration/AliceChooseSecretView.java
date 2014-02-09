@@ -18,6 +18,8 @@ public class AliceChooseSecretView extends VisualizationView {
 	private ColorChannel cc;
 	
 	private ColorMix cm;
+	
+	private ActionListener remember;
 	/**
 	 * 
 	 */
@@ -77,6 +79,7 @@ public class AliceChooseSecretView extends VisualizationView {
 			@Override
 			public void callback() {
 				for(ActionListener al : getNextButton().getActionListeners()) {
+					remember = al;
 					getNextButton().removeActionListener(al);
 				}
 				getNextButton().addActionListener(new ActionListener() {
@@ -130,6 +133,10 @@ public class AliceChooseSecretView extends VisualizationView {
 																				getNextButton().addActionListener(new ActionListener() {
 																					@Override
 																					public void actionPerformed(ActionEvent e) {
+																						for(ActionListener al : getNextButton().getActionListeners()) {
+																							getNextButton().removeActionListener(al);
+																						}
+																						getNextButton().addActionListener(remember);
 																						cc.mixAliceFinalSecret(new NextStepCallback() {
 																							
 																							@Override
