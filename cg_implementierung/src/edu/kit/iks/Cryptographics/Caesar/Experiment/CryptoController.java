@@ -75,25 +75,37 @@ public class CryptoController extends AbstractVisualizationController {
 					}
 				});
 		this.getView().getKey().addFocusListener(new FocusListener() {
-			// TODO: make the strings to set dynamically. Avoid hard code.
 			@Override
 			public void focusLost(FocusEvent e) {
+				// if (getView().getKeyboard() != null) {
+				// getView().remove(getView().getKeyboard());
+				// getView().setKeyboard(null);
+				// getView().validate();
+				// getView().repaint();
+				//
+				// if (getView().getKey().isEditable()) {
+				// getView().getKey().setBorder(null);
+				// }
+				// }
+
+			}
+
+			@Override
+			public void focusGained(FocusEvent e) {
+
+				if (getView().getInput().getBorder() != null
+						&& getView().getInput().isEditable()) {
+					getView().getInput().setBorder(null);
+
+				}
+
 				if (getView().getKeyboard() != null) {
 					getView().remove(getView().getKeyboard());
 					getView().setKeyboard(null);
 					getView().validate();
 					getView().repaint();
-
-					if (getView().getKey().isEditable()) {
-						getView().getKey().setBorder(null);
-					}
 				}
 
-			}
-
-			// TODO: make the strings to set dynamically. Avoid hard code.
-			@Override
-			public void focusGained(FocusEvent e) {
 				if (getView().getKey().isEditable()) {
 					getView().getKey().setBorder(
 							BorderFactory.createLineBorder(Color.blue, 5));
@@ -126,7 +138,7 @@ public class CryptoController extends AbstractVisualizationController {
 												.createLineBorder(Color.green));
 								getView().getKey().setEditable(false);
 								setEditableFields((getEditableFields() - 1));
-								getView().requestFocus();
+								getView().getInput().requestFocus();
 							} else {
 								try {
 									String input = getView().getInput()
@@ -167,9 +179,22 @@ public class CryptoController extends AbstractVisualizationController {
 			}
 		});
 		this.getView().getInput().addFocusListener(new FocusListener() {
-			// TODO: make the strings to set dynamically. Avoid hard code.
 			@Override
 			public void focusGained(FocusEvent e) {
+				
+				if (getView().getKey().getBorder() != null
+						&& getView().getKey().isEditable()) {
+					getView().getKey().setBorder(null);
+
+				}
+
+				if (getView().getKeyboard() != null) {
+					getView().remove(getView().getKeyboard());
+					getView().setKeyboard(null);
+					getView().validate();
+					getView().repaint();
+				}
+				
 				if (getView().getInput().isEditable()) {
 					getView().getInput().setBorder(
 							BorderFactory.createLineBorder(Color.blue, 5));
@@ -177,19 +202,18 @@ public class CryptoController extends AbstractVisualizationController {
 				}
 			}
 
-			// TODO: make the strings to set dynamically. Avoid hard code.
 			@Override
 			public void focusLost(FocusEvent e) {
-				if (getView().getKeyboard() != null) {
-					getView().remove(getView().getKeyboard());
-					getView().setKeyboard(null);
-					getView().validate();
-					getView().repaint();
-
-					if (getView().getInput().isEditable()) {
-						getView().getInput().setBorder(null);
-					}
-				}
+//				if (getView().getKeyboard() != null) {
+//					getView().remove(getView().getKeyboard());
+//					getView().setKeyboard(null);
+//					getView().validate();
+//					getView().repaint();
+//
+//					if (getView().getInput().isEditable()) {
+//						getView().getInput().setBorder(null);
+//					}
+//				}
 			}
 
 		});
@@ -221,7 +245,7 @@ public class CryptoController extends AbstractVisualizationController {
 													.createLineBorder(Color.green));
 							getView().getInput().setEditable(false);
 							setEditableFields((getEditableFields() - 1));
-							getView().requestFocus();
+							getView().getKey().requestFocus();
 
 						} else {
 
@@ -343,23 +367,23 @@ public class CryptoController extends AbstractVisualizationController {
 			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
 				@Override
 				public void focusLost(FocusEvent e) {
-					JTextField output = (JTextField) e.getSource();
-
-					int charToEncryptAscii = (int) output.getName().charAt(0);
-					AlphabetStripView viewAlphabet = getView().getAlphabet();
-					viewAlphabet.unHighlight(charToEncryptAscii
-							- getModel().ASCII_UC_A);
-
-					if (getView().getKeyboard() != null) {
-						getView().remove(getView().getKeyboard());
-						getView().setKeyboard(null);
-						getView().validate();
-						getView().repaint();
-
-						if (output.isEditable()) {
-							output.setBorder(null);
-						}
-					}
+//					JTextField output = (JTextField) e.getSource();
+//
+//					int charToEncryptAscii = (int) output.getName().charAt(0);
+//					AlphabetStripView viewAlphabet = getView().getAlphabet();
+//					viewAlphabet.unHighlight(charToEncryptAscii
+//							- getModel().ASCII_UC_A);
+//
+//					if (getView().getKeyboard() != null) {
+//						getView().remove(getView().getKeyboard());
+//						getView().setKeyboard(null);
+//						getView().validate();
+//						getView().repaint();
+//
+//						if (output.isEditable()) {
+//							output.setBorder(null);
+//						}
+//					}
 
 				}
 
@@ -367,7 +391,31 @@ public class CryptoController extends AbstractVisualizationController {
 				public void focusGained(FocusEvent e) {
 
 					JTextField output = (JTextField) e.getSource();
+					JTextField[] userOutput = getView().getUserOutput();
 
+					for (JTextField outputIterator : userOutput) {
+
+						if (outputIterator.getBorder() != null && getView().getAlphabet() != null) {
+							int charToEncryptAscii = (int) outputIterator
+									.getName().charAt(0);
+							AlphabetStripView viewAlphabet = getView()
+									.getAlphabet();
+							viewAlphabet.unHighlight(charToEncryptAscii
+									- getModel().ASCII_UC_A);
+							if (outputIterator.isEditable()) {
+								outputIterator.setBorder(null);
+							}
+						} else {
+
+						}
+					}
+					
+					if (getView().getKeyboard() != null) {
+						getView().remove(getView().getKeyboard());
+						getView().setKeyboard(null);
+						getView().validate();
+						getView().repaint();
+					}
 					if (output.isEditable()) {
 						// highlights the character in the alphabet.
 						int charToEncryptAscii = (int) output.getName().charAt(
@@ -403,7 +451,6 @@ public class CryptoController extends AbstractVisualizationController {
 											userOutput.getText())) {
 										if ((getEditableFields() - 1) != 0) {
 											// user encrypted the given char successful.
-											getView().requestFocus();
 											userOutput.setBorder(BorderFactory
 													.createLineBorder(Color.green));
 											userOutput.setEditable(false);
@@ -411,10 +458,10 @@ public class CryptoController extends AbstractVisualizationController {
 											getView()
 													.getExplanations()
 													.setText(
-															"Great. That one was right. You have "
+															  getModel().genRandomGrats() + " You have "
 																	+ getEditableFields()
 																	+ " left!");
-
+											getView().getUserOutput()[getView().getUserOutput().length - getEditableFields()].requestFocus();
 										} else {
 											// User encrypted all characters valid.
 											userOutput.setBorder(BorderFactory
@@ -435,7 +482,7 @@ public class CryptoController extends AbstractVisualizationController {
 										getView()
 												.getExplanations()
 												.setText(
-														"You picked the wrong letter!! Try another one!");
+														getModel().genRandomBlamings());
 									}
 								} catch (NumberFormatException e1) {
 									Logger.e(e1);

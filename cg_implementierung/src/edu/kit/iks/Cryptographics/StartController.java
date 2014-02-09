@@ -55,6 +55,7 @@ public class StartController extends AbstractController {
 	@Override
 	public void loadView() {
 		this.view = new JPanel(new GridBagLayout());
+		this.view.setName("start-controller-view");
 		
 		// Add welcome view and its layout
 		GridBagConstraints welcomeViewLayout = new GridBagConstraints();

@@ -47,7 +47,7 @@ abstract public class AbstractController {
 	 *            Controller to be removed
 	 */
 	public void removeChildController(AbstractController childController) {
-
+		this.childControllers.remove(childController);
 	}
 
 	/**
@@ -93,7 +93,7 @@ abstract public class AbstractController {
 	 * 
 	 * @return {true}, if the view is loaded, {false} if not
 	 */
-	public boolean viewIsLoaded() {
+	public boolean isViewLoaded() {
 		return (this.view != null);
 	}
 	

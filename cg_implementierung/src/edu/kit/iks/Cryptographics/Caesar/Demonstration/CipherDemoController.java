@@ -2,11 +2,14 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
@@ -33,6 +36,10 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 	private int editableFields;
 
+	public int x = 0;
+
+	public int y = 0;
+
 	/**
 	 * Constructor.
 	 * 
@@ -48,6 +55,21 @@ public class CipherDemoController extends AbstractVisualizationController {
 		this.model = CryptoModel.getInstance();
 		this.animationStep = 1;
 
+		final KeyboardFocusManager focusManager = KeyboardFocusManager
+				.getCurrentKeyboardFocusManager();
+		focusManager.addPropertyChangeListener(new PropertyChangeListener() {
+
+			@Override
+			public void propertyChange(PropertyChangeEvent event) {
+				if ("focusOwner".equals(event.getPropertyName())) {
+					if (event.getNewValue() instanceof JTextField) {
+
+					}
+				}
+
+			}
+		});
+
 		for (int i = 1; i < this.getView().getUserOutput().length; i++) {
 			// Needed for delegating to the inner type ActionListener, when the actionEvent from the
 			// Button "ENTER" on the Keyboard is fired.
@@ -56,32 +78,49 @@ public class CipherDemoController extends AbstractVisualizationController {
 			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
 				@Override
 				public void focusLost(FocusEvent e) {
-					JTextField output = (JTextField) e.getSource();
+					// JTextField output = (JTextField) e.getSource();
+					// // System.out.println(" Focus lost to: " + (focusManager.getFocusOwner()
+					// instanceof JPanel));
+					// int charToEncryptAscii = (int) output.getName().charAt(0);
+					// AlphabetStripView viewAlphabet = getView().getAlphabet();
+					// viewAlphabet.unHighlight(charToEncryptAscii
+					// - getModel().ASCII_UC_A);
+					// output.setBorder(null);
 
-					int charToEncryptAscii = (int) output.getName().charAt(0);
-					AlphabetStripView viewAlphabet = getView().getAlphabet();
-					viewAlphabet.unHighlight(charToEncryptAscii
-							- getModel().ASCII_UC_A);
-
-					if (getView().getKeyboard() != null) {
-						getView().remove(getView().getKeyboard());
-						getView().setKeyboard(null);
-						getView().validate();
-						getView().repaint();
-
-						if (output.isEditable()) {
-							output.setBorder(null);
-						}
-
-					}
 				}
 
 				@Override
 				public void focusGained(FocusEvent e) {
 
 					JTextField output = (JTextField) e.getSource();
+					JTextField[] userOutput = getView().getUserOutput();
 
+					for (JTextField outputIterator : userOutput) {
+
+						if (outputIterator.getBorder() != null
+								&& getView().getAlphabet() != null) {
+							int charToEncryptAscii = (int) outputIterator
+									.getName().charAt(0);
+							AlphabetStripView viewAlphabet = getView()
+									.getAlphabet();
+							viewAlphabet.unHighlight(charToEncryptAscii
+									- getModel().ASCII_UC_A);
+							if (outputIterator.isEditable()) {
+								outputIterator.setBorder(null);
+							}
+						} else {
+
+						}
+					}
+
+					if (getView().getKeyboard() != null) {
+						getView().remove(getView().getKeyboard());
+						getView().setKeyboard(null);
+						getView().validate();
+						getView().repaint();
+					}
 					if (output.isEditable()) {
+
 						// highlights the character in the alphabet.
 						int charToEncryptAscii = (int) output.getName().charAt(
 								0);
@@ -102,79 +141,84 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 						@Override
 						public void actionPerformed(ActionEvent e) {
-                         if (userOutput.isEditable()) {
-							// standart key for the caesar cipher. +3 when encrypting. -3 when
-							// decrypting.
-							if (getModel().enc(3, userOutput.getName()).equals(
-									userOutput.getText())) {
-								// user encrypted the given char successful.
-								userOutput.setBorder(BorderFactory
-										.createLineBorder(Color.green));
-								setEditableFields(getEditableFields() - 1);
-								userOutput.setEditable(false);
-								if (getEditableFields() == 0
-										&& getAnimationStep() == 4) {
-									// User encrypted all characters valid.
-									getView()
-											.getExplanations()
-											.setText(
-													"<html><body>Great work oh mighty Caesar. May your enemies shutter over your intelligence.");
-									getView().remove(getView().getAlphabet());
-									getView().setAlphabet(null);
-									getView().getNavigationPanel().remove(
-											getView().getNextButton());
-									GridBagConstraints nextConst = new GridBagConstraints();
-									nextConst.anchor = GridBagConstraints.CENTER;
-									nextConst.weightx = 1.0;
-									nextConst.weighty = 0.1;
-									nextConst.gridx = 1;
-									nextConst.gridy = 1;
-									nextConst.gridwidth = 26;
-									nextConst.gridheight = 2;
-									getView().add(getView().getNextButton(),
-											nextConst);
-									getView().requestFocus();
+							if (userOutput.isEditable()) {
+								// standart key for the caesar cipher. +3 when encrypting. -3 when
+								// decrypting.
+								if (getModel().enc(3, userOutput.getName())
+										.equals(userOutput.getText())) {
+									// user encrypted the given char successful.
+									userOutput.setBorder(BorderFactory
+											.createLineBorder(Color.green));
+									setEditableFields(getEditableFields() - 1);
 									userOutput.setEditable(false);
-									getView().remove(getView().getKeyboard());
-									getView().setKeyboard(null);
-									getView().validate();
-									getView().repaint();
+									if (getEditableFields() == 0
+											&& getAnimationStep() == 4) {
+										// User encrypted all characters valid.
+										getView()
+												.getExplanations()
+												.setText(
+														"<html><body>Great work oh mighty Caesar. May your enemies shutter over your intelligence.");
+										getView().remove(
+												getView().getAlphabet());
+										getView().setAlphabet(null);
+										getView().getNavigationPanel().remove(
+												getView().getNextButton());
+										GridBagConstraints nextConst = new GridBagConstraints();
+										nextConst.anchor = GridBagConstraints.CENTER;
+										nextConst.weightx = 1.0;
+										nextConst.weighty = 0.1;
+										nextConst.gridx = 1;
+										nextConst.gridy = 1;
+										nextConst.gridwidth = 26;
+										nextConst.gridheight = 2;
+										getView().add(
+												getView().getNextButton(),
+												nextConst);
+										getView().requestFocus();
+										userOutput.setEditable(false);
+										getView().remove(
+												getView().getKeyboard());
+										getView().setKeyboard(null);
+										getView().validate();
+										getView().repaint();
 
-								} else if (getEditableFields() == 0
-										&& getAnimationStep() == 3) {
-									getView().requestFocus();
-									userOutput.setEditable(false);
-									getView().remove(getView().getKeyboard());
-									getView().setKeyboard(null);
-									getView().getProceed().setVisible(true);
+									} else if (getEditableFields() == 0
+											&& getAnimationStep() == 3) {
+										getView().requestFocus();
+										userOutput.setEditable(false);
+										getView().remove(
+												getView().getKeyboard());
+										getView().setKeyboard(null);
+										getView().getProceed().setVisible(true);
+										getView()
+												.getExplanations()
+												.setText(
+														"<html><body>Very nice! I Like. Lets encrypt the rest of this childish challenge.");
+										getView().validate();
+										getView().repaint();
+									} else {
+										getView().getUserOutput()[getView().getUserOutput().length - getEditableFields()].requestFocus();
+										userOutput.setEditable(false);
+										getView().remove(
+												getView().getKeyboard());
+										getView().setKeyboard(null);
+										getView().validate();
+										getView().getExplanations().setText(
+												getModel().genRandomGrats() + " Only "
+														+ getEditableFields()
+														+ " left.");
+										getView().repaint();
+									}
+								} else {
+									userOutput.setBorder(BorderFactory
+											.createLineBorder(Color.red));
+									userOutput.setText("");
 									getView()
 											.getExplanations()
 											.setText(
-													"<html><body>Great work oh mighty Caesar. May your enemies shutter over your intelligence. Click proceed.");
-									getView().validate();
-									getView().repaint();
-								} else {
-									getView().requestFocus();
-									userOutput.setEditable(false);
-									getView().remove(getView().getKeyboard());
-									getView().setKeyboard(null);
-									getView().validate();
-									getView().getExplanations().setText(
-											"Great you picked the right one.! Only "
-													+ getEditableFields()
-													+ " left");
-                                    getView().repaint();
+													getModel().genRandomBlamings());
 								}
-							} else {
-								userOutput.setBorder(BorderFactory
-										.createLineBorder(Color.red));
-								userOutput.setText("");
-								getView()
-										.getExplanations()
-										.setText(
-												"You picked the wrong letter!! Try another one!");
 							}
-						}
 						}
 					});
 		}

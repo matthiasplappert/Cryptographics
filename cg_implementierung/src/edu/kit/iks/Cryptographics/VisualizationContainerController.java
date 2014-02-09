@@ -127,6 +127,7 @@ public class VisualizationContainerController extends AbstractController {
 		Toolkit.getDefaultToolkit().addAWTEventListener(this.idleDetectionListener, AWTEvent.MOUSE_MOTION_EVENT_MASK);
 		
 		this.view = new VisualizationContainerView();
+		this.view.setName("visualization-container-controller-view");
 		// Styling purpose
 		this.view.setName("visualizationContainerController");
 		this.view.getNameLabel().setText(this.getVisualizationInfo().getName());
