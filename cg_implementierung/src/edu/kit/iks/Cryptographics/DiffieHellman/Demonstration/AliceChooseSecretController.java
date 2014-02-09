@@ -24,12 +24,20 @@ public class AliceChooseSecretController extends AbstractVisualizationController
 	public void loadView() {
 		// TODO Auto-generated method stub
 		this.view = new AliceChooseSecretView();
-		this.getView().getNextButton().addActionListener(new ActionListener() {
+		this.view.setRemember(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
+			}
+		});
+		
+		this.getView().getNextButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				view.startDemo();
 			}
 		});
 		
