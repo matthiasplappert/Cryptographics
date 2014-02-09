@@ -19,6 +19,11 @@ import javax.swing.JTextField;
  */
 public class KeyboardView extends JPanel implements ActionListener {
 
+	/**
+	 * Serial version UID
+	 */
+	private static final long serialVersionUID = 7141126652784811369L;
+	
 	private JPanel firstRow;
 	private JPanel secondRow;
 	private JPanel thirdRow;
