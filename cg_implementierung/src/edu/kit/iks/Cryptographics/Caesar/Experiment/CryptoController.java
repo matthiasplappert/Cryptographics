@@ -411,7 +411,6 @@ public class CryptoController extends AbstractVisualizationController {
 					}
 					
 					if (getView().getKeyboard() != null) {
-						System.out.println("Keyboard destroyed!\n");
 						getView().remove(getView().getKeyboard());
 						getView().setKeyboard(null);
 						getView().validate();
@@ -459,7 +458,7 @@ public class CryptoController extends AbstractVisualizationController {
 											getView()
 													.getExplanations()
 													.setText(
-															"Great. That one was right. You have "
+															  getModel().genRandomGrats() + " You have "
 																	+ getEditableFields()
 																	+ " left!");
 											getView().getUserOutput()[getView().getUserOutput().length - getEditableFields()].requestFocus();
@@ -483,7 +482,7 @@ public class CryptoController extends AbstractVisualizationController {
 										getView()
 												.getExplanations()
 												.setText(
-														"You picked the wrong letter!! Try another one!");
+														getModel().genRandomBlamings());
 									}
 								} catch (NumberFormatException e1) {
 									Logger.e(e1);

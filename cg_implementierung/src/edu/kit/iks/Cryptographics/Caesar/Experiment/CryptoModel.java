@@ -185,6 +185,23 @@ public class CryptoModel {
 		return (input.length() < 10 && input.length() > 0);
 	}
 
+	public String genRandomGrats() {
+		String[] gratulationsPool = { "Great work oh mighty Caesar.",
+				"Very nice. I Like!", "Kryptochef approves!",
+				"Noone could do it better!" };
+		int index = generateRandomInt(0, gratulationsPool.length);
+		return gratulationsPool[index];
+	}
+
+	public String genRandomBlamings() {
+		String[] blamingPool = {
+				"Oh no. What a pity! It went wrong!",
+				"No my friend. This one doesn't work!",
+				"Ok, dont be frustrated. Though your action was totally wrong."
+		};
+		int index = generateRandomInt(0, blamingPool.length);
+		return blamingPool[index];
+	}
 	/**
 	 * @return
 	 */

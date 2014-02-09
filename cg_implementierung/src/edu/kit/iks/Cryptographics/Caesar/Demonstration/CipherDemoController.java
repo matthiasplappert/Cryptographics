@@ -193,7 +193,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 										getView()
 												.getExplanations()
 												.setText(
-														"<html><body>Great work oh mighty Caesar. Lets encrypt the rest of this childish challenge.");
+														"<html><body>Very nice! I Like. Lets encrypt the rest of this childish challenge.");
 										getView().validate();
 										getView().repaint();
 									} else {
@@ -204,9 +204,9 @@ public class CipherDemoController extends AbstractVisualizationController {
 										getView().setKeyboard(null);
 										getView().validate();
 										getView().getExplanations().setText(
-												"Great you picked the right one.! Only "
+												getModel().genRandomGrats() + " Only "
 														+ getEditableFields()
-														+ " left");
+														+ " left.");
 										getView().repaint();
 									}
 								} else {
@@ -216,7 +216,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 									getView()
 											.getExplanations()
 											.setText(
-													"You picked the wrong letter!! Try another one!");
+													getModel().genRandomBlamings());
 								}
 							}
 						}
