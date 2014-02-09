@@ -101,6 +101,12 @@ public class AliceChooseSecretView extends VisualizationView {
 											
 											@Override
 											public void callback() {
+												for(ActionListener al : getNextButton().getActionListeners()) {
+													getNextButton().removeActionListener(al);
+												}
+												getNextButton().addActionListener(new ActionListener() {
+													@Override
+													public void actionPerformed(ActionEvent e) {
 												cc.chooseBobPrivateColor(Color.RED);
 												cm.setEllipColor(1, cc.getBobPrivateColor());
 												cm.mixColors(true, false, new NextStepCallback() {
@@ -123,6 +129,8 @@ public class AliceChooseSecretView extends VisualizationView {
 														});										
 													}
 												});
+													}
+													});
 											}
 										});
 									}
