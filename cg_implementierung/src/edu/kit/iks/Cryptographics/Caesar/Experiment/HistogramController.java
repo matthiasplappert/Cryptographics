@@ -92,7 +92,7 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().setupKeyControlPanel();
 					getView().setupIncrementDecrement();
 					getView().setupCipherPlainLabels(
-							getModel().getRandomCipher(secret));
+							getModel().genRandomCipher(secret));
 					getView().setupBruteForce();
 					genListenerBruteForce();
 					getView().getKeyControl().setBorder(
@@ -168,7 +168,7 @@ public class HistogramController extends AbstractVisualizationController {
 							"Ok lets try another one!");
 
 					String[] plainText = getModel().removeHtmlBreaks(
-							getModel().getRandomText());
+							getModel().genRandomText());
 					int key = getModel().generateKey();
 					String[] cipher = getModel().enc(key, plainText);
 

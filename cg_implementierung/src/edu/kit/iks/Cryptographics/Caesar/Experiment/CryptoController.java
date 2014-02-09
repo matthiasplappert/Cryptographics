@@ -63,7 +63,7 @@ public class CryptoController extends AbstractVisualizationController {
 				.addMouseListener(new MouseClickListener() {
 					@Override
 					public void clicked(MouseEvent e) {
-						char[] string = getModel().getRandomPlainSequence()
+						char[] string = getModel().genRandomPlainSequence()
 								.toCharArray();
 						int key = getModel().generateKey();
 						setEditableFields(string.length);
@@ -286,7 +286,7 @@ public class CryptoController extends AbstractVisualizationController {
 					// start Decryption!
 					decryptionPhase = true;
 					char[] cipher = getModel()
-							.enc(key, getModel().getRandomPlainSequence())
+							.enc(key, getModel().genRandomPlainSequence())
 							.toString().toCharArray();
 
 					setEditableFields(cipher.length);
