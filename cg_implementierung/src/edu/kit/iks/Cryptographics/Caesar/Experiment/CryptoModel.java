@@ -1,9 +1,7 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
-import java.util.regex.Pattern;
-
 /**
- * Model of the last step of Caesar Introduction phase and the first two steps of the experiment.
+ * Model of the visualization of Caesar's cipher.
  * 
  * @author Wasilij Beskorovajnov.
  * 
@@ -19,21 +17,14 @@ public class CryptoModel {
 	// ASCII lower case a code.
 	public final int ASCII_LC_A = 'a';
 
+	//The reach of the key interval.
 	private final int MODULO = 26;
-
-	// The format for a formatted String.
-	private final int MAX_LINE_LENGTH = 60;
-
-	// The line length of a formatted String must be 35 < lineLength < 45.
-	private final int MAX_LINE_VARIATION = 5;
 
 	// number of chars in <html><body>.
 	private final int HTML_HEADER_LENGTH = 12;
 
+	//The Header of a html string.
 	private final String HTML_HEADER = "<html><body>";
-
-	// number of chars in <br>.
-	private final int LINEBREAK_LENGTH = 4;
 
 	/**
 	 * Constructor.
@@ -205,7 +196,7 @@ public class CryptoModel {
 	/**
 	 * @return
 	 */
-	public String getRandomPlainSequence() {
+	public String genRandomPlainSequence() {
 		String[] plainTextPool = { "ANNA", "HANNAH", "BANANA", "KOKOS",
 				"KRYPTOCHEF", "HAMSTER", "WASILIJ", "SECRET", "EPSILON" };
 
@@ -217,8 +208,8 @@ public class CryptoModel {
 	 * @param key
 	 * @return
 	 */
-	public String getRandomCipher(int key) {
-		String plain = getRandomPlainSequence();
+	public String genRandomCipher(int key) {
+		String plain = genRandomPlainSequence();
 		return enc(key, plain);
 	}
 
@@ -226,7 +217,7 @@ public class CryptoModel {
 	/**
 	 * @return
 	 */
-	public String getRandomText() {
+	public String genRandomText() {
 		String[] textPool = { "<html><body>"
 				+ "The diagram you see here shows the frequency of each letter<br>"
 				+ "in the text you are reading at the moment. It is called a<br>"
