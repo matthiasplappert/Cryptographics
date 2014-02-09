@@ -113,7 +113,6 @@ public class CipherDemoController extends AbstractVisualizationController {
 					}
 					
 					if (getView().getKeyboard() != null) {
-						System.out.println("Keyboard destroyed!\n");
 						getView().remove(getView().getKeyboard());
 						getView().setKeyboard(null);
 						getView().validate();
