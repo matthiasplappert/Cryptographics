@@ -144,8 +144,13 @@ public class IntroductionView extends VisualizationView {
 		explanationConstraint.gridy = 1;
 		explanationConstraint.gridwidth = 5;
 		this.setExplanation(new JLabel(
-				"<html><body>Eines Tages, etwa 70 v.Chr , tüftelte Caesar einen ultra-mega-großen-master-plan <br>"
-						+ " aus um Gallien endlich zu erobern. Und schickte diesen an seine Armee in Gallien. <br>"));
+				"<html><body>" +
+				"One fine day, ca 70 B.C., Caesar was puzzling on an ultra-mega-intelligent-plan<br>" +
+				"to finally conquer Gallia and sent it to his generals in Gallia."
+		       ));
+				
+//				"<html><body>Eines Tages, etwa 70 v.Chr , tüftelte Caesar einen ultra-mega-großen-master-plan <br>"
+//						+ " aus um Gallien endlich zu erobern. Und schickte diesen an seine Armee in Gallien. <br>"));
 		//this.explanation.setFont(new Font("Arial", 2, 20));
 		this.add(this.explanation, explanationConstraint);
 

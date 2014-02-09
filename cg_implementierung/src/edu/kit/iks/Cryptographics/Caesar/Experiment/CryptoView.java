@@ -73,7 +73,7 @@ public class CryptoView extends VisualizationView {
 	/**
 	 * Input from the user for encryption.
 	 */
-	private JTextField[] userInput;
+	private JLabel[] userInput;
 
 	/**
 	 * Output from user interaction.
@@ -342,7 +342,7 @@ public class CryptoView extends VisualizationView {
 		// set up the Input and output fields. Because this is a demonstration
 		// the fields
 		// are filled by the programm and are not editable by the user.
-		this.userInput = new JTextField[inputChars.length];
+		this.userInput = new JLabel[inputChars.length];
 		this.userOutput = new JTextField[inputChars.length];
 		this.inOutPanel = new JPanel(new GridBagLayout());
 		GridBagConstraints panelConst = new GridBagConstraints();
@@ -373,11 +373,10 @@ public class CryptoView extends VisualizationView {
 				break;
 			}
 			// fields where the input will be encrypted
-			this.userInput[i] = new JTextField();
+			this.userInput[i] = new JLabel();
 			this.userInput[i].setText("" + inputChars[i]);
 			this.userInput[i].setBorder(null);
 			//this.userInput[i].setFont(new Font("Arial", 2, 25));
-			this.userInput[i].setEditable(false);
 			this.userInput[i].setPreferredSize(new Dimension(25, 25));
 			GridBagConstraints inputConst = new GridBagConstraints();
 			// inputConst.weightx = 0.5;
@@ -438,7 +437,7 @@ public class CryptoView extends VisualizationView {
 	/**
 	 * @return the userInput
 	 */
-	public JTextField[] getUserInput() {
+	public JLabel[] getUserInput() {
 		return userInput;
 	}
 
@@ -506,7 +505,7 @@ public class CryptoView extends VisualizationView {
 	 * @param userInput
 	 *            the userInput to set
 	 */
-	public void setUserInput(JTextField[] userInput) {
+	public void setUserInput(JLabel[] userInput) {
 		this.userInput = userInput;
 	}
 
