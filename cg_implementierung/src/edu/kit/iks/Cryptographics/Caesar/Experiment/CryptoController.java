@@ -138,7 +138,7 @@ public class CryptoController extends AbstractVisualizationController {
 												.createLineBorder(Color.green));
 								getView().getKey().setEditable(false);
 								setEditableFields((getEditableFields() - 1));
-								getView().requestFocus();
+								getView().getInput().requestFocus();
 							} else {
 								try {
 									String input = getView().getInput()
@@ -245,7 +245,7 @@ public class CryptoController extends AbstractVisualizationController {
 													.createLineBorder(Color.green));
 							getView().getInput().setEditable(false);
 							setEditableFields((getEditableFields() - 1));
-							getView().requestFocus();
+							getView().getKey().requestFocus();
 
 						} else {
 
@@ -411,7 +411,6 @@ public class CryptoController extends AbstractVisualizationController {
 					}
 					
 					if (getView().getKeyboard() != null) {
-						System.out.println("Keyboard destroyed!\n");
 						getView().remove(getView().getKeyboard());
 						getView().setKeyboard(null);
 						getView().validate();
@@ -452,7 +451,6 @@ public class CryptoController extends AbstractVisualizationController {
 											userOutput.getText())) {
 										if ((getEditableFields() - 1) != 0) {
 											// user encrypted the given char successful.
-											getView().requestFocus();
 											userOutput.setBorder(BorderFactory
 													.createLineBorder(Color.green));
 											userOutput.setEditable(false);
@@ -460,10 +458,10 @@ public class CryptoController extends AbstractVisualizationController {
 											getView()
 													.getExplanations()
 													.setText(
-															"Great. That one was right. You have "
+															  getModel().genRandomGrats() + " You have "
 																	+ getEditableFields()
 																	+ " left!");
-
+											getView().getUserOutput()[getView().getUserOutput().length - getEditableFields()].requestFocus();
 										} else {
 											// User encrypted all characters valid.
 											userOutput.setBorder(BorderFactory
@@ -484,7 +482,7 @@ public class CryptoController extends AbstractVisualizationController {
 										getView()
 												.getExplanations()
 												.setText(
-														"You picked the wrong letter!! Try another one!");
+														getModel().genRandomBlamings());
 									}
 								} catch (NumberFormatException e1) {
 									Logger.e(e1);

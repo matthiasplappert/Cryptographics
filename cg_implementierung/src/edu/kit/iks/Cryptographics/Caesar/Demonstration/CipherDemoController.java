@@ -97,7 +97,8 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 					for (JTextField outputIterator : userOutput) {
 
-						if (outputIterator.getBorder() != null && getView().getAlphabet() != null) {
+						if (outputIterator.getBorder() != null
+								&& getView().getAlphabet() != null) {
 							int charToEncryptAscii = (int) outputIterator
 									.getName().charAt(0);
 							AlphabetStripView viewAlphabet = getView()
@@ -111,7 +112,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 						}
 					}
-					
+
 					if (getView().getKeyboard() != null) {
 						getView().remove(getView().getKeyboard());
 						getView().setKeyboard(null);
@@ -192,20 +193,20 @@ public class CipherDemoController extends AbstractVisualizationController {
 										getView()
 												.getExplanations()
 												.setText(
-														"<html><body>Great work oh mighty Caesar. May your enemies shutter over your intelligence. Click proceed.");
+														"<html><body>Very nice! I Like. Lets encrypt the rest of this childish challenge.");
 										getView().validate();
 										getView().repaint();
 									} else {
-										getView().requestFocus();
+										getView().getUserOutput()[getView().getUserOutput().length - getEditableFields()].requestFocus();
 										userOutput.setEditable(false);
 										getView().remove(
 												getView().getKeyboard());
 										getView().setKeyboard(null);
 										getView().validate();
 										getView().getExplanations().setText(
-												"Great you picked the right one.! Only "
+												getModel().genRandomGrats() + " Only "
 														+ getEditableFields()
-														+ " left");
+														+ " left.");
 										getView().repaint();
 									}
 								} else {
@@ -215,7 +216,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 									getView()
 											.getExplanations()
 											.setText(
-													"You picked the wrong letter!! Try another one!");
+													getModel().genRandomBlamings());
 								}
 							}
 						}
