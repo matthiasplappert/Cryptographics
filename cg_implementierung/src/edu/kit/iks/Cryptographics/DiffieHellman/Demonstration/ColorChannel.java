@@ -94,10 +94,6 @@ public class ColorChannel extends JPanel {
 	private boolean keepCircles;
 	
 	/*
-	 * Every sendToBob or sendToAlice call
-	 * should use another timer in this array,
-	 * originally tried to solve a bug with
-	 * this, this probably can be refactored/removed
 	 */
 	private Timer timer;
 
