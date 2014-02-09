@@ -37,6 +37,9 @@ public class AliceChooseSecretController extends AbstractVisualizationController
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				for(ActionListener al : getView().getNextButton().getActionListeners()) {
+					getView().getNextButton().removeActionListener(al);
+				}
 				view.startDemo();
 			}
 		});
