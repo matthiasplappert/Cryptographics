@@ -282,11 +282,9 @@ public class CryptoController extends AbstractVisualizationController {
 				if (!decryptionPhase) {
 					int key = getModel().generateKey();
 
-					// TODO: implement unloadView();
 					// unloadInOut();
 					// start Decryption!
 					decryptionPhase = true;
-					// TODO: generate a random cipher.
 					char[] cipher = getModel()
 							.enc(key, getModel().getRandomPlainSequence())
 							.toString().toCharArray();
@@ -432,9 +430,14 @@ public class CryptoController extends AbstractVisualizationController {
 											getView()
 													.getExplanations()
 													.setText(
+													// getView()
+													// .getExplanations()
+													// .getText()
+													// + "<br> "
+													// + "<br>"
 															getModel()
 																	.genRandomGrats()
-																	+ " You have "
+																	+ "You have "
 																	+ getEditableFields()
 																	+ " left!");
 											getView().getUserOutput()[getView()

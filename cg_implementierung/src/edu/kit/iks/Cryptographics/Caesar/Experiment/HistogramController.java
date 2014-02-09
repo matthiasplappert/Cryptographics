@@ -179,8 +179,10 @@ public class HistogramController extends AbstractVisualizationController {
 					getView().setHistogramCipher(cipher);
 					getView().setSecretKey(key);
 					getView().unloadProceed();
-					getView().remove(getView().getKeyboard());
-					getView().setKeyboard(null);
+					if (getView().getKeyboard() != null) {
+						getView().remove(getView().getKeyboard());
+						getView().setKeyboard(null);
+					}
 					getView().validate();
 					getView().repaint();
 				}
