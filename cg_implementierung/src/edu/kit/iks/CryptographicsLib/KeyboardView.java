@@ -132,7 +132,6 @@ public class KeyboardView extends JPanel implements ActionListener {
 			}
 		}
 		
-		this.textField.requestFocus();
 	}
 	
 	private void initKeyboardButtons() {
