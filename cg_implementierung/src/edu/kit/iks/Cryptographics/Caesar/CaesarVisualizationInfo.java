@@ -10,7 +10,9 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import org.xnap.commons.i18n.I18n;
 
+import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.Cryptographics.Caesar.Demonstration.CipherDemoController;
 import edu.kit.iks.Cryptographics.Caesar.Demonstration.IntroductionController;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoController;
@@ -30,6 +32,11 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	 * Caesar root element from the xml file.
 	 */
 	private Element caesarResources;
+
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(CaesarVisualizationInfo.class);
 
 	/**
 	 * Constructor for the visualizationInfo.
@@ -70,10 +77,12 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	 * edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getDescription()
 	 */
 	public String getDescription() {
-		return "Get to know how Ceasar fooled his enemys that "
+		String description = i18n.tr("Get to know how Ceasar fooled his enemys that "
 				+ "intercepted his orders and see one of the oldest "
 				+ "attempts to make confidential material unreadable "
-				+ "for undesireable readers";
+				+ "for undesireable readers");
+		
+		return description;
 	}
 
 	/*

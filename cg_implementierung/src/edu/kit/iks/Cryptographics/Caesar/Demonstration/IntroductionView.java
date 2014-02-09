@@ -7,15 +7,17 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Timer;
 
+import javax.swing.Timer;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import org.jdom2.Element;
+import org.xnap.commons.i18n.I18n;
 
+import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
@@ -71,6 +73,11 @@ public class IntroductionView extends VisualizationView {
 	private JLabel explanation;
 
 	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(IntroductionView.class);
+	
+	/**
 	 * Constructor of this View.
 	 */
 	public IntroductionView() {
@@ -117,7 +124,7 @@ public class IntroductionView extends VisualizationView {
 		proceedConstraint.gridx = 1;
 		proceedConstraint.gridy = 2;
 		proceedConstraint.gridwidth = 3;
-		this.setProceed(new JButton("Tell me more."));
+		this.setProceed(new JButton(i18n.tr("Tell me more.")));
 		this.proceed.setPreferredSize(new Dimension(500, 50));
 		//this.proceed.setFont(new Font("Arial", 2, 25));
 		this.add(this.proceed, proceedConstraint);
@@ -145,12 +152,12 @@ public class IntroductionView extends VisualizationView {
 		explanationConstraint.gridwidth = 5;
 		this.setExplanation(new JLabel(
 				"<html><body>" +
-				"One fine day, ca 70 B.C., Caesar was puzzling on an ultra-mega-intelligent-plan<br>" +
-				"to finally conquer Gallia and sent it to his generals in Gallia."
-		       ));
+					i18n.tr("One fine day, ca 70 B.C., Caesar was puzzling on an ultra-mega-intelligent-plan<br>" +
+							"to finally conquer Gallia and sent it to his generals in Gallia.")
+						
 				
-//				"<html><body>Eines Tages, etwa 70 v.Chr , tüftelte Caesar einen ultra-mega-großen-master-plan <br>"
-//						+ " aus um Gallien endlich zu erobern. Und schickte diesen an seine Armee in Gallien. <br>"));
+		       ));
+
 		//this.explanation.setFont(new Font("Arial", 2, 20));
 		this.add(this.explanation, explanationConstraint);
 

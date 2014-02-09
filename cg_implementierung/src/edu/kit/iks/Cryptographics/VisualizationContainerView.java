@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.xnap.commons.i18n.I18n;
+
 /**
  * An instance of this class represents the view of container controller
  * beside the actual visualization
@@ -43,6 +45,11 @@ public class VisualizationContainerView extends JPanel {
 	private JPanel contentView;
 	
 	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(VisualizationContainerView.class);
+	
+	/**
 	 * Constructor initializing a new instance of {VisualizationContainerView}
 	 */
 	public VisualizationContainerView() {
@@ -54,7 +61,7 @@ public class VisualizationContainerView extends JPanel {
 		exitConstraints.weighty = 0.1;
 		exitConstraints.gridx = 0;
 		exitConstraints.gridy = 0;
-		this.exitButton = new JButton("Exit");
+		this.exitButton = new JButton(i18n.tr("Exit"));
 		this.add(this.exitButton, exitConstraints);
 		
 		// Create the name label.
@@ -72,7 +79,7 @@ public class VisualizationContainerView extends JPanel {
 		helpConstraints.weighty = 0.1;
 		helpConstraints.gridx = 2;
 		helpConstraints.gridy = 0;
-		this.helpButton = new JButton("Help");
+		this.helpButton = new JButton(i18n.tr("Help"));
 		this.add(this.helpButton, helpConstraints);
 		
 		// Create content view.

@@ -58,6 +58,9 @@ public class IdlePopoverView extends PopoverView {
 	 */
 	private Timer updateTimer;
 	
+	/**
+	 * Localization instance
+	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(IdlePopoverView.class);
 	
 	/**

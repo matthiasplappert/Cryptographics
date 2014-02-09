@@ -17,6 +17,9 @@ public class WelcomeView extends JPanel {
 	 */
 	private static final long serialVersionUID = -8871817760284013217L;
 
+	/**
+	 * Localization instance
+	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(WelcomeView.class);
 	
 	public WelcomeView() {
