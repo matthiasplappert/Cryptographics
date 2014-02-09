@@ -2,14 +2,11 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
-import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
@@ -32,9 +29,9 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 	private int animationStep;
 
-	private CryptoModel model;
-
 	private int editableFields;
+
+	private CryptoModel model;
 
 	/**
 	 * Constructor.
@@ -43,210 +40,6 @@ public class CipherDemoController extends AbstractVisualizationController {
 	 */
 	public CipherDemoController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-	}
-
-	@Override
-	public void loadView() {
-		this.view = new CipherDemoView();
-		this.model = CryptoModel.getInstance();
-		this.animationStep = 1;
-
-		for (int i = 1; i < this.getView().getUserOutput().length; i++) {
-			// Needed for delegating to the inner type ActionListener, when the actionEvent from the
-			// Button "ENTER" on the Keyboard is fired.
-			final JTextField userOutput = getView().getUserOutput()[i];
-
-			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
-				@Override
-				public void focusLost(FocusEvent e) {
-					// Nothing to do here.
-				}
-
-				@Override
-				public void focusGained(FocusEvent e) {
-
-					JTextField output = (JTextField) e.getSource();
-					JTextField[] userOutput = getView().getUserOutput();
-
-					for (JTextField outputIterator : userOutput) {
-
-						if (outputIterator.getBorder() != null
-								&& getView().getAlphabet() != null) {
-							int charToEncryptAscii = (int) outputIterator
-									.getName().charAt(0);
-							AlphabetStripView viewAlphabet = getView()
-									.getAlphabet();
-							viewAlphabet.unHighlight(charToEncryptAscii
-									- getModel().ASCII_UC_A);
-							if (outputIterator.isEditable()) {
-								outputIterator.setBorder(null);
-							}
-						} else {
-
-						}
-					}
-
-					if (getView().getKeyboard() != null) {
-						getView().remove(getView().getKeyboard());
-						getView().setKeyboard(null);
-						getView().validate();
-						getView().repaint();
-					}
-					if (output.isEditable()) {
-
-						// highlights the character in the alphabet.
-						int charToEncryptAscii = (int) output.getName().charAt(
-								0);
-						AlphabetStripView viewAlphabet = getView()
-								.getAlphabet();
-						viewAlphabet.highlight(charToEncryptAscii
-								- getModel().ASCII_UC_A);
-
-						output.setBorder(BorderFactory.createLineBorder(
-								Color.blue, 5));
-						getView().createKeyboard(output);
-					}
-				}
-			});
-
-			this.getView().getUserOutput()[i]
-					.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if (userOutput.isEditable()) {
-								// standart key for the caesar cipher. +3 when encrypting. -3 when
-								// decrypting.
-								if (getModel().enc(3, userOutput.getName())
-										.equals(userOutput.getText())) {
-									// user encrypted the given char successful.
-									userOutput.setBorder(BorderFactory
-											.createLineBorder(Color.green));
-									setEditableFields(getEditableFields() - 1);
-									userOutput.setEditable(false);
-									if (getEditableFields() == 0
-											&& getAnimationStep() == 4) {
-										// User encrypted all characters valid.
-										getView()
-												.getExplanations()
-												.setText(
-														"<html><body>Great work oh mighty Caesar. May your enemies shutter over your intelligence.");
-										getView().remove(
-												getView().getAlphabet());
-										getView().setAlphabet(null);
-										getView().getNavigationPanel().remove(
-												getView().getNextButton());
-										GridBagConstraints nextConst = new GridBagConstraints();
-										nextConst.anchor = GridBagConstraints.CENTER;
-										nextConst.weightx = 1.0;
-										nextConst.weighty = 0.1;
-										nextConst.gridx = 1;
-										nextConst.gridy = 1;
-										nextConst.gridwidth = 26;
-										nextConst.gridheight = 2;
-										getView().add(
-												getView().getNextButton(),
-												nextConst);
-										getView().requestFocus();
-										userOutput.setEditable(false);
-										getView().remove(
-												getView().getKeyboard());
-										getView().setKeyboard(null);
-										getView().validate();
-										getView().repaint();
-
-									} else if (getEditableFields() == 0
-											&& getAnimationStep() == 3) {
-										// User has to encrypt the last 3 fields.
-										getView().requestFocus();
-										userOutput.setEditable(false);
-										getView().remove(
-												getView().getKeyboard());
-										getView().setKeyboard(null);
-										getView().getProceed().setVisible(true);
-										getView()
-												.getAlphabet()
-												.unHighlight(
-														userOutput.getName()
-																.charAt(0)
-																- getModel().ASCII_UC_A);
-										getView()
-												.getExplanations()
-												.setText(
-														"<html><body>Very nice! Lets encrypt the rest of this childish challenge.");
-										getView().validate();
-										getView().repaint();
-									} else {
-										// User encrypted correctly the given char.
-										getView().validate();
-										getView().getExplanations().setText(
-												getModel().genRandomGrats()
-														+ " Only "
-														+ getEditableFields()
-														+ " left.");
-										getView().repaint();
-										getView().getUserOutput()[getView()
-												.getUserOutput().length
-												- getEditableFields()]
-												.requestFocus();
-									}
-								} else {
-									// User didn't encrypt correctly.
-									userOutput.setBorder(BorderFactory
-											.createLineBorder(Color.red));
-									userOutput.setText("");
-									getView().getExplanations().setText(
-											getModel().genRandomBlamings());
-									userOutput.requestFocus();
-								}
-							}
-						}
-					});
-		}
-		this.getView().getBackButton().addActionListener(new ActionListener() {
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
-			 */
-			public void actionPerformed(ActionEvent event) {
-				VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
-				containerController.presentPreviousVisualizationController();
-			}
-		});
-		this.getView().getNextButton().addActionListener(new ActionListener() {
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
-			 */
-			public void actionPerformed(ActionEvent event) {
-				VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
-				containerController.presentNextVisualizationController();
-			}
-		});
-
-		this.getView().getProceed().addMouseListener(new MouseClickListener() {
-			@Override
-			public void clicked(MouseEvent e) {
-				animationStart(getAnimationStep());
-			}
-		});
-
-		this.getView().validate();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
-	 */
-	@Override
-	public void unloadView() {
-		this.view = null;
-	}
-
-	/**
-	 * @return the animationStep
-	 */
-	public int getAnimationStep() {
-		return animationStep;
 	}
 
 	/**
@@ -258,18 +51,341 @@ public class CipherDemoController extends AbstractVisualizationController {
 	public void animationStart(int step) {
 		switch (step) {
 		case 1:
-			step1();
+			this.step1();
 			break;
 		case 2:
-			step2();
+			this.step2();
 			break;
 		case 3:
-			step3();
+			this.step3();
 			break;
 		case 4:
 			// animationDone();
 		}
 
+	}
+
+	/**
+	 * @return the animationStep
+	 */
+	public int getAnimationStep() {
+		return this.animationStep;
+	}
+
+	/**
+	 * @return the editableFields
+	 */
+	public int getEditableFields() {
+		return this.editableFields;
+	}
+
+	@Override
+	public String getHelp() {
+		return "Not sure if much Help needed here.";
+	}
+
+	/**
+	 * @return the model
+	 */
+	public CryptoModel getModel() {
+		return this.model;
+	}
+
+	/**
+	 * Gets the view
+	 * 
+	 * @return The view of this controller
+	 */
+	@Override
+	public CipherDemoView getView() {
+		return (CipherDemoView) this.view;
+	}
+
+	@Override
+	public void loadView() {
+		this.view = new CipherDemoView();
+		this.model = CryptoModel.getInstance();
+		this.animationStep = 1;
+
+		for (int i = 1; i < this.getView().getUserOutput().length; i++) {
+			// Needed for delegating to the inner type ActionListener, when the actionEvent from the
+			// Button "ENTER" on the Keyboard is fired.
+			final JTextField userOutput = this.getView().getUserOutput()[i];
+
+			this.getView().getUserOutput()[i]
+					.addFocusListener(new FocusListener() {
+						@Override
+						public void focusGained(FocusEvent e) {
+
+							JTextField output = (JTextField) e.getSource();
+							JTextField[] userOutput = CipherDemoController.this
+									.getView().getUserOutput();
+
+							for (JTextField outputIterator : userOutput) {
+
+								if (outputIterator.getBorder() != null
+										&& CipherDemoController.this.getView()
+												.getAlphabet() != null) {
+									int charToEncryptAscii = outputIterator
+											.getName().charAt(0);
+									AlphabetStripView viewAlphabet = CipherDemoController.this
+											.getView().getAlphabet();
+									viewAlphabet.unHighlight(charToEncryptAscii
+											- CipherDemoController.this
+													.getModel().ASCII_UC_A);
+									if (outputIterator.isEditable()) {
+										outputIterator.setBorder(null);
+									}
+								} else {
+
+								}
+							}
+
+							if (CipherDemoController.this.getView()
+									.getKeyboard() != null) {
+								CipherDemoController.this.getView().remove(
+										CipherDemoController.this.getView()
+												.getKeyboard());
+								CipherDemoController.this.getView()
+										.setKeyboard(null);
+								CipherDemoController.this.getView().validate();
+								CipherDemoController.this.getView().repaint();
+							}
+							if (output.isEditable()) {
+
+								// highlights the character in the alphabet.
+								int charToEncryptAscii = output.getName()
+										.charAt(0);
+								AlphabetStripView viewAlphabet = CipherDemoController.this
+										.getView().getAlphabet();
+								viewAlphabet.highlight(charToEncryptAscii
+										- CipherDemoController.this.getModel().ASCII_UC_A);
+
+								output.setBorder(BorderFactory
+										.createLineBorder(Color.blue, 5));
+								CipherDemoController.this.getView()
+										.createKeyboard(output);
+							}
+						}
+
+						@Override
+						public void focusLost(FocusEvent e) {
+							// Nothing to do here.
+						}
+					});
+
+			this.getView().getUserOutput()[i]
+					.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if (userOutput.isEditable()) {
+								// standart key for the caesar cipher. +3 when encrypting. -3 when
+								// decrypting.
+								if (CipherDemoController.this.getModel()
+										.enc(3, userOutput.getName())
+										.equals(userOutput.getText())) {
+									// user encrypted the given char successful.
+									userOutput.setBorder(BorderFactory
+											.createLineBorder(Color.green));
+									CipherDemoController.this
+											.setEditableFields(CipherDemoController.this
+													.getEditableFields() - 1);
+									userOutput.setEditable(false);
+									if (CipherDemoController.this
+											.getEditableFields() == 0
+											&& CipherDemoController.this
+													.getAnimationStep() == 4) {
+										// User encrypted all characters valid.
+										CipherDemoController.this
+												.getView()
+												.getExplanations()
+												.setText(
+														"<html><body>Great work oh mighty Caesar. May your enemies shutter over your intelligence.");
+										CipherDemoController.this
+												.getView()
+												.remove(CipherDemoController.this
+														.getView()
+														.getAlphabet());
+										CipherDemoController.this.getView()
+												.setAlphabet(null);
+										CipherDemoController.this
+												.getView()
+												.getNavigationPanel()
+												.remove(CipherDemoController.this
+														.getView()
+														.getNextButton());
+										GridBagConstraints nextConst = new GridBagConstraints();
+										nextConst.anchor = GridBagConstraints.CENTER;
+										nextConst.weightx = 1.0;
+										nextConst.weighty = 0.1;
+										nextConst.gridx = 1;
+										nextConst.gridy = 1;
+										nextConst.gridwidth = 26;
+										nextConst.gridheight = 2;
+										CipherDemoController.this.getView()
+												.add(CipherDemoController.this
+														.getView()
+														.getNextButton(),
+														nextConst);
+										CipherDemoController.this.getView()
+												.requestFocus();
+										userOutput.setEditable(false);
+										CipherDemoController.this
+												.getView()
+												.remove(CipherDemoController.this
+														.getView()
+														.getKeyboard());
+										CipherDemoController.this.getView()
+												.setKeyboard(null);
+										CipherDemoController.this.getView()
+												.validate();
+										CipherDemoController.this.getView()
+												.repaint();
+
+									} else if (CipherDemoController.this
+											.getEditableFields() == 0
+											&& CipherDemoController.this
+													.getAnimationStep() == 3) {
+										// User has to encrypt the last 3 fields.
+										CipherDemoController.this.getView()
+												.requestFocus();
+										userOutput.setEditable(false);
+										CipherDemoController.this
+												.getView()
+												.remove(CipherDemoController.this
+														.getView()
+														.getKeyboard());
+										CipherDemoController.this.getView()
+												.setKeyboard(null);
+										CipherDemoController.this.getView()
+												.getProceed().setVisible(true);
+										CipherDemoController.this
+												.getView()
+												.getAlphabet()
+												.unHighlight(
+														userOutput.getName()
+																.charAt(0)
+																- CipherDemoController.this
+																		.getModel().ASCII_UC_A);
+										CipherDemoController.this
+												.getView()
+												.getExplanations()
+												.setText(
+														"<html><body>Very nice! Lets encrypt the rest of this childish challenge.");
+										CipherDemoController.this.getView()
+												.validate();
+										CipherDemoController.this.getView()
+												.repaint();
+									} else {
+										// User encrypted correctly the given char.
+										CipherDemoController.this.getView()
+												.validate();
+										CipherDemoController.this
+												.getView()
+												.getExplanations()
+												.setText(
+														CipherDemoController.this
+																.getModel()
+																.genRandomGrats()
+																+ " Only "
+																+ CipherDemoController.this
+																		.getEditableFields()
+																+ " left.");
+										CipherDemoController.this.getView()
+												.repaint();
+										CipherDemoController.this.getView()
+												.getUserOutput()[CipherDemoController.this
+												.getView().getUserOutput().length
+												- CipherDemoController.this
+														.getEditableFields()]
+												.requestFocus();
+									}
+								} else {
+									// User didn't encrypt correctly.
+									userOutput.setBorder(BorderFactory
+											.createLineBorder(Color.red));
+									userOutput.setText("");
+									CipherDemoController.this
+											.getView()
+											.getExplanations()
+											.setText(
+													CipherDemoController.this
+															.getModel()
+															.genRandomBlamings());
+									userOutput.requestFocus();
+								}
+							}
+						}
+					});
+		}
+		this.getView().getBackButton().addActionListener(new ActionListener() {
+			/*
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
+			 */
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController = (VisualizationContainerController) CipherDemoController.this
+						.getParentController();
+				containerController.presentPreviousVisualizationController();
+			}
+		});
+		this.getView().getNextButton().addActionListener(new ActionListener() {
+			/*
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
+			 */
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController = (VisualizationContainerController) CipherDemoController.this
+						.getParentController();
+				containerController.presentNextVisualizationController();
+			}
+		});
+
+		this.getView().getProceed().addMouseListener(new MouseClickListener() {
+			@Override
+			public void clicked(MouseEvent e) {
+				CipherDemoController.this
+						.animationStart(CipherDemoController.this
+								.getAnimationStep());
+			}
+		});
+
+		this.getView().validate();
+	}
+
+	// /**
+	// * Describe that decryption is the same way as encryption.
+	// */
+	// private void step4() {
+	// this.animationStep++;
+	// String firstLetter = this.getView().getUserInput()[0].getText();
+	// // this.getView().getExplanations().setText("The first letter is "+firstLetter+""
+	//
+	// }
+
+	/**
+	 * @param animationStep
+	 *            the animationStep to set
+	 */
+	public void setAnimationStep(int animationStep) {
+		this.animationStep = animationStep;
+	}
+
+	/**
+	 * @param editableFields
+	 *            the editableFields to set
+	 */
+	public void setEditableFields(int editableFields) {
+		this.editableFields = editableFields;
+	}
+
+	/**
+	 * @param model
+	 *            the model to set
+	 */
+	public void setModel(CryptoModel model) {
+		this.model = model;
 	}
 
 	/**
@@ -339,66 +455,13 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 	}
 
-	// /**
-	// * Describe that decryption is the same way as encryption.
-	// */
-	// private void step4() {
-	// this.animationStep++;
-	// String firstLetter = this.getView().getUserInput()[0].getText();
-	// // this.getView().getExplanations().setText("The first letter is "+firstLetter+""
-	//
-	// }
-
-	@Override
-	public String getHelp() {
-		return "Not sure if much Help needed here.";
-	}
-
-	/**
-	 * Gets the view
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @return The view of this controller
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
 	 */
 	@Override
-	public CipherDemoView getView() {
-		return (CipherDemoView) this.view;
-	}
-
-	/**
-	 * @return the model
-	 */
-	public CryptoModel getModel() {
-		return model;
-	}
-
-	/**
-	 * @param model
-	 *            the model to set
-	 */
-	public void setModel(CryptoModel model) {
-		this.model = model;
-	}
-
-	/**
-	 * @return the editableFields
-	 */
-	public int getEditableFields() {
-		return editableFields;
-	}
-
-	/**
-	 * @param editableFields
-	 *            the editableFields to set
-	 */
-	public void setEditableFields(int editableFields) {
-		this.editableFields = editableFields;
-	}
-
-	/**
-	 * @param animationStep
-	 *            the animationStep to set
-	 */
-	public void setAnimationStep(int animationStep) {
-		this.animationStep = animationStep;
+	public void unloadView() {
+		this.view = null;
 	}
 }

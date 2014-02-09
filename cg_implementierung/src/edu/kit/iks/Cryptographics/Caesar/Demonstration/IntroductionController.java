@@ -1,19 +1,10 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import org.jdom2.Element;
 
@@ -51,13 +42,34 @@ public class IntroductionController extends AbstractVisualizationController {
 	}
 
 	/**
-	 * Gets the view
+	 * TODO: Need a less dirty solution. Method for intern state handling.
 	 * 
-	 * @return The view of this controller
+	 * @param c
 	 */
-	@Override
-	public IntroductionView getView() {
-		return (IntroductionView) this.view;
+	public void animationStart(int step) {
+		switch (step) {
+		case 1:
+			this.step1();
+			break;
+		case 2:
+			this.step2();
+			break;
+		case 3:
+			this.step3();
+			break;
+		case 4:
+			this.step4();
+			break;
+		default:
+			System.out.println("Invalid animation step!!!! Check why!");
+		}
+	}
+
+	/**
+	 * @return the animationStep
+	 */
+	public int getAnimationStep() {
+		return this.animationStep;
 	}
 
 	@Override
@@ -65,6 +77,16 @@ public class IntroductionController extends AbstractVisualizationController {
 
 		return "If you want to hear the awesome legend about caesar "
 				+ "and obelix press the button below the text. Else try the next button!";
+	}
+
+	/**
+	 * Gets the view
+	 * 
+	 * @return The view of this controller
+	 */
+	@Override
+	public IntroductionView getView() {
+		return (IntroductionView) this.view;
 	}
 
 	@Override
@@ -78,8 +100,10 @@ public class IntroductionController extends AbstractVisualizationController {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
 			 */
+			@Override
 			public void actionPerformed(ActionEvent event) {
-				VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
+				VisualizationContainerController containerController = (VisualizationContainerController) IntroductionController.this
+						.getParentController();
 				containerController.presentNextVisualizationController();
 			}
 		});
@@ -87,44 +111,12 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView().getProceed().addMouseListener(new MouseClickListener() {
 			@Override
 			public void clicked(MouseEvent e) {
-				animationStart(getAnimationStep());
+				IntroductionController.this
+						.animationStart(IntroductionController.this
+								.getAnimationStep());
 			}
 		});
 
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
-	 */
-	@Override
-	public void unloadView() {
-		this.view = null;
-		this.introResource = null;
-	}
-
-	/**
-	 * TODO: Need a less dirty solution. Method for intern state handling.
-	 * 
-	 * @param c
-	 */
-	public void animationStart(int step) {
-		switch (step) {
-		case 1:
-			step1();
-			break;
-		case 2:
-			step2();
-			break;
-		case 3:
-			step3();
-			break;
-		case 4:
-			step4();
-			break;
-		default:
-        System.out.println("Invalid animation step!!!! Check why!");
-		}
 	}
 
 	/*
@@ -162,11 +154,11 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>" +
-						"Unfortunately his courier has taken the way through the forest, where Kryptolix chased<br>" +
-						"the wild boars.");
-//						+
-//						"Zu seinem Unglück ging der Bote durch den Wald, wo Obelix seine Wildschweine jagte.<br>");
+						"<html><body>"
+								+ "Unfortunately his courier has taken the way through the forest, where Kryptolix chased<br>"
+								+ "the wild boars.");
+		// +
+		// "Zu seinem Unglück ging der Bote durch den Wald, wo Obelix seine Wildschweine jagte.<br>");
 
 		// this.getView().getAnimationContainer().setBackground(Color.GREEN);
 
@@ -182,7 +174,7 @@ public class IntroductionController extends AbstractVisualizationController {
 
 		// take the image from the xml-resource.
 		this.getView().setCourier(
-				new ImageView(introResource.getChild("Courier")
+				new ImageView(this.introResource.getChild("Courier")
 						.getAttributeValue("path")));
 		this.getView().getAnimationContainer()
 				.add(this.getView().getCourier(), courierConstraint);
@@ -201,19 +193,19 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>" +
-						"When Kryptolix noticed the unsuspecting and whistling roman courier, he punched him via the air-line<br>" +
-						"back to Rom. And saw him losing a scroll.");
-//		+
-//						"Als Obelix den nichts ahnenden Boten entdeckte beförderte er ihn via Luftlinie direkt nach Rom zurück! <br>");
+						"<html><body>"
+								+ "When Kryptolix noticed the unsuspecting and whistling roman courier, he punched him via the air-line<br>"
+								+ "back to Rom. And saw him losing a scroll.");
+		// +
+		// "Als Obelix den nichts ahnenden Boten entdeckte beförderte er ihn via Luftlinie direkt nach Rom zurück! <br>");
 
 		// set the alignment of boar.
 		GridBagConstraints boarConst = new GridBagConstraints();
 		boarConst.gridx = 4;
 		boarConst.gridy = 0;
 		this.getView().setBoar(
-				new ImageView(introResource.getChild("Boar").getAttributeValue(
-						"path")));
+				new ImageView(this.introResource.getChild("Boar")
+						.getAttributeValue("path")));
 		this.getView().getAnimationContainer()
 				.add(this.getView().getBoar(), boarConst);
 
@@ -227,7 +219,7 @@ public class IntroductionController extends AbstractVisualizationController {
 
 		// take the image from the xml-resource.
 		this.getView().setObelix(
-				new ImageView(introResource.getChild("Obelix")
+				new ImageView(this.introResource.getChild("Obelix")
 						.getAttributeValue("path")));
 		this.getView().getAnimationContainer()
 				.add(this.getView().getObelix(), obelixConstraint);
@@ -247,18 +239,18 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>" +
-						"When reading the scroll the courier lost, Kryptolix identified Caesar's plans of<br>" +
-						"conquering Gallia and Kryptolix and his awesome friends could defeat Caesar again!");
-//		+
-//						"Beim Lesen der Schriftrolle, die der Bote dabei hatte, erkannte Obelix Caesar's Pläne für <br> "
-//								+ "den nächsten Angriff und die Gallier besiegten Caesar erneut. <br>");
+						"<html><body>"
+								+ "When reading the scroll the courier lost, Kryptolix identified Caesar's plans of<br>"
+								+ "conquering Gallia and Kryptolix and his awesome friends could defeat Caesar again!");
+		// +
+		// "Beim Lesen der Schriftrolle, die der Bote dabei hatte, erkannte Obelix Caesar's Pläne für <br> "
+		// + "den nächsten Angriff und die Gallier besiegten Caesar erneut. <br>");
 
 		GridBagConstraints orderConstraints = new GridBagConstraints();
 		orderConstraints.gridx = 5;
 		orderConstraints.gridy = 0;
 		this.getView().setOrders(
-				new ImageView(introResource.getChild("Orders")
+				new ImageView(this.introResource.getChild("Orders")
 						.getAttributeValue("path")));
 		this.getView().getAnimationContainer()
 				.add(this.getView().getOrders(), orderConstraints);
@@ -278,12 +270,14 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>" +
-						"Caesar was raging. But while he was toturing some Gauls suddenly a hellacious and an foolproof idea<br>" +
-						"crossed his mind. In his next message he will encrypt his name!! Hue Hue Hue. Help him.");
-//								+ "Zur Beruhigung ließ Caesar erstmal ein paar arme Schweine auspeitschen und anschließend fiel<br>"
-//								+ "ihm ein idiotensicherer Plan ein: Bei seinem nächsten Brief wird er seinen Namen verschlüsseln.<br>"
-//								+ " Muhahaha! Helfe ihm dabei!!");
+						"<html><body>"
+								+ "Caesar was raging. But while he was toturing some Gauls suddenly a hellacious and an foolproof idea<br>"
+								+ "crossed his mind. In his next message he will encrypt his name!! Hue Hue Hue. Help him.");
+		// +
+		// "Zur Beruhigung ließ Caesar erstmal ein paar arme Schweine auspeitschen und anschließend fiel<br>"
+		// +
+		// "ihm ein idiotensicherer Plan ein: Bei seinem nächsten Brief wird er seinen Namen verschlüsseln.<br>"
+		// + " Muhahaha! Helfe ihm dabei!!");
 
 		GridBagLayout introLayout = (GridBagLayout) this.getView().getLayout();
 		this.getView().getNextButton().setText("To caesar's idea");
@@ -299,11 +293,15 @@ public class IntroductionController extends AbstractVisualizationController {
 
 	}
 
-	/**
-	 * @return the animationStep
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
 	 */
-	public int getAnimationStep() {
-		return animationStep;
+	@Override
+	public void unloadView() {
+		this.view = null;
+		this.introResource = null;
 	}
 
 }
