@@ -103,12 +103,52 @@ public class ChoosePublicColorView extends JPanel {
 			
 			@Override
 			public void callback() {
-				mixPrivateColorStep();
+				multiBtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						for(ActionListener al : multiBtn.getActionListeners()) {
+							multiBtn.removeActionListener(al);
+						}
+						mixPrivateColorStep();						
+					}
+				});
 			}
 		});
 	}
 
 	private void mixPrivateColorStep() {
-		
+		cc.chooseAlicePrivateColor(chooser.getCurrentColor());
+		cc.mixAlicePrivatePublic();
+		cm.setEllipColor(0, cc.getPublicColor());
+		cm.setEllipColor(1, cc.getAlicePrivateColor());
+		cm.setComputeFinalMix(false);
+		cm.mixColors(true, false, new NextStepCallback() {
+			
+			@Override
+			public void callback() {
+				chooser.setToChooseFrom(new Color[]{cc.getPublicColor(), cc.getAlicePrivateColor(),
+						cm.getMixedColor()
+				});
+				multiBtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						sendMixedColor();						
+					}
+				});
+			}
+		});
+	}
+	
+	private void sendMixedColor() {
+		if(chooser.getCurrentColor().equals(cc.getAliceMixedColor())) {
+			for(ActionListener al : multiBtn.getActionListeners()) {
+				multiBtn.removeActionListener(al);
+			}
+			cc.sendAliceMixedColorToBob(null);
+		} else {
+			//TODO oh you failed
+		}
 	}
 }
