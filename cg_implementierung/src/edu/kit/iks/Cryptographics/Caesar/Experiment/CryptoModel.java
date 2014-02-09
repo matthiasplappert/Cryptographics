@@ -1,9 +1,7 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
-import java.util.regex.Pattern;
-
 /**
- * Model of the last step of Caesar Introduction phase and the first two steps of the experiment.
+ * Model of the visualization of Caesar's cipher.
  * 
  * @author Wasilij Beskorovajnov.
  * 
@@ -13,49 +11,30 @@ public class CryptoModel {
 	// makes sure only one instance is being generated.
 	private static final CryptoModel model = new CryptoModel();
 
-	// ASCII upper case A code.
-	public final int ASCII_UC_A = 'A';
+	public static CryptoModel getInstance() {
+		return CryptoModel.model;
+	}
 
 	// ASCII lower case a code.
 	public final int ASCII_LC_A = 'a';
 
-	private final int MODULO = 26;
+	// ASCII upper case A code.
+	public final int ASCII_UC_A = 'A';
 
-	// The format for a formatted String.
-	private final int MAX_LINE_LENGTH = 60;
-
-	// The line length of a formatted String must be 35 < lineLength < 45.
-	private final int MAX_LINE_VARIATION = 5;
+	// The Header of a html string.
+	private final String HTML_HEADER = "<html><body>";
 
 	// number of chars in <html><body>.
 	private final int HTML_HEADER_LENGTH = 12;
 
-	private final String HTML_HEADER = "<html><body>";
-
-	// number of chars in <br>.
-	private final int LINEBREAK_LENGTH = 4;
+	// The reach of the key interval.
+	private final int MODULO = 26;
 
 	/**
 	 * Constructor.
 	 */
 	private CryptoModel() {
 
-	}
-
-	public static CryptoModel getInstance() {
-		return model;
-	}
-
-	/**
-	 * @param stringToFormat
-	 * @return
-	 */
-	public String insertHtmlBreaks(String[] textLines) {
-		String formattedString = HTML_HEADER;
-		for (String textline : textLines) {
-			formattedString += textline + "<br>";
-		}
-		return formattedString;
 	}
 
 	/**
@@ -71,11 +50,21 @@ public class CryptoModel {
 	}
 
 	/**
-	 * @param stringToClear
+	 * @param key
+	 * @param cipher
 	 * @return
 	 */
-	public String[] removeHtmlBreaks(String stringToClear) {
-		return stringToClear.substring(HTML_HEADER_LENGTH).split("<br>");
+	public String dec(int key, String cipher) {
+		return this.enc(-key, cipher);
+	}
+
+	/**
+	 * @param key
+	 * @param cipher
+	 * @return
+	 */
+	public String[] dec(int key, String[] cipher) {
+		return this.enc(-key, cipher);
 	}
 
 	/**
@@ -93,15 +82,15 @@ public class CryptoModel {
 
 			if (Character.isLetter(c)) {
 				if (Character.isUpperCase(c)) {
-					int offset = c - ASCII_UC_A;
+					int offset = c - this.ASCII_UC_A;
 
 					cipher += String
-							.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_UC_A));
+							.valueOf((char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_UC_A));
 				} else {
-					int offset = c - ASCII_LC_A;
+					int offset = c - this.ASCII_LC_A;
 
 					cipher += String
-							.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_LC_A));
+							.valueOf((char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_LC_A));
 				}
 
 			} else {
@@ -131,15 +120,15 @@ public class CryptoModel {
 
 				if (Character.isLetter(c)) {
 					if (Character.isUpperCase(c)) {
-						int offset = c - ASCII_UC_A;
+						int offset = c - this.ASCII_UC_A;
 
 						cipher[i] += String
-								.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_UC_A));
+								.valueOf((char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_UC_A));
 					} else {
-						int offset = c - ASCII_LC_A;
+						int offset = c - this.ASCII_LC_A;
 
 						cipher[i] += String
-								.valueOf((char) ((((offset + MODULO) + key) % MODULO) + ASCII_LC_A));
+								.valueOf((char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_LC_A));
 					}
 
 				} else {
@@ -152,81 +141,60 @@ public class CryptoModel {
 
 	}
 
+	public int generateKey() {
+		return this.generateRandomInt(1, 26);
+	}
+
 	/**
-	 * @param key
-	 * @param cipher
+	 * @param a
+	 * @param b
 	 * @return
 	 */
-	public String dec(int key, String cipher) {
-		return enc(-key, cipher);
+	private int generateRandomInt(int a, int b) {
+		return (int) (a + ((b - a) * Math.random()));
+	}
+
+	public String genRandomBlamings() {
+		String[] blamingPool = { "Oh no. What a pity! It went wrong!",
+				"No my friend. This one doesn't work!",
+				"Ok, dont be frustrated. Though your action was totally wrong." };
+		int index = this.generateRandomInt(0, blamingPool.length);
+		return blamingPool[index];
 	}
 
 	/**
 	 * @param key
-	 * @param cipher
 	 * @return
 	 */
-	public String[] dec(int key, String[] cipher) {
-		return enc(-key, cipher);
-	}
-
-	/**
-	 * @param key
-	 * @return
-	 */
-	public boolean isKeyValid(int key) {
-		return (key > 0 && key <= MODULO);
-	}
-
-	/**
-	 * @param input
-	 */
-	public boolean isInputValid(String input) {
-		return (input.length() < 10 && input.length() > 0);
+	public String genRandomCipher(int key) {
+		String plain = this.genRandomPlainSequence();
+		return this.enc(key, plain);
 	}
 
 	public String genRandomGrats() {
 		String[] gratulationsPool = { "Great work oh mighty Caesar.",
 				"Very nice. I Like!", "Kryptochef approves!",
 				"Noone could do it better!" };
-		int index = generateRandomInt(0, gratulationsPool.length);
+		int index = this.generateRandomInt(0, gratulationsPool.length);
 		return gratulationsPool[index];
 	}
 
-	public String genRandomBlamings() {
-		String[] blamingPool = {
-				"Oh no. What a pity! It went wrong!",
-				"No my friend. This one doesn't work!",
-				"Ok, dont be frustrated. Though your action was totally wrong."
-		};
-		int index = generateRandomInt(0, blamingPool.length);
-		return blamingPool[index];
-	}
 	/**
 	 * @return
 	 */
-	public String getRandomPlainSequence() {
+	public String genRandomPlainSequence() {
 		String[] plainTextPool = { "ANNA", "HANNAH", "BANANA", "KOKOS",
 				"KRYPTOCHEF", "HAMSTER", "WASILIJ", "SECRET", "EPSILON" };
 
-		int index = generateRandomInt(0, plainTextPool.length);
+		int index = this.generateRandomInt(0, plainTextPool.length);
 		return plainTextPool[index];
-	}
-
-	/**
-	 * @param key
-	 * @return
-	 */
-	public String getRandomCipher(int key) {
-		String plain = getRandomPlainSequence();
-		return enc(key, plain);
 	}
 
 	// TODO: Not so much random at the moment.
 	/**
 	 * @return
 	 */
-	public String getRandomText() {
+	public String genRandomText() {
 		String[] textPool = { "<html><body>"
 				+ "The diagram you see here shows the frequency of each letter<br>"
 				+ "in the text you are reading at the moment. It is called a<br>"
@@ -239,15 +207,37 @@ public class CryptoModel {
 	}
 
 	/**
-	 * @param a
-	 * @param b
+	 * @param stringToFormat
 	 * @return
 	 */
-	private int generateRandomInt(int a, int b) {
-		return (int) (a + ((int) (b - a) * Math.random()));
+	public String insertHtmlBreaks(String[] textLines) {
+		String formattedString = this.HTML_HEADER;
+		for (String textline : textLines) {
+			formattedString += textline + "<br>";
+		}
+		return formattedString;
 	}
 
-	public int generateKey() {
-		return generateRandomInt(1, 26);
+	/**
+	 * @param input
+	 */
+	public boolean isInputValid(String input) {
+		return (input.length() < 10 && input.length() > 0);
+	}
+
+	/**
+	 * @param key
+	 * @return
+	 */
+	public boolean isKeyValid(int key) {
+		return (key > 0 && key <= this.MODULO);
+	}
+
+	/**
+	 * @param stringToClear
+	 * @return
+	 */
+	public String[] removeHtmlBreaks(String stringToClear) {
+		return stringToClear.substring(this.HTML_HEADER_LENGTH).split("<br>");
 	}
 }
