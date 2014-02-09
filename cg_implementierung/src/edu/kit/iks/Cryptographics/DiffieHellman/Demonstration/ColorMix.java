@@ -51,6 +51,8 @@ public class ColorMix extends JPanel {
 
 	/* the original coordinates, so that we can reset them later */
 	private int originalx1, originaly1, originalx2, originaly2;
+
+	private boolean computeFinalMix;
 	
 	public ColorMix(int circleSize, Dimension dimension) {
 		this.setSize(dimension);
@@ -132,7 +134,22 @@ public class ColorMix extends JPanel {
 //		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
-		if(mixcolors) {
+		if (mixcolors && isComputeFinalMix()) {
+			ellip1.setFrame(x1, y1, diameter, diameter);
+			g2.setPaint(ellip1.getColor());
+			g2.fill(ellip1);
+			
+			ellip2.setFrame(x2, y2, diameter, diameter);
+			g2.setPaint(ellip2.getColor());
+			g2.fill(ellip2);
+			
+			Area area1 = new Area(ellip1);
+			Area area2 = new Area(ellip2);
+			area1.intersect(area2);
+			computeFinalMixedColor(ellip1.getColor(), ellip2.getColor());
+			g2.setPaint(mixedColor);
+			g2.fill(area1);
+		} else if (mixcolors) {
 			ellip1.setFrame(x1, y1, diameter, diameter);
 			g2.setPaint(ellip1.getColor());
 			g2.fill(ellip1);
@@ -157,7 +174,21 @@ public class ColorMix extends JPanel {
 		int g2 = color2.getGreen();
 		int b1 = color.getBlue();
 		int b2 = color2.getBlue();
-		this.mixedColor= new Color((r1+r2)/2, (g1+g2)/2, (b1+b2)/2);
+		this.mixedColor = new Color((r1+r2)/2, (g1+g2)/2, (b1+b2)/2);
+	}
+	
+	/*
+	 * we need this one for the final color,
+	 * as we mix three colors basically
+	 */
+	private void computeFinalMixedColor(Color color, Color color2) {
+		int r1 = color.getRed();
+		int r2 = color2.getRed();
+		int g1 = color.getGreen();
+		int g2 = color2.getGreen();
+		int b1 = color.getBlue();
+		int b2 = color2.getBlue();
+		this.mixedColor = new Color((r1+r2/2)/2, (g1+g2/2)/2, (b1+b2/2)/2);
 	}
 
 	public void setEllipColor(int which, Color color) {
@@ -170,5 +201,13 @@ public class ColorMix extends JPanel {
 	
 	public Color getMixedColor() {
 		return mixedColor;
+	}
+
+	public boolean isComputeFinalMix() {
+		return computeFinalMix;
+	}
+
+	public void setComputeFinalMix(boolean computeFinalMix) {
+		this.computeFinalMix = computeFinalMix;
 	}
 }

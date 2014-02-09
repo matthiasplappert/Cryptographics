@@ -435,6 +435,7 @@ public class ColorChannel extends JPanel {
 	public void mixAliceFinalSecret(NextStepCallback cb) {
 		assert(model.getBobMixedColor() != null);
 		assert(model.getAlicePrivateColor() != null);
+		this.cm1.setComputeFinalMix(true);
 		this.cm1.setEllipColor(0, model.getBobMixedColor());
 		this.cm1.setEllipColor(1, model.getAlicePrivateColor());
 		this.cm1.mixColors(true, false, cb);
@@ -443,6 +444,7 @@ public class ColorChannel extends JPanel {
 	public void mixBobFinalSecret(NextStepCallback cb) {
 		assert(model.getAliceMixedColor() != null);
 		assert(model.getBobPrivateColor() != null);
+		this.cm2.setComputeFinalMix(true);
 		this.cm2.setEllipColor(0, model.getAliceMixedColor());
 		this.cm2.setEllipColor(1, model.getBobPrivateColor());
 		this.cm2.mixColors(true, false, cb);
