@@ -26,8 +26,8 @@ public class ColorChooser extends JPanel {
 	
 	private Color[] toChooseFrom;
 	
-	public ColorChooser(Dimension d, Color color, final Color[] toChooseFrom) {
-		this.toChooseFrom = toChooseFrom;
+	public ColorChooser(Dimension d, Color color, Color[] colors) {
+		this.toChooseFrom = colors;
 		this.setLayout(new FlowLayout());
 		this.next = new JButton("->");
 		this.prev = new JButton("<-");
@@ -46,7 +46,7 @@ public class ColorChooser extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				index = (index + 1) % toChooseFrom.length;
+				index = index > 0 ? (index - 1) % toChooseFrom.length : (toChooseFrom.length -1);
 				current.setColor(toChooseFrom[index]);
 				repaint();
 			}
@@ -82,6 +82,13 @@ public class ColorChooser extends JPanel {
 	
 	public Color getCurrentColor() {
 		return this.current.getColor();
+	}
+	
+	public void setToChooseFrom(Color[] colors) {
+		this.index = 0;
+		this.toChooseFrom = colors;
+		this.current.setColor(colors[0]);
+		repaint();
 	}
 
 }
