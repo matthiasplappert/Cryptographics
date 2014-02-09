@@ -38,10 +38,6 @@ public class ColorMix extends JPanel {
 	private boolean mixcolors;
 
 	/*
-	 * It maybe that one timer is actually is enough
-	 * originally used this as a fix for the timer bug
-	 * though it wasn't the bug, so this is probably useless
-	 * but need to test
 	 */
 	private Timer timer;
 	
