@@ -1,5 +1,7 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -10,6 +12,8 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
 public class OnewayView extends VisualizationView {
 	
 	private JLabel onewayExplain;
+	
+	private ColorChooser chooser;
 
 	/**
 	 * 
@@ -40,6 +44,9 @@ public class OnewayView extends VisualizationView {
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		this.add(onewayExplain, gbc);
+		
+//		this.chooser = new ColorChooser(new Dimension(50, 50), Color.BLUE, new Color[]{Color.BLUE, Color.RED});
+//		this.add(chooser, gbc);
 	}
 
 }
