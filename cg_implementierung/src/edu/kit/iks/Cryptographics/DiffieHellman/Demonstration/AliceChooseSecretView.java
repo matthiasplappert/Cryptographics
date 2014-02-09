@@ -86,6 +86,8 @@ public class AliceChooseSecretView extends VisualizationView {
 	}
 	
 	public void startDemo() {
+		
+		//TODO i know, i know, this is horrible, will refactor to look like choosepubliccoorview
 		this.cc.sendPublicColor(new NextStepCallback() {
 			
 			@Override
