@@ -1,5 +1,6 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -8,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorChannel;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorChooser;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorMix;
 
 public class ChoosePublicColorView extends JPanel {
@@ -19,6 +21,14 @@ public class ChoosePublicColorView extends JPanel {
 	private ColorChannel cc;
 
 	private ColorMix cm;
+	
+	private ColorChooser chooser;
+	
+	private Color[] toChooseFrom = {Color.BLUE, Color.CYAN,
+			Color.DARK_GRAY, Color.GREEN, Color.MAGENTA,
+			Color.ORANGE, Color.PINK, Color.RED,
+			Color.YELLOW
+	};
 	
 	public ChoosePublicColorView() {
 		super();
@@ -50,6 +60,14 @@ public class ChoosePublicColorView extends JPanel {
 		gbc.gridx = 2;
 		gbc.gridy = 0;
 		this.add(this.cm, gbc);
+		
+		this.chooser = new ColorChooser(new Dimension(50, 50), Color.BLUE, toChooseFrom);
+		
+		gbc.weightx = 0.1;
+		gbc.weightx = 0.1;
+		gbc.gridx = 3;
+		gbc.gridy = 1;
+		this.add(this.chooser, gbc);
 	}
 
 }
