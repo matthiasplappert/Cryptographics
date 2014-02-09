@@ -74,13 +74,22 @@ public class AliceChooseSecretView extends VisualizationView {
 		this.cc.setKeepColor(true);
 		this.validate();
 		
+	}
 
+
+
+
+
+	public ColorChannel getColorChannel() {
+		return this.cc;
+	}
+	
+	public void startDemo() {
 		this.cc.sendPublicColor(new NextStepCallback() {
 			
 			@Override
 			public void callback() {
 				for(ActionListener al : getNextButton().getActionListeners()) {
-					remember = al;
 					getNextButton().removeActionListener(al);
 				}
 				getNextButton().addActionListener(new ActionListener() {
@@ -184,8 +193,8 @@ public class AliceChooseSecretView extends VisualizationView {
 
 
 
-	public ColorChannel getColorChannel() {
-		return this.cc;
+	public void setRemember(ActionListener remember) {
+		this.remember = remember;
 	}
 
 }
