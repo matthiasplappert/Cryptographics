@@ -77,8 +77,9 @@ public class IntroductionController extends AbstractVisualizationController {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
 			 */
+			@Override
 			public void actionPerformed(ActionEvent event) {
-				VisualizationContainerController containerController = (VisualizationContainerController) getParentController();
+				VisualizationContainerController containerController = (VisualizationContainerController) IntroductionController.this.getParentController();
 				containerController.presentNextVisualizationController();
 			}
 		});
@@ -86,7 +87,7 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView().getProceed().addMouseListener(new MouseClickListener() {
 			@Override
 			public void clicked(MouseEvent e) {
-				animationStart(getAnimationStep());
+				IntroductionController.this.animationStart(IntroductionController.this.getAnimationStep());
 			}
 		});
 
@@ -110,16 +111,16 @@ public class IntroductionController extends AbstractVisualizationController {
 	public void animationStart(int step) {
 		switch (step) {
 		case 1:
-			step1();
+			this.step1();
 			break;
 		case 2:
-			step2();
+			this.step2();
 			break;
 		case 3:
-			step3();
+			this.step3();
 			break;
 		case 4:
-			step4();
+			this.step4();
 			break;
 		default:
         System.out.println("Invalid animation step!!!! Check why!");
@@ -179,7 +180,7 @@ public class IntroductionController extends AbstractVisualizationController {
 
 		// take the image from the xml-resource.
 		this.getView().setCourier(
-				new ImageView(introResource.getChild("Courier")
+				new ImageView(this.introResource.getChild("Courier")
 						.getAttributeValue("path")));
 		this.getView().getAnimationContainer()
 				.add(this.getView().getCourier(), courierConstraint);
@@ -207,7 +208,7 @@ public class IntroductionController extends AbstractVisualizationController {
 		boarConst.gridx = 4;
 		boarConst.gridy = 0;
 		this.getView().setBoar(
-				new ImageView(introResource.getChild("Boar").getAttributeValue(
+				new ImageView(this.introResource.getChild("Boar").getAttributeValue(
 						"path")));
 		this.getView().getAnimationContainer()
 				.add(this.getView().getBoar(), boarConst);
@@ -222,7 +223,7 @@ public class IntroductionController extends AbstractVisualizationController {
 
 		// take the image from the xml-resource.
 		this.getView().setObelix(
-				new ImageView(introResource.getChild("Obelix")
+				new ImageView(this.introResource.getChild("Obelix")
 						.getAttributeValue("path")));
 		this.getView().getAnimationContainer()
 				.add(this.getView().getObelix(), obelixConstraint);
@@ -250,7 +251,7 @@ public class IntroductionController extends AbstractVisualizationController {
 		orderConstraints.gridx = 5;
 		orderConstraints.gridy = 0;
 		this.getView().setOrders(
-				new ImageView(introResource.getChild("Orders")
+				new ImageView(this.introResource.getChild("Orders")
 						.getAttributeValue("path")));
 		this.getView().getAnimationContainer()
 				.add(this.getView().getOrders(), orderConstraints);
@@ -292,7 +293,7 @@ public class IntroductionController extends AbstractVisualizationController {
 	 * @return the animationStep
 	 */
 	public int getAnimationStep() {
-		return animationStep;
+		return this.animationStep;
 	}
 
 }
