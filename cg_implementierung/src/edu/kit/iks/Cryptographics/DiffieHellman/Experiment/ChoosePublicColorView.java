@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorChannel;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorChooser;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorMix;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.NextStepCallback;
 
 public class ChoosePublicColorView extends JPanel {
 
@@ -21,7 +22,7 @@ public class ChoosePublicColorView extends JPanel {
 	
 	private JLabel choosePublicLbl;
 	
-	private JButton sendPublic;
+	private JButton multiBtn;
 
 	private ColorChannel cc;
 
@@ -74,20 +75,20 @@ public class ChoosePublicColorView extends JPanel {
 		gbc.gridy = 1;
 		this.add(this.chooser, gbc);
 		
-		this.sendPublic = new JButton("Send Color");
+		this.multiBtn = new JButton("Send Color");
 		
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 3;
 		gbc.gridy = 2;
 		gbc.fill = GridBagConstraints.NONE;
-		this.add(this.sendPublic, gbc);
-		this.sendPublic.addActionListener(new ActionListener() {
+		this.add(this.multiBtn, gbc);
+		this.multiBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for(ActionListener al : sendPublic.getActionListeners()) {
-					sendPublic.removeActionListener(al);
+				for(ActionListener al : multiBtn.getActionListeners()) {
+					multiBtn.removeActionListener(al);
 				}
 				sendPublicColor();
 			}
@@ -98,6 +99,16 @@ public class ChoosePublicColorView extends JPanel {
 		this.cc.setRepeat(false);
 		this.cc.setKeepColor(true);
 		this.cc.choosePublicColor(this.chooser.getCurrentColor());
-		this.cc.sendPublicColor(null);
+		this.cc.sendPublicColor(new NextStepCallback() {
+			
+			@Override
+			public void callback() {
+				mixPrivateColorStep();
+			}
+		});
+	}
+
+	private void mixPrivateColorStep() {
+		
 	}
 }
