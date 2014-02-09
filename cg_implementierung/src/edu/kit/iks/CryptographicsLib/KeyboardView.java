@@ -101,6 +101,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 			if (e.getSource().equals(keysFirstRow[i])) {
 				textField.setText(textField.getText()
 						+ keysFirstRow[i].getText());
+				textField.requestFocus();
 			}
 		}
 
@@ -108,6 +109,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 			if (e.getSource().equals(keysSecondRow[i])) {
 				textField.setText(textField.getText()
 						+ keysSecondRow[i].getText());
+				textField.requestFocus();
 			}
 		}
 
@@ -115,19 +117,23 @@ public class KeyboardView extends JPanel implements ActionListener {
 			if (e.getSource().equals(keysThirdRow[i])) {
 				textField.setText(textField.getText()
 						+ keysThirdRow[i].getText());
+				textField.requestFocus();
 			}
 		}
 		// Listener for the Buttons Enter and Back.
 		if (e.getSource().equals(keysSecondRow[keysSecondRow.length - 1])) {
 			textField.getActionListeners()[0].actionPerformed(e);
+			textField.requestFocus();
 		} else if (e.getSource().equals(keysFirstRow[keysFirstRow.length - 1])) {
 			char[] newContent = new char[textField.getText().length()];
 			textField.getText().getChars(0, textField.getText().length() - 1,
 					newContent, 0);
 			if (newContent.length < 1) {
 				textField.setText(String.copyValueOf(newContent));
+				textField.requestFocus();
 			} else {
 				textField.setText("");
+				textField.requestFocus();
 			}
 		}
 	}

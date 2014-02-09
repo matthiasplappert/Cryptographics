@@ -175,7 +175,7 @@ public class CryptoModel {
 	 * @return
 	 */
 	public boolean isKeyValid(int key) {
-		return (key > 0 && key <= 26);
+		return (key > 0 && key <= MODULO);
 	}
 
 	/**

@@ -162,7 +162,11 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>Zu seinem Unglück ging der Bote durch den Wald, wo Obelix seine Wildschweine jagte.<br>");
+						"<html><body>" +
+						"Unfortunately his courier has taken the way through the forest, where Kryptolix chased<br>" +
+						"the wild boars.");
+//						+
+//						"Zu seinem Unglück ging der Bote durch den Wald, wo Obelix seine Wildschweine jagte.<br>");
 
 		// this.getView().getAnimationContainer().setBackground(Color.GREEN);
 
@@ -186,22 +190,22 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView().setBackgroundImg(
 				new ImageView(this.introResource.getChild("ForestBackground")
 						.getAttributeValue("path")));
-		// TODO: set the background of the animation panel to the background image!!!
 
 		this.getView().getAnimationContainer().repaint();
 		this.getView().setxCoordCourier(this.getView().getCourier().getX());
-		// TODO: Animation doesn't work correctly.
-		// this.getView().firstAnimation();
 
 	}
 
-	// TODO: Background have to stay the same thoughout till step
 	private void step2() {
 		this.animationStep++;
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>Als Obelix den nichts ahnenden Boten entdeckte beförderte er ihn via Luftlinie direkt nach Rom zurück! <br>");
+						"<html><body>" +
+						"When Kryptolix noticed the unsuspecting and whistling roman courier, he punched him via the air-line<br>" +
+						"back to Rom. And saw him losing a scroll.");
+//		+
+//						"Als Obelix den nichts ahnenden Boten entdeckte beförderte er ihn via Luftlinie direkt nach Rom zurück! <br>");
 
 		// set the alignment of boar.
 		GridBagConstraints boarConst = new GridBagConstraints();
@@ -232,7 +236,6 @@ public class IntroductionController extends AbstractVisualizationController {
 		// this.getView().secondAnimation();
 	}
 
-	// TODO: Obelix reads the orders.
 	private void step3() {
 		this.animationStep++;
 		this.getView().getAnimationContainer()
@@ -244,8 +247,12 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>Beim Lesen der Schriftrolle, die der Bote dabei hatte, erkannte Obelix Caesar's Pläne für <br> "
-								+ "den nächsten Angriff und die Gallier besiegten Caesar erneut. <br>");
+						"<html><body>" +
+						"When reading the scroll the courier lost, Kryptolix identified Caesar's plans of<br>" +
+						"conquering Gallia and Kryptolix and his awesome friends could defeat Caesar again!");
+//		+
+//						"Beim Lesen der Schriftrolle, die der Bote dabei hatte, erkannte Obelix Caesar's Pläne für <br> "
+//								+ "den nächsten Angriff und die Gallier besiegten Caesar erneut. <br>");
 
 		GridBagConstraints orderConstraints = new GridBagConstraints();
 		orderConstraints.gridx = 5;
@@ -267,15 +274,16 @@ public class IntroductionController extends AbstractVisualizationController {
 				.remove(this.getView().getOrders());
 		this.getView().setObelix(null);
 		this.getView().setOrders(null);
-		// TODO: remove the background!
 
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>"
-								+ "Zur Beruhigung ließ Caesar erstmal ein paar arme Schweine auspeitschen und anschließend fiel<br>"
-								+ "ihm ein idiotensicherer Plan ein: Bei seinem nächsten Brief wird er seinen Namen verschlüsseln.<br>"
-								+ " Muhahaha! Helfe ihm dabei!!");
+						"<html><body>" +
+						"Caesar was raging. But while he was toturing some Gauls suddenly a hellacious and an foolproof idea<br>" +
+						"crossed his mind. In his next message he will encrypt his name!! Hue Hue Hue. Help him.");
+//								+ "Zur Beruhigung ließ Caesar erstmal ein paar arme Schweine auspeitschen und anschließend fiel<br>"
+//								+ "ihm ein idiotensicherer Plan ein: Bei seinem nächsten Brief wird er seinen Namen verschlüsseln.<br>"
+//								+ " Muhahaha! Helfe ihm dabei!!");
 
 		GridBagLayout introLayout = (GridBagLayout) this.getView().getLayout();
 		this.getView().getNextButton().setText("To caesar's idea");
