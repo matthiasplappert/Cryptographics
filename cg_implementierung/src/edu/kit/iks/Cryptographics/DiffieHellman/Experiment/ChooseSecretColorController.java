@@ -1,6 +1,5 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.BobChooseSecretView;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
