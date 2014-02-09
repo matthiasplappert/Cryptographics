@@ -1,32 +1,81 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-09 20:06+0100\n"
-"PO-Revision-Date: 2014-02-09 20:07+0100\n"
+"POT-Creation-Date: 2014-02-09 21:47+0100\n"
+"PO-Revision-Date: 2014-02-09 21:57+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
-"Language-Team: Cryptographics-Deutsch <LL@li.org>\n"
-"Language: de\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: tr;trc\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ../src\n"
 
-#: src/edu/kit/iks/Cryptographics/IdlePopoverView.java:96
+#: ../src/edu/kit/iks/Cryptographics/IdlePopoverView.java:98
 msgid ""
 "You haven't done anything in a while. To keep this exhibit functional, the "
 "system will reset itself soon. If you want to continue using the system, "
 "just dismiss this dialog."
 msgstr ""
-"Sie haben längere Zeit nichts gemacht. Um das Exponat funktional zu halten, "
-"wird sich das System bald zurücksetzen. Schließen Sie dieses Dialogfenster, "
-"um weiterzumachen."
+"Sie haben längere Zeit keine Aktivität gezeigt. Um dieses Exponat "
+"betriebsbereit zu halten, wird es sich in Kürze zurücksetzen. Verwerfen Sie "
+"dieses Dialogfenster, um fortzufahren."
 
-#: src/edu/kit/iks/Cryptographics/WelcomeView.java:29
+#: ../src/edu/kit/iks/Cryptographics/IdlePopoverView.java:115
+msgid "Continue"
+msgstr "Weiter"
+
+#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:64
+msgid "Exit"
+msgstr "Beenden"
+
+#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:82
+msgid "Help"
+msgstr "Hilfe"
+
+#: ../src/edu/kit/iks/Cryptographics/WelcomeView.java:26
 msgid "Welcome"
 msgstr "Willkommen"
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:80
+msgid ""
+"Get to know how Ceasar fooled his enemys that intercepted his orders and see "
+"one of the oldest attempts to make confidential material unreadable for "
+"undesireable readers"
+msgstr ""
+"Erfahre, wie Caesar seine Feinde an der Nase herumführte, die seine Befehle "
+"abgefangen haben, und sehe einen der ersten Versuche, Geheimnisse unlesbar "
+"für unerwünschte Empfänger zu machen"
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:173
+msgid ""
+"Unfortunately his courier has taken the way through the forest, where "
+"Kryptolix chased<br>the wild boars."
+msgstr ""
+"Zu seinem Unglück ging der Bote durch den Wald, wo Kryptolix seine "
+"Wildschweine jagte."
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:211
+msgid ""
+"When Kryptolix noticed the unsuspecting and whistling roman courier, he "
+"punched him via the air-line<br>back to Rom. And saw him losing a scroll."
+msgstr ""
+"Beim Lesen der Schriftrolle, die der Bote dabei hatte, erkannte Kryptolix "
+"Caesar's Pläne für <br> den nächsten Angriff und die Gallier besiegten "
+"Caesar erneut. "
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:127
+msgid "Tell me more."
+msgstr "Erzähl' mir mehr."
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:155
+msgid ""
+"One fine day, ca 70 B.C., Caesar was puzzling on an ultra-mega-intelligent-"
+"plan<br>to finally conquer Gallia and sent it to his generals in Gallia."
+msgstr ""
+"Eines Tages, etwa 70 v.Chr , tüftelte Caesar einen ultra-mega-großen-master-"
+"plan aus um Gallien endlich zu erobern. Und schickte diesen an seine Armee "
+"in Gallien."
