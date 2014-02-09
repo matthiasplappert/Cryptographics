@@ -31,7 +31,14 @@ public class MixColorController extends AbstractVisualizationController {
 			}
 		});
 		
-
+		this.getView().getNextButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
+			}
+		});
 	}
 	
 	/*
