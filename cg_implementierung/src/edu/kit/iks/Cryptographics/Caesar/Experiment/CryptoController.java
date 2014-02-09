@@ -138,7 +138,7 @@ public class CryptoController extends AbstractVisualizationController {
 												.createLineBorder(Color.green));
 								getView().getKey().setEditable(false);
 								setEditableFields((getEditableFields() - 1));
-								getView().requestFocus();
+								getView().getInput().requestFocus();
 							} else {
 								try {
 									String input = getView().getInput()
@@ -245,7 +245,7 @@ public class CryptoController extends AbstractVisualizationController {
 													.createLineBorder(Color.green));
 							getView().getInput().setEditable(false);
 							setEditableFields((getEditableFields() - 1));
-							getView().requestFocus();
+							getView().getKey().requestFocus();
 
 						} else {
 
@@ -452,7 +452,6 @@ public class CryptoController extends AbstractVisualizationController {
 											userOutput.getText())) {
 										if ((getEditableFields() - 1) != 0) {
 											// user encrypted the given char successful.
-											getView().requestFocus();
 											userOutput.setBorder(BorderFactory
 													.createLineBorder(Color.green));
 											userOutput.setEditable(false);
@@ -463,7 +462,7 @@ public class CryptoController extends AbstractVisualizationController {
 															"Great. That one was right. You have "
 																	+ getEditableFields()
 																	+ " left!");
-
+											getView().getUserOutput()[getView().getUserOutput().length - getEditableFields()].requestFocus();
 										} else {
 											// User encrypted all characters valid.
 											userOutput.setBorder(BorderFactory
