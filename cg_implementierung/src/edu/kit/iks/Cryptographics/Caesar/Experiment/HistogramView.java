@@ -196,7 +196,7 @@ public class HistogramView extends VisualizationView {
 	 * Creates the keyboard and shows it in the main container.
 	 */
 	public void createKeyboard(JTextField input) {
-		this.keyboard = new KeyboardView(input);
+		this.keyboard = new KeyboardView(input, KeyboardView.CHAR_MODE);
 		GridBagConstraints kbConst = new GridBagConstraints();
 		kbConst.anchor = GridBagConstraints.PAGE_END;
 		kbConst.weightx = 1.0;

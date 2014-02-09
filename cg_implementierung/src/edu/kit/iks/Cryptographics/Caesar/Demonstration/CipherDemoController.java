@@ -36,10 +36,6 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 	private int editableFields;
 
-	public int x = 0;
-
-	public int y = 0;
-
 	/**
 	 * Constructor.
 	 * 
@@ -55,21 +51,6 @@ public class CipherDemoController extends AbstractVisualizationController {
 		this.model = CryptoModel.getInstance();
 		this.animationStep = 1;
 
-		final KeyboardFocusManager focusManager = KeyboardFocusManager
-				.getCurrentKeyboardFocusManager();
-		focusManager.addPropertyChangeListener(new PropertyChangeListener() {
-
-			@Override
-			public void propertyChange(PropertyChangeEvent event) {
-				if ("focusOwner".equals(event.getPropertyName())) {
-					if (event.getNewValue() instanceof JTextField) {
-
-					}
-				}
-
-			}
-		});
-
 		for (int i = 1; i < this.getView().getUserOutput().length; i++) {
 			// Needed for delegating to the inner type ActionListener, when the actionEvent from the
 			// Button "ENTER" on the Keyboard is fired.
@@ -78,15 +59,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 			getView().getUserOutput()[i].addFocusListener(new FocusListener() {
 				@Override
 				public void focusLost(FocusEvent e) {
-					// JTextField output = (JTextField) e.getSource();
-					// // System.out.println(" Focus lost to: " + (focusManager.getFocusOwner()
-					// instanceof JPanel));
-					// int charToEncryptAscii = (int) output.getName().charAt(0);
-					// AlphabetStripView viewAlphabet = getView().getAlphabet();
-					// viewAlphabet.unHighlight(charToEncryptAscii
-					// - getModel().ASCII_UC_A);
-					// output.setBorder(null);
-
+					// Nothing to do here.
 				}
 
 				@Override
@@ -184,6 +157,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 									} else if (getEditableFields() == 0
 											&& getAnimationStep() == 3) {
+										// User has to encrypt the last 3 fields.
 										getView().requestFocus();
 										userOutput.setEditable(false);
 										getView().remove(
@@ -191,32 +165,39 @@ public class CipherDemoController extends AbstractVisualizationController {
 										getView().setKeyboard(null);
 										getView().getProceed().setVisible(true);
 										getView()
+												.getAlphabet()
+												.unHighlight(
+														userOutput.getName()
+																.charAt(0)
+																- getModel().ASCII_UC_A);
+										getView()
 												.getExplanations()
 												.setText(
-														"<html><body>Very nice! I Like. Lets encrypt the rest of this childish challenge.");
+														"<html><body>Very nice! Lets encrypt the rest of this childish challenge.");
 										getView().validate();
 										getView().repaint();
 									} else {
-										getView().getUserOutput()[getView().getUserOutput().length - getEditableFields()].requestFocus();
-										userOutput.setEditable(false);
-										getView().remove(
-												getView().getKeyboard());
-										getView().setKeyboard(null);
+										// User encrypted correctly the given char.
 										getView().validate();
 										getView().getExplanations().setText(
-												getModel().genRandomGrats() + " Only "
+												getModel().genRandomGrats()
+														+ " Only "
 														+ getEditableFields()
 														+ " left.");
 										getView().repaint();
+										getView().getUserOutput()[getView()
+												.getUserOutput().length
+												- getEditableFields()]
+												.requestFocus();
 									}
 								} else {
+									// User didn't encrypt correctly.
 									userOutput.setBorder(BorderFactory
 											.createLineBorder(Color.red));
 									userOutput.setText("");
-									getView()
-											.getExplanations()
-											.setText(
-													getModel().genRandomBlamings());
+									getView().getExplanations().setText(
+											getModel().genRandomBlamings());
+									userOutput.requestFocus();
 								}
 							}
 						}
@@ -325,7 +306,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 				.setText(
 						"<html><body>"
 								+ "As you saw in the first step you need to add to your letter position in the alphabet 3<br>"
-								+ " and then you get the position of the needed letter. For example C has the position 2 <br>"
+								+ "and then you get the position of the needed letter. For example C has the position 2 <br>"
 								+ "if you add 2+3 you get 5, which corresponds to the letter F. Now encrypt the next letter.<br>"
 								+ "To acomplish this click on the white area and type the needed letter.");
 		this.getView().getUserInput()[1].setBorder(BorderFactory

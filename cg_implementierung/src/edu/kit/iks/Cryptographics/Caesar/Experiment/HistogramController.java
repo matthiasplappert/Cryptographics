@@ -269,17 +269,7 @@ public class HistogramController extends AbstractVisualizationController {
 
 			@Override
 			public void focusLost(FocusEvent arg0) {
-//				if (getView().getKeyboard() != null) {
-//					getView().remove(getView().getKeyboard());
-//					getView().setKeyboard(null);
-//					getView().validate();
-//					getView().repaint();
-//
-//					if (getView().getKeyInput().isEditable()) {
-//						getView().getKeyInput().setBorder(null);
-//					}
-//				}
-
+				// Nothing to do here.
 			}
 
 			@Override
@@ -287,7 +277,7 @@ public class HistogramController extends AbstractVisualizationController {
 				if (getView().getKeyboard() == null) {
 					getView().createKeyboard(getView().getKeyInput());
 				}
-				
+
 				if (getView().getKeyInput().isEditable()) {
 					getView().getKeyInput().setBorder(
 							BorderFactory.createLineBorder(Color.blue, 5));
