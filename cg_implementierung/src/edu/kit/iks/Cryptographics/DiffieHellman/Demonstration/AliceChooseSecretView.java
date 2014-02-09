@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 
@@ -16,6 +18,8 @@ public class AliceChooseSecretView extends VisualizationView {
 	private ColorChannel cc;
 	
 	private ColorMix cm;
+	
+	private ActionListener remember;
 	/**
 	 * 
 	 */
@@ -74,44 +78,103 @@ public class AliceChooseSecretView extends VisualizationView {
 			
 			@Override
 			public void callback() {
-				cc.chooseAlicePrivateColor(Color.GREEN);
-				cc.mixAlicePrivatePublic();
-				cm.setEllipColor(0, cc.getPublicColor());
-				cm.setEllipColor(1, cc.getAlicePrivateColor());
-				cm.mixColors(true, false, new NextStepCallback() {
+				for(ActionListener al : getNextButton().getActionListeners()) {
+					remember = al;
+					getNextButton().removeActionListener(al);
+				}
+				getNextButton().addActionListener(new ActionListener() {
 					
 					@Override
-					public void callback() {
-						cc.sendAliceMixedColorToBob(new NextStepCallback() {
+					public void actionPerformed(ActionEvent e) {
+						for(ActionListener al : getNextButton().getActionListeners()) {
+							getNextButton().removeActionListener(al);
+						}
+						cc.chooseAlicePrivateColor(Color.GREEN);
+						cc.mixAlicePrivatePublic();
+						cm.setEllipColor(0, cc.getPublicColor());
+						cm.setEllipColor(1, cc.getAlicePrivateColor());
+						cm.mixColors(true, false, new NextStepCallback() {
 							
 							@Override
 							public void callback() {
-								cc.chooseBobPrivateColor(Color.RED);
-								cm.setEllipColor(1, cc.getBobPrivateColor());
-								cm.mixColors(true, false, new NextStepCallback() {
-									
+								for(ActionListener al : getNextButton().getActionListeners()) {
+									getNextButton().removeActionListener(al);
+								}
+								getNextButton().addActionListener(new ActionListener() {
 									@Override
-									public void callback() {
-										cc.setColorNextToSend(cm.getMixedColor());
-										cc.sendBobMixedColorToAlice(new NextStepCallback() {
+									public void actionPerformed(ActionEvent e) {
+										for(ActionListener al : getNextButton().getActionListeners()) {
+											getNextButton().removeActionListener(al);
+										}
+										cc.sendAliceMixedColorToBob(new NextStepCallback() {
 											
 											@Override
 											public void callback() {
-												cc.mixAliceFinalSecret(new NextStepCallback() {
-													
+												for(ActionListener al : getNextButton().getActionListeners()) {
+													getNextButton().removeActionListener(al);
+												}
+												getNextButton().addActionListener(new ActionListener() {
 													@Override
-													public void callback() {
-														cc.mixBobFinalSecret(null);
+													public void actionPerformed(ActionEvent e) {
+														for(ActionListener al : getNextButton().getActionListeners()) {
+															getNextButton().removeActionListener(al);
+														}
+														cc.chooseBobPrivateColor(Color.RED);
+														cm.setEllipColor(1, cc.getBobPrivateColor());
+														cm.mixColors(true, false, new NextStepCallback() {
+															
+															@Override
+															public void callback() {
+																for(ActionListener al : getNextButton().getActionListeners()) {
+																	getNextButton().removeActionListener(al);
+																}
+																getNextButton().addActionListener(new ActionListener() {
+																	@Override
+																	public void actionPerformed(ActionEvent e) {
+																		for(ActionListener al : getNextButton().getActionListeners()) {
+																			getNextButton().removeActionListener(al);
+																		}
+																		cc.setColorNextToSend(cm.getMixedColor());
+																		cc.sendBobMixedColorToAlice(new NextStepCallback() {
+																			
+																			@Override
+																			public void callback() {
+																				for(ActionListener al : getNextButton().getActionListeners()) {
+																					getNextButton().removeActionListener(al);
+																				}
+																				getNextButton().addActionListener(new ActionListener() {
+																					@Override
+																					public void actionPerformed(ActionEvent e) {
+																						for(ActionListener al : getNextButton().getActionListeners()) {
+																							getNextButton().removeActionListener(al);
+																						}
+																						getNextButton().addActionListener(remember);
+																						cc.mixAliceFinalSecret(new NextStepCallback() {
+																							
+																							@Override
+																							public void callback() {
+																								cc.mixBobFinalSecret(null);
+																							}
+																						});
+																					}
+																				});
+																			}
+																		});
+																	}
+																});
+															}
+														});
 													}
 												});
 											}
-										});										
+										});
 									}
-								});
+								
+							});
 							}
 						});
 					}
-				});			
+				});
 			}
 		});
 	}
