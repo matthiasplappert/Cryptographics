@@ -78,6 +78,7 @@ public class ChoosePublicColorView extends JPanel {
 		gbc.weighty = 0.1;
 		gbc.gridx = 3;
 		gbc.gridy = 2;
+		gbc.fill = GridBagConstraints.NONE;
 		this.add(this.sendPublic, gbc);
 	}
 
