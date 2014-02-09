@@ -78,11 +78,6 @@ public class ColorChooser extends JPanel {
 			g2.fill(current);
 		}
 		
-		public void setCurrentColor(Color color) {
-			current.setColor(color);
-			repaint();
-		}
-		
 	}
 
 }
