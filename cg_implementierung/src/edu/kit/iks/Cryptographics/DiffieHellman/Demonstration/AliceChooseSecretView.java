@@ -99,14 +99,36 @@ public class AliceChooseSecretView extends VisualizationView {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						secondStep();
+					}
+				});
+			}
+		});
+	}
+
+
+	private void secondStep() {
+		for(ActionListener al : getNextButton().getActionListeners()) {
+			getNextButton().removeActionListener(al);
+		}
+		cc.chooseAlicePrivateColor(Color.GREEN);
+		cc.mixAlicePrivatePublic();
+		cm.setEllipColor(0, cc.getPublicColor());
+		cm.setEllipColor(1, cc.getAlicePrivateColor());
+		cm.mixColors(true, false, new NextStepCallback() {
+			
+			@Override
+			public void callback() {
+				for(ActionListener al : getNextButton().getActionListeners()) {
+					getNextButton().removeActionListener(al);
+				}
+				getNextButton().addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
 						for(ActionListener al : getNextButton().getActionListeners()) {
 							getNextButton().removeActionListener(al);
 						}
-						cc.chooseAlicePrivateColor(Color.GREEN);
-						cc.mixAlicePrivatePublic();
-						cm.setEllipColor(0, cc.getPublicColor());
-						cm.setEllipColor(1, cc.getAlicePrivateColor());
-						cm.mixColors(true, false, new NextStepCallback() {
+						cc.sendAliceMixedColorToBob(new NextStepCallback() {
 							
 							@Override
 							public void callback() {
@@ -119,7 +141,9 @@ public class AliceChooseSecretView extends VisualizationView {
 										for(ActionListener al : getNextButton().getActionListeners()) {
 											getNextButton().removeActionListener(al);
 										}
-										cc.sendAliceMixedColorToBob(new NextStepCallback() {
+										cc.chooseBobPrivateColor(Color.RED);
+										cm.setEllipColor(1, cc.getBobPrivateColor());
+										cm.mixColors(true, false, new NextStepCallback() {
 											
 											@Override
 											public void callback() {
@@ -132,9 +156,8 @@ public class AliceChooseSecretView extends VisualizationView {
 														for(ActionListener al : getNextButton().getActionListeners()) {
 															getNextButton().removeActionListener(al);
 														}
-														cc.chooseBobPrivateColor(Color.RED);
-														cm.setEllipColor(1, cc.getBobPrivateColor());
-														cm.mixColors(true, false, new NextStepCallback() {
+														cc.setColorNextToSend(cm.getMixedColor());
+														cc.sendBobMixedColorToAlice(new NextStepCallback() {
 															
 															@Override
 															public void callback() {
@@ -147,30 +170,12 @@ public class AliceChooseSecretView extends VisualizationView {
 																		for(ActionListener al : getNextButton().getActionListeners()) {
 																			getNextButton().removeActionListener(al);
 																		}
-																		cc.setColorNextToSend(cm.getMixedColor());
-																		cc.sendBobMixedColorToAlice(new NextStepCallback() {
+																		getNextButton().addActionListener(remember);
+																		cc.mixAliceFinalSecret(new NextStepCallback() {
 																			
 																			@Override
 																			public void callback() {
-																				for(ActionListener al : getNextButton().getActionListeners()) {
-																					getNextButton().removeActionListener(al);
-																				}
-																				getNextButton().addActionListener(new ActionListener() {
-																					@Override
-																					public void actionPerformed(ActionEvent e) {
-																						for(ActionListener al : getNextButton().getActionListeners()) {
-																							getNextButton().removeActionListener(al);
-																						}
-																						getNextButton().addActionListener(remember);
-																						cc.mixAliceFinalSecret(new NextStepCallback() {
-																							
-																							@Override
-																							public void callback() {
-																								cc.mixBobFinalSecret(null);
-																							}
-																						});
-																					}
-																				});
+																				cc.mixBobFinalSecret(null);
 																			}
 																		});
 																	}
@@ -182,8 +187,7 @@ public class AliceChooseSecretView extends VisualizationView {
 											}
 										});
 									}
-								
-							});
+								});
 							}
 						});
 					}
@@ -191,9 +195,6 @@ public class AliceChooseSecretView extends VisualizationView {
 			}
 		});
 	}
-
-
-
 
 
 	public void setRemember(ActionListener remember) {
