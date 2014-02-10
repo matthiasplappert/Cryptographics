@@ -21,6 +21,8 @@ public class ChoosePublicColorView extends JPanel {
 
 	private static final long serialVersionUID = 5764374133753732451L;
 	
+	private JLabel wrong;
+	
 	private JLabel choosePublicLbl;
 	
 	private JButton multiBtn;
@@ -98,6 +100,7 @@ public class ChoosePublicColorView extends JPanel {
 				sendPublicColor();
 			}
 		});
+		validate();
 	}
 	
 	private void sendPublicColor() {
@@ -223,6 +226,13 @@ public class ChoosePublicColorView extends JPanel {
 			});
 		} else {
 			//wrong colors
+//			wrong = new JLabel("You choosed the wrong colors, try again");
+//			gbc.gridx = 2;
+//			gbc.gridy = 2;
+//			add(wrong, gbc);
+			choosePublicLbl.setText("<html><div style=\"width:120px\">" +
+					"You choosed the wrong colors, try again</div></html>");
+			validate();
 		}
 	}
 		
