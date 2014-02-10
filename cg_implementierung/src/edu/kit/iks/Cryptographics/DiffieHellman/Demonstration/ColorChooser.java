@@ -91,4 +91,8 @@ public class ColorChooser extends JPanel {
 		repaint();
 	}
 
+	public Color[] getToChooseFrom() {
+		return toChooseFrom;
+	}
+
 }

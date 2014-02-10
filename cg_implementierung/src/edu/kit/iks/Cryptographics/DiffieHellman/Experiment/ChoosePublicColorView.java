@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -28,7 +29,9 @@ public class ChoosePublicColorView extends JPanel {
 
 	private ColorMix cm;
 	
-	private ColorChooser chooser;
+	private ColorChooser chooser, chooser2;
+	
+	private GridBagConstraints gbc;
 	
 	private Color[] toChooseFrom = {Color.BLUE, Color.CYAN,
 			Color.DARK_GRAY, Color.GREEN, Color.MAGENTA,
@@ -36,9 +39,11 @@ public class ChoosePublicColorView extends JPanel {
 			Color.YELLOW
 	};
 	
+	private Color[] rememberColors = toChooseFrom;
+	
 	public ChoosePublicColorView() {
 		super();
-		GridBagConstraints gbc = new GridBagConstraints();
+		gbc = new GridBagConstraints();
 		GridBagLayout layout = new GridBagLayout();
 		this.setLayout(layout);
 		
@@ -130,6 +135,7 @@ public class ChoosePublicColorView extends JPanel {
 				chooser.setToChooseFrom(new Color[]{cc.getPublicColor(), cc.getAlicePrivateColor(),
 						cm.getMixedColor()
 				});
+				toChooseFrom = chooser.getToChooseFrom();
 				multiBtn.addActionListener(new ActionListener() {
 					
 					@Override
@@ -146,9 +152,105 @@ public class ChoosePublicColorView extends JPanel {
 			for(ActionListener al : multiBtn.getActionListeners()) {
 				multiBtn.removeActionListener(al);
 			}
-			cc.sendAliceMixedColorToBob(null);
+			cc.sendAliceMixedColorToBob(new NextStepCallback() {
+				
+				@Override
+				public void callback() {
+					multiBtn.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+							for(ActionListener al : multiBtn.getActionListeners()) {
+								multiBtn.removeActionListener(al);
+							}
+							sendBobMixedColor();
+						}
+					});
+				}
+			});
 		} else {
 			//TODO oh you failed
 		}
+	}
+	
+	private void sendBobMixedColor() {
+		cc.chooseBobPrivateColor(randomColor());
+		cm.setEllipColor(1, cc.getBobPrivateColor());
+		cm.mixColors(true, false, new NextStepCallback() {
+			
+			@Override
+			public void callback() {
+				cc.sendBobMixedColorToAlice(new NextStepCallback() {
+					
+					@Override
+					public void callback() {
+						Color[] param = new Color[]{cc.getPublicColor(),
+								cc.getAlicePrivateColor(), cc.getAliceMixedColor(),
+								cc.getBobMixedColor()};
+						chooser2 = new ColorChooser(new Dimension(50, 50), param[0], param);
+						gbc.gridx = 3;
+						gbc.gridy = 0;
+						add(chooser2, gbc);
+						validate();
+						multiBtn.addActionListener(new ActionListener() {
+							
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								mixFinalColors();
+							}
+						});
+					}
+				});
+			}
+		});
+	}
+	
+	private void mixFinalColors() {
+		if((chooser.getCurrentColor().equals(cc.getAlicePrivateColor())
+				&& chooser2.getCurrentColor().equals(cc.getBobMixedColor()))
+				|| (chooser.getCurrentColor().equals(cc.getBobMixedColor())
+						&& chooser2.getCurrentColor().equals(cc.getAlicePrivateColor()))) {
+			//choosed the right colors
+			for(ActionListener al : multiBtn.getActionListeners()) {
+				multiBtn.removeActionListener(al);
+			}
+			cc.mixAliceFinalSecret(new NextStepCallback() {
+				
+				@Override
+				public void callback() {
+					cc.mixBobFinalSecret(null);
+				}
+			});
+		} else {
+			//wrong colors
+		}
+	}
+		
+	/*
+	 * randomColor from remember - toChooseFrom
+	 */
+	private Color randomColor() {
+		Color randColor = rememberColors[randInt(0, rememberColors.length-1)];
+		while(in(randColor, toChooseFrom)) {
+			randColor = rememberColors[randInt(0, rememberColors.length-1)];
+		}
+		return randColor;
+	}
+	
+	private boolean in(Color rand, Color[] colors) {
+		for(int i=0; i < colors.length; i++) {
+			if(rand.equals(colors[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private int randInt(int min, int max) {
+		Random rand = new Random();
+		
+		int randNum = rand.nextInt((max-min) + 1) + min;
+		
+		return randNum;
 	}
 }
