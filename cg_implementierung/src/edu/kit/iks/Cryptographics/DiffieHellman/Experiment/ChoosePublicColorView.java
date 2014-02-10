@@ -206,7 +206,24 @@ public class ChoosePublicColorView extends JPanel {
 	}
 	
 	private void mixFinalColors() {
-		
+		if((chooser.getCurrentColor().equals(cc.getAlicePrivateColor())
+				&& chooser2.getCurrentColor().equals(cc.getBobMixedColor()))
+				|| (chooser.getCurrentColor().equals(cc.getBobMixedColor())
+						&& chooser2.getCurrentColor().equals(cc.getAlicePrivateColor()))) {
+			//choosed the right colors
+			for(ActionListener al : multiBtn.getActionListeners()) {
+				multiBtn.removeActionListener(al);
+			}
+			cc.mixAliceFinalSecret(new NextStepCallback() {
+				
+				@Override
+				public void callback() {
+					cc.mixBobFinalSecret(null);
+				}
+			});
+		} else {
+			//wrong colors
+		}
 	}
 		
 	/*
