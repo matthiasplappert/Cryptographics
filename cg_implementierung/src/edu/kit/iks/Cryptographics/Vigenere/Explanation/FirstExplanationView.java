@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 import edu.kit.iks.CryptographicsLib.CharacterFrequencyDiagramView;
-import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
@@ -27,7 +26,7 @@ public class FirstExplanationView extends VisualizationView{
 			+ "APPEARANCE OF BURNISHED GOLD. THE WEIGHT OF THE INSECT WAS VERY REMARKABLE, AND,"
 			+ "TAKING ALL THINGS INTO CONSIDERATION, I COULD HARDLY BLAME JUPITER FOR HIS OPINION"
 			+ "RESPECTING IT.";
-	private static final String vigenereEncrypted = "VOFOIZCX ZOUBOXR KFYGO, KSHR O QFKJO OXR CHKHOZI OSF, KBN PBCEURH WS DVO POSDZO"
+	static final String vigenereEncrypted = "VOFOIZCX ZOUBOXR KFYGO, KSHR O QFKJO OXR CHKHOZI OSF, KBN PBCEURH WS DVO POSDZO"
 			+ "TBCW O QZKGC QKGO WX KRWMV SH GOC SXQVCCSN. WD KKG K POOEHSTEZ CQKFKPKSEG, KBN, OD"
 			+ "HROD HSAO, IXYXCGB DC XODIBOVWCHC—CP QYIBGO O QFOOD DBWJS SB K GMWOBDWPWM DYWXH"
 			+ "YT FWOK. DVOFO KOFO HGC BCEBN PVOMY CDYHC BOOB CXS OLDFOASHI CP HRS LOMY, KBN O"
@@ -69,6 +68,26 @@ public class FirstExplanationView extends VisualizationView{
 		return this.findKeyLength;
 	}
 	
+	public void setExplanation(String s){
+		this.explanation.setText(s);
+		Dimension size = this.explanation.getPreferredSize();
+		this.explanation.setBounds(10, 10,
+	             size.width, size.height);
+		this.validate();
+	}
+	
+	public void visibleFirstState(boolean b) {
+		this.keyLength.setVisible(b);
+		this.findKeyLength.setVisible(b);
+	}
+	
+	public void visibleSecondState(boolean b) {
+		this.vigenereHistogramm.setVisible(b);
+		this.secondExplanation.setVisible(b);
+		this.averageHistogramm.setVisible(b);
+		this.thirdExplanation.setVisible(b);
+	}
+	
 	public FirstExplanationView() {
 		this.setLayout(null);
 		this.add(new JLabel("VIGENERE EXPLANATATION"));
@@ -91,13 +110,15 @@ public class FirstExplanationView extends VisualizationView{
 				+ "the first character of the key is 'N'.</div></html>"));
 		this.thirdExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		
-		this.vigenereHistogramm = new CharacterFrequencyDiagramView(VigenereModel.getCharPositionated(2, encryptedAverageText), 600,
+		this.vigenereHistogramm = new CharacterFrequencyDiagramView(VigenereModel.getCharPositionated(0, 2, encryptedAverageText), 600,
 				100);
-		//this.add(this.vigenereHistogramm);
+		this.add(this.vigenereHistogramm);
+		this.vigenereHistogramm.setVisible(false);
 		
 		this.averageHistogramm = new CharacterFrequencyDiagramView(averageText, 600,
 				100);
-		//this.add(this.averageHistogramm);
+		this.add(this.averageHistogramm);
+		this.averageHistogramm.setVisible(false);
 		
 		Dimension size = this.explanation.getPreferredSize();
 		this.explanation.setBounds(10, 10,
@@ -105,20 +126,34 @@ public class FirstExplanationView extends VisualizationView{
 		size = this.findKeyLength.getPreferredSize();
 		this.findKeyLength.setBounds(600, 340,
 	             size.width, size.height);
+		
 		size = this.keyLength.getPreferredSize();
 		this.keyLength.setBounds(10, 340,
 	             size.width, size.height);
-		/*size = this.secondExplanation.getPreferredSize();
+		
+		size = this.secondExplanation.getPreferredSize();
 		this.secondExplanation.setBounds(10, 240,
 	             size.width, size.height);
+		this.secondExplanation.setVisible(false);
+		
 		size = this.thirdExplanation.getPreferredSize();
 		this.thirdExplanation.setBounds(10, 420,
-	             size.width, size.height);*/
+	             size.width, size.height);
+		this.thirdExplanation.setVisible(false);
+		
+		size = this.getBackButton().getPreferredSize();
+		this.getBackButton().setBounds(30, 600,
+	             size.width, size.height);
+		
+		size = this.getNextButton().getPreferredSize();
+		this.getNextButton().setBounds(1100, 600,
+	             size.width, size.height);
+		this.getNextButton().setVisible(false);
 		
 		this.vigenereHistogramm.setBounds(10, 140,
 	             600, 100);
 		this.averageHistogramm.setBounds(10, 280,
 	             600, 100);
-		Logger.l(VigenereModel.getCharPositionated(2, vigenereText));
+		Logger.l(VigenereModel.getCharPositionated(0, 2, vigenereText));
 	}
 }
