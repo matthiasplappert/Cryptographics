@@ -69,6 +69,7 @@ public class Model {
 	}
 	
 	public void mixShared() {
+		//TODO use the correct formula
 		this.sharedColor = computeMixedColor(this.aliceMixedColor, this.bobPrivateColor);
 	}
 	

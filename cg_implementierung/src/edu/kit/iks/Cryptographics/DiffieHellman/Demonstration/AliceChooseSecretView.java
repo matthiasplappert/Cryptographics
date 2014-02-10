@@ -68,18 +68,31 @@ public class AliceChooseSecretView extends VisualizationView {
 		gbc.gridx = 2;
 		gbc.gridy = 0;
 		this.add(this.cm, gbc);
+		//TODO remove loadView?
 		this.cc.loadView();
 		this.cc.setRepeat(false);
 		this.cc.setKeepColor(true);
+		//TODO remove validate()?
 		this.validate();
 		
+	}
 
+
+
+
+
+	public ColorChannel getColorChannel() {
+		return this.cc;
+	}
+	
+	public void startDemo() {
+		
+		//TODO i know, i know, this is horrible, will refactor to look like choosepubliccoorview
 		this.cc.sendPublicColor(new NextStepCallback() {
 			
 			@Override
 			public void callback() {
 				for(ActionListener al : getNextButton().getActionListeners()) {
-					remember = al;
 					getNextButton().removeActionListener(al);
 				}
 				getNextButton().addActionListener(new ActionListener() {
@@ -183,8 +196,8 @@ public class AliceChooseSecretView extends VisualizationView {
 
 
 
-	public ColorChannel getColorChannel() {
-		return this.cc;
+	public void setRemember(ActionListener remember) {
+		this.remember = remember;
 	}
 
 }

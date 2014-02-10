@@ -107,6 +107,7 @@ public class ColorChannel extends JPanel {
 		container = new JPanel();
 		container.setSize(new Dimension((int)d.getWidth(), (int)d.getHeight()/4));
 		container.setPreferredSize(new Dimension((int)d.getWidth(), (int)d.getHeight()/4));
+		//TODO add conditional flag to use color mixers or not
 		this.cm1 = new ColorMix(circleSize, new Dimension((int)d.getWidth()/2, (int)d.getHeight()/4));
 		this.cm2 = new ColorMix(circleSize, new Dimension((int)d.getWidth()/2, (int)d.getHeight()/4));
 		this.setLayout(new BorderLayout());
@@ -479,6 +480,10 @@ public class ColorChannel extends JPanel {
 
 	public Color getAlicePrivateColor() {
 		return this.model.getAlicePrivateColor();
+	}
+	
+	public Color getAliceMixedColor() {
+		return this.model.getAliceMixedColor();
 	}
 	
 	public Color getBobPrivateColor() {
