@@ -5,10 +5,14 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.Timer;
+
+import org.xnap.commons.i18n.I18n;
+import org.xnap.commons.i18n.I18nFactory;
 
 import edu.kit.iks.CryptographicsLib.PopoverView;
 
@@ -22,6 +26,9 @@ import edu.kit.iks.CryptographicsLib.PopoverView;
  */
 public class IdlePopoverView extends PopoverView {
 	
+	/**
+	 * Serial version UID
+	 */
 	private static final long serialVersionUID = -4551738579737944993L;
 	
 	/**
@@ -52,13 +59,17 @@ public class IdlePopoverView extends PopoverView {
 	private Timer updateTimer;
 	
 	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(IdlePopoverView.class);
+	
+	/**
 	 * Creates a new popover with a given remaining time in milliseconds.
 	 * The remaining time will be counted down until it reaches zero.
 	 * @param remaining the initial countdown time in milliseconds
 	 */
 	public IdlePopoverView(long initialTime) {
 		super();
-		
 		this.remainingTime = initialTime;
 		
 		// Create a timer to update the view periodically.
@@ -84,7 +95,7 @@ public class IdlePopoverView extends PopoverView {
 		GridBagConstraints textConstraints = new GridBagConstraints();
 		textConstraints.gridx = 0;
 		textConstraints.gridy = 0;
-		String text = "You haven't done anything in a while. To keep this exhibit functional, the system will reset itself soon. If you want to continue using the system, just dismiss this dialog.";
+		String text = i18n.tr("You haven't done anything in a while. To keep this exhibit functional, the system will reset itself soon. If you want to continue using the system, just dismiss this dialog.");
 		this.textLabel = new JLabel("<html><div style=\"width:200px;\">" + text + "</div></html>");
 		this.getContentView().add(this.textLabel, textConstraints);
 		
@@ -101,7 +112,7 @@ public class IdlePopoverView extends PopoverView {
 		GridBagConstraints continueConstraints = new GridBagConstraints();
 		continueConstraints.gridx = 0;
 		continueConstraints.gridy = 2;
-		this.continueButton = new JButton("Continue");
+		this.continueButton = new JButton(i18n.tr("Continue"));
 		this.getContentView().add(this.continueButton, continueConstraints);
 		
 		this.getContentView().validate();
