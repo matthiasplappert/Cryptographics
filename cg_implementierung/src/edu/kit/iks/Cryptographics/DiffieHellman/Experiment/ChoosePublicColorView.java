@@ -174,7 +174,29 @@ public class ChoosePublicColorView extends JPanel {
 	private void sendBobMixedColor() {
 		cc.chooseBobPrivateColor(randomColor());
 		cm.setEllipColor(1, cc.getBobPrivateColor());
-		cm.mixColors(true, false, null);
+		cm.mixColors(true, false, new NextStepCallback() {
+			
+			@Override
+			public void callback() {
+				cc.sendBobMixedColorToAlice(new NextStepCallback() {
+					
+					@Override
+					public void callback() {
+						multiBtn.addActionListener(new ActionListener() {
+							
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								mixFinalColors();
+							}
+						});
+					}
+				});
+			}
+		});
+	}
+	
+	private void mixFinalColors() {
+		
 	}
 		
 	/*
