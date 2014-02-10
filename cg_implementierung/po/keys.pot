@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Cryptographics\n"
+"POT-Creation-Date: 2014-02-09 21:46+0100\n"
+"PO-Revision-Date: 2014-02-09 21:47+0100\n"
+"Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: tr;trc\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ../src\n"
+
+#: ../src/edu/kit/iks/Cryptographics/IdlePopoverView.java:98
+msgid ""
+"You haven't done anything in a while. To keep this exhibit functional, the "
+"system will reset itself soon. If you want to continue using the system, "
+"just dismiss this dialog."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/IdlePopoverView.java:115
+msgid "Continue"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:64
+msgid "Exit"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:82
+msgid "Help"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/WelcomeView.java:26
+msgid "Welcome"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:80
+msgid ""
+"Get to know how Ceasar fooled his enemys that intercepted his orders and see "
+"one of the oldest attempts to make confidential material unreadable for "
+"undesireable readers"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:173
+msgid ""
+"Unfortunately his courier has taken the way through the forest, where "
+"Kryptolix chased<br>the wild boars."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:211
+msgid ""
+"When Kryptolix noticed the unsuspecting and whistling roman courier, he "
+"punched him via the air-line<br>back to Rom. And saw him losing a scroll."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:127
+msgid "Tell me more."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:155
+msgid ""
+"One fine day, ca 70 B.C., Caesar was puzzling on an ultra-mega-intelligent-"
+"plan<br>to finally conquer Gallia and sent it to his generals in Gallia."
+msgstr ""
