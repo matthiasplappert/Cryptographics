@@ -172,38 +172,45 @@ public class AliceChooseSecretView extends VisualizationView {
 						for(ActionListener al : getNextButton().getActionListeners()) {
 							getNextButton().removeActionListener(al);
 						}
-						cc.setColorNextToSend(cm.getMixedColor());
-						cc.sendBobMixedColorToAlice(new NextStepCallback() {
-							
-							@Override
-							public void callback() {
-								for(ActionListener al : getNextButton().getActionListeners()) {
-									getNextButton().removeActionListener(al);
-								}
-								getNextButton().addActionListener(new ActionListener() {
-									@Override
-									public void actionPerformed(ActionEvent e) {
-										for(ActionListener al : getNextButton().getActionListeners()) {
-											getNextButton().removeActionListener(al);
-										}
-										getNextButton().addActionListener(remember);
-										cc.mixAliceFinalSecret(new NextStepCallback() {
-											
-											@Override
-											public void callback() {
-												cc.mixBobFinalSecret(null);
-											}
-										});
-									}
-								});
-							}
-						});
+						fifthStep();
 					}
 				});
 			}
 		});
 	}
-
+	
+	private void fifthStep() {
+		cc.setColorNextToSend(cm.getMixedColor());
+		cc.sendBobMixedColorToAlice(new NextStepCallback() {
+			
+			@Override
+			public void callback() {
+				for(ActionListener al : getNextButton().getActionListeners()) {
+					getNextButton().removeActionListener(al);
+				}
+				getNextButton().addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						for(ActionListener al : getNextButton().getActionListeners()) {
+							getNextButton().removeActionListener(al);
+						}
+						sixthStep();
+					}
+				});
+			}
+		});
+	}
+	
+	private void sixthStep() {
+		getNextButton().addActionListener(remember);
+		cc.mixAliceFinalSecret(new NextStepCallback() {
+			
+			@Override
+			public void callback() {
+				cc.mixBobFinalSecret(null);
+			}
+		});
+	}
 
 	public void setRemember(ActionListener remember) {
 		this.remember = remember;
