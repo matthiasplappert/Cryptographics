@@ -36,6 +36,8 @@ public class ChoosePublicColorView extends JPanel {
 			Color.YELLOW
 	};
 	
+	private Color[] rememberColors = toChooseFrom;
+	
 	public ChoosePublicColorView() {
 		super();
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -146,9 +148,37 @@ public class ChoosePublicColorView extends JPanel {
 			for(ActionListener al : multiBtn.getActionListeners()) {
 				multiBtn.removeActionListener(al);
 			}
-			cc.sendAliceMixedColorToBob(null);
+			cc.sendAliceMixedColorToBob(new NextStepCallback() {
+				
+				@Override
+				public void callback() {
+					multiBtn.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+							for(ActionListener al : multiBtn.getActionListeners()) {
+								multiBtn.removeActionListener(al);
+							}
+							sendBobMixedColor();
+						}
+					});
+				}
+			});
 		} else {
 			//TODO oh you failed
 		}
+	}
+	
+	private void sendBobMixedColor() {
+		cc.chooseBobPrivateColor(randomColor());
+		cm.setEllipColor(1, cc.getBobPrivateColor());
+		cm.mixColors(true, false, null);
+	}
+		
+	/*
+	 * randomColor from remember - toChooseFrom
+	 */
+	private Color randomColor() {
+		return null;
 	}
 }
