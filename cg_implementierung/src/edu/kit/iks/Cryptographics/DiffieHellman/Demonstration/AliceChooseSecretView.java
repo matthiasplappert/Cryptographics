@@ -99,6 +99,9 @@ public class AliceChooseSecretView extends VisualizationView {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						for(ActionListener al : getNextButton().getActionListeners()) {
+							getNextButton().removeActionListener(al);
+						}
 						secondStep();
 					}
 				});
@@ -108,9 +111,6 @@ public class AliceChooseSecretView extends VisualizationView {
 
 
 	private void secondStep() {
-		for(ActionListener al : getNextButton().getActionListeners()) {
-			getNextButton().removeActionListener(al);
-		}
 		cc.chooseAlicePrivateColor(Color.GREEN);
 		cc.mixAlicePrivatePublic();
 		cm.setEllipColor(0, cc.getPublicColor());
@@ -140,9 +140,6 @@ public class AliceChooseSecretView extends VisualizationView {
 			
 			@Override
 			public void callback() {
-				for(ActionListener al : getNextButton().getActionListeners()) {
-					getNextButton().removeActionListener(al);
-				}
 				getNextButton().addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -163,9 +160,6 @@ public class AliceChooseSecretView extends VisualizationView {
 			
 			@Override
 			public void callback() {
-				for(ActionListener al : getNextButton().getActionListeners()) {
-					getNextButton().removeActionListener(al);
-				}
 				getNextButton().addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -185,9 +179,6 @@ public class AliceChooseSecretView extends VisualizationView {
 			
 			@Override
 			public void callback() {
-				for(ActionListener al : getNextButton().getActionListeners()) {
-					getNextButton().removeActionListener(al);
-				}
 				getNextButton().addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
