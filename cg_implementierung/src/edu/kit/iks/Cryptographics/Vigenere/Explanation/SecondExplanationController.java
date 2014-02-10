@@ -8,7 +8,7 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class SecondExplanationController extends AbstractVisualizationController {
-	
+	private int state;
 	public SecondExplanationController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
@@ -21,26 +21,44 @@ public class SecondExplanationController extends AbstractVisualizationController
 	
 	@Override
 	public void loadView() {
-		// TODO Auto-generated method stub
+		this.state = 0;
 		this.view = new SecondExplanationView();
 		this.getView().getBackButton().addActionListener(new ActionListener() {
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
-			 * .event.ActionEvent)
-			 */
 			public void actionPerformed(ActionEvent event) {
-				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
-				containerController.presentPreviousVisualizationController();
+				state--;
+				switch (state) {
+				case -1:
+					VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+					containerController.presentPreviousVisualizationController();
+					break;
+				case 0:
+					getView().setExplanation("<html><div width=\"1200\">Now its your turn! You have to find the second character of the key. I was kind enough to give you a diagramm of every second character encrypted with the second part of the key."
+				+ "You know what to do: </div></html>");
+					getView().visibleFirstState(true);
+					break;
+				}
 			}
 		});
 		this.getView().getNextButton().addActionListener(new ActionListener() {
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt
-			 * .event.ActionEvent)
-			 */
 			public void actionPerformed(ActionEvent event) {
-				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
-				containerController.presentNextVisualizationController();
+				state++;
+				switch (state) {
+				case 1:
+					if ((!getView().getAnswer().isEmpty()) && (getView().getAnswer().charAt(0) == 'J')) {
+						getView().setExplanation("<html><div width=\"1200\">Very nice! We found the key 'NJ', now we can decrypt the message:<br><br>" + FirstExplanationView.vigenereText + "</div></html>");
+						getView().visibleFirstState(false);
+						getView().answerRight();
+					} else {
+						getView().answerFalse();
+						state--;
+					}
+					break;
+				case 2:
+					VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+					containerController.presentNextVisualizationController();
+					break;
+				}
+				
 			}
 		});
 	}
