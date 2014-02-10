@@ -64,7 +64,7 @@ public class ExplainKeyExchangeView extends VisualizationView {
 		this.add(cm2, gbc);
 		
 		cm.mixColors(true, true, null);
-		cm2.mixColors(true, true, null);
+		cm2.seperateColors(true, true);
 	}
 
 }

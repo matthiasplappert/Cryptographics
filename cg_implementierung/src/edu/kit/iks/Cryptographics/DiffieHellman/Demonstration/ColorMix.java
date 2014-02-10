@@ -123,6 +123,60 @@ public class ColorMix extends JPanel {
 		}
 	}
 	
+	public void seperateColors(boolean mix, boolean repeat) {
+		assert(this.ellip1.getColor() != null);
+		assert(this.ellip2.getColor() != null);
+		this.mixcolors = mix;
+		this.x1 = middle;
+		this.y1 = originaly1;
+		this.x2 = middle;
+		this.y2 = originaly2;
+		if(mixcolors) {
+			if(repeat) {
+				this.timer = new Timer(20, new ActionListener() {
+				
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						if(x1 > originalx1) {
+							x1 -= 1;
+						} else {
+							x1 = middle;
+						}
+						if(x2 < originalx2) {
+							x2 += 1;
+						} else {
+							x2 = middle;
+						}
+						repaint();
+					}
+				});
+				timer.start();
+			} else {
+				this.timer = new Timer(20, new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						Logger.d(this.getClass().getName(), "mixColors", "timer in colormix ");
+						if(x1 > originalx1) {
+							x1 -= 1;
+						}
+						if(x2 < originalx2) {
+							x2 += 1;
+						}
+						if(x2 <= middle && x1 >= middle) {
+							timer.stop();
+							Logger.d(this.getClass().getName(), "mixColors", "stopped timer in colormix");
+						}
+						repaint();
+					}
+				});
+				timer.start();
+			}
+		} else {
+			timer.stop();
+		}
+	}
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
