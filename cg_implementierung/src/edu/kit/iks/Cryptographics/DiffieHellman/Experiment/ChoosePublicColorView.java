@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -132,6 +133,7 @@ public class ChoosePublicColorView extends JPanel {
 				chooser.setToChooseFrom(new Color[]{cc.getPublicColor(), cc.getAlicePrivateColor(),
 						cm.getMixedColor()
 				});
+				toChooseFrom = chooser.getToChooseFrom();
 				multiBtn.addActionListener(new ActionListener() {
 					
 					@Override
@@ -179,6 +181,27 @@ public class ChoosePublicColorView extends JPanel {
 	 * randomColor from remember - toChooseFrom
 	 */
 	private Color randomColor() {
-		return null;
+		Color randColor = rememberColors[randInt(0, rememberColors.length-1)];
+		while(in(randColor, toChooseFrom)) {
+			randColor = rememberColors[randInt(0, rememberColors.length-1)];
+		}
+		return randColor;
+	}
+	
+	private boolean in(Color rand, Color[] colors) {
+		for(int i=0; i < colors.length; i++) {
+			if(rand.equals(colors[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private int randInt(int min, int max) {
+		Random rand = new Random();
+		
+		int randNum = rand.nextInt((max-min) + 1) + min;
+		
+		return randNum;
 	}
 }
