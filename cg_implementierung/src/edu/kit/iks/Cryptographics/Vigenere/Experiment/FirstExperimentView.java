@@ -1,8 +1,10 @@
 package edu.kit.iks.Cryptographics.Vigenere.Experiment;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -15,7 +17,7 @@ public class FirstExperimentView extends VisualizationView{
 	
 	//PLAINTEXTCHARS WITH THEIR INDEXES
 	private JLabel[] indexCharPlain;
-	private JTextField[] textCharPlain;
+	private JLabel[] textCharPlain;
 	
 	//ENCRYPTED CHARS WITH THEIR INDEXES
 	private JLabel[] indexCharDecrypted;
@@ -27,6 +29,16 @@ public class FirstExperimentView extends VisualizationView{
 	
 	private JLabel explanation;
 	private AlphabetStripView alphabet;
+	
+	public void highlightTextBorder(int i) {
+		this.textCharDecrypted[i].setEnabled(true);
+		this.textCharDecrypted[i].setBorder(BorderFactory.createLineBorder(Color.blue, 5));
+	}
+	
+	public void unHighlightTextBorder(int i) {
+		this.textCharDecrypted[i].setEnabled(false);
+		this.textCharDecrypted[i].setBorder(null);
+	}
 	
 	public AlphabetStripView getAlphabet() {
 		return this.alphabet;
@@ -48,15 +60,12 @@ public class FirstExperimentView extends VisualizationView{
 		this.validate();
 	}
 	
-	public void setTextFieldDisabled(int i) {
-		this.textCharDecrypted[i].setEnabled(false);
-	}
 	
 	public JTextField getTextFieldDecrypted(int i) {
 		return this.textCharDecrypted[i];
 	}
 	
-	public JTextField getTextFieldPlain(int i) {
+	public JLabel getTextFieldPlain(int i) {
 		return this.textCharPlain[i];
 	}
 	
@@ -74,12 +83,12 @@ public class FirstExperimentView extends VisualizationView{
 		this.vigenereKeyDesc = new JLabel("Vigenere Key: " + this.vigenereKey);
 		this.alphabet = new AlphabetStripView();
 		
-		this.textCharPlain = new JTextField[5];
-		this.textCharPlain[0] = new JTextField("T");
-		this.textCharPlain[1] = new JTextField("W");
-		this.textCharPlain[2] = new JTextField("S");
-		this.textCharPlain[3] = new JTextField("I");
-		this.textCharPlain[4] = new JTextField("W");
+		this.textCharPlain = new JLabel[5];
+		this.textCharPlain[0] = new JLabel("T");
+		this.textCharPlain[1] = new JLabel("W");
+		this.textCharPlain[2] = new JLabel("S");
+		this.textCharPlain[3] = new JLabel("I");
+		this.textCharPlain[4] = new JLabel("W");
 		for (int i = 0; i < this.textCharPlain.length; i++)
 			this.add(this.textCharPlain[i]);
 
@@ -98,9 +107,11 @@ public class FirstExperimentView extends VisualizationView{
 		this.textCharDecrypted[2] = new JTextField();
 		this.textCharDecrypted[3] = new JTextField();
 		this.textCharDecrypted[4] = new JTextField();
-		for (int i = 0; i < this.textCharDecrypted.length; i++)
+		for (int i = 0; i < this.textCharDecrypted.length; i++) {
 			this.add(this.textCharDecrypted[i]);
-
+			this.textCharDecrypted[i].setEnabled(false);
+		}
+		
 		this.indexCharDecrypted = new JLabel[5];
 		this.indexCharDecrypted[0] = new JLabel("  ");
 		this.indexCharDecrypted[1] = new JLabel("  ");
@@ -232,5 +243,6 @@ public class FirstExperimentView extends VisualizationView{
 		
 		getAlphabet().highlight(0);
 		getAlphabet().highlight(19);
+		highlightTextBorder(0);
 	}
 }

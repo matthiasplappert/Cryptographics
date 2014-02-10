@@ -29,6 +29,8 @@ public class SecondExplanationView extends VisualizationView{
 	private CharacterFrequencyDiagramView alphabetHistogramm;
 	
 	public SecondExplanationView() {
-       this.add(new JLabel("VIGENERE EXPLANATATION2"));
+		this.setLayout(null);
+		
+       
 	}
 }

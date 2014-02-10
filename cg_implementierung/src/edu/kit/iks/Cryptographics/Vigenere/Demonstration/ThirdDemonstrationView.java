@@ -4,8 +4,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
@@ -15,11 +13,11 @@ public class ThirdDemonstrationView extends VisualizationView{
 	
 	//PLAINTEXTCHARS WITH THEIR INDEXES
 	private JLabel[] indexCharPlain;
-	private JTextField[] textCharPlain;
+	private JLabel[] textCharPlain;
 	
 	//ENCRYPTED CHARS WITH THEIR INDEXES
 	private JLabel[] indexCharDecrypted;
-	private JTextField[] textCharDecrypted;
+	private JLabel[] textCharDecrypted;
 	
 	//Visulisation of the Key
 	private JLabel vigenereKeyDesc;
@@ -86,11 +84,11 @@ public class ThirdDemonstrationView extends VisualizationView{
 		this.vigenereKeyDesc = new JLabel("Vigenere Key: " + this.vigenereKey);
 		this.alphabet = new AlphabetStripView();
 		
-		this.textCharPlain = new JTextField[4];
-		this.textCharPlain[0] = new JTextField("E");
-		this.textCharPlain[1] = new JTextField("N");
-		this.textCharPlain[2] = new JTextField("Q");
-		this.textCharPlain[3] = new JTextField("M");
+		this.textCharPlain = new JLabel[4];
+		this.textCharPlain[0] = new JLabel("E");
+		this.textCharPlain[1] = new JLabel("N");
+		this.textCharPlain[2] = new JLabel("Q");
+		this.textCharPlain[3] = new JLabel("M");
 		for (int i = 0; i < this.textCharPlain.length; i++)
 			this.add(this.textCharPlain[i]);
 
@@ -102,11 +100,11 @@ public class ThirdDemonstrationView extends VisualizationView{
 		for (int i = 0; i < this.indexCharPlain.length; i++)
 			this.add(this.indexCharPlain[i]);
 
-		this.textCharDecrypted = new JTextField[4];
-		this.textCharDecrypted[0] = new JTextField();
-		this.textCharDecrypted[1] = new JTextField();
-		this.textCharDecrypted[2] = new JTextField();
-		this.textCharDecrypted[3] = new JTextField();
+		this.textCharDecrypted = new JLabel[4];
+		this.textCharDecrypted[0] = new JLabel();
+		this.textCharDecrypted[1] = new JLabel();
+		this.textCharDecrypted[2] = new JLabel();
+		this.textCharDecrypted[3] = new JLabel();
 		for (int i = 0; i < this.textCharDecrypted.length; i++)
 			this.add(this.textCharDecrypted[i]);
 
