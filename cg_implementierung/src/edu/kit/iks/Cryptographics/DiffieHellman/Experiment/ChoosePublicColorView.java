@@ -29,7 +29,9 @@ public class ChoosePublicColorView extends JPanel {
 
 	private ColorMix cm;
 	
-	private ColorChooser chooser;
+	private ColorChooser chooser, chooser2;
+	
+	private GridBagConstraints gbc;
 	
 	private Color[] toChooseFrom = {Color.BLUE, Color.CYAN,
 			Color.DARK_GRAY, Color.GREEN, Color.MAGENTA,
@@ -41,7 +43,7 @@ public class ChoosePublicColorView extends JPanel {
 	
 	public ChoosePublicColorView() {
 		super();
-		GridBagConstraints gbc = new GridBagConstraints();
+		gbc = new GridBagConstraints();
 		GridBagLayout layout = new GridBagLayout();
 		this.setLayout(layout);
 		
@@ -182,6 +184,14 @@ public class ChoosePublicColorView extends JPanel {
 					
 					@Override
 					public void callback() {
+						Color[] param = new Color[]{cc.getPublicColor(),
+								cc.getAlicePrivateColor(), cc.getAliceMixedColor(),
+								cc.getBobMixedColor()};
+						chooser2 = new ColorChooser(new Dimension(50, 50), param[0], param);
+						gbc.gridx = 3;
+						gbc.gridy = 0;
+						add(chooser2, gbc);
+						validate();
 						multiBtn.addActionListener(new ActionListener() {
 							
 							@Override
