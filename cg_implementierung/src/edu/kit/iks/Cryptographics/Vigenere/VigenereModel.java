@@ -23,10 +23,10 @@ public class VigenereModel {
 		}
 	}
 	
-	static public String getCharPositionated(int num, String input) {
+	static public String getCharPositionated(int start, int num, String input) {
 		String returnString = "";
 		int x = 0;
-		for (int i = 0; i < input.length(); i++) {
+		for (int i = start; i < input.length(); i++) {
 			char c = input.charAt(i);
 			int index = (int)c - 64;
 			if (index >= 0 && index <= 26) {
