@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * A displayable keyboard for character input per mouse click or touchscreen. Contains only
- * the basic 26 capital characters. Consists of UIKeyboardKey instances.
+ * A displayable keyboard for character input per mouse click or touchscreen. 
+ * Contains the numbers from 0 to 9, Backspace and Enter.
  * 
  * @author Matthias Jaenicke
  * @author Christian Dreher
@@ -29,13 +29,13 @@ public class NumpadView extends JPanel implements ActionListener {
 	 * When character mode is used, the buttons pressed will replace
 	 * the text in the given input field
 	 */
-	public static final int CHAR_MODE = 0;
+	public static final int DIGIT_MODE = 0;
 	
 	/**
 	 * When string mode is used, the buttons pressed will append
 	 * the text in the given input field
 	 */
-	public static final int STRING_MODE = 1;
+	public static final int NUMBER_MODE = 1;
 	
 	/**
 	 * The input mode set by the constructor
@@ -53,16 +53,16 @@ public class NumpadView extends JPanel implements ActionListener {
 	private JButton[][] keys;
 
 	/**
-	 * Constructor initializing a new instance of keyboard view
+	 * Constructor initializing a new instance of numpad view
 	 * by passed text field (the textField which should be manipulated
-	 * by this keyboard) and the mode. The mode can either be the
-	 * KeyboardView.CHAR_MODE, in which the text in the textField will
-	 * always be replaced by the button pressed, or KeyboardView.STRING_MODE,
+	 * by this numpad) and the mode. The mode can either be the
+	 * NumpadView.DIGIT_MODE, in which the text in the textField will
+	 * always be replaced by the button pressed, or NumpadView.NUMBER_MODE,
 	 * in which the button pressed will only be appended to the text in the
 	 * textField
 	 * 
-	 * @param textField Text field to be manipulated by this keyboard
-	 * @param mode The input mode (Either CHAR_MODE or STRING_MODE)
+	 * @param textField Text field to be manipulated by this numpad
+	 * @param mode The input mode (Either DIGIT_MODE or NUMBER_MODE)
 	 */
 	public NumpadView(JTextField textField, int mode) {
 		super();
@@ -121,12 +121,12 @@ public class NumpadView extends JPanel implements ActionListener {
 		} else if (buttonName.equals("button-key")) {
 			Logger.d("NumpadView", "actionPerformed", "Key pressed");
 			
-			if (this.inputMode == NumpadView.STRING_MODE) {
+			if (this.inputMode == NumpadView.NUMBER_MODE) {
 				String currentText = this.textField.getText();
 				String newText = currentText + buttonLabel;
 				
 				this.textField.setText(newText);
-			} else if (this.inputMode == NumpadView.CHAR_MODE) {
+			} else if (this.inputMode == NumpadView.DIGIT_MODE) {
 				this.textField.setText(buttonLabel);
 				
 			}

@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 /**
  * A displayable keyboard for character input per mouse click or touchscreen. Contains only
- * the basic 26 capital characters. Consists of UIKeyboardKey instances.
+ * the basic 26 capital characters, Backspace and Enter.
  * 
  * @author Matthias Jaenicke
  * @author Christian Dreher
