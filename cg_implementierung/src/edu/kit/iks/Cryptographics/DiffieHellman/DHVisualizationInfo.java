@@ -7,10 +7,7 @@ import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainAimControll
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.AliceChooseSecretController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.OnewayController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainKeyExchangeController;
-import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.MixFinalSecretController;
-import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.SendRightColorController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.YourTurnController;
-import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.ChooseSecretColorController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.ChoosePublicColorController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.SendColorController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
@@ -58,9 +55,6 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 		controllerClasses.add(YourTurnController.class);
 		controllerClasses.add(ChoosePublicColorController.class);
 		controllerClasses.add(SendColorController.class);
-		controllerClasses.add(ChooseSecretColorController.class);
-		controllerClasses.add(SendRightColorController.class);
-		controllerClasses.add(MixFinalSecretController.class);
 		
 		return controllerClasses;
 	}
