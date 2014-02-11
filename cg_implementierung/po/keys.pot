@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-02-09 21:46+0100\n"
-"PO-Revision-Date: 2014-02-09 21:47+0100\n"
+"POT-Creation-Date: 2014-02-11 14:36+0100\n"
+"PO-Revision-Date: 2014-02-11 14:42+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -37,30 +37,85 @@ msgstr ""
 msgid "Welcome"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:80
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:84
 msgid ""
 "Get to know how Ceasar fooled his enemys that intercepted his orders and see "
 "one of the oldest attempts to make confidential material unreadable for "
 "undesireable readers"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:173
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CipherDemoController.java:89
+msgid "Not sure if much help needed here."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CipherDemoController.java:407
+msgid ""
+"Because of your inferior intelligence you look at the first letter of your "
+"name: C.<br>Then you look at the 3rd letter after C and take F. Great!! Now "
+"you encrypted the <br>first letter of your name."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CipherDemoController.java:431
+msgid ""
+"As you saw in the first step you need to add to your letter position in the "
+"alphabet 3<br>and then you get the position of the needed letter. For "
+"example C has the position 2 <br>if you add 2+3 you get 5, which corresponds "
+"to the letter F. Now encrypt the next letter.<br>To acomplish this click on "
+"the white area and type the needed letter."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CipherDemoController.java:458
+msgid ""
+"Oh mighty Caesar. No one will ever be able to destroy you! Because of that "
+"fact lets end <br>this childish games and finish the rest of the fields "
+"fast. Then we can send the courier again<br>but this time your enemies will "
+"have no idea who wrote it and you will conquer the world."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CipherDemoView.java:127
+msgid ""
+"Imagine now you are the mighty caesar!! Of course your first idea is to "
+"substitute each <br>letter from your name with some other from the alphabet. "
+"But which one?"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:86
+msgid ""
+"If you want to hear the awesome legend about Caesar and Kryptolix press the "
+"button below the text. Else try the next button!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:168
 msgid ""
 "Unfortunately his courier has taken the way through the forest, where "
 "Kryptolix chased<br>the wild boars."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:211
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:205
 msgid ""
 "When Kryptolix noticed the unsuspecting and whistling roman courier, he "
-"punched him via the air-line<br>back to Rom. And saw him losing a scroll."
+"punched him via the air-line<br>back to Rome. And saw him losing a scroll."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:127
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:249
+msgid ""
+"When reading the scroll the courier lost, Kryptolix identified Caesar's "
+"plans of<br>conquering Gallia and Kryptolix and his awesome friends could "
+"defeat Caesar again!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:277
+msgid ""
+"Caesar was raging. But while he was toturing some Gauls suddenly a "
+"hellacious and an foolproof idea<br>crossed his mind. In his next message he "
+"will encrypt his name! Hue Hue Hue. Help him."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:124
 msgid "Tell me more."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:155
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:152
 msgid ""
 "One fine day, ca 70 B.C., Caesar was puzzling on an ultra-mega-intelligent-"
 "plan<br>to finally conquer Gallia and sent it to his generals in Gallia."
