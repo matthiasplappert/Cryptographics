@@ -86,7 +86,7 @@ public class CryptoController extends AbstractVisualizationController {
 
 							for (JTextField outputIterator : userOutput) {
 
-								if (outputIterator.getBorder() != null
+								if (outputIterator.getText() != null 
 										&& CryptoController.this.getView()
 												.getAlphabet() != null) {
 									int charToEncryptAscii = outputIterator
@@ -96,7 +96,7 @@ public class CryptoController extends AbstractVisualizationController {
 									viewAlphabet.unHighlight(charToEncryptAscii
 											- CryptoController.this.getModel().ASCII_UC_A);
 									if (outputIterator.isEditable()) {
-										outputIterator.setBorder(null);
+										outputIterator.setBorder(BorderFactory.createLineBorder(Color.darkGray));
 									}
 								} else {
 
