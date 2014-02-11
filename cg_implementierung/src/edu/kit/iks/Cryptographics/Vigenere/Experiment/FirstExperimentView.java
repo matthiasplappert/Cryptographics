@@ -3,6 +3,7 @@ package edu.kit.iks.Cryptographics.Vigenere.Experiment;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -10,6 +11,7 @@ import javax.swing.JTextField;
 
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 public class FirstExperimentView extends VisualizationView{
@@ -26,10 +28,18 @@ public class FirstExperimentView extends VisualizationView{
 	//Visulisation of the Key
 	private JLabel vigenereKeyDesc;
 	private String vigenereKey = "ABCDE";
-	
 	private JLabel explanation;
 	private AlphabetStripView alphabet;
 	private JLabel errorMessage;
+	private KeyboardView keyboard;
+	
+	public void createKeyboard(JTextField input, final int flag) {
+		this.keyboard = new KeyboardView(input, flag);
+		this.add(this.keyboard);
+		Dimension size = this.keyboard.getPreferredSize();
+		this.keyboard.setBounds(400, 350, size.width, size.height);
+		this.validate();
+	}
 	
 	public void highlightTextBorder(int i) {
 		this.textCharDecrypted[i].setEnabled(true);
@@ -39,6 +49,21 @@ public class FirstExperimentView extends VisualizationView{
 	public void unHighlightTextBorder(int i) {
 		this.textCharDecrypted[i].setEnabled(false);
 		this.textCharDecrypted[i].setBorder(null);
+	}
+	
+	/**
+	 * @return the keyboard
+	 */
+	public KeyboardView getKeyboard() {
+		return this.keyboard;
+	}
+	
+	/**
+	 * @param keyboard
+	 *            the keyboard to set
+	 */
+	public void setKeyboard(KeyboardView keyboard) {
+		this.keyboard = keyboard;
 	}
 	
 	public AlphabetStripView getAlphabet() {
@@ -68,6 +93,10 @@ public class FirstExperimentView extends VisualizationView{
 	
 	public JLabel getTextFieldPlain(int i) {
 		return this.textCharPlain[i];
+	}
+	
+	public JTextField[] getTextFields() {
+		return this.textCharDecrypted;
 	}
 	
 	public void setExplanation(String explanation) {
@@ -156,7 +185,7 @@ public class FirstExperimentView extends VisualizationView{
 		this.vigenereKeyDesc.setBounds(90, 250, size.width, size.height);
 		
 		size = this.errorMessage.getPreferredSize();
-		this.errorMessage.setBounds(500, 320, size.width, size.height);
+		this.errorMessage.setBounds(500, 350, size.width, size.height);
 		
 		size = this.textCharPlain[0].getPreferredSize();
 		this.textCharPlain[0].setBounds(500, 100,

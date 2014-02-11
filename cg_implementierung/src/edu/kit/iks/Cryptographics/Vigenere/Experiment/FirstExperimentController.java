@@ -1,15 +1,22 @@
 package edu.kit.iks.Cryptographics.Vigenere.Experiment;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
+import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoController;
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
 
 public class FirstExperimentController extends AbstractVisualizationController {
 
@@ -73,8 +80,41 @@ public class FirstExperimentController extends AbstractVisualizationController {
 				containerController.presentPreviousVisualizationController();
 			}
 		});
+		
+		JTextField[] fields = getView().getTextFields();
+		for (int i = 0; i < fields.length; i++) {
+			final JTextField userOutput = fields[i];
+
+			userOutput
+					.addFocusListener(new FocusListener() {
+						@Override
+						public void focusGained(FocusEvent e) {
+							userOutput.setBorder(BorderFactory.createLineBorder(Color.blue, 5));
+							getView().hideError();
+							if (getView().getKeyboard() != null) {
+								getView().remove(getView().getKeyboard());
+								getView().setKeyboard(null);
+								getView().validate();
+								getView().repaint();
+							}
+							if (userOutput.isEditable()) {
+								getView().createKeyboard(userOutput, KeyboardView.CHAR_MODE);
+							}
+						}
+						@Override
+						public void focusLost(FocusEvent e) {
+							
+						}
+					});
+		}
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
+				if (getView().getKeyboard() != null) {
+					getView().remove(getView().getKeyboard());
+					getView().setKeyboard(null);
+					getView().validate();
+					getView().repaint();
+				}
 				if (testInput(state)) {
 					getView().hideError();
 					state++;
