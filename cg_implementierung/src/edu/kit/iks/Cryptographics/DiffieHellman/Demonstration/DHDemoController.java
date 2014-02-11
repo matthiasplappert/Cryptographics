@@ -22,13 +22,11 @@ public class DHDemoController extends AbstractVisualizationController {
 
 	@Override
 	public void loadView() {
-		// TODO Auto-generated method stub
 		this.view = new DHDemoView();
 		this.view.setRemember(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
 			}
 		});

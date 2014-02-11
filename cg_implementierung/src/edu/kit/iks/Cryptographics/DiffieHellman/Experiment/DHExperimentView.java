@@ -56,6 +56,17 @@ public class DHExperimentView extends JPanel {
 	private String congrats = "Congratulations, you choosed the right colors to mix, " +
 			"you and Bob established a shared secret that Eve doesn not know";
 	
+	/*
+	 * the current help String
+	 */
+	private String help;
+	
+	private String help1 = "";
+	
+	private String help2 = "";
+	
+	private String help3 = "";
+	
 	private JLabel choosePublicLbl;
 	
 	private JButton multiBtn;
@@ -78,7 +89,7 @@ public class DHExperimentView extends JPanel {
 
 	private ActionListener remember;
 
-	private String help;
+	
 	
 	public DHExperimentView() {
 		super();
@@ -221,7 +232,6 @@ public class DHExperimentView extends JPanel {
 				}
 			});
 		} else {
-			//TODO oh you failed
 			if(chooser.getCurrentColor().equals(cc.getAlicePrivateColor())) {
 				choosePublicLbl.setText("<html><div style=\"width:300px\">" + wrongPrivate + "</div></html>");
 			} else {

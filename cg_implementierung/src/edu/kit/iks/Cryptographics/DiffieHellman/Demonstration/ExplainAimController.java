@@ -22,7 +22,6 @@ public class ExplainAimController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.view = new ExplainAimView();
-		// TODO use mouselistener instead of actionlistener
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			
 			@Override
