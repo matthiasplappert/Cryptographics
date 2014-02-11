@@ -1,5 +1,10 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
+import javax.swing.text.html.HTML;
+import javax.xml.validation.Validator;
+
+import com.google.zxing.HtmlAssetTranslator;
+
 /**
  * Model of the visualization of Caesar's cipher.
  * 
@@ -10,11 +15,7 @@ public class CryptoModel {
 
 	// makes sure only one instance is being generated.
 	private static final CryptoModel model = new CryptoModel();
-
-	public static CryptoModel getInstance() {
-		return CryptoModel.model;
-	}
-
+	
 	// ASCII lower case a code.
 	public final int ASCII_LC_A = 'a';
 
@@ -30,23 +31,15 @@ public class CryptoModel {
 	// The reach of the key interval.
 	private final int MODULO = 26;
 
+	public static CryptoModel getInstance() {
+		return CryptoModel.model;
+	}
+
 	/**
 	 * Constructor.
 	 */
 	private CryptoModel() {
 
-	}
-
-	/**
-	 * @param textLines
-	 * @return
-	 */
-	public String arrayToString(String[] textLines) {
-		String textString = "";
-		for (String textline : textLines) {
-			textString += textline;
-		}
-		return textString;
 	}
 
 	/**
@@ -58,88 +51,51 @@ public class CryptoModel {
 		return this.enc(-key, cipher);
 	}
 
-	/**
-	 * @param key
-	 * @param cipher
-	 * @return
-	 */
-	public String[] dec(int key, String[] cipher) {
-		return this.enc(-key, cipher);
+	private char shift(int key, char charToShift) {
+		int offset = charToShift - this.ASCII_UC_A;
+		if (Character.isLowerCase(charToShift)) {
+			offset = charToShift - this.ASCII_LC_A;
+			return (char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_LC_A);
+		}
+		return (char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_UC_A);
 	}
 
 	/**
-	 * Function for decrypting and encrypting of small strings.
+	 * Function for decrypting and encrypting of all sort of String.<br>
+	 * CAREFUL:  If you want to encrypt html Strings, make sure all tags are closed!!!!<br>
 	 * 
 	 * @param key
 	 * @param text
 	 * @return
 	 */
 	public String enc(int key, String text) {
-
+		//TODO: Check if the String has valid HTML!
 		String cipher = "";
 		for (int i = 0; i < text.length(); i++) {
 			Character c = text.charAt(i);
 
 			if (Character.isLetter(c)) {
-				if (Character.isUpperCase(c)) {
-					int offset = c - this.ASCII_UC_A;
 
-					cipher += String
-							.valueOf((char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_UC_A));
-				} else {
-					int offset = c - this.ASCII_LC_A;
-
-					cipher += String
-							.valueOf((char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_LC_A));
-				}
+				cipher += String.valueOf(shift(key, c));
 
 			} else {
-				cipher += c;
-			}
-
-		}
-		return cipher;
-
-	}
-
-	/**
-	 * Function for encrypting bigger texts.
-	 * 
-	 * @param key
-	 * @param plainTextLines
-	 * @return
-	 */
-	public String[] enc(int key, String[] plainTextLines) {
-
-		String[] cipher = new String[plainTextLines.length];
-
-		for (int i = 0; i < plainTextLines.length; i++) {
-			cipher[i] = "";
-			for (int j = 0; j < plainTextLines[i].length(); j++) {
-				Character c = plainTextLines[i].charAt(j);
-
-				if (Character.isLetter(c)) {
-					if (Character.isUpperCase(c)) {
-						int offset = c - this.ASCII_UC_A;
-
-						cipher[i] += String
-								.valueOf((char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_UC_A));
-					} else {
-						int offset = c - this.ASCII_LC_A;
-
-						cipher[i] += String
-								.valueOf((char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_LC_A));
-					}
-
+				if (c != '<') {
+					cipher += c;
 				} else {
-					cipher[i] += c;
+					cipher += c;
+					while (c != '>') {
+						i++;
+						c = text.charAt(i);
+						cipher += c;
+					}
 				}
-
 			}
+
 		}
 		return cipher;
 
 	}
+	
 
 	public int generateKey() {
 		return this.generateRandomInt(1, 26);
@@ -207,18 +163,6 @@ public class CryptoModel {
 	}
 
 	/**
-	 * @param stringToFormat
-	 * @return
-	 */
-	public String insertHtmlBreaks(String[] textLines) {
-		String formattedString = this.HTML_HEADER;
-		for (String textline : textLines) {
-			formattedString += textline + "<br>";
-		}
-		return formattedString;
-	}
-
-	/**
 	 * @param input
 	 */
 	public boolean isInputValid(String input) {
@@ -233,11 +177,4 @@ public class CryptoModel {
 		return (key > 0 && key <= this.MODULO);
 	}
 
-	/**
-	 * @param stringToClear
-	 * @return
-	 */
-	public String[] removeHtmlBreaks(String stringToClear) {
-		return stringToClear.substring(this.HTML_HEADER_LENGTH).split("<br>");
-	}
 }
