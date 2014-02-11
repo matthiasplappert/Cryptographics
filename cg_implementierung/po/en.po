@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-02-11 14:36+0100\n"
-"PO-Revision-Date: 2014-02-11 14:42+0100\n"
+"POT-Creation-Date: 2014-02-11 15:06+0100\n"
+"PO-Revision-Date: 2014-02-11 15:06+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,10 @@ msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/IdlePopoverView.java:115
 msgid "Continue"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/TimelinePopoverView.java:106
+msgid "Start"
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:64
@@ -120,3 +124,23 @@ msgid ""
 "One fine day, ca 70 B.C., Caesar was puzzling on an ultra-mega-intelligent-"
 "plan<br>to finally conquer Gallia and sent it to his generals in Gallia."
 msgstr ""
+
+#: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:149
+msgid "Easy"
+msgstr ""
+
+#: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:150
+msgid "Medium"
+msgstr ""
+
+#: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:151
+msgid "Hard"
+msgstr ""
+
+#: ../src/edu/kit/iks/CryptographicsLib/KeyboardView.java:146
+msgid "keyboard-y"
+msgstr "Y"
+
+#: ../src/edu/kit/iks/CryptographicsLib/KeyboardView.java:154
+msgid "keyboard-z"
+msgstr "Z"
