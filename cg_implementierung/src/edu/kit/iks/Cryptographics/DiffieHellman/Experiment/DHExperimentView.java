@@ -61,11 +61,21 @@ public class DHExperimentView extends JPanel {
 	 */
 	private String help;
 	
-	private String help1 = "";
+	private String help1 = "You have to choose a public color, " +
+			"to choose a different color you have to click the '->' or " +
+			"'<-' Button. You can't do much wrong. When you are ready " +
+			"click the 'send color' button";
 	
-	private String help2 = "";
+	private String help2 = "You have to choose a private color, which " +
+			"is not the same as the public color. To choose a color, " +
+			"you have to click the '->' or the '<-' Button. You can't do " +
+			"much wrong. When you are ready, click the 'mix colors' button";
 	
 	private String help3 = "";
+	
+	private String help4 = "";
+	
+	private String help5 = "";
 	
 	private JLabel choosePublicLbl;
 	
