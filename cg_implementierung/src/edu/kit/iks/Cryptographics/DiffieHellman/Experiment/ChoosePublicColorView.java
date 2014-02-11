@@ -21,11 +21,17 @@ public class ChoosePublicColorView extends JPanel {
 
 	private static final long serialVersionUID = 5764374133753732451L;
 	
-	private String explanation1 = "";
+	private String explanation1 = "Now it is your turn! Choose a public color, which " +
+			"will be the basis for the coming operations. If you are finished choosing, " +
+			"click the 'send color' button to send it to Bob.";
 	
-	private String explanation2 = "";
+	private String explanation2 = "Now you can choose a private color which you can mix with the " +
+			"public color you previously send to Bob. If you have choosen the color you liked, click " +
+			"the 'Mix with public color' button";
 	
-	private String explanation3 = "";
+	private String explanation3 = "The next step is to send the right color to Bob, as " +
+			"shown in the demonstration. You have three possible colors to send and " +
+			"one is the right color. If you need help click the 'help' button";
 	
 	private String explanation4 = "";
 	
@@ -60,8 +66,7 @@ public class ChoosePublicColorView extends JPanel {
 		this.setLayout(layout);
 		
 		this.choosePublicLbl = new JLabel();
-		this.choosePublicLbl.setText("<html><div style=\"width:120px\">Alice chooses a public color and sends it to Bob" +
-				"Eve listens to the channel and gets a copy</div></html>");
+		this.choosePublicLbl.setText("<html><div style=\"width:300px\">" + explanation1 + "</div></html>");
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 1;
@@ -121,6 +126,8 @@ public class ChoosePublicColorView extends JPanel {
 			
 			@Override
 			public void callback() {
+				choosePublicLbl.setText("<html><div style=\"width:300px\">" + explanation2 + "</div></html>");
+				multiBtn.setText("Mix with public color");
 				multiBtn.addActionListener(new ActionListener() {
 					
 					@Override
@@ -149,6 +156,8 @@ public class ChoosePublicColorView extends JPanel {
 						cm.getMixedColor()
 				});
 				toChooseFrom = chooser.getToChooseFrom();
+				choosePublicLbl.setText("<html><div style=\"width:300px\">" + explanation3 + "</div></html>");
+				multiBtn.setText("Send color");
 				multiBtn.addActionListener(new ActionListener() {
 					
 					@Override
