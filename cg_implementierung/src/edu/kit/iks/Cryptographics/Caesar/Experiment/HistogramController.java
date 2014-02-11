@@ -52,13 +52,14 @@ public class HistogramController extends AbstractVisualizationController {
 		super(visualizationInfo);
 	}
 
+	//--------------------------------------------------------public methods------------------------------------------------------//
 	@Override
 	public void loadView() {
 		this.view = new HistogramView();
 		this.model = CryptoModel.getInstance();
 		this.step = 0;
 
-		this.genProceedListener();
+		this.generateProceedListener();
 
 		this.getView().getBackButton().addActionListener(new ActionListener() {
 			/*
@@ -84,7 +85,10 @@ public class HistogramController extends AbstractVisualizationController {
 		});
 	}
 
-	public void generateHistogramInputListener() {
+	/**
+	 * Generates the needed ActionListener for the inputfield of the key.
+	 */
+	private void generateHistogramInputListener() {
 		this.getView().getKeyInput().addFocusListener(new FocusListener() {
 
 			@Override
@@ -211,7 +215,7 @@ public class HistogramController extends AbstractVisualizationController {
 	/**
 	 * Generates the action listener for the brute force stage.
 	 */
-	public void generateBruteForceListener() {
+	private void generateBruteForceListener() {
 		this.getView().getIncrement()
 				.addMouseListener(new MouseClickListener() {
 					@Override
@@ -333,7 +337,7 @@ public class HistogramController extends AbstractVisualizationController {
 				});
 	}
 
-	private void genProceedListener() {
+	private void generateProceedListener() {
 		this.getView().getProceed().addMouseListener(new MouseClickListener() {
 			@Override
 			public void clicked(MouseEvent e) {
@@ -377,7 +381,7 @@ public class HistogramController extends AbstractVisualizationController {
 
 					// Build the new experiment.
 					HistogramController.this.setStep(2);
-					HistogramController.this.genProceedListener();
+					HistogramController.this.generateProceedListener();
 					HistogramController.this.getView()
 							.setupHistogramContainer();
 					HistogramController.this.getView().setupPlainHistogram(
