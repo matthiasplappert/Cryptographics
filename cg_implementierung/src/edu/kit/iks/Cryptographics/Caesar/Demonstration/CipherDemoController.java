@@ -19,6 +19,7 @@ import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoModel;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
 
 /**
@@ -169,7 +170,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 								output.setBorder(BorderFactory
 										.createLineBorder(Color.blue, 5));
 								CipherDemoController.this.getView()
-										.createKeyboard(output);
+										.createKeyboard(output, KeyboardView.CHAR_MODE);
 							}
 						}
 

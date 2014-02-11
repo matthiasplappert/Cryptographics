@@ -97,9 +97,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoView" project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoView.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="10" language="java" name="edu.kit.iks.Cryptographics.Caesar.CryptoView" project="Cryptographics" 
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/Caesar/CryptoView.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1271" y="764"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
