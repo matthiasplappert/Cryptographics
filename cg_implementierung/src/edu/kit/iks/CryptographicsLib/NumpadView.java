@@ -26,20 +26,21 @@ public class NumpadView extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 5986894202162733671L;
 
 	/**
-	 * When character mode is used, the buttons pressed will replace
-	 * the text in the given input field
+	 * When digit mode is used, the buttons pressed will replace
+	 * the number in the given input field
 	 */
 	public static final int DIGIT_MODE = 0;
 	
 	/**
-	 * When string mode is used, the buttons pressed will append
-	 * the text in the given input field
+	 * When number mode is used, the buttons pressed will append
+	 * the number in the given input field
 	 */
 	public static final int NUMBER_MODE = 1;
 	
 	/**
 	 * The input mode set by the constructor
 	 */
+	
 	private int inputMode;
 
 	/**
@@ -136,8 +137,6 @@ public class NumpadView extends JPanel implements ActionListener {
 	
 	private void initKeyboardButtons() {
 		JButton[][] keysInit = {
-			// First row
-			{kf("Delete", "bs")},
 				
 			// First row
 			{kf("7"), kf("8"), kf("9")},
@@ -149,7 +148,7 @@ public class NumpadView extends JPanel implements ActionListener {
 			{kf("1"), kf("2"), kf("3")},
 			
 			// Fourth row
-			{kf("0"), kf("Enter", "e")}
+			{kf("BS", "bs"), kf("0"), kf("E", "e")}
 		};
 		
 		this.keys = keysInit;
