@@ -54,7 +54,7 @@ public class CryptoDemonstrationView extends CryptoView {
 	 * Constructor.
 	 */
 	public CryptoDemonstrationView() {
-		super();
+		super(CryptoView.DEMONSTRATION_MODE);
 		// load the resources.
 		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
 		this.cipherDemoResource = vsInfo.getResources().getChild("CipherDemo");
@@ -63,7 +63,7 @@ public class CryptoDemonstrationView extends CryptoView {
 		char[] chars = { 'C', 'A', 'E', 'S', 'A', 'R' };
 		
 		//Setup the io textfields.
-		this.setupInOutElements(chars,3, this.DEMONSTRATION_MODE);
+		this.setupInOutElements(chars,3, CryptoView.DEMONSTRATION_MODE);
 
 		//setup the forwarding button.
 		this.setupProceed();

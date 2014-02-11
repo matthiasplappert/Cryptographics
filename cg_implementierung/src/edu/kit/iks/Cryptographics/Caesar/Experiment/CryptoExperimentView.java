@@ -44,10 +44,10 @@ public class CryptoExperimentView extends CryptoView {
 	 * 
 	 */
 	public CryptoExperimentView() {
-		super();
+		super(CryptoView.EXPERIMENT_MODE);
 		// load the resources.
 		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
-		this.cryptoResource = vsInfo.getResources().getChild("Encrypt");
+		this.cryptoResource = vsInfo.getResources().getChild(i18n.tr("Encrypt"));
 		
 		// setup the input/output elements for further steps.
 		this.setupUserIO();
