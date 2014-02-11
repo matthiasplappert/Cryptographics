@@ -268,6 +268,7 @@ public class DHExperimentView extends JPanel {
 						gbc.gridx = 3;
 						gbc.gridy = 0;
 						add(chooser2, gbc);
+						chooser.setToChooseFrom(param);
 						choosePublicLbl.setText("<html><div style=\"width:300px\">" + finalSecret + "</div></html>");
 						multiBtn.setText("Mix colors to final secret");
 						validate();
