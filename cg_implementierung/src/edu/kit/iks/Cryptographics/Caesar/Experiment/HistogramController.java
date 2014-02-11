@@ -53,6 +53,7 @@ public class HistogramController extends AbstractVisualizationController {
 	}
 
 	//--------------------------------------------------------public methods------------------------------------------------------//
+	
 	@Override
 	public void loadView() {
 		this.view = new HistogramView();

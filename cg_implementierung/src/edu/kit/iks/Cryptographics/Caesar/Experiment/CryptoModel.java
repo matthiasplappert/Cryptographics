@@ -43,18 +43,6 @@ public class CryptoModel {
 	}
 
 	/**
-	 * @param textLines
-	 * @return
-	 */
-	public String arrayToString(String[] textLines) {
-		String textString = "";
-		for (String textline : textLines) {
-			textString += textline;
-		}
-		return textString;
-	}
-
-	/**
 	 * @param key
 	 * @param cipher
 	 * @return

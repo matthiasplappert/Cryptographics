@@ -26,14 +26,6 @@ public class CryptoModelTest {
 
 
 	@Test
-	public void testArrayToString() {
-		String[] testStringArr = { "Test1 ", "2 ", "3 ", "4 ", "HIGH ", "FIVE" };
-		String expected = "Test1 2 3 4 HIGH FIVE";
-		String actual = this.modelTT.arrayToString(testStringArr);
-		assertEquals(MESSAGE_HEADER + "arrayToString()\n", expected, actual);
-	}
-
-	@Test
 	public void testEncIntString() {
 		String alphabet = "!!!ABcdEFghIJKlmNOPqrSTUvwXYZ!!!";
 		String expected = "!!!KLmnOPqrSTUvwXYZabCDEfgHIJ!!!";
@@ -57,17 +49,6 @@ public class CryptoModelTest {
 		String actual = this.modelTT.dec(10, cipher);
 		assertEquals(MESSAGE_HEADER + "dec(String)\n", expected, actual);
 	}
-
-//	@Test
-//	public void testDecIntStringArray() {
-//		String[] cipher = { "NOPQ", "rstu", "VWXY", "zabc", "DEFG", "hijklm",
-//				".;!:_-" };
-//		String[] expected = { "ABCD", "efgh", "IJKL", "mnop", "QRST", "uvwxyz",
-//				".;!:_-" };
-//		String[] actual = this.modelTT.dec(13, cipher);
-//		assertArrayEquals(MESSAGE_HEADER + "dec(StringArray)\n", expected,
-//				actual);
-//	}
 
 	@Test
 	public void testIsKeyValid() {
