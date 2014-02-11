@@ -33,11 +33,28 @@ public class ChoosePublicColorView extends JPanel {
 			"shown in the demonstration. You have three possible colors to send and " +
 			"one is the right color. If you need help click the 'help' button";
 	
-	private String explanation4 = "";
+	private String wrongPrivate = "Oh no. You choosed the private color. This color " +
+			"is meant to be private. If you had send this color, Eve would be able " +
+			"to get the secret too, afterwards. " +
+			"Please try again, by choosing another color and clicking" +
+			" the 'send color' button";
 	
-	private String explanation5 = "";
+	private String wrongPublic = "Oh no. You choosed the public color. While Eve " +
+			"won't be able to get the secret shared color, you still didn't follow " +
+			"the protocol instructions. Try again by choosing another color. ";
 	
-	private JLabel wrong;
+	private String rightColor = "Good. You choosed to send your mixture to Bob. This is " +
+			"the right choice.";
+	
+	private String bobsTurn = "Now it is Bobs turn. Click the continue button, so that" +
+			" Bob will choose his private color and send you his mixture. ";
+	
+	private String finalSecret = "This is the last step in the protocol. " +
+			"Choose the right colors to produce the final secret, just like " +
+			"how it was explained at the demonstration. ";
+	
+	private String congrats = "Congratulations, you choosed the right colors to mix, " +
+			"you and Bob established a shared secret that Eve doesn not know";
 	
 	private JLabel choosePublicLbl;
 	
@@ -174,10 +191,13 @@ public class ChoosePublicColorView extends JPanel {
 			for(ActionListener al : multiBtn.getActionListeners()) {
 				multiBtn.removeActionListener(al);
 			}
+			choosePublicLbl.setText("<html><div style=\"width:300px\">" + rightColor + "</div></html>");
 			cc.sendAliceMixedColorToBob(new NextStepCallback() {
 				
 				@Override
 				public void callback() {
+					choosePublicLbl.setText("<html><div style=\"width:300px\">" + bobsTurn + "</div></html>");
+					multiBtn.setText("Continue");
 					multiBtn.addActionListener(new ActionListener() {
 						
 						@Override
@@ -192,6 +212,11 @@ public class ChoosePublicColorView extends JPanel {
 			});
 		} else {
 			//TODO oh you failed
+			if(chooser.getCurrentColor().equals(cc.getAlicePrivateColor())) {
+				choosePublicLbl.setText("<html><div style=\"width:300px\">" + wrongPrivate + "</div></html>");
+			} else {
+				choosePublicLbl.setText("<html><div style=\"width:300px\">" + wrongPublic + "</div></html>");
+			}
 		}
 	}
 	
@@ -213,6 +238,8 @@ public class ChoosePublicColorView extends JPanel {
 						gbc.gridx = 3;
 						gbc.gridy = 0;
 						add(chooser2, gbc);
+						choosePublicLbl.setText("<html><div style=\"width:300px\">" + finalSecret + "</div></html>");
+						multiBtn.setText("Mix colors to final secret");
 						validate();
 						multiBtn.addActionListener(new ActionListener() {
 							
@@ -236,6 +263,7 @@ public class ChoosePublicColorView extends JPanel {
 			for(ActionListener al : multiBtn.getActionListeners()) {
 				multiBtn.removeActionListener(al);
 			}
+			choosePublicLbl.setText("<html><div style=\"width:300px\">" + congrats + "</div></html>");
 			cc.mixAliceFinalSecret(new NextStepCallback() {
 				
 				@Override
@@ -244,13 +272,9 @@ public class ChoosePublicColorView extends JPanel {
 				}
 			});
 		} else {
-			//wrong colors
-//			wrong = new JLabel("You choosed the wrong colors, try again");
-//			gbc.gridx = 2;
-//			gbc.gridy = 2;
-//			add(wrong, gbc);
 			choosePublicLbl.setText("<html><div style=\"width:120px\">" +
 					"You choosed the wrong colors, try again</div></html>");
+			
 			validate();
 		}
 	}
