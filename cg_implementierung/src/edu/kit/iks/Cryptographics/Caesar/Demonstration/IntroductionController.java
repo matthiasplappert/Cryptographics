@@ -40,7 +40,7 @@ public class IntroductionController extends AbstractVisualizationController {
 	 * Localization instance
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(IntroductionController.class);
-	
+
 	/**
 	 * @param visualizationInfo
 	 */
@@ -92,7 +92,7 @@ public class IntroductionController extends AbstractVisualizationController {
 		});
 
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()

@@ -51,7 +51,7 @@ public class IntroductionView extends VisualizationView {
 	private ImageView courier;
 	private int xCoordCourier;
 	private ImageView caesarEvil;
-	
+
 	private ImageView boar;
 	private ImageView obelix;
 	private ImageView orders;
@@ -76,7 +76,7 @@ public class IntroductionView extends VisualizationView {
 	 * Localization instance
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(IntroductionView.class);
-	
+
 	/**
 	 * Constructor of this View.
 	 */
@@ -154,8 +154,8 @@ public class IntroductionView extends VisualizationView {
 				"<html><body>" +
 					i18n.tr("One fine day, ca 70 B.C., Caesar was puzzling on an ultra-mega-intelligent-plan<br>" +
 							"to finally conquer Gallia and sent it to his generals in Gallia.")
-						
-				
+
+
 		       ));
 
 		//this.explanation.setFont(new Font("Arial", 2, 20));

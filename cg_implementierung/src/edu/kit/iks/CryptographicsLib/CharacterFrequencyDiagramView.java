@@ -113,7 +113,7 @@ public class CharacterFrequencyDiagramView extends JPanel {
 			coloredBeam.setForeground(Color.white);
 		}
 		coloredBeam.setOpaque(true);
-		coloredBeam.setBackground(Color.blue.darker());
+		coloredBeam.setBackground(Color.BLUE.darker());
 		coloredBeam.setMinimumSize(new Dimension(width, height));
 		coloredBeam.setPreferredSize(new Dimension(width, height));
 		coloredBeam.setMaximumSize(new Dimension(width, height));
@@ -143,10 +143,13 @@ public class CharacterFrequencyDiagramView extends JPanel {
 		}
 		
 		int asciiA = 65;
+		boolean inHtmlTag = false;
 		for(int i = 0; i < text.length(); i++) {
 			char c = text.charAt(i);
 			int index = (int)c - asciiA;
-			if (index >= 0 && index < result.length) {
+			if (c == '<' || c == '>') {
+				inHtmlTag = !inHtmlTag;
+			} else if (!inHtmlTag && index >= 0 && index < result.length) {
 				result[index]++;
 			}
 		}

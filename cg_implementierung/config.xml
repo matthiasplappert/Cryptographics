@@ -4,7 +4,7 @@
   <resetTimeout>60000</resetTimeout>
   <debugMode>true</debugMode>
   <fullscreenMode>false</fullscreenMode>
-  <lookAndFeel>false</lookAndFeel>
+  <lookAndFeel>true</lookAndFeel>
   <mouseCursor>true</mouseCursor>
   <languageCode>en</languageCode>
 </config>
