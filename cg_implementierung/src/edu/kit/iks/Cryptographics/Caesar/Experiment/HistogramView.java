@@ -112,7 +112,7 @@ public class HistogramView extends VisualizationView {
 	 */
 	private CharacterFrequencyDiagramView plainTextHistogram;
 	private CharacterFrequencyDiagramView cipherHistogram;
-	private String[] histogramCipher;
+	private String histogramCipher;
 
 	/**
 	 * JLabel that contains the decrypted cipher.
@@ -671,7 +671,7 @@ public class HistogramView extends VisualizationView {
 	/**
 	 * @return the histogramCipher
 	 */
-	public String[] getHistogramCipher() {
+	public String getHistogramCipher() {
 		return this.histogramCipher;
 	}
 
@@ -827,7 +827,7 @@ public class HistogramView extends VisualizationView {
 	 * @param histogramCipher
 	 *            the histogramCipher to set
 	 */
-	public void setHistogramCipher(String[] histogramCipher) {
+	public void setHistogramCipher(String histogramCipher) {
 		this.histogramCipher = histogramCipher;
 	}
 
