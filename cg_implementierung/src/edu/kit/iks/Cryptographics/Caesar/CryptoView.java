@@ -17,6 +17,7 @@ import org.jdom2.Element;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.Configuration;
+import edu.kit.iks.Cryptographics.Caesar.Demonstration.CryptoDemonstrationController;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
@@ -154,6 +155,27 @@ public class CryptoView extends VisualizationView {
 
 	// ----------------------------------------------------------------------------//
 	// -------------------------public methods------------------------------------//
+	
+	/**
+	 * Removes the Keyboard from the view.
+	 */
+	public void removeKeyboard() {
+		this.remove(this.keyboard);
+		this.keyboard = null;
+		this.validate();
+		this.repaint();
+	}
+	
+	/**
+	 * Removes the numpad from the view.
+	 */
+	public void removeNumpad() {
+		this.remove(this.numpad);
+		this.numpad = null;
+		this.validate();
+		this.repaint();
+	}
+	
 	/**
 	 * Creates the keyboard and shows it in the main container. /**
 	 * 
