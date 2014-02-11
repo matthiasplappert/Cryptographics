@@ -72,11 +72,11 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	
 	public List<Class> getControllerClasses() {
 		List<Class> controllerClasses = new ArrayList<Class>();
-		controllerClasses.add(FirstDemonstrationController.class);
-		controllerClasses.add(SecondDemonstrationController.class);
-		controllerClasses.add(ThirdDemonstrationController.class);
-		controllerClasses.add(FirstExperimentController.class);
-		controllerClasses.add(FirstExplanationController.class);
+		//controllerClasses.add(FirstDemonstrationController.class);
+		//controllerClasses.add(SecondDemonstrationController.class);
+		//controllerClasses.add(ThirdDemonstrationController.class);
+		//controllerClasses.add(FirstExperimentController.class);
+		//controllerClasses.add(FirstExplanationController.class);
 		controllerClasses.add(SecondExplanationController.class);
 		controllerClasses.add(InformationController.class);
 		return controllerClasses;

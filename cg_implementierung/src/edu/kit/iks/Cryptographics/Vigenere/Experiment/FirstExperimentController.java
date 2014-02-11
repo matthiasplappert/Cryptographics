@@ -11,11 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
-import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoController;
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
 
 public class FirstExperimentController extends AbstractVisualizationController {
@@ -106,7 +104,7 @@ public class FirstExperimentController extends AbstractVisualizationController {
 							
 						}
 					});
-		}
+			}
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				if (getView().getKeyboard() != null) {
