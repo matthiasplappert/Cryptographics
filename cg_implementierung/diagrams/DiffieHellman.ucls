@@ -31,9 +31,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" 
-    name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.AliceChooseSecretController" project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/AliceChooseSecretController.java" 
+  <class id="4" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DHDemoController" 
+    project="Cryptographics" 
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="616" y="642"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -64,9 +64,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" 
-    name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainKeyExchangeController" project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/ExplainKeyExchangeController.java" 
+  <class id="7" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DemoOneWayController" 
+    project="Cryptographics" 
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DemoOneWayController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1720" y="642"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -97,9 +97,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.ChoosePublicColorController" 
+  <class id="10" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.DHExperimentController" 
     project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/ChoosePublicColorController.java" 
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2740" y="642"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -130,9 +130,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.SendColorController" 
+  <class id="13" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.CongratsController" 
     project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/SendColorController.java" 
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/CongratsController.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="3801" y="642"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -174,10 +174,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.AliceChooseSecretView" 
+  <class id="17" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DHDemoView" 
     project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/AliceChooseSecretView.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="616" y="795"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -207,10 +207,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainKeyExchangeView" 
+  <class id="20" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DemoOneWayView" 
     project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/ExplainKeyExchangeView.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DemoOneWayView.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1720" y="796"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -240,10 +240,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.ChoosePublicColorView" 
+  <class id="23" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.DHExperimentView" 
     project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/ChoosePublicColorView.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2740" y="796"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -273,9 +273,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="26" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.SendColorView" 
+  <class id="26" language="java" name="edu.kit.iks.Cryptographics.DiffieHellman.Experiment.CongratsView" 
     project="Cryptographics" 
-    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/SendColorView.java" binary="false" 
+    file="/Cryptographics/src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/CongratsView.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="3801" y="796"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 

@@ -7,10 +7,10 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class ChoosePublicColorController extends AbstractVisualizationController {
-	private ChoosePublicColorView view;
+public class DHExperimentController extends AbstractVisualizationController {
+	private DHExperimentView view;
 	
-	public ChoosePublicColorController(
+	public DHExperimentController(
 			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
@@ -23,7 +23,7 @@ public class ChoosePublicColorController extends AbstractVisualizationController
 
 	@Override
 	public void loadView() {
-		view = new ChoosePublicColorView();
+		view = new DHExperimentView();
 		view.setRemember(new ActionListener() {
 			
 			@Override
@@ -43,7 +43,7 @@ public class ChoosePublicColorController extends AbstractVisualizationController
 	}
 
 	@Override
-	public ChoosePublicColorView getView() {
-		return (ChoosePublicColorView) this.view;
+	public DHExperimentView getView() {
+		return (DHExperimentView) this.view;
 	}
 }

@@ -7,11 +7,11 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class ExplainKeyExchangeController extends AbstractVisualizationController {
+public class DemoOneWayController extends AbstractVisualizationController {
 	
-	private ExplainKeyExchangeView view;
+	private DemoOneWayView view;
 	
-	public ExplainKeyExchangeController(AbstractVisualizationInfo visualizationInfo) {
+	public DemoOneWayController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 
@@ -24,7 +24,7 @@ public class ExplainKeyExchangeController extends AbstractVisualizationControlle
 	@Override
 	public void loadView() {
 		// TODO Auto-generated method stub
-		view = new ExplainKeyExchangeView();
+		view = new DemoOneWayView();
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			
 			@Override
@@ -56,8 +56,8 @@ public class ExplainKeyExchangeController extends AbstractVisualizationControlle
 	}
 	
 	@Override
-	public ExplainKeyExchangeView getView() {
-		return (ExplainKeyExchangeView) this.view;
+	public DemoOneWayView getView() {
+		return (DemoOneWayView) this.view;
 	}
 
 }

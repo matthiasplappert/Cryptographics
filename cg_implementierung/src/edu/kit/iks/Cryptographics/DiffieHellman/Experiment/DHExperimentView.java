@@ -17,7 +17,7 @@ import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorChooser;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorMix;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.NextStepCallback;
 
-public class ChoosePublicColorView extends JPanel {
+public class DHExperimentView extends JPanel {
 
 	private static final long serialVersionUID = 5764374133753732451L;
 	
@@ -78,7 +78,7 @@ public class ChoosePublicColorView extends JPanel {
 
 	private ActionListener remember;
 	
-	public ChoosePublicColorView() {
+	public DHExperimentView() {
 		super();
 		gbc = new GridBagConstraints();
 		GridBagLayout layout = new GridBagLayout();
