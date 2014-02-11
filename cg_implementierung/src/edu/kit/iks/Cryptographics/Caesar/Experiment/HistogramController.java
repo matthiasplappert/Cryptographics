@@ -42,8 +42,8 @@ public class HistogramController extends AbstractVisualizationController {
 
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				if (HistogramController.this.getView().getKeyboard() == null) {
-					HistogramController.this.getView().createKeyboard(
+				if (HistogramController.this.getView().getNumpad() == null) {
+					HistogramController.this.getView().createNumpad(
 							HistogramController.this.getView().getKeyInput());
 				}
 
@@ -70,53 +70,75 @@ public class HistogramController extends AbstractVisualizationController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					int key = Integer.parseInt(HistogramController.this
-							.getView().getKeyInput().getText());
-					if (HistogramController.this.getModel().isKeyValid(key)) {
-						String[] decryptedCipherLines = HistogramController.this
-								.getModel().dec(
-										key,
-										HistogramController.this.getView()
-												.getHistogramCipher());
-						String decryptedCipherString = HistogramController.this
-								.getModel().insertHtmlBreaks(
-										decryptedCipherLines);
-						HistogramController.this.getView().getPlainText()
-								.setText(decryptedCipherString);
+				if (HistogramController.this.getView().getKeyInput().getText()
+						.length() > 0) {
+					try {
+						int key = Integer.parseInt(HistogramController.this
+								.getView().getKeyInput().getText());
+						if (HistogramController.this.getModel().isKeyValid(key)) {
+							String[] decryptedCipherLines = HistogramController.this
+									.getModel().dec(
+											key,
+											HistogramController.this.getView()
+													.getHistogramCipher());
+							String decryptedCipherString = HistogramController.this
+									.getModel().insertHtmlBreaks(
+											decryptedCipherLines);
+							HistogramController.this.getView().getPlainText()
+									.setText(decryptedCipherString);
 
-						if (key == HistogramController.this.getView()
-								.getSecretKey()) {
-							HistogramController.this
-									.getView()
-									.getKeyInput()
-									.setBorder(
-											BorderFactory
-													.createLineBorder(Color.green));
-							String explanations = "<html><body>"
-									+ HistogramController.this.getModel()
-											.genRandomGrats()
-									+ " You found the right key!!! See how easy it is with histograms?<br>"
-									+ "If you want to try one more click proceed. Else you can go next to further information<br>"
-									+ "There you can learn more about caesar's cipher.";
-							HistogramController.this.getView()
-									.getExplanations().setText(explanations);
-							HistogramController.this.getView().setupProceed();
-							HistogramController.this.genProceedListener();
-							HistogramController.this.getView().requestFocus();
-							HistogramController.this.getView().remove(
-									HistogramController.this.getView()
-											.getKeyboard());
-							HistogramController.this.getView()
-									.setKeyboard(null);
-							HistogramController.this.getView().validate();
-							HistogramController.this.getView().repaint();
+							if (key == HistogramController.this.getView()
+									.getSecretKey()) {
+								HistogramController.this
+										.getView()
+										.getKeyInput()
+										.setBorder(
+												BorderFactory
+														.createLineBorder(Color.green));
+								String explanations = "<html><body>"
+										+ HistogramController.this.getModel()
+												.genRandomGrats()
+										+ " You found the right key!!! See how easy it is with histograms?<br>"
+										+ "If you want to try one more click proceed. Else you can go next to further information<br>"
+										+ "There you can learn more about caesar's cipher.";
+								HistogramController.this.getView()
+										.getExplanations()
+										.setText(explanations);
+								HistogramController.this.getView()
+										.setupProceed();
+								HistogramController.this.genProceedListener();
+								HistogramController.this.getView()
+										.requestFocus();
+								HistogramController.this.getView().remove(
+										HistogramController.this.getView()
+												.getNumpad());
+								HistogramController.this.getView().setNumpad(
+										null);
+								HistogramController.this.getView().validate();
+								HistogramController.this.getView().repaint();
+
+							} else {
+								String explanations = "<html><body>"
+										+ HistogramController.this.getModel()
+												.genRandomBlamings()
+										+ " The key was wrong.";
+								HistogramController.this.getView()
+										.getExplanations()
+										.setText(explanations);
+								HistogramController.this
+										.getView()
+										.getKeyInput()
+										.setBorder(
+												BorderFactory
+														.createLineBorder(Color.red));
+							}
 
 						} else {
 							String explanations = "<html><body>"
 									+ HistogramController.this.getModel()
 											.genRandomBlamings()
-									+ " The key was wrong.";
+									+ " This key is invalid. Please type a number between 1 and 26. If you dont understand why,<br>"
+									+ "then go to the stages before and learn how the cipher works.";
 							HistogramController.this.getView()
 									.getExplanations().setText(explanations);
 							HistogramController.this
@@ -126,26 +148,22 @@ public class HistogramController extends AbstractVisualizationController {
 											BorderFactory
 													.createLineBorder(Color.red));
 						}
-
-					} else {
-						String explanations = "<html><body>"
-								+ HistogramController.this.getModel()
-										.genRandomBlamings()
-								+ " This key is invalid. Please type a number between 1 and 26. If you dont understand why,<br>"
-								+ "then go to the stages before and learn how the cipher works.";
-						HistogramController.this.getView().getExplanations()
-								.setText(explanations);
-						HistogramController.this
-								.getView()
-								.getKeyInput()
-								.setBorder(
-										BorderFactory
-												.createLineBorder(Color.red));
+					} catch (NumberFormatException e1) {
+						Logger.e(e1);
 					}
-				} catch (NumberFormatException e1) {
-					Logger.e(e1);
+				} else {
+					String explanations = "<html><body>"
+							+ HistogramController.this.getModel()
+									.genRandomBlamings()
+							+ " The keyfield was empty!";
+					HistogramController.this.getView().getExplanations()
+							.setText(explanations);
+					HistogramController.this
+							.getView()
+							.getKeyInput()
+							.setBorder(
+									BorderFactory.createLineBorder(Color.red));
 				}
-
 			}
 		});
 	}
@@ -382,11 +400,10 @@ public class HistogramController extends AbstractVisualizationController {
 							cipher);
 					HistogramController.this.getView().setSecretKey(key);
 					HistogramController.this.getView().unloadProceed();
-					if (HistogramController.this.getView().getKeyboard() != null) {
+					if (HistogramController.this.getView().getNumpad() != null) {
 						HistogramController.this.getView().remove(
-								HistogramController.this.getView()
-										.getKeyboard());
-						HistogramController.this.getView().setKeyboard(null);
+								HistogramController.this.getView().getNumpad());
+						HistogramController.this.getView().setNumpad(null);
 					}
 					HistogramController.this.getView().validate();
 					HistogramController.this.getView().repaint();

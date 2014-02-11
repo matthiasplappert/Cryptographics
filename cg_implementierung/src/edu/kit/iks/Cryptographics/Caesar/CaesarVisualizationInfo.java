@@ -28,14 +28,15 @@ import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 
 	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(
+			CaesarVisualizationInfo.class);
+
+	/**
 	 * Caesar root element from the xml file.
 	 */
 	private Element caesarResources;
-
-	/**
-	 * Localization instance
-	 */
-	private static I18n i18n = Configuration.getInstance().getI18n(CaesarVisualizationInfo.class);
 
 	/**
 	 * Constructor for the visualizationInfo.
@@ -79,11 +80,12 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public String getDescription() {
-		String description = i18n.tr("Get to know how Ceasar fooled his enemys that "
-				+ "intercepted his orders and see one of the oldest "
-				+ "attempts to make confidential material unreadable "
-				+ "for undesireable readers");
-		
+		String description = i18n
+				.tr("Get to know how Ceasar fooled his enemys that "
+						+ "intercepted his orders and see one of the oldest "
+						+ "attempts to make confidential material unreadable "
+						+ "for undesireable readers");
+
 		return description;
 	}
 
