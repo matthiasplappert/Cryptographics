@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 
 public class ColorChooser extends JPanel {
 	
+	private static final long serialVersionUID = -7179916629639929417L;
+
 	private JButton next;
 	
 	private JButton prev;

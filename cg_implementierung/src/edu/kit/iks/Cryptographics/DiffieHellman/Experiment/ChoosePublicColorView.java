@@ -21,6 +21,16 @@ public class ChoosePublicColorView extends JPanel {
 
 	private static final long serialVersionUID = 5764374133753732451L;
 	
+	private String explanation1 = "";
+	
+	private String explanation2 = "";
+	
+	private String explanation3 = "";
+	
+	private String explanation4 = "";
+	
+	private String explanation5 = "";
+	
 	private JLabel wrong;
 	
 	private JLabel choosePublicLbl;
