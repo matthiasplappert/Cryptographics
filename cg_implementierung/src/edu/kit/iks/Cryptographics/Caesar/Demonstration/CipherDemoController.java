@@ -130,7 +130,7 @@ public class CipherDemoController extends AbstractVisualizationController {
 
 							for (JTextField outputIterator : userOutput) {
 
-								if (outputIterator.getBorder() != null
+								if (outputIterator.getText() != null 
 										&& CipherDemoController.this.getView()
 												.getAlphabet() != null) {
 									int charToEncryptAscii = outputIterator
@@ -141,10 +141,8 @@ public class CipherDemoController extends AbstractVisualizationController {
 											- CipherDemoController.this
 													.getModel().ASCII_UC_A);
 									if (outputIterator.isEditable()) {
-										outputIterator.setBorder(null);
+										outputIterator.setBorder(BorderFactory.createLineBorder(Color.darkGray));
 									}
-								} else {
-
 								}
 							}
 

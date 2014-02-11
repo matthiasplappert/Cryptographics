@@ -24,78 +24,123 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
 /**
  * This view represents the last view of the experiment phase. The elements contained here allow the
  * user to break a given caesar cipher and have the purpose to show him the disadvantages of the
- * caesar cipher, in particular how easy it is to break it. In additional user gets an animation
- * presented that describe what histogramms are and how they could help him solving his task to
- * break the cipher.
+ * caesar cipher, in particular how easy it is to break it. In addition user gets explanations
+ * presented about what histograms are and how they could help him solving his task to break the
+ * cipher.
  * 
  * @author Wasilij Beskorovajnov.
  * 
  */
 public class HistogramView extends VisualizationView {
-
+	// General parameters:
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private JLabel announcement;
-	private JLabel cipher;
+	/**
+	 * XML root element for this view.
+	 */
+	private Element histResource;
 
-	private CharacterFrequencyDiagramView cipherHistogram;
-
-	private JPanel cipherPlaintextContainer;
-
-	private JLabel cipherText;
-
-	private JButton decrement;
-
+	// GUI container for other GUI elements:
+	/**
+	 * JPanel that contain JLabel explanations and the Button proceed.
+	 */
 	private JPanel explanationPanel;
 
 	/**
-	 * Explanations of the animations.
-	 */
-	private JLabel explanations;
-
-	private String[] histogramCipher;
-
-	/**
-	 * Label that will contain a histogram image that will be explained to the user.
+	 * Panel that contains the core elements for the histogram experiment.<br>
+	 * 1. The both histograms.<br>
+	 * 2. inputfield for the key.<br>
+	 * 3. cipher and the decrypted cipher according to given histograms.<br>
 	 */
 	private JPanel histogramContainer;
-	private Element histResource;
 
 	/**
-	 * Buttons for iterating the key.
-	 */
-	private JButton increment;
-
-	/**
-	 * Key that is being incremented and decremented.
-	 */
-	private JLabel key;
-
-	private KeyboardView keyboard;
-	private NumpadView numpad;
-
-	/**
-	 * Container for the inc/dec Buttons.
+	 * Container for the increment/decrement Buttons.<br>
+	 * is used in the brute force step of the experiment.<br>
 	 */
 	private JPanel keyControl;
-
-	private JTextField keyInput;
-
-	private int keyValue;
 
 	/**
 	 * Container for the next/back buttons.
 	 */
 	private JPanel navigationPanel;
-	private JLabel plainText;
 
-	private CharacterFrequencyDiagramView plainTextHistogram;
+	// GUI for feedback from the user.
+	/**
+	 * Button for stepping further in the experiment. Not part of the navigation. Unidirectional.
+	 */
 	private JButton proceed;
 
+	/**
+	 * GUI-element for literal feedback from the user.
+	 */
+	private KeyboardView keyboard;
+
+	/**
+	 * GUI-element for numerical Feedback from the user.
+	 */
+	private NumpadView numpad;
+
+	// GUI for feedback to the user:
+	/**
+	 * JLabel that contains the feedback on the input from the user. E.g. User typed a key in the
+	 * inputfield/clicked a button.
+	 */
+	private JLabel announcement;
+
+	/**
+	 * The name is selfexplanatory.
+	 */
+	private JLabel explanations;
+
+	// Core elements of the experiment in the histogramphase.:
+	/**
+	 * This gui-element is a normal diagram, that displays the distribution of letters in a given
+	 * plaintext/cipher.
+	 */
+	private CharacterFrequencyDiagramView plainTextHistogram;
+	private CharacterFrequencyDiagramView cipherHistogram;
+	private String[] histogramCipher;
+	
+	/**
+	 * JLabel that contains the decrypted cipher. 
+	 */
+	private JLabel plainText;
+	
+	/**
+	 * JLabel that contains the cipher which the histogram above is presenting.
+	 */
+	private JLabel cipher;
+
+	/**
+	 * Inputfield that allows the user to type a numerical value.
+	 */
+	private JTextField keyInput;
+	
+	/**
+	 * The secret key, the user has to find out.
+	 */
 	private int secretKey;
+
+	// Core elements of the experiment in the bruteforce phase:
+	/**
+	 * Contains the cipher in the brute force stage.
+	 */
+	private JLabel bruteForceCipherLabel;
+
+	/**
+	 * Buttons for iterating the key.
+	 */
+	private JButton increment;
+	private JButton decrement;
+
+	/**
+	 * Key that is being incremented and decremented.
+	 */
+	private JLabel bruteFoceKey;
 
 	/**
 	 * Constructor.
@@ -164,7 +209,7 @@ public class HistogramView extends VisualizationView {
 		this.add(this.numpad, numpadConst);
 		this.validate();
 	}
-	
+
 	/**
 	 * @return the announcement
 	 */
@@ -175,8 +220,8 @@ public class HistogramView extends VisualizationView {
 	/**
 	 * @return the cipher
 	 */
-	public JLabel getCipher() {
-		return this.cipher;
+	public JLabel getCipherBruteForce() {
+		return this.bruteForceCipherLabel;
 	}
 
 	/**
@@ -187,17 +232,10 @@ public class HistogramView extends VisualizationView {
 	}
 
 	/**
-	 * @return the cipherPlaintextContainer
-	 */
-	public JPanel getCipherPlaintextContainer() {
-		return this.cipherPlaintextContainer;
-	}
-
-	/**
 	 * @return the cipherText
 	 */
 	public JLabel getCipherText() {
-		return this.cipherText;
+		return this.cipher;
 	}
 
 	/**
@@ -252,8 +290,8 @@ public class HistogramView extends VisualizationView {
 	/**
 	 * @return the key
 	 */
-	public JLabel getKey() {
-		return this.key;
+	public JLabel getBruteForceKey() {
+		return this.bruteFoceKey;
 	}
 
 	/**
@@ -275,13 +313,6 @@ public class HistogramView extends VisualizationView {
 	 */
 	public JTextField getKeyInput() {
 		return this.keyInput;
-	}
-
-	/**
-	 * @return the keyValue
-	 */
-	public int getKeyValue() {
-		return this.keyValue;
 	}
 
 	/**
@@ -332,7 +363,7 @@ public class HistogramView extends VisualizationView {
 	 *            the cipher to set
 	 */
 	public void setCipher(JLabel cipher) {
-		this.cipher = cipher;
+		this.bruteForceCipherLabel = cipher;
 	}
 
 	/**
@@ -344,19 +375,11 @@ public class HistogramView extends VisualizationView {
 	}
 
 	/**
-	 * @param cipherPlaintextContainer
-	 *            the cipherPlaintextContainer to set
-	 */
-	public void setCipherPlaintextContainer(JPanel cipherPlaintextContainer) {
-		this.cipherPlaintextContainer = cipherPlaintextContainer;
-	}
-
-	/**
 	 * @param cipherText
 	 *            the cipherText to set
 	 */
 	public void setCipherText(JLabel cipherText) {
-		this.cipherText = cipherText;
+		this.cipher = cipherText;
 	}
 
 	/**
@@ -424,14 +447,6 @@ public class HistogramView extends VisualizationView {
 	}
 
 	/**
-	 * @param key
-	 *            the key to set
-	 */
-	public void setKey(JLabel key) {
-		this.key = key;
-	}
-
-	/**
 	 * @param keyboard
 	 *            the keyboard to set
 	 */
@@ -453,14 +468,6 @@ public class HistogramView extends VisualizationView {
 	 */
 	public void setKeyInput(JTextField keyInput) {
 		this.keyInput = keyInput;
-	}
-
-	/**
-	 * @param keyValue
-	 *            the keyValue to set
-	 */
-	public void setKeyValue(int keyValue) {
-		this.keyValue = keyValue;
 	}
 
 	/**
@@ -507,7 +514,6 @@ public class HistogramView extends VisualizationView {
 	public void setupBruteForce() {
 		this.explanationPanel.remove(this.proceed);
 		this.proceed = null;
-		this.keyValue = 1;
 
 		this.announcement = new JLabel();
 		this.announcement.setPreferredSize(new Dimension(600, 100));
@@ -542,28 +548,28 @@ public class HistogramView extends VisualizationView {
 		cipherHistConst.fill = GridBagConstraints.BOTH;
 		this.histogramContainer.add(this.cipherHistogram, cipherHistConst);
 
-		this.cipherText = new JLabel(cipher);
+		this.cipher = new JLabel(cipher);
 		GridBagConstraints cipherConst = new GridBagConstraints();
 		cipherConst.gridx = 2;
 		cipherConst.gridy = 4;
 		cipherConst.insets = new Insets(5, 50, 5, 50);
 		cipherConst.fill = GridBagConstraints.BOTH;
-		this.histogramContainer.add(this.cipherText, cipherConst);
+		this.histogramContainer.add(this.cipher, cipherConst);
 
 		this.validate();
 		this.repaint();
 	}
 
 	public void setupCipherPlainLabels(String cipher) {
-		this.cipher = new JLabel(cipher);
+		this.bruteForceCipherLabel = new JLabel(cipher);
 		// this.secretKey = 5;
-		this.cipher.setPreferredSize(new Dimension(100, 50));
+		this.bruteForceCipherLabel.setPreferredSize(new Dimension(100, 50));
 		// this.cipher.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints cipherConst = new GridBagConstraints();
 		cipherConst.gridx = 0;
 		cipherConst.gridy = 1;
 		cipherConst.insets = new Insets(5, 5, 5, 5);
-		this.keyControl.add(this.cipher, cipherConst);
+		this.keyControl.add(this.bruteForceCipherLabel, cipherConst);
 		this.plainText = new JLabel("");
 		this.plainText.setPreferredSize(new Dimension(100, 50));
 		// this.plain.setFont(new Font("Arial", 2, 25));
@@ -622,28 +628,25 @@ public class HistogramView extends VisualizationView {
 
 	public void setupIncrementDecrement() {
 		// key
-		this.key = new JLabel("1");
-		this.key.setPreferredSize(new Dimension(100, 50));
-		// this.key.setFont(new Font("Arial", 2, 25));
+		this.bruteFoceKey = new JLabel("" + 1);
 		GridBagConstraints keyLabelConst = new GridBagConstraints();
 		keyLabelConst.gridx = 3;
 		keyLabelConst.gridy = 1;
 		keyLabelConst.insets = new Insets(5, 5, 50, 5);
-		// keyLabelConst.fill = GridBagConstraints.HORIZONTAL;
-		this.keyControl.add(this.key, keyLabelConst);
+		this.keyControl.add(this.bruteFoceKey, keyLabelConst);
+
 		// increment.
 		this.increment = new JButton("+1");
 		this.increment.setPreferredSize(new Dimension(100, 50));
-		// this.increment.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints incConst = new GridBagConstraints();
 		incConst.gridx = 4;
 		incConst.gridy = 1;
 		incConst.insets = new Insets(5, 5, 50, 5);
 		this.keyControl.add(this.increment, incConst);
+
 		// decrement.
 		this.decrement = new JButton("-1");
 		this.decrement.setPreferredSize(new Dimension(100, 50));
-		// this.decrement.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints decConst = new GridBagConstraints();
 		decConst.gridx = 4;
 		decConst.gridy = 2;
@@ -780,8 +783,8 @@ public class HistogramView extends VisualizationView {
 	public void unloadCipherHistogram() {
 		this.histogramContainer.remove(this.cipherHistogram);
 		this.cipherHistogram = null;
-		this.histogramContainer.remove(this.cipherText);
-		this.cipherText = null;
+		this.histogramContainer.remove(this.cipher);
+		this.cipher = null;
 		this.revalidate();
 	}
 
@@ -815,7 +818,8 @@ public class HistogramView extends VisualizationView {
 	}
 
 	/**
-	 * @param numpad the numpad to set
+	 * @param numpad
+	 *            the numpad to set
 	 */
 	public void setNumpad(NumpadView numpad) {
 		this.numpad = numpad;
