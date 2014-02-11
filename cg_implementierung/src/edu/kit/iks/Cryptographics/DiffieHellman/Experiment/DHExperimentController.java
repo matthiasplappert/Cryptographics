@@ -17,8 +17,7 @@ public class DHExperimentController extends AbstractVisualizationController {
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return view.getHelp();
 	}
 
 	@Override

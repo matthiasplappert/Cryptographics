@@ -12,12 +12,9 @@ public class ExplainAimView extends VisualizationView {
 	private JLabel aimExplain;
 
 	private ColorChannel cc;
+
+	private String help = "No help";
 	
-
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 5986978581223106407L;
 
 	public ExplainAimView() {
@@ -61,6 +58,11 @@ public class ExplainAimView extends VisualizationView {
 	
 	public ColorChannel getColorChannel() {
 		return this.cc;
+	}
+
+
+	public String getHelp() {
+		return help ;
 	}
 	
 

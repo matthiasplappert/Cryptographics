@@ -10,6 +10,8 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
 public class OnewayView extends VisualizationView {
 	
 	private JLabel onewayExplain;
+
+	private String help = "No help";
 	
 	private static final long serialVersionUID = 6243104730541136349L;
 	
@@ -38,6 +40,10 @@ public class OnewayView extends VisualizationView {
 		gbc.weighty = 0.1;
 		this.add(onewayExplain, gbc);
 		
+	}
+
+	public String getHelp() {
+		return help ;
 	}
 
 }

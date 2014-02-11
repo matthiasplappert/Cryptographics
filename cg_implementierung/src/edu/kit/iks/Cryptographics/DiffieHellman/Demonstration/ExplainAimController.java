@@ -8,14 +8,15 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class ExplainAimController extends AbstractVisualizationController {
 	
+	private ExplainAimView view;
+	
 	public ExplainAimController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return view.getHelp();
 	}
 
 	@Override

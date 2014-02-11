@@ -11,9 +11,8 @@ public class YourTurnView extends VisualizationView {
 	
 	private JLabel aimExplain;
 
-	/**
-	 * 
-	 */
+	private String help;
+
 	private static final long serialVersionUID = -9208922057840794898L;
 
 	public YourTurnView() {
@@ -44,6 +43,10 @@ public class YourTurnView extends VisualizationView {
 		gbc.weightx = 0.0;
 		gbc.weighty = 0.0;
 		this.add(aimExplain, gbc);
+	}
+
+	public String getHelp() {
+		return help ;
 	}
 
 

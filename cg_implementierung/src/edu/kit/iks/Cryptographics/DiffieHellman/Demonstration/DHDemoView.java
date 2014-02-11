@@ -55,6 +55,8 @@ public class DHDemoView extends VisualizationView {
 	private ColorMix cm;
 	
 	private ActionListener remember;
+
+	private String help = "No help";
 	/**
 	 * 
 	 */
@@ -244,6 +246,14 @@ public class DHDemoView extends VisualizationView {
 
 	public void setRemember(ActionListener remember) {
 		this.remember = remember;
+	}
+
+
+
+
+
+	public String getHelp() {
+		return help ;
 	}
 
 }

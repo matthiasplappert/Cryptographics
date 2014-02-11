@@ -77,6 +77,8 @@ public class DHExperimentView extends JPanel {
 	private Color[] rememberColors = toChooseFrom;
 
 	private ActionListener remember;
+
+	private String help;
 	
 	public DHExperimentView() {
 		super();
@@ -324,5 +326,9 @@ public class DHExperimentView extends JPanel {
 	
 	public void setRemember(ActionListener remember) {
 		this.remember = remember;
+	}
+
+	public String getHelp() {
+		return help;
 	}
 }
