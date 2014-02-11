@@ -333,6 +333,12 @@ public class CryptoController extends AbstractVisualizationController {
 					CryptoController.this.getView().setKeyboard(null);
 					CryptoController.this.getView().validate();
 					CryptoController.this.getView().repaint();
+				} else if (CryptoController.this.getView().getNumpad() != null) {
+					CryptoController.this.getView().remove(
+							CryptoController.this.getView().getNumpad());
+					CryptoController.this.getView().setNumpad(null);
+					CryptoController.this.getView().validate();
+					CryptoController.this.getView().repaint();
 				}
 
 				if (CryptoController.this.getView().getKey().isEditable()) {
@@ -342,9 +348,8 @@ public class CryptoController extends AbstractVisualizationController {
 							.setBorder(
 									BorderFactory.createLineBorder(Color.blue,
 											5));
-					CryptoController.this.getView().createKeyboard(
-							CryptoController.this.getView().getKey(),
-							KeyboardView.STRING_MODE);
+					CryptoController.this.getView().createNumpad(
+							CryptoController.this.getView().getKey());
 				}
 			}
 
@@ -359,7 +364,6 @@ public class CryptoController extends AbstractVisualizationController {
 			public void actionPerformed(ActionEvent e) {
 				if (CryptoController.this.getView().getKey().isEditable()) {
 					try {
-						// TODO: Need to take the explanation from other resources.
 						String explanationContent = CryptoController.this
 								.getView().getExplanations().getText();
 						int key = Integer.parseInt(CryptoController.this
@@ -452,7 +456,14 @@ public class CryptoController extends AbstractVisualizationController {
 					CryptoController.this.getView().setKeyboard(null);
 					CryptoController.this.getView().validate();
 					CryptoController.this.getView().repaint();
+				} else if (CryptoController.this.getView().getNumpad() != null) {
+					CryptoController.this.getView().remove(
+							CryptoController.this.getView().getNumpad());
+					CryptoController.this.getView().setNumpad(null);
+					CryptoController.this.getView().validate();
+					CryptoController.this.getView().repaint();
 				}
+
 
 				if (CryptoController.this.getView().getInput().isEditable()) {
 					CryptoController.this

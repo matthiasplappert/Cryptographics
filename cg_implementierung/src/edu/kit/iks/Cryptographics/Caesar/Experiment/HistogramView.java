@@ -18,6 +18,7 @@ import org.jdom2.Element;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.CharacterFrequencyDiagramView;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
+import edu.kit.iks.CryptographicsLib.NumpadView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
@@ -74,6 +75,7 @@ public class HistogramView extends VisualizationView {
 	private JLabel key;
 
 	private KeyboardView keyboard;
+	private NumpadView numpad;
 
 	/**
 	 * Container for the inc/dec Buttons.
@@ -148,6 +150,21 @@ public class HistogramView extends VisualizationView {
 		this.validate();
 	}
 
+	public void createNumpad(JTextField input) {
+		this.numpad = new NumpadView(input, NumpadView.NUMBER_MODE);
+		GridBagConstraints numpadConst = new GridBagConstraints();
+		numpadConst.anchor = GridBagConstraints.FIRST_LINE_START;
+		numpadConst.weightx = 1.0;
+		numpadConst.weighty = 0.5;
+		numpadConst.gridx = 0;
+		numpadConst.gridy = 0;
+		numpadConst.gridwidth = 11;
+		numpadConst.gridheight = 3;
+		numpadConst.insets = new Insets(100, 0, 50, 0);
+		this.add(this.numpad, numpadConst);
+		this.validate();
+	}
+	
 	/**
 	 * @return the announcement
 	 */
@@ -788,5 +805,19 @@ public class HistogramView extends VisualizationView {
 	public void unloadProceed() {
 		this.explanationPanel.remove(this.proceed);
 		this.proceed = null;
+	}
+
+	/**
+	 * @return the numpad
+	 */
+	public NumpadView getNumpad() {
+		return numpad;
+	}
+
+	/**
+	 * @param numpad the numpad to set
+	 */
+	public void setNumpad(NumpadView numpad) {
+		this.numpad = numpad;
 	}
 }

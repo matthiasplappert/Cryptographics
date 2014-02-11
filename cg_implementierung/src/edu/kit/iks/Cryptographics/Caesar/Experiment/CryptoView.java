@@ -18,6 +18,7 @@ import org.jdom2.Element;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
+import edu.kit.iks.CryptographicsLib.NumpadView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
@@ -77,10 +78,11 @@ public class CryptoView extends VisualizationView {
 	private JTextField key;
 
 	private KeyboardView keyboard;
-
 	private JLabel keyCaption;
 
 	private JPanel navigationPanel;
+
+	private NumpadView numpad;
 
 	private JButton proceed;
 
@@ -167,6 +169,20 @@ public class CryptoView extends VisualizationView {
 		this.validate();
 	}
 
+	public void createNumpad(JTextField input) {
+		this.numpad = new NumpadView(input, NumpadView.NUMBER_MODE);
+		GridBagConstraints numpadConst = new GridBagConstraints();
+		numpadConst.anchor = GridBagConstraints.LINE_END;
+		numpadConst.weightx = 1.0;
+		numpadConst.weighty = 0.5;
+		numpadConst.gridx = 0;
+		numpadConst.gridy = 3;
+		numpadConst.gridwidth = 4;
+		numpadConst.gridheight = 5;
+		numpadConst.insets = new Insets(0, 10, 0, 200);
+		this.add(this.numpad, numpadConst);
+		this.validate();
+	}
 	/**
 	 * @return the alphabet
 	 */
@@ -210,6 +226,13 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
+	 * @return the inputCaption
+	 */
+	public JLabel getInputCaption() {
+		return this.inputCaption;
+	}
+
+	/**
 	 * @return the key
 	 */
 	public JTextField getKey() {
@@ -224,10 +247,24 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
+	 * @return the keyCaption
+	 */
+	public JLabel getKeyCaption() {
+		return this.keyCaption;
+	}
+
+	/**
 	 * @return the navigationPanel
 	 */
 	public JPanel getNavigationPanel() {
 		return this.navigationPanel;
+	}
+
+	/**
+	 * @return the numpad
+	 */
+	public NumpadView getNumpad() {
+		return this.numpad;
 	}
 
 	/**
@@ -300,6 +337,14 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
+	 * @param inputCaption
+	 *            the inputCaption to set
+	 */
+	public void setInputCaption(JLabel inputCaption) {
+		this.inputCaption = inputCaption;
+	}
+
+	/**
 	 * @param key
 	 *            the key to set
 	 */
@@ -316,11 +361,27 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
+	 * @param keyCaption
+	 *            the keyCaption to set
+	 */
+	public void setKeyCaption(JLabel keyCaption) {
+		this.keyCaption = keyCaption;
+	}
+
+	/**
 	 * @param navigationPanel
 	 *            the navigationPanel to set
 	 */
 	public void setNavigationPanel(JPanel navigationPanel) {
 		this.navigationPanel = navigationPanel;
+	}
+
+	/**
+	 * @param numpad
+	 *            the numpad to set
+	 */
+	public void setNumpad(NumpadView numpad) {
+		this.numpad = numpad;
 	}
 
 	/**
