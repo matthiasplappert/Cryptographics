@@ -85,6 +85,66 @@ public class HistogramController extends AbstractVisualizationController {
 		});
 	}
 
+
+	@Override
+	public String getHelp() {
+		return i18n.tr("Under Constrcution");
+	}
+
+	/**
+	 * @return the model
+	 */
+	public CryptoModel getModel() {
+		return this.model;
+	}
+
+	/**
+	 * @return the step
+	 */
+	public int getStep() {
+		return this.step;
+	}
+
+	/**
+	 * Gets the view
+	 * 
+	 * @return The view of this controller
+	 */
+	@Override
+	public HistogramView getView() {
+		return (HistogramView) this.view;
+	}
+
+	/**
+	 * @param model
+	 *            the model to set
+	 */
+	public void setModel(CryptoModel model) {
+		this.model = model;
+	}
+
+	/**
+	 * @param step
+	 *            the step to set
+	 */
+	public void setStep(int step) {
+		this.step = step;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
+		this.model = null;
+	}
+	
+//-------------------------------------------------------------private methods----------------------------------------------------------//	
+	
+	
 	/**
 	 * Generates the needed ActionListener for the inputfield of the key.
 	 */
@@ -462,62 +522,6 @@ public class HistogramController extends AbstractVisualizationController {
 
 			}
 		});
-	}
-
-	@Override
-	public String getHelp() {
-		return i18n.tr("Under Constrcution");
-	}
-
-	/**
-	 * @return the model
-	 */
-	public CryptoModel getModel() {
-		return this.model;
-	}
-
-	/**
-	 * @return the step
-	 */
-	public int getStep() {
-		return this.step;
-	}
-
-	/**
-	 * Gets the view
-	 * 
-	 * @return The view of this controller
-	 */
-	@Override
-	public HistogramView getView() {
-		return (HistogramView) this.view;
-	}
-
-	/**
-	 * @param model
-	 *            the model to set
-	 */
-	public void setModel(CryptoModel model) {
-		this.model = model;
-	}
-
-	/**
-	 * @param step
-	 *            the step to set
-	 */
-	public void setStep(int step) {
-		this.step = step;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
-	 */
-	@Override
-	public void unloadView() {
-		this.view = null;
-		this.model = null;
 	}
 
 }
