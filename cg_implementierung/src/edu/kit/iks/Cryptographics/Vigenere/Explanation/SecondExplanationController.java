@@ -2,10 +2,16 @@ package edu.kit.iks.Cryptographics.Vigenere.Explanation;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JTextField;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
 
 public class SecondExplanationController extends AbstractVisualizationController {
 	private int state;
@@ -15,7 +21,6 @@ public class SecondExplanationController extends AbstractVisualizationController
 	
 	@Override
 	public SecondExplanationView getView() {
-		// TODO Auto-generated method stub
 		return (SecondExplanationView)this.view;
 	}
 	
@@ -23,6 +28,26 @@ public class SecondExplanationController extends AbstractVisualizationController
 	public void loadView() {
 		this.state = 0;
 		this.view = new SecondExplanationView();
+		final JTextField userOutput = getView().getAnswerField();
+		userOutput.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				getView().answerRight();
+				if (getView().getKeyboard() != null) {
+					getView().remove(getView().getKeyboard());
+					getView().setKeyboard(null);
+					getView().validate();
+					getView().repaint();
+				}
+				if (userOutput.isEditable()) {
+					getView().createKeyboard(userOutput, KeyboardView.CHAR_MODE);
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				
+			}
+		});
 		this.getView().getBackButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				state--;
@@ -41,6 +66,12 @@ public class SecondExplanationController extends AbstractVisualizationController
 		});
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
+				if (getView().getKeyboard() != null) {
+					getView().remove(getView().getKeyboard());
+					getView().setKeyboard(null);
+					getView().validate();
+					getView().repaint();
+				}
 				state++;
 				switch (state) {
 				case 1:
