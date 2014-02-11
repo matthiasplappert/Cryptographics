@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 import edu.kit.iks.CryptographicsLib.CharacterFrequencyDiagramView;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /*
@@ -27,6 +28,15 @@ public class SecondExplanationView extends VisualizationView{
 	private JLabel thirdExplanation;
 	private JLabel wrong;
 	private JTextField answer;
+	private KeyboardView keyboard;
+	
+	public void createKeyboard(JTextField input, final int flag) {
+		this.keyboard = new KeyboardView(input, flag);
+		this.add(this.keyboard);
+		Dimension size = this.keyboard.getPreferredSize();
+		this.keyboard.setBounds(180, 420, size.width, size.height);
+		this.validate();
+	}
 	
 	public void setExplanation(String s){
 		this.explanation.setText(s);
@@ -34,6 +44,25 @@ public class SecondExplanationView extends VisualizationView{
 		this.explanation.setBounds(10, 10,
 	             size.width, size.height);
 		this.validate();
+	}
+	
+	/**
+	 * @return the keyboard
+	 */
+	public KeyboardView getKeyboard() {
+		return this.keyboard;
+	}
+	
+	/**
+	 * @param keyboard
+	 *            the keyboard to set
+	 */
+	public void setKeyboard(KeyboardView keyboard) {
+		this.keyboard = keyboard;
+	}
+	
+	public JTextField getAnswerField() {
+		return this.answer;
 	}
 	
 	public void answerRight() {
@@ -90,14 +119,14 @@ public class SecondExplanationView extends VisualizationView{
 	             size.width, size.height);
 		
 		size = this.secondExplanation.getPreferredSize();
-		this.secondExplanation.setBounds(10, 240,
+		this.secondExplanation.setBounds(10, 190,
 	             size.width, size.height);
 		
 		size = this.thirdExplanation.getPreferredSize();
-		this.thirdExplanation.setBounds(10, 420,
+		this.thirdExplanation.setBounds(10, 330,
 	             size.width, size.height);
 		
-		this.answer.setBounds(200, 460,
+		this.answer.setBounds(350, 370,
 	             40, 40);
 		this.answer.setBorder(BorderFactory.createLineBorder(Color.blue, 5));
 		
@@ -114,9 +143,9 @@ public class SecondExplanationView extends VisualizationView{
 		this.getNextButton().setBounds(1100, 600,
 	             size.width, size.height);
 		
-		this.vigenereHistogramm.setBounds(10, 140,
+		this.vigenereHistogramm.setBounds(10, 80,
 	             600, 100);
-		this.averageHistogramm.setBounds(10, 280,
+		this.averageHistogramm.setBounds(10, 220,
 	             600, 100);
        
 	}
