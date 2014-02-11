@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-02-11 14:36+0100\n"
-"PO-Revision-Date: 2014-02-11 14:42+0100\n"
+"POT-Creation-Date: 2014-02-11 15:06+0100\n"
+"PO-Revision-Date: 2014-02-11 15:06+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,6 +27,10 @@ msgstr ""
 #: ../src/edu/kit/iks/Cryptographics/IdlePopoverView.java:115
 msgid "Continue"
 msgstr "Weiter"
+
+#: ../src/edu/kit/iks/Cryptographics/TimelinePopoverView.java:106
+msgid "Start"
+msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:64
 msgid "Exit"
@@ -142,3 +146,29 @@ msgstr ""
 "Eines Tages, etwa 70 v.Chr , tüftelte Caesar einen ultra-mega-großen-master-"
 "plan aus um Gallien endlich zu erobern. Und schickte diesen an seine Armee "
 "in Gallien."
+
+#: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:149
+msgid "Easy"
+msgstr "Einfach"
+
+#: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:150
+msgid "Medium"
+msgstr "Mittel"
+
+#: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:151
+msgid "Hard"
+msgstr "Schwer"
+
+#: ../src/edu/kit/iks/CryptographicsLib/KeyboardView.java:146
+msgid "keyboard-y"
+msgstr "Z"
+
+#: ../src/edu/kit/iks/CryptographicsLib/KeyboardView.java:154
+msgid "keyboard-z"
+msgstr "Y"
+
+#~ msgid "keyboard-back"
+#~ msgstr "Zurück"
+
+#~ msgid "keyboard-enter"
+#~ msgstr "Eingabe"
