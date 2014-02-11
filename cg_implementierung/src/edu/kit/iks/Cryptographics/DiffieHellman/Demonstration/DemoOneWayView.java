@@ -7,7 +7,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
-public class ExplainKeyExchangeView extends VisualizationView {
+public class DemoOneWayView extends VisualizationView {
 	private JLabel keyExchangeExplain;
 	
 	private ColorMix cm, cm2;
@@ -17,7 +17,7 @@ public class ExplainKeyExchangeView extends VisualizationView {
 	 */
 	private static final long serialVersionUID = 7529617215150828381L;
 	
-	public ExplainKeyExchangeView() {
+	public DemoOneWayView() {
 		super();
 		GridBagConstraints gbc = new GridBagConstraints();
 		GridBagLayout layout = new GridBagLayout();

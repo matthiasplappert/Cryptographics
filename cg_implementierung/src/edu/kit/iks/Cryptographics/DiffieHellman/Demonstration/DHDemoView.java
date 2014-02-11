@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
-public class AliceChooseSecretView extends VisualizationView {
+public class DHDemoView extends VisualizationView {
 	
 	private String explanation1 = "Now to our Diffie-Hellman Key-Exchange Analogy. Here " +
 			"is how the protocol in principle works. " +
@@ -62,7 +62,7 @@ public class AliceChooseSecretView extends VisualizationView {
 	
 	
 	
-	public AliceChooseSecretView() {
+	public DHDemoView() {
 		super();
 		GridBagConstraints gbc = new GridBagConstraints();
 		GridBagLayout layout = new GridBagLayout();

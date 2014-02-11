@@ -7,10 +7,10 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class AliceChooseSecretController extends AbstractVisualizationController {
-	private AliceChooseSecretView view;
+public class DHDemoController extends AbstractVisualizationController {
+	private DHDemoView view;
 	
-	public AliceChooseSecretController(AbstractVisualizationInfo visualizationInfo) {
+	public DHDemoController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 
@@ -23,7 +23,7 @@ public class AliceChooseSecretController extends AbstractVisualizationController
 	@Override
 	public void loadView() {
 		// TODO Auto-generated method stub
-		this.view = new AliceChooseSecretView();
+		this.view = new DHDemoView();
 		this.view.setRemember(new ActionListener() {
 			
 			@Override
@@ -65,7 +65,7 @@ public class AliceChooseSecretController extends AbstractVisualizationController
 	}
 	
 	@Override
-	public AliceChooseSecretView getView() {
-		return (AliceChooseSecretView) this.view;
+	public DHDemoView getView() {
+		return (DHDemoView) this.view;
 	}
 }
