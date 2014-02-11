@@ -11,6 +11,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.Configuration;
+
 /**
  * A displayable keyboard for character input per mouse click or touchscreen. Contains only
  * the basic 26 capital characters, Backspace and Enter.
@@ -52,6 +56,8 @@ public class KeyboardView extends JPanel implements ActionListener {
 	 */
 	private JButton[][] keys;
 
+	private static I18n i18n = Configuration.getInstance().getI18n(KeyboardView.class);
+	
 	/**
 	 * Constructor initializing a new instance of keyboard view
 	 * by passed text field (the textField which should be manipulated
@@ -137,7 +143,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 	private void initKeyboardButtons() {
 		JButton[][] keysInit = {
 			// First row
-			{kf("Q"), kf("W"), kf("E"),	kf("R"), kf("T"), kf("Z"), kf("U"), 
+			{kf("Q"), kf("W"), kf("E"),	kf("R"), kf("T"), kf(i18n.tr("keyboard-y")), kf("U"), 
 				kf("I"), kf("O"), kf("P"), kf("Back", "bs")},
 			
 			// Second row
@@ -145,7 +151,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 				kf("K"), kf("L"), kf("Enter", "e")},
 				
 			// Third row
-			{kf("Y"), kf("X"), kf("C"), kf("V"), kf("B"), kf("N"), kf("M")}
+			{kf(i18n.tr("keyboard-z")), kf("X"), kf("C"), kf("V"), kf("B"), kf("N"), kf("M")}
 		};
 		
 		this.keys = keysInit;
