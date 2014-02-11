@@ -9,6 +9,9 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.Configuration;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 
@@ -18,6 +21,13 @@ import net.glxn.qrgen.image.ImageType;
  * @author Christian Dreher
  */
 abstract public class AbstractVisualizationInfo {
+	
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(
+			AbstractVisualizationInfo.class);
+
 	
 	/**
 	 * Gets the ID of the procedure
@@ -136,9 +146,9 @@ abstract public class AbstractVisualizationInfo {
 	 */
 	public String getHumanReadableDifficulty() {
 		switch (this.getDifficulty()) {
-			case EASY: return "Easy";
-			case MEDIUM: return "Medium";
-			case HARD: return "Hard";
+			case EASY: return i18n.tr("Easy");
+			case MEDIUM: return i18n.tr("Medium");
+			case HARD: return i18n.tr("Hard");
 			default: return null;
 		}
 	}

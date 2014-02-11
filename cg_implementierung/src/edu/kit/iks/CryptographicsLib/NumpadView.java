@@ -11,39 +11,36 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.xnap.commons.i18n.I18n;
-
-import edu.kit.iks.Cryptographics.Configuration;
-
 /**
- * A displayable keyboard for character input per mouse click or touchscreen. Contains only
- * the basic 26 capital characters, Backspace and Enter.
+ * A displayable keyboard for character input per mouse click or touchscreen. 
+ * Contains the numbers from 0 to 9, Backspace and Enter.
  * 
  * @author Matthias Jaenicke
  * @author Christian Dreher
  */
-public class KeyboardView extends JPanel implements ActionListener {
+public class NumpadView extends JPanel implements ActionListener {
 
 	/**
-	 * Serial version UID
+	 * Serial Version UID
 	 */
-	private static final long serialVersionUID = -1797509729654756462L;
+	private static final long serialVersionUID = 5986894202162733671L;
+
+	/**
+	 * When digit mode is used, the buttons pressed will replace
+	 * the number in the given input field
+	 */
+	public static final int DIGIT_MODE = 0;
 	
 	/**
-	 * When character mode is used, the buttons pressed will replace
-	 * the text in the given input field
+	 * When number mode is used, the buttons pressed will append
+	 * the number in the given input field
 	 */
-	public static final int CHAR_MODE = 0;
-	
-	/**
-	 * When string mode is used, the buttons pressed will append
-	 * the text in the given input field
-	 */
-	public static final int STRING_MODE = 1;
+	public static final int NUMBER_MODE = 1;
 	
 	/**
 	 * The input mode set by the constructor
 	 */
+	
 	private int inputMode;
 
 	/**
@@ -56,21 +53,19 @@ public class KeyboardView extends JPanel implements ActionListener {
 	 */
 	private JButton[][] keys;
 
-	private static I18n i18n = Configuration.getInstance().getI18n(KeyboardView.class);
-	
 	/**
-	 * Constructor initializing a new instance of keyboard view
+	 * Constructor initializing a new instance of numpad view
 	 * by passed text field (the textField which should be manipulated
-	 * by this keyboard) and the mode. The mode can either be the
-	 * KeyboardView.CHAR_MODE, in which the text in the textField will
-	 * always be replaced by the button pressed, or KeyboardView.STRING_MODE,
+	 * by this numpad) and the mode. The mode can either be the
+	 * NumpadView.DIGIT_MODE, in which the text in the textField will
+	 * always be replaced by the button pressed, or NumpadView.NUMBER_MODE,
 	 * in which the button pressed will only be appended to the text in the
 	 * textField
 	 * 
-	 * @param textField Text field to be manipulated by this keyboard
-	 * @param mode The input mode (Either CHAR_MODE or STRING_MODE)
+	 * @param textField Text field to be manipulated by this numpad
+	 * @param mode The input mode (Either DIGIT_MODE or NUMBER_MODE)
 	 */
-	public KeyboardView(JTextField textField, int mode) {
+	public NumpadView(JTextField textField, int mode) {
 		super();
 
 		this.textField = textField;
@@ -111,10 +106,10 @@ public class KeyboardView extends JPanel implements ActionListener {
 		String buttonName = trigger.getName();
 		
 		if (buttonName.equals("button-enter")) {
-			Logger.d("KeyboardView", "actionPerformed", "Enter pressed");
+			Logger.d("NumpadView", "actionPerformed", "Enter pressed");
 			this.textField.getActionListeners()[0].actionPerformed(e);
 		} else if (buttonName.equals("button-backspace")) {
-			Logger.d("KeyboardView", "actionPerformed", "Backspace pressed");
+			Logger.d("NumpadView", "actionPerformed", "Backspace pressed");
 			String currentText = this.textField.getText();
 			
 			if (currentText.length() > 1) {
@@ -125,14 +120,14 @@ public class KeyboardView extends JPanel implements ActionListener {
 				this.textField.setText("");
 			}
 		} else if (buttonName.equals("button-key")) {
-			Logger.d("KeyboardView", "actionPerformed", "Key pressed");
+			Logger.d("NumpadView", "actionPerformed", "Key pressed");
 			
-			if (this.inputMode == KeyboardView.STRING_MODE) {
+			if (this.inputMode == NumpadView.NUMBER_MODE) {
 				String currentText = this.textField.getText();
 				String newText = currentText + buttonLabel;
 				
 				this.textField.setText(newText);
-			} else if (this.inputMode == KeyboardView.CHAR_MODE) {
+			} else if (this.inputMode == NumpadView.DIGIT_MODE) {
 				this.textField.setText(buttonLabel);
 				
 			}
@@ -142,16 +137,18 @@ public class KeyboardView extends JPanel implements ActionListener {
 	
 	private void initKeyboardButtons() {
 		JButton[][] keysInit = {
+				
 			// First row
-			{kf("Q"), kf("W"), kf("E"),	kf("R"), kf("T"), kf(i18n.tr("keyboard-y")), kf("U"), 
-				kf("I"), kf("O"), kf("P"), kf("Back", "bs")},
+			{kf("7"), kf("8"), kf("9")},
 			
 			// Second row
-			{kf("A"), kf("S"), kf("D"), kf("F"), kf("G"), kf("H"), kf("J"), 
-				kf("K"), kf("L"), kf("Enter", "e")},
+			{kf("4"), kf("5"), kf("6")},
 				
 			// Third row
-			{kf(i18n.tr("keyboard-z")), kf("X"), kf("C"), kf("V"), kf("B"), kf("N"), kf("M")}
+			{kf("1"), kf("2"), kf("3")},
+			
+			// Fourth row
+			{kf("BS", "bs"), kf("0"), kf("E", "e")}
 		};
 		
 		this.keys = keysInit;

@@ -25,3 +25,4 @@ cg_implementierung/src/edu/.metadata/
 /cg_implementierung/statistics.csv
 /cg_implementierung/error.log
 /cg_implementierung/compile_po.bat
+/cg_implementierung/po/*.mo

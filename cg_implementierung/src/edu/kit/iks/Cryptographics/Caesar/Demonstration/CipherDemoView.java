@@ -14,7 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import org.jdom2.Element;
+import org.xnap.commons.i18n.I18n;
 
+import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.ImageView;
@@ -74,6 +76,8 @@ public class CipherDemoView extends VisualizationView {
 	 */
 	private JTextField[] userOutput;
 
+	private static I18n i18n = Configuration.getInstance().getI18n(CipherDemoView.class);
+	
 	/**
 	 * Constructor.
 	 */
@@ -120,8 +124,8 @@ public class CipherDemoView extends VisualizationView {
 		// setup the explanation label.
 		this.explanations = new JLabel(
 				"<html><body>"
-						+ "Imagine now you are the mighty caesar!! Of course your first idea is to substitute each <br>"
-						+ "letter from your name with some other from the alphabet. But which one?");
+					+ i18n.tr("Imagine now you are the mighty caesar!! Of course your first idea is to substitute each <br>"
+							+ "letter from your name with some other from the alphabet. But which one?"));
 		// this.explanations.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = GridBagConstraints.LAST_LINE_START;

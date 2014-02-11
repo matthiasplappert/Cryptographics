@@ -24,31 +24,6 @@ public class CryptoModelTest {
 		this.modelTT = CryptoModel.getInstance();
 	}
 
-	@Test
-	public void testInsertHtmlBreaks() {
-		String[] testStringArr = { "Test1", "2", "3", "4", "HIGH", "FIVE" };
-		String expected = "<html><body>Test1<br>" + "2<br>" + "3<br>" + "4<br>"
-				+ "HIGH<br>" + "FIVE<br>";
-		String actual = this.modelTT.insertHtmlBreaks(testStringArr);
-		assertEquals(MESSAGE_HEADER + "insertHtmlBreaks()\n", expected, actual);
-	}
-
-	@Test
-	public void testRemoveHtmlBreaks() {
-		String htmlString = "<html><body>Test1<br>2<br>3<br>4<br>HIGH<br>FIVE<br>";
-		String[] expected = { "Test1", "2", "3", "4", "HIGH", "FIVE" };
-		String[] actual = this.modelTT.removeHtmlBreaks(htmlString);
-		assertArrayEquals(MESSAGE_HEADER + "removeHtmlBreaks()\n", expected,
-				actual);
-	}
-
-	@Test
-	public void testArrayToString() {
-		String[] testStringArr = { "Test1 ", "2 ", "3 ", "4 ", "HIGH ", "FIVE" };
-		String expected = "Test1 2 3 4 HIGH FIVE";
-		String actual = this.modelTT.arrayToString(testStringArr);
-		assertEquals(MESSAGE_HEADER + "arrayToString()\n", expected, actual);
-	}
 
 	@Test
 	public void testEncIntString() {
@@ -60,12 +35,10 @@ public class CryptoModelTest {
 
 	@Test
 	public void testEncIntStringArray() {
-		String[] alphabet = { "ABCD", "efgh", "IJKL", "mnop", "QRST", "uvwxyz",
-				".;!:_-" };
-		String[] expected = { "NOPQ", "rstu", "VWXY", "zabc", "DEFG", "hijklm",
-				".;!:_-" };
-		String[] actual = this.modelTT.enc(13, alphabet);
-		assertArrayEquals(MESSAGE_HEADER + "enc(StringArray)\n", expected,
+		String alphabet = "<html>ABCD<br>efgh<br>IJKL<br>mnop<br>QRST<br>uvwxyz<br>.;!:_-";
+		String expected = "<html>NOPQ<br>rstu<br>VWXY<br>zabc<br>DEFG<br>hijklm<br>.;!:_-";
+		String actual = this.modelTT.enc(13, alphabet);
+		assertEquals(MESSAGE_HEADER + "enc(StringArray)\n", expected,
 				actual);
 	}
 
@@ -75,17 +48,6 @@ public class CryptoModelTest {
 		String expected = "!!!ABcdEFghIJKlmNOPqrSTUvwXYZ!!!";
 		String actual = this.modelTT.dec(10, cipher);
 		assertEquals(MESSAGE_HEADER + "dec(String)\n", expected, actual);
-	}
-
-	@Test
-	public void testDecIntStringArray() {
-		String[] cipher = { "NOPQ", "rstu", "VWXY", "zabc", "DEFG", "hijklm",
-				".;!:_-" };
-		String[] expected = { "ABCD", "efgh", "IJKL", "mnop", "QRST", "uvwxyz",
-				".;!:_-" };
-		String[] actual = this.modelTT.dec(13, cipher);
-		assertArrayEquals(MESSAGE_HEADER + "dec(StringArray)\n", expected,
-				actual);
 	}
 
 	@Test

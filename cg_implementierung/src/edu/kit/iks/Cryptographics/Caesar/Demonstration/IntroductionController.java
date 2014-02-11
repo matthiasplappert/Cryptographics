@@ -26,6 +26,12 @@ import edu.kit.iks.CryptographicsLib.MouseClickListener;
 public class IntroductionController extends AbstractVisualizationController {
 
 	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(
+			IntroductionController.class);
+
+	/**
 	 * Variable holding track of the current step user has proceeded in the animation. if it is 0,
 	 * then it is the last step.
 	 */
@@ -37,70 +43,10 @@ public class IntroductionController extends AbstractVisualizationController {
 	private Element introResource;
 
 	/**
-	 * Localization instance
-	 */
-	private static I18n i18n = Configuration.getInstance().getI18n(IntroductionController.class);
-	
-	/**
 	 * @param visualizationInfo
 	 */
 	public IntroductionController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-	}
-
-	/**
-	 * Gets the view
-	 * 
-	 * @return The view of this controller
-	 */
-	@Override
-	public IntroductionView getView() {
-		return (IntroductionView) this.view;
-	}
-
-	@Override
-	public String getHelp() {
-		String help = i18n.tr("If you want to hear the awesome legend about Caesar "
-				+ "and Kryptolix press the button below the text. Else try the next button!");
-
-		return help;
-	}
-
-	@Override
-	public void loadView() {
-		this.animationStep = 1;
-		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
-		this.introResource = vsInfo.getResources().getChild("Introduction");
-		this.view = new IntroductionView();
-
-		this.getView().getNextButton().addActionListener(new ActionListener() {
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
-			 */
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				VisualizationContainerController containerController = (VisualizationContainerController) IntroductionController.this.getParentController();
-				containerController.presentNextVisualizationController();
-			}
-		});
-
-		this.getView().getProceed().addMouseListener(new MouseClickListener() {
-			@Override
-			public void clicked(MouseEvent e) {
-				IntroductionController.this.animationStart(IntroductionController.this.getAnimationStep());
-			}
-		});
-
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
-	 */
-	@Override
-	public void unloadView() {
-		this.view = null;
-		this.introResource = null;
 	}
 
 	/**
@@ -123,15 +69,71 @@ public class IntroductionController extends AbstractVisualizationController {
 			this.step4();
 			break;
 		default:
-        System.out.println("Invalid animation step!!!! Check why!");
+			System.out.println("Invalid animation step!!!! Check why!");
 		}
+	}
+
+	/**
+	 * @return the animationStep
+	 */
+	public int getAnimationStep() {
+		return this.animationStep;
+	}
+
+	@Override
+	public String getHelp() {
+		String help = i18n
+				.tr("If you want to hear the awesome legend about Caesar "
+						+ "and Kryptolix press the button below the text. Else try the next button!");
+
+		return help;
+	}
+
+	/**
+	 * Gets the view
+	 * 
+	 * @return The view of this controller
+	 */
+	@Override
+	public IntroductionView getView() {
+		return (IntroductionView) this.view;
+	}
+
+	@Override
+	public void loadView() {
+		this.animationStep = 1;
+		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
+		this.introResource = vsInfo.getResources().getChild("Introduction");
+		this.view = new IntroductionView();
+
+		this.getView().getNextButton().addActionListener(new ActionListener() {
+			/*
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
+			 */
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController = (VisualizationContainerController) IntroductionController.this
+						.getParentController();
+				containerController.presentNextVisualizationController();
+			}
+		});
+
+		this.getView().getProceed().addMouseListener(new MouseClickListener() {
+			@Override
+			public void clicked(MouseEvent e) {
+				IntroductionController.this
+						.animationStart(IntroductionController.this
+								.getAnimationStep());
+			}
+		});
+
 	}
 
 	/*
 	 * TODO: !!!!!!!!!!!!!!!!!!!!!!Fuer jemanden der sich um die Grafiken kuemmern
 	 * will!!!!!!!!!!!!!!!!!:Also hier zur Ausnahme auf Deutsch, was auf der Animation passieren
-	 * soll: step1. Caesar(laechelnd(am besten boeoeoeoeoese)) komikhaft dargestellt mit einer Gluehlampe
-	 * auf dem Kopf.
+	 * soll: step1. Caesar(laechelnd(am besten boeoeoeoeoese)) komikhaft dargestellt mit einer
+	 * Gluehlampe auf dem Kopf.
 	 * 
 	 * step2.Ich brauche ein Bild von einem Maennchen, an dem man am besten auch erkennt, dass dies
 	 * ein Bote ist. Auf dem Hintergrundbild sollte ein Wald zu sehen sein. Der Bote wird von links
@@ -144,8 +146,8 @@ public class IntroductionController extends AbstractVisualizationController {
 	 * links.(Nicht nach rechts, wo der Bote ist.).
 	 * 
 	 * 4. Da wo das Wildschwein aufgetaucht ist, tauch hinterher Bild vom Obelix auf. Dieser
-	 * allerdings dreht sich nach rechts und laeuft dem Boden entgegen. Es muss hier deutlich werden,
-	 * dass der Bote daovon nichts mitbekommt.
+	 * allerdings dreht sich nach rechts und laeuft dem Boden entgegen. Es muss hier deutlich
+	 * werden, dass der Bote daovon nichts mitbekommt.
 	 * 
 	 * 5. Obelix haut den Boden(Wie egal) und der Bote fliegt vertikal nach Oben und da wo der Bote
 	 * war, erscheint eine Schriftrolle.
@@ -162,9 +164,9 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>" +
-							i18n.tr("Unfortunately his courier has taken the way through the forest, where Kryptolix chased<br>" +
-									"the wild boars."));
+						"<html><body>"
+								+ i18n.tr("Unfortunately his courier has taken the way through the forest, where Kryptolix chased<br>"
+										+ "the wild boars."));
 
 		// this.getView().getAnimationContainer().setBackground(Color.GREEN);
 
@@ -199,17 +201,17 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>" +
-							i18n.tr("When Kryptolix noticed the unsuspecting and whistling roman courier, he punched him via the air-line<br>" +
-								"back to Rome. And saw him losing a scroll."));
+						"<html><body>"
+								+ i18n.tr("When Kryptolix noticed the unsuspecting and whistling roman courier, he punched him via the air-line<br>"
+										+ "back to Rome. And saw him losing a scroll."));
 
 		// set the alignment of boar.
 		GridBagConstraints boarConst = new GridBagConstraints();
 		boarConst.gridx = 4;
 		boarConst.gridy = 0;
 		this.getView().setBoar(
-				new ImageView(this.introResource.getChild("Boar").getAttributeValue(
-						"path")));
+				new ImageView(this.introResource.getChild("Boar")
+						.getAttributeValue("path")));
 		this.getView().getAnimationContainer()
 				.add(this.getView().getBoar(), boarConst);
 
@@ -243,9 +245,9 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>" +
-							i18n.tr("When reading the scroll the courier lost, Kryptolix identified Caesar's plans of<br>" +
-									"conquering Gallia and Kryptolix and his awesome friends could defeat Caesar again!"));
+						"<html><body>"
+								+ i18n.tr("When reading the scroll the courier lost, Kryptolix identified Caesar's plans of<br>"
+										+ "conquering Gallia and Kryptolix and his awesome friends could defeat Caesar again!"));
 
 		GridBagConstraints orderConstraints = new GridBagConstraints();
 		orderConstraints.gridx = 5;
@@ -271,9 +273,9 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>" +
-							i18n.tr("Caesar was raging. But while he was toturing some Gauls suddenly a hellacious and an foolproof idea<br>" +
-									"crossed his mind. In his next message he will encrypt his name! Hue Hue Hue. Help him."));
+						"<html><body>"
+								+ i18n.tr("Caesar was raging. But while he was toturing some Gauls suddenly a hellacious and an foolproof idea<br>"
+										+ "crossed his mind. In his next message he will encrypt his name! Hue Hue Hue. Help him."));
 
 		GridBagLayout introLayout = (GridBagLayout) this.getView().getLayout();
 		this.getView().getNextButton().setText("To caesar's idea");
@@ -289,11 +291,15 @@ public class IntroductionController extends AbstractVisualizationController {
 
 	}
 
-	/**
-	 * @return the animationStep
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
 	 */
-	public int getAnimationStep() {
-		return this.animationStep;
+	@Override
+	public void unloadView() {
+		this.view = null;
+		this.introResource = null;
 	}
 
 }
