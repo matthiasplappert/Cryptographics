@@ -151,10 +151,16 @@ public class ChoosePublicColorView extends JPanel {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						for(ActionListener al : multiBtn.getActionListeners()) {
-							multiBtn.removeActionListener(al);
+						if(!chooser.getCurrentColor().equals(cc.getPublicColor())) {
+							for(ActionListener al : multiBtn.getActionListeners()) {
+								multiBtn.removeActionListener(al);
+							}
+							mixPrivateColorStep();
+							
+						} else {
+							choosePublicLbl.setText("The private color can't be the same" +
+									" as the public color");
 						}
-						mixPrivateColorStep();						
 					}
 				});
 			}
