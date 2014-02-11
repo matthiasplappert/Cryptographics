@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
@@ -22,7 +21,27 @@ public class FirstExperimentController extends AbstractVisualizationController {
 
 	@Override
 	public String getHelp() {
-		return null;
+		String returnString = "";
+		switch (this.state) {
+		case 0:
+			returnString = "'T' = 20 and 'A' = 1, so just substract 1 from 20 and you have the answer!";
+			break;
+		case 1:
+			returnString = "'W' = 23 and 'B' = 2, so just substract 1 from 20 and you have the answer!";
+			break;
+		case 2:
+			returnString = "'S' = 19 and 'C' = 3, so just substract 1 from 20 and you have the answer!";
+			break;
+		case 3:
+			returnString = "'I' = 9 and 'D' = 4, so just substract 1 from 20 and you have the answer!";
+			break;
+		case 4:
+			returnString = "'W' = 23 and 'E' = 5, so just substract 1 from 20 and you have the answer!";
+			break;
+		default:
+			return null;
+		}
+		return returnString;
 	}
 	
 	public boolean testInput(int index) {
@@ -72,7 +91,6 @@ public class FirstExperimentController extends AbstractVisualizationController {
 					case 2:
 						getView().setExplanation("<html><div width=\"1200\">Second strike! Three left...</div></html>");
 						getView().setTextField(1, "U");
-
 						getView().getAlphabet().unHighlightAll();
 						getView().getAlphabet().highlight(18);
 						getView().getAlphabet().highlight(2);
@@ -91,7 +109,6 @@ public class FirstExperimentController extends AbstractVisualizationController {
 					case 4:
 						getView().setExplanation("<html><div width=\"1200\">Almost done, last character...</div></html>");
 						getView().setTextField(3, "E");
-
 						getView().getAlphabet().unHighlightAll();
 						getView().getAlphabet().highlight(22);
 						getView().getAlphabet().highlight(4);

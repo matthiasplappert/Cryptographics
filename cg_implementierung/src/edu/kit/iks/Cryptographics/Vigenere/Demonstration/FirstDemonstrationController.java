@@ -22,7 +22,7 @@ public class FirstDemonstrationController extends AbstractVisualizationControlle
 
 	@Override
 	public String getHelp() {
-		return null;
+		return "There is nothing to help, just read the text";
 	}
 
 	@Override
@@ -54,10 +54,6 @@ public class FirstDemonstrationController extends AbstractVisualizationControlle
 		this.view.validate();
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
-	 */
 	@Override
 	public void unloadView() {
 		this.view = null;

@@ -44,6 +44,7 @@ public class SecondExplanationView extends VisualizationView{
 	public void answerFalse() {
 		this.answer.setBorder(BorderFactory.createLineBorder(Color.red, 5));
 		this.wrong.setVisible(true);
+		this.answer.setText("");
 	}
 	
 	public String getAnswer() {
