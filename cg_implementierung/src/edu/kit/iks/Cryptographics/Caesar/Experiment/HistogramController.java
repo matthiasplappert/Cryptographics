@@ -9,6 +9,9 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
@@ -16,7 +19,7 @@ import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
 
 /**
- * Controller for the last step of the experiment phase. User can try to break the caesar cipher.
+ * Controller for the last step of the histogram experiment phase. User can try to break the caesar cipher.
  * CFifthView is being controlled here.
  * 
  * @author Wasilij Beskorovajnov.
@@ -24,8 +27,20 @@ import edu.kit.iks.CryptographicsLib.MouseClickListener;
  */
 public class HistogramController extends AbstractVisualizationController {
 
+	/**
+	 * localization.
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(
+			HistogramController.class);
+
+	/**
+	 * The model of this Controller.
+	 */
 	private CryptoModel model;
 
+	/**
+	 * Integer value that shows what step the visualization has proceed.
+	 */
 	private int step;
 
 	/**
@@ -37,6 +52,39 @@ public class HistogramController extends AbstractVisualizationController {
 		super(visualizationInfo);
 	}
 
+	
+	@Override
+	public void loadView() {
+		this.view = new HistogramView();
+		this.model = CryptoModel.getInstance();
+		this.step = 0;
+
+		this.genProceedListener();
+
+		this.getView().getBackButton().addActionListener(new ActionListener() {
+			/*
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
+			 */
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController = (VisualizationContainerController) HistogramController.this
+						.getParentController();
+				containerController.presentPreviousVisualizationController();
+			}
+		});
+		this.getView().getNextButton().addActionListener(new ActionListener() {
+			/*
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
+			 */
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController = (VisualizationContainerController) HistogramController.this
+						.getParentController();
+				containerController.presentNextVisualizationController();
+			}
+		});
+	}
+	
 	public void generateHistogramInputListener() {
 		this.getView().getKeyInput().addFocusListener(new FocusListener() {
 
@@ -107,8 +155,7 @@ public class HistogramController extends AbstractVisualizationController {
 									+ "There you can learn more about caesar's cipher.";
 							HistogramController.this.getView()
 									.getExplanations().setText(explanations);
-							HistogramController.this.getView().setupProceed();
-							HistogramController.this.genProceedListener();
+							HistogramController.this.getView().getProceed().setVisible(true);
 							HistogramController.this.getView().requestFocus();
 							HistogramController.this.getView().remove(
 									HistogramController.this.getView()
@@ -167,7 +214,7 @@ public class HistogramController extends AbstractVisualizationController {
 	/**
 	 * Generates the action listener for the brute force stage.
 	 */
-	public void genListenerBruteForce() {
+	public void generateBruteForceListener() {
 		this.getView().getIncrement()
 				.addMouseListener(new MouseClickListener() {
 					@Override
@@ -200,8 +247,8 @@ public class HistogramController extends AbstractVisualizationController {
 								// if the button is not visible, then it means that the key wasnt
 								// found
 								// yet.
-								if (HistogramController.this.getView()
-										.getProceed() == null) {
+								if (!HistogramController.this.getView()
+										.getProceed().isVisible()) {
 									// compare the keys.
 									if (nextBFKey == HistogramController.this
 											.getView().getSecretKey()) {
@@ -226,9 +273,7 @@ public class HistogramController extends AbstractVisualizationController {
 																+ nextBFKey);
 										HistogramController.this.setStep(1);
 										HistogramController.this.getView()
-												.setupProceed();
-										HistogramController.this
-												.genProceedListener();
+												.getProceed().setVisible(true);
 										HistogramController.this.getView()
 												.revalidate();
 
@@ -297,17 +342,13 @@ public class HistogramController extends AbstractVisualizationController {
 			@Override
 			public void clicked(MouseEvent e) {
 				if (HistogramController.this.getStep() == 0) {
+					HistogramController.this.getView().getProceed().setVisible(false);
 					int secret = HistogramController.this.getModel()
 							.generateKey();
-					HistogramController.this.getView().setSecretKey(secret);
-					HistogramController.this.getView().setupKeyControlPanel();
-					HistogramController.this.getView()
-							.setupIncrementDecrement();
-					HistogramController.this.getView().setupCipherPlainLabels(
-							HistogramController.this.getModel()
-									.genRandomCipher(secret));
-					HistogramController.this.getView().setupBruteForce();
-					HistogramController.this.genListenerBruteForce();
+					
+					HistogramController.this.getView().setupBruteForceCore(secret,HistogramController.this.getModel()
+							.genRandomCipher(secret));
+					HistogramController.this.generateBruteForceListener();
 					HistogramController.this
 							.getView()
 							.getKeyControl()
@@ -317,29 +358,26 @@ public class HistogramController extends AbstractVisualizationController {
 
 				} else if (HistogramController.this.getStep() == 1) {
 					// unload the old explanations.
-					HistogramController.this.getView().unloadExplanationPanel();
+					HistogramController.this.getView().unloadExplanationAndForwardingPanel();
 					HistogramController.this.getView().remove(
 							HistogramController.this.getView().getKeyControl());
 					HistogramController.this.getView().setKeyControl(null);
 
 					String explanation = "<html><body>"
-							+ "The diagram you see here shows the frequency of each letter<br>"
+							+ i18n.tr("The diagram you see here shows the frequency of each letter<br>"
 							+ "in the text you are reading at the moment. It is called a<br>"
 							+ "Histogram. If you would count all E's in this explanation<br>"
 							+ "you would get the number you see in the diagram on the column<br>"
 							+ "above the letter E. Now the program will encrypt this explanation<br>"
 							+ "with an unknown key in a most awesome way and we will see the <br>"
-							+ "histogram of the cipher. Click Proceed and see the magic!";
-
-					HistogramController.this.getView().setupExplanationPanel();
-					HistogramController.this.getView().setupExplanations(
+							+ "histogram of the cipher. Click Proceed and see the magic!");
+                   
+					HistogramController.this.getView().setupExplanationAndForwarding(
 							explanation);
-					HistogramController.this.getView().setupProceed();
-					HistogramController.this.genProceedListener();
 
 					// Build the new experiment.
 					HistogramController.this.setStep(2);
-
+                    HistogramController.this.genProceedListener();
 					HistogramController.this.getView()
 							.setupHistogramContainer();
 					HistogramController.this.getView().setupPlainHistogram(
@@ -348,6 +386,7 @@ public class HistogramController extends AbstractVisualizationController {
 					HistogramController.this.getView().revalidate();
 					HistogramController.this.getView().repaint();
 				} else if (HistogramController.this.getStep() == 2) {
+					HistogramController.this.getView().getProceed().setVisible(false);
 					HistogramController.this.setStep(3);
 					String[] htmlFreeText = HistogramController.this.getModel()
 							.removeHtmlBreaks(
@@ -379,11 +418,11 @@ public class HistogramController extends AbstractVisualizationController {
 					HistogramController.this.getView().setHistogramCipher(
 							cipher);
 					HistogramController.this.getView().setSecretKey(3);
-					HistogramController.this.getView().unloadProceed();
 					HistogramController.this.getView().setupKeyInput();
 					HistogramController.this.generateHistogramInputListener();
 					HistogramController.this.getView().validate();
 					HistogramController.this.getView().repaint();
+					
 
 				} else {
 					// Build the new experiment.
@@ -413,7 +452,7 @@ public class HistogramController extends AbstractVisualizationController {
 					HistogramController.this.getView().setHistogramCipher(
 							cipher);
 					HistogramController.this.getView().setSecretKey(key);
-					HistogramController.this.getView().unloadProceed();
+					HistogramController.this.getView().getProceed().setVisible(false);
 					if (HistogramController.this.getView().getNumpad() != null) {
 						HistogramController.this.getView().remove(
 								HistogramController.this.getView().getNumpad());
@@ -455,38 +494,6 @@ public class HistogramController extends AbstractVisualizationController {
 	@Override
 	public HistogramView getView() {
 		return (HistogramView) this.view;
-	}
-
-	@Override
-	public void loadView() {
-		this.view = new HistogramView();
-		this.model = CryptoModel.getInstance();
-		this.step = 0;
-
-		this.genProceedListener();
-
-		this.getView().getBackButton().addActionListener(new ActionListener() {
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
-			 */
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				VisualizationContainerController containerController = (VisualizationContainerController) HistogramController.this
-						.getParentController();
-				containerController.presentPreviousVisualizationController();
-			}
-		});
-		this.getView().getNextButton().addActionListener(new ActionListener() {
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
-			 */
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				VisualizationContainerController containerController = (VisualizationContainerController) HistogramController.this
-						.getParentController();
-				containerController.presentNextVisualizationController();
-			}
-		});
 	}
 
 	/**
