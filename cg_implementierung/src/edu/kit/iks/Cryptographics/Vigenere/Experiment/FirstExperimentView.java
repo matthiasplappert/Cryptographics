@@ -29,6 +29,7 @@ public class FirstExperimentView extends VisualizationView{
 	
 	private JLabel explanation;
 	private AlphabetStripView alphabet;
+	private JLabel errorMessage;
 	
 	public void highlightTextBorder(int i) {
 		this.textCharDecrypted[i].setEnabled(true);
@@ -76,10 +77,21 @@ public class FirstExperimentView extends VisualizationView{
 		this.validate();
 	}
 	
+	public void showError(int i) {
+		this.textCharDecrypted[i].setBorder(BorderFactory.createLineBorder(Color.red, 5));
+		this.textCharDecrypted[i].setText("");
+		this.errorMessage.setVisible(true);
+	}
+	
+	public void hideError() {
+		this.errorMessage.setVisible(false);
+	}
+	
 	public FirstExperimentView() {
 		this.setLayout(null);
 		this.add(this.explanation = new JLabel("<html><div width=\"1200\">Now its your turn! Decrypt this string...</div></html>"));
-		this.add(new JLabel("VIGENERE EXPERIMENT"));
+		this.add(this.errorMessage = new JLabel("Wrong Answer! Try again!"));
+		
 		this.vigenereKeyDesc = new JLabel("Vigenere Key: " + this.vigenereKey);
 		this.alphabet = new AlphabetStripView();
 		
@@ -126,6 +138,7 @@ public class FirstExperimentView extends VisualizationView{
 
 		this.vigenereKeyDesc.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		this.explanation.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+		this.errorMessage.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		
 		for (int i = 0; i < this.textCharPlain.length; i++)
 			this.textCharPlain[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
@@ -141,6 +154,9 @@ public class FirstExperimentView extends VisualizationView{
 
 		Dimension size = this.vigenereKeyDesc.getPreferredSize();
 		this.vigenereKeyDesc.setBounds(90, 250, size.width, size.height);
+		
+		size = this.errorMessage.getPreferredSize();
+		this.errorMessage.setBounds(500, 320, size.width, size.height);
 		
 		size = this.textCharPlain[0].getPreferredSize();
 		this.textCharPlain[0].setBounds(500, 100,
@@ -185,7 +201,7 @@ public class FirstExperimentView extends VisualizationView{
 	             size.width, size.height);
 		
 		//TROLOLOLO 2
-		size.width = 24;
+		size.width = 50;
 		size.height = 44;
 		this.textCharDecrypted[0].setBounds(500, 250,
 	             size.width, size.height);
@@ -244,5 +260,6 @@ public class FirstExperimentView extends VisualizationView{
 		getAlphabet().highlight(0);
 		getAlphabet().highlight(19);
 		highlightTextBorder(0);
+		hideError();
 	}
 }

@@ -57,12 +57,12 @@ public class FirstExperimentController extends AbstractVisualizationController {
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				if (testInput(state)) {
+					getView().hideError();
 					state++;
 					switch (state) {
 					case 1:
 						getView().setExplanation("<html><div width=\"1200\">Very nice, now the second character!</div></html>");
 						getView().setTextField(0, "S");
-
 						getView().getAlphabet().unHighlightAll();
 						getView().getAlphabet().highlight(22);
 						getView().getAlphabet().highlight(1);
@@ -82,7 +82,6 @@ public class FirstExperimentController extends AbstractVisualizationController {
 					case 3:
 						getView().setExplanation("<html><div width=\"1200\">Not much left, 2 to go...</div></html>");
 						getView().setTextField(2, "P");
-
 						getView().getAlphabet().unHighlightAll();
 						getView().getAlphabet().highlight(7);
 						getView().getAlphabet().highlight(3);
@@ -110,7 +109,8 @@ public class FirstExperimentController extends AbstractVisualizationController {
 						containerController.presentNextVisualizationController();
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Wrong Input, please try again!", "Error!", JOptionPane.OK_OPTION);
+					getView().showError(state);
+					
 				}
 			}
 		});
