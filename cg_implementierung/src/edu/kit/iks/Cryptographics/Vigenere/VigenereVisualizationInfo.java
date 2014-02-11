@@ -47,7 +47,7 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	}
 
 	public String getDescription() {
-		return "";
+		return "Get to know how Vigenere fixed the weaknesses of Caesar to make a 'secure' cipher for many hundred years!";
 	}
 	
 	public String getQRCodeContent() {

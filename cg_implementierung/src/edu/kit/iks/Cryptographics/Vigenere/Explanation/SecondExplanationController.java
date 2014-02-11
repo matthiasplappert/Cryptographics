@@ -74,7 +74,6 @@ public class SecondExplanationController extends AbstractVisualizationController
 	
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Check the peaks in the histogramm and compare them to the other histogramm, do you see any similarities?";
 	}
 }

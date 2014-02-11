@@ -18,7 +18,7 @@ public class ThirdDemonstrationController extends AbstractVisualizationControlle
 
 	@Override
 	public String getHelp() {
-		return null;
+		return "Follow the explanations!";
 	}
 
 	@Override
