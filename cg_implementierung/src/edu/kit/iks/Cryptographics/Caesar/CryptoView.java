@@ -87,12 +87,12 @@ public class CryptoView extends VisualizationView {
 	/**
 	 * Textfield for user literal input.
 	 */
-	protected JTextField input;
+	protected JTextField literalInput;
 
 	/**
 	 * Textfield for user numerical input.
 	 */
-	protected JTextField key;
+	protected JTextField keyInput;
 
 	/**
 	 * Keyboard with literals for literal input.
@@ -350,17 +350,17 @@ public class CryptoView extends VisualizationView {
 	}
 
 	private void setupKeyDisplay(int xGrid, int key) {
-		this.key = new JTextField();
+		this.keyInput = new JTextField();
 		GridBagConstraints keyConst = new GridBagConstraints();
-		this.key.setText("" + key);
-		this.key.setPreferredSize(new Dimension(25, 25));
-		this.key.setEditable(false);
+		this.keyInput.setText("" + key);
+		this.keyInput.setPreferredSize(new Dimension(25, 25));
+		this.keyInput.setEditable(false);
 		keyConst.insets = new Insets(25, 25, 25, 25);
 		keyConst.gridx = xGrid;
 		keyConst.gridy = 0;
 		keyConst.ipadx = 20;
 		keyConst.ipady = 20;
-		this.userCharacterIOContainer.add(this.key, keyConst);
+		this.userCharacterIOContainer.add(this.keyInput, keyConst);
 	}
 
 	private void setupUserInput(int i, char content) {
@@ -498,22 +498,22 @@ public class CryptoView extends VisualizationView {
 	/**
 	 * @return the inOutPanel
 	 */
-	public JPanel getInOutPanel() {
+	public JPanel userCharacterIOContainer() {
 		return this.userCharacterIOContainer;
 	}
 
 	/**
 	 * @return input
 	 */
-	public JTextField getInput() {
-		return this.input;
+	public JTextField getLiteralInput() {
+		return this.literalInput;
 	}
 
 	/**
 	 * @return the key
 	 */
-	public JTextField getKey() {
-		return this.key;
+	public JTextField getKeyInput() {
+		return this.keyInput;
 	}
 
 	/**
@@ -595,7 +595,7 @@ public class CryptoView extends VisualizationView {
 	 *            the input to set
 	 */
 	public void setInput(JTextField input) {
-		this.input = input;
+		this.literalInput = input;
 	}
 
 	/**
@@ -603,7 +603,7 @@ public class CryptoView extends VisualizationView {
 	 *            the key to set
 	 */
 	public void setKey(JTextField key) {
-		this.key = key;
+		this.keyInput = key;
 	}
 
 	/**

@@ -63,8 +63,44 @@ public class CryptoDemonstrationController extends
 		super(visualizationInfo);
 	}
 
+	@Override
+	public void loadView() {
+		this.view = new CryptoDemonstrationView();
+		this.model = CryptoModel.getInstance();
+		// set the initial first step.
+		this.demonstrationStep = 1;
+
+		// generate ActionListener for the navigationButtons.
+		this.generateNavigationListener();
+
+		// generate ActionListener for the forwarding button proceed.
+		this.generateProceedListener();
+
+		for (int i = 1; i < this.getView().getUserOutput().length; i++) {
+			// Needed for delegating to the inner type ActionListener, when the actionEvent from the
+			// Button "ENTER" on the Keyboard is fired.
+			final JTextField userOutput = this.getView().getUserOutput()[i];
+			// FocusListener for the textfields.
+			this.generateUserOutputFocusListener(i, userOutput);
+			// actionListener for the textfields.
+			this.generateUserOutputActionListener(i, userOutput);
+		}
+
+		this.getView().validate();
+	}
+
 	/**
-	 * Function for performing the needed animations. After each step the animation stops and
+	 * Gets the view
+	 * 
+	 * @return The view of this controller
+	 */
+	@Override
+	public CryptoDemonstrationView getView() {
+		return (CryptoDemonstrationView) this.view;
+	}
+
+	/**
+	 * Function for performing the needed demonstration. After each step the demonstration stops and
 	 * continues when user wishes.
 	 * 
 	 * @param step
@@ -87,145 +123,141 @@ public class CryptoDemonstrationController extends
 
 	}
 
-	/**
-	 * Gets the view
-	 * 
-	 * @return The view of this controller
-	 */
-	@Override
-	public CryptoDemonstrationView getView() {
-		return (CryptoDemonstrationView) this.view;
-	}
+	// ---------------------------------------------------------//
+	// -----------------private methods-------------------------//
 
-	@Override
-	public void loadView() {
-		this.view = new CryptoDemonstrationView();
-		this.model = CryptoModel.getInstance();
-		// set the initial first step.
-		this.demonstrationStep = 1;
+	private void generateUserOutputActionListener(int i,
+			final JTextField userOutput) {
+		this.getView().getUserOutput()[i]
+				.addActionListener(new ActionListener() {
 
-		for (int i = 1; i < this.getView().getUserOutput().length; i++) {
-			// Needed for delegating to the inner type ActionListener, when the actionEvent from the
-			// Button "ENTER" on the Keyboard is fired.
-			final JTextField userOutput = this.getView().getUserOutput()[i];
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if (userOutput.isEditable()) {
+							// standart key for the caesar cipher. +3 when encrypting. -3 when
+							// decrypting.
+							if (CryptoDemonstrationController.this.getModel()
+									.enc(3, userOutput.getName())
+									.equals(userOutput.getText())) {
 
-			this.getView().getUserOutput()[i]
-					.addFocusListener(new FocusListener() {
-						@Override
-						public void focusGained(FocusEvent e) {
-
-							JTextField output = (JTextField) e.getSource();
-							// resets the highlighting.
-							CryptoDemonstrationController.this
-									.resetStateOfIOFields();
-
-							if (CryptoDemonstrationController.this.getView()
-									.getKeyboard() != null) {
-								// remove the keyboard.
-								CryptoDemonstrationController.this.getView()
-										.removeKeyboard();
-							}
-							if (output.isEditable()) {
-								// highlights the character in the alphabet.
+								// user encrypted the given char successful.
 								CryptoDemonstrationController.this
-										.highlightInputField(userOutput);
-							}
-						}
+										.presentSuccessfullCharEncrypt(userOutput);
 
-						@Override
-						public void focusLost(FocusEvent e) {
-							// Nothing to do here.
-						}
-					});
-
-			this.getView().getUserOutput()[i]
-					.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if (userOutput.isEditable()) {
-								// standart key for the caesar cipher. +3 when encrypting. -3 when
-								// decrypting.
 								if (CryptoDemonstrationController.this
-										.getModel()
-										.enc(3, userOutput.getName())
-										.equals(userOutput.getText())) {
+										.getEditableFields() == 0
+										&& CryptoDemonstrationController.this
+												.getAnimationStep() == 4) {
 
-									// user encrypted the given char successful.
+									// User encrypted all characters valid.
 									CryptoDemonstrationController.this
-											.presentSuccessfullCharEncrypt(userOutput);
+											.getView()
+											.getExplanations()
+											.setText(
+													i18n.tr("<html><body>Great work oh mighty Caesar. May your enemies shutter over your intelligence."));
+									// remove all unnecessary elements.
+									CryptoDemonstrationController.this
+											.getView().removeAlphabet();
+									CryptoDemonstrationController.this
+											.presentFinish();
+									CryptoDemonstrationController.this
+											.getView().removeKeyboard();
 
-									if (CryptoDemonstrationController.this
-											.getEditableFields() == 0
-											&& CryptoDemonstrationController.this
-													.getAnimationStep() == 4) {
+								} else if (CryptoDemonstrationController.this
+										.getEditableFields() == 0
+										&& CryptoDemonstrationController.this
+												.getAnimationStep() == 3) {
 
-										// User encrypted all characters valid.
-										CryptoDemonstrationController.this
-												.getView()
-												.getExplanations()
-												.setText(
-														i18n.tr("<html><body>Great work oh mighty Caesar. May your enemies shutter over your intelligence."));
-										// remove all unnecessary elements.
-										CryptoDemonstrationController.this
-												.getView().removeAlphabet();
-										CryptoDemonstrationController.this
-												.presentFinish();
-										CryptoDemonstrationController.this
-												.getView().removeKeyboard();
-
-									} else if (CryptoDemonstrationController.this
-											.getEditableFields() == 0
-											&& CryptoDemonstrationController.this
-													.getAnimationStep() == 3) {
-
-										// User has to encrypt the last 3 fields.
-										CryptoDemonstrationController.this
-												.prepareNextToLastStep(userOutput);
-										CryptoDemonstrationController.this
-												.getView()
-												.getExplanations()
-												.setText(
-														i18n.tr("<html><body>Very nice! Lets encrypt the rest of this childish challenge."));
-									} else {
-										// User encrypted correctly the given char.
-										CryptoDemonstrationController.this
-												.getView()
-												.getExplanations()
-												.setText(
-														CryptoDemonstrationController.this
-																.getModel()
-																.genRandomGrats()
-																+ i18n.tr(" Only ")
-																+ CryptoDemonstrationController.this
-																		.getEditableFields()
-																+ i18n.tr(" left."));
-										// The next textfield to the right requests now the focus.
-										CryptoDemonstrationController.this
-												.getView().getUserOutput()[CryptoDemonstrationController.this
-												.getView().getUserOutput().length
-												- CryptoDemonstrationController.this
-														.getEditableFields()]
-												.requestFocus();
-									}
+									// User has to encrypt the last 3 fields.
+									CryptoDemonstrationController.this
+											.prepareNextToLastStep(userOutput);
+									CryptoDemonstrationController.this
+											.getView()
+											.getExplanations()
+											.setText(
+													i18n.tr("<html><body>Very nice! Lets encrypt the rest of this childish challenge."));
 								} else {
-									// User didn't encrypt correctly.
-									userOutput.setBorder(BorderFactory
-											.createLineBorder(Color.red));
-									userOutput.setText("");
+									// User encrypted correctly the given char.
 									CryptoDemonstrationController.this
 											.getView()
 											.getExplanations()
 											.setText(
 													CryptoDemonstrationController.this
 															.getModel()
-															.genRandomBlamings());
-									userOutput.requestFocus();
+															.genRandomGrats()
+															+ i18n.tr(" Only ")
+															+ CryptoDemonstrationController.this
+																	.getEditableFields()
+															+ i18n.tr(" left."));
+									// The next textfield to the right requests now the focus.
+									CryptoDemonstrationController.this
+											.getView().getUserOutput()[CryptoDemonstrationController.this
+											.getView().getUserOutput().length
+											- CryptoDemonstrationController.this
+													.getEditableFields()]
+											.requestFocus();
 								}
+							} else {
+								// User didn't encrypt correctly.
+								userOutput.setBorder(BorderFactory
+										.createLineBorder(Color.red));
+								userOutput.setText("");
+								CryptoDemonstrationController.this
+										.getView()
+										.getExplanations()
+										.setText(
+												CryptoDemonstrationController.this
+														.getModel()
+														.genRandomBlamings());
+								userOutput.requestFocus();
 							}
 						}
-					});
-		}
+					}
+				});
+	}
+
+	private void generateUserOutputFocusListener(int i,
+			final JTextField userOutput) {
+		this.getView().getUserOutput()[i].addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+
+				JTextField output = (JTextField) e.getSource();
+				// resets the highlighting.
+				CryptoDemonstrationController.this.resetStateOfIOFields();
+
+				if (CryptoDemonstrationController.this.getView().getKeyboard() != null) {
+					// remove the keyboard.
+					CryptoDemonstrationController.this.getView()
+							.removeKeyboard();
+				}
+				if (output.isEditable()) {
+					// highlights the character in the alphabet.
+					CryptoDemonstrationController.this
+							.highlightInputField(userOutput);
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				// Nothing to do here.
+			}
+		});
+	}
+
+	private void generateProceedListener() {
+		this.getView().getProceed().addMouseListener(new MouseClickListener() {
+			@Override
+			public void clicked(MouseEvent e) {
+				CryptoDemonstrationController.this
+						.demonstrate(CryptoDemonstrationController.this
+								.getAnimationStep());
+			}
+		});
+
+	}
+
+	private void generateNavigationListener() {
 		this.getView().getBackButton().addActionListener(new ActionListener() {
 			/*
 			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
@@ -248,21 +280,7 @@ public class CryptoDemonstrationController extends
 				containerController.presentNextVisualizationController();
 			}
 		});
-
-		this.getView().getProceed().addMouseListener(new MouseClickListener() {
-			@Override
-			public void clicked(MouseEvent e) {
-				CryptoDemonstrationController.this
-						.demonstrate(CryptoDemonstrationController.this
-								.getAnimationStep());
-			}
-		});
-
-		this.getView().validate();
 	}
-
-	// ---------------------------------------------------------//
-	// -----------------private methods-------------------------//
 
 	private void prepareNextToLastStep(JTextField userOutput) {
 		this.getView().requestFocus();
