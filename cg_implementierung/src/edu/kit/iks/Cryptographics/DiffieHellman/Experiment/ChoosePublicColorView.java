@@ -75,6 +75,8 @@ public class ChoosePublicColorView extends JPanel {
 	};
 	
 	private Color[] rememberColors = toChooseFrom;
+
+	private ActionListener remember;
 	
 	public ChoosePublicColorView() {
 		super();
@@ -268,7 +270,14 @@ public class ChoosePublicColorView extends JPanel {
 				
 				@Override
 				public void callback() {
-					cc.mixBobFinalSecret(null);
+					cc.mixBobFinalSecret(new NextStepCallback() {
+						
+						@Override
+						public void callback() {
+							multiBtn.setText("Continue");
+							multiBtn.addActionListener(remember);
+						}
+					});
 				}
 			});
 		} else {
@@ -305,5 +314,9 @@ public class ChoosePublicColorView extends JPanel {
 		int randNum = rand.nextInt((max-min) + 1) + min;
 		
 		return randNum;
+	}
+	
+	public void setRemember(ActionListener remember) {
+		this.remember = remember;
 	}
 }
