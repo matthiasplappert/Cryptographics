@@ -12,7 +12,7 @@ import org.jdom2.input.SAXBuilder;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.Configuration;
-import edu.kit.iks.Cryptographics.Caesar.Demonstration.CipherDemoController;
+import edu.kit.iks.Cryptographics.Caesar.Demonstration.CryptoDemonstrationController;
 import edu.kit.iks.Cryptographics.Caesar.Demonstration.IntroductionController;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoExperimentController;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.HistogramController;
@@ -67,7 +67,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 		List<Class> controllerClasses = new ArrayList<Class>();
 
 		controllerClasses.add(IntroductionController.class);
-		controllerClasses.add(CipherDemoController.class);
+		controllerClasses.add(CryptoDemonstrationController.class);
 		controllerClasses.add(CryptoExperimentController.class);
 		controllerClasses.add(HistogramController.class);
 		controllerClasses.add(InformationController.class);

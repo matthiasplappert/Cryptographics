@@ -21,7 +21,7 @@ import org.xnap.commons.i18n.I18n;
 import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.Cryptographics.Caesar.CryptoView;
-import edu.kit.iks.Cryptographics.Caesar.Demonstration.CipherDemoView;
+import edu.kit.iks.Cryptographics.Caesar.Demonstration.CryptoDemonstrationView;
 
 /**
  * @author wasilij

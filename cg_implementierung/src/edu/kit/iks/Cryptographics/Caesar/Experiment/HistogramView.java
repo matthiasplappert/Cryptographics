@@ -18,7 +18,7 @@ import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
-import edu.kit.iks.Cryptographics.Caesar.Demonstration.CipherDemoView;
+import edu.kit.iks.Cryptographics.Caesar.Demonstration.CryptoDemonstrationView;
 import edu.kit.iks.CryptographicsLib.CharacterFrequencyDiagramView;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.NumpadView;
