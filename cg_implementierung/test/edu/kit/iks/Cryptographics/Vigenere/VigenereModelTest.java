@@ -1,4 +1,4 @@
-package edu.kit.iks.Cryptographics;
+package edu.kit.iks.Cryptographics.Vigenere;
 
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 import junit.framework.TestCase;
