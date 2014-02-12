@@ -1,17 +1,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-02-11 23:57+0100\n"
-"PO-Revision-Date: 2014-02-11 23:57+0100\n"
+"POT-Creation-Date: 2014-02-12 13:50+0100\n"
+"PO-Revision-Date: 2014-02-12 13:50+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-KeywordsList: tr;trc\n"
+"X-Poedit-KeywordsList: tr;trc;trn:1,2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: ../src\n"
 
 #: ../src/edu/kit/iks/Cryptographics/IdlePopoverView.java:96
@@ -41,18 +42,18 @@ msgstr ""
 msgid "Welcome"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:84
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:85
 msgid ""
 "Get to know how Ceasar fooled his enemys that intercepted his orders and see "
 "one of the oldest attempts to make confidential material unreadable for "
 "undesireable readers"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/CryptoView.java:272
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CryptoView.java:280
 msgid "Now it is up to you. Test your skills. Remember the key is "
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/CryptoView.java:275
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CryptoView.java:283
 msgid ""
 "You need to add the key to the position of the letter your want to shift to "
 "get<br>the needed cipher. If you get a bigger number then 25 you need to "
@@ -64,22 +65,39 @@ msgid ""
 "Visualization."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/CryptoView.java:405
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CryptoView.java:414
 msgid "Back to demonstration"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/CryptoView.java:410
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CryptoView.java:416
+msgid "Back to Introduction"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CryptoView.java:423
 msgid "Go to decryption"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationController.java:367
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CryptoView.java:425
+msgid "Go to experiment"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationController.java:157
+msgid ""
+"Great work oh mighty Caesar. May your enemies shutter over your intelligence."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationController.java:178
+msgid "Very nice! Lets encrypt the rest of this childish challenge."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationController.java:358
 msgid ""
 "Because of your inferior intelligence you look at the first letter of your "
 "name: C.<br>Then you look at the 3rd letter after C and take F. Great!! Now "
 "you encrypted the <br>first letter of your name."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationController.java:391
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationController.java:381
 msgid ""
 "As you saw in the first step you need to add to your letter position in the "
 "alphabet 3<br>and then you get the position of the needed letter. For "
@@ -88,7 +106,7 @@ msgid ""
 "the white area and type the needed letter."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationController.java:418
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationController.java:407
 msgid ""
 "Oh mighty Caesar. No one will ever be able to destroy you! Because of that "
 "fact lets end <br>this childish games and finish the rest of the fields "
@@ -96,18 +114,18 @@ msgid ""
 "have no idea who wrote it and you will conquer the world."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationController.java:444
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationController.java:433
 msgid "Not sure if much help needed here."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:77
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:63
 msgid ""
 "Imagine now you are the mighty caesar!! Of course your first idea is to "
 "substitute each <br>letter from your name with some other from the alphabet. "
 "But which one?"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:87
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:73
 msgid "Proceed!"
 msgstr ""
 
@@ -153,7 +171,69 @@ msgid ""
 "plan<br>to finally conquer Gallia and sent it to his generals in Gallia."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentView.java:60
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:191
+msgid "All done right! "
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:194
+msgid ""
+"Next step is to decrypt a given message!! When you accomplish it, then even "
+"the NSA and Kryptochef together<br>are superior to your power. Now lets move "
+"on. Click the button in the right top corner."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:314
+msgid ""
+"In the steps before you learned how to encrypt a given message.<br>But what "
+"does it help you to encrypt messages when noone can decrypt them?<br>Now we "
+"are going to help us by ourselves. Lets think logically. When we shift<br>a "
+"letter to 3 positions forwards, then we can get back to it when we shift the "
+"given<br>cipher 3 positions back! The important fact is also that we can "
+"shift up to 25 positions back<br>as we can shift 25 positions forward. Lets "
+"try this one. Remember: The key you added <br>while encrypting, now needs to "
+"be substracted!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:322
+msgid "Go to histograms!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:393
+msgid "Your input is invalid. Please try another one!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:407
+msgid "This input is ok. Now only the key is left."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:526
+msgid ""
+"This key is not valid. Please put a number between 1 and 25.<br>For "
+"demonstration purposes the keys between -1 and -25 are not "
+"necessary<br>therefore not possible, but could be used in general as keys "
+"too. And 0 as key has no<br> sense, if you dont understand why, then go back "
+"to Introduction."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:543
+msgid "The key field is empty!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:574
+msgid "This key is ok. Now put your name into the bigger box to the left."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:633
+msgid ""
+"If you only see the textfield then put your string in it. Else you've "
+"already done it and now you need to encrypt/decrypt the given String."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentView.java:55
+msgid "Encrypt"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentView.java:65
 msgid ""
 "Ok. Previously you saw that you can encrypt a message with the traditional "
 "Caesar cipher<br>when you shift each letter 3 positions next in the "
@@ -168,47 +248,76 @@ msgid ""
 "you need with real real complex calculations."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentView.java:116
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentView.java:124
 msgid "Put your name in here!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentView.java:142
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentView.java:150
 msgid "Generate letters!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:92
-msgid "Under Constrcution"
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:108
+msgid "Oh no. What a pity! It went wrong!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:214
-msgid ""
-"You found the right key!!! See how easy it is with histograms?<br>If you "
-"want to try one more click proceed. Else you can go next to further "
-"information<br>There you can learn more about caesar's cipher."
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:109
+msgid "No my friend. This one doesn't work!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:233
-msgid " The key was wrong."
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:110
+msgid "Ok, dont be frustrated. Though your action was totally wrong."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:248
-msgid ""
-" This key is invalid. Please type a number between 1 and 26. If you dont "
-"understand why,<br>then go to the stages before and learn how the cipher "
-"works."
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:125
+msgid "Great work oh mighty Caesar."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:263
-msgid " The keyfield was empty!"
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:126
+msgid "Very nice. I Like!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:332
-msgid ""
-" You found the secret key and are now able<br>to read the secret message. "
-"The Key was "
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:127
+msgid "No one could've done it better!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:432
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:136
+msgid "ANNA"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:137
+msgid "HANNAH"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:138
+msgid "BANANA"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:139
+msgid "KOKOS"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:140
+msgid "KRYPTOCHEF"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:141
+msgid "HAMSTER"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:142
+msgid "WASILIJ"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:143
+msgid "SECRET"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:144
+msgid "EPSILON"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:155
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:437
 msgid ""
 "The diagram you see here shows the frequency of each letter<br>in the text "
 "you are reading at the moment. It is called a<br>Histogram. If you would "
@@ -218,7 +327,39 @@ msgid ""
 "see the <br>histogram of the cipher. Click Proceed and see the magic!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:467
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:92
+msgid "Under Constrcution"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:215
+msgid ""
+"You found the right key!!! See how easy it is with histograms?<br>If you "
+"want to try one more click proceed. Else you can go next to further "
+"information<br>There you can learn more about caesar's cipher."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:235
+msgid "The key was wrong."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:251
+msgid ""
+"This key is invalid. Please type a number between 1 and 26. If you dont "
+"understand why,<br>then go to the stages before and learn how the cipher "
+"works."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:267
+msgid "The key field was empty!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:337
+msgid ""
+"You found the secret key and are now able<br>to read the secret message. The "
+"Key was "
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:472
 msgid ""
 "Comrade, as i told you in a chapter before this technique belongs to the "
 "science of cryptology<br>And is a little more complicated than the technique "
@@ -234,11 +375,11 @@ msgid ""
 "whole text with this key!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:498
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:503
 msgid "Ok lets try another one!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:170
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:169
 msgid ""
 "Great. Up to now you learned how to encrypt or decrypt given letter "
 "sequences with a given key.<br>The question is now, how do you decrypt "

@@ -490,15 +490,14 @@ public class HistogramView extends VisualizationView {
 		this.remove(this.getNextButton());
 
 		// set up the alignment of the button back;
-		this.setBackButton(new JButton("Back to Experiment!"));
+		this.setBackButton(new JButton(i18n.tr("Back to Experiment")));
 		this.getBackButton().setPreferredSize(new Dimension(300, 50));
 		this.getBackButton().setMaximumSize(new Dimension(300, 50));
 		// this.getBackButton().setFont(new Font("Arial", 2, 25));
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
-		this.setNextButton(new JButton(
-				"Skip the histograms(Visualization Done)!"));
+		this.setNextButton(new JButton(i18n.tr("Skip the histograms (Visualization Done)")));
 		this.getNextButton().setPreferredSize(new Dimension(300, 50));
 		this.getNextButton().setMinimumSize(new Dimension(300, 50));
 		// this.getNextButton().setFont(new Font("Arial", 2, 25));
