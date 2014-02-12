@@ -16,8 +16,7 @@ public class OnewayController extends AbstractVisualizationController {
 
 	@Override
 	public String getHelp() {
-		// TODO Implement help String
-		return null;
+		return view.getHelp();
 	}
 
 	@Override
@@ -27,7 +26,6 @@ public class OnewayController extends AbstractVisualizationController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
 			}
 		});

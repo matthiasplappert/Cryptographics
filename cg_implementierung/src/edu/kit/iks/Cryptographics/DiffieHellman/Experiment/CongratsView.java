@@ -4,6 +4,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class CongratsView extends JPanel {
+	
+	private String help;
 
 	private static final long serialVersionUID = 539729162359687203L;
 	
@@ -13,6 +15,10 @@ public class CongratsView extends JPanel {
 	public CongratsView() {
 		add(congrats);
 		validate();
+	}
+
+	public String getHelp() {
+		return help;
 	}
 
 }

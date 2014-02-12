@@ -12,6 +12,8 @@ public class DemoOneWayView extends VisualizationView {
 	
 	private ColorMix cm, cm2;
 	
+	private String help = "No help";
+	
 	/**
 	 * 
 	 */
@@ -65,6 +67,10 @@ public class DemoOneWayView extends VisualizationView {
 		
 		cm.mixColors(true, true, null);
 		cm2.seperateColors(true, true);
+	}
+
+	public String getHelp() {
+		return help;
 	}
 
 }

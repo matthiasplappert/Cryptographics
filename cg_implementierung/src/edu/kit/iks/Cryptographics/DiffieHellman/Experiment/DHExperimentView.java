@@ -56,6 +56,27 @@ public class DHExperimentView extends JPanel {
 	private String congrats = "Congratulations, you choosed the right colors to mix, " +
 			"you and Bob established a shared secret that Eve doesn not know";
 	
+	/*
+	 * the current help String
+	 */
+	private String help;
+	
+	private String help1 = "You have to choose a public color, " +
+			"to choose a different color you have to click the '->' or " +
+			"'<-' Button. You can't do much wrong. When you are ready " +
+			"click the 'send color' button";
+	
+	private String help2 = "You have to choose a private color, which " +
+			"is not the same as the public color. To choose a color, " +
+			"you have to click the '->' or the '<-' Button. You can't do " +
+			"much wrong. When you are ready, click the 'mix colors' button";
+	
+	private String help3 = "";
+	
+	private String help4 = "";
+	
+	private String help5 = "";
+	
 	private JLabel choosePublicLbl;
 	
 	private JButton multiBtn;
@@ -77,6 +98,8 @@ public class DHExperimentView extends JPanel {
 	private Color[] rememberColors = toChooseFrom;
 
 	private ActionListener remember;
+
+	
 	
 	public DHExperimentView() {
 		super();
@@ -219,7 +242,6 @@ public class DHExperimentView extends JPanel {
 				}
 			});
 		} else {
-			//TODO oh you failed
 			if(chooser.getCurrentColor().equals(cc.getAlicePrivateColor())) {
 				choosePublicLbl.setText("<html><div style=\"width:300px\">" + wrongPrivate + "</div></html>");
 			} else {
@@ -246,6 +268,7 @@ public class DHExperimentView extends JPanel {
 						gbc.gridx = 3;
 						gbc.gridy = 0;
 						add(chooser2, gbc);
+						chooser.setToChooseFrom(param);
 						choosePublicLbl.setText("<html><div style=\"width:300px\">" + finalSecret + "</div></html>");
 						multiBtn.setText("Mix colors to final secret");
 						validate();
@@ -324,5 +347,9 @@ public class DHExperimentView extends JPanel {
 	
 	public void setRemember(ActionListener remember) {
 		this.remember = remember;
+	}
+
+	public String getHelp() {
+		return help;
 	}
 }

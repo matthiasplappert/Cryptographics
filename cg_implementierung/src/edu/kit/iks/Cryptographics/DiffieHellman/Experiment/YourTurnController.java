@@ -16,19 +16,15 @@ public class YourTurnController extends AbstractVisualizationController {
 	public YourTurnController(
 			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		view = new YourTurnView();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return view.getHelp();
 	}
 
 	@Override
 	public void loadView() {
-		// TODO Auto-generated method stub
 		view = new YourTurnView();
 		JButton next = this.getView().getNextButton();
 		JButton back = this.getView().getBackButton();
@@ -37,7 +33,6 @@ public class YourTurnController extends AbstractVisualizationController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
 			}
 		});

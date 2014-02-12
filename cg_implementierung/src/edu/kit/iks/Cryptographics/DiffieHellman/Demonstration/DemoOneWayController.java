@@ -17,19 +17,16 @@ public class DemoOneWayController extends AbstractVisualizationController {
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return view.getHelp();
 	}
 
 	@Override
 	public void loadView() {
-		// TODO Auto-generated method stub
 		view = new DemoOneWayView();
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
 			}
 		});
@@ -38,7 +35,6 @@ public class DemoOneWayController extends AbstractVisualizationController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				((VisualizationContainerController) getParentController()).presentPreviousVisualizationController();
 			}
 		});

@@ -8,6 +8,7 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class DHDemoController extends AbstractVisualizationController {
+	
 	private DHDemoView view;
 	
 	public DHDemoController(AbstractVisualizationInfo visualizationInfo) {
@@ -16,19 +17,16 @@ public class DHDemoController extends AbstractVisualizationController {
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return view.getHelp();
 	}
 
 	@Override
 	public void loadView() {
-		// TODO Auto-generated method stub
 		this.view = new DHDemoView();
 		this.view.setRemember(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
 			}
 		});

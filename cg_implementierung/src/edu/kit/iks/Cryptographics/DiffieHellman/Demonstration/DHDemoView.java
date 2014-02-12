@@ -55,6 +55,8 @@ public class DHDemoView extends VisualizationView {
 	private ColorMix cm;
 	
 	private ActionListener remember;
+
+	private String help = "No help";
 	/**
 	 * 
 	 */
@@ -120,8 +122,6 @@ public class DHDemoView extends VisualizationView {
 	}
 	
 	public void startDemo() {
-		
-		//TODO i know, i know, this is horrible, will refactor to look like choosepubliccoorview
 		this.cc.sendPublicColor(new NextStepCallback() {
 			
 			@Override
@@ -244,6 +244,14 @@ public class DHDemoView extends VisualizationView {
 
 	public void setRemember(ActionListener remember) {
 		this.remember = remember;
+	}
+
+
+
+
+
+	public String getHelp() {
+		return help ;
 	}
 
 }
