@@ -9,31 +9,39 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 public class DHDemoView extends VisualizationView {
 	
-	private String explanation1 = "Now to our Diffie-Hellman Key-Exchange Analogy. Here " +
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(DHDemoView.class);
+	
+	private String explanation1 = i18n.tr("Now to our Diffie-Hellman Key-Exchange Analogy. Here " +
 			"is how the protocol in principle works. " +
 			"Alice chooses a public color and sends it to Bob. " +
-				"As Eve listens to the channel she gets a copy.";
+				"As Eve listens to the channel she gets a copy.");
 	
-	private String explanation2 = "Next, Alice chooses a private Color, that she keeps " +
+	private String explanation2 = i18n.tr("Next, Alice chooses a private Color, that she keeps " +
 			"for herself, she does not send it. Then she mixes her private Color with " +
 			"the previously send public Color and sends the mixture to Bob. " +
 			"Note that because we use the mixing of colors as a one-way function, " +
 			"Eve cannot compute which private color Alice used to get the mixture. " +
 			"Keep this in mind, as this is critical to understand why this" +
 			"protocol works. " +
-			"As previous Bob and Eve have the send color, that means the mixture of Alice.";
+			"As previous Bob and Eve have the send color, that means the mixture of Alice.");
 	
-	private String explanation3 = "Now Bob does the exact same thing like Alice did" +
+	private String explanation3 = i18n.tr("Now Bob does the exact same thing like Alice did" +
 			"in the previous step. " +
 			"He chooses a private color. Mixes it with the public Color, " +
 			"and sends the mixture to Alice. Eve gets a copy, but can't compute " +
-			"the private color of Bob, because of the one-way function property";
+			"the private color of Bob, because of the one-way function property");
 	
-	private String explanation4 = "Now comes the last step. Here we will " +
+	private String explanation4 = i18n.tr("Now comes the last step. Here we will " +
 			"produce the secret that Alice and Bob know, but Eve doesn't. " +
 			"Alice will mix her private color to the mixture of Bob " +
 			"and Bob will mix his private color to the mixture of Alice. " +
@@ -46,7 +54,7 @@ public class DHDemoView extends VisualizationView {
 			"yields the same color as mixing first the public color with Bobs private color " +
 			"and then Alices private color. In the real world, we need a mathematical operation " +
 			"that does this and color mixing isn't used of course, but the basic principles " +
-			"are the same. ";
+			"are the same.");
 	
 	private JLabel aliceExplain;
 	
@@ -56,7 +64,7 @@ public class DHDemoView extends VisualizationView {
 	
 	private ActionListener remember;
 
-	private String help = "No help";
+	private String help = i18n.tr("No help");
 	
 	private static final long serialVersionUID = 87178534093974249L;
 	

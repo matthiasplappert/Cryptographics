@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.Cryptographics.DiffieHellman.Model;
 import edu.kit.iks.CryptographicsLib.Logger;
 
@@ -29,6 +32,11 @@ public class ColorChannel extends JPanel {
 
 	private static final long serialVersionUID = 4073013433018353584L;
 
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(ColorChannel.class);
+	
 	/*
 	 * remembers the colors of alice,bob,eve
 	 */
@@ -195,9 +203,9 @@ public class ColorChannel extends JPanel {
 	private void drawChannel(Graphics2D g2, int x1, int x2, int x3, int x4) {
 		g2.drawLine(x1, x3, x2, x3);
 		g2.drawLine((x1+x2)/2, x4, (x1+x2)/2, x3);
-		g2.drawString("Alice", x1-50, x3);
-		g2.drawString("Bob", x2+10, x3);
-		g2.drawString("Eve", (x1+x2)/2 - 15, x4-10);
+		g2.drawString(i18n.tr("Alice"), x1-50, x3);
+		g2.drawString(i18n.tr("Bob"), x2+10, x3);
+		g2.drawString(i18n.tr("Eve"), (x1+x2)/2 - 15, x4-10);
 	}
 	
 	// TODO refactor sendToBob and sendToAlice into one method

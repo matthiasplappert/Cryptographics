@@ -111,7 +111,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public String getName() {
-		return "Caesar";
+		return i18n.tr("Caesar");
 	}
 
 	/*

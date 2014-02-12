@@ -5,17 +5,25 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
 
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 public class OnewayView extends VisualizationView {
 	
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(OnewayView.class);
+	
 	private JLabel onewayExplain;
 
-	private String help = "No help";
+	private String help = i18n.tr("No help");
 	
-	private String explain = "To achive this, we use " +
+	private String explain = i18n.tr("To achive this, we use " +
 				"something called one-way function. This function is easy to compute" +
-				"in one direction, but difficult to reverse.";
+				"in one direction, but difficult to reverse.");
 	
 	private static final long serialVersionUID = 6243104730541136349L;
 	
