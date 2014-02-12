@@ -73,7 +73,6 @@ public class CryptoDemonstrationView extends CryptoView {
 		GridBagConstraints proceedConst = new GridBagConstraints();
 		this.proceed = new JButton(i18n.tr("Proceed!"));
 		this.proceed.setPreferredSize(new Dimension(250, 50));
-		// this.proceed.setFont(new Font("Arial", 2, 25));
 		proceedConst.anchor = GridBagConstraints.PAGE_END;
 		proceedConst.gridx = 2;
 		proceedConst.gridy = 3;

@@ -226,13 +226,16 @@ public class CryptoView extends VisualizationView {
 		this.validate();
 	}
 
+	// --------------------------------------------------------------------------------------//
+	// --------------------------------protected methods-------------------------------------//
+
 	/**
 	 * Creates all needed elements for the encryption/decryption phase.
 	 * 
 	 * @param inputChars
 	 * @param key
 	 */
-	public void setupInOutElements(char[] inputChars, int key, final int mode) {
+	protected void setupInOutElements(char[] inputChars, int key, final int mode) {
 
 		this.userInput = new JLabel[inputChars.length];
 		this.userOutput = new JTextField[inputChars.length];
@@ -256,54 +259,24 @@ public class CryptoView extends VisualizationView {
 		this.userCharacterIOContainer.validate();
 	}
 
-	/**
-	 * Called when the user done the needed input in a valid way.
-	 * 
-	 * @param inputChars
-	 * @param key
-	 */
-	public void setupCoreExperimentElements(char[] inputChars, int key,
-			final int MODE) {
-		// User input will be now filled into the boxes. This field is not
-		// needed anymore.
-		this.removeUserIOContainer();
-		this.removeExplanations();
-
-		// setup IO.
-		this.setupInOutElements(inputChars, key, MODE);
-
-		// setup the alphabet.
-		this.setupAlphabet();
-
-		// setup the explanations.
-		String explanations = "<html><body>"
-				+ i18n.tr("Now it is up to you. Test your skills. Remember the key is")
-				+ " "
-				+ key
-				+ ".<br>"
-				+ i18n.tr("You need to add the key to the position of the letter your want to shift to get<br>"
-						+ "the needed cipher. If you get a bigger number then 25 you need to subtract 25 from it. <br>"
-						+ "For example: You want to encrypt X with the key 3. When you add 3 to X you get 23 + 3 = 26. <br>"
-						+ "26 is obvious bigger then 25. Then you subtract 26 - 25 = 1. This is your cipher. <br>"
-						+ "It is also called modulo calculation. For example 26 mod 25 = 1. But this is a little more complex<br>"
-						+ "and therefore not important here. You will see more in the Vigenère visualization.");
-		this.setupExplanations(explanations,
-				GridBagConstraints.LAST_LINE_START, 0, 0, 4);
-
-		// build the new view.
-		this.validate();
-		this.repaint();
+	protected void setupAlphabet() {
+		this.alphabet = new AlphabetStripView();
+		GridBagConstraints alphConst = new GridBagConstraints();
+		alphConst.anchor = GridBagConstraints.CENTER;
+		alphConst.gridx = 1;
+		alphConst.gridy = 1;
+		alphConst.gridwidth = 26;
+		alphConst.gridheight = 2;
+		alphConst.fill = GridBagConstraints.HORIZONTAL;
+		this.add(this.alphabet, alphConst);
 	}
-
-	// ------------------------------------------------------------------------------------//
-	// ----------------------private methods------------------------------------------------//
-
-	private void removeExplanations() {
+	
+	protected void removeExplanations() {
 		this.remove(this.explanations);
 		this.explanations = null;
 	}
 
-	private void removeUserIOContainer() {
+	protected void removeUserIOContainer() {
 		this.remove(this.userCharacterIOContainer);
 		this.userCharacterIOContainer = null;
 	}
@@ -322,6 +295,9 @@ public class CryptoView extends VisualizationView {
 		this.add(this.explanations, expConst);
 
 	}
+
+	// -------------------------------------------------------------------------------------//
+	// ----------------------private methods------------------------------------------------//
 
 	private void setupViewLayout() {
 		// set the layout to GridBagLayout.
@@ -442,18 +418,6 @@ public class CryptoView extends VisualizationView {
 		navConst.gridheight = 1;
 		navConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.navigationPanel, navConst);
-	}
-
-	protected void setupAlphabet() {
-		this.alphabet = new AlphabetStripView();
-		GridBagConstraints alphConst = new GridBagConstraints();
-		alphConst.anchor = GridBagConstraints.CENTER;
-		alphConst.gridx = 1;
-		alphConst.gridy = 1;
-		alphConst.gridwidth = 26;
-		alphConst.gridheight = 2;
-		alphConst.fill = GridBagConstraints.HORIZONTAL;
-		this.add(this.alphabet, alphConst);
 	}
 
 	// ----------------------------------------------------------Getter/Setter--------------------------------------------------//
