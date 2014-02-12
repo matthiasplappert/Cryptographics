@@ -46,7 +46,8 @@ public class CryptoDemonstrationView extends CryptoView {
 		this.cipherDemoResource = vsInfo.getResources().getChild("CipherDemo");
 
 		// setup the fields for the demonstratoin of the encryption.
-		char[] chars = { 'C', 'A', 'E', 'S', 'A', 'R' };
+		String caesar = i18n.tr("CAESAR");
+		char[] chars = caesar.toCharArray();
 		
 		//Setup the io textfields.
 		this.setupInOutElements(chars,3, CryptoView.DEMONSTRATION_MODE);
