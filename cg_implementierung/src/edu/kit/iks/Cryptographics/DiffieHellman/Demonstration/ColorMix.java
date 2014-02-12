@@ -14,10 +14,12 @@ import javax.swing.Timer;
 
 import edu.kit.iks.CryptographicsLib.Logger;
 
-/*
- * This view/JPanel allows us to mix two Colors
+/**
+ * This view let's us mix to colors to
+ * 
+ * @author kai
+ *
  */
-
 public class ColorMix extends JPanel {
 
 	private static final long serialVersionUID = 4056277049609956169L;
@@ -38,6 +40,7 @@ public class ColorMix extends JPanel {
 	private boolean mixcolors;
 
 	/*
+	 * fires timer events to update coordinates
 	 */
 	private Timer timer;
 	
@@ -47,8 +50,21 @@ public class ColorMix extends JPanel {
 	/* the original coordinates, so that we can reset them later */
 	private int originalx1, originaly1, originalx2, originaly2;
 
+	/*
+	 * use a special color mixing function for computing
+	 * the shared secret as we mix basically three colors
+	 * instead of two and we must therefore use a corrected
+	 * formula for this case
+	 */
 	private boolean computeFinalMix;
 	
+	/**
+	 * Computes stuff out of the size
+	 * and of the diameter 
+	 * 
+	 * @param circleSize the diameter of the circles
+	 * @param dimension the size of the JPanel
+	 */
 	public ColorMix(int circleSize, Dimension dimension) {
 		this.setSize(dimension);
 		this.setPreferredSize(dimension);
@@ -240,6 +256,9 @@ public class ColorMix extends JPanel {
 		this.mixedColor = new Color((int)(r1/1.5+r2/3)/2, (int)(g1/1.5+g2/3)/2, (int)(b1/1.5+b2/3)/2);
 	}
 
+	/*
+	 * set ellip color
+	 */
 	public void setEllipColor(int which, Color color) {
 		if(which == 0) {
 			ellip1.setColor(color);
