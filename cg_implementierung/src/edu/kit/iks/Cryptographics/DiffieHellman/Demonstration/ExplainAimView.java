@@ -15,6 +15,11 @@ public class ExplainAimView extends VisualizationView {
 
 	private String help = "No help";
 	
+	private String explain = "Our aim is to exchange a secret on a public channel, " +
+			"without Eve getting the secret too. Therefore we can't simply send the secret, as shown" +
+			"in the figure above as Eve would get the secret too. Thus we need" +
+			"to exchange the secret in a different way";
+	
 	private static final long serialVersionUID = 5986978581223106407L;
 
 	public ExplainAimView() {
@@ -31,10 +36,7 @@ public class ExplainAimView extends VisualizationView {
 		layout.setConstraints(this.getNextButton(), gbc);
 		
 		this.aimExplain = new JLabel();
-		this.aimExplain.setText("<html><div style=\"width:200px\">Our aim is to exchange a secret on a public channel, " +
-				"without Eve getting the secret too. Therefore we can't simply send the secret, as shown" +
-				"in the figure above as Eve would get the secret too. Thus we need" +
-				"to exchange the secret in a different way</div></html>");
+		this.aimExplain.setText("<html><div style=\"width:200px\">" + explain + "</div></html>");
 		gbc.gridx = 1;
 		gbc.gridy = 2;
 		gbc.weightx = 0.0;

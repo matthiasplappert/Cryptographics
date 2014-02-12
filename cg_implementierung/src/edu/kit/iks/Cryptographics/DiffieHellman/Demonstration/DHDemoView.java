@@ -57,12 +57,8 @@ public class DHDemoView extends VisualizationView {
 	private ActionListener remember;
 
 	private String help = "No help";
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 87178534093974249L;
-	
-	
 	
 	public DHDemoView() {
 		super();
@@ -113,10 +109,6 @@ public class DHDemoView extends VisualizationView {
 		
 	}
 
-
-
-
-
 	public ColorChannel getColorChannel() {
 		return this.cc;
 	}
@@ -142,7 +134,6 @@ public class DHDemoView extends VisualizationView {
 			}
 		});
 	}
-
 
 	private void secondStep() {
 		aliceExplain.setText("<html><div style=\"width:350px\">" + explanation2 + "</div></html>");
@@ -245,10 +236,6 @@ public class DHDemoView extends VisualizationView {
 	public void setRemember(ActionListener remember) {
 		this.remember = remember;
 	}
-
-
-
-
 
 	public String getHelp() {
 		return help ;
