@@ -230,7 +230,7 @@ public class DHDemoView extends VisualizationView {
 	}
 	
 	private void sixthStep() {
-		aliceExplain.setText("<html><div style=\"width:350px\">" + explanation4 + "</div></html>");
+		aliceExplain.setText("<html><div style=\"width:450px\">" + explanation4 + "</div></html>");
 		getNextButton().addActionListener(remember);
 		cc.mixAliceFinalSecret(new NextStepCallback() {
 			
