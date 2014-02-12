@@ -16,6 +16,7 @@
 # PDF
 /cg_pflichtenheft/cg_pse_pflichtenheft.pdf
 /cg_entwurf/cg_entwurf.pdf
+/cg_implementierungsheft/*.pdf
 
 # Java
 /cg_implementierung/bin/*
@@ -26,3 +27,4 @@ cg_implementierung/src/edu/.metadata/
 /cg_implementierung/error.log
 /cg_implementierung/compile_po.bat
 /cg_implementierung/po/*.mo
+
