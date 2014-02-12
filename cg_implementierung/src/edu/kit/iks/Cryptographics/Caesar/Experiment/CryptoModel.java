@@ -1,12 +1,6 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
-import javax.swing.text.html.HTML;
-import javax.xml.validation.Validator;
-
 import org.xnap.commons.i18n.I18n;
-
-import com.google.zxing.HtmlAssetTranslator;
-
 import edu.kit.iks.Cryptographics.Configuration;
 
 /**
