@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-02-12 19:50+0100\n"
-"PO-Revision-Date: 2014-02-12 19:53+0100\n"
+"POT-Creation-Date: 2014-02-12 21:05+0100\n"
+"PO-Revision-Date: 2014-02-12 21:23+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -27,6 +27,7 @@ msgstr ""
 "dieses Dialogfenster, um fortzufahren."
 
 #: ../src/edu/kit/iks/Cryptographics/IdlePopoverView.java:113
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:98
 msgid "Continue"
 msgstr "Weiter"
 
@@ -55,6 +56,10 @@ msgstr ""
 "Erfahre, wie Caesar seine Feinde an der Nase herumführte, die seine Befehle "
 "abgefangen haben, und sehe einen der ersten Versuche, Geheimnisse unlesbar "
 "für unerwünschte Empfänger zu machen"
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:114
+msgid "Caesar"
+msgstr "Caesar"
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/CryptoView.java:280
 msgid "Now it is up to you. Test your skills. Remember the key is"
@@ -319,6 +324,8 @@ msgid ""
 "If you only see the textfield then put your string in it. Else you've "
 "already done it and now you need to encrypt/decrypt the given String."
 msgstr ""
+"Wenn du nur das Textfeld siehst, gib deinen Namen ein. Andernfalls ist das "
+"schon geschehen und du musst den Text ver-/entschlüsseln."
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentView.java:55
 msgid "Encrypt"
@@ -550,6 +557,312 @@ msgstr "Histogramme überspringen (Visualisierung fertig)"
 msgid "Proceed"
 msgstr "Weiter"
 
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/DHVisualizationInfo.java:36
+msgid ""
+"The infamous Diffie-Hellman Key-Exchange explained with a color-mixing "
+"analogy. Establish a shared secret, without an Eavesdropper getting the "
+"secret too"
+msgstr ""
+"Der berüchtigte Diffie-Hellman Schlüsseltausch, erklärt durch eine "
+"Farbenanalogie. Baue ein gemeinsames Geheimnis auf, ohne dass ein Angreifer "
+"das Geheimnis auch erfährt."
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/DHVisualizationInfo.java:55
+msgid "Diffie-Hellman"
+msgstr "Diffie-Hellman"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/ColorChannel.java:206
+msgid "Alice"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/ColorChannel.java:207
+msgid "Bob"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/ColorChannel.java:208
+msgid "Eve"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DemoOneWayView.java:26
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:67
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/ExplainAimView.java:26
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/OnewayView.java:22
+msgid "No help"
+msgstr "Keine Hilfe"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DemoOneWayView.java:28
+msgid ""
+"We use a simple analogy as the one-way function. Mixing colors is an easy "
+"process, determining which colors were originally used is a difficult "
+"process, thus this acts like an one-way function"
+msgstr ""
+"Wir verwenden eine einfache Analogie als Einwegfunktion. Das Farbenmischen "
+"ist einfach, aber herauszufinden aus welchen Farben eine Mixtur besteht, "
+"sehr schwer. Das fungiert als Einwegfunktion."
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:24
+msgid ""
+"Now to our Diffie-Hellman Key-Exchange Analogy. Here is how the protocol in "
+"principle works. Alice chooses a public color and sends it to Bob. As Eve "
+"listens to the channel she gets a copy."
+msgstr ""
+"Nun zu unserer Diffie-Hellman Schlüsselaustausch Analogie. Hier siehst du, "
+"wie das Protokoll im Prinzip funktioniert. Alice wählt eine öffentliche "
+"Farbe und sendet sie an Bob. Da Eve den Kanal abhorcht, erhält sie eine "
+"Kopie."
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:29
+msgid ""
+"Next, Alice chooses a private Color, that she keeps for herself, she does "
+"not send it. Then she mixes her private Color with the previously sent "
+"public Color and sends the mixture to Bob. Note that because we use the "
+"mixing of colors as a one-way function, Eve cannot compute which private "
+"color Alice used to get the mixture. Keep this in mind, as this is critical "
+"to understand why this protocol works. As previous Bob and Eve have the send "
+"color, that means the mixture of Alice."
+msgstr ""
+"Als nächstes wählt Alice eine geheime Farbe, die sie für sich behält und "
+"nicht sendet. Dann mischt sie ihre geheime Farbe mit der zuvor gesendeten "
+"öffentlichen Farbe und sendet die Mixtur an Bob. Beachte, dass wir das "
+"Farbenmischen als Einwegfunktion betrachten, also kann Eve die geheime Farbe "
+"nicht berechnen. Behalte das im Hinterkopf, denn das ist wichtig um zu "
+"verstehen wie das Protokoll funktioniert. Wie zuvor haben Bob und Eve die "
+"gesendete, gemischte Farbe von Alice."
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:38
+msgid ""
+"Now Bob does the exact same thing like Alice did in the previous step. He "
+"chooses a private color. Mixes it with the public Color, and sends the "
+"mixture to Alice. Eve gets a copy, but can't compute the private color of "
+"Bob, because of the one-way function property"
+msgstr ""
+"Nun macht Bob das gleiche wie Alice zuvor. Er wählt eine geheime Farbe, "
+"mischt sie mit seiner öffentlichen Farbe, und sendet die Mixtur an Alice. "
+"Eve erhält ach dieses Mal eine Kopie, doch kann wieder nicht berechnen, was "
+"die geheime Farbe von Bob ist."
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:44
+msgid ""
+"Now comes the last step. Here we will produce the secret that Alice and Bob "
+"know, but Eve doesn't. Alice will mix her private color to the mixture of "
+"Bob and Bob will mix his private color to the mixture of Alice. That means "
+"we mix three colors, the public color, the private color of Alice, and the "
+"private Color of Bob. The trick lies in the combination of the private "
+"Colors, that are kept private, through the use of the one-way function and "
+"that it doesn't matter in which order we mix the colors. So mixing first the "
+"public color with Alices private color and then Bobs private color yields "
+"the same color as mixing first the public color with Bobs private color and "
+"then Alices private color. In the real world, we need a mathematical "
+"operation that does this and color mixing isn't used of course, but the "
+"basic principles are the same."
+msgstr ""
+"Nun kommt der letzte Schritt. Hier erstellen wir ein Geheimnis, welches nur "
+"Alice und Bob kennen, aber Eve nicht. Alice mischt ihre geheime Farbe mit "
+"der Mixtur von Bob, und Bob mischt seine geheime Farbe mit der Mixtur von "
+"Alice. Das bedeutet, dass wir drei Farben mischen. Die öffentliche Farbe, "
+"die geheime Farbe von Alice und die geheime Farbe von Bob. Der Trick liegt "
+"in der Kombination der geheimen Farben, die geheim gehalten werden durch das "
+"Verwenden der Einwegfunktion, dabei macht die Reihenfolge des Mischens kein "
+"Unterschied. In Wirklichkeit verwenden wir hierfür eine andere mathematische "
+"Operation,welche die Eigenschaft einer Einwegfunktion erfüllt. Jedoch ist "
+"das Prinzip das gleiche."
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/ExplainAimView.java:28
+msgid ""
+"Our aim is to exchange a secret on a public channel, without Eve getting the "
+"secret too. Therefore we can't simply send the secret, as shown in the "
+"figure above as Eve would get the secret too. Thus we need to exchange the "
+"secret in a different way"
+msgstr ""
+"Unser Ziel ist es, ein Geheimnis über einen öffentlichen Kanal zu "
+"verschicken, ohne das auch Eve das Geheimnis erfährt. Deshalb können wir das "
+"Geheimnis nicht einfach verschicken, wie in der Animation oben gezeigt wird. "
+"Daher müssen wir das Geheimnis auf einen anderen Weg tauschen"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/OnewayView.java:24
+msgid ""
+"To achive this, we use something called one-way function. This function is "
+"easy to compute in one direction, but difficult to reverse."
+msgstr ""
+"Um das zu erreichen, verwenden wir eine Einwegfunktion. Diese Funktion ist "
+"in eine Richtung leicht zu berechnen, aber sehr schwer umzukehren."
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/CongratsView.java:19
+msgid "Congratulations"
+msgstr "Glückwunsch"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:32
+msgid ""
+"Now it is your turn! Choose a public color, which will be the basis for the "
+"coming operations. If you are finished choosing, click the 'send color' "
+"button to send it to Bob."
+msgstr ""
+"Nun bist du dran! Wähle eine öffentliche Farbe, welche die Grundlage des "
+"Selbstversuchs sein wird. Wenn du eine Farbe gewählt hast, Klicke 'Farbe "
+"senden' um sie an Bob zu schicken."
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:36
+msgid ""
+"Now you can choose a private color which you can mix with the public color "
+"you previously send to Bob. If you have choosen the color you liked, click "
+"the 'Mix with public color' button"
+msgstr ""
+"Nun wähle eine geheime Farbe welche du mit der öffentlichen Farbe mischen "
+"kannst die du zuvor an Bob geschickt hast. Wenn du eine Farbe die dir "
+"gefällt gewählt hast, klicke 'Mische mit öffentlicher Farbe'"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:40
+msgid ""
+"The next step is to send the right color to Bob, as shown in the "
+"demonstration. You have three possible colors to send and one is the right "
+"color. If you need help click the 'help' button"
+msgstr ""
+"Der nächste Schritt ist das Senden der richtigen Farbe an Bob, wie in der "
+"Demonstration gezeigt. Du hast drei mögliche Farben zum verschicken, aber "
+"nur eine ist die richtige. Wenn du Hilfe benötigst, klicke den dafür "
+"vorgesehenen Button"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:44
+msgid ""
+"Oh no. You choosed the private color. This color is meant to be private. If "
+"you had send this color, Eve would be able to get the secret too, "
+"afterwards. Please try again, by choosing another color and clicking the "
+"'send color' button"
+msgstr ""
+"Oh nein. Du hast die geheime Farbe gewählt. Diese Farbe soll auch geheim "
+"bleiben. Wenn du diese Farbe gesendet hättest, wäre Eve in der Lage das "
+"Geheimnis zu erlangen. Versuche es nochmal mit einer anderen Farbe und "
+"klicke den 'Farbe senden' Button"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:50
+msgid ""
+"Oh no. You choosed the public color. While Eve won't be able to get the "
+"secret shared color, you still didn't follow the protocol instructions. Try "
+"again by choosing another color."
+msgstr ""
+"Oh nein. Du hast die öffentliche Farbe gewählt. Eve wird zwar nicht in der "
+"Lage sein, das Geheimnis zu erfahren, aber genausowenig wird Bob es erlangen "
+"können. Versuche eine andere Farbe."
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:54
+msgid ""
+"Good. You choosed to send your mixture to Bob. This is the right choice."
+msgstr "Gut. Du hast die richtige Farbe an Bob geschickt."
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:57
+msgid ""
+"Now it is Bobs turn. Click the continue button, so that Bob will choose his "
+"private color and send you his mixture."
+msgstr ""
+"Nun ist Bob an der Reihe. Klicke den 'Weiter' Button, sodass Bob seine "
+"geheime Farbe wählen, und die Mixtur schicken kann."
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:60
+msgid ""
+"This is the last step in the protocol. Choose the right colors to produce "
+"the final secret, just like how it was explained at the demonstration."
+msgstr ""
+"Dies ist der letzte Schritt des Protokolls. Wähle die richtige Farbe um das "
+"endgültige Geheimnis zu erstellen, genau so, wie in der Demonstration "
+"erklärt."
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:64
+msgid ""
+"Congratulations, you choosed the right colors to mix, you and Bob "
+"established a shared secret that Eve doesn not know"
+msgstr ""
+"Glückwunsch, du hast die richtige Farbe gewählt. Du und Bob habt nun ein "
+"gemeinsames Geheimnis erstellt, welches Eve nicht kennt"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:72
+msgid ""
+"You have to choose a public color, to choose a different color you have to "
+"click the '->' or '<-' Button. You can't do much wrong. When you are ready "
+"click the 'send color' button"
+msgstr ""
+"Du musst eine öffentliche Farbe wählen. Um eine Farbe zu wählen, drücke die "
+"Pfeilbuttons. Du kannst dabei nichts falsch machen. Wenn du fertig bist, "
+"klicke den 'Farbe senden' Button"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:77
+msgid ""
+"You have to choose a private color, which is not the same as the public "
+"color. To choose a color, you have to click the '->' or the '<-' Button. You "
+"can't do much wrong. When you are ready, click the 'mix colors' button"
+msgstr ""
+"Du musst eine geheime Farbe wählen, welche eine andere sein soll als die "
+"öffentliche Farbe. Verwende die Pfeilbuttons um eine auszuwählen, und klicke "
+"den 'Farben mischen' Button"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:82
+msgid ""
+"You have to send the right color, the right color is the one you have not "
+"already sent, and the one you don't want to keep private. If you still have "
+"no clue, try the three different colors"
+msgstr ""
+"Du musst die richtige Farbe wählen. Das ist diejenige, die du noch nicht "
+"gesendet hast und die die du nicht geheim halten willst. Wenn du es immer "
+"noch nicht weißt, probier herum"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:86
+msgid ""
+"Just click the continue button and Bob will mix his color and will send it "
+"to you"
+msgstr ""
+"Klicke einfach auf den 'Weiter' Button und Bob wird seine Farben mischen und "
+"sie dir zuschicken"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:89
+msgid ""
+"You have to choose the two colors that will be mixed to the final shared "
+"secret. Tip: Why can't Eve compute the secret. Right you have a color that "
+"Eve does not have, so have to use that one. The other color you have to "
+"think about yourself, or try different colors till it works"
+msgstr ""
+"Du musst die Farben wählen die gemischt werden müssen um das endgültige "
+"Geheimnis zu erzeugen. Tipp: Warum kann Eve das Geheimnis nicht berechnen? "
+"Richtig, du hast eine Farbe die Eve nicht hat, also musst du diese "
+"verwenden. Über die andere musst du dir selbst Gedanken machen, oder probier "
+"einfach herum"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:94
+msgid "Mix with public color"
+msgstr "Mische mit öffentlicher Farbe"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:96
+msgid "Mix colors to final secret"
+msgstr "Endgültiges Geheimnis mischen"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:100
+msgid "The private color can't be the same as the public color"
+msgstr "Die geheime Farbe kann nicht die gleiche sein wie die öffentliche"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:103
+msgid "Send color"
+msgstr "Farbe senden"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:105
+msgid "You choosed the wrong colors, try again"
+msgstr "Du hast die falsche Farbe gewählt, versuch's nochmal"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/YourTurnController.java:39
+msgid "Start Experiment"
+msgstr "Selbstversuch starten"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/YourTurnController.java:47
+msgid "Back to Demonstration"
+msgstr "Zurück zur Demonstration"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/YourTurnView.java:24
+msgid ""
+"Now it's your turn! Now you are Alice and try to establish a shared secret "
+"with Bob, without Eve getting the secret. Your task will be to mix the right "
+"Colors and to send the right Colors, just like in the Demonstration"
+msgstr ""
+"Nun bist du an der Reihe! Nun bist du Alice und versuchst ein gemeinsames "
+"Geheimnis mit Bob aufzubauen, ohne das Eve es erfährt. Deine Aufgabe ist das "
+"richtige Mischen und Senden der Farben, genau wie in der Demonstration"
+
 #: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:149
 msgid "Easy"
 msgstr "Einfach"
@@ -569,3 +882,11 @@ msgstr "Z"
 #: ../src/edu/kit/iks/CryptographicsLib/KeyboardView.java:154
 msgid "keyboard-z"
 msgstr "Y"
+
+#: ../src/edu/kit/iks/CryptographicsLib/VisualizationView.java:41
+msgid "Next"
+msgstr "Weiter"
+
+#: ../src/edu/kit/iks/CryptographicsLib/VisualizationView.java:44
+msgid "Back"
+msgstr "Zurück"
