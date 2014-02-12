@@ -278,7 +278,7 @@ public class IntroductionController extends AbstractVisualizationController {
 										+ "crossed his mind. In his next message he will encrypt his name! Hue Hue Hue. Help him."));
 
 		GridBagLayout introLayout = (GridBagLayout) this.getView().getLayout();
-		this.getView().getNextButton().setText("To caesar's idea");
+		this.getView().getNextButton().setText(i18n.tr("To caesar's idea"));
 		GridBagConstraints finishConstraint = new GridBagConstraints();
 		finishConstraint.gridx = 1;
 		finishConstraint.gridy = 2;

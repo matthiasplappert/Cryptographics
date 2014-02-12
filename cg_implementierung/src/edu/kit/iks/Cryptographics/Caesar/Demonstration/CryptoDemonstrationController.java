@@ -154,7 +154,7 @@ public class CryptoDemonstrationController extends
 											.getView()
 											.getExplanations()
 											.setText(
-													i18n.tr("<html><body>Great work oh mighty Caesar. May your enemies shutter over your intelligence."));
+													CryptoDemonstrationController.this.wrapHtml(i18n.tr("Great work oh mighty Caesar. May your enemies shutter over your intelligence.")));
 									// remove all unnecessary elements.
 									CryptoDemonstrationController.this
 											.getView().removeAlphabet();
@@ -175,7 +175,7 @@ public class CryptoDemonstrationController extends
 											.getView()
 											.getExplanations()
 											.setText(
-													i18n.tr("<html><body>Very nice! Lets encrypt the rest of this childish challenge."));
+													CryptoDemonstrationController.this.wrapHtml(i18n.tr("Very nice! Lets encrypt the rest of this childish challenge.")));
 								} else {
 									// User encrypted correctly the given char.
 									CryptoDemonstrationController.this
@@ -185,10 +185,11 @@ public class CryptoDemonstrationController extends
 													CryptoDemonstrationController.this
 															.getModel()
 															.genRandomGrats()
-															+ i18n.tr(" Only ")
-															+ CryptoDemonstrationController.this
-																	.getEditableFields()
-															+ i18n.tr(" left."));
+															+ " "
+															+ i18n.trn("Only {0} left.",
+																	"Only {0} left.", 
+															CryptoDemonstrationController.this.getEditableFields(),
+															CryptoDemonstrationController.this.getEditableFields()));
 									// The next textfield to the right requests now the focus.
 									CryptoDemonstrationController.this
 											.getView().getUserOutput()[CryptoDemonstrationController.this
@@ -354,10 +355,9 @@ public class CryptoDemonstrationController extends
 		this.getView()
 				.getExplanations()
 				.setText(
-						"<html><body> "
-								+ i18n.tr("Because of your inferior intelligence you look at the first letter of your name: C.<br>"
+						this.wrapHtml(i18n.tr("Because of your inferior intelligence you look at the first letter of your name: C.<br>"
 										+ "Then you look at the 3rd letter after C and take F. Great!! Now you encrypted the <br>"
-										+ "first letter of your name."));
+										+ "first letter of your name.")));
 		this.getView().getUserInput()[0].setBorder(BorderFactory
 				.createLineBorder(Color.green));
 		this.getView().getUserOutput()[0].setBorder(BorderFactory
@@ -378,11 +378,10 @@ public class CryptoDemonstrationController extends
 		this.getView()
 				.getExplanations()
 				.setText(
-						"<html><body>"
-								+ i18n.tr("As you saw in the first step you need to add to your letter position in the alphabet 3<br>"
+						this.wrapHtml(i18n.tr("As you saw in the first step you need to add to your letter position in the alphabet 3<br>"
 										+ "and then you get the position of the needed letter. For example C has the position 2 <br>"
 										+ "if you add 2+3 you get 5, which corresponds to the letter F. Now encrypt the next letter.<br>"
-										+ "To acomplish this click on the white area and type the needed letter."));
+										+ "To acomplish this click on the white area and type the needed letter.")));
 		this.getView().getUserInput()[1].setBorder(BorderFactory
 				.createLineBorder(Color.green));
 		this.getView().getUserOutput()[1].setEditable(true);
@@ -405,10 +404,9 @@ public class CryptoDemonstrationController extends
 		this.getView()
 				.getExplanations()
 				.setText(
-						"<html><body>"
-								+ i18n.tr("Oh mighty Caesar. No one will ever be able to destroy you! Because of that fact lets end <br>"
+						this.wrapHtml(i18n.tr("Oh mighty Caesar. No one will ever be able to destroy you! Because of that fact lets end <br>"
 										+ "this childish games and finish the rest of the fields fast. Then we can send the courier again<br>"
-										+ "but this time your enemies will have no idea who wrote it and you will conquer the world."));
+										+ "but this time your enemies will have no idea who wrote it and you will conquer the world.")));
 		this.getView().validate();
 
 	}
@@ -476,5 +474,9 @@ public class CryptoDemonstrationController extends
 	@Override
 	public void unloadView() {
 		this.view = null;
+	}
+	
+	private String wrapHtml(String text) {
+		return "<html><body>" + text + "</body></html>";
 	}
 }

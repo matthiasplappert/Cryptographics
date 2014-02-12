@@ -188,10 +188,11 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 		this.getView()
 				.getExplanations()
 				.setText(
-						i18n.tr("<html><body>All done right! ")
+						this.wrapHtml(i18n.tr("All done right! ")
 								+ this.getModel().genRandomGrats()
-								+ i18n.tr(" Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
-										+ "are superior to your power. Now lets move on. Click the button in the right top corner."));
+								+ " "
+								+ i18n.tr("Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
+										+ "are superior to your power. Now lets move on. Click the button in the right top corner.")));
 		this.getView().removeKeyboard();
 	}
 
@@ -202,8 +203,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 		this.getView()
 				.getExplanations()
 				.setText(
-						this.getModel().genRandomGrats() + i18n.tr("You have ")
-								+ this.getEditableFields() + i18n.tr(" left!"));
+						this.getModel().genRandomGrats() + i18n.trn("You have {0} left!", "You have {0} left!", this.getEditableFields(), this.getEditableFields()));
 		this.getView().getUserOutput()[CryptoExperimentController.this
 				.getView().getUserOutput().length - this.getEditableFields()]
 				.requestFocus();
@@ -311,15 +311,15 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 							.getView()
 							.getExplanations()
 							.setText(
-									i18n.tr("<html><body>In the steps before you learned how to encrypt a given message.<br>"
+									CryptoExperimentController.this.wrapHtml(i18n.tr("In the steps before you learned how to encrypt a given message.<br>"
 											+ "But what does it help you to encrypt messages when noone can decrypt them?<br>"
 											+ "Now we are going to help us by ourselves. Lets think logically. When we shift<br>"
 											+ "a letter to 3 positions forwards, then we can get back to it when we shift the given<br>"
 											+ "cipher 3 positions back! The important fact is also that we can shift up to 25 positions back<br>"
 											+ "as we can shift 25 positions forward. Lets try this one. Remember: The key you added <br>"
-											+ "while encrypting, now needs to be substracted!"));
+											+ "while encrypting, now needs to be substracted!")));
 					CryptoExperimentController.this.getView().getNextButton()
-							.setText(i18n.tr("Go to histograms!"));
+							.setText(i18n.tr("Go to histograms"));
 
 				} else {
 					// load the previous state.
@@ -404,7 +404,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 				.setText(
 						explanationContent
 								+ "<br>"
-								+ i18n.tr("<br>This input is ok. Now only the key is left."));
+								+ i18n.tr("This input is ok. Now only the key is left."));
 		this.getView().getLiteralInput()
 				.setBorder(BorderFactory.createLineBorder(Color.green));
 		this.getView().getLiteralInput().setEditable(false);
@@ -523,7 +523,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 									.setText(
 											explanationContent
 													+ "<br>"
-													+ i18n.tr("<br>This key is not valid. Please put a number between 1 and 25.<br>"
+													+ i18n.tr("This key is not valid. Please put a number between 1 and 25.<br>"
 															+ "For demonstration purposes the keys between -1 and -25 are not necessary<br>"
 															+ "therefore not possible, but could be used in general as keys too. And 0 as key has no<br>"
 															+ " sense, if you dont understand why, then go back to Introduction."));
@@ -540,7 +540,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 								.getExplanations()
 								.setText(
 										explanationContent + "<br>"
-												+ "<br>The key field is empty!");
+												+ i18n.tr("The key field is empty!"));
 						CryptoExperimentController.this
 								.getView()
 								.getKeyInput()
@@ -571,7 +571,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 				.setText(
 						explanationContent
 								+ "<br>"
-								+ i18n.tr("<br>This key is ok. Now put your name into the bigger box to the left."));
+								+ i18n.tr("This key is ok. Now put your name into the bigger box to the left."));
 		this.getView().getKeyInput()
 				.setBorder(BorderFactory.createLineBorder(Color.green));
 		this.getView().getKeyInput().setEditable(false);
@@ -630,8 +630,8 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 
 	@Override
 	public String getHelp() {
-		return "If you only see the textfield then put your string in it. Else you've already "
-				+ "done it and now you need to encrypt/decrypt the given String.";
+		return i18n.tr("If you only see the textfield then put your string in it. Else you've already "
+				+ "done it and now you need to encrypt/decrypt the given String.");
 	}
 
 	/**
@@ -686,5 +686,8 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 	public void unloadView() {
 
 	}
-
+	
+	private String wrapHtml(String text) {
+		return "<html><body>" + text + "</body></html>";
+	}
 }
