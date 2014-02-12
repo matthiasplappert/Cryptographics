@@ -122,8 +122,8 @@ public class ColorChannel extends JPanel {
 	 */
 	public ColorChannel(Dimension d, int circleSize) {
 		container = new JPanel();
-		container.setSize(new Dimension((int)d.getWidth(), (int)d.getHeight()/4));
-		container.setPreferredSize(new Dimension((int)d.getWidth(), (int)d.getHeight()/4));
+		container.setSize(new Dimension((int)d.getWidth(), (int)d.getHeight()/3));
+		container.setPreferredSize(new Dimension((int)d.getWidth(), (int)d.getHeight()/3));
 		//TODO add conditional flag to use color mixers or not
 		this.cm1 = new ColorMix(circleSize, new Dimension((int)d.getWidth()/2, (int)d.getHeight()/4));
 		this.cm2 = new ColorMix(circleSize, new Dimension((int)d.getWidth()/2, (int)d.getHeight()/4));

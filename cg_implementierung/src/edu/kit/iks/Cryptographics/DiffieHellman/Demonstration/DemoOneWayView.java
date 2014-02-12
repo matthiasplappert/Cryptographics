@@ -21,6 +21,8 @@ public class DemoOneWayView extends VisualizationView {
 	
 	private JLabel keyExchangeExplain;
 	
+	private JLabel easy, hard;
+	
 	private ColorMix cm, cm2;
 	
 	private String help = i18n.tr("No help");
@@ -58,22 +60,34 @@ public class DemoOneWayView extends VisualizationView {
 		gbc.weighty = 0.1;
 		this.add(keyExchangeExplain, gbc);
 		
-		cm = new ColorMix(70, new Dimension(400, 400));
-		cm2 = new ColorMix(70, new Dimension(400, 400));
+		cm = new ColorMix(70, new Dimension(300, 70));
+		cm2 = new ColorMix(70, new Dimension(300, 70));
 		cm.setEllipColor(0, Color.RED);
 		cm.setEllipColor(1, Color.YELLOW);
 		cm2.setEllipColor(0, Color.RED);
 		cm2.setEllipColor(1, Color.YELLOW);
 		
 		gbc.gridx = 0;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		this.add(cm, gbc);
 		
 		gbc.gridx = 2;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
+		gbc.weightx = 0.1;
+		gbc.weighty = 0.1;
 		this.add(cm2, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		easy = new JLabel("easy");
+		this.add(easy, gbc);
+		
+		gbc.gridx = 2;
+		gbc.gridy = 0;
+		hard = new JLabel("hard");
+		this.add(hard, gbc);
 		
 		cm.mixColors(true, true, null);
 		cm2.seperateColors(true, true);
