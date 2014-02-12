@@ -22,7 +22,7 @@ public class OnewayView extends VisualizationView {
 	private String help = i18n.tr("No help");
 	
 	private String explain = i18n.tr("To achive this, we use " +
-				"something called one-way function. This function is easy to compute" +
+				"something called one-way function. This function is easy to compute " +
 				"in one direction, but difficult to reverse.");
 	
 	private static final long serialVersionUID = 6243104730541136349L;

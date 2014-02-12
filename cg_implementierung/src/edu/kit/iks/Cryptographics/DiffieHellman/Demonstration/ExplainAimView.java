@@ -26,8 +26,8 @@ public class ExplainAimView extends VisualizationView {
 	private String help = i18n.tr("No help");
 	
 	private String explain = i18n.tr("Our aim is to exchange a secret on a public channel, " +
-			"without Eve getting the secret too. Therefore we can't simply send the secret, as shown" +
-			"in the figure above as Eve would get the secret too. Thus we need" +
+			"without Eve getting the secret too. Therefore we can't simply send the secret, as shown " +
+			"in the figure above as Eve would get the secret too. Thus we need " +
 			"to exchange the secret in a different way");
 	
 	private static final long serialVersionUID = 5986978581223106407L;

@@ -23,7 +23,7 @@ public class YourTurnView extends VisualizationView {
 	
 	private String explain = i18n.tr("Now it's your turn! " +
 				"Now you are Alice and try to establish a shared secret " +
-				"with Bob, without Eve getting the secret. Your" +
+				"with Bob, without Eve getting the secret. Your " +
 				"task will be to mix the right Colors and to send " +
 				"the right Colors, just like in the Demonstration");
 
