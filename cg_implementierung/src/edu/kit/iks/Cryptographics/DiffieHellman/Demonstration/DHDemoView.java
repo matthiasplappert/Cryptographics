@@ -28,14 +28,14 @@ public class DHDemoView extends VisualizationView {
 	
 	private String explanation2 = i18n.tr("Next, Alice chooses a private Color, that she keeps " +
 			"for herself, she does not send it. Then she mixes her private Color with " +
-			"the previously send public Color and sends the mixture to Bob. " +
+			"the previously sent public Color and sends the mixture to Bob. " +
 			"Note that because we use the mixing of colors as a one-way function, " +
 			"Eve cannot compute which private color Alice used to get the mixture. " +
-			"Keep this in mind, as this is critical to understand why this" +
+			"Keep this in mind, as this is critical to understand why this " +
 			"protocol works. " +
 			"As previous Bob and Eve have the send color, that means the mixture of Alice.");
 	
-	private String explanation3 = i18n.tr("Now Bob does the exact same thing like Alice did" +
+	private String explanation3 = i18n.tr("Now Bob does the exact same thing like Alice did " +
 			"in the previous step. " +
 			"He chooses a private color. Mixes it with the public Color, " +
 			"and sends the mixture to Alice. Eve gets a copy, but can't compute " +

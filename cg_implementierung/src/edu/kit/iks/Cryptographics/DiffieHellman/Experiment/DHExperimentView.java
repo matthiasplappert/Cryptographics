@@ -44,8 +44,8 @@ public class DHExperimentView extends JPanel {
 	private String wrongPrivate = i18n.tr("Oh no. You choosed the private color. This color " +
 			"is meant to be private. If you had send this color, Eve would be able " +
 			"to get the secret too, afterwards. " +
-			"Please try again, by choosing another color and clicking" +
-			" the 'send color' button");
+			"Please try again, by choosing another color and clicking " +
+			"the 'send color' button");
 	
 	private String wrongPublic = i18n.tr("Oh no. You choosed the public color. While Eve " +
 			"won't be able to get the secret shared color, you still didn't follow " +
@@ -54,8 +54,8 @@ public class DHExperimentView extends JPanel {
 	private String rightColor = i18n.tr("Good. You choosed to send your mixture to Bob. This is " +
 			"the right choice.");
 	
-	private String bobsTurn = i18n.tr("Now it is Bobs turn. Click the continue button, so that" +
-			" Bob will choose his private color and send you his mixture.");
+	private String bobsTurn = i18n.tr("Now it is Bobs turn. Click the continue button, so that " +
+			"Bob will choose his private color and send you his mixture.");
 	
 	private String finalSecret = i18n.tr("This is the last step in the protocol. " +
 			"Choose the right colors to produce the final secret, just like " +

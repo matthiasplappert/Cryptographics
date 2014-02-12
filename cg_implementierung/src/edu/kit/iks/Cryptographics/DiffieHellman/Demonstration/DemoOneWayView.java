@@ -25,8 +25,8 @@ public class DemoOneWayView extends VisualizationView {
 	
 	private String help = i18n.tr("No help");
 	
-	private String explain = i18n.tr("We use a simple analogy as the one-way function." +
-			"Mixing colors is an easy process, determining which colors were" +
+	private String explain = i18n.tr("We use a simple analogy as the one-way function. " +
+			"Mixing colors is an easy process, determining which colors were " +
 			"originally used is a difficult process, thus this acts like an one-way function");
 	
 	private static final long serialVersionUID = 7529617215150828381L;
