@@ -100,7 +100,7 @@ public class IntroductionView extends VisualizationView {
 		// no need of BackButton. Button for returning to start screen already
 		// the "Exit" button.
 		this.getBackButton().setVisible(false);
-		this.getNextButton().setText("Skip the introduction!");
+		this.getNextButton().setText(i18n.tr("Skip the introduction"));
 		this.getNextButton().setPreferredSize(new Dimension(350, 50));
 		// this.getNextButton().setFont(new Font("Arial", 2, 25));
 

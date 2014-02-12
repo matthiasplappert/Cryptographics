@@ -20,12 +20,6 @@ public class CryptoModel {
 	// ASCII upper case A code.
 	public final int ASCII_UC_A = 'A';
 
-	// The Header of a html string.
-	private final String HTML_HEADER = "<html><body>";
-
-	// number of chars in <html><body>.
-	private final int HTML_HEADER_LENGTH = 12;
-
 	// The reach of the key interval.
 	private final int MODULO = 26;
 
