@@ -133,7 +133,8 @@ public class CryptoModel {
 	 * @return
 	 */
 	public String genRandomPlainSequence() {
-		String[] plainTextPool = { i18n.tr("ANNA"),
+		String[] plainTextPool = {
+				i18n.tr("ANNA"),
 				i18n.tr("HANNAH"),
 				i18n.tr("BANANA"),
 				i18n.tr("KOKOS"),
@@ -141,7 +142,8 @@ public class CryptoModel {
 				i18n.tr("HAMSTER"),
 				i18n.tr("WASILIJ"),
 				i18n.tr("SECRET"),
-				i18n.tr("EPSILON") };
+				i18n.tr("EPSILON")
+		};
 
 		int index = this.generateRandomInt(0, plainTextPool.length);
 		return plainTextPool[index];

@@ -335,7 +335,8 @@ public class HistogramController extends AbstractVisualizationController {
 																	.genRandomGrats()
 															+ " "
 															+ i18n.tr("You found the secret key and are now able<br>"
-															+ "to read the secret message. The Key was ")
+															+ "to read the secret message. The Key was")
+															+ " "
 															+ nextBFKey));
 									HistogramController.this.setStep(1);
 									HistogramController.this.getView()
