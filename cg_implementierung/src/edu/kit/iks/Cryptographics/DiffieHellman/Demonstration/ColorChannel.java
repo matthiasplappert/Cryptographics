@@ -435,23 +435,35 @@ public class ColorChannel extends JPanel {
 		this.model.mixBobPrivateAndPublic();
 	}
 	
+	/*
+	 * send the public color to bob
+	 */
 	public void sendPublicColor(NextStepCallback cb) {
 		this.setColorNextToSend(this.model.getPublicColor());
 		this.sendToBob(cb, true);
 	}
 	
+	/*
+	 * send alice mixed color to bob
+	 */
 	public void sendAliceMixedColorToBob(NextStepCallback cb) {
 		this.model.mixAlicePrivateAndPublic();
 		this.setColorNextToSend(this.model.getAliceMixedColor());
 		this.sendToBob(cb, true);
 	}
 	
+	/*
+	 * send bob mixed color to alice
+	 */
 	public void sendBobMixedColorToAlice(NextStepCallback cb) {
 		this.model.mixBobPrivateAndPublic();
 		this.setColorNextToSend(this.model.getBobMixedColor());
 		this.sendToAlice(cb, true);
 	}
 	
+	/*
+	 * mix alice final secret
+	 */
 	public void mixAliceFinalSecret(NextStepCallback cb) {
 		assert(model.getBobMixedColor() != null);
 		assert(model.getAlicePrivateColor() != null);
@@ -461,6 +473,9 @@ public class ColorChannel extends JPanel {
 		this.cm1.mixColors(true, false, cb);
 	}
 	
+	/*
+	 * mix bob final secret
+	 */
 	public void mixBobFinalSecret(NextStepCallback cb) {
 		assert(model.getAliceMixedColor() != null);
 		assert(model.getBobPrivateColor() != null);
@@ -470,14 +485,24 @@ public class ColorChannel extends JPanel {
 		this.cm2.mixColors(true, false, cb);
 	}
 	
+	/*
+	 * returns true, if sending should
+	 * be priodically repeated
+	 */
 	public boolean isRepeat() {
 		return repeatPeriodically;
 	}
 
+	/*
+	 * set the repeat value
+	 */
 	public void setRepeat(boolean repeat) {
 		this.repeatPeriodically = repeat;
 	}
 	
+	/*
+	 * get the next color to send
+	 */
 	public Color getColor() {
 		return colorNextToSend;
 	}
@@ -489,30 +514,53 @@ public class ColorChannel extends JPanel {
 		this.colorNextToSend = color;
 	}
 	
+	/*
+	 * if true the send colors are
+	 * kept at the receivers
+	 */
 	public boolean isKeepColor() {
 		return keepCircles;
 	}
 
+	/*
+	 * set if we should keep the
+	 * next sent colors
+	 */
 	public void setKeepColor(boolean keepColor) {
 		this.keepCircles = keepColor;
 	}
 
+	/*
+	 * get the public color
+	 */
 	public Color getPublicColor() {
 		return this.model.getPublicColor();
 	}
 
+	/*
+	 * get alices private color
+	 */
 	public Color getAlicePrivateColor() {
 		return this.model.getAlicePrivateColor();
 	}
 	
+	/*
+	 * get alices mixed color
+	 */
 	public Color getAliceMixedColor() {
 		return this.model.getAliceMixedColor();
 	}
 	
+	/*
+	 * get bobs private color
+	 */
 	public Color getBobPrivateColor() {
 		return this.model.getBobPrivateColor();
 	}
 
+	/*
+	 * get bobs mixed color
+	 */
 	public Color getBobMixedColor() {
 		return this.model.getBobMixedColor();
 	}
