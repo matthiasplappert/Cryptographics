@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-02-12 21:05+0100\n"
-"PO-Revision-Date: 2014-02-12 21:32+0100\n"
+"POT-Creation-Date: 2014-02-12 21:37+0100\n"
+"PO-Revision-Date: 2014-02-12 21:37+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -162,7 +162,11 @@ msgstr ""
 msgid "Not sure if much help needed here."
 msgstr "Hier wird nicht viel Hilfe erforderlich sein."
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:63
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:49
+msgid "CAESAR"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:64
 msgid ""
 "Imagine now you are the mighty caesar!! Of course your first idea is to "
 "substitute each <br>letter from your name with some other from the alphabet. "
@@ -171,7 +175,7 @@ msgstr ""
 "Stell dir nun vor du wärst der mächtige Caesar! Natürlich ist deine erste "
 "Idee,<br>Buchstaben des Alphabets auf andere abzubilden. Doch nur auf welche?"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:73
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:74
 msgid "Proceed!"
 msgstr "Weiter!"
 
