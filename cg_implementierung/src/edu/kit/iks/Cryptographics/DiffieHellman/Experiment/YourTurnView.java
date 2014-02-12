@@ -12,6 +12,12 @@ public class YourTurnView extends VisualizationView {
 	private JLabel aimExplain;
 
 	private String help;
+	
+	private String explain = "Now it's your turn! " +
+				"Now you are Alice and try to establish a shared secret " +
+				"with Bob, without Eve getting the secret. Your" +
+				"task will be to mix the right Colors and to send " +
+				"the right Colors, just like in the Demonstration";
 
 	private static final long serialVersionUID = -9208922057840794898L;
 
@@ -33,11 +39,7 @@ public class YourTurnView extends VisualizationView {
 		layout.setConstraints(this.getBackButton(), gbc);
 		
 		this.aimExplain = new JLabel();
-		this.aimExplain.setText("<html><div style=\"width:200px\">Now it's your turn! " +
-				"Now you are Alice and try to establish a shared secret " +
-				"with Bob, without Eve getting the secret. Your" +
-				"task will be to mix the right Colors and to send " +
-				"the right Colors, just like in the Demonstration.</div></html>");
+		this.aimExplain.setText("<html><div style=\"width:200px\">" + explain + "</div></html>");
 		gbc.gridx = 1;
 		gbc.gridy = 2;
 		gbc.weightx = 0.0;
