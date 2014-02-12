@@ -71,11 +71,17 @@ public class DHExperimentView extends JPanel {
 			"you have to click the '->' or the '<-' Button. You can't do " +
 			"much wrong. When you are ready, click the 'mix colors' button";
 	
-	private String help3 = "";
+	private String help3 = "You have to send the right color, the right color is the " +
+			"one you have not already sent, and the one you don't want to keep private. " +
+			"If you still have no clue, try the three different colors";
 	
-	private String help4 = "";
+	private String help4 = "Just click the continue button and Bob will mix his color " +
+			"and will send it to you";
 	
-	private String help5 = "";
+	private String help5 = "You have to choose the two colors that will be mixed to " +
+			"the final shared secret. Tip: Why can't Eve compute the secret. Right " +
+			"you have a color that Eve does not have, so have to use that one. The other " +
+			"color you have to think about yourself, or try different colors till it works";
 	
 	private JLabel choosePublicLbl;
 	
@@ -103,6 +109,7 @@ public class DHExperimentView extends JPanel {
 	
 	public DHExperimentView() {
 		super();
+		help = help1; //the first help text
 		gbc = new GridBagConstraints();
 		GridBagLayout layout = new GridBagLayout();
 		this.setLayout(layout);
@@ -168,6 +175,7 @@ public class DHExperimentView extends JPanel {
 			
 			@Override
 			public void callback() {
+				help = help2;
 				choosePublicLbl.setText("<html><div style=\"width:300px\">" + explanation2 + "</div></html>");
 				multiBtn.setText("Mix with public color");
 				multiBtn.addActionListener(new ActionListener() {
@@ -200,6 +208,7 @@ public class DHExperimentView extends JPanel {
 			
 			@Override
 			public void callback() {
+				help = help3;
 				chooser.setToChooseFrom(new Color[]{cc.getPublicColor(), cc.getAlicePrivateColor(),
 						cm.getMixedColor()
 				});
@@ -227,6 +236,7 @@ public class DHExperimentView extends JPanel {
 				
 				@Override
 				public void callback() {
+					help = help4;
 					choosePublicLbl.setText("<html><div style=\"width:300px\">" + bobsTurn + "</div></html>");
 					multiBtn.setText("Continue");
 					multiBtn.addActionListener(new ActionListener() {
@@ -261,6 +271,7 @@ public class DHExperimentView extends JPanel {
 					
 					@Override
 					public void callback() {
+						help = help5;
 						Color[] param = new Color[]{cc.getPublicColor(),
 								cc.getAlicePrivateColor(), cc.getAliceMixedColor(),
 								cc.getBobMixedColor()};
