@@ -83,6 +83,19 @@ public class DHExperimentView extends JPanel {
 			"you have a color that Eve does not have, so have to use that one. The other " +
 			"color you have to think about yourself, or try different colors till it works";
 	
+	private String mix = "Mix with public color";
+	
+	private String mixFinal = "Mix colors to final secret";
+	
+	private String contin = "Continue";
+	
+	private String notSame = "The private color can't be the same" +
+			" as the public color";
+	
+	private String send = "Send color";
+	
+	private String wrongColor = "You choosed the wrong colors, try again";
+	
 	private JLabel explainLbl;
 	
 	private JButton multiBtn;
@@ -177,7 +190,7 @@ public class DHExperimentView extends JPanel {
 			public void callback() {
 				help = help2;
 				explainLbl.setText("<html><div style=\"width:300px\">" + explanation2 + "</div></html>");
-				multiBtn.setText("Mix with public color");
+				multiBtn.setText(mix);
 				multiBtn.addActionListener(new ActionListener() {
 					
 					@Override
@@ -189,8 +202,7 @@ public class DHExperimentView extends JPanel {
 							mixPrivateColorStep();
 							
 						} else {
-							explainLbl.setText("The private color can't be the same" +
-									" as the public color");
+							explainLbl.setText(notSame);
 						}
 					}
 				});
@@ -214,7 +226,7 @@ public class DHExperimentView extends JPanel {
 				});
 				toChooseFrom = chooser.getToChooseFrom();
 				explainLbl.setText("<html><div style=\"width:300px\">" + explanation3 + "</div></html>");
-				multiBtn.setText("Send color");
+				multiBtn.setText(send);
 				multiBtn.addActionListener(new ActionListener() {
 					
 					@Override
@@ -238,7 +250,7 @@ public class DHExperimentView extends JPanel {
 				public void callback() {
 					help = help4;
 					explainLbl.setText("<html><div style=\"width:300px\">" + bobsTurn + "</div></html>");
-					multiBtn.setText("Continue");
+					multiBtn.setText(contin);
 					multiBtn.addActionListener(new ActionListener() {
 						
 						@Override
@@ -281,7 +293,7 @@ public class DHExperimentView extends JPanel {
 						add(chooser2, gbc);
 						chooser.setToChooseFrom(param);
 						explainLbl.setText("<html><div style=\"width:300px\">" + finalSecret + "</div></html>");
-						multiBtn.setText("Mix colors to final secret");
+						multiBtn.setText(mixFinal);
 						validate();
 						multiBtn.addActionListener(new ActionListener() {
 							
@@ -314,7 +326,7 @@ public class DHExperimentView extends JPanel {
 						
 						@Override
 						public void callback() {
-							multiBtn.setText("Continue");
+							multiBtn.setText(contin);
 							multiBtn.addActionListener(remember);
 						}
 					});
@@ -322,7 +334,7 @@ public class DHExperimentView extends JPanel {
 			});
 		} else {
 			explainLbl.setText("<html><div style=\"width:120px\">" +
-					"You choosed the wrong colors, try again</div></html>");
+					wrongColor + "</div></html>");
 			
 			validate();
 		}

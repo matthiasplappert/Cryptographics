@@ -6,11 +6,13 @@ import javax.swing.JPanel;
 public class CongratsView extends JPanel {
 	
 	private String help;
+	
+	private String congratulations = "Congratulations";
 
 	private static final long serialVersionUID = 539729162359687203L;
 	
 	JLabel congrats = new JLabel("<html><div style=\"width:200px\">" +
-			"Congratulations</div></html>");
+			congratulations + "</div></html>");
 	
 	public CongratsView() {
 		add(congrats);
