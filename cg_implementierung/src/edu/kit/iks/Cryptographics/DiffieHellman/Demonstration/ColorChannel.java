@@ -421,10 +421,16 @@ public class ColorChannel extends JPanel {
 		this.chooseColorToKeep(color, 1);
 	}
 	
+	/*
+	 * compute alices mixed color
+	 */
 	public void mixAlicePrivatePublic() {
 		this.model.mixAlicePrivateAndPublic();
 	}
 	
+	/*
+	 * compute bobs mixed color
+	 */
 	public void mixBobPrivatePublic() {
 		this.model.mixBobPrivateAndPublic();
 	}
