@@ -327,8 +327,7 @@ public class HistogramView extends VisualizationView {
 	 * @param cipher
 	 */
 	public void setupCipherHistogram(String cipher) {
-		JLabel cipherHistogramHint = new JLabel(
-				"<html><body>&darr;Histogram of the cipher.&darr;");
+		JLabel cipherHistogramHint = new JLabel(this.wrapHtml(i18n.tr("&darr;Histogram of the cipher.&darr;")));
 		GridBagConstraints hintConst = new GridBagConstraints();
 		hintConst.gridx = 2;
 		hintConst.gridy = 2;
@@ -362,8 +361,7 @@ public class HistogramView extends VisualizationView {
 	 */
 	public void setupPlainHistogram(String text) {
 
-		JLabel cipherHistogramHint = new JLabel("<html><body>"
-				+ "&darr;Histogram of the explanation.&darr;");
+		JLabel cipherHistogramHint = new JLabel(this.wrapHtml(i18n.tr("&darr;Histogram of the cipher.&darr;")));
 		GridBagConstraints hintConst = new GridBagConstraints();
 		hintConst.gridx = 0;
 		hintConst.gridy = 2;
@@ -397,8 +395,7 @@ public class HistogramView extends VisualizationView {
 	 * Sets the inputfield where the user can type his key.
 	 */
 	public void setupKeyInput() {
-		JLabel keyCaption = new JLabel(
-				"<html><body>Type your key in this&darr; box and click 'Enter'.");
+		JLabel keyCaption = new JLabel(this.wrapHtml(i18n.tr("Type your key in this&darr; box and click 'Enter'.")));
 		GridBagConstraints capConst = new GridBagConstraints();
 		capConst.gridx = 0;
 		capConst.gridy = 0;
@@ -523,7 +520,7 @@ public class HistogramView extends VisualizationView {
 
 	private void setupProceed() {
 		// setup the proceed button.
-		this.proceed = new JButton("Proceed");
+		this.proceed = new JButton(i18n.tr("Proceed"));
 		this.proceed.setVisible(true);
 		GridBagConstraints proceedConst = new GridBagConstraints();
 		this.proceed.setPreferredSize(new Dimension(250, 50));
@@ -915,5 +912,9 @@ public class HistogramView extends VisualizationView {
 	 */
 	public void setSecretKey(int secretKey) {
 		this.secretKey = secretKey;
+	}
+	
+	private String wrapHtml(String text) {
+		return "<html><body>" + text + "</body></html>";
 	}
 }

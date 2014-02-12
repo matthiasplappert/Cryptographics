@@ -277,15 +277,16 @@ public class CryptoView extends VisualizationView {
 
 		// setup the explanations.
 		String explanations = "<html><body>"
-				+ i18n.tr("Now it is up to you. Test your skills. Remember the key is ")
+				+ i18n.tr("Now it is up to you. Test your skills. Remember the key is")
+				+ " "
 				+ key
 				+ ".<br>"
 				+ i18n.tr("You need to add the key to the position of the letter your want to shift to get<br>"
 						+ "the needed cipher. If you get a bigger number then 25 you need to subtract 25 from it. <br>"
-						+ "For example: You want to encrypt x with the key 3. When you add 3 to X you get 23 + 3 = 26. <br>"
+						+ "For example: You want to encrypt X with the key 3. When you add 3 to X you get 23 + 3 = 26. <br>"
 						+ "26 is obvious bigger then 25. Then you subtract 26 - 25 = 1. This is your cipher. <br>"
-						+ "It is also called modulo calculation. for example 26 mod 25 = 1. But this is a little more complex<br>"
-						+ "Therefore not important here. You will see more in the vigenere Visualization.");
+						+ "It is also called modulo calculation. For example 26 mod 25 = 1. But this is a little more complex<br>"
+						+ "and therefore not important here. You will see more in the Vigenère visualization.");
 		this.setupExplanations(explanations,
 				GridBagConstraints.LAST_LINE_START, 0, 0, 4);
 

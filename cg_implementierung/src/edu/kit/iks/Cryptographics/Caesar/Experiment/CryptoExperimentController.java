@@ -188,7 +188,8 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 		this.getView()
 				.getExplanations()
 				.setText(
-						this.wrapHtml(i18n.tr("All done right! ")
+						this.wrapHtml(i18n.tr("All done right!")
+								+ " "
 								+ this.getModel().genRandomGrats()
 								+ " "
 								+ i18n.tr("Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
@@ -203,7 +204,9 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 		this.getView()
 				.getExplanations()
 				.setText(
-						this.getModel().genRandomGrats() + i18n.trn("You have {0} left!", "You have {0} left!", this.getEditableFields(), this.getEditableFields()));
+						this.getModel().genRandomGrats()
+						+ " "
+						+ i18n.trn("You have {0} left!", "You have {0} left!", this.getEditableFields(), this.getEditableFields()));
 		this.getView().getUserOutput()[CryptoExperimentController.this
 				.getView().getUserOutput().length - this.getEditableFields()]
 				.requestFocus();
