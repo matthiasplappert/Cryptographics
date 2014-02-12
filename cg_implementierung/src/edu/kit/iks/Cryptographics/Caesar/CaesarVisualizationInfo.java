@@ -81,7 +81,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public String getDescription() {
-		String description = i18n
+		String description = CaesarVisualizationInfo.i18n
 				.tr("Get to know how Ceasar fooled his enemys that "
 						+ "intercepted his orders and see one of the oldest "
 						+ "attempts to make confidential material unreadable "
@@ -111,7 +111,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public String getName() {
-		return i18n.tr("Caesar");
+		return CaesarVisualizationInfo.i18n.tr("Caesar");
 	}
 
 	/*

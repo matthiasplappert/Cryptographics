@@ -270,7 +270,7 @@ public class CryptoView extends VisualizationView {
 		alphConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.alphabet, alphConst);
 	}
-	
+
 	protected void removeExplanations() {
 		this.remove(this.explanations);
 		this.explanations = null;
@@ -388,18 +388,22 @@ public class CryptoView extends VisualizationView {
 
 		// set up the alignment of the button back;
 		if (MODE == CryptoView.EXPERIMENT_MODE) {
-			this.setBackButton(new JButton(i18n.tr("Back to demonstration")));
+			this.setBackButton(new JButton(CryptoView.i18n
+					.tr("Back to demonstration")));
 		} else {
-			this.setBackButton(new JButton(i18n.tr("Back to Introduction")));
+			this.setBackButton(new JButton(CryptoView.i18n
+					.tr("Back to Introduction")));
 		}
 		this.getBackButton().setPreferredSize(new Dimension(350, 50));
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
 		if (MODE == CryptoView.EXPERIMENT_MODE) {
-			this.setNextButton(new JButton(i18n.tr("Go to decryption")));
+			this.setNextButton(new JButton(CryptoView.i18n
+					.tr("Go to decryption")));
 		} else {
-			this.setNextButton(new JButton(i18n.tr("Go to experiment")));
+			this.setNextButton(new JButton(CryptoView.i18n
+					.tr("Go to experiment")));
 		}
 		this.getNextButton().setPreferredSize(new Dimension(300, 50));
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
@@ -605,7 +609,7 @@ public class CryptoView extends VisualizationView {
 	 * @return the userCharacterIOContainer
 	 */
 	public JPanel getUserCharacterIOContainer() {
-		return userCharacterIOContainer;
+		return this.userCharacterIOContainer;
 	}
 
 	/**
@@ -620,7 +624,7 @@ public class CryptoView extends VisualizationView {
 	 * @return the caesarFrustrated
 	 */
 	public ImageView getCaesarFrustrated() {
-		return caesarFrustrated;
+		return this.caesarFrustrated;
 	}
 
 	/**
@@ -635,7 +639,7 @@ public class CryptoView extends VisualizationView {
 	 * @return the caesarHappy
 	 */
 	public ImageView getCaesarHappy() {
-		return caesarHappy;
+		return this.caesarHappy;
 	}
 
 	/**

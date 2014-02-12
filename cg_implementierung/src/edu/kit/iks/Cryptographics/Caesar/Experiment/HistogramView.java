@@ -166,21 +166,23 @@ public class HistogramView extends VisualizationView {
 		this.setupNavigation();
 
 		String explanation = "<html><body>"
-				+ i18n.tr("Great. Up to now you learned how to encrypt or decrypt given letter sequences with a given key.<br>"
-						+ "The question is now, how do you decrypt without a key?!<br>"
-						+ "<br>"
-						+ "It is also called 'breaking' the cipher if you try to decrypt without a given key parameter. The following <br>"
-						+ "experiments will teach you how to break caesar's cipher. There are always 2 Options when it comes to this.<br>"
-						+ "<br>"
-						+ "1. The First one is the method called 'Brute Force', it means that you just try simply to decrypt with each possible<br>"
-						+ "key. This one you will see in the next step.<br>"
-						+ "<br>"
-						+ "2. The Second one is to use cryptology techniques.");
+				+ HistogramView.i18n
+						.tr("Great. Up to now you learned how to encrypt or decrypt given letter sequences with a given key.<br>"
+								+ "The question is now, how do you decrypt without a key?!<br>"
+								+ "<br>"
+								+ "It is also called 'breaking' the cipher if you try to decrypt without a given key parameter. The following <br>"
+								+ "experiments will teach you how to break caesar's cipher. There are always 2 Options when it comes to this.<br>"
+								+ "<br>"
+								+ "1. The First one is the method called 'Brute Force', it means that you just try simply to decrypt with each possible<br>"
+								+ "key. This one you will see in the next step.<br>"
+								+ "<br>"
+								+ "2. The Second one is to use cryptology techniques.");
 
 		this.setupExplanationAndForwarding(explanation);
 	}
-	
-	//-------------------------------------------------------------------public methods-------------------------------------------------//
+
+	// -------------------------------------------------------------------public
+	// methods-------------------------------------------------//
 
 	public void setupExplanationAndForwarding(String explanations) {
 		// setup the container.
@@ -199,13 +201,13 @@ public class HistogramView extends VisualizationView {
 				explanationConstraint);
 
 		// setup the forwarding.
-		setupProceed();
+		this.setupProceed();
 		this.explanationAndForwardingPanel.validate();
 		this.validate();
 	}
 
 	/**
-	 * Creates the keyboard with literals and shows it in the main container. 
+	 * Creates the keyboard with literals and shows it in the main container.
 	 * 
 	 * @param input
 	 */
@@ -243,7 +245,6 @@ public class HistogramView extends VisualizationView {
 		this.validate();
 	}
 
-
 	/**
 	 * Setup method for the first step of the histogram experiment.
 	 * 
@@ -251,18 +252,18 @@ public class HistogramView extends VisualizationView {
 	 * @param cipher
 	 */
 	public void setupBruteForceCore(int secretKey, String cipher) {
-         //set the key user has to find out.
+		// set the key user has to find out.
 		this.secretKey = secretKey;
-		
-		//setup the container for the core gui of the experiment.
+
+		// setup the container for the core gui of the experiment.
 		this.setupKeyControlContainer();
-		
-		//setup the core iteration elements.
+
+		// setup the core iteration elements.
 		this.setupKeyIterationButtons();
-		
-		//setup the labels that show the results of each iteration.
+
+		// setup the labels that show the results of each iteration.
 		this.setupCipherPlainPresentationLabels(cipher);
-		
+
 		this.announcement = new JLabel();
 		this.announcement.setPreferredSize(new Dimension(600, 100));
 		GridBagConstraints annConst = new GridBagConstraints();
@@ -275,7 +276,7 @@ public class HistogramView extends VisualizationView {
 		this.repaint();
 		this.validate();
 	}
-	
+
 	/**
 	 * Sets the container for the following histogram elements.
 	 */
@@ -293,41 +294,45 @@ public class HistogramView extends VisualizationView {
 		this.add(this.histogramContainer, containerConst);
 	}
 
-//	public void setupHistogram(String text, String caption, int xGrid, int yGrid, String contentText) {
-//		JLabel cipherHistogramHint = new JLabel(caption);
-//		GridBagConstraints hintConst = new GridBagConstraints();
-//		hintConst.gridx = xGrid;
-//		hintConst.gridy = yGrid;
-//		hintConst.insets = new Insets(0, 50, 5, 50);
-//		hintConst.fill = GridBagConstraints.HORIZONTAL;
-//		this.histogramContainer.add(cipherHistogramHint, hintConst);
-//
-//		this.cipherHistogram = new CharacterFrequencyDiagramView(text, 600,
-//				100);
-//		GridBagConstraints cipherHistConst = new GridBagConstraints();
-//		cipherHistConst.gridx = 2;
-//		cipherHistConst.gridy = 3;
-//		cipherHistConst.insets = new Insets(5, 50, 5, 50);
-//		cipherHistConst.fill = GridBagConstraints.BOTH;
-//		this.histogramContainer.add(this.cipherHistogram, cipherHistConst);
-//
-//		JLabel content = new JLabel(contentText);
-//		GridBagConstraints cipherConst = new GridBagConstraints();
-//		cipherConst.gridx = 2;
-//		cipherConst.gridy = 4;
-//		cipherConst.insets = new Insets(5, 50, 5, 50);
-//		cipherConst.fill = GridBagConstraints.BOTH;
-//		this.histogramContainer.add(this.cipher, cipherConst);
-//
-//		this.validate();
-//		this.repaint();
-//	}
+	// public void setupHistogram(String text, String caption, int xGrid, int yGrid, String
+	// contentText) {
+	// JLabel cipherHistogramHint = new JLabel(caption);
+	// GridBagConstraints hintConst = new GridBagConstraints();
+	// hintConst.gridx = xGrid;
+	// hintConst.gridy = yGrid;
+	// hintConst.insets = new Insets(0, 50, 5, 50);
+	// hintConst.fill = GridBagConstraints.HORIZONTAL;
+	// this.histogramContainer.add(cipherHistogramHint, hintConst);
+	//
+	// this.cipherHistogram = new CharacterFrequencyDiagramView(text, 600,
+	// 100);
+	// GridBagConstraints cipherHistConst = new GridBagConstraints();
+	// cipherHistConst.gridx = 2;
+	// cipherHistConst.gridy = 3;
+	// cipherHistConst.insets = new Insets(5, 50, 5, 50);
+	// cipherHistConst.fill = GridBagConstraints.BOTH;
+	// this.histogramContainer.add(this.cipherHistogram, cipherHistConst);
+	//
+	// JLabel content = new JLabel(contentText);
+	// GridBagConstraints cipherConst = new GridBagConstraints();
+	// cipherConst.gridx = 2;
+	// cipherConst.gridy = 4;
+	// cipherConst.insets = new Insets(5, 50, 5, 50);
+	// cipherConst.fill = GridBagConstraints.BOTH;
+	// this.histogramContainer.add(this.cipher, cipherConst);
+	//
+	// this.validate();
+	// this.repaint();
+	// }
 	/**
 	 * Creates a histogram of the cipher argument.
+	 * 
 	 * @param cipher
 	 */
 	public void setupCipherHistogram(String cipher) {
-		JLabel cipherHistogramHint = new JLabel(this.wrapHtml(i18n.tr("&darr;Histogram of the cipher.&darr;")));
+		JLabel cipherHistogramHint = new JLabel(
+				this.wrapHtml(HistogramView.i18n
+						.tr("&darr;Histogram of the cipher.&darr;")));
 		GridBagConstraints hintConst = new GridBagConstraints();
 		hintConst.gridx = 2;
 		hintConst.gridy = 2;
@@ -356,12 +361,16 @@ public class HistogramView extends VisualizationView {
 		this.repaint();
 	}
 
-	/**Creates a histogram of the plain text argument.
+	/**
+	 * Creates a histogram of the plain text argument.
+	 * 
 	 * @param text
 	 */
 	public void setupPlainHistogram(String text) {
 
-		JLabel cipherHistogramHint = new JLabel(this.wrapHtml(i18n.tr("&darr;Histogram of the cipher.&darr;")));
+		JLabel cipherHistogramHint = new JLabel(
+				this.wrapHtml(HistogramView.i18n
+						.tr("&darr;Histogram of the cipher.&darr;")));
 		GridBagConstraints hintConst = new GridBagConstraints();
 		hintConst.gridx = 0;
 		hintConst.gridy = 2;
@@ -390,12 +399,13 @@ public class HistogramView extends VisualizationView {
 		this.validate();
 		this.repaint();
 	}
-	
+
 	/**
 	 * Sets the inputfield where the user can type his key.
 	 */
 	public void setupKeyInput() {
-		JLabel keyCaption = new JLabel(this.wrapHtml(i18n.tr("Type your key in this&darr; box and click 'Enter'.")));
+		JLabel keyCaption = new JLabel(this.wrapHtml(HistogramView.i18n
+				.tr("Type your key in this&darr; box and click 'Enter'.")));
 		GridBagConstraints capConst = new GridBagConstraints();
 		capConst.gridx = 0;
 		capConst.gridy = 0;
@@ -450,8 +460,9 @@ public class HistogramView extends VisualizationView {
 		this.validate();
 	}
 
-	//--------------------------------------------------------------private methods--------------------------------------------------//
-	
+	// --------------------------------------------------------------private
+	// methods--------------------------------------------------//
+
 	private void setupViewLayout() {
 		GridBagLayout layout = new GridBagLayout();
 		this.setLayout(layout);
@@ -461,7 +472,7 @@ public class HistogramView extends VisualizationView {
 		viewConst.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(this, viewConst);
 	}
-	
+
 	private void setupNavigationPanel() {
 		// set up a container for the navigation Buttons (Next and Back).
 		this.navigationPanel = new JPanel(new BorderLayout());
@@ -478,7 +489,7 @@ public class HistogramView extends VisualizationView {
 	}
 
 	private void setupNavigation() {
-		setupNavigationPanel();
+		this.setupNavigationPanel();
 
 		// TODO: dont instantiate the buttons in the upper class.
 		// First need to remove the buttons because they are added in the upper
@@ -487,21 +498,23 @@ public class HistogramView extends VisualizationView {
 		this.remove(this.getNextButton());
 
 		// set up the alignment of the button back;
-		this.setBackButton(new JButton(i18n.tr("Back to Experiment")));
+		this.setBackButton(new JButton(HistogramView.i18n
+				.tr("Back to Experiment")));
 		this.getBackButton().setPreferredSize(new Dimension(300, 50));
 		this.getBackButton().setMaximumSize(new Dimension(300, 50));
 		// this.getBackButton().setFont(new Font("Arial", 2, 25));
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
-		this.setNextButton(new JButton(i18n.tr("Skip the histograms (Visualization Done)")));
+		this.setNextButton(new JButton(HistogramView.i18n
+				.tr("Skip the histograms (Visualization Done)")));
 		this.getNextButton().setPreferredSize(new Dimension(300, 50));
 		this.getNextButton().setMinimumSize(new Dimension(300, 50));
 		// this.getNextButton().setFont(new Font("Arial", 2, 25));
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
 
 	}
-	
+
 	private void setupExplanationAndForwardingContainer() {
 		this.explanationAndForwardingPanel = new JPanel(new GridBagLayout());
 		// set the alignment of the Container for the explanations and the button Proceed.
@@ -520,7 +533,7 @@ public class HistogramView extends VisualizationView {
 
 	private void setupProceed() {
 		// setup the proceed button.
-		this.proceed = new JButton(i18n.tr("Proceed"));
+		this.proceed = new JButton(HistogramView.i18n.tr("Proceed"));
 		this.proceed.setVisible(true);
 		GridBagConstraints proceedConst = new GridBagConstraints();
 		this.proceed.setPreferredSize(new Dimension(250, 50));
@@ -532,7 +545,7 @@ public class HistogramView extends VisualizationView {
 		this.explanationAndForwardingPanel.add(this.proceed, proceedConst);
 
 	}
-	
+
 	private void setupCipherPlainPresentationLabels(String cipher) {
 
 		this.bruteForceCipherLabel = new JLabel(cipher);
@@ -596,14 +609,14 @@ public class HistogramView extends VisualizationView {
 		// keyConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.keyControl, keyConst);
 	}
-	
-	//--------------------------------------------------------------Getter/Setter----------------------------------------------------//
-	
+
+	// --------------------------------------------------------------Getter/Setter----------------------------------------------------//
+
 	/**
 	 * @return the numpad
 	 */
 	public NumpadView getNumpad() {
-		return numpad;
+		return this.numpad;
 	}
 
 	/**
@@ -613,7 +626,7 @@ public class HistogramView extends VisualizationView {
 	public void setNumpad(NumpadView numpad) {
 		this.numpad = numpad;
 	}
-	
+
 	/**
 	 * @return the announcement
 	 */
@@ -908,12 +921,13 @@ public class HistogramView extends VisualizationView {
 	}
 
 	/**
-	 * @param secretKey the secretKey to set
+	 * @param secretKey
+	 *            the secretKey to set
 	 */
 	public void setSecretKey(int secretKey) {
 		this.secretKey = secretKey;
 	}
-	
+
 	private String wrapHtml(String text) {
 		return "<html><body>" + text + "</body></html>";
 	}

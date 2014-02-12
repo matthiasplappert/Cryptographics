@@ -2,7 +2,9 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+
 import javax.swing.JButton;
+
 import org.jdom2.Element;
 import org.xnap.commons.i18n.I18n;
 
@@ -22,7 +24,7 @@ public class CryptoDemonstrationView extends CryptoView {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private static I18n i18n = Configuration.getInstance().getI18n(
 			CryptoDemonstrationView.class);
 
@@ -46,32 +48,33 @@ public class CryptoDemonstrationView extends CryptoView {
 		this.cipherDemoResource = vsInfo.getResources().getChild("CipherDemo");
 
 		// setup the fields for the demonstratoin of the encryption.
-		String caesar = i18n.tr("CAESAR");
+		String caesar = CryptoDemonstrationView.i18n.tr("CAESAR");
 		char[] chars = caesar.toCharArray();
-		
-		//Setup the io textfields.
-		this.setupInOutElements(chars,3, CryptoView.DEMONSTRATION_MODE);
 
-		//setup the forwarding button.
+		// Setup the io textfields.
+		this.setupInOutElements(chars, 3, CryptoView.DEMONSTRATION_MODE);
+
+		// setup the forwarding button.
 		this.setupProceed();
 
 		// setup the alphabet.
 		this.setupAlphabet();
 
 		// setup the explanation label.
-		String explanations = 
-				"<html><body>"
-						+ i18n.tr("Imagine now you are the mighty caesar!! Of course your first idea is to substitute each <br>"
+		String explanations = "<html><body>"
+				+ CryptoDemonstrationView.i18n
+						.tr("Imagine now you are the mighty caesar!! Of course your first idea is to substitute each <br>"
 								+ "letter from your name with some other from the alphabet. But which one?");
-		this.setupExplanations(explanations, GridBagConstraints.LAST_LINE_START, 0, 0, 4);
+		this.setupExplanations(explanations,
+				GridBagConstraints.LAST_LINE_START, 0, 0, 4);
 
 		this.validate();
 	}
-	
+
 	private void setupProceed() {
 		// setup the aligment of the button proceed.
 		GridBagConstraints proceedConst = new GridBagConstraints();
-		this.proceed = new JButton(i18n.tr("Proceed!"));
+		this.proceed = new JButton(CryptoDemonstrationView.i18n.tr("Proceed!"));
 		this.proceed.setPreferredSize(new Dimension(250, 50));
 		proceedConst.anchor = GridBagConstraints.PAGE_END;
 		proceedConst.gridx = 2;
@@ -84,11 +87,12 @@ public class CryptoDemonstrationView extends CryptoView {
 	 * @return the cipherDemoResource
 	 */
 	public Element getCipherDemoResource() {
-		return cipherDemoResource;
+		return this.cipherDemoResource;
 	}
 
 	/**
-	 * @param cipherDemoResource the cipherDemoResource to set
+	 * @param cipherDemoResource
+	 *            the cipherDemoResource to set
 	 */
 	public void setCipherDemoResource(Element cipherDemoResource) {
 		this.cipherDemoResource = cipherDemoResource;
@@ -97,13 +101,16 @@ public class CryptoDemonstrationView extends CryptoView {
 	/**
 	 * @return the proceed
 	 */
+	@Override
 	public JButton getProceed() {
-		return proceed;
+		return this.proceed;
 	}
 
 	/**
-	 * @param proceed the proceed to set
+	 * @param proceed
+	 *            the proceed to set
 	 */
+	@Override
 	public void setProceed(JButton proceed) {
 		this.proceed = proceed;
 	}

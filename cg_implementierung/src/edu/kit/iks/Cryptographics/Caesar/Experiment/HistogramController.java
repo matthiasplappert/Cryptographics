@@ -57,17 +57,17 @@ public class HistogramController extends AbstractVisualizationController {
 		this.model = CryptoModel.getInstance();
 		this.step = 0;
 
-		//generate listener for the button proceed.
+		// generate listener for the button proceed.
 		this.generateProceedListener();
-		
-		//generate listener for the next/back buttons.
+
+		// generate listener for the next/back buttons.
 		this.generateNavigationActionListener();
 
 	}
 
 	@Override
 	public String getHelp() {
-		return i18n.tr("Under Constrcution");
+		return HistogramController.i18n.tr("Under Constrcution");
 	}
 
 	/*
@@ -149,9 +149,10 @@ public class HistogramController extends AbstractVisualizationController {
 							String explanations = HistogramController.this.wrapHtml(HistogramController.this
 									.getModel().genRandomGrats()
 									+ " "
-									+ i18n.tr("You found the right key!!! See how easy it is with histograms?<br>"
-											+ "If you want to try one more click proceed. Else you can go next to further information<br>"
-											+ "There you can learn more about caesar's cipher."));
+									+ HistogramController.i18n
+											.tr("You found the right key!!! See how easy it is with histograms?<br>"
+													+ "If you want to try one more click proceed. Else you can go next to further information<br>"
+													+ "There you can learn more about caesar's cipher."));
 							HistogramController.this.getView()
 									.getExplanations().setText(explanations);
 							HistogramController.this.getView().getProceed()
@@ -169,7 +170,8 @@ public class HistogramController extends AbstractVisualizationController {
 									.wrapHtml(HistogramController.this
 											.getModel().genRandomBlamings()
 											+ " "
-											+ i18n.tr("The key was wrong."));
+											+ HistogramController.i18n
+													.tr("The key was wrong."));
 							HistogramController.this.getView()
 									.getExplanations().setText(explanations);
 							HistogramController.this
@@ -184,8 +186,9 @@ public class HistogramController extends AbstractVisualizationController {
 						String explanations = HistogramController.this.wrapHtml(HistogramController.this
 								.getModel().genRandomBlamings()
 								+ " "
-								+ i18n.tr("This key is invalid. Please type a number between 1 and 26. If you dont understand why,<br>"
-										+ "then go to the stages before and learn how the cipher works."));
+								+ HistogramController.i18n
+										.tr("This key is invalid. Please type a number between 1 and 26. If you dont understand why,<br>"
+												+ "then go to the stages before and learn how the cipher works."));
 						HistogramController.this.getView().getExplanations()
 								.setText(explanations);
 						HistogramController.this
@@ -200,7 +203,8 @@ public class HistogramController extends AbstractVisualizationController {
 							.wrapHtml(HistogramController.this.getModel()
 									.genRandomBlamings()
 									+ " "
-									+ i18n.tr("The key field was empty!"));
+									+ HistogramController.i18n
+											.tr("The key field was empty!"));
 					HistogramController.this.getView().getExplanations()
 							.setText(explanations);
 					HistogramController.this
@@ -237,7 +241,7 @@ public class HistogramController extends AbstractVisualizationController {
 			}
 		});
 	}
-	
+
 	/**
 	 * Generates the action listener for the brute force stage.
 	 */
@@ -255,7 +259,8 @@ public class HistogramController extends AbstractVisualizationController {
 						} catch (NumberFormatException e1) {
 							e1.printStackTrace();
 						}
-						if (getModel().isKeyValid(nextBFKey)) {
+						if (HistogramController.this.getModel().isKeyValid(
+								nextBFKey)) {
 
 							HistogramController.this.getView()
 									.getBruteForceKey().setText("" + nextBFKey);
@@ -295,8 +300,9 @@ public class HistogramController extends AbstractVisualizationController {
 																	.getModel()
 																	.genRandomGrats()
 																	+ " "
-																	+ i18n.tr("You found the secret key and are now able<br>"
-																			+ "to read the secret message. The Key was")
+																	+ HistogramController.i18n
+																			.tr("You found the secret key and are now able<br>"
+																					+ "to read the secret message. The Key was")
 																	+ " "
 																	+ nextBFKey));
 									HistogramController.this.setStep(1);
@@ -343,7 +349,8 @@ public class HistogramController extends AbstractVisualizationController {
 						} catch (NumberFormatException e1) {
 							e1.printStackTrace();
 						}
-						if (getModel().isKeyValid(previousBFKey)) {
+						if (HistogramController.this.getModel().isKeyValid(
+								previousBFKey)) {
 							HistogramController.this.getView()
 									.getBruteForceKey()
 									.setText("" + previousBFKey);
@@ -358,7 +365,7 @@ public class HistogramController extends AbstractVisualizationController {
 																	.getView()
 																	.getCipherBruteForce()
 																	.getText())));
-						} 
+						}
 					}
 				});
 	}
@@ -371,11 +378,11 @@ public class HistogramController extends AbstractVisualizationController {
 					HistogramController.this.getView().getProceed()
 							.setVisible(false);
 					int secret = 0;
-					//Keys smaller than 5 are too simple.
+					// Keys smaller than 5 are too simple.
 					do {
 						secret = HistogramController.this.getModel()
-						.generateKey();
-					} while(secret < 5);
+								.generateKey();
+					} while (secret < 5);
 
 					HistogramController.this.getView().setupBruteForceCore(
 							secret,
@@ -397,14 +404,15 @@ public class HistogramController extends AbstractVisualizationController {
 							HistogramController.this.getView().getKeyControl());
 					HistogramController.this.getView().setKeyControl(null);
 
-					String explanation = HistogramController.this.wrapHtml(i18n
-							.tr("The diagram you see here shows the frequency of each letter<br>"
-									+ "in the text you are reading at the moment. It is called a<br>"
-									+ "Histogram. If you would count all E's in this explanation<br>"
-									+ "you would get the number you see in the diagram on the column<br>"
-									+ "above the letter E. Now the program will encrypt this explanation<br>"
-									+ "with an unknown key in a most awesome way and we will see the <br>"
-									+ "histogram of the cipher. Click Proceed and see the magic!"));
+					String explanation = HistogramController.this
+							.wrapHtml(HistogramController.i18n
+									.tr("The diagram you see here shows the frequency of each letter<br>"
+											+ "in the text you are reading at the moment. It is called a<br>"
+											+ "Histogram. If you would count all E's in this explanation<br>"
+											+ "you would get the number you see in the diagram on the column<br>"
+											+ "above the letter E. Now the program will encrypt this explanation<br>"
+											+ "with an unknown key in a most awesome way and we will see the <br>"
+											+ "histogram of the cipher. Click Proceed and see the magic!"));
 
 					HistogramController.this.getView()
 							.setupExplanationAndForwarding(explanation);
@@ -432,7 +440,7 @@ public class HistogramController extends AbstractVisualizationController {
 							.getView()
 							.getExplanations()
 							.setText(
-									HistogramController.this.wrapHtml(i18n
+									HistogramController.this.wrapHtml(HistogramController.i18n
 											.tr("Comrade, as i told you in a chapter before this technique belongs to the science of cryptology<br>"
 													+ "And is a little more complicated than the technique before. Just read carefully.<br>"
 													+ "<br>"
@@ -463,8 +471,12 @@ public class HistogramController extends AbstractVisualizationController {
 					HistogramController.this.getView().getPlainText()
 							.setText("");
 					HistogramController.this.getView().requestFocus();
-					HistogramController.this.getView().getExplanations()
-							.setText(i18n.tr("Ok lets try another one!"));
+					HistogramController.this
+							.getView()
+							.getExplanations()
+							.setText(
+									HistogramController.i18n
+											.tr("Ok lets try another one!"));
 
 					String plainText = HistogramController.this.getModel()
 							.genRandomText();
