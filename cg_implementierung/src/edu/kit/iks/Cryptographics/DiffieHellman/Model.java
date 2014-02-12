@@ -2,6 +2,14 @@ package edu.kit.iks.Cryptographics.DiffieHellman;
 
 import java.awt.Color;
 
+/**
+ * The Model will keep some of our colors
+ * need in the Diffie-Hellman Key-Exchange Analogy.
+ * 
+ * @author kai
+ *
+ */
+
 public class Model {
 	
 	private Color publicColor;
@@ -9,8 +17,6 @@ public class Model {
 	private Color alicePrivateColor;
 	
 	private Color aliceMixedColor;
-	
-	private Color sharedColor;
 	
 	private Color bobPrivateColor;
 	
@@ -40,14 +46,6 @@ public class Model {
 		return aliceMixedColor;
 	}
 
-	public Color getSharedColor() {
-		return sharedColor;
-	}
-
-	public void setSharedColor(Color sharedColor) {
-		this.sharedColor = sharedColor;
-	}
-
 	public Color getBobPrivateColor() {
 		return bobPrivateColor;
 	}
@@ -68,11 +66,9 @@ public class Model {
 		this.bobMixedColor = computeMixedColor(this.bobPrivateColor, publicColor);
 	}
 	
-	public void mixShared() {
-		//TODO use the correct formula
-		this.sharedColor = computeMixedColor(this.aliceMixedColor, this.bobPrivateColor);
-	}
-	
+	/*
+	 * computes the mixture of two colors
+	 */
 	private Color computeMixedColor(Color color, Color color2) {
 		int r1 = color.getRed();
 		int r2 = color2.getRed();
