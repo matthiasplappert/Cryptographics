@@ -10,8 +10,6 @@ public class Model {
 	
 	private Color aliceMixedColor;
 	
-	private Color sharedColor;
-	
 	private Color bobPrivateColor;
 	
 	private Color bobMixedColor;
@@ -38,14 +36,6 @@ public class Model {
 	
 	public Color getAliceMixedColor() {
 		return aliceMixedColor;
-	}
-
-	public Color getSharedColor() {
-		return sharedColor;
-	}
-
-	public void setSharedColor(Color sharedColor) {
-		this.sharedColor = sharedColor;
 	}
 
 	public Color getBobPrivateColor() {
