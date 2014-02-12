@@ -44,6 +44,7 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 		return 1976;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List<Class> getControllerClasses() {
 		List<Class> controllerClasses = new ArrayList<Class>();
