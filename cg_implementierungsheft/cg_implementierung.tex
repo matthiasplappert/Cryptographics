@@ -1,0 +1,270 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[ngerman]{translator}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{url}
+\usepackage[bottom]{footmisc}
+\usepackage{hyperref}
+\usepackage[nonumberlist, section=subsection]{glossaries}
+
+\title{\textbf{Implementierung} \\ Cryptographics}
+\author{}
+\date{\today}
+
+%Glossar-Befehle anschalten
+\makeglossaries
+% \newglossaryentry{identifier}{name={Name}, description={Description}}
+
+\begin{document}
+
+% The cover page.
+\maketitle
+\begin{table}[b]
+  \begin{tabular}{| l | l | l |}
+    \hline
+    \textbf{Phase} & \textbf{Verantwortlicher} & \textbf{Email} \\ \hline
+    Pflichtenheft & Matthias Jaenicke & matthias.jaenicke@student.kit.edu \\ \hline
+    Entwurf & Matthias Plappert & undkc@student.kit.edu \\
+            & Julien Duman & uncyc@student.kit.edu \\ \hline
+    Implementierung & Christian Dreher & uaeef@student.kit.edu \\ \hline
+    Qualitätssicherung & Wasilij Beskorovajnov & uajkm@student.kit.edu \\ \hline
+    Präsentation & Aydin Tekin & aydin.tekin@student.kit.edu \\ \hline
+    \end{tabular}
+\end{table}
+\thispagestyle{empty}
+\newpage
+
+% Table of contents page.
+\tableofcontents
+\newpage
+
+% Start of the actual document.
+\section{Einleitung}
+In diesem Heft werden Änderungen zum Entwurf spezifiziert, die während der Implementierung entstanden sind.
+
+\section{Grundsätzliche Änderungen}
+Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
+
+% Hier kommen alle neuen Klassen rein
+\section{Neue Klassen}
+
+  \subsection{Paket edu.kit.iks.Cryptographics}
+
+  \subsection{Paket edu.kit.iks.CryptographicsLib}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Demonstration}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Experiment}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanation}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Demonstration}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Experiment}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
+  
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Demonstration}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Experiment}
+
+% Hier kommen alle Änderungen an bestehenden Klassen rein
+% (Dazu zählen auch Namensänderungen an Klassen. Schreibt dann einfach bei der Klasse hier
+% rein: Klasse AlterName
+% wurde zu NeuerName umbenannt
+% etc...)
+\section{Änderungen an Klassen}
+
+  \subsection{Paket edu.kit.iks.Cryptographics}
+    \subsubsection{Klasse HelpPopoverView}
+
+    \subsubsection{Klasse Main}
+
+    \subsubsection{Klasse MainController}
+
+    \subsubsection{Klasse StartController}
+
+    \subsubsection{Klasse TimelinePopoverView}
+
+    \subsubsection{Klasse TimelineView}
+
+    \subsubsection{Klasse VisualizationContainerController}
+
+    \subsubsection{Klasse VisualizationContainerView}
+
+    \subsubsection{Klasse WelcomeView}
+
+  \subsection{Paket edu.kit.iks.CryptographicsLib}
+    
+  	\subsubsection{Klasse AbstractController}
+
+	\subsubsection{Klasse AbstractVisualizationController}
+
+	\subsubsection{Klasse AbstractVisualizationInfo}
+
+	\subsubsection{Klasse AlphabetStripView}
+
+	\subsubsection{Klasse CharacterFrequencyDiagramView}
+
+	\subsubsection{Klasse ImageView}
+
+	\subsubsection{Klasse InformationController}
+
+	\subsubsection{Klasse InformationView}
+
+	\subsubsection{Klasse KeyboardButton}
+
+	\subsubsection{Klasse KeyboardView}
+
+	\subsubsection{Klasse NumbersStripView}
+
+	\subsubsection{Klasse PopoverView}
+
+	\subsubsection{Klasse VisualizationButton}
+
+	\subsubsection{Enum VisualizationDifficulty}
+
+	\subsubsection{Klasse VisualizationInfoLoader}
+
+	\subsubsection{Klasse VisualizationView}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
+    \subsubsection{Klasse AbstractController}
+
+    \subsubsection{Klasse VigenereModel}
+
+    \subsubsection{Klasse VigenereVisualizationInfo}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Demonstration}
+    \subsubsection{Klasse FirstDemonstrationController}
+
+    \subsubsection{Klasse FirstDemonstrationView}
+
+    \subsubsection{Klasse SecondDemonstrationController}
+
+    \subsubsection{Klasse SecondDemonstrationView}
+
+    \subsubsection{Klasse ThirdDemonstrationController}
+
+    \subsubsection{Klasse ThirdDemonstrationView}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Experiment}
+    \subsubsection{Klasse FirstExperimentController}
+
+    \subsubsection{Klasse FirstExperimentView}
+
+    \subsubsection{Klasse SecondExperimentController}
+
+    \subsubsection{Klasse SecondExperimentView}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanation}
+    \subsubsection{Klasse FirstExplanationController}
+
+    \subsubsection{Klasse FirstExplanationView}
+
+    \subsubsection{Klasse SecondExplanationController}
+
+    \subsubsection{Klasse SecondExplanationView}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
+  
+  	\subsubsection{Klasse CaesarVisualizationInfo}
+
+ 	\subsection{Paket edu.kit.iks.Cryptographics.Caesar.Demonstration}
+
+	\subsubsection{Klasse CipherDemoController}
+
+	\subsubsection{Klasse CipherDemoView}
+
+	\subsubsection{Klasse IntroductionController}
+
+	\subsubsection{Klasse IntroductionView}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Experiment}
+
+	\subsubsection{Klasse CryptoController}
+
+	\subsubsection{Klasse CryptoModel}
+
+	\subsubsection{Klasse CryptoView}
+
+	\subsubsection{Klasse HistogramController}
+
+	\subsubsection{Klasse HistogramView}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
+  
+    \subsubsection{Klasse AbstractController}
+
+  	\subsubsection{Klasse Model}
+
+	\subsubsection{Klasse DHVisualizationInfo}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Demonstration}
+
+	\subsubsection{Klasse ExplainAimController}
+
+	\subsubsection{Klasse ExplainAimView}
+
+	\subsubsection{Klasse OnewayController}
+
+	\subsubsection{Klasse OnewayView}
+
+	\subsubsection{Klasse ExplainKeyExchangeController}
+
+	\subsubsection{Klasse ExplainKeyExchangeView}
+
+	\subsubsection{Klasse AliceChooseSecretController}
+
+	\subsubsection{Klasse AliceChooseSecretView}
+
+	\subsubsection{Klasse BobChooseSecretController}
+
+	\subsubsection{Klasse BobChooseSecretView}
+
+	\subsubsection{Klasse MixColorController}
+
+	\subsubsection{Klasse MixColorView}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Experiment}
+
+	\subsubsection{Klasse YourTurnController}
+
+	\subsubsection{Klasse YourTurnView}
+
+	\subsubsection{Klasse ChoosePublicColorController}
+
+	\subsubsection{Klasse ChoosePublicColorView}
+
+	\subsubsection{Klasse SendColorController}
+
+	\subsubsection{Klasse SendColorView}
+
+	\subsubsection{Klasse ChooseSecretColorController}
+
+	\subsubsection{Klasse ChooseSecretColorView}
+
+	\subsubsection{Klasse SendRightColorController}
+
+	\subsubsection{Klasse SendRightColorView}
+
+	\subsubsection{Klasse MixFinalSecretController}
+
+	\subsubsection{Klasse MixFinalSecretView}
+
+\restoregeometry
+
+\glsaddall
+\printglossary[numberedsection, style=altlist]
+
+\end{document}

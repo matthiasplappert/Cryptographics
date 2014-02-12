@@ -10,6 +10,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.Cryptographics.Caesar.CryptoView;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
@@ -22,22 +25,31 @@ import edu.kit.iks.CryptographicsLib.MouseClickListener;
 /**
  * Controller for the first and second step of the experiment phase. When user has to put input and
  * encrypt it and in the second step to decrypt a given cipher. Controls the needed elements from
- * CaesarUpperView, !!see CGeneralView for more details!!.
+ * {@link CryptoExperimentView}
  * 
  * @author Wasilij Beskorovajnov.
  * 
  */
 public class CryptoExperimentController extends AbstractVisualizationController {
 
+	/**
+	 * localization.
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(
+			CryptoExperimentController.class);
+
+	/**
+	 * Indicates what phase of the experiment currently is.
+	 */
 	private boolean decryptionPhase = false;
 
 	/**
-	 * Needed
+	 * When 0 user has finished the experiment successfully.
 	 */
 	private int editableFields;
 
 	/**
-	 * Model that is needed for computations.
+	 * Model of this controller.
 	 */
 	private CryptoModel model;
 
@@ -52,24 +64,43 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 
 	}
 
-	/**
-	 * Method for delegating user's input to the model for the needed computations and checks.
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param input
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#loadView()
 	 */
-	public void delegateAndHandleInput(String input) {
-		if (this.model.isInputValid(input)) {
-			this.proceed();
-		}
+	@Override
+	public void loadView() {
+		this.view = new CryptoExperimentView();
+		this.model = CryptoModel.getInstance();
+		// set the initial value.
+		this.editableFields = 2;
+
+		// Create all needed ActionListener.
+		this.generateGeneratorButtonActionListener();
+
+		// generate listener for the textfield of the key.
+		this.generateKeyInputFocusListener();
+		this.generateKeyInputActionListener();
+
+		// generate listener for the literal input textfield.
+		this.generateLiteralInputFocusListener();
+		this.generateLiteralInputActionListener();
+
+		// Listener for Back/next buttons.
+		this.generateNavigationListener();
+
 	}
 
+	// ------------------------------------------------------------------//
+	// --------------------private methods-------------------------------//
 	/**
 	 * Function for generating ActionListener for the needed input fields, after the user typed a
 	 * string to encrypt.
 	 * 
 	 * @param inputChars
 	 */
-	public void generateListener(char[] inputChars) {
+	private void generateIOListener(char[] inputChars) {
 		// Generate Listener for the userOutput JTextfield
 		for (int i = 0; i < inputChars.length; i++) {
 
@@ -77,189 +108,517 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 			// Button "ENTER" on the KEayboard is fired.
 			final JTextField userOutput = this.getView().getUserOutput()[i];
 
-			this.getView().getUserOutput()[i]
-					.addFocusListener(new FocusListener() {
-						@Override
-						public void focusGained(FocusEvent e) {
-
-							JTextField output = (JTextField) e.getSource();
-							JTextField[] userOutput = CryptoExperimentController.this
-									.getView().getUserOutput();
-
-							for (JTextField outputIterator : userOutput) {
-
-								if (outputIterator.getText() != null
-										&& CryptoExperimentController.this
-												.getView().getAlphabet() != null) {
-									int charToEncryptAscii = outputIterator
-											.getName().charAt(0);
-									AlphabetStripView viewAlphabet = CryptoExperimentController.this
-											.getView().getAlphabet();
-									viewAlphabet.unHighlight(charToEncryptAscii
-											- CryptoExperimentController.this
-													.getModel().ASCII_UC_A);
-									if (outputIterator.isEditable()) {
-										outputIterator.setBorder(BorderFactory
-												.createLineBorder(Color.darkGray));
-									}
-								} else {
-
-								}
-							}
-
-							if (CryptoExperimentController.this.getView()
-									.getKeyboard() != null) {
-								CryptoExperimentController.this.getView()
-										.remove(CryptoExperimentController.this
-												.getView().getKeyboard());
-								CryptoExperimentController.this.getView()
-										.setKeyboard(null);
-								CryptoExperimentController.this.getView()
-										.validate();
-								CryptoExperimentController.this.getView()
-										.repaint();
-							}
-							if (output.isEditable()) {
-								// highlights the character in the alphabet.
-								int charToEncryptAscii = output.getName()
-										.charAt(0);
-								AlphabetStripView viewAlphabet = CryptoExperimentController.this
-										.getView().getAlphabet();
-								viewAlphabet.highlight(charToEncryptAscii
-										- CryptoExperimentController.this
-												.getModel().ASCII_UC_A);
-
-								output.setBorder(BorderFactory
-										.createLineBorder(Color.blue, 5));
-								CryptoExperimentController.this.getView()
-										.createKeyboard(output,
-												KeyboardView.CHAR_MODE);
-							}
-
-						}
-
-						@Override
-						public void focusLost(FocusEvent e) {
-							// Nothing to do here.
-
-						}
-					});
-			this.getView().getUserOutput()[i]
-					.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if (userOutput.isEditable()) {
-								try {
-									int key = Integer
-											.parseInt(CryptoExperimentController.this
-													.getView().getKey()
-													.getText());
-
-									// If the phase is decrypting use dec, else the phase is
-									// encrypting, therefore use enc.
-									String encryptedOrDecryptedcipher = "";
-									if (CryptoExperimentController.this.decryptionPhase) {
-										encryptedOrDecryptedcipher = CryptoExperimentController.this
-												.getModel().dec(key,
-														userOutput.getName());
-									} else {
-										encryptedOrDecryptedcipher = CryptoExperimentController.this
-												.getModel().enc(key,
-														userOutput.getName());
-									}
-
-									if ((encryptedOrDecryptedcipher)
-											.equals(userOutput.getText())) {
-
-										if ((CryptoExperimentController.this
-												.getEditableFields() - 1) != 0) {
-
-											// user encrypted the given char successful.
-											userOutput.setBorder(BorderFactory
-													.createLineBorder(Color.green));
-											userOutput.setEditable(false);
-											CryptoExperimentController.this
-													.setEditableFields(CryptoExperimentController.this
-															.getEditableFields() - 1);
-											CryptoExperimentController.this
-													.getView()
-													.getExplanations()
-													.setText(
-															CryptoExperimentController.this
-																	.getModel()
-																	.genRandomGrats()
-																	+ "You have "
-																	+ CryptoExperimentController.this
-																			.getEditableFields()
-																	+ " left!");
-											CryptoExperimentController.this
-													.getView().getUserOutput()[CryptoExperimentController.this
-													.getView().getUserOutput().length
-													- CryptoExperimentController.this
-															.getEditableFields()]
-													.requestFocus();
-										} else {
-											// User encrypted all characters valid.
-											userOutput.setBorder(BorderFactory
-													.createLineBorder(Color.green));
-											CryptoExperimentController.this
-													.getView().requestFocus();
-											userOutput.setEditable(false);
-											CryptoExperimentController.this
-													.getView()
-													.getAlphabet()
-													.unHighlight(
-															userOutput
-																	.getName()
-																	.charAt(0)
-																	- CryptoExperimentController.this
-																			.getModel().ASCII_UC_A);
-											CryptoExperimentController.this
-													.getView()
-													.getExplanations()
-													.setText(
-															"<html><body>All done right! "
-																	+ CryptoExperimentController.this
-																			.getModel()
-																			.genRandomGrats()
-																	+ " Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
-																	+ "are superior to your power. Now lets move on. Click the button in the right top corner.");
-											CryptoExperimentController.this
-													.getView()
-													.remove(CryptoExperimentController.this
-															.getView()
-															.getKeyboard());
-											CryptoExperimentController.this
-													.getView()
-													.setKeyboard(null);
-											CryptoExperimentController.this
-													.getView().validate();
-											CryptoExperimentController.this
-													.getView().repaint();
-
-										}
-									} else {
-										// User encrypted invalid! Need another try.
-										userOutput.setBorder(BorderFactory
-												.createLineBorder(Color.red));
-										CryptoExperimentController.this
-												.getView()
-												.getExplanations()
-												.setText(
-														CryptoExperimentController.this
-																.getModel()
-																.genRandomBlamings());
-									}
-								} catch (NumberFormatException e1) {
-									Logger.e(e1);
-								}
-
-							}
-						}
-
-					});
+			this.generateUserOutputFocusListener(i);
+			this.generateUserOutputActionListener(i, userOutput);
 		}
+	}
+
+	private void generateUserOutputActionListener(int i,
+			final JTextField userOutput) {
+		this.getView().getUserOutput()[i]
+				.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if (userOutput.isEditable()) {
+							int key = 0;
+							try {
+								key = Integer
+										.parseInt(CryptoExperimentController.this
+												.getView().getKeyInput()
+												.getText());
+							} catch (NumberFormatException e1) {
+								Logger.e(e1);
+							}
+							// If the phase is decrypting use dec, else the phase is
+							// encrypting, therefore use enc.
+							String encryptedOrDecryptedcipher = "";
+							if (CryptoExperimentController.this.decryptionPhase) {
+								encryptedOrDecryptedcipher = CryptoExperimentController.this
+										.getModel().dec(key,
+												userOutput.getName());
+							} else {
+								encryptedOrDecryptedcipher = CryptoExperimentController.this
+										.getModel().enc(key,
+												userOutput.getName());
+							}
+
+							if ((encryptedOrDecryptedcipher).equals(userOutput
+									.getText())) {
+
+								// user encrypted/decrypted correctly.
+								if ((CryptoExperimentController.this
+										.getEditableFields() - 1) != 0) {
+
+									// still some editabe fields left.
+									CryptoExperimentController.this
+											.notifyUserValidAction(userOutput);
+								} else {
+									// User encrypted all characters valid.
+									CryptoExperimentController.this
+											.notifyUserFinishedExperiment(userOutput);
+								}
+							} else {
+								// User encrypted invalid! Need another try.
+								CryptoExperimentController.this
+										.notifyUserInvalidAction(userOutput);
+							}
+
+						}
+					}
+
+				});
+	}
+
+	private void notifyUserInvalidAction(JTextField userOutput) {
+		userOutput.setBorder(BorderFactory.createLineBorder(Color.red));
+		this.getView().getExplanations()
+				.setText(this.getModel().genRandomBlamings());
+	}
+
+	private void notifyUserFinishedExperiment(JTextField userOutput) {
+		userOutput.setBorder(BorderFactory.createLineBorder(Color.green));
+		this.getView().requestFocus();
+		userOutput.setEditable(false);
+		this.getView()
+				.getAlphabet()
+				.unHighlight(
+						userOutput.getName().charAt(0)
+								- this.getModel().ASCII_UC_A);
+		this.getView()
+				.getExplanations()
+				.setText(
+						i18n.tr("<html><body>All done right! ")
+								+ this.getModel().genRandomGrats()
+								+ i18n.tr(" Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
+										+ "are superior to your power. Now lets move on. Click the button in the right top corner."));
+		this.getView().removeKeyboard();
+	}
+
+	private void notifyUserValidAction(JTextField userOutput) {
+		userOutput.setBorder(BorderFactory.createLineBorder(Color.green));
+		userOutput.setEditable(false);
+		this.setEditableFields(this.getEditableFields() - 1);
+		this.getView()
+				.getExplanations()
+				.setText(
+						this.getModel().genRandomGrats() + i18n.tr("You have ")
+								+ this.getEditableFields() + i18n.tr(" left!"));
+		this.getView().getUserOutput()[CryptoExperimentController.this
+				.getView().getUserOutput().length - this.getEditableFields()]
+				.requestFocus();
+	}
+
+	private void generateUserOutputFocusListener(int i) {
+		this.getView().getUserOutput()[i].addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+
+				JTextField output = (JTextField) e.getSource();
+
+				CryptoExperimentController.this.resetUnfocusedTextfield();
+
+				if (CryptoExperimentController.this.getView().getKeyboard() != null) {
+					CryptoExperimentController.this.getView().removeKeyboard();
+				}
+				if (output.isEditable()) {
+					// highlights the character in the alphabet.
+					CryptoExperimentController.this.highlightUserFocus(output);
+				}
+
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				// Nothing to do here.
+
+			}
+		});
+	}
+
+	private void highlightUserFocus(JTextField output) {
+		int charToEncryptAscii = output.getName().charAt(0);
+		AlphabetStripView viewAlphabet = CryptoExperimentController.this
+				.getView().getAlphabet();
+		viewAlphabet.highlight(charToEncryptAscii
+				- CryptoExperimentController.this.getModel().ASCII_UC_A);
+
+		output.setBorder(BorderFactory.createLineBorder(Color.blue, 5));
+		CryptoExperimentController.this.getView().createKeyboard(output,
+				KeyboardView.CHAR_MODE);
+	}
+
+	private void resetUnfocusedTextfield() {
+		for (JTextField outputIterator : this.getView().getUserOutput()) {
+
+			if (outputIterator.getText() != null
+					&& this.getView().getAlphabet() != null) {
+				int charToEncryptAscii = outputIterator.getName().charAt(0);
+				AlphabetStripView viewAlphabet = this.getView().getAlphabet();
+				viewAlphabet.unHighlight(charToEncryptAscii
+						- this.getModel().ASCII_UC_A);
+				if (outputIterator.isEditable()) {
+					outputIterator.setBorder(BorderFactory
+							.createLineBorder(Color.darkGray));
+				}
+			}
+		}
+	}
+
+	private void generateNavigationListener() {
+		this.getView().getBackButton().addActionListener(new ActionListener() {
+			/*
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
+			 */
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				// When switching back from demonstration to
+				// experiment in the encryption phase, the variable will remain set to true when not
+				// reset.
+				if (CryptoExperimentController.this.decryptionPhase) {
+					CryptoExperimentController.this.decryptionPhase = false;
+				}
+				// load next state.
+				VisualizationContainerController containerController = (VisualizationContainerController) CryptoExperimentController.this
+						.getParentController();
+				containerController.presentPreviousVisualizationController();
+			}
+		});
+		this.getView().getNextButton().addActionListener(new ActionListener() {
+			/*
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
+			 */
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				if (!CryptoExperimentController.this.decryptionPhase) {
+					int key = CryptoExperimentController.this.getModel()
+							.generateKey();
+
+					// start Decryption!
+					CryptoExperimentController.this.decryptionPhase = true;
+					char[] cipher = CryptoExperimentController.this
+							.getModel()
+							.enc(key,
+									CryptoExperimentController.this.getModel()
+											.genRandomPlainSequence())
+							.toString().toCharArray();
+
+					CryptoExperimentController.this.prepareExperimentPhase(key,
+							cipher);
+
+					// set the explanations.
+					CryptoExperimentController.this
+							.getView()
+							.getExplanations()
+							.setText(
+									i18n.tr("<html><body>In the steps before you learned how to encrypt a given message.<br>"
+											+ "But what does it help you to encrypt messages when noone can decrypt them?<br>"
+											+ "Now we are going to help us by ourselves. Lets think logically. When we shift<br>"
+											+ "a letter to 3 positions forwards, then we can get back to it when we shift the given<br>"
+											+ "cipher 3 positions back! The important fact is also that we can shift up to 25 positions back<br>"
+											+ "as we can shift 25 positions forward. Lets try this one. Remember: The key you added <br>"
+											+ "while encrypting, now needs to be substracted!"));
+					CryptoExperimentController.this.getView().getNextButton()
+							.setText(i18n.tr("Go to histograms!"));
+
+				} else {
+					// load the previous state.
+					VisualizationContainerController containerController = (VisualizationContainerController) CryptoExperimentController.this
+							.getParentController();
+					containerController.presentNextVisualizationController();
+				}
+			}
+
+		});
+	}
+
+	private void generateLiteralInputActionListener() {
+		this.getView().getLiteralInput()
+				.addActionListener(new ActionListener() {
+
+					/*
+					 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.
+					 * ActionEvent)
+					 */
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if (CryptoExperimentController.this.getView()
+								.getLiteralInput().isEditable()) {
+							// input possible.
+
+							String explanationContent = CryptoExperimentController.this
+									.getView().getExplanations().getText();
+							String input = CryptoExperimentController.this
+									.getView().getLiteralInput().getText();
+
+							if (CryptoExperimentController.this.getModel()
+									.isInputValid(input)) {
+								// input is valid.
+								if ((CryptoExperimentController.this
+										.getEditableFields() - 1) != 0) {
+									// for proceeding key input is needed.
+									CryptoExperimentController.this
+											.notifyUserValidLiteralInput(explanationContent);
+
+								} else {
+									// it was the last needed input.
+
+									int key = 0;
+									try {
+										key = Integer
+												.parseInt(CryptoExperimentController.this
+														.getView()
+														.getKeyInput()
+														.getText());
+									} catch (NumberFormatException e1) {
+										e1.printStackTrace();
+									}
+
+									// refactor the input into an character array.
+									char[] inputChars = new char[input.length()];
+									input.getChars(0, input.length(),
+											inputChars, 0);
+									CryptoExperimentController.this.getView()
+											.getKeyInput().setBorder(null);
+
+									CryptoExperimentController.this
+											.prepareExperimentPhase(key,
+													inputChars);
+								}
+							} else {
+								CryptoExperimentController.this
+										.getView()
+										.getExplanations()
+										.setText(
+												i18n.tr("Your input is invalid. Please try another one!"));
+							}
+
+						}
+					}
+				});
+	}
+
+	private void notifyUserValidLiteralInput(String explanationContent) {
+		this.getView()
+				.getExplanations()
+				.setText(
+						explanationContent
+								+ "<br>"
+								+ i18n.tr("<br>This input is ok. Now only the key is left."));
+		this.getView().getLiteralInput()
+				.setBorder(BorderFactory.createLineBorder(Color.green));
+		this.getView().getLiteralInput().setEditable(false);
+		this.setEditableFields((this.getEditableFields() - 1));
+		this.getView().getKeyInput().requestFocus();
+	}
+
+	private void generateGeneratorButtonActionListener() {
+		this.getView().getGenerator()
+				.addMouseListener(new MouseClickListener() {
+					@Override
+					public void clicked(MouseEvent e) {
+						CryptoExperimentController.this.getView()
+								.removeNumpad();
+
+						// make some preparations.
+						char[] generatedCharacters = CryptoExperimentController.this
+								.getModel().genRandomPlainSequence()
+								.toCharArray();
+						int key = CryptoExperimentController.this.getModel()
+								.generateKey();
+						CryptoExperimentController.this.prepareExperimentPhase(
+								key, generatedCharacters);
+					}
+				});
+	}
+
+	private void generateLiteralInputFocusListener() {
+		this.getView().getLiteralInput().addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+
+				if (CryptoExperimentController.this.getView().getKeyInput()
+						.getBorder() != null
+						&& CryptoExperimentController.this.getView()
+								.getKeyInput().isEditable()) {
+					CryptoExperimentController.this.getView().getKeyInput()
+							.setBorder(null);
+
+				}
+
+				if (CryptoExperimentController.this.getView().getKeyboard() != null) {
+					CryptoExperimentController.this.getView().removeKeyboard();
+				} else if (CryptoExperimentController.this.getView()
+						.getNumpad() != null) {
+					CryptoExperimentController.this.getView().removeNumpad();
+				}
+
+				if (CryptoExperimentController.this.getView().getLiteralInput()
+						.isEditable()) {
+					CryptoExperimentController.this
+							.getView()
+							.getLiteralInput()
+							.setBorder(
+									BorderFactory.createLineBorder(Color.blue,
+											5));
+					CryptoExperimentController.this.getView().createKeyboard(
+							CryptoExperimentController.this.getView()
+									.getLiteralInput(),
+							KeyboardView.STRING_MODE);
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				// Nothing to do here.
+			}
+		});
+	}
+
+	private void generateKeyInputActionListener() {
+		this.getView().getKeyInput().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (CryptoExperimentController.this.getView().getKeyInput()
+						.isEditable()) {
+					// input still possible.
+					String explanationContent = CryptoExperimentController.this
+							.getView().getExplanations().getText();
+					if (CryptoExperimentController.this.getView().getKeyInput()
+							.getText().length() > 0) {
+						int key = 0;
+						try {
+							key = Integer
+									.parseInt(CryptoExperimentController.this
+											.getView().getKeyInput().getText());
+						} catch (NumberFormatException e1) {
+							Logger.e(e1);
+						}
+
+						if (CryptoExperimentController.this.getModel()
+								.isKeyValid(key)) {
+							// User typed a valid key.
+							if ((CryptoExperimentController.this
+									.getEditableFields() - 1) != 0) {
+								// Only literal input needed. Notify the user.
+								CryptoExperimentController.this
+										.notifyOfValidKey(explanationContent);
+							} else {
+								CryptoExperimentController.this.getView()
+										.removeNumpad();
+								// The key was the last needed input. Start Experiment with the
+								// input values.
+								String input = CryptoExperimentController.this
+										.getView().getLiteralInput().getText();
+								char[] inputChars = new char[input.length()];
+								input.getChars(0, input.length(), inputChars, 0);
+								CryptoExperimentController.this
+										.prepareExperimentPhase(key, inputChars);
+							}
+						} else {
+							CryptoExperimentController.this
+									.getView()
+									.getExplanations()
+									.setText(
+											explanationContent
+													+ "<br>"
+													+ i18n.tr("<br>This key is not valid. Please put a number between 1 and 25.<br>"
+															+ "For demonstration purposes the keys between -1 and -25 are not necessary<br>"
+															+ "therefore not possible, but could be used in general as keys too. And 0 as key has no<br>"
+															+ " sense, if you dont understand why, then go back to Introduction."));
+							CryptoExperimentController.this
+									.getView()
+									.getKeyInput()
+									.setBorder(
+											BorderFactory
+													.createLineBorder(Color.red));
+						}
+					} else {
+						CryptoExperimentController.this
+								.getView()
+								.getExplanations()
+								.setText(
+										explanationContent + "<br>"
+												+ "<br>The key field is empty!");
+						CryptoExperimentController.this
+								.getView()
+								.getKeyInput()
+								.setBorder(
+										BorderFactory
+												.createLineBorder(Color.red));
+					}
+				}
+			}
+		});
+	}
+
+	private void prepareExperimentPhase(int key, char[] input) {
+
+		this.setEditableFields(input.length);
+
+		// load the view!
+		this.getView().setupCoreExperimentElements(input, key,
+				CryptoView.EXPERIMENT_MODE);
+
+		// Generate Listener for the userOutput JTextfield
+		this.generateIOListener(input);
+	}
+
+	private void notifyOfValidKey(String explanationContent) {
+		this.getView()
+				.getExplanations()
+				.setText(
+						explanationContent
+								+ "<br>"
+								+ i18n.tr("<br>This key is ok. Now put your name into the bigger box to the left."));
+		this.getView().getKeyInput()
+				.setBorder(BorderFactory.createLineBorder(Color.green));
+		this.getView().getKeyInput().setEditable(false);
+		this.setEditableFields((this.getEditableFields() - 1));
+		this.getView().getLiteralInput().requestFocus();
+	}
+
+	private void generateKeyInputFocusListener() {
+		this.getView().getKeyInput().addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+
+				if (CryptoExperimentController.this.getView().getLiteralInput()
+						.getBorder() != null
+						&& CryptoExperimentController.this.getView()
+								.getLiteralInput().isEditable()) {
+					CryptoExperimentController.this.getView().getLiteralInput()
+							.setBorder(null);
+
+				}
+
+				if (CryptoExperimentController.this.getView().getKeyboard() != null) {
+					CryptoExperimentController.this.getView().removeKeyboard();
+				} else if (CryptoExperimentController.this.getView()
+						.getNumpad() != null) {
+					CryptoExperimentController.this.getView().removeNumpad();
+				}
+
+				if (CryptoExperimentController.this.getView().getKeyInput()
+						.isEditable()) {
+					CryptoExperimentController.this
+							.getView()
+							.getKeyInput()
+							.setBorder(
+									BorderFactory.createLineBorder(Color.blue,
+											5));
+					CryptoExperimentController.this.getView().createNumpad(
+							CryptoExperimentController.this.getView()
+									.getKeyInput());
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				// Nothing to do here.
+			}
+		});
 	}
 
 	/**
@@ -299,381 +658,6 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 		return this.decryptionPhase;
 	}
 
-	@Override
-	public void loadView() {
-		this.view = new CryptoExperimentView();
-		this.model = CryptoModel.getInstance();
-		this.editableFields = 2;
-
-		// Create all needed ActionListener.
-		this.getView().getGenerator()
-				.addMouseListener(new MouseClickListener() {
-					@Override
-					public void clicked(MouseEvent e) {
-						char[] string = CryptoExperimentController.this
-								.getModel().genRandomPlainSequence()
-								.toCharArray();
-						int key = CryptoExperimentController.this.getModel()
-								.generateKey();
-						CryptoExperimentController.this
-								.setEditableFields(string.length);
-
-						CryptoExperimentController.this.getView()
-								.setupCoreExperimentElements(
-										string,
-										key,
-										CryptoExperimentController.this
-												.getView().EXPERIMENT_MODE);
-
-						CryptoExperimentController.this
-								.generateListener(string);
-					}
-				});
-		this.getView().getKey().addFocusListener(new FocusListener() {
-			@Override
-			public void focusGained(FocusEvent e) {
-
-				if (CryptoExperimentController.this.getView().getInput()
-						.getBorder() != null
-						&& CryptoExperimentController.this.getView().getInput()
-								.isEditable()) {
-					CryptoExperimentController.this.getView().getInput()
-							.setBorder(null);
-
-				}
-
-				if (CryptoExperimentController.this.getView().getKeyboard() != null) {
-					CryptoExperimentController.this.getView().remove(
-							CryptoExperimentController.this.getView()
-									.getKeyboard());
-					CryptoExperimentController.this.getView().setKeyboard(null);
-					CryptoExperimentController.this.getView().validate();
-					CryptoExperimentController.this.getView().repaint();
-				} else if (CryptoExperimentController.this.getView()
-						.getNumpad() != null) {
-					CryptoExperimentController.this.getView().remove(
-							CryptoExperimentController.this.getView()
-									.getNumpad());
-					CryptoExperimentController.this.getView().setNumpad(null);
-					CryptoExperimentController.this.getView().validate();
-					CryptoExperimentController.this.getView().repaint();
-				}
-
-				if (CryptoExperimentController.this.getView().getKey()
-						.isEditable()) {
-					CryptoExperimentController.this
-							.getView()
-							.getKey()
-							.setBorder(
-									BorderFactory.createLineBorder(Color.blue,
-											5));
-					CryptoExperimentController.this.getView().createNumpad(
-							CryptoExperimentController.this.getView().getKey());
-				}
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				// Nothing to do here.
-			}
-		});
-		this.getView().getKey().addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (CryptoExperimentController.this.getView().getKey()
-						.isEditable()) {
-					try {
-						String explanationContent = CryptoExperimentController.this
-								.getView().getExplanations().getText();
-						int key = Integer
-								.parseInt(CryptoExperimentController.this
-										.getView().getKey().getText());
-
-						if (CryptoExperimentController.this.getModel()
-								.isKeyValid(key)) {
-							if ((CryptoExperimentController.this
-									.getEditableFields() - 1) != 0) {
-								CryptoExperimentController.this
-										.getView()
-										.getExplanations()
-										.setText(
-												explanationContent
-														+ "<br>"
-														+ "<br>This key is ok. Now put your name into the bigger box to the left.");
-								CryptoExperimentController.this
-										.getView()
-										.getKey()
-										.setBorder(
-												BorderFactory
-														.createLineBorder(Color.green));
-								CryptoExperimentController.this.getView()
-										.getKey().setEditable(false);
-								CryptoExperimentController.this
-										.setEditableFields((CryptoExperimentController.this
-												.getEditableFields() - 1));
-								CryptoExperimentController.this.getView()
-										.getInput().requestFocus();
-							} else {
-								try {
-									String input = CryptoExperimentController.this
-											.getView().getInput().getText();
-									char[] inputChars = new char[input.length()];
-									input.getChars(0, input.length(),
-											inputChars, 0);
-									CryptoExperimentController.this
-											.setEditableFields(inputChars.length);
-									CryptoExperimentController.this.getView()
-											.getKey().setBorder(null);
-
-									// load the view!
-									CryptoExperimentController.this
-											.getView()
-											.setupCoreExperimentElements(
-													inputChars,
-													key,
-													CryptoExperimentController.this
-															.getView().EXPERIMENT_MODE);
-
-									// Generate Listener for the userOutput JTextfield
-									CryptoExperimentController.this
-											.generateListener(inputChars);
-								} catch (NumberFormatException e1) {
-									Logger.e(e1);
-								}
-							}
-						} else {
-							CryptoExperimentController.this
-									.getView()
-									.getExplanations()
-									.setText(
-											explanationContent
-													+ "<br>"
-													+ "<br>This key is not valid. Please put a number between 1 and 25.<br>"
-													+ "For demonstration purposes the keys between -1 and -25 are not necessary<br>"
-													+ "therefore not possible, but could be used in general as keys too. And 0 as key has no<br>"
-													+ " sense, if you dont understand why, then go back to Introduction.");
-							CryptoExperimentController.this
-									.getView()
-									.getKey()
-									.setBorder(
-											BorderFactory
-													.createLineBorder(Color.red));
-						}
-					} catch (NumberFormatException e1) {
-						Logger.e(e1);
-					}
-
-				}
-			}
-		});
-		this.getView().getInput().addFocusListener(new FocusListener() {
-			@Override
-			public void focusGained(FocusEvent e) {
-
-				if (CryptoExperimentController.this.getView().getKey()
-						.getBorder() != null
-						&& CryptoExperimentController.this.getView().getKey()
-								.isEditable()) {
-					CryptoExperimentController.this.getView().getKey()
-							.setBorder(null);
-
-				}
-
-				if (CryptoExperimentController.this.getView().getKeyboard() != null) {
-					CryptoExperimentController.this.getView().remove(
-							CryptoExperimentController.this.getView()
-									.getKeyboard());
-					CryptoExperimentController.this.getView().setKeyboard(null);
-					CryptoExperimentController.this.getView().validate();
-					CryptoExperimentController.this.getView().repaint();
-				} else if (CryptoExperimentController.this.getView()
-						.getNumpad() != null) {
-					CryptoExperimentController.this.getView().remove(
-							CryptoExperimentController.this.getView()
-									.getNumpad());
-					CryptoExperimentController.this.getView().setNumpad(null);
-					CryptoExperimentController.this.getView().validate();
-					CryptoExperimentController.this.getView().repaint();
-				}
-
-				if (CryptoExperimentController.this.getView().getInput()
-						.isEditable()) {
-					CryptoExperimentController.this
-							.getView()
-							.getInput()
-							.setBorder(
-									BorderFactory.createLineBorder(Color.blue,
-											5));
-					CryptoExperimentController.this.getView().createKeyboard(
-							CryptoExperimentController.this.getView()
-									.getInput(), KeyboardView.STRING_MODE);
-				}
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				// Nothing to do here.
-			}
-		});
-		this.getView().getInput().addActionListener(new ActionListener() {
-
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event. ActionEvent)
-			 */
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (CryptoExperimentController.this.getView().getInput()
-						.isEditable()) {
-					String explanationContent = CryptoExperimentController.this
-							.getView().getExplanations().getText();
-					String input = CryptoExperimentController.this.getView()
-							.getInput().getText();
-
-					if (CryptoExperimentController.this.getModel()
-							.isInputValid(input)) {
-						if ((CryptoExperimentController.this
-								.getEditableFields() - 1) != 0) {
-							CryptoExperimentController.this
-									.getView()
-									.getExplanations()
-									.setText(
-											explanationContent
-													+ "<br>"
-													+ "<br>This input is ok. Now only the key is left.");
-							CryptoExperimentController.this
-									.getView()
-									.getInput()
-									.setBorder(
-											BorderFactory
-													.createLineBorder(Color.green));
-							CryptoExperimentController.this.getView()
-									.getInput().setEditable(false);
-							CryptoExperimentController.this
-									.setEditableFields((CryptoExperimentController.this
-											.getEditableFields() - 1));
-							CryptoExperimentController.this.getView().getKey()
-									.requestFocus();
-
-						} else {
-
-							// refactor the input into an character array.
-							try {
-								int key = Integer
-										.parseInt(CryptoExperimentController.this
-												.getView().getKey().getText());
-								char[] inputChars = new char[input.length()];
-								input = input.toUpperCase();
-								input.getChars(0, input.length(), inputChars, 0);
-								CryptoExperimentController.this
-										.setEditableFields(inputChars.length);
-								CryptoExperimentController.this.getView()
-										.getKey().setBorder(null);
-
-								// load the view!
-								CryptoExperimentController.this
-										.getView()
-										.setupCoreExperimentElements(
-												inputChars,
-												key,
-												CryptoExperimentController.this
-														.getView().EXPERIMENT_MODE);
-
-								// Generate Listener for the userOutput JTextfield
-								CryptoExperimentController.this
-										.generateListener(inputChars);
-							} catch (NumberFormatException e1) {
-								e1.printStackTrace();
-							}
-						}
-					} else {
-						CryptoExperimentController.this
-								.getView()
-								.getExplanations()
-								.setText(
-										"Your input is invalid. Please try another one!");
-					}
-
-				}
-			}
-		});
-		this.getView().getBackButton().addActionListener(new ActionListener() {
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
-			 */
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				// When switching back from demonstration to
-				// experiment in the encryption phase, the variable will remain set to true when not
-				// reset.
-				if (CryptoExperimentController.this.decryptionPhase) {
-					CryptoExperimentController.this.decryptionPhase = false;
-				}
-				// load next state.
-				VisualizationContainerController containerController = (VisualizationContainerController) CryptoExperimentController.this
-						.getParentController();
-				containerController.presentPreviousVisualizationController();
-			}
-		});
-		this.getView().getNextButton().addActionListener(new ActionListener() {
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
-			 */
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				if (!CryptoExperimentController.this.decryptionPhase) {
-					int key = CryptoExperimentController.this.getModel()
-							.generateKey();
-
-					// unloadInOut();
-					// start Decryption!
-					CryptoExperimentController.this.decryptionPhase = true;
-					char[] cipher = CryptoExperimentController.this
-							.getModel()
-							.enc(key,
-									CryptoExperimentController.this.getModel()
-											.genRandomPlainSequence())
-							.toString().toCharArray();
-
-					CryptoExperimentController.this
-							.setEditableFields(cipher.length);
-					CryptoExperimentController.this
-							.getView()
-							.setupCoreExperimentElements(
-									cipher,
-									key,
-									CryptoExperimentController.this.getView().EXPERIMENT_MODE);
-
-					// generate ActionListener.
-					CryptoExperimentController.this.generateListener(cipher);
-
-					// set the explanations.
-					CryptoExperimentController.this
-							.getView()
-							.getExplanations()
-							.setText(
-									"<html><body>In the steps before you learned how to encrypt a given message.<br>"
-											+ "But what does it help you to encrypt messages when noone can decrypt them?<br>"
-											+ "Now we are going to help us by ourselves. Lets think logically. When we shift<br>"
-											+ "a letter to 3 positions forwards, then we can get back to it when we shift the given<br>"
-											+ "cipher 3 positions back! The important fact is also that we can shift up to 25 positions back<br>"
-											+ "as we can shift 25 positions forward. Lets try this one. Remember: The key you added <br>"
-											+ "while encrypting, now needs to be substracted!");
-					CryptoExperimentController.this.getView().getNextButton()
-							.setText("Go to histograms!");
-
-				} else {
-					// load the previous state.
-					VisualizationContainerController containerController = (VisualizationContainerController) CryptoExperimentController.this
-							.getParentController();
-					containerController.presentNextVisualizationController();
-				}
-			}
-
-		});
-
-	}
-
 	/**
 	 * Method called when the input was correct.
 	 */
@@ -693,7 +677,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 	 * 
 	 */
 	public void unloadInOut() {
-		this.getView().remove(this.getView().getInOutPanel());
+		this.getView().remove(this.getView().userCharacterIOContainer());
 		this.getView().setInOutPanel(null);
 
 	}

@@ -1,28 +1,14 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import org.jdom2.Element;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.Cryptographics.Caesar.CryptoView;
-import edu.kit.iks.CryptographicsLib.AlphabetStripView;
-import edu.kit.iks.CryptographicsLib.ImageView;
-import edu.kit.iks.CryptographicsLib.KeyboardView;
-import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
  * Performs animations for demonstrating Caesar's idea.
@@ -54,7 +40,7 @@ public class CryptoDemonstrationView extends CryptoView {
 	 * Constructor.
 	 */
 	public CryptoDemonstrationView() {
-		super();
+		super(CryptoView.DEMONSTRATION_MODE);
 		// load the resources.
 		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
 		this.cipherDemoResource = vsInfo.getResources().getChild("CipherDemo");
@@ -63,7 +49,7 @@ public class CryptoDemonstrationView extends CryptoView {
 		char[] chars = { 'C', 'A', 'E', 'S', 'A', 'R' };
 		
 		//Setup the io textfields.
-		this.setupInOutElements(chars,3, this.DEMONSTRATION_MODE);
+		this.setupInOutElements(chars,3, CryptoView.DEMONSTRATION_MODE);
 
 		//setup the forwarding button.
 		this.setupProceed();

@@ -70,6 +70,7 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 		return 1600; //inaccurate
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public List<Class> getControllerClasses() {
 		List<Class> controllerClasses = new ArrayList<Class>();
 		controllerClasses.add(FirstDemonstrationController.class);

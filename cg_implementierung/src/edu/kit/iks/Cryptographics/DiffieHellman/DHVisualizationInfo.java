@@ -81,10 +81,7 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 		return 1976;
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getControllerClasses()
-	 */
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List<Class> getControllerClasses() {
 		List<Class> controllerClasses = new ArrayList<Class>();

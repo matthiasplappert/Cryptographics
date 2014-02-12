@@ -13,11 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.jdom2.Element;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.Configuration;
-import edu.kit.iks.Cryptographics.Caesar.Demonstration.CryptoDemonstrationController;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
@@ -44,17 +42,17 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
  */
 public class CryptoView extends VisualizationView {
 
-	//Constants:
+	// Constants:
 	/**
 	 * 
 	 */
-	public final int DEMONSTRATION_MODE = 1;
-	
+	public final static int DEMONSTRATION_MODE = 1;
+
 	/**
 	 * 
 	 */
-	public final int EXPERIMENT_MODE = 2;
-	
+	public final static int EXPERIMENT_MODE = 2;
+
 	// General parameters:
 	/**
 	 * 
@@ -87,12 +85,12 @@ public class CryptoView extends VisualizationView {
 	/**
 	 * Textfield for user literal input.
 	 */
-	protected JTextField input;
+	protected JTextField literalInput;
 
 	/**
 	 * Textfield for user numerical input.
 	 */
-	protected JTextField key;
+	protected JTextField keyInput;
 
 	/**
 	 * Keyboard with literals for literal input.
@@ -115,13 +113,12 @@ public class CryptoView extends VisualizationView {
 	protected JTextField[] userOutput;
 
 	// GUI for feedback to the user:
-	
+
 	/**
 	 * Images for supporting users action.
 	 */
 	protected ImageView caesarFrustrated;
 	protected ImageView caesarHappy;
-
 
 	/**
 	 * Explanation textfield.
@@ -141,13 +138,13 @@ public class CryptoView extends VisualizationView {
 	/**
 	 * Constructor.
 	 */
-	public CryptoView() {
+	public CryptoView(final int MODE) {
 
 		// setup the layout.
 		this.setupViewLayout();
 
 		// setups the next and back buttons.
-		this.setupNavigation();
+		this.setupNavigation(MODE);
 
 		// build elements.
 		this.validate();
@@ -155,9 +152,19 @@ public class CryptoView extends VisualizationView {
 
 	// ----------------------------------------------------------------------------//
 	// -------------------------public methods------------------------------------//
-	
+
 	/**
-	 * Removes the Keyboard from the view.
+	 * removes the alphabet.
+	 */
+	public void removeAlphabet() {
+		this.remove(this.alphabet);
+		this.alphabet = null;
+		this.validate();
+		this.repaint();
+	}
+
+	/**
+	 * Removes the keyboard from the view.
 	 */
 	public void removeKeyboard() {
 		this.remove(this.keyboard);
@@ -165,7 +172,7 @@ public class CryptoView extends VisualizationView {
 		this.validate();
 		this.repaint();
 	}
-	
+
 	/**
 	 * Removes the numpad from the view.
 	 */
@@ -175,7 +182,7 @@ public class CryptoView extends VisualizationView {
 		this.validate();
 		this.repaint();
 	}
-	
+
 	/**
 	 * Creates the keyboard and shows it in the main container. /**
 	 * 
@@ -255,13 +262,14 @@ public class CryptoView extends VisualizationView {
 	 * @param inputChars
 	 * @param key
 	 */
-	public void setupCoreExperimentElements(char[] inputChars, int key, final int MODE) {
+	public void setupCoreExperimentElements(char[] inputChars, int key,
+			final int MODE) {
 		// User input will be now filled into the boxes. This field is not
 		// needed anymore.
 		this.removeUserIOContainer();
 		this.removeExplanations();
 
-		//setup IO.
+		// setup IO.
 		this.setupInOutElements(inputChars, key, MODE);
 
 		// setup the alphabet.
@@ -280,7 +288,6 @@ public class CryptoView extends VisualizationView {
 						+ "Therefore not important here. You will see more in the vigenere Visualization.");
 		this.setupExplanations(explanations,
 				GridBagConstraints.LAST_LINE_START, 0, 0, 4);
-		
 
 		// build the new view.
 		this.validate();
@@ -341,17 +348,17 @@ public class CryptoView extends VisualizationView {
 	}
 
 	private void setupKeyDisplay(int xGrid, int key) {
-		this.key = new JTextField();
+		this.keyInput = new JTextField();
 		GridBagConstraints keyConst = new GridBagConstraints();
-		this.key.setText("" + key);
-		this.key.setPreferredSize(new Dimension(25, 25));
-		this.key.setEditable(false);
+		this.keyInput.setText("" + key);
+		this.keyInput.setPreferredSize(new Dimension(25, 25));
+		this.keyInput.setEditable(false);
 		keyConst.insets = new Insets(25, 25, 25, 25);
 		keyConst.gridx = xGrid;
 		keyConst.gridy = 0;
 		keyConst.ipadx = 20;
 		keyConst.ipady = 20;
-		this.userCharacterIOContainer.add(this.key, keyConst);
+		this.userCharacterIOContainer.add(this.keyInput, keyConst);
 	}
 
 	private void setupUserInput(int i, char content) {
@@ -370,7 +377,8 @@ public class CryptoView extends VisualizationView {
 
 	}
 
-	private void setupUserOutput(int i, char correspondingInputContent, final int MODE) {
+	private void setupUserOutput(int i, char correspondingInputContent,
+			final int MODE) {
 		// fields where the encrypted input is put in.
 		this.userOutput[i] = new JTextField();
 		this.userOutput[i].setName("" + correspondingInputContent);
@@ -378,7 +386,7 @@ public class CryptoView extends VisualizationView {
 		this.userOutput[i].setOpaque(true);
 		this.userOutput[i].setBorder(BorderFactory
 				.createLineBorder(Color.darkGray));
-		if(MODE == this.DEMONSTRATION_MODE) {
+		if (MODE == CryptoView.DEMONSTRATION_MODE) {
 			this.userOutput[i].setEditable(false);
 		}
 		GridBagConstraints outConst = new GridBagConstraints();
@@ -390,7 +398,7 @@ public class CryptoView extends VisualizationView {
 		this.userCharacterIOContainer.add(this.userOutput[i], outConst);
 	}
 
-	private void setupNavigation() {
+	private void setupNavigation(final int MODE) {
 
 		// set up a container for the navigation Buttons (Next and Back).
 		this.setupNavigationContainer();
@@ -402,12 +410,20 @@ public class CryptoView extends VisualizationView {
 		this.remove(this.getNextButton());
 
 		// set up the alignment of the button back;
-		this.setBackButton(new JButton(i18n.tr("Back to demonstration")));
+		if (MODE == CryptoView.EXPERIMENT_MODE) {
+			this.setBackButton(new JButton(i18n.tr("Back to demonstration")));
+		} else {
+			this.setBackButton(new JButton(i18n.tr("Back to Introduction")));
+		}
 		this.getBackButton().setPreferredSize(new Dimension(350, 50));
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
-		this.setNextButton(new JButton(i18n.tr("Go to decryption")));
+		if (MODE == CryptoView.EXPERIMENT_MODE) {
+			this.setNextButton(new JButton(i18n.tr("Go to decryption")));
+		} else {
+			this.setNextButton(new JButton(i18n.tr("Go to experiment")));
+		}
 		this.getNextButton().setPreferredSize(new Dimension(300, 50));
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
 
@@ -480,22 +496,22 @@ public class CryptoView extends VisualizationView {
 	/**
 	 * @return the inOutPanel
 	 */
-	public JPanel getInOutPanel() {
+	public JPanel userCharacterIOContainer() {
 		return this.userCharacterIOContainer;
 	}
 
 	/**
 	 * @return input
 	 */
-	public JTextField getInput() {
-		return this.input;
+	public JTextField getLiteralInput() {
+		return this.literalInput;
 	}
 
 	/**
 	 * @return the key
 	 */
-	public JTextField getKey() {
-		return this.key;
+	public JTextField getKeyInput() {
+		return this.keyInput;
 	}
 
 	/**
@@ -577,7 +593,7 @@ public class CryptoView extends VisualizationView {
 	 *            the input to set
 	 */
 	public void setInput(JTextField input) {
-		this.input = input;
+		this.literalInput = input;
 	}
 
 	/**
@@ -585,7 +601,7 @@ public class CryptoView extends VisualizationView {
 	 *            the key to set
 	 */
 	public void setKey(JTextField key) {
-		this.key = key;
+		this.keyInput = key;
 	}
 
 	/**
@@ -628,7 +644,8 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
-	 * @param userCharacterIOContainer the userCharacterIOContainer to set
+	 * @param userCharacterIOContainer
+	 *            the userCharacterIOContainer to set
 	 */
 	public void setUserCharacterIOContainer(JPanel userCharacterIOContainer) {
 		this.userCharacterIOContainer = userCharacterIOContainer;
@@ -642,7 +659,8 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
-	 * @param caesarFrustrated the caesarFrustrated to set
+	 * @param caesarFrustrated
+	 *            the caesarFrustrated to set
 	 */
 	public void setCaesarFrustrated(ImageView caesarFrustrated) {
 		this.caesarFrustrated = caesarFrustrated;
@@ -656,7 +674,8 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
-	 * @param caesarHappy the caesarHappy to set
+	 * @param caesarHappy
+	 *            the caesarHappy to set
 	 */
 	public void setCaesarHappy(ImageView caesarHappy) {
 		this.caesarHappy = caesarHappy;
