@@ -5,19 +5,27 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
 
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 public class YourTurnView extends VisualizationView {
+	
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(YourTurnView.class);
 	
 	private JLabel aimExplain;
 
 	private String help;
 	
-	private String explain = "Now it's your turn! " +
+	private String explain = i18n.tr("Now it's your turn! " +
 				"Now you are Alice and try to establish a shared secret " +
 				"with Bob, without Eve getting the secret. Your" +
 				"task will be to mix the right Colors and to send " +
-				"the right Colors, just like in the Demonstration";
+				"the right Colors, just like in the Demonstration");
 
 	private static final long serialVersionUID = -9208922057840794898L;
 

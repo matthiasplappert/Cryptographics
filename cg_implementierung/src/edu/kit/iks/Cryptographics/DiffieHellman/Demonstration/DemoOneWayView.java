@@ -4,19 +4,30 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 public class DemoOneWayView extends VisualizationView {
+	
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(DemoOneWayView.class);
+	
 	private JLabel keyExchangeExplain;
 	
 	private ColorMix cm, cm2;
 	
-	private String help = "No help";
+	private String help = i18n.tr("No help");
 	
-	private String explain = "We use a simple analogy as the one-way function." +
+	private String explain = i18n.tr("We use a simple analogy as the one-way function." +
 			"Mixing colors is an easy process, determining which colors were" +
-			"originally used is a difficult process, thus this acts like an one-way function";
+			"originally used is a difficult process, thus this acts like an one-way function");
 	
 	private static final long serialVersionUID = 7529617215150828381L;
 	

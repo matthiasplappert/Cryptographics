@@ -3,6 +3,9 @@ package edu.kit.iks.Cryptographics.DiffieHellman;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainAimController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DHDemoController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.OnewayController;
@@ -21,11 +24,18 @@ import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 public class DHVisualizationInfo extends AbstractVisualizationInfo {
 	
 	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(
+			DHVisualizationInfo.class);
+
+	
+	/**
 	 * Our description of the procedure
 	 */
-	private String description = "The infamous Diffie-Hellman Key-Exchange " +
+	private String description = i18n.tr("The infamous Diffie-Hellman Key-Exchange " +
 			"explained with a color-mixing analogy. Establish a shared secret, " +
-			"without an Eavesdropper getting the secret too";
+			"without an Eavesdropper getting the secret too");
 	
 	/*
 	 * (non-Javadoc)
@@ -42,7 +52,7 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public String getName() {
-		return "Diffie-Hellman";
+		return i18n.tr("Diffie-Hellman");
 	}
 	
 	/*
