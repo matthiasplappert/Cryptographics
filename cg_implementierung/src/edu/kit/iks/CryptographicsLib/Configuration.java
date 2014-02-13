@@ -2,11 +2,14 @@ package edu.kit.iks.CryptographicsLib;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import org.xnap.commons.i18n.I18n;
+import org.xnap.commons.i18n.I18nFactory;
 
 /**
  * This class allows to configure certain parameters of the application
@@ -15,6 +18,7 @@ import org.jdom2.input.SAXBuilder;
  * @author Matthias Plappert
  */
 public class Configuration {
+	
 	/**
 	 * Shared instance for singleton
 	 */
@@ -52,9 +56,9 @@ public class Configuration {
 	private boolean mouseCursor = false;
 	
 	/**
-	 * The ISO 639-1 language code.
+	 * The language code.
 	 */
-	private String languageCode = "en";
+	private String languageCode = "de";
 	
 	/**
 	 * Marked as private to enforce singleton pattern.
@@ -200,10 +204,25 @@ public class Configuration {
 	}
 	
 	/**
-	 * Returns the ISO 639-1 language code used for localization.
-	 * @return the ISO 639-1 language code
+	 * Returns the language code used for localization.
+	 * @return the language code
 	 */
 	public String getLanguageCode() {
 		return this.languageCode;
+	}
+	
+	/**
+	 * Returns the I18n instance for the package the given
+	 * class is in
+	 * 
+	 * @param className fully qualified class name (ClassName.class)
+	 * @return I18n instance to use the tr functions
+	 */
+	@SuppressWarnings("rawtypes")
+	public I18n getI18n(Class className) {
+		Locale loc = new Locale(this.getLanguageCode());
+		I18n i18n = I18nFactory.getI18n(className, loc);
+		
+		return i18n;
 	}
 }

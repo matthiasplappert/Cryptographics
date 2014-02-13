@@ -2,13 +2,9 @@ package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
@@ -18,11 +14,11 @@ public class SecondDemonstrationView extends VisualizationView {
 
 	// PLAINTEXTCHARS WITH THEIR INDEXES
 	private JLabel[] indexCharPlain;
-	private JTextField[] textCharPlain;
+	private JLabel[] textCharPlain;
 
 	// ENCRYPTED CHARS WITH THEIR INDEXES
 	private JLabel[] indexCharEncrypted;
-	private JTextField[] textCharEncrypted;
+	private JLabel[] textCharEncrypted;
 
 	// Visulisation of the Key
 	private JLabel vigenereKeyDesc;
@@ -99,12 +95,12 @@ public class SecondDemonstrationView extends VisualizationView {
 		
 		this.alphabet = new AlphabetStripView();
 
-		this.textCharPlain = new JTextField[4];
-		this.textCharPlain[0] = new JTextField("A");
-		this.textCharPlain[1] = new JTextField("N");
-		this.textCharPlain[2] = new JTextField("N");
-		this.textCharPlain[3] = new JTextField("E");
-		for (int i = 0; i < this.textCharPlain.length; i++)
+		this.textCharPlain = new JLabel[4];
+		this.textCharPlain[0] = new JLabel("A");
+		this.textCharPlain[1] = new JLabel("N");
+		this.textCharPlain[2] = new JLabel("N");
+		this.textCharPlain[3] = new JLabel("E");
+		for (int i = 0; i < this.textCharPlain.length; i++) 
 			this.add(this.textCharPlain[i]);
 
 		this.indexCharPlain = new JLabel[4];
@@ -115,11 +111,11 @@ public class SecondDemonstrationView extends VisualizationView {
 		for (int i = 0; i < this.indexCharPlain.length; i++)
 			this.add(this.indexCharPlain[i]);
 
-		this.textCharEncrypted = new JTextField[4];
-		this.textCharEncrypted[0] = new JTextField();
-		this.textCharEncrypted[1] = new JTextField();
-		this.textCharEncrypted[2] = new JTextField();
-		this.textCharEncrypted[3] = new JTextField();
+		this.textCharEncrypted = new JLabel[4];
+		this.textCharEncrypted[0] = new JLabel();
+		this.textCharEncrypted[1] = new JLabel();
+		this.textCharEncrypted[2] = new JLabel();
+		this.textCharEncrypted[3] = new JLabel();
 		for (int i = 0; i < this.textCharEncrypted.length; i++)
 			this.add(this.textCharEncrypted[i]);
 
@@ -130,6 +126,8 @@ public class SecondDemonstrationView extends VisualizationView {
 		this.indexCharEncrypted[3] = new JLabel("  ");
 		for (int i = 0; i < this.indexCharEncrypted.length; i++)
 			this.add(this.indexCharEncrypted[i]);
+		//this.indexCharEncrypted[1].setBorder(BorderFactory
+		//		.createLineBorder(Color.blue, 5));
 
 		this.add(this.charFirst = new JLabel());
 		this.add(this.charSecond = new JLabel());

@@ -7,29 +7,38 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class BobChooseSecretController extends AbstractVisualizationController {
+public class DHDemoController extends AbstractVisualizationController {
 	
-	public BobChooseSecretController(AbstractVisualizationInfo visualizationInfo) {
+	private DHDemoView view;
+	
+	public DHDemoController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return view.getHelp();
 	}
 
 	@Override
 	public void loadView() {
-		// TODO Auto-generated method stub
-		this.view = new BobChooseSecretView();
+		this.view = new DHDemoView();
+		this.view.setRemember(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
+			}
+		});
+		
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
+				for(ActionListener al : getView().getNextButton().getActionListeners()) {
+					getView().getNextButton().removeActionListener(al);
+				}
+				view.startDemo();
 			}
 		});
 		
@@ -37,13 +46,10 @@ public class BobChooseSecretController extends AbstractVisualizationController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				((VisualizationContainerController) getParentController()).presentPreviousVisualizationController();
 			}
 		});
-		
-		
-
 	}
 	
 	/*
@@ -52,13 +58,12 @@ public class BobChooseSecretController extends AbstractVisualizationController {
 	 */
 	@Override
 	public void unloadView() {
-		// TODO stop all timers!
+		this.getView().getColorChannel().stopTimer();
 		this.view = null;
 	}
 	
 	@Override
-	public BobChooseSecretView getView() {
-		return (BobChooseSecretView) this.view;
+	public DHDemoView getView() {
+		return (DHDemoView) this.view;
 	}
-
 }

@@ -17,6 +17,12 @@ import javax.swing.border.EtchedBorder;
  * Beneath it is matched by a corresponding strip of the numbers from 1 to 26.
  */
 public class AlphabetStripView extends JPanel {
+	
+	/**
+	 * Serial version UID
+	 */
+	private static final long serialVersionUID = 2443142838200011020L;
+	
 	private JLabel[] chars;
 	private JLabel[] nums;
 	

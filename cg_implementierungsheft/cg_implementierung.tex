@@ -1,0 +1,386 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[ngerman]{translator}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{url}
+\usepackage[bottom]{footmisc}
+\usepackage{hyperref}
+\usepackage[nonumberlist, section=subsection]{glossaries}
+
+\title{\textbf{Implementierung} \\ Cryptographics}
+\author{}
+\date{\today}
+
+%Glossar-Befehle anschalten
+\makeglossaries
+% \newglossaryentry{identifier}{name={Name}, description={Description}}
+
+\begin{document}
+
+% The cover page.
+\maketitle
+\begin{table}[b]
+  \begin{tabular}{| l | l | l |}
+    \hline
+    \textbf{Phase} & \textbf{Verantwortlicher} & \textbf{Email} \\ \hline
+    Pflichtenheft & Matthias Jaenicke & matthias.jaenicke@student.kit.edu \\ \hline
+    Entwurf & Matthias Plappert & undkc@student.kit.edu \\
+            & Julien Duman & uncyc@student.kit.edu \\ \hline
+    Implementierung & Christian Dreher & uaeef@student.kit.edu \\ \hline
+    Qualitätssicherung & Wasilij Beskorovajnov & uajkm@student.kit.edu \\ \hline
+    Präsentation & Aydin Tekin & aydin.tekin@student.kit.edu \\ \hline
+    \end{tabular}
+\end{table}
+\thispagestyle{empty}
+\newpage
+
+% Table of contents page.
+\tableofcontents
+\newpage
+
+% Start of the actual document.
+\section{Einleitung}
+In diesem Heft werden Änderungen zum Entwurf spezifiziert, die während der Implementierung entstanden sind.
+
+\section{Grundsätzliche Änderungen}
+Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
+
+% Hier kommen alle neuen Klassen rein
+\section{Neue Klassen}
+
+  \subsection{Paket edu.kit.iks.Cryptographics}
+
+  \subsection{Paket edu.kit.iks.CryptographicsLib}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Demonstration}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Experiment}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanation}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
+   \subsubsection{CryptoView}
+          Diese Klasse besteht aus dem Programmcode, der aus den vorherigen Klassen CryptoView, das jetzt CryptoExperimentView heißt,
+          und CipherDemoView, das jetzt CryptoDemonstrationView heißt, rausfaktorisiert wurde.
+          
+          Die beiden neuen Klassen CryptoExperimentView und CryptoDemonstrationView erben von dieser Klasse.\newline
+           
+    \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item  edu.kit.iks.CryptographicsLib.VisualizationView
+      \end{itemize}
+           
+    \textbf{Methoden}
+      \begin{itemize}
+        \item protected CryptoView()\newline
+              Konstruktor. Erzeugt die gemeinsamen Elemente von CryptoDemonstrationView und CryptoExperimentView.
+        \item public void removeAlphabet()\newline
+              Entfernt das Alphabet aus der Oberfläche. Public weil es oft in den Controllern
+        \item protected void setupAlphabet()\newline
+              Fügt das Alphabet der Oberfläche hinzu.
+        \item public void removeKeyboard()\newline
+              Entfernt die Tastatur für alphabetische Eingaben aus der Oberfläche.
+        \item public void createKeyboard()\newline
+              Fügt der Oberfläche eine Tastatur für alphabetische Eingaben hinzu.
+        \item protected void setupInOutElements(char[] inputChars, int key)\newline
+              Stellt die Buchstaben, die abzuarbeiten sind, voneinander getrennt in JLabels auf. 
+              Auch die Textboxen, die für die Eingabe des Benutzers nötig sind werden hinzugefügt.
+              Der Schlüssel wird separat neben den Buchstaben in einem JLabel dargestellt.
+        \item protected void removeUserIOContainer()\newline
+              Entfernt den Container für die JLabels mit den Buchstaben und die Textboxen aus der Oberlfäche.
+        \item protected void removeExplanations()\newline
+              Entfernt die Erklärungen aus der Oberlfäche.
+	\item protected void setupExplanations(String explanations, final int flag,int yGrid, int xGrid, int widthGrid)\newline
+	      Fügt der Oberfläche Erklärungen hinzu, die in dem String explanations enthalten sind.
+	      Die restlichen Argumente sind werte für die Anordnung der Erklärungen in dem Layout.      
+      \end{itemize}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Demonstration}
+   \textbf{Keine neuen Klassen. Nur Änderungen an bestehenden.}
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Experiment}
+   \textbf{Keine neuen Klassen. Nur Änderungen an bestehenden.}
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
+  
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Demonstration}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Experiment}
+
+% Hier kommen alle Änderungen an bestehenden Klassen rein
+% (Dazu zählen auch Namensänderungen an Klassen. Schreibt dann einfach bei der Klasse hier
+% rein: Klasse AlterName
+% wurde zu NeuerName umbenannt
+% etc...)
+\section{Änderungen an Klassen}
+
+  \subsection{Paket edu.kit.iks.Cryptographics}
+    \subsubsection{Klasse HelpPopoverView}
+
+    \subsubsection{Klasse Main}
+
+    \subsubsection{Klasse MainController}
+
+    \subsubsection{Klasse StartController}
+
+    \subsubsection{Klasse TimelinePopoverView}
+
+    \subsubsection{Klasse TimelineView}
+
+    \subsubsection{Klasse VisualizationContainerController}
+
+    \subsubsection{Klasse VisualizationContainerView}
+
+    \subsubsection{Klasse WelcomeView}
+
+  \subsection{Paket edu.kit.iks.CryptographicsLib}
+    
+  	\subsubsection{Klasse AbstractController}
+
+	\subsubsection{Klasse AbstractVisualizationController}
+
+	\subsubsection{Klasse AbstractVisualizationInfo}
+
+	\subsubsection{Klasse AlphabetStripView}
+
+	\subsubsection{Klasse CharacterFrequencyDiagramView}
+
+	\subsubsection{Klasse ImageView}
+
+	\subsubsection{Klasse InformationController}
+
+	\subsubsection{Klasse InformationView}
+
+	\subsubsection{Klasse KeyboardButton}
+
+	\subsubsection{Klasse KeyboardView}
+
+	\subsubsection{Klasse NumbersStripView}
+
+	\subsubsection{Klasse PopoverView}
+
+	\subsubsection{Klasse VisualizationButton}
+
+	\subsubsection{Enum VisualizationDifficulty}
+
+	\subsubsection{Klasse VisualizationInfoLoader}
+
+	\subsubsection{Klasse VisualizationView}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
+    \subsubsection{Klasse AbstractController}
+
+    \subsubsection{Klasse VigenereModel}
+
+    \subsubsection{Klasse VigenereVisualizationInfo}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Demonstration}
+    \subsubsection{Klasse FirstDemonstrationController}
+
+    \subsubsection{Klasse FirstDemonstrationView}
+
+    \subsubsection{Klasse SecondDemonstrationController}
+
+    \subsubsection{Klasse SecondDemonstrationView}
+
+    \subsubsection{Klasse ThirdDemonstrationController}
+
+    \subsubsection{Klasse ThirdDemonstrationView}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Experiment}
+    \subsubsection{Klasse FirstExperimentController}
+
+    \subsubsection{Klasse FirstExperimentView}
+
+    \subsubsection{Klasse SecondExperimentController}
+
+    \subsubsection{Klasse SecondExperimentView}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanation}
+    \subsubsection{Klasse FirstExplanationController}
+
+    \subsubsection{Klasse FirstExplanationView}
+
+    \subsubsection{Klasse SecondExplanationController}
+
+    \subsubsection{Klasse SecondExplanationView}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
+  
+  	\subsubsection{Klasse CaesarVisualizationInfo}
+  	 \textbf{Keine Änderungen.}
+
+ 	\subsection{Paket edu.kit.iks.Cryptographics.Caesar.Demonstration}
+          
+          \subsubsection{Klasse IntroductionController}
+            Die Methode animationProceed() wurde entfernt. Und durch die private Hilfsmethode proceedIntroduction() ersetzt.
+            Diese erfüllt diesselbe Aufgabe und da sie zum Aufgabenbereich dieses Controllers gehört, ist ein globaler Zugriff
+            unnötig.
+       	  \subsubsection{Klasse IntroductionView}
+            Die Methode animationStart() mitsamt ihrer privaten Hilfsfunktionen wurde in den IntroductionController ausgelagert.
+            Die View dient als Container für Oberflächenelemente. Funktionalität braucht sie nicht.
+	  \subsubsection{Klasse CipherDemoController}
+            Diese Klasse heißt jetzt CryptoDemonstrationController.\newline
+         
+           \textbf{Änderungen an Methoden.}\newline
+            proceedAnimation() wurde entfernt. Und durch die private Hilfsmethode demonstrate() ersetzt.
+            Diese erfüllt diesselbe Aufgabe und da sie zum Aufgabenbereich dieses Controllers gehört, 
+            ist ein globaler Zugriff unnötig.
+
+	\subsubsection{Klasse CipherDemoView}
+	   Diese Klasse heißt jetzt CryptoDemonstrationView.\newline
+	   
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	     Diese Klasse erbt nun von CryptoView(siehe das Kapitel 'Neue Klassen') und nicht mehr direkt von VisualizationView.\newline
+	   
+	    \textbf{Änderungen an Methoden.}\newline
+	     Die Methode animationStart() mitsamt ihrer privaten Hilfsfunktionen wurde in den CryptoDemonstrationController ausgelagert.
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Experiment}
+
+	\subsubsection{Klasse CryptoController}
+          Diese Klasse heißt jetzt CryptoExperimentController.\newline
+          
+          \textbf{Änderungen an Methoden.}\newline
+           Es sind lediglich neue Hilfsmethoden dazugekommen.
+	\subsubsection{Klasse CryptoModel}
+	 An dieser Klasse wurde das Entwurfsmuster Singleton angewandt. Die vielseitige Verwendung dieser Klasse 
+	 ohne den Bedarf einer mehrfachen Instanziierung ermöglichte dies.\newline 
+	 
+	  \textbf{Änderungen an Methoden.}\newline
+            \begin{itemize}
+             \item getInstance() wurde hinzugefügt\newline
+                   Getter für die einzige Instanz dieser Klasse. Teil des Singleton Entwurfsmusters.
+             \item Die Methode checkValidChar(char) wurde aus Redundanzgründen entfernt. 
+                   Dieselbe Funktionalität bietet jetzt das verschlüsseln eines Zeichens
+                   durch die Methode enc und dem vergleichen mit dem zu überprüfenden char.
+             \item handleInput(String) wurde aus Gründen der Namenskonventionen umbenannt 
+                   in isInputValid(String). 
+             \item isInputStep() wurde entfernt, weil das Model jetzt nicht mehr an einen Controller gebunden ist
+                   und keine Ahnung haben soll wie weit der User in der Visualisierung vorangekommen ist.
+             \item Aus den gleichen Gründen wie davor fehlt auch der setter setInputStep() weg.
+             \item decryptAndCheck(String) ist aus Redundanzgründen rausgenommen worden. Die Gründe sind identisch
+                   mit der Entfernung von checkValidChar(char) nur bezieht es sich jetzt auf die Verarbeitung von
+                   Strings und nicht chars, wie im oberen Fall.
+             \item Weil die Klasse jetzt das Entwurfsmuster Singleton verwendet, ist der Konstruktor nicht mehr public,
+                   sondern private.
+             \item public String enc(int key, String text) wurde hinzugefügt.\newline
+                   Diese Methode verschlüsselt caesarkonform einen beliebigen Text von beliebiger Länge, mit einem beliebigen Schlüssel.
+                   Der Text kann auch Sonderzeichen enthalten. Sowie auch html tags.
+             \item public String dec(int key, String cipher) wurde hinzugefügt.\newline
+                   Ruft enc mit einem negativen Schlüssel auf. Bentötigt bei Entschlüsselung.
+             \item private int generateRandomInt(int a, int b) wurde hinzugefügt.\newline
+                   Erzeugt einen 'zufälligen' ganzzahligen Wert aus dem Intervall [a,b].
+             \item public int generateKey() wurde hinzugefügt.\newline
+                   Diese Methode erzeugt 'zufällig' einen Schlüssel für Caesar Ver-/Entschlüsselung.
+                   Verwendet die methode private int generateRandomInt(int a, int b) mit Grenzen [1,26].
+             \item public String genRandomBlamings() wurde hinzugefügt.\newline
+                   Erzeugt 'zufällig' eine Negativmeldung zu den Interaktionen des Users
+                   aus einem local Stringpool.  
+             \item public String genRandomCipher(int key) wurde hinzugefügt.\newline
+                   Verschlüsselt einen zufälligen Text mit dem gegebenen Schlüssel 
+                   und gibt diesen aus.
+             \item public String genRandomGrats() wurde hinzugefügt.\newline
+                   Erzeugt 'zufällig' eine Positivmeldung zu den Interaktionen des Users
+                   aus einem local Stringpool. 
+             \item public String genRandomPlainSequence() wurde hinzugefügt.\newline
+                   Erzeugt 'zufällig' ein kleines Wort aus einem local Stringpool zum verschlüsseln. 
+             \item public String genRandomText() wurde hinzugefügt\newline
+                   Erzeugt 'zufällig' einen größeren Text aus einem local Stringpool zum verschlüsseln.      
+            \end{itemize}
+
+	\subsubsection{Klasse CryptoView}
+	 Diese Klasse wurde in CryptoExperimentView umbenannt.\newline
+	 
+	 \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	     Diese Klasse erbt nun von CryptoView(siehe das Kapitel 'Neue Klassen') und nicht mehr direkt von VisualizationView.\newline
+	   
+	 \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+	     \item public void setupExperimentCore(char[] inputChars, int key) wurde hinzugefügt.\newline
+	           Diese Methode erstellt alle für den Selbstversuch notwendigen Elemente und ordnet diese im Layout an.
+             \item public void createNumpad()\newline
+               Fügt der Oberfläche eine Tastatur für numerische Eingaben hinzu.
+             \item public void removeNumpad()\newline
+               Entfernt die Tastatur für numerische Eingaben aus der Oberlfäche.
+           \end{itemize}
+               
+	\subsubsection{Klasse HistogramController}
+          \textbf{Änderungen an Methoden.}\newline
+           Es sind lediglich neue Hilfsmethoden dazugekommen.
+	\subsubsection{Klasse HistogramView}
+	 Die Methode startAnimation() wurde entfernt, da die View als Container für Oberflächenelemente dient. 
+	 Funktionalität braucht sie nicht.
+
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
+  
+    \subsubsection{Klasse AbstractController}
+
+  	\subsubsection{Klasse Model}
+
+	\subsubsection{Klasse DHVisualizationInfo}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Demonstration}
+
+	\subsubsection{Klasse ExplainAimController}
+
+	\subsubsection{Klasse ExplainAimView}
+
+	\subsubsection{Klasse OnewayController}
+
+	\subsubsection{Klasse OnewayView}
+
+	\subsubsection{Klasse ExplainKeyExchangeController}
+
+	\subsubsection{Klasse ExplainKeyExchangeView}
+
+	\subsubsection{Klasse AliceChooseSecretController}
+
+	\subsubsection{Klasse AliceChooseSecretView}
+
+	\subsubsection{Klasse BobChooseSecretController}
+
+	\subsubsection{Klasse BobChooseSecretView}
+
+	\subsubsection{Klasse MixColorController}
+
+	\subsubsection{Klasse MixColorView}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Experiment}
+
+	\subsubsection{Klasse YourTurnController}
+
+	\subsubsection{Klasse YourTurnView}
+
+	\subsubsection{Klasse ChoosePublicColorController}
+
+	\subsubsection{Klasse ChoosePublicColorView}
+
+	\subsubsection{Klasse SendColorController}
+
+	\subsubsection{Klasse SendColorView}
+
+	\subsubsection{Klasse ChooseSecretColorController}
+
+	\subsubsection{Klasse ChooseSecretColorView}
+
+	\subsubsection{Klasse SendRightColorController}
+
+	\subsubsection{Klasse SendRightColorView}
+
+	\subsubsection{Klasse MixFinalSecretController}
+
+	\subsubsection{Klasse MixFinalSecretView}
+	
+ \restoregeometry
+
+\glsaddall
+\printglossary[numberedsection, style=altlist]
+
+\end{document}

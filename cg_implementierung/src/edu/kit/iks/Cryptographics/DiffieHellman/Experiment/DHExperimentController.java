@@ -1,4 +1,4 @@
-package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
+package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,31 +7,29 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class MixColorController extends AbstractVisualizationController {
+public class DHExperimentController extends AbstractVisualizationController {
+	private DHExperimentView view;
 	
-	public MixColorController(AbstractVisualizationInfo visualizationInfo) {
+	public DHExperimentController(
+			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return view.getHelp();
 	}
 
 	@Override
 	public void loadView() {
-		this.view = new MixColorView();
-		this.getView().getBackButton().addActionListener(new ActionListener() {
+		view = new DHExperimentView();
+		view.setRemember(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				((VisualizationContainerController) getParentController()).presentPreviousVisualizationController();
+				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
 			}
 		});
-		
-
 	}
 	
 	/*
@@ -40,13 +38,11 @@ public class MixColorController extends AbstractVisualizationController {
 	 */
 	@Override
 	public void unloadView() {
-		// TODO stop all timers!
 		this.view = null;
 	}
-	
-	@Override
-	public MixColorView getView() {
-		return (MixColorView) this.view;
-	}
 
+	@Override
+	public DHExperimentView getView() {
+		return (DHExperimentView) this.view;
+	}
 }

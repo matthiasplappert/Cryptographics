@@ -3,13 +3,10 @@ package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import org.jdom2.Element;
-
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.ImageView;
 
 public class FirstDemonstrationController extends AbstractVisualizationController {
 
@@ -25,7 +22,7 @@ public class FirstDemonstrationController extends AbstractVisualizationControlle
 
 	@Override
 	public String getHelp() {
-		return null;
+		return "There is nothing to help, just read the text";
 	}
 
 	@Override
@@ -57,10 +54,6 @@ public class FirstDemonstrationController extends AbstractVisualizationControlle
 		this.view.validate();
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
-	 */
 	@Override
 	public void unloadView() {
 		this.view = null;

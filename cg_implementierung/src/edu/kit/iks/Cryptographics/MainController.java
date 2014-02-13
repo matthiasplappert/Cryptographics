@@ -6,10 +6,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.text.ParseException;
 
 import javax.swing.JFrame;
@@ -60,6 +57,11 @@ public class MainController extends AbstractController {
 	 */
 	@Override
 	public void loadView() {
+		// Note: every method here is strictly bound
+		// to the values defined in the config.xml.
+		// If, for example, <mouseCursor> is set to true,
+		// the method disableCursor() will keep the cursor
+		// visible
 		this.loadLookAndFeel();
 		this.loadFrame();
 		this.disableCursor();
@@ -73,23 +75,50 @@ public class MainController extends AbstractController {
 	public void unloadView() {
 		this.frame = null;
 	}
+	
+	/**
+	 * Gets the JFrame
+	 * 
+	 * @return the JFrame
+	 */
+	public JFrame getJFrame() {
+		return this.frame;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#isViewLoaded()
+	 */
+	@Override
+	public boolean isViewLoaded() {
+		return (this.frame != null);
+	}
 
 	/**
 	 * Starts the visualization of StartController
 	 */
 	public void presentStartAction() {
+		
+		// Unload visualization controllers not needed anymore
 		if (this.visualizationContainerController != null) {
 			if (this.visualizationContainerController.getHelpPopoverView() != null) {
 				this.visualizationContainerController.dismissHelpPopover();
 			}
+			
 			this.frame.getContentPane().remove(this.visualizationContainerController.getView());
 			this.visualizationContainerController.unloadView();
 			this.removeChildController(this.visualizationContainerController);
+			this.visualizationContainerController = null;
 		}
 		
-		this.startController = new StartController();
+		// Only initialize start controller once, nut load/unload view
+		if (this.startController == null) {
+			this.startController = new StartController();
+			this.addChildController(this.startController);
+		}
+		
+		// Load view and append it to the frame
 		this.startController.loadView();
-		this.addChildController(this.startController);
 		this.frame.getContentPane().add(this.startController.getView(), BorderLayout.CENTER);
 
 		// Important to call validate, as some elements may
@@ -108,11 +137,11 @@ public class MainController extends AbstractController {
 	 */
 	public void presentVisualizationAction(
 			AbstractVisualizationInfo visualizationInfo) {
-		// TODO: figure out if we need to unload the view/controller
+		// Unload the view but keep the instance in memory for 
+		// better response 
 		if (this.startController != null) {
 			this.frame.getContentPane().remove(this.startController.getView());
 			this.startController.unloadView();
-			this.removeChildController(this.startController);
 		}
 
 		// load VisualizationContainerController
@@ -130,10 +159,29 @@ public class MainController extends AbstractController {
 	}
 	
 	/**
+	 * Gets the start controller
+	 * 
+	 * @return The start controller
+	 */
+	public StartController getStartController() {
+		return this.startController;
+	}
+	
+	/**
+	 * Gets the visualization container controller
+	 * 
+	 * @return The visualization container controller
+	 */
+	public VisualizationContainerController getVisualizationContainerController() {
+		return this.visualizationContainerController;
+	}
+	
+	/**
 	 * Loads the JFrame
 	 */
 	private void loadFrame() {
 		this.frame = new JFrame("Cryptographics");
+		this.frame.setName("main-view");
 		
 		if (this.config.isFullscreenModeEnabled()) {
 			this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);

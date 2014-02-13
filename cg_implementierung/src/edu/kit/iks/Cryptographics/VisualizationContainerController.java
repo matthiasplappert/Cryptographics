@@ -73,6 +73,7 @@ public class VisualizationContainerController extends AbstractController {
 	/**
 	 * List of all child classes
 	 */
+	@SuppressWarnings("rawtypes")
 	List<Class> childClasses;
 	
 	/**
@@ -127,6 +128,7 @@ public class VisualizationContainerController extends AbstractController {
 		Toolkit.getDefaultToolkit().addAWTEventListener(this.idleDetectionListener, AWTEvent.MOUSE_MOTION_EVENT_MASK);
 		
 		this.view = new VisualizationContainerView();
+		this.view.setName("visualization-container-controller-view");
 		// Styling purpose
 		this.view.setName("visualizationContainerController");
 		this.view.getNameLabel().setText(this.getVisualizationInfo().getName());
@@ -412,6 +414,7 @@ public class VisualizationContainerController extends AbstractController {
 	private AbstractVisualizationController loadVisualizationController(
 			int index) {
 		Constructor<AbstractVisualizationController> controllerConstructor = null;
+		@SuppressWarnings("unchecked")
 		Class<AbstractVisualizationController> controllerClass = childClasses
 				.get(index);
 		AbstractVisualizationController controller = null;

@@ -44,6 +44,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 		return "Test";
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List<Class> getControllerClasses() {
 		List<Class> controllerClasses = new ArrayList<Class>();
