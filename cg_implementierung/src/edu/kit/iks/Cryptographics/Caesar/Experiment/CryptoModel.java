@@ -5,7 +5,7 @@ import org.xnap.commons.i18n.I18n;
 import edu.kit.iks.Cryptographics.Configuration;
 
 /**
- * Model of the visualization of Caesar's cipher.
+ * Model for the visualization of Caesar's cipher.
  * 
  * @author Wasilij Beskorovajnov.
  * 
@@ -39,30 +39,14 @@ public class CryptoModel {
 	}
 
 	/**
-	 * @param key
-	 * @param cipher
-	 * @return
-	 */
-	public String dec(int key, String cipher) {
-		return this.enc(-key, cipher);
-	}
-
-	private char shift(int key, char charToShift) {
-		int offset = charToShift - this.ASCII_UC_A;
-		if (Character.isLowerCase(charToShift)) {
-			offset = charToShift - this.ASCII_LC_A;
-			return (char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_LC_A);
-		}
-		return (char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_UC_A);
-	}
-
-	/**
-	 * Function for decrypting and encrypting of all sort of String.<br>
+	 * Function for encrypting of all sort of String.<br>
 	 * CAREFUL: If you want to encrypt html Strings, make sure all tags are closed!!!!<br>
 	 * 
 	 * @param key
+	 *            the key parameter for encryption.
 	 * @param text
-	 * @return
+	 *            the text to encrypt.
+	 * @return the encrypted text.
 	 */
 	public String enc(int key, String text) {
 		// TODO: Check if the String has valid HTML!
@@ -92,19 +76,46 @@ public class CryptoModel {
 
 	}
 
+	/**
+	 * Function for decrypting all sort of Strings.
+	 * 
+	 * @param key
+	 *            the key parameter for decryption.
+	 * @param cipher
+	 *            the cipher to decrypt.
+	 * @return decrypted cipher.
+	 */
+	public String dec(int key, String cipher) {
+		return this.enc(-key, cipher);
+	}
+
+	/**
+	 * Generates a random Integer in the range of 1 and 26.
+	 * 
+	 * @return the generated key.
+	 */
 	public int generateKey() {
 		return this.generateRandomInt(1, 26);
 	}
 
 	/**
+	 * Generates a random integer in an interval of a and b.
+	 * 
 	 * @param a
+	 *            the left border of the interval.
 	 * @param b
-	 * @return
+	 *            the right border of the interval.
+	 * @return the generated integer.
 	 */
 	private int generateRandomInt(int a, int b) {
 		return (int) (a + ((b - a) * Math.random()));
 	}
 
+	/**
+	 * Pulls 'randomly' a string from the local pool.
+	 * 
+	 * @return a random string.
+	 */
 	public String genRandomBlamings() {
 		String[] blamingPool = {
 				CryptoModel.i18n.tr("Oh no. What a pity! It went wrong!"),
@@ -116,14 +127,21 @@ public class CryptoModel {
 	}
 
 	/**
-	 * @param key
-	 * @return
+	 * Pulls 'randomly' a plainText from the local pool of genRandomPlainSequence() and encrypts it
+	 * with a given key.
+	 * 
+	 * @param key 
+	 * @return 'random' cipher.
 	 */
 	public String genRandomCipher(int key) {
 		String plain = this.genRandomPlainSequence();
 		return this.enc(key, plain);
 	}
 
+	/**
+	 * Pulls 'randomly' a string from the local pool.
+	 * @return 'random' string.
+	 */
 	public String genRandomGrats() {
 		String[] gratulationsPool = {
 				CryptoModel.i18n.tr("Great work oh mighty Caesar."),
@@ -135,7 +153,8 @@ public class CryptoModel {
 	}
 
 	/**
-	 * @return
+	 * Pulls 'randomly' string from the local pool.
+	 * @return 'random' string.
 	 */
 	public String genRandomPlainSequence() {
 		String[] plainTextPool = { CryptoModel.i18n.tr("ANNA"),
@@ -149,9 +168,10 @@ public class CryptoModel {
 		return plainTextPool[index];
 	}
 
-	// TODO: Not so much random at the moment.
-	/**
-	 * @return
+	
+	/** 
+	 * Pulls 'randomly' a bigger string from the local pool.
+	 * @return the 'random' text.
 	 */
 	public String genRandomText() {
 		String[] textPool = { this
@@ -167,15 +187,16 @@ public class CryptoModel {
 	}
 
 	/**
-	 * @param input
+	 * Checks if the input is valid.
+	 * @param input the input to check.
 	 */
 	public boolean isInputValid(String input) {
 		return (input.length() < 10 && input.length() > 0);
 	}
 
-	/**
-	 * @param key
-	 * @return
+	/**Checks if the key is valid.
+	 * @param key the key to check.
+	 * @return 
 	 */
 	public boolean isKeyValid(int key) {
 		return (key > 0 && key <= this.MODULO);
@@ -183,5 +204,14 @@ public class CryptoModel {
 
 	private String wrapHtml(String text) {
 		return "<html><body>" + text + "</body></html>";
+	}
+
+	private char shift(int key, char charToShift) {
+		int offset = charToShift - this.ASCII_UC_A;
+		if (Character.isLowerCase(charToShift)) {
+			offset = charToShift - this.ASCII_LC_A;
+			return (char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_LC_A);
+		}
+		return (char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_UC_A);
 	}
 }

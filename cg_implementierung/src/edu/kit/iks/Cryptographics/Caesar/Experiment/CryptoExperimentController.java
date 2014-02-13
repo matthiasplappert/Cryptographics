@@ -63,12 +63,14 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 		super(visualizationInfo);
 
 	}
+	
+	@Override
+	public String getHelp() {
+		return CryptoExperimentController.i18n
+				.tr("If you only see the textfield then put your string in it. Else you've already "
+						+ "done it and now you need to encrypt/decrypt the given String.");
+	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#loadView()
-	 */
 	@Override
 	public void loadView() {
 		this.view = new CryptoExperimentView();
@@ -586,8 +588,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 		this.setEditableFields(input.length);
 
 		// load the view!
-		this.getView().setupExperimentCore(input, key,
-				CryptoView.EXPERIMENT_MODE);
+		this.getView().setupExperimentCore(input, key);
 
 		// Generate Listener for the userOutput JTextfield
 		this.generateIOListener(input);
@@ -655,13 +656,6 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 	 */
 	public int getEditableFields() {
 		return this.editableFields;
-	}
-
-	@Override
-	public String getHelp() {
-		return CryptoExperimentController.i18n
-				.tr("If you only see the textfield then put your string in it. Else you've already "
-						+ "done it and now you need to encrypt/decrypt the given String.");
 	}
 
 	/**

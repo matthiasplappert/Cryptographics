@@ -13,9 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.xnap.commons.i18n.I18n;
-
-import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
@@ -58,12 +55,6 @@ public class CryptoView extends VisualizationView {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * localization.
-	 */
-	private static I18n i18n = Configuration.getInstance().getI18n(
-			CryptoView.class);
 
 	// GUI container for other GUI elements:
 	/**
@@ -138,13 +129,13 @@ public class CryptoView extends VisualizationView {
 	/**
 	 * Constructor.
 	 */
-	public CryptoView(final int MODE) {
+	protected CryptoView() {
 
 		// setup the layout.
 		this.setupViewLayout();
 
 		// setups the next and back buttons.
-		this.setupNavigation(MODE);
+		this.setupNavigation();
 
 		// build elements.
 		this.validate();
@@ -152,16 +143,6 @@ public class CryptoView extends VisualizationView {
 
 	// ----------------------------------------------------------------------------//
 	// -------------------------public methods------------------------------------//
-
-	/**
-	 * removes the alphabet.
-	 */
-	public void removeAlphabet() {
-		this.remove(this.alphabet);
-		this.alphabet = null;
-		this.validate();
-		this.repaint();
-	}
 
 	/**
 	 * Removes the keyboard from the view.
@@ -172,13 +153,13 @@ public class CryptoView extends VisualizationView {
 		this.validate();
 		this.repaint();
 	}
-
+	
 	/**
-	 * Removes the numpad from the view.
+	 * removes the alphabet.
 	 */
-	public void removeNumpad() {
-		this.remove(this.numpad);
-		this.numpad = null;
+	public void removeAlphabet() {
+		this.remove(this.alphabet);
+		this.alphabet = null;
 		this.validate();
 		this.repaint();
 	}
@@ -205,27 +186,6 @@ public class CryptoView extends VisualizationView {
 		this.validate();
 	}
 
-	/**
-	 * Creates the keyboard with numerical values and presents it.
-	 * 
-	 * @param input
-	 *            the textfield referred to the numpad.
-	 */
-	public void createNumpad(JTextField input) {
-		this.numpad = new NumpadView(input, NumpadView.NUMBER_MODE);
-		GridBagConstraints numpadConst = new GridBagConstraints();
-		numpadConst.anchor = GridBagConstraints.LINE_END;
-		numpadConst.weightx = 1.0;
-		numpadConst.weighty = 0.5;
-		numpadConst.gridx = 0;
-		numpadConst.gridy = 3;
-		numpadConst.gridwidth = 4;
-		numpadConst.gridheight = 5;
-		numpadConst.insets = new Insets(0, 10, 0, 200);
-		this.add(this.numpad, numpadConst);
-		this.validate();
-	}
-
 	// --------------------------------------------------------------------------------------//
 	// --------------------------------protected methods-------------------------------------//
 
@@ -235,7 +195,7 @@ public class CryptoView extends VisualizationView {
 	 * @param inputChars
 	 * @param key
 	 */
-	protected void setupInOutElements(char[] inputChars, int key, final int mode) {
+	protected void setupInOutElements(char[] inputChars, int key) {
 
 		this.userInput = new JLabel[inputChars.length];
 		this.userOutput = new JTextField[inputChars.length];
@@ -254,11 +214,11 @@ public class CryptoView extends VisualizationView {
 			this.setupUserInput(i, inputChars[i]);
 
 			// setup the textfields for the IO.
-			this.setupUserOutput(i, inputChars[i], mode);
+			this.setupUserOutput(i, inputChars[i]);
 		}
 		this.userCharacterIOContainer.validate();
 	}
-
+	
 	protected void setupAlphabet() {
 		this.alphabet = new AlphabetStripView();
 		GridBagConstraints alphConst = new GridBagConstraints();
@@ -271,15 +231,16 @@ public class CryptoView extends VisualizationView {
 		this.add(this.alphabet, alphConst);
 	}
 
+	protected void removeUserIOContainer() {
+		this.remove(this.userCharacterIOContainer);
+		this.userCharacterIOContainer = null;
+	}
+	
 	protected void removeExplanations() {
 		this.remove(this.explanations);
 		this.explanations = null;
 	}
 
-	protected void removeUserIOContainer() {
-		this.remove(this.userCharacterIOContainer);
-		this.userCharacterIOContainer = null;
-	}
 
 	protected void setupExplanations(String explanations, final int flag,
 			int yGrid, int xGrid, int widthGrid) {
@@ -354,8 +315,7 @@ public class CryptoView extends VisualizationView {
 
 	}
 
-	private void setupUserOutput(int i, char correspondingInputContent,
-			final int MODE) {
+	private void setupUserOutput(int i, char correspondingInputContent) {
 		// fields where the encrypted input is put in.
 		this.userOutput[i] = new JTextField();
 		this.userOutput[i].setName("" + correspondingInputContent);
@@ -363,9 +323,6 @@ public class CryptoView extends VisualizationView {
 		this.userOutput[i].setOpaque(true);
 		this.userOutput[i].setBorder(BorderFactory
 				.createLineBorder(Color.darkGray));
-		if (MODE == CryptoView.DEMONSTRATION_MODE) {
-			this.userOutput[i].setEditable(false);
-		}
 		GridBagConstraints outConst = new GridBagConstraints();
 		outConst.gridx = i;
 		outConst.gridy = 1;
@@ -375,7 +332,7 @@ public class CryptoView extends VisualizationView {
 		this.userCharacterIOContainer.add(this.userOutput[i], outConst);
 	}
 
-	private void setupNavigation(final int MODE) {
+	private void setupNavigation() {
 
 		// set up a container for the navigation Buttons (Next and Back).
 		this.setupNavigationContainer();
@@ -386,25 +343,12 @@ public class CryptoView extends VisualizationView {
 		this.remove(this.getBackButton());
 		this.remove(this.getNextButton());
 
-		// set up the alignment of the button back;
-		if (MODE == CryptoView.EXPERIMENT_MODE) {
-			this.setBackButton(new JButton(CryptoView.i18n
-					.tr("Back to demonstration")));
-		} else {
-			this.setBackButton(new JButton(CryptoView.i18n
-					.tr("Back to Introduction")));
-		}
+		this.setBackButton(new JButton());
 		this.getBackButton().setPreferredSize(new Dimension(350, 50));
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
-		if (MODE == CryptoView.EXPERIMENT_MODE) {
-			this.setNextButton(new JButton(CryptoView.i18n
-					.tr("Go to decryption")));
-		} else {
-			this.setNextButton(new JButton(CryptoView.i18n
-					.tr("Go to experiment")));
-		}
+		this.setNextButton(new JButton());
 		this.getNextButton().setPreferredSize(new Dimension(300, 50));
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
 

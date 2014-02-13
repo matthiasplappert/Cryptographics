@@ -50,46 +50,6 @@ public class IntroductionController extends AbstractVisualizationController {
 	}
 
 	/**
-	 * TODO: Need a less dirty solution. Method for intern state handling.
-	 * 
-	 * @param c
-	 */
-	public void animationStart(int step) {
-		switch (step) {
-		case 1:
-			this.step1();
-			break;
-		case 2:
-			this.step2();
-			break;
-		case 3:
-			this.step3();
-			break;
-		case 4:
-			this.step4();
-			break;
-		default:
-			System.out.println("Invalid animation step!!!! Check why!");
-		}
-	}
-
-	/**
-	 * @return the animationStep
-	 */
-	public int getAnimationStep() {
-		return this.animationStep;
-	}
-
-	@Override
-	public String getHelp() {
-		String help = IntroductionController.i18n
-				.tr("If you want to hear the awesome legend about Caesar "
-						+ "and Kryptolix press the button below the text. Else try the next button!");
-
-		return help;
-	}
-
-	/**
 	 * Gets the view
 	 * 
 	 * @return The view of this controller
@@ -122,40 +82,32 @@ public class IntroductionController extends AbstractVisualizationController {
 			@Override
 			public void clicked(MouseEvent e) {
 				IntroductionController.this
-						.animationStart(IntroductionController.this
+						.proceedIntroduction(IntroductionController.this
 								.getAnimationStep());
 			}
 		});
 
 	}
-
-	/*
-	 * TODO: !!!!!!!!!!!!!!!!!!!!!!Fuer jemanden der sich um die Grafiken kuemmern
-	 * will!!!!!!!!!!!!!!!!!:Also hier zur Ausnahme auf Deutsch, was auf der Animation passieren
-	 * soll: step1. Caesar(laechelnd(am besten boeoeoeoeoese)) komikhaft dargestellt mit einer
-	 * Gluehlampe auf dem Kopf.
-	 * 
-	 * step2.Ich brauche ein Bild von einem Maennchen, an dem man am besten auch erkennt, dass dies
-	 * ein Bote ist. Auf dem Hintergrundbild sollte ein Wald zu sehen sein. Der Bote wird von links
-	 * nach rechts bis zum Ende oder 3/4 des Bildschirms laufen. Es muss dabei klar sein, dass der
-	 * Bote nach rechts sieht und hinter ihm nichts bemerken kann. (optional auf pfeifend, laechelnd
-	 * laufen)
-	 * 
-	 * 3. Wenn der Bote hinten angekommen ist.(optional: Bildchen wo er sich ausruht). Taucht
-	 * ungefaehr 1/4 auf der x-Achse des Bildschirms, ein Wildschwein auf. Und laeuft nach
-	 * links.(Nicht nach rechts, wo der Bote ist.).
-	 * 
-	 * 4. Da wo das Wildschwein aufgetaucht ist, tauch hinterher Bild vom Obelix auf. Dieser
-	 * allerdings dreht sich nach rechts und laeuft dem Boden entgegen. Es muss hier deutlich
-	 * werden, dass der Bote daovon nichts mitbekommt.
-	 * 
-	 * 5. Obelix haut den Boden(Wie egal) und der Bote fliegt vertikal nach Oben und da wo der Bote
-	 * war, erscheint eine Schriftrolle.
-	 * 
-	 * 6.Obelix lesend dargestellt.(Wie ist egal).
-	 * 
-	 * 7. Caesar mit teuflischem Grinsen.(optional auch mit reibenden Haenden.)
-	 */
+	
+	private void proceedIntroduction(int step) {
+		switch (step) {
+		case 1:
+			this.step1();
+			break;
+		case 2:
+			this.step2();
+			break;
+		case 3:
+			this.step3();
+			break;
+		case 4:
+			this.step4();
+			break;
+		default:
+			System.out.println("Invalid introduction step!!!! Check why!");
+		}
+	}
+	
 	private void step1() {
 		this.animationStep++;
 		this.getView().getAnimationContainer()
@@ -169,17 +121,14 @@ public class IntroductionController extends AbstractVisualizationController {
 										.tr("Unfortunately his courier has taken the way through the forest, where Kryptolix chased<br>"
 												+ "the wild boars."));
 
-		// this.getView().getAnimationContainer().setBackground(Color.GREEN);
 
 		// set the alignment of the masterPlan image.
 		GridBagConstraints courierConstraint = new GridBagConstraints();
-		// courierConstraint.anchor = GridBagConstraints.WEST;
 		courierConstraint.weightx = 1.0;
 		courierConstraint.weighty = 0.1;
 		courierConstraint.gridx = 0;
 		courierConstraint.gridy = 0;
 		courierConstraint.gridwidth = 1;
-		// courierConstraint.fill = GridBagConstraints.HORIZONTAL;
 
 		// take the image from the xml-resource.
 		this.getView().setCourier(
@@ -187,13 +136,8 @@ public class IntroductionController extends AbstractVisualizationController {
 						.getAttributeValue("path")));
 		this.getView().getAnimationContainer()
 				.add(this.getView().getCourier(), courierConstraint);
-		// setup the background.
-		this.getView().setBackgroundImg(
-				new ImageView(this.introResource.getChild("ForestBackground")
-						.getAttributeValue("path")));
 
 		this.getView().getAnimationContainer().repaint();
-		this.getView().setxCoordCourier(this.getView().getCourier().getX());
 
 	}
 
@@ -211,29 +155,21 @@ public class IntroductionController extends AbstractVisualizationController {
 		GridBagConstraints boarConst = new GridBagConstraints();
 		boarConst.gridx = 4;
 		boarConst.gridy = 0;
-		this.getView().setBoar(
-				new ImageView(this.introResource.getChild("Boar")
-						.getAttributeValue("path")));
 		this.getView().getAnimationContainer()
 				.add(this.getView().getBoar(), boarConst);
 
 		// set the alignment of obelix image.
 		GridBagConstraints obelixConstraint = new GridBagConstraints();
-		// obelixConstraint.anchor = GridBagConstraints.PAGE_END;
-		// obelixConstraint.weightx = 1.0;
 		obelixConstraint.gridx = 3;
 		obelixConstraint.gridy = 0;
-		// obelixConstraint.fill = GridBagConstraints.VERTICAL;
 
 		// take the image from the xml-resource.
-		this.getView().setObelix(
+		this.getView().setKryptolix(
 				new ImageView(this.introResource.getChild("Obelix")
 						.getAttributeValue("path")));
 		this.getView().getAnimationContainer()
-				.add(this.getView().getObelix(), obelixConstraint);
+				.add(this.getView().getKryptolix(), obelixConstraint);
 
-		// TODO: Animationd doesn't work.
-		// this.getView().secondAnimation();
 	}
 
 	private void step3() {
@@ -242,7 +178,6 @@ public class IntroductionController extends AbstractVisualizationController {
 				.remove(this.getView().getCourier());
 		this.getView().setCourier(null);
 		this.getView().getAnimationContainer().remove(this.getView().getBoar());
-		this.getView().setBoar(null);
 
 		this.getView()
 				.getExplanation()
@@ -267,10 +202,10 @@ public class IntroductionController extends AbstractVisualizationController {
 	private void step4() {
 		this.animationStep++;
 		this.getView().getAnimationContainer()
-				.remove(this.getView().getObelix());
+				.remove(this.getView().getKryptolix());
 		this.getView().getAnimationContainer()
 				.remove(this.getView().getOrders());
-		this.getView().setObelix(null);
+		this.getView().setKryptolix(null);
 		this.getView().setOrders(null);
 
 		this.getView()
@@ -296,6 +231,22 @@ public class IntroductionController extends AbstractVisualizationController {
 
 	}
 
+	/**
+	 * @return the animationStep
+	 */
+	public int getAnimationStep() {
+		return this.animationStep;
+	}
+
+	@Override
+	public String getHelp() {
+		String help = IntroductionController.i18n
+				.tr("If you want to hear the awesome legend about Caesar "
+						+ "and Kryptolix press the button below the text. Else try the next button!");
+
+		return help;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 

@@ -99,6 +99,9 @@ public class CryptoDemonstrationController extends
 		return (CryptoDemonstrationView) this.view;
 	}
 
+	// ---------------------------------------------------------//
+	// -----------------private methods-------------------------//
+
 	/**
 	 * Function for performing the needed demonstration. After each step the demonstration stops and
 	 * continues when user wishes.
@@ -106,7 +109,7 @@ public class CryptoDemonstrationController extends
 	 * @param step
 	 *            {@link demonstrationStep}
 	 */
-	public void demonstrate(int step) {
+	private void demonstrate(int step) {
 		switch (step) {
 		case 1:
 			this.step1();
@@ -118,14 +121,11 @@ public class CryptoDemonstrationController extends
 			this.step3();
 			break;
 		default:
-
+           
 		}
 
 	}
-
-	// ---------------------------------------------------------//
-	// -----------------private methods-------------------------//
-
+	
 	private void generateUserOutputActionListener(int i,
 			final JTextField userOutput) {
 		this.getView().getUserOutput()[i]
@@ -158,6 +158,7 @@ public class CryptoDemonstrationController extends
 															.wrapHtml(CryptoDemonstrationController.i18n
 																	.tr("Great work oh mighty Caesar. May your enemies shutter over your intelligence.")));
 									// remove all unnecessary elements.
+									//TODO: make removeAlphabet protected in the upper class of the view.
 									CryptoDemonstrationController.this
 											.getView().removeAlphabet();
 									CryptoDemonstrationController.this
@@ -318,9 +319,7 @@ public class CryptoDemonstrationController extends
 		nextConst.gridy = 1;
 		nextConst.gridwidth = 26;
 		nextConst.gridheight = 2;
-		this.getView().add(
-				CryptoDemonstrationController.this.getView().getNextButton(),
-				nextConst);
+		this.getView().add(this.getView().getNextButton(), nextConst);
 
 		this.getView().requestFocus();
 	}

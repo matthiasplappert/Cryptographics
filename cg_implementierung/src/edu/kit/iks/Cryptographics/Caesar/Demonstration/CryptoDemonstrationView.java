@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 import org.jdom2.Element;
 import org.xnap.commons.i18n.I18n;
@@ -11,6 +12,7 @@ import org.xnap.commons.i18n.I18n;
 import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.Cryptographics.Caesar.CryptoView;
+import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoExperimentView;
 
 /**
  * Performs animations for demonstrating Caesar's idea.
@@ -42,17 +44,28 @@ public class CryptoDemonstrationView extends CryptoView {
 	 * Constructor.
 	 */
 	public CryptoDemonstrationView() {
-		super(CryptoView.DEMONSTRATION_MODE);
+		super();
 		// load the resources.
 		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
 		this.cipherDemoResource = vsInfo.getResources().getChild("CipherDemo");
+
+		// setup the caption of the next/back Buttons.
+		this.getBackButton().setText(
+				CryptoDemonstrationView.i18n.tr("Back to Introduction"));
+		this.getNextButton().setText(
+				CryptoDemonstrationView.i18n.tr("Go to Experiment."));
 
 		// setup the fields for the demonstratoin of the encryption.
 		String caesar = CryptoDemonstrationView.i18n.tr("CAESAR");
 		char[] chars = caesar.toCharArray();
 
 		// Setup the io textfields.
-		this.setupInOutElements(chars, 3, CryptoView.DEMONSTRATION_MODE);
+		this.setupInOutElements(chars, 3);
+		
+		//Make the Textfields uneditable for the first steps.
+		for (JTextField output: this.userOutput) {
+			output.setEditable(false);
+		}
 
 		// setup the forwarding button.
 		this.setupProceed();
