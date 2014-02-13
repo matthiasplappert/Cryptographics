@@ -28,15 +28,8 @@ public class CryptoModelTest {
 	public void testEnc() {
 		String alphabet =     "!!!ABcdEFghIJKlmNOPqrSTUvwXYZ!!!";
 		String expected = "!!!FGhiJKlmNOPqrSTUvwXYZabCDE!!!";
-//				              "!!!KLmnOPqrSTUvwXYZabCDEfgHIJ!!!",
-//				              "!!!LMnoPQrsTUVwxYZAbcDEFghIJK!!!",
-//			               	  "!!!FGhiJKlmNOPqrSTUvwXYZABcdE!!!" };
-//		int i = 5;
-//		while(i <=20) {
 		String actual = this.modelTT.enc(5, alphabet);
 		assertEquals(MESSAGE_HEADER + "enc(String)\n", expected, actual);
-//		i +=5;
-//		}
 	}
 
 	@Test
@@ -79,27 +72,36 @@ public class CryptoModelTest {
 
 	@Test
 	public void testGenRandomGrats() {
+		for (int i = 0; i < 50; i++) {
 		assertNotNull(this.modelTT.genRandomGrats());
+		}
 	}
 
 	@Test
 	public void testGenRandomBlamings() {
+		for (int i = 0; i < 50; i++) {
 		assertNotNull(this.modelTT.genRandomBlamings());
+		}
 	}
 
 	@Test
 	public void testGenRandomPlainSequence() {
+		for (int i = 0; i < 50; i++) {
 		assertNotNull(this.modelTT.genRandomPlainSequence());
+		}
 	}
 
 	@Test
 	public void testGenRandomCipher() {
-		assertNotNull(this.modelTT.genRandomCipher(10));
+		for (int i = 0; i < 50; i++) {
+		assertNotNull(this.modelTT.genRandomCipher(i));
+		}
 	}
 
 	@Test
 	public void testGenRandomText() {
 		assertNotNull(this.modelTT.genRandomText());
+		
 	}
 
 	@Test
