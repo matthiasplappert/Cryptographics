@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-02-13 11:03+0100\n"
-"PO-Revision-Date: 2014-02-13 11:03+0100\n"
+"POT-Creation-Date: 2014-02-13 11:12+0100\n"
+"PO-Revision-Date: 2014-02-13 11:12+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -603,6 +603,14 @@ msgstr ""
 "Wir verwenden eine einfache Analogie als Einwegfunktion. Das Farbenmischen "
 "ist einfach, aber herauszufinden aus welchen Farben eine Mixtur besteht, "
 "sehr schwer. Das fungiert als Einwegfunktion."
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DemoOneWayView.java:84
+msgid "easy"
+msgstr "einfach"
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DemoOneWayView.java:89
+msgid "hard"
+msgstr "schwer"
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:24
 msgid ""

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-02-13 11:02+0100\n"
-"PO-Revision-Date: 2014-02-13 11:02+0100\n"
+"POT-Creation-Date: 2014-02-13 11:12+0100\n"
+"PO-Revision-Date: 2014-02-13 11:13+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -479,6 +479,14 @@ msgid ""
 "We use a simple analogy as the one-way function. Mixing colors is an easy "
 "process, determining which colors were originally used is a difficult "
 "process, thus this acts like an one-way function"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DemoOneWayView.java:84
+msgid "easy"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DemoOneWayView.java:89
+msgid "hard"
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:24

@@ -81,12 +81,12 @@ public class DemoOneWayView extends VisualizationView {
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		easy = new JLabel("easy");
+		easy = new JLabel(i18n.tr("easy"));
 		this.add(easy, gbc);
 		
 		gbc.gridx = 2;
 		gbc.gridy = 0;
-		hard = new JLabel("hard");
+		hard = new JLabel(i18n.tr("hard"));
 		this.add(hard, gbc);
 		
 		cm.mixColors(true, true, null);
