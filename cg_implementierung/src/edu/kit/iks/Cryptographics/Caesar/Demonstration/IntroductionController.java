@@ -35,7 +35,7 @@ public class IntroductionController extends AbstractVisualizationController {
 	 * Variable holding track of the current step user has proceeded in the animation. if it is 0,
 	 * then it is the last step.
 	 */
-	private int animationStep;
+	private int introductionStep;
 
 	/**
      * 
@@ -61,7 +61,7 @@ public class IntroductionController extends AbstractVisualizationController {
 
 	@Override
 	public void loadView() {
-		this.animationStep = 1;
+		this.introductionStep = 1;
 		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
 		this.introResource = vsInfo.getResources().getChild("Introduction");
 		this.view = new IntroductionView();
@@ -109,10 +109,10 @@ public class IntroductionController extends AbstractVisualizationController {
 	}
 	
 	private void step1() {
-		this.animationStep++;
-		this.getView().getAnimationContainer()
-				.remove(this.getView().getCaesarIdeaImg());
-		this.getView().setCaesarIdeaImg(null);
+		this.introductionStep++;
+//		this.getView().getAnimationContainer()
+//				.remove(this.getView().getCaesarIdeaImg());
+//		this.getView().setCaesarIdeaImg(null);
 		this.getView()
 				.getExplanation()
 				.setText(
@@ -122,27 +122,27 @@ public class IntroductionController extends AbstractVisualizationController {
 												+ "the wild boars."));
 
 
-		// set the alignment of the masterPlan image.
-		GridBagConstraints courierConstraint = new GridBagConstraints();
-		courierConstraint.weightx = 1.0;
-		courierConstraint.weighty = 0.1;
-		courierConstraint.gridx = 0;
-		courierConstraint.gridy = 0;
-		courierConstraint.gridwidth = 1;
-
-		// take the image from the xml-resource.
-		this.getView().setCourier(
-				new ImageView(this.introResource.getChild("Courier")
-						.getAttributeValue("path")));
-		this.getView().getAnimationContainer()
-				.add(this.getView().getCourier(), courierConstraint);
-
-		this.getView().getAnimationContainer().repaint();
+//		// set the alignment of the masterPlan image.
+//		GridBagConstraints courierConstraint = new GridBagConstraints();
+//		courierConstraint.weightx = 1.0;
+//		courierConstraint.weighty = 0.1;
+//		courierConstraint.gridx = 0;
+//		courierConstraint.gridy = 0;
+//		courierConstraint.gridwidth = 1;
+//
+//		// take the image from the xml-resource.
+//		this.getView().setCourier(
+//				new ImageView(this.introResource.getChild("Courier")
+//						.getAttributeValue("path")));
+//		this.getView().getAnimationContainer()
+//				.add(this.getView().getCourier(), courierConstraint);
+//
+//		this.getView().getAnimationContainer().repaint();
 
 	}
 
 	private void step2() {
-		this.animationStep++;
+		this.introductionStep++;
 		this.getView()
 				.getExplanation()
 				.setText(
@@ -151,33 +151,33 @@ public class IntroductionController extends AbstractVisualizationController {
 										.tr("When Kryptolix noticed the unsuspecting and whistling roman courier, he punched him via the air-line<br>"
 												+ "back to Rome. And saw him losing a scroll."));
 
-		// set the alignment of boar.
-		GridBagConstraints boarConst = new GridBagConstraints();
-		boarConst.gridx = 4;
-		boarConst.gridy = 0;
-		this.getView().getAnimationContainer()
-				.add(this.getView().getBoar(), boarConst);
-
-		// set the alignment of obelix image.
-		GridBagConstraints obelixConstraint = new GridBagConstraints();
-		obelixConstraint.gridx = 3;
-		obelixConstraint.gridy = 0;
-
-		// take the image from the xml-resource.
-		this.getView().setKryptolix(
-				new ImageView(this.introResource.getChild("Obelix")
-						.getAttributeValue("path")));
-		this.getView().getAnimationContainer()
-				.add(this.getView().getKryptolix(), obelixConstraint);
+//		// set the alignment of boar.
+//		GridBagConstraints boarConst = new GridBagConstraints();
+//		boarConst.gridx = 4;
+//		boarConst.gridy = 0;
+//		this.getView().getAnimationContainer()
+//				.add(this.getView().getBoar(), boarConst);
+//
+//		// set the alignment of obelix image.
+//		GridBagConstraints obelixConstraint = new GridBagConstraints();
+//		obelixConstraint.gridx = 3;
+//		obelixConstraint.gridy = 0;
+//
+//		// take the image from the xml-resource.
+//		this.getView().setKryptolix(
+//				new ImageView(this.introResource.getChild("Obelix")
+//						.getAttributeValue("path")));
+//		this.getView().getAnimationContainer()
+//				.add(this.getView().getKryptolix(), obelixConstraint);
 
 	}
 
 	private void step3() {
-		this.animationStep++;
-		this.getView().getAnimationContainer()
-				.remove(this.getView().getCourier());
-		this.getView().setCourier(null);
-		this.getView().getAnimationContainer().remove(this.getView().getBoar());
+		this.introductionStep++;
+//		this.getView().getAnimationContainer()
+//				.remove(this.getView().getCourier());
+//		this.getView().setCourier(null);
+//		this.getView().getAnimationContainer().remove(this.getView().getBoar());
 
 		this.getView()
 				.getExplanation()
@@ -187,26 +187,25 @@ public class IntroductionController extends AbstractVisualizationController {
 										.tr("When reading the scroll the courier lost, Kryptolix identified Caesar's plans of<br>"
 												+ "conquering Gallia and Kryptolix and his awesome friends could defeat Caesar again!"));
 
-		GridBagConstraints orderConstraints = new GridBagConstraints();
-		orderConstraints.gridx = 5;
-		orderConstraints.gridy = 0;
-		this.getView().setOrders(
-				new ImageView(this.introResource.getChild("Orders")
-						.getAttributeValue("path")));
-		this.getView().getAnimationContainer()
-				.add(this.getView().getOrders(), orderConstraints);
-
-		this.getView().validate();
+//		GridBagConstraints orderConstraints = new GridBagConstraints();
+//		orderConstraints.gridx = 5;
+//		orderConstraints.gridy = 0;
+//		this.getView().setOrders(
+//				new ImageView(this.introResource.getChild("Orders")
+//						.getAttributeValue("path")));
+//		this.getView().getAnimationContainer()
+//				.add(this.getView().getOrders(), orderConstraints);
+//
+//		this.getView().validate();
 	}
 
 	private void step4() {
-		this.animationStep++;
-		this.getView().getAnimationContainer()
-				.remove(this.getView().getKryptolix());
-		this.getView().getAnimationContainer()
-				.remove(this.getView().getOrders());
-		this.getView().setKryptolix(null);
-		this.getView().setOrders(null);
+//		this.getView().getAnimationContainer()
+//				.remove(this.getView().getKryptolix());
+//		this.getView().getAnimationContainer()
+//				.remove(this.getView().getOrders());
+//		this.getView().setKryptolix(null);
+//		this.getView().setOrders(null);
 
 		this.getView()
 				.getExplanation()
@@ -235,7 +234,7 @@ public class IntroductionController extends AbstractVisualizationController {
 	 * @return the animationStep
 	 */
 	public int getAnimationStep() {
-		return this.animationStep;
+		return this.introductionStep;
 	}
 
 	@Override
