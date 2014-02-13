@@ -18,11 +18,9 @@ import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
- * TODO: Need new comments. This is the first view the user gets presented when he requests the
+ * This is the first view the user gets presented when he requests the
  * visualization of Caesar's cipher. Here the user gets to know what problems Caesar faced when his
- * enemies could intercept and read his orders. The JLabels will contain images that will represent
- * Caesar for example. Meanwhile user gets explanations shown that explain what what the animation
- * means and does.
+ * enemies could intercept and read his orders.
  * 
  * @author Wasilij Beskorovajnov.
  * 
@@ -49,9 +47,8 @@ public class IntroductionView extends VisualizationView {
 	private ImageView boar;
 	private ImageView caesarEvil;
 	private ImageView caesarIdeaImg;
-	/**
-	 * Labels that will contain img for animation.
-	 */
+	private ImageView kryptolix;
+	private ImageView orders;
 	private ImageView caesarImg;
 	private ImageView courier;
 
@@ -61,18 +58,10 @@ public class IntroductionView extends VisualizationView {
 	 */
 	private JLabel explanation;
 	private GridBagLayout introLayout;
-	private ImageView obelix;
-
-	private ImageView orders;
 	/**
 	 * Button needed for proceeding the stepwise animations.
 	 */
 	private JButton proceed;
-
-	// needed only for animations.
-	private Timer timer;
-
-	private int xCoordCourier;
 
 	/**
 	 * Constructor of this View.
@@ -100,7 +89,8 @@ public class IntroductionView extends VisualizationView {
 		// no need of BackButton. Button for returning to start screen already
 		// the "Exit" button.
 		this.getBackButton().setVisible(false);
-		this.getNextButton().setText(i18n.tr("Skip the introduction"));
+		this.getNextButton().setText(
+				IntroductionView.i18n.tr("Skip the introduction"));
 		this.getNextButton().setPreferredSize(new Dimension(350, 50));
 		// this.getNextButton().setFont(new Font("Arial", 2, 25));
 
@@ -121,16 +111,13 @@ public class IntroductionView extends VisualizationView {
 		proceedConstraint.gridx = 1;
 		proceedConstraint.gridy = 2;
 		proceedConstraint.gridwidth = 3;
-		this.setProceed(new JButton(i18n.tr("Tell me more.")));
+		this.setProceed(new JButton(IntroductionView.i18n.tr("Tell me more.")));
 		this.proceed.setPreferredSize(new Dimension(500, 50));
 		// this.proceed.setFont(new Font("Arial", 2, 25));
 		this.add(this.proceed, proceedConstraint);
 
 		// set the alignment of the masterPlan image.
 		GridBagConstraints planConstraint = new GridBagConstraints();
-		// planConstraint.anchor = GridBagConstraints.WEST;
-		// planConstraint.weightx = 1.0;
-		// planConstraint.weighty = 0.1;
 		planConstraint.gridx = 1;
 		planConstraint.gridy = 0;
 
@@ -141,16 +128,14 @@ public class IntroductionView extends VisualizationView {
 
 		// set the alignment of the Explanations.
 		GridBagConstraints explanationConstraint = new GridBagConstraints();
-		// explanationConstraint.anchor = GridBagConstraints.FIRST_LINE_START;
-		// explanationConstraint.weightx = 1.0;
-		// explanationConstraint.weighty = 1.0;
 		explanationConstraint.gridx = 1;
 		explanationConstraint.gridy = 1;
 		explanationConstraint.gridwidth = 5;
 		this.setExplanation(new JLabel(
 				"<html><body>"
-						+ i18n.tr("One fine day, ca 70 B.C., Caesar was puzzling on an ultra-mega-intelligent-plan<br>"
-								+ "to finally conquer Gallia and sent it to his generals in Gallia.")
+						+ IntroductionView.i18n
+								.tr("One fine day, ca 70 B.C., Caesar was puzzling on an ultra-mega-intelligent-plan<br>"
+										+ "to finally conquer Gallia and sent it to his generals in Gallia.")
 
 		));
 
@@ -162,45 +147,11 @@ public class IntroductionView extends VisualizationView {
 
 	}
 
-	// // Animations stubs.
-	//
-	// public void firstAnimation() {
-	// this.timer = new Timer(50, new ActionListener() {
-	//
-	// @Override
-	// public void actionPerformed(ActionEvent e) {
-	// if (getCourier().getX() < (getAnimationContainer().getWidth() - 200)) {
-	// animate();
-	// } else {
-	// getTimer().stop();
-	// }
-	// }
-	// });
-	// xCoordCourier = getCourier().getX();
-	// this.timer.start();
-	// }
-	//
-	// public void animate() {
-	// xCoordCourier += 10;
-	// int y = getCourier().getY();
-	// getCourier().setBounds(xCoordCourier, y, getPreferredSize().width,
-	// getPreferredSize().height);
-	// getCourier().validate();
-	// this.repaint();
-	// }
-
 	/**
 	 * @return the animationContainer
 	 */
 	public JPanel getAnimationContainer() {
 		return this.animationContainer;
-	}
-
-	/**
-	 * @return the background
-	 */
-	public ImageView getBackgroundImg() {
-		return this.backgroundImg;
 	}
 
 	/**
@@ -255,8 +206,8 @@ public class IntroductionView extends VisualizationView {
 	/**
 	 * @return the interceptor
 	 */
-	public ImageView getObelix() {
-		return this.obelix;
+	public ImageView getKryptolix() {
+		return this.kryptolix;
 	}
 
 	/**
@@ -274,41 +225,11 @@ public class IntroductionView extends VisualizationView {
 	}
 
 	/**
-	 * @return the timer
-	 */
-	public Timer getTimer() {
-		return this.timer;
-	}
-
-	/**
-	 * @return the xCoord
-	 */
-	public int getxCoordCourier() {
-		return this.xCoordCourier;
-	}
-
-	/**
 	 * @param animationContainer
 	 *            the animationContainer to set
 	 */
 	public void setAnimationContainer(JPanel animationContainer) {
 		this.animationContainer = animationContainer;
-	}
-
-	/**
-	 * @param background
-	 *            the background to set
-	 */
-	public void setBackgroundImg(ImageView background) {
-		this.backgroundImg = background;
-	}
-
-	/**
-	 * @param boar
-	 *            the boar to set
-	 */
-	public void setBoar(ImageView boar) {
-		this.boar = boar;
 	}
 
 	/**
@@ -355,8 +276,8 @@ public class IntroductionView extends VisualizationView {
 	 * @param interceptor
 	 *            the interceptor to set
 	 */
-	public void setObelix(ImageView interceptor) {
-		this.obelix = interceptor;
+	public void setKryptolix(ImageView interceptor) {
+		this.kryptolix = interceptor;
 	}
 
 	/**
@@ -373,22 +294,6 @@ public class IntroductionView extends VisualizationView {
 	 */
 	public void setProceed(JButton proceed) {
 		this.proceed = proceed;
-	}
-
-	/**
-	 * @param timer
-	 *            the timer to set
-	 */
-	public void setTimer(Timer timer) {
-		this.timer = timer;
-	}
-
-	/**
-	 * @param xCoord
-	 *            the xCoord to set
-	 */
-	public void setxCoordCourier(int xCoord) {
-		this.xCoordCourier = xCoord;
 	}
 
 }

@@ -13,9 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.xnap.commons.i18n.I18n;
-
-import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
@@ -58,12 +55,6 @@ public class CryptoView extends VisualizationView {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * localization.
-	 */
-	private static I18n i18n = Configuration.getInstance().getI18n(
-			CryptoView.class);
 
 	// GUI container for other GUI elements:
 	/**
@@ -138,13 +129,13 @@ public class CryptoView extends VisualizationView {
 	/**
 	 * Constructor.
 	 */
-	public CryptoView(final int MODE) {
+	protected CryptoView() {
 
 		// setup the layout.
 		this.setupViewLayout();
 
 		// setups the next and back buttons.
-		this.setupNavigation(MODE);
+		this.setupNavigation();
 
 		// build elements.
 		this.validate();
@@ -152,16 +143,6 @@ public class CryptoView extends VisualizationView {
 
 	// ----------------------------------------------------------------------------//
 	// -------------------------public methods------------------------------------//
-
-	/**
-	 * removes the alphabet.
-	 */
-	public void removeAlphabet() {
-		this.remove(this.alphabet);
-		this.alphabet = null;
-		this.validate();
-		this.repaint();
-	}
 
 	/**
 	 * Removes the keyboard from the view.
@@ -172,13 +153,13 @@ public class CryptoView extends VisualizationView {
 		this.validate();
 		this.repaint();
 	}
-
+	
 	/**
-	 * Removes the numpad from the view.
+	 * removes the alphabet.
 	 */
-	public void removeNumpad() {
-		this.remove(this.numpad);
-		this.numpad = null;
+	public void removeAlphabet() {
+		this.remove(this.alphabet);
+		this.alphabet = null;
 		this.validate();
 		this.repaint();
 	}
@@ -205,26 +186,8 @@ public class CryptoView extends VisualizationView {
 		this.validate();
 	}
 
-	/**
-	 * Creates the keyboard with numerical values and presents it.
-	 * 
-	 * @param input
-	 *            the textfield referred to the numpad.
-	 */
-	public void createNumpad(JTextField input) {
-		this.numpad = new NumpadView(input, NumpadView.NUMBER_MODE);
-		GridBagConstraints numpadConst = new GridBagConstraints();
-		numpadConst.anchor = GridBagConstraints.LINE_END;
-		numpadConst.weightx = 1.0;
-		numpadConst.weighty = 0.5;
-		numpadConst.gridx = 0;
-		numpadConst.gridy = 3;
-		numpadConst.gridwidth = 4;
-		numpadConst.gridheight = 5;
-		numpadConst.insets = new Insets(0, 10, 0, 200);
-		this.add(this.numpad, numpadConst);
-		this.validate();
-	}
+	// --------------------------------------------------------------------------------------//
+	// --------------------------------protected methods-------------------------------------//
 
 	/**
 	 * Creates all needed elements for the encryption/decryption phase.
@@ -232,7 +195,7 @@ public class CryptoView extends VisualizationView {
 	 * @param inputChars
 	 * @param key
 	 */
-	public void setupInOutElements(char[] inputChars, int key, final int mode) {
+	protected void setupInOutElements(char[] inputChars, int key) {
 
 		this.userInput = new JLabel[inputChars.length];
 		this.userOutput = new JTextField[inputChars.length];
@@ -251,62 +214,33 @@ public class CryptoView extends VisualizationView {
 			this.setupUserInput(i, inputChars[i]);
 
 			// setup the textfields for the IO.
-			this.setupUserOutput(i, inputChars[i], mode);
+			this.setupUserOutput(i, inputChars[i]);
 		}
 		this.userCharacterIOContainer.validate();
 	}
-
-	/**
-	 * Called when the user done the needed input in a valid way.
-	 * 
-	 * @param inputChars
-	 * @param key
-	 */
-	public void setupCoreExperimentElements(char[] inputChars, int key,
-			final int MODE) {
-		// User input will be now filled into the boxes. This field is not
-		// needed anymore.
-		this.removeUserIOContainer();
-		this.removeExplanations();
-
-		// setup IO.
-		this.setupInOutElements(inputChars, key, MODE);
-
-		// setup the alphabet.
-		this.setupAlphabet();
-
-		// setup the explanations.
-		String explanations = "<html><body>"
-				+ i18n.tr("Now it is up to you. Test your skills. Remember the key is")
-				+ " "
-				+ key
-				+ ".<br>"
-				+ i18n.tr("You need to add the key to the position of the letter your want to shift to get<br>"
-						+ "the needed cipher. If you get a bigger number then 25 you need to subtract 25 from it. <br>"
-						+ "For example: You want to encrypt X with the key 3. When you add 3 to X you get 23 + 3 = 26. <br>"
-						+ "26 is obvious bigger then 25. Then you subtract 26 - 25 = 1. This is your cipher. <br>"
-						+ "It is also called modulo calculation. For example 26 mod 25 = 1. But this is a little more complex<br>"
-						+ "and therefore not important here. You will see more in the Vigenère visualization.");
-		this.setupExplanations(explanations,
-				GridBagConstraints.LAST_LINE_START, 0, 0, 4);
-
-		// build the new view.
-		this.validate();
-		this.repaint();
+	
+	protected void setupAlphabet() {
+		this.alphabet = new AlphabetStripView();
+		GridBagConstraints alphConst = new GridBagConstraints();
+		alphConst.anchor = GridBagConstraints.CENTER;
+		alphConst.gridx = 1;
+		alphConst.gridy = 1;
+		alphConst.gridwidth = 26;
+		alphConst.gridheight = 2;
+		alphConst.fill = GridBagConstraints.HORIZONTAL;
+		this.add(this.alphabet, alphConst);
 	}
 
-	// ------------------------------------------------------------------------------------//
-	// ----------------------private methods------------------------------------------------//
-
-	private void removeExplanations() {
+	protected void removeUserIOContainer() {
+		this.remove(this.userCharacterIOContainer);
+		this.userCharacterIOContainer = null;
+	}
+	
+	protected void removeExplanations() {
 		this.remove(this.explanations);
 		this.explanations = null;
 	}
 
-	private void removeUserIOContainer() {
-		this.remove(this.userCharacterIOContainer);
-		this.userCharacterIOContainer = null;
-	}
 
 	protected void setupExplanations(String explanations, final int flag,
 			int yGrid, int xGrid, int widthGrid) {
@@ -322,6 +256,9 @@ public class CryptoView extends VisualizationView {
 		this.add(this.explanations, expConst);
 
 	}
+
+	// -------------------------------------------------------------------------------------//
+	// ----------------------private methods------------------------------------------------//
 
 	private void setupViewLayout() {
 		// set the layout to GridBagLayout.
@@ -378,8 +315,7 @@ public class CryptoView extends VisualizationView {
 
 	}
 
-	private void setupUserOutput(int i, char correspondingInputContent,
-			final int MODE) {
+	private void setupUserOutput(int i, char correspondingInputContent) {
 		// fields where the encrypted input is put in.
 		this.userOutput[i] = new JTextField();
 		this.userOutput[i].setName("" + correspondingInputContent);
@@ -387,9 +323,6 @@ public class CryptoView extends VisualizationView {
 		this.userOutput[i].setOpaque(true);
 		this.userOutput[i].setBorder(BorderFactory
 				.createLineBorder(Color.darkGray));
-		if (MODE == CryptoView.DEMONSTRATION_MODE) {
-			this.userOutput[i].setEditable(false);
-		}
 		GridBagConstraints outConst = new GridBagConstraints();
 		outConst.gridx = i;
 		outConst.gridy = 1;
@@ -399,7 +332,7 @@ public class CryptoView extends VisualizationView {
 		this.userCharacterIOContainer.add(this.userOutput[i], outConst);
 	}
 
-	private void setupNavigation(final int MODE) {
+	private void setupNavigation() {
 
 		// set up a container for the navigation Buttons (Next and Back).
 		this.setupNavigationContainer();
@@ -410,21 +343,12 @@ public class CryptoView extends VisualizationView {
 		this.remove(this.getBackButton());
 		this.remove(this.getNextButton());
 
-		// set up the alignment of the button back;
-		if (MODE == CryptoView.EXPERIMENT_MODE) {
-			this.setBackButton(new JButton(i18n.tr("Back to demonstration")));
-		} else {
-			this.setBackButton(new JButton(i18n.tr("Back to Introduction")));
-		}
+		this.setBackButton(new JButton());
 		this.getBackButton().setPreferredSize(new Dimension(350, 50));
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
-		if (MODE == CryptoView.EXPERIMENT_MODE) {
-			this.setNextButton(new JButton(i18n.tr("Go to decryption")));
-		} else {
-			this.setNextButton(new JButton(i18n.tr("Go to experiment")));
-		}
+		this.setNextButton(new JButton());
 		this.getNextButton().setPreferredSize(new Dimension(300, 50));
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
 
@@ -442,18 +366,6 @@ public class CryptoView extends VisualizationView {
 		navConst.gridheight = 1;
 		navConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.navigationPanel, navConst);
-	}
-
-	protected void setupAlphabet() {
-		this.alphabet = new AlphabetStripView();
-		GridBagConstraints alphConst = new GridBagConstraints();
-		alphConst.anchor = GridBagConstraints.CENTER;
-		alphConst.gridx = 1;
-		alphConst.gridy = 1;
-		alphConst.gridwidth = 26;
-		alphConst.gridheight = 2;
-		alphConst.fill = GridBagConstraints.HORIZONTAL;
-		this.add(this.alphabet, alphConst);
 	}
 
 	// ----------------------------------------------------------Getter/Setter--------------------------------------------------//
@@ -641,7 +553,7 @@ public class CryptoView extends VisualizationView {
 	 * @return the userCharacterIOContainer
 	 */
 	public JPanel getUserCharacterIOContainer() {
-		return userCharacterIOContainer;
+		return this.userCharacterIOContainer;
 	}
 
 	/**
@@ -656,7 +568,7 @@ public class CryptoView extends VisualizationView {
 	 * @return the caesarFrustrated
 	 */
 	public ImageView getCaesarFrustrated() {
-		return caesarFrustrated;
+		return this.caesarFrustrated;
 	}
 
 	/**
@@ -671,7 +583,7 @@ public class CryptoView extends VisualizationView {
 	 * @return the caesarHappy
 	 */
 	public ImageView getCaesarHappy() {
-		return caesarHappy;
+		return this.caesarHappy;
 	}
 
 	/**
