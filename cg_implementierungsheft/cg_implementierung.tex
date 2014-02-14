@@ -66,7 +66,7 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
 \section{Neue Klassen}
 
   \subsection{Paket edu.kit.iks.Cryptographics}
-    \subsubsection{IdlePopoverView}
+    \subsubsection{Klasse IdlePopoverView}
     Zur Zeit des Entwurfs war noch unklar, wie wir optimisch mit einem inaktiven Benutzer umgehen.
     Nach einigen Tests haben wir uns dazu entschieden, das existierende Popover-System zu verwenden. Daher wurde
     die Klasse IdlePopoverView nötig. Diese stellt einen kurzen Informationstext dar, der dem Benutzer erklärt,
@@ -89,7 +89,7 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
       \end{itemize}
 
   \subsection{Paket edu.kit.iks.CryptographicsLib}
-    \subsubsection{Configuration}
+    \subsubsection{Klasse Configuration}
     Während der Implementierung hat sich gezeigt, das an einigen Stellen Konstanten verwendet werden,
     beispielsweise die Zeit in Sekunden, nachdem der Benutzer als inaktiv gilt. Um diese global ändern zu können,
     wurde die Klasse Configuration angelegt. Die Werte stammen aus einer XML-Datei. Falls diese nicht existiert,
@@ -129,7 +129,7 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
       \end{itemize}
 
 
-    \subsubsection{Logger}
+    \subsubsection{Klasse Logger}
     Diese Klasse dient dem Zweck, während der Implementierung eine einheitliche Debuggingschnittstelle
     zu bieten, mögliche Exceptions durch Cryptographics abzufangen und in eine error.log-Datei zu schreiben,
     und Nutzerstatistiken in statistics.csv zu speichern. Sämtliche Methoden innerhalb dieser Klasse
@@ -156,7 +156,7 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
 			  die Exceptionmeldung sowie den Stacktrace der Exception in die error.log-Datei.
       \end{itemize}
 
-    \subsubsection{MouseClickListener}
+    \subsubsection{Klasse MouseClickListener}
     Einfacher Bequemlichkeitslistener für Mausklicks. Er implementiert sämtliche Methoden von 
     MouseListener, jedoch sind alle bis auf clicked() nur Stummel.\newline
 
@@ -170,6 +170,26 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
         \item abstract public void clicked(MouseEvent event)\newline
         	Muss implementiert werden, um zu definieren, was bei einem Mausklick geschehen soll.
       \end{itemize}
+      
+    \subsubsection{Klasse NumpadView}
+    Diese Klasse erzeugt ein einfaches Numpad mit Eingabetaste und Rücktaste.
+    
+    \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item JPanel
+        \item ActionListener
+      \end{itemize}
+
+    \textbf{Methoden}
+      \begin{itemize}
+        \item public NumpadView(JTextField textField, int mode)\newline
+        	Konstruktor der eine neue Instanz des Numpads erzeugt. textField ist das Textfeld,
+        	welches durch das Numpad manipuliert werden soll, mode ist der Modus welcher angewandt
+        	werden soll (Zifferneingabe oder Nummerneingabe).
+        \item public void actionPerformed(ActionEvent e)\newline
+        	Implementiert die actionPerformed()-Methode der Schnittstelle ActionListener. Hier
+        	werden die Tastenanschläge verarbeitet.
+      \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
 
@@ -180,7 +200,7 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanation}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
-   \subsubsection{CryptoView}
+   \subsubsection{Klasse CryptoView}
           Diese Klasse besteht aus dem Programmcode, der aus den vorherigen Klassen CryptoView, das jetzt CryptoExperimentView heißt,
           und CipherDemoView, das jetzt CryptoDemonstrationView heißt, rausfaktorisiert wurde.
           
