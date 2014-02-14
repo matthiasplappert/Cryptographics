@@ -16,6 +16,7 @@ import edu.kit.iks.CryptographicsLib.Logger;
 
 /**
  * This view let's us mix to colors to
+ * get a mixture color
  * 
  * @author kai
  *
@@ -43,6 +44,11 @@ public class ColorMix extends JPanel {
 	 * fires timer events to update coordinates
 	 */
 	private Timer timer;
+	
+	/*
+	 * frequency of timerevent
+	 */
+	private int timerInterval = 20;
 	
 	/* the middle part where the two circles will meet */
 	private int middle;
@@ -82,6 +88,12 @@ public class ColorMix extends JPanel {
 		this.ellip2 = new Ellipse2DwithColor(x2, y2, circleSize, circleSize, null);
 	}
 	
+	/**
+	 * will mix colors visually inside the JPanel
+	 * @param mix if true mixed, if false, stops mixing
+	 * @param repeat will periodically start all over again if true, to have continous animation
+	 * @param cb our nextstep to call when finished, only used when repeat set to false
+	 */
 	public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb) {
 		assert(this.ellip1.getColor() != null);
 		assert(this.ellip2.getColor() != null);
@@ -92,7 +104,7 @@ public class ColorMix extends JPanel {
 		this.y2 = originaly2;
 		if(mixcolors) {
 			if(repeat) {
-				this.timer = new Timer(20, new ActionListener() {
+				this.timer = new Timer(timerInterval, new ActionListener() {
 				
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
@@ -111,7 +123,7 @@ public class ColorMix extends JPanel {
 				});
 				timer.start();
 			} else {
-				this.timer = new Timer(20, new ActionListener() {
+				this.timer = new Timer(timerInterval, new ActionListener() {
 					
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
@@ -139,10 +151,15 @@ public class ColorMix extends JPanel {
 		}
 	}
 	
-	public void seperateColors(boolean mix, boolean repeat) {
+	/**
+	 * seperate colors instead of mixing them
+	 * @param seperate start if true, else stop
+	 * @param repeat repeat periodically if true, else don't
+	 */
+	public void seperateColors(boolean seperate, boolean repeat) {
 		assert(this.ellip1.getColor() != null);
 		assert(this.ellip2.getColor() != null);
-		this.mixcolors = mix;
+		this.mixcolors = seperate;
 		this.x1 = middle;
 		this.y1 = originaly1;
 		this.x2 = middle;
@@ -256,8 +273,10 @@ public class ColorMix extends JPanel {
 		this.mixedColor = new Color((int)(r1/1.5+r2/3)/2, (int)(g1/1.5+g2/3)/2, (int)(b1/1.5+b2/3)/2);
 	}
 
-	/*
-	 * set ellip color
+	/**
+	 * change the color of a circle
+	 * @param which 0 means first color, 1 means second
+	 * @param color the color to set it to
 	 */
 	public void setEllipColor(int which, Color color) {
 		if(which == 0) {
@@ -267,14 +286,26 @@ public class ColorMix extends JPanel {
 		}
 	}
 	
+	/**
+	 * return the mixed color
+	 * @return the mixed color
+	 */
 	public Color getMixedColor() {
 		return mixedColor;
 	}
 
+	/**
+	 * use other colormixing formula if true
+	 * @return true if use other colormix formula
+	 */
 	public boolean isComputeFinalMix() {
 		return computeFinalMix;
 	}
 
+	/**
+	 * set the computeFinalMix value
+	 * @param computeFinalMix true if other colormix formula, else false
+	 */
 	public void setComputeFinalMix(boolean computeFinalMix) {
 		this.computeFinalMix = computeFinalMix;
 	}

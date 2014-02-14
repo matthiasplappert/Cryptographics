@@ -12,6 +12,12 @@ import org.xnap.commons.i18n.I18n;
 import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
+/**
+ * Explain the aim of DH-KE
+ * 
+ * @author kai
+ *
+ */
 public class ExplainAimView extends VisualizationView {
 	
 	/**
@@ -19,12 +25,16 @@ public class ExplainAimView extends VisualizationView {
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(ExplainAimView.class);
 	
+	/* holds the explanation */
 	private JLabel aimExplain;
 
+	/* demonstrate the problem of just sending the color */
 	private ColorChannel cc;
 
+	/* no help need here */
 	private String help = i18n.tr("No help");
 	
+	/* the explanation string */
 	private String explain = i18n.tr("Our aim is to exchange a secret on a public channel, " +
 			"without Eve getting the secret too. Therefore we can't simply send the secret, as shown " +
 			"in the figure above as Eve would get the secret too. Thus we need " +
@@ -32,8 +42,10 @@ public class ExplainAimView extends VisualizationView {
 	
 	private static final long serialVersionUID = 5986978581223106407L;
 
+	/**
+	 * Layout and build the subcomponents
+	 */
 	public ExplainAimView() {
-		// TODO move some stuff out of the constructor into a start method
 		super();
 		GridBagLayout layout = new GridBagLayout();
 		this.setLayout(layout);
@@ -60,19 +72,24 @@ public class ExplainAimView extends VisualizationView {
 		gbc.weighty = 0.1;
 		gbc.fill = GridBagConstraints.BOTH;
 		this.add(this.cc, gbc);
-		//TODO try not to do work in constructor
 		this.cc.setColorNextToSend(Color.BLUE);
 		this.cc.setKeepColor(false);
 		this.cc.setRepeat(true);
 		this.cc.sendToBob(null, false);
 	}
 
-	
+	/**
+	 * get the color channel
+	 * @return the color channel
+	 */
 	public ColorChannel getColorChannel() {
 		return this.cc;
 	}
 
-
+	/**
+	 * explain string
+	 * @return the explain string
+	 */
 	public String getHelp() {
 		return help ;
 	}

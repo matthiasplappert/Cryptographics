@@ -359,62 +359,358 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
   
     \subsubsection{Klasse AbstractController}
+    Diese Klasse wurde nicht gebraucht, ergo existiert sie nicht mehr
 
   	\subsubsection{Klasse Model}
+    Singleton-Pattern wurde rückgängig gemacht, da die unterschiedlichen Zustände
+    in einer Klasse behandelt werden und somit globale Variablen (also Singletons)
+    unnötig werden
+
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item Konstruktor ist nicht mehr privat\newline
+           \item public Model getInstance() wurde entfernt\newline
+           \item public Color getPublicColor() wurde hinzugefügt\newline
+           \item public void setPublicColor() wurde hinzugefügt\newline
+           \item public void getAlicePublicColor() wurde entfernt\newline
+           \item public void setAlicePublicColor() wurde entfernt\newline
+           \item public Color getSharedColor() wurde entfernt\newline
+           \item public void setSharedColor(Color setSharedColor) wurde entfernt\newline
+           \item public void getBobPublicColor() wurde entfernt\newline
+           \item public Color setBobPublicColor(Color bobPublicColor) wurde entfernt\newline
+           \end{itemize}
 
 	\subsubsection{Klasse DHVisualizationInfo}
+    Hat sich entwurfstechnisch nicht geändert
 
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Demonstration}
 
 	\subsubsection{Klasse ExplainAimController}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+           \end{itemize}
 
 	\subsubsection{Klasse ExplainAimView}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von VisualizationView statt JPanel\newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public ColorChannel getColorChannel() wurde hinzugefügt\newline
+           \item public String getHelp() wurde hinzugefügt\newline
+           \end{itemize}
 
 	\subsubsection{Klasse OnewayController}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+           \end{itemize}
 
 	\subsubsection{Klasse OnewayView}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von VisualizationView statt JPanel\newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public String getHelp() wurde hinzugefügt\newline
+           \end{itemize}
 
 	\subsubsection{Klasse ExplainKeyExchangeController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse ExplainKeyExchangeView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse AliceChooseSecretController}
+    Diese Klasse wurde in DHDemoController umbenannt
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+           \end{itemize}
 
 	\subsubsection{Klasse AliceChooseSecretView}
+    Diese Klasse wurde in DHDemoView umbenannt
 
 	\subsubsection{Klasse BobChooseSecretController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse BobChooseSecretView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse MixColorController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse MixColorView}
+    Diese Klasse wurde entfernt
+
+	\subsubsection{Klasse DemoOneWayController}
+    Diese Klasse wurde neu hinzugefügt
+    Der Controller der DemoOneWayView
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+           \end{itemize}
+
+	\subsubsection{Klasse DemoOneWayView}
+    Diese Klasse wurde neu hinzugefügt
+    Diese View zeigt wie Einwegfunktionen agieren
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von VisualizationView statt JPanel
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public DemoOneWayView() wurde hinzugefügt\newline
+               Der Konstruktor positioniert seine Subkomponenten etc.
+           \item public String getHelp() wurde hinzugefügt\newline
+               Gibt einen Hilfe-Zeichenkette zurück
+           \end{itemize}
+
+
+	\subsubsection{Klasse ColorMix}
+    Diese Klasse wurde neu hinzugefügt
+    Ihre Aufgabe ist es als JPanel grafisch Farben zu mischen
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von JPanel\newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public ColorMix(int circleSize, Dimension dimension) wurde hinzugefügt\newline
+           \item public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb) wurde hinzugefügt\newline
+               Mischt grafisch zwei Farben zusammen
+           \item public void seperateColors(boolean seperate, boolean repeat) wurde hinzugefügt\newline
+               Trennt grafisch zwei Farben
+           \item public void setEllipColor(int which, Color color) wurde hinzugefügt\newline
+               Setzt erste oder zweite Farbe auf color
+           \item public Color getMixedColor() wurde hinzugefügt\newline
+               Gibt die gemischte Farbe zurück
+           \item public boolean isComputeFinalMix() wurde hinzugefügt\newline
+               Falls wahr, wird eine andere Formel zum Farbenmischen verwendet
+           \item public void setComputeFinalMix(boolean computeFinalMix)\newline
+               Setzt den Wert von computeFinalMix
+           \end{itemize}
+
+	\subsubsection{Klasse ColorChannel}
+    Diese Klasse wurde neu hinzugefügt
+    Ihre Aufgabe ist es als JPanel grafisch den
+    Kommunikationskanal zwischen Alice, Bob und Eve
+    zu vermitteln und Farben über diesen Kanal zu visuell
+    zu verschicken.
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von JPanel\newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public ColorChannel(Dimension d, int circleSize) wurde hinzugefügt\newline
+               Der Konstruktor nimmt die Dimension und die Größe der Kreise als Parameter,
+               und errechnet daraus wie die restlichen Elemente positioniert werden
+           \item public void sendToBob(final NextStepCallback cb, final boolean keepFirst) wurde hinzugefügt\newline
+               Schickt eine Farbkreis von Alice zu Bob, cb ist der Callback der aufgerufen wird, wenn dies
+               erledigt wurde.
+               Wenn keepFirst wahr ist, wird die Farbe neben Alice dauerhaft dargestellt
+           \item public void sendToAlice(final NextStepCallback cb, final boolean keepFirst) wurde hinzugefügt\newline
+               Tut das gleiche wie sendToBob, nur dass von Bob nach Alice die Farbe verschickt wird und
+               wenn keepFirst den Wert wahr hat, wird die Farbe neben Bob visualisiert
+           \item public void chooseColorToKeep(Color color, int who) wurde hinzugefügt\newline
+               Ein Farbkreis mit der Farbe color wird neben who hinzugefügt also neben alice, bob oder eve
+           \item public void stopTimer() wurde hinzugefügt\newline
+               Stoppt den Timer. Muss aufgerufen werden wenn ColorChannel nicht mehr verwendet wird,
+               da sonst der Timer weiterlaufen könnte
+           \item public void loadView() wurde hinzugefügt\newline
+               Tut im Grunde das gleiche wie im Konstruktor, nur dass diese Funktion dafür
+               aufgerufen werden muss, wenn sich die Größe ändert
+           \item public void choosePublicColor(Color color) wurde hinzugefügt\newline
+               Setzt die öffentliche Farbe
+           \item public void chooseAlicePrivateColor(Color color) wurde hinzugefügt\newline
+               Setzt die private Farbe von Alice
+           \item public void chooseBobPrivateColor(Color color) wurde hinzugefügt\newline
+               Setzt die private Farbe von Bob
+           \item public void mixAlicePrivatePublic() wurde hinzugefügt\newline
+               Mischt die private Farbe von Alice und die öffentliche Farbe
+               und speichert diese
+           \item public void mixBobPrivatePublic() wurde hinzugefügt\newline
+               Mischt die private Farbe von Bob und die öffentliche Farbe
+               und speichert diese
+           \item public void sendPublicColor() wurde hinzugefügt\newline
+               Sendet die öffentliche Farbe von Alice zu Bob
+           \item public void sendAliceMixedColorToBob(NextStepCallback cb) wurde hinzugefügt\newline
+               Sendet die Mixtur von Alice zu Bob, und ruft cb auf wenn dies geschehen ist
+           \item public void sendBobMixedColorToAlice(NextStepCallback cb) wurde hinzugefügt\newline
+               Sendet die Mixtur von Bob zu Alice , und ruft cb auf wenn dies geschehen ist
+           \item public void mixAliceFinalSecret(NextStepCallback cb) wurde hinzugefügt\newline
+               Mischt das gemeinsame Geheimnis zusammen und ruft cb auf, wenn dies geschehen ist
+           \item public void mixBobFinalSecret(NextStepCallback cb) wurde hinzugefügt\newline
+               Mischt das gemeinsame Geheimnis zusammen und ruft cb auf, wenn dies geschehen ist
+           \item public boolean isRepeat() wurde hinzugefügt\newline
+               Wahr wenn das Senden in einer periodischen Animation laufen soll
+           \item public void setRepeat(boolean repeat) wurde hinzugefügt\newline
+               Setzt den repeat Wert
+           \item public Color getColor() wurde hinzugefügt\newline
+               Gibt die Farbe die als nächstes versendet wird zurück
+           \item public void setColorNextToSend(Color color) wurde hinzugefügt\newline
+               Setze die Farbe die als nächstes versendet werden soll
+           \item public boolean isKeepColor() wurde hinzugefügt\newline
+               Wenn Wahr, werden die verschickten Farben neben den Empfängern visualisiert
+           \item public Color getPublicColor() wurde hinzugefügt\newline
+               Gibt die öffentliche Farbe zurück
+           \item public Color getAlicePrivateColor() wurde hinzugefügt\newline
+               Gibt die private Farbe von Alice zurück
+           \item public Color getAliceMixedColor() wurde hinzugefügt\newline
+               Gibt die Mixtur von öffentlicher und privater Farbe von Alice zurück
+           \item public Color getBobPrivateColor() wurde hinzugefügt\newline
+               Gibt die private Farbe von Bob zurück
+           \item public Color getBobMixedColor() wurde hinzugefügt\newline
+               Gibt die Mixtur von öffentlicher und privater Farbe von Bob zurück
+           \end{itemize}
+
+	\subsubsection{Klasse ColorChooser}
+    Diese Klasse wurde neu hinzugefügt
+    Dieses JPanel erlaubt uns eine Farbe auszuwählen
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von JPanel\newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public ColorChooser(Dimension d, Color color, Color[] colors) wurde hinzugefügt\newline
+               Der Konstruktor nimmt die Größe des JPanel als Parameter,
+               die Farbe die als erstes angezeigt werden soll, nämlich color,
+               und eine Liste an Farben aus denen man seine Farbe wählen kann colors
+           \item public Color getCurrentColor wurde hinzugefügt\newline
+               Gibt die momentan ausgewählte Farbe zurück
+           \item public void setToChooseFrom(Color[] colors) wurde hinzugefügt\newline
+               Setze die Farben die man wählen kann neu
+           \item public Color[] getToChooseFrom() wurde hinzugefügt\newline
+               Gebe die Farben zurück, die man wählen kann
+           \end{itemize}
+
+	\subsubsection{Klasse Ellipse2DwithColor}
+    Diese Klasse wurde neu hinzugefügt
+    Diese Klasse ist ein Wrapper um Ellipse2D um
+    sie zusätzlich mit einer Farbe zu assozieren
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von Ellipse2D\newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public Ellipse2DwithColor(double x, double y, double w, double h) wurde hinzugefügt\newline
+               Gleicht dem Konstruktor der Oberklasse und setzt die Farbe auf Schwarz
+           \item public Ellipse2DwithColor(double x, double y, double w, double h, Color color) wurde hinzugefügt\newline
+               Gleicht dem Konstruktor der Oberklasse und setzt die Farbe auf color
+           \item public Color getColor() wurde hinzugefügt\newline
+               Gibt die aktuelle Farbe zurück
+           \item public void setColor(Color color) wurde hinzugefügt\newline
+               Setzt einen neuen Wert für die aktuelle Farbe
+           \end{itemize}
+
+	\subsubsection{Interface NextStepCallback}
+    Diese Interface wurde neu hinzugefügt
+    Dient als Imitator von Funktionen höherer Ordnung,
+    da Java diese nicht hat
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public void callback() wurde hinzugefügt\newline
+               Unser Callback
+           \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Experiment}
 
 	\subsubsection{Klasse YourTurnController}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+        \end{itemize}
 
 	\subsubsection{Klasse YourTurnView}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt jetzt von VisualizationView statt JPanel\newline
+        \end{itemize}
+
+	\subsubsection{Klasse DHExperimentController}
+    Diese Klasse wurde neu hinzugefügt
+    Sie ist der zur DHExperimentView korrespondierende Controller
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+        \end{itemize}
+
+	\subsubsection{Klasse DHExperimentView}
+    Diese Klasse wurde neu hinzugefügt
+    Dient als View zum DH Experiment
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt von JPanel\newline
+        \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public DHExperimentView() wurde hinzugefügt\newline
+               Der Konstruktor erstellt seine Subkomponenten und
+               positioniert diese Korrekt
+           \item public void setRemember(ActionListener remember) wurde hinzugefügt\newline
+               Merkt sich einen ActionListener damit die View seinem Button den ursprünglichen
+               ActionListener wieder setzen kann
+           \item public String getHelp() wurde hinzugefügt\newline
+               Gibt einen Hilfe-Zeichenkette zurück
+           \end{itemize}
+
+	\subsubsection{Klasse CongratsController}
+    Diese Klasse wurde neu hinzugefügt
+    Sie ist der zur CongratsView korrespondierende Controller
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt von AbstractVisualizationController \newline
+           \end{itemize}
+
+	\subsubsection{Klasse CongratsView}
+    Diese Klasse wurde neu hinzugefügt
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt von JPanel \newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public CongratsView() wurde hinzugefügt
+               Der Konstruktor erstellt und positioniert seine Elemente
+           \item public String getHelp() wurde hinzugefügt
+               Gebe eine Hilfe-Zeichenkette zurück
+           \end{itemize}
 
 	\subsubsection{Klasse ChoosePublicColorController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse ChoosePublicColorView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse SendColorController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse SendColorView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse ChooseSecretColorController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse ChooseSecretColorView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse SendRightColorController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse SendRightColorView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse MixFinalSecretController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse MixFinalSecretView}
+    Diese Klasse wurde entfernt
 	
  \restoregeometry
 

@@ -37,94 +37,96 @@ public class ColorChannel extends JPanel {
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(ColorChannel.class);
 	
-	/*
+	/**
 	 * remembers the colors of alice,bob,eve
 	 */
 	private Model model;
 	
-	/*
+	/**
 	 * This views are used for mixing the shared secrets of alice and bob
 	 */
 	private ColorMix cm1, cm2;
 	
-	/*
+	/**
 	 * we use this as a container for cm1 and cm2
 	 */
 	private JPanel container;
 	
-	/* the coordinates of the circles */
+	/** the coordinates of the circles */
 	private int x1, y1, x2, y2;
 	
-	/* the x coordinates for the communications lines */
+	/** the x coordinates for the communications lines */
 	private int leftEnd, rightEnd, middle;
 	
-	/* the y coordinates for the communications lines 
+	/** the y coordinates for the communications lines 
 	 * middleCircle and rightCircle are basically
 	 * the same like middle and rightEnd but corrected
 	 * by the size of the circles */
 	private int lowerEnd, upperEnd, middleCircle, rightCircle;
 	
-	/* 
+	/**
 	 * the original coordinate values
 	 */
 	private int originalx1, originaly1, originalx2, originaly2;
 	
-	/* kept colors are drawn to the screen*/
+	/** kept colors are drawn to the screen*/
 	private ArrayList<Ellipse2DwithColor> keptColors;
 	
-	/* those are used for sending over the channel */
+	/** those are used for sending over the channel */
 	private Ellipse2DwithColor ellip, ellip2;
 	
-	/* the circles that are displayed next to alice, bob and eve,
+	/** the circles that are displayed next to alice, bob and eve,
 	 * need to know how many each one has */
 	private int[] numOfCircles;
 	
-	/* the color to send next */
+	/** the color to send next */
 	private Color colorNextToSend = Color.BLACK;
 	
-	/* the color of the channel, that means the lines */
+	/** the color of the channel, that means the lines */
 	private Color channelColor = Color.BLACK;
 	
-	/* is this the firstCall of the sendMethod,
+	/** is this the firstCall of the sendMethod,
 	 * first means the first timer event
 	 */
 	private boolean firstTimerEventAlice, firstTimerEventBob;
 
-	/* repeat the sending of the color
+	/** repeat the sending of the color
 	 * if true
 	 */
 	private boolean repeatPeriodically;
 
-	/* diameter of the ellipses2d circles */
+	/** diameter of the ellipses2d circles */
 	private int circleSize = 50;
 	
-	/* while sending these values will be true */
+	/** while sending these values will be true */
 	private boolean sendAlice, sendBob;
 	
-	/* when true, all received colors will still
+	/** when true, all received colors will still
 	 * be drawn next to the receivers, so that we
 	 * know which person  got which color */
 	private boolean keepCircles;
 	
-	/*
+	/**
 	 * used for firing timer evers to update the coordinates etc.
 	 */
 	private Timer timer;
 	
-	/* how quick shall the timer event be fired */
+	/** how quick shall the timer event be fired */
 	private int timerInterval = 40;
 
-	/*
+	/**
 	 * Constructor takes the size of JPanel, and
 	 * the size of the circles. From there
 	 * it computes the position for the communication
 	 * channel and plot everything correctly
+	 * 
+	 * @param d the size of JPanel
+	 * @param circleSize the diameter of the circles
 	 */
 	public ColorChannel(Dimension d, int circleSize) {
 		container = new JPanel();
 		container.setSize(new Dimension((int)d.getWidth(), (int)d.getHeight()/3));
 		container.setPreferredSize(new Dimension((int)d.getWidth(), (int)d.getHeight()/3));
-		//TODO add conditional flag to use color mixers or not
 		this.cm1 = new ColorMix(circleSize, new Dimension((int)d.getWidth()/2, (int)d.getHeight()/4));
 		this.cm2 = new ColorMix(circleSize, new Dimension((int)d.getWidth()/2, (int)d.getHeight()/4));
 		this.setLayout(new BorderLayout());
@@ -208,8 +210,11 @@ public class ColorChannel extends JPanel {
 		g2.drawString(i18n.tr("Eve"), (x1+x2)/2 - 15, x4-10);
 	}
 	
-	// TODO refactor sendToBob and sendToAlice into one method
-	// instead of waiting for arrival of the message to bob/alice 
+	/**
+	 * send a color previously set to Bob
+	 * @param cb the step that should be called when this method is finished
+	 * @param keepFirst do we want to show the sent color after this method is finished
+	 */
 	public void sendToBob(final NextStepCallback cb, final boolean keepFirst) {
 		if(sendAlice) {
 			/* don't want to send colors
@@ -220,7 +225,6 @@ public class ColorChannel extends JPanel {
 		this.sendBob = true;
 		this.ellip.setColor(this.colorNextToSend);
 		this.ellip2.setColor(this.colorNextToSend);
-		//TODO remove hardcoded values
 		this.x1 = this.leftEnd;
 		this.x2 = this.middleCircle;
 		this.y2 = this.originaly2;
@@ -228,7 +232,6 @@ public class ColorChannel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO remove hardcoded values
 				Logger.d(this.getClass().getName(),"sendToBob" , "timer event");
 				if(firstTimerEventBob && !repeatPeriodically && keepFirst) {
 					chooseColorToKeep(colorNextToSend, 0);
@@ -266,6 +269,11 @@ public class ColorChannel extends JPanel {
 		timer.start();
 	}
 	
+	/**
+	 * send a color previously set to Alice
+	 * @param cb the step that should be called when this method is finished
+	 * @param keepFirst do we want to show the sent color after this method is finished
+	 */
 	public void sendToAlice(final NextStepCallback cb, final boolean keepFirst) {
 		if(sendBob) {
 			/* don't want to send if there
@@ -278,7 +286,6 @@ public class ColorChannel extends JPanel {
 		this.ellip2.setColor(this.colorNextToSend);
 		this.x1 = this.rightCircle;
 		this.x2 = this.middleCircle;
-		//TODO refactor
 		this.y2 = this.originaly2;
 		timer = new Timer(timerInterval, new ActionListener() {
 			
@@ -359,8 +366,10 @@ public class ColorChannel extends JPanel {
 		return -1;
 	}
 	
-	/*
+	/**
 	 * add a kept circle to alice/bob/eve
+	 * @param color the color of the circle to keep
+	 * @param who alice, bob or eve
 	 */
 	public void chooseColorToKeep(Color color, int who) {
 		this.keptColors.add(new Ellipse2DwithColor(computeXCoordinate(numOfCircles[who], who), computeYCoordinate(numOfCircles[who], who), circleSize, circleSize, color));
@@ -368,7 +377,7 @@ public class ColorChannel extends JPanel {
 		repaint();
 	}
 
-	/*
+	/**
 	 * we need to stop the timer when we unload the view,
 	 * since garbage collector won't do that
 	 * for us
@@ -379,9 +388,9 @@ public class ColorChannel extends JPanel {
 		}
 	}
 
-	/*
+	/**
 	 * basically does the same like in the constructor
-	 * might remove this therefore
+	 * used if size of jpanel was changed
 	 */
 	public void loadView() {
 		this.leftEnd = (int) (0.25*this.getWidth());
@@ -403,56 +412,61 @@ public class ColorChannel extends JPanel {
 		ellip2.setFrame(x2, y2, circleSize, circleSize);
 	}
 	
-	/*
+	/**
 	 * the public color, this is the color
 	 * send when sendPublicColor is called
+	 * @param color the color we'll set the public to
 	 */
 	public void choosePublicColor(Color color) {
 		this.model.setPublicColor(color);
 	}
 	
-	/*
+	/**
 	 * chooses alices private color, and adds
 	 * it to the kept colors
+	 * @param color alices new private color
 	 */
 	public void chooseAlicePrivateColor(Color color) {
 		this.model.setAlicePrivateColor(color);
 		this.chooseColorToKeep(color, 0);
 	}
 	
-	/*
+	/**
 	 * chooses bobs private color, and adds
 	 * it to the kept colors
+	 * @param color bobs new private color
 	 */
 	public void chooseBobPrivateColor(Color color) {
 		this.model.setBobPrivateColor(color);
 		this.chooseColorToKeep(color, 1);
 	}
 	
-	/*
+	/**
 	 * compute alices mixed color
 	 */
 	public void mixAlicePrivatePublic() {
 		this.model.mixAlicePrivateAndPublic();
 	}
 	
-	/*
+	/**
 	 * compute bobs mixed color
 	 */
 	public void mixBobPrivatePublic() {
 		this.model.mixBobPrivateAndPublic();
 	}
 	
-	/*
+	/**
 	 * send the public color to bob
+	 * @param cb our callback to call, when finished
 	 */
 	public void sendPublicColor(NextStepCallback cb) {
 		this.setColorNextToSend(this.model.getPublicColor());
 		this.sendToBob(cb, true);
 	}
 	
-	/*
+	/**
 	 * send alice mixed color to bob
+	 * @param cb our callback to call, when finished
 	 */
 	public void sendAliceMixedColorToBob(NextStepCallback cb) {
 		this.model.mixAlicePrivateAndPublic();
@@ -460,8 +474,9 @@ public class ColorChannel extends JPanel {
 		this.sendToBob(cb, true);
 	}
 	
-	/*
+	/**
 	 * send bob mixed color to alice
+	 * @param cb our callback to call, when finished
 	 */
 	public void sendBobMixedColorToAlice(NextStepCallback cb) {
 		this.model.mixBobPrivateAndPublic();
@@ -469,8 +484,9 @@ public class ColorChannel extends JPanel {
 		this.sendToAlice(cb, true);
 	}
 	
-	/*
+	/**
 	 * mix alice final secret
+	 * @param cb our callback to call, when finished
 	 */
 	public void mixAliceFinalSecret(NextStepCallback cb) {
 		assert(model.getBobMixedColor() != null);
@@ -481,8 +497,9 @@ public class ColorChannel extends JPanel {
 		this.cm1.mixColors(true, false, cb);
 	}
 	
-	/*
+	/**
 	 * mix bob final secret
+	 * @param cb our callback to call, when finished
 	 */
 	public void mixBobFinalSecret(NextStepCallback cb) {
 		assert(model.getAliceMixedColor() != null);
@@ -493,81 +510,93 @@ public class ColorChannel extends JPanel {
 		this.cm2.mixColors(true, false, cb);
 	}
 	
-	/*
+	/**
 	 * returns true, if sending should
 	 * be priodically repeated
+	 * @return true if repeat, else false
 	 */
 	public boolean isRepeat() {
 		return repeatPeriodically;
 	}
 
-	/*
+	/**
 	 * set the repeat value
+	 * @param repeat or not
 	 */
 	public void setRepeat(boolean repeat) {
 		this.repeatPeriodically = repeat;
 	}
 	
-	/*
+	/**
 	 * get the next color to send
+	 * @return the color next to send
 	 */
 	public Color getColor() {
 		return colorNextToSend;
 	}
 
-	/* let the user of this class
+	/**
+	 * let the user of this class
 	 * choose the color to send
+	 * @param 
 	 */
 	public void setColorNextToSend(Color color) {
 		this.colorNextToSend = color;
 	}
 	
-	/*
+	/**
 	 * if true the send colors are
 	 * kept at the receivers
+	 * @return true if we keep colors, else false
 	 */
 	public boolean isKeepColor() {
 		return keepCircles;
 	}
 
-	/*
+	/**
 	 * set if we should keep the
 	 * next sent colors
+	 * @param keep color yes or no
 	 */
 	public void setKeepColor(boolean keepColor) {
 		this.keepCircles = keepColor;
 	}
 
-	/*
+	/**
 	 * get the public color
+	 * @return the public color
 	 */
 	public Color getPublicColor() {
 		return this.model.getPublicColor();
 	}
 
-	/*
+	/**
 	 * get alices private color
+	 * @return alices private color
 	 */
 	public Color getAlicePrivateColor() {
 		return this.model.getAlicePrivateColor();
 	}
 	
-	/*
+	/**
 	 * get alices mixed color
+	 * @return alices mixed color
 	 */
 	public Color getAliceMixedColor() {
 		return this.model.getAliceMixedColor();
 	}
 	
-	/*
+	/**
 	 * get bobs private color
+	 * @return bobs private color
 	 */
 	public Color getBobPrivateColor() {
 		return this.model.getBobPrivateColor();
 	}
 
-	/*
+	/**
 	 * get bobs mixed color
+	 * @return bobs mixed color if it was computed
 	 */
 	public Color getBobMixedColor() {
 		return this.model.getBobMixedColor();
