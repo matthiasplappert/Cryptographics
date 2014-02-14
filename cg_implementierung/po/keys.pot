@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-02-14 16:04+0100\n"
-"PO-Revision-Date: 2014-02-14 16:04+0100\n"
+"POT-Creation-Date: 2014-02-14 17:21+0100\n"
+"PO-Revision-Date: 2014-02-14 17:21+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,11 +31,11 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:66
+#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:73
 msgid "Exit"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:84
+#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:92
 msgid "Help"
 msgstr ""
 
@@ -62,6 +62,10 @@ msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:114
 msgid "Caesar"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:122
+msgid "http://en.wikipedia.org/wiki/Caesar_cipher"
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationController.java:159
@@ -466,6 +470,10 @@ msgstr ""
 msgid "Diffie-Hellman"
 msgstr ""
 
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/DHVisualizationInfo.java:116
+msgid "http://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange"
+msgstr ""
+
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/ColorChannel.java:206
 msgid "Alice"
 msgstr ""
@@ -697,6 +705,10 @@ msgstr ""
 msgid ""
 "Get to know how Vigenère fixed the weaknesses of Caesar to make a 'secure' "
 "cipher for many hundred years!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/VigenereVisualizationInfo.java:62
+msgid "http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher"
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/FirstDemonstrationController.java:33

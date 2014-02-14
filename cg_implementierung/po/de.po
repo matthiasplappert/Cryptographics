@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-02-14 16:04+0100\n"
-"PO-Revision-Date: 2014-02-14 16:39+0100\n"
+"POT-Creation-Date: 2014-02-14 17:19+0100\n"
+"PO-Revision-Date: 2014-02-14 17:19+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -35,11 +35,11 @@ msgstr "Weiter"
 msgid "Start"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:66
+#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:73
 msgid "Exit"
 msgstr "Beenden"
 
-#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:84
+#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:92
 msgid "Help"
 msgstr "Hilfe"
 
@@ -77,6 +77,10 @@ msgstr ""
 #: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:114
 msgid "Caesar"
 msgstr "Caesar"
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:122
+msgid "http://en.wikipedia.org/wiki/Caesar_cipher"
+msgstr "http://de.wikipedia.org/wiki/Caesar-Verschl%C3%BCsselung"
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationController.java:159
 msgid ""
@@ -593,6 +597,10 @@ msgstr ""
 msgid "Diffie-Hellman"
 msgstr "Diffie-Hellman"
 
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/DHVisualizationInfo.java:116
+msgid "http://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange"
+msgstr "http://de.wikipedia.org/wiki/Diffie-Hellman-Schl%C3%BCsselaustausch"
+
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/ColorChannel.java:206
 msgid "Alice"
 msgstr ""
@@ -904,6 +912,12 @@ msgid ""
 msgstr ""
 "Seh dir an, wie Vigenère die Schwäche der Caesar-Chiffre beseitigte, und "
 "eine für viele hunderte Jahre 'sichere' Chiffre erschuf."
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/VigenereVisualizationInfo.java:62
+msgid "http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher"
+msgstr ""
+"http://de.wikipedia.org/wiki/Polyalphabetische_Substitution#Vigen.C3.A8re-"
+"Verschl.C3.BCsselung"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/FirstDemonstrationController.java:33
 msgid "There is nothing to help, just read the text"
