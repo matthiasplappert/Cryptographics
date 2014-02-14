@@ -76,6 +76,8 @@ public class IntroductionController extends AbstractVisualizationController {
 		});
 
 	}
+	
+	
 	//----------------------------------------------------------//
 	//--------------------private methods-----------------------//
 	
