@@ -49,7 +49,10 @@ public class FirstDemonstrationController extends AbstractVisualizationControlle
 	public String getHelp() {
 		return i18n.tr("There is nothing to help, just read the text");
 	}
-
+	
+	/**
+	 * loads the view and registers the actionlistener's.
+	 */
 	@Override
 	public void loadView() {
 		this.vigenereRead = false;
@@ -79,11 +82,18 @@ public class FirstDemonstrationController extends AbstractVisualizationControlle
 		this.view.validate();
 	}
 	
+	/**
+	 * unloads the view
+	 */
 	@Override
 	public void unloadView() {
 		this.view = null;
 	}
 	
+	/**
+	 * returns the view
+	 * @return view of current step
+	 */
 	@Override
 	public FirstDemonstrationView getView() {
 		return (FirstDemonstrationView) this.view;
