@@ -321,10 +321,29 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
   
     \subsubsection{Klasse AbstractController}
+    Diese Klasse wurde nicht gebraucht, ergo existiert sie nicht mehr
 
   	\subsubsection{Klasse Model}
+    Singleton-Pattern wurde rückgängig gemacht, da die unterschiedlichen Zustände
+    in einer Klasse behandelt werden und somit globale Variablen (also Singletons)
+    unnötig werden
+
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item Konstruktor ist nicht mehr privat\newline
+           \item public Model getInstance() wurde entfernt\newline
+           \item public Color getPublicColor() wurde hinzugefügt\newline
+           \item public void setPublicColor() wurde hinzugefügt\newline
+           \item public void getAlicePublicColor() wurde entfernt\newline
+           \item public void setAlicePublicColor() wurde entfernt\newline
+           \item public Color getSharedColor() wurde entfernt\newline
+           \item public void setSharedColor(Color setSharedColor) wurde entfernt\newline
+           \item public void getBobPublicColor() wurde entfernt\newline
+           \item public Color setBobPublicColor(Color bobPublicColor) wurde entfernt\newline
+           \end{itemize}
 
 	\subsubsection{Klasse DHVisualizationInfo}
+    Hat sich nicht geändert
 
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Demonstration}
 
