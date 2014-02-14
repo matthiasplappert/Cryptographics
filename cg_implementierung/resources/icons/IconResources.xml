@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Icons>
+	<Keyboard>
+		<Backspace path="/icons/backspace.png" />
+		<Enter path="/icons/enter.png" />
+	</Keyboard>
+</Icons>
