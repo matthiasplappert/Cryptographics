@@ -20,15 +20,27 @@ public class DemoOneWayController extends AbstractVisualizationController {
 	/** the corresponding view */
 	private DemoOneWayView view;
 	
+	/**
+	 * Simple constructor
+	 * @param visualizationInfo dh visualization info
+	 */
 	public DemoOneWayController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationController#getHelp()
+	 */
 	@Override
 	public String getHelp() {
 		return view.getHelp();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#loadView()
+	 */
 	@Override
 	public void loadView() {
 		view = new DemoOneWayView();
@@ -60,6 +72,10 @@ public class DemoOneWayController extends AbstractVisualizationController {
 		this.view = null;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#getView()
+	 */
 	@Override
 	public DemoOneWayView getView() {
 		return (DemoOneWayView) this.view;
