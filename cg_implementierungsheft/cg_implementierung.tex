@@ -833,7 +833,78 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
 
 	\subsubsection{Klasse MixFinalSecretView}
     Diese Klasse wurde entfernt
-	
+
+\section{Tests}
+Während der Implementierung wurden bereits einige JUnit-Tests geschrieben, um vor allem die korrekte Funktionalität
+der Kryptografie-Algorithmen zu überprüfen.
+  
+  \subsection{Paket edu.kit.iks.Cryptographics}
+  \subsubsection{Test MainControllerTest}
+  \begin{itemize}
+    \item testLoadView()\newline
+          Testet ob die View korrekt gealden wird.
+    \item testUnloadView()\newline
+          Testet ob die View korrekt freigegeben wird.
+    \item testPresentStartAction()\newline
+          Testet ob der StartController korrekt geladen und angezeigt wird.
+    \item testPresentVisualizationAction()\newline
+          Testet ob der VisualizationContainerController korrekt geladen und angezeigt wird.
+    \item testAddChildController()\newline
+          Testet ob ein Controller korrekt als Kind hinzugefügt werden kann.
+    \item testRemoveChildController()\newline
+          Testet ob ein Controller korrekt als Kind gelöscht werden kann.
+    \item testGetParentController()\newline
+          Testet ob die Parent-Child-Relationship korrekt zurückgegeben wird.
+    \item testIsViewLoaded()\newline
+         Testet ob die View tatsächlich als geladen angezeigt wird.
+  \end{itemize}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
+  \subsubsection{Test CryptoModelTest}
+  \begin{itemize}
+    \item testEnc()\newline
+          Testet die Verschlüsselung.
+    \item testDec()\newline
+          Testet die Entschlüsselung.
+    \item testIsKeyValid()\newline
+          Testet ob eine Schlüssel gültig ist.
+    \item testIsInputValid()\newline
+          Testet ob eine Eingabe korrekt als gültig/ungültig erkannt wird.
+    \item testGenRandomGrats()\newline
+          Testet ob ein gültiges Lob generiert wird.
+    \item testGenRandomBlamings()\newline
+          Testet ob eine gültige Aufmunterung generiert wird.
+    \item testGenRandomPlainSequence()\newline
+          Testet ob ein gültiger Klartext generiert wird.
+    \item testGenRandomCipher()\newline
+          Testet ob eine gültige zufälliger Chiffre generiert wird.
+    \item testGenRandomText()\newline
+          Testet ob ein gültiger zufälliger Text generiert wird.
+    \item testGenerateKey()\newline
+          Testet ob ein gültiger Schlüssel generiert wird.
+	\end{itemize}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
+  \subsubsection{Test VigenereModelTest}
+   \begin{itemize}
+    \item testEnc()\newline
+          Testet die Verschlüsselung.
+    \item testDec()\newline
+          Testet die Entschlüsselung.
+    \item testCharacterToInt()\newline
+          Testet ob ein Zeichen korrekt in seinen numerischen ASCII-Wert übersetzt wird.
+    \item testGetCharPositionated()\newline
+          Testet ob jedes n-te Zeichen zurückgegeben wird.
+  \end{itemize}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
+  \subsubsection{Test ModelTest}
+   \begin{itemize}
+    \item testMixAlicePrivateAndPublic()\newline
+          Testet ob die private und öffentliche Farbe von Alice korrekt gemischt wird.
+    \item testMixBobPrivateAndPublic()\newline
+          Testet ob die private und öffentliche Farbe von Bob korrekt gemischt wird.
+  \end{itemize}
  \restoregeometry
 
 \glsaddall
