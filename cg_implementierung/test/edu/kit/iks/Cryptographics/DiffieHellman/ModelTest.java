@@ -24,8 +24,21 @@ public class ModelTest extends TestCase  {
 		this.model.setAlicePrivateColor(privateColor);
 		this.model.mixAlicePrivateAndPublic();
 		
-		Color expected = new Color(255, 0, 255);
+		Color expected = new Color(127, 0, 127);
 		Color actual = this.model.getAliceMixedColor();
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testMixBobPrivateAndPublic() {
+		Color publicColor = Color.YELLOW;
+		Color privateColor = Color.PINK;
+		this.model.setPublicColor(publicColor);
+		this.model.setBobPrivateColor(privateColor);
+		this.model.mixBobPrivateAndPublic();
+		
+		Color expected = new Color(255, 215, 87);
+		Color actual = this.model.getBobMixedColor();
 		assertEquals(expected, actual);
 	}
 }
