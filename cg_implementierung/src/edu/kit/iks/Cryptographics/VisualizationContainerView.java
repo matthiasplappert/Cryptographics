@@ -124,7 +124,6 @@ public class VisualizationContainerView extends JPanel {
 	
 	/**
 	 * @return the contentView
-	 * @return
 	 */
 	public JPanel getContentView() {
 		return contentView;

@@ -48,18 +48,50 @@
 \section{Einleitung}
 In diesem Heft werden Änderungen zum Entwurf spezifiziert, die während der Implementierung entstanden sind.
 
+Der Entwurf des Rahmenwerks hat sich während der Implementierung nur geringfügig geändert. Grund für die Änderungen
+waren vor allem Implementierungsdetails von Swing sowie leicht geänderte Anforderungen an die geteilten UI-Komponenten.
+Die grundlegende Kommunikation zwischen den einzelnen Komponenten hat sich nicht geändert. Alle vorgesehenen Aufgaben
+konnten problemlos erfüllt werden, und auch die oben genannten Änderungen ließen sich problemlos durchführen.
+
+Der Entwurf der einzelnen Verfahren hat sich mitunter stark verändert. Dies war bereits während der Entwurfsphase
+absehbar (siehe Entwurfsheft). Der Grund hierfür liegt vor allem darin, dass sich die genaue Aufteilung der UI in die
+einzelnen Schritte sowie die Präsentation durch zahlreiche Iterationen und Selbsttests ergeben hat. Auch dies war
+problemlos möglich, da das Rahmenwerk den einzelnen Verfahren große Flexibilität in ihrer gewählten Darstellung
+erlaubt. 
+
 \section{Grundsätzliche Änderungen}
-Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
+Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen worden.
 
 % Hier kommen alle neuen Klassen rein
 \section{Neue Klassen}
 
   \subsection{Paket edu.kit.iks.Cryptographics}
+    \subsubsection{IdlePopoverView}
+    Zur Zeit des Entwurfs war noch unklar, wie wir optimisch mit einem inaktiven Benutzer umgehen.
+    Nach einigen Tests haben wir uns dazu entschieden, das existierende Popover-System zu verwenden. Daher wurde
+    die Klasse IdlePopoverView nötig. Diese stellt einen kurzen Informationstext dar, der dem Benutzer erklärt,
+    dass sich das Programm in kürze zurücksetzen wird. Die verbleibende Zeit wird in Sekunden dargestellt. Außerdem
+    wird ein Button dargestellt, mit dem das Zurücksetzen verhindert werden kann.\newline
+
+    \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.PopoverView
+      \end{itemize}
+           
+    \textbf{Methoden}
+      \begin{itemize}
+        \item public IdlePopoverView(long initialTime)\newline
+              Konstruktor. Erzeugt eine neue Instanz. Der Countdown wird bei initialTime in Millisekunden
+              gestartet.
+        \item public JButton getContinueButton()\newline
+              Gibt den Fortfahren-Button zurück. Ein Controller kann mithilfe eines ActionListeners
+              das Zurücksetzen beim Anklicken verhindern.
+      \end{itemize}
 
   \subsection{Paket edu.kit.iks.CryptographicsLib}
     \subsubsection{Configuration}
     Während der Implementierung hat sich gezeigt, das an einigen Stellen Konstanten verwendet werden,
-    beispielsweise die Zeit in Sekunden nachdem der Benutzer als inaktiv gilt. Um diese global ändern zu können
+    beispielsweise die Zeit in Sekunden, nachdem der Benutzer als inaktiv gilt. Um diese global ändern zu können,
     wurde die Klasse Configuration angelegt. Die Werte stammen aus einer XML-Datei. Falls diese nicht existiert,
     werden voreingestellte Default-Werte verwendet. Die Klasse Configuration verwendet das Singleton-Entwurfsmuster.\newline
 
@@ -159,57 +191,131 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 \section{Änderungen an Klassen}
 
   \subsection{Paket edu.kit.iks.Cryptographics}
-    \subsubsection{Klasse HelpPopoverView}
+    \subsubsection{HelpPopoverView}
+      Keine Änderungen.
 
-    \subsubsection{Klasse Main}
+    \subsubsection{Main}
+      Keine Änderungen.
 
-    \subsubsection{Klasse MainController}
+    \subsubsection{MainController}
+      In der Klasse MainController wurden Getter für das JFrame, sowie der StartController
+      und VisualizationContainerController hinzugefügt.\newline
 
-    \subsubsection{Klasse StartController}
+      \textbf{Änderungen an Methoden}
+      \begin{itemize}
+        \item public JFrame getJFrame()\newline
+              Gibt das JFrame zurück.
+        \item public StartController getStartController()\newline
+              Gibt den StartController zurück.
+        \item public VisualizationContainerController getVisualizationContainerController()\newline
+              Gibt den VisualizationContainerController zurück.
+      \end{itemize}
 
-    \subsubsection{Klasse TimelinePopoverView}
+    \subsubsection{StartController}
+      StartController hat eine minimale Änderung an der Methodensignatur erfahren.\newline
 
-    \subsubsection{Klasse TimelineView}
+      \textbf{Änderungen an Methoden}
+      \begin{itemize}
+        \item public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo, JComponent sender)\newline
+              Die Methode erwartet nun einen zusätzlichen Parameter sender. Dieser gibt an, welches JComponent
+              die Aktion ausgelöst hat, um den Popover korrekt darstellen zu können.
+      \end{itemize}
 
-    \subsubsection{Klasse VisualizationContainerController}
+    \subsubsection{TimelinePopoverView}
+      Keine Änderungen.
 
-    \subsubsection{Klasse VisualizationContainerView}
+    \subsubsection{TimelineView}
+      Keine Änderungen.
 
-    \subsubsection{Klasse WelcomeView}
+    \subsubsection{VisualizationContainerController}
+      Der VisualizationContainerController unterstützt nun die Darstellung der IdlePopoverView.\newline
+
+      \textbf{Änderungen an Methoden}
+      \begin{itemize}
+        \item public void presentIdlePopover()\newline
+              Zeigt die IdlePopoverView an.
+        \item public void dismissIdlePopover()\newline
+              Verbirgt die IdlePopoverView.
+      \end{itemize}
+
+    \subsubsection{VisualizationContainerView}
+      Die VisualizationContainerView besitzt nun eine Content-View. Diese dient als Container für die Visualisierung
+      und erlaubt es uns, den Inhalt der Visualisierung korrekt zu positionieren.\newline
+
+      \textbf{Änderungen an Methoden}
+      \begin{itemize}
+        \item public JPanel getContentView()\newline
+              Gibt die Content-View zurück.
+      \end{itemize}
+
+    \subsubsection{WelcomeView}
+      Keine Änderungen.
 
   \subsection{Paket edu.kit.iks.CryptographicsLib}
     
   	\subsubsection{Klasse AbstractController}
+  	
+  	Die unloadView()-Methode wurde abstrakt gesetzt, um das implementieren zu erzwingen.
+  	Somit kann sichergestellt werden, dass eine View auch richtig freigegeben wird. Die Methode
+  	viewIsLoaded() wurde konventionsgemäß in isViewLoaded() umbenannt.
 
 	\subsubsection{Klasse AbstractVisualizationController}
 
 	\subsubsection{Klasse AbstractVisualizationInfo}
 
+	Die Methode getAdditionalInformationFileURL() wurde durch die Methode 
+	getAdditionalInformationPath() ersetzt, die einen Pfad als String zurückgibt, und kein
+	URL Objekt. Es wurde die Methode getHumanReadableDifficulty() hinzugefügt, um 
+	das VisualizationDifficulty-Enum lesbar zurückzugeben.
+
 	\subsubsection{Klasse AlphabetStripView}
+	
+	Es wurde ein weiterer Konstruktor hinzugefügt, mit dem man die Zellenbreite und -höhe
+	bei der Initialisierung setzen kann. Die neue Methode highlight() hebt eine bestimmte
+	Spalte des Alphabets an der übergebenen Stelle zur Visualisierung hervor. Die Methode 
+	unHighlight() löscht die Hervorhebung wieder an der übergebenen Stelle, und unHighlightAll() 
+	löscht alle Hervorhebungen.
 
 	\subsubsection{Klasse CharacterFrequencyDiagramView}
 
+	Der Konstruktor wurde angepasst um gleich bei der Erzeugung den zu überprüfenden Text
+	entgegenzunehmen, sowie die gewünschten Ausmaße des zu erzeugenden Diagramms. Des Weiteren
+	wurden Getter und Setter für die Aufkommen von Zeichen hinzugefügt.
+
 	\subsubsection{Klasse ImageView}
 
-	\subsubsection{Klasse InformationController}
+	Es wurde ein Getter hinzugefügt, um das geladene Bild das dargestellt werden soll zurückzugeben.
 
 	\subsubsection{Klasse InformationView}
 
+	Es wurde ein Getter hinzugefügt, um den HTML Inhalt zu bekommen.
+
 	\subsubsection{Klasse KeyboardButton}
+
+	Diese Klasse wurde vollständig entfernt, da es durch einfache JButtons darstellbar war.
 
 	\subsubsection{Klasse KeyboardView}
 
+	Der Konstruktor des Keyboards wurde angepasst, um ein JTextField und einen Modus entgegenzunehmen.
+	Das JTextField ist dasjenige Feld, welches durch das Keyboard manipuliert werden soll. Der zweite
+	Parameter, der Modus, gibt an, ob in das Feld ein einzelner Buchstabe eingegeben werden soll, oder
+	ein Text wie ein Name eingegeben werden kann. KeyboardView implementiert nun jetzt auch die
+	ActionListener-Schnittstelle und implementiert ihre actionPerformed() Methode, um Tastendrücke
+	des Keyboards abarbeiten und an das Textfeld weiterleiten zu können.
+
 	\subsubsection{Klasse NumbersStripView}
+
+	Diese Klasse wurde vollständig entfernt, da im Verlauf der Implementierung festgestellt wurde,
+	dass sie nirgends benötigt wird. (Auch wurde diese Klasse teilweise durch die NumpadView ersetzt).
 
 	\subsubsection{Klasse PopoverView}
 
-	\subsubsection{Klasse VisualizationButton}
-
-	\subsubsection{Enum VisualizationDifficulty}
-
-	\subsubsection{Klasse VisualizationInfoLoader}
+	Die Klasse wurde um eine dismiss()-Methode ergänzt, um ein Popover wieder schließen zu können.
+	Des Weiteren wurden Getter und Setter für die Umrandungsfarbe hinzugefügt.
 
 	\subsubsection{Klasse VisualizationView}
+
+	Es wurden lediglich Setter für den "Next" und den "Back"-Button hinzugefügt.
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
     \subsubsection{Klasse AbstractController}
@@ -258,7 +364,7 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
           
           \subsubsection{Klasse IntroductionController}
             Die Methode animationProceed() wurde entfernt. Und durch die private Hilfsmethode proceedIntroduction() ersetzt.
-            Diese erfüllt diesselbe Aufgabe und da sie zum Aufgabenbereich dieses Controllers gehört, ist ein globaler Zugriff
+            Diese erfüllt dieselbe Aufgabe und da sie zum Aufgabenbereich dieses Controllers gehört, ist ein globaler Zugriff
             unnötig.
        	  \subsubsection{Klasse IntroductionView}
             Die Methode animationStart() mitsamt ihrer privaten Hilfsfunktionen wurde in den IntroductionController ausgelagert.
@@ -268,7 +374,7 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
          
            \textbf{Änderungen an Methoden.}\newline
             proceedAnimation() wurde entfernt. Und durch die private Hilfsmethode demonstrate() ersetzt.
-            Diese erfüllt diesselbe Aufgabe und da sie zum Aufgabenbereich dieses Controllers gehört, 
+            Diese erfüllt dieselbe Aufgabe und da sie zum Aufgabenbereich dieses Controllers gehört, 
             ist ein globaler Zugriff unnötig.
 
 	\subsubsection{Klasse CipherDemoView}
