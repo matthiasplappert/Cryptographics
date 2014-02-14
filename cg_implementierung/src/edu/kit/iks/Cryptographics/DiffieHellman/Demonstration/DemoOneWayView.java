@@ -19,20 +19,28 @@ public class DemoOneWayView extends VisualizationView {
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(DemoOneWayView.class);
 	
+	/* the jlanel to hold the explanation */
 	private JLabel keyExchangeExplain;
 	
+	/* our labels */
 	private JLabel easy, hard;
 	
+	/** our colormixes to show */
 	private ColorMix cm, cm2;
 	
+	/* no help need here */
 	private String help = i18n.tr("No help");
 	
+	/* explanation string */
 	private String explain = i18n.tr("We use a simple analogy as the one-way function. " +
 			"Mixing colors is an easy process, determining which colors were " +
 			"originally used is a difficult process, thus this acts like an one-way function");
 	
 	private static final long serialVersionUID = 7529617215150828381L;
 	
+	/**
+	 * Construct our view and layout its subcomponents
+	 */
 	public DemoOneWayView() {
 		super();
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -93,6 +101,10 @@ public class DemoOneWayView extends VisualizationView {
 		cm2.seperateColors(true, true);
 	}
 
+	/**
+	 * help the user with an explanation
+	 * @return a help string
+	 */
 	public String getHelp() {
 		return help;
 	}
