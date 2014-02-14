@@ -1,10 +1,10 @@
 package edu.kit.iks.CryptographicsLib;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.awt.Insets;
 
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
@@ -43,20 +43,10 @@ public class InformationView extends JPanel {
 		this.qrCode = qrCode;
 		this.html = html;
 		
-		this.setLayout(new GridBagLayout());
-		
-		// Load the web view.
+		// Initialize view.
+		this.setLayout(new BorderLayout());
 		this.loadWebView();
-		
-		// Load the image view.
-		GridBagConstraints imageConstraints = new GridBagConstraints();
-		imageConstraints.gridx = 0;
-		imageConstraints.gridy = 1;
-		imageConstraints.weightx = 1.0;
-		imageConstraints.weighty = 0.1;
-		ImageView view = new ImageView(qrCode);
-		this.add(view, imageConstraints);
-		
+		this.loadQRCodeView();
 		this.validate();
 	}
 	
@@ -64,15 +54,6 @@ public class InformationView extends JPanel {
 	 * Loads the web view.
 	 */
 	private void loadWebView() {
-		// Constraints.
-		GridBagConstraints constraints = new GridBagConstraints();
-		constraints.gridx = 0;
-		constraints.gridy = 0;
-		constraints.weightx = 1.0;
-		constraints.weighty = 0.9;
-		constraints.insets = new Insets(10, 10, 10, 10);
-		constraints.fill = GridBagConstraints.BOTH;
-		
 		// Editor pane used as a web view.
 		final JEditorPane editorPane = new JEditorPane();
 		editorPane.setEditable(false);
@@ -88,8 +69,21 @@ public class InformationView extends JPanel {
 		// Scroll pane that contains the editor pane.
 		JScrollPane scrollPane = new JScrollPane(editorPane);
 		scrollPane.validate();
-        this.add(scrollPane, constraints);
+        this.add(scrollPane, BorderLayout.CENTER);
     }
+	
+	/**
+	 * Loads the QR code view.
+	 */
+	private void loadQRCodeView() {
+		// We use a container to horizontally center the QR code.
+		JPanel container = new JPanel(new GridBagLayout());
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.anchor = GridBagConstraints.ABOVE_BASELINE;
+		ImageView qrCodeView = new ImageView(qrCode);
+		container.add(qrCodeView, constraints);
+		this.add(container, BorderLayout.SOUTH);
+	}
 	
 	/**
 	 * Returns the HTML contents of the additional informations.

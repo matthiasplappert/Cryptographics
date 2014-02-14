@@ -34,9 +34,8 @@ public class InformationController extends AbstractVisualizationController {
 		// Load the HTML.
 		String path = visualizationInfo.getAdditionalInformationPath();
 		InputStream inputStream = visualizationInfo.getClass().getResourceAsStream(path);
-		System.out.println(path);
 		if (inputStream == null) {
-			System.out.println("no input stream!");
+			Logger.d("InformationController", "InformationController", "could not read " + path);
 		}
 		this.additionalInformationHtml = InformationController.getStringFromInputStream(inputStream);
 	}
