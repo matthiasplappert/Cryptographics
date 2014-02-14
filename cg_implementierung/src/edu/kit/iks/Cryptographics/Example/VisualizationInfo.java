@@ -55,9 +55,4 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 		
 		return controllerClasses;
 	}
-	
-	@Override
-	public String getAdditionalInformationFileURL() {
-		return "http://google.com";
-	}
 }

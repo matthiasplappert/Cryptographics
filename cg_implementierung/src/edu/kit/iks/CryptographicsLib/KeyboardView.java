@@ -13,7 +13,6 @@ import javax.swing.JTextField;
 
 import org.xnap.commons.i18n.I18n;
 
-import edu.kit.iks.Cryptographics.Configuration;
 
 /**
  * A displayable keyboard for character input per mouse click or touchscreen. Contains only

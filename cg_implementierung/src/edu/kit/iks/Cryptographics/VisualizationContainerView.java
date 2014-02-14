@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 
 import org.xnap.commons.i18n.I18n;
 
+import edu.kit.iks.CryptographicsLib.Configuration;
+
 /**
  * An instance of this class represents the view of container controller
  * beside the actual visualization

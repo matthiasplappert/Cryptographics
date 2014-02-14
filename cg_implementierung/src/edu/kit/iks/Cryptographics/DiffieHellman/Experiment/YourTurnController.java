@@ -7,7 +7,7 @@ import javax.swing.JButton;
 
 import org.xnap.commons.i18n.I18n;
 
-import edu.kit.iks.Cryptographics.Configuration;
+import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
