@@ -1,27 +1,21 @@
 package edu.kit.iks.CryptographicsLib;
 
-import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
+import java.awt.Insets;
 
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-
+import javax.swing.JEditorPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  * View of the information page
  * 
  * @author Christian Dreher
  */
-public class InformationView extends JPanel implements ComponentListener {
+public class InformationView extends JPanel {
 	
 	/**
 	 * Serial Version UID
@@ -37,22 +31,6 @@ public class InformationView extends JPanel implements ComponentListener {
 	 * File path to the local HTML file with further information
 	 */
 	private String html;
-	
-	/**
-	 * The Swing FX panel. Only access from the Swing hread.
-	 */
-	private JFXPanel fxPanel;
-	
-	/**
-	 * The fxPanel's size. Only access this property through the getter and
-	 * setter to ensure synchronized access!
-	 */
-	private Dimension fxPanelSize;
-	
-	/**
-	 * The JavaFX WebView. Only access this property from the JavaFX thread!
-	 */
-	private WebView webView;
 	
 	/**
 	 * Constructor initializing a new instance of {InformationView}
@@ -83,43 +61,40 @@ public class InformationView extends JPanel implements ComponentListener {
 	}
 	
 	/**
-	 * Loads a FXPanel that can host JavaFX views. This is necessary
-	 * because Swing does not provide a usable WebView.
+	 * Loads the web view.
 	 */
 	private void loadWebView() {
-		this.fxPanel = new JFXPanel();
-		this.fxPanel.addComponentListener(this);
-		GridBagConstraints fxConstraints = new GridBagConstraints();
-        fxConstraints.gridx = 0;
-        fxConstraints.gridy = 0;
-        fxConstraints.weightx = 1.0;
-        fxConstraints.weighty = 0.9;
-        fxConstraints.fill = GridBagConstraints.BOTH;
-        this.add(this.fxPanel, fxConstraints);
-    }
-
-    /**
-     * Loads the JavaFX WebView.
-     * @param fxPanel the FXPanel
-     */
-    private void loadFXWebView(final JFXPanel fxPanel, Dimension size) {
-        Group group = new Group();
-        Scene scene = new Scene(group);
-        fxPanel.setScene(scene);
-        
-        // Create web view.
-        this.webView = new WebView();
-        group.getChildren().add(this.webView);
-        
-        // Load the HTML data.
-        WebEngine webEngine = this.webView.getEngine();
-        webEngine.loadContent(this.getHtml());
+		// Constraints.
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.gridx = 0;
+		constraints.gridy = 0;
+		constraints.weightx = 1.0;
+		constraints.weighty = 0.9;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		constraints.fill = GridBagConstraints.BOTH;
+		
+		// Editor pane used as a web view.
+		final JEditorPane editorPane = new JEditorPane();
+		editorPane.setEditable(false);
+		editorPane.setContentType("text/html");
+		editorPane.setBackground(Color.BLUE);
+		try {
+			editorPane.setText(this.getHtml());
+		} catch(Exception e) {
+			Logger.e(e);
+		}
+		editorPane.setCaretPosition(0); // scrolls to the top
+		
+		// Scroll pane that contains the editor pane.
+		JScrollPane scrollPane = new JScrollPane(editorPane);
+		scrollPane.validate();
+        this.add(scrollPane, constraints);
     }
 	
 	/**
-	 * Gets the file path to the local HTML file with further information
+	 * Returns the HTML contents of the additional informations.
 	 * 
-	 * @return File path to the local HTML file with further information
+	 * @return the HTML contents
 	 */
 	public String getHtml() {
 		return this.html;
@@ -132,56 +107,5 @@ public class InformationView extends JPanel implements ComponentListener {
 	 */
 	public Image getQrCode() {
 		return this.qrCode;
-	}
-
-	@Override
-	public void componentResized(ComponentEvent e) {
-		// Set size.
-		//this.setFxPanelSize(this.fxPanel.getSize());
-		System.out.println("resized!");
-		
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				//Dimension size = getFxPanelSize();
-				Dimension size = new Dimension(300, 300);
-				if (webView == null) {
-					loadFXWebView(fxPanel, size);
-				}
-				webView.setMaxSize(size.getWidth(), size.getHeight());
-		        webView.setPrefSize(size.getWidth(), size.getHeight());
-			}
-		});
-	}
-	
-	/**
-	 * Synchronizes the access to fxPanelSize since we use it on two threads.
-	 * @param size the size
-	 */
-	private synchronized void setFxPanelSize(Dimension size) {
-		this.fxPanelSize = size;
-	}
-	
-	/**
-	 * Synchronizes the access to fxPanelSize since we use it on two threads.
-	 * @return the size
-	 */
-	private synchronized Dimension getFxPanelSize() {
-		return this.fxPanelSize;
-	}
-
-	@Override
-	public void componentMoved(ComponentEvent e) {
-		// Unused
-	}
-
-	@Override
-	public void componentShown(ComponentEvent e) {
-		// Unused
-	}
-
-	@Override
-	public void componentHidden(ComponentEvent e) {
-		// Unused
 	}
 }
