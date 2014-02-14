@@ -118,8 +118,10 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
       \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
+	
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Demonstration}
+	
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Experiment}
 
@@ -308,15 +310,39 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
     \subsubsection{Klasse AbstractController}
-
+	Diese Klasse wurde vollständig entfernt, da im Verlauf der Implementierung festgestellt wurde,
+	dass sie nirgends benötigt wird.
+	
     \subsubsection{Klasse VigenereModel}
 
     \subsubsection{Klasse VigenereVisualizationInfo}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Demonstration}
     \subsubsection{Klasse FirstDemonstrationController}
-
+	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public FirstDemonstrationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
+	  
     \subsubsection{Klasse FirstDemonstrationView}
+	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+        \item public ImageView getClock()()\newline
+              Liefert die Uhr zurück.
+        \item public JLabel getModuloText()\newline
+              Liefert den Modulo-Text zurück.
+      \end{itemize}
 
     \subsubsection{Klasse SecondDemonstrationController}
 
@@ -332,9 +358,12 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
     \subsubsection{Klasse FirstExperimentView}
 
     \subsubsection{Klasse SecondExperimentController}
-
+	Diese Klasse wurde vollständig entfernt, da im Verlauf der Implementierung festgestellt wurde,
+	dass sie nirgends benötigt wird (FirstExperimentController enthält jetzt die Funktionalität).
+	
     \subsubsection{Klasse SecondExperimentView}
-
+	Diese Klasse wurde vollständig entfernt, da im Verlauf der Implementierung festgestellt wurde,
+	dass sie nirgends benötigt wird (FirstExperimentView enthält jetzt die Funktionalität).
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanation}
     \subsubsection{Klasse FirstExplanationController}
 
