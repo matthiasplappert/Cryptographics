@@ -489,14 +489,29 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
               Lädt die View.
         \item public void unloadView()\newline
               Entlädt die View.
-        \item public FirstDemonstrationView getView()\newline
+        \item public FirstExplanationView getView()\newline
               Liefert die View zurück.
         \item public String getHelp()\newline
               Liefert den String zur Hilfe zurück.
       \end{itemize}
 	  
     \subsubsection{Klasse FirstExplanationView}
-
+	Während der Implementierung hat sich herausgestellt dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void setKeyLength(String s)\newline
+              Setzt das Keylänge-Element.
+		\item public JButton getKeyLengthButton()\newline
+              Liefert das KeyLength-Button zurück.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+		\item public void visibleFirstState(boolean b)\newline
+              Setzt die Sichtbarkeit der Elemente für den ersten Schritt.
+		\item public void hideError()\newline
+              Setzt die Sichtbarkeit der Elemente für den zweiten Schritt.	
+	  \end{itemize}
+	  
     \subsubsection{Klasse SecondExplanationController}
 	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
 	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
