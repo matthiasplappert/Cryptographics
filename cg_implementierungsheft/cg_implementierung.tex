@@ -572,32 +572,80 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 
 	\subsubsection{Interface NextStepCallback}
     Diese Interface wurde neu hinzugefügt
+    Dient als Imitator von Funktionen höherer Ordnung,
+    da Java diese nicht hat
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public void callback() wurde hinzugefügt\newline
+               Unser Callback
+           \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Experiment}
 
 	\subsubsection{Klasse YourTurnController}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+        \end{itemize}
 
 	\subsubsection{Klasse YourTurnView}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt jetzt von VisualizationView statt JPanel\newline
+        \end{itemize}
+
+	\subsubsection{Klasse DHExperimentController}
+    Diese Klasse wurde neu hinzugefügt
+
+	\subsubsection{Klasse DHExperimentView}
+    Diese Klasse wurde neu hinzugefügt
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public DHExperimentView() wurde hinzugefügt\newline
+               Der Konstruktor erstellt seine Subkomponenten und
+               positioniert diese Korrekt
+           \item public void setRemember(ActionListener remember) wurde hinzugefügt\newline
+               Merkt sich einen ActionListener damit die View seinem Button den ursprünglichen
+               ActionListener wieder setzen kann
+           \item public String getHelp() wurde hinzugefügt\newline
+               Gibt einen Hilfe-Zeichenkette zurück
+           \end{itemize}
+
+	\subsubsection{Klasse CongratsController}
+    Diese Klasse wurde neu hinzugefügt
+
+	\subsubsection{Klasse CongratsView}
+    Diese Klasse wurde neu hinzugefügt
 
 	\subsubsection{Klasse ChoosePublicColorController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse ChoosePublicColorView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse SendColorController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse SendColorView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse ChooseSecretColorController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse ChooseSecretColorView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse SendRightColorController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse SendRightColorView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse MixFinalSecretController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse MixFinalSecretView}
+    Diese Klasse wurde entfernt
 	
  \restoregeometry
 
