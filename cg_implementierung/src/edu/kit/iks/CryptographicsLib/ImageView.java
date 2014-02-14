@@ -56,12 +56,13 @@ public class ImageView extends JPanel{
      * @param filePath File path to the image to be displayed
      */
     public ImageView(String filePath) {
-    	try {                
-    		InputStream is = this.getClass().getResourceAsStream(filePath);
-            image = ImageIO.read(is);
-         } catch (IOException e) {
-        	 Logger.e(e);
-         }
+		try {                
+			InputStream is = this.getClass().getResourceAsStream(filePath);
+		    image = ImageIO.read(is);
+		} catch (IOException e) {
+			Logger.e(e);
+		}
+		
     	this.setPreferredSize(new Dimension(this.image.getWidth(), this.image.getHeight()));
     }
 
