@@ -31,6 +31,8 @@ public class CharacterFrequencyDiagramView extends JPanel {
 	// Quantities of all characters
 	private int [] occurrences;
 	
+	private String histogramText;
+	
 	/**
 	 * Generates a diagram showing character frequencies with the given parameters.
 	 * @param text Text which is analyzed and has its character occurrences displayed. 
@@ -42,6 +44,7 @@ public class CharacterFrequencyDiagramView extends JPanel {
 	public CharacterFrequencyDiagramView(String text, int width, int height) {
 		super();
 		
+		this.histogramText = text;
 		
 		this.occurrences = calculateOccurrences(text);
 		
@@ -165,4 +168,13 @@ public class CharacterFrequencyDiagramView extends JPanel {
 	public void setOccurrences(int [] occurrences) {
 		this.occurrences = occurrences;
 	}
+
+
+	/**
+	 * @return the histogramText
+	 */
+	public String getHistogramText() {
+		return histogramText;
+	}
+
 }

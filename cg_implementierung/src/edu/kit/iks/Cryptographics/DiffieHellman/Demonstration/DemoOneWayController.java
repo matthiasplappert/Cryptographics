@@ -7,40 +7,27 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class AliceChooseSecretController extends AbstractVisualizationController {
-	private AliceChooseSecretView view;
+public class DemoOneWayController extends AbstractVisualizationController {
 	
-	public AliceChooseSecretController(AbstractVisualizationInfo visualizationInfo) {
+	private DemoOneWayView view;
+	
+	public DemoOneWayController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return view.getHelp();
 	}
 
 	@Override
 	public void loadView() {
-		// TODO Auto-generated method stub
-		this.view = new AliceChooseSecretView();
-		this.view.setRemember(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
-			}
-		});
-		
+		view = new DemoOneWayView();
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for(ActionListener al : getView().getNextButton().getActionListeners()) {
-					getView().getNextButton().removeActionListener(al);
-				}
-				view.startDemo();
+				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
 			}
 		});
 		
@@ -48,10 +35,10 @@ public class AliceChooseSecretController extends AbstractVisualizationController
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				((VisualizationContainerController) getParentController()).presentPreviousVisualizationController();
 			}
 		});
+
 	}
 	
 	/*
@@ -60,12 +47,13 @@ public class AliceChooseSecretController extends AbstractVisualizationController
 	 */
 	@Override
 	public void unloadView() {
-		this.getView().getColorChannel().stopTimer();
+		// TODO stop all timers!
 		this.view = null;
 	}
 	
 	@Override
-	public AliceChooseSecretView getView() {
-		return (AliceChooseSecretView) this.view;
+	public DemoOneWayView getView() {
+		return (DemoOneWayView) this.view;
 	}
+
 }

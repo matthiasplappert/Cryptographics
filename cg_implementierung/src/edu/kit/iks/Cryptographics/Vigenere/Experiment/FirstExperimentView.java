@@ -1,13 +1,15 @@
 package edu.kit.iks.Cryptographics.Vigenere.Experiment;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 public class FirstExperimentView extends VisualizationView{
@@ -15,7 +17,7 @@ public class FirstExperimentView extends VisualizationView{
 	
 	//PLAINTEXTCHARS WITH THEIR INDEXES
 	private JLabel[] indexCharPlain;
-	private JTextField[] textCharPlain;
+	private JLabel[] textCharPlain;
 	
 	//ENCRYPTED CHARS WITH THEIR INDEXES
 	private JLabel[] indexCharDecrypted;
@@ -24,9 +26,43 @@ public class FirstExperimentView extends VisualizationView{
 	//Visulisation of the Key
 	private JLabel vigenereKeyDesc;
 	private String vigenereKey = "ABCDE";
-	
 	private JLabel explanation;
 	private AlphabetStripView alphabet;
+	private JLabel errorMessage;
+	private KeyboardView keyboard;
+	
+	public void createKeyboard(JTextField input, final int flag) {
+		this.keyboard = new KeyboardView(input, flag);
+		this.add(this.keyboard);
+		Dimension size = this.keyboard.getPreferredSize();
+		this.keyboard.setBounds(400, 350, size.width, size.height);
+		this.validate();
+	}
+	
+	public void highlightTextBorder(int i) {
+		this.textCharDecrypted[i].setEnabled(true);
+		this.textCharDecrypted[i].setBorder(BorderFactory.createLineBorder(Color.blue, 5));
+	}
+	
+	public void unHighlightTextBorder(int i) {
+		this.textCharDecrypted[i].setEnabled(false);
+		this.textCharDecrypted[i].setBorder(null);
+	}
+	
+	/**
+	 * @return the keyboard
+	 */
+	public KeyboardView getKeyboard() {
+		return this.keyboard;
+	}
+	
+	/**
+	 * @param keyboard
+	 *            the keyboard to set
+	 */
+	public void setKeyboard(KeyboardView keyboard) {
+		this.keyboard = keyboard;
+	}
 	
 	public AlphabetStripView getAlphabet() {
 		return this.alphabet;
@@ -48,16 +84,17 @@ public class FirstExperimentView extends VisualizationView{
 		this.validate();
 	}
 	
-	public void setTextFieldDisabled(int i) {
-		this.textCharDecrypted[i].setEnabled(false);
-	}
 	
 	public JTextField getTextFieldDecrypted(int i) {
 		return this.textCharDecrypted[i];
 	}
 	
-	public JTextField getTextFieldPlain(int i) {
+	public JLabel getTextFieldPlain(int i) {
 		return this.textCharPlain[i];
+	}
+	
+	public JTextField[] getTextFields() {
+		return this.textCharDecrypted;
 	}
 	
 	public void setExplanation(String explanation) {
@@ -67,19 +104,30 @@ public class FirstExperimentView extends VisualizationView{
 		this.validate();
 	}
 	
+	public void showError(int i) {
+		this.textCharDecrypted[i].setBorder(BorderFactory.createLineBorder(Color.red, 5));
+		this.textCharDecrypted[i].setText("");
+		this.errorMessage.setVisible(true);
+	}
+	
+	public void hideError() {
+		this.errorMessage.setVisible(false);
+	}
+	
 	public FirstExperimentView() {
 		this.setLayout(null);
 		this.add(this.explanation = new JLabel("<html><div width=\"1200\">Now its your turn! Decrypt this string...</div></html>"));
-		this.add(new JLabel("VIGENERE EXPERIMENT"));
+		this.add(this.errorMessage = new JLabel("Wrong Answer! Try again!"));
+		
 		this.vigenereKeyDesc = new JLabel("Vigenere Key: " + this.vigenereKey);
 		this.alphabet = new AlphabetStripView();
 		
-		this.textCharPlain = new JTextField[5];
-		this.textCharPlain[0] = new JTextField("T");
-		this.textCharPlain[1] = new JTextField("W");
-		this.textCharPlain[2] = new JTextField("S");
-		this.textCharPlain[3] = new JTextField("I");
-		this.textCharPlain[4] = new JTextField("W");
+		this.textCharPlain = new JLabel[5];
+		this.textCharPlain[0] = new JLabel("T");
+		this.textCharPlain[1] = new JLabel("W");
+		this.textCharPlain[2] = new JLabel("S");
+		this.textCharPlain[3] = new JLabel("I");
+		this.textCharPlain[4] = new JLabel("W");
 		for (int i = 0; i < this.textCharPlain.length; i++)
 			this.add(this.textCharPlain[i]);
 
@@ -98,9 +146,11 @@ public class FirstExperimentView extends VisualizationView{
 		this.textCharDecrypted[2] = new JTextField();
 		this.textCharDecrypted[3] = new JTextField();
 		this.textCharDecrypted[4] = new JTextField();
-		for (int i = 0; i < this.textCharDecrypted.length; i++)
+		for (int i = 0; i < this.textCharDecrypted.length; i++) {
 			this.add(this.textCharDecrypted[i]);
-
+			this.textCharDecrypted[i].setEnabled(false);
+		}
+		
 		this.indexCharDecrypted = new JLabel[5];
 		this.indexCharDecrypted[0] = new JLabel("  ");
 		this.indexCharDecrypted[1] = new JLabel("  ");
@@ -115,6 +165,7 @@ public class FirstExperimentView extends VisualizationView{
 
 		this.vigenereKeyDesc.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		this.explanation.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+		this.errorMessage.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		
 		for (int i = 0; i < this.textCharPlain.length; i++)
 			this.textCharPlain[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
@@ -130,6 +181,9 @@ public class FirstExperimentView extends VisualizationView{
 
 		Dimension size = this.vigenereKeyDesc.getPreferredSize();
 		this.vigenereKeyDesc.setBounds(90, 250, size.width, size.height);
+		
+		size = this.errorMessage.getPreferredSize();
+		this.errorMessage.setBounds(500, 350, size.width, size.height);
 		
 		size = this.textCharPlain[0].getPreferredSize();
 		this.textCharPlain[0].setBounds(500, 100,
@@ -174,7 +228,7 @@ public class FirstExperimentView extends VisualizationView{
 	             size.width, size.height);
 		
 		//TROLOLOLO 2
-		size.width = 24;
+		size.width = 50;
 		size.height = 44;
 		this.textCharDecrypted[0].setBounds(500, 250,
 	             size.width, size.height);
@@ -232,5 +286,7 @@ public class FirstExperimentView extends VisualizationView{
 		
 		getAlphabet().highlight(0);
 		getAlphabet().highlight(19);
+		highlightTextBorder(0);
+		hideError();
 	}
 }

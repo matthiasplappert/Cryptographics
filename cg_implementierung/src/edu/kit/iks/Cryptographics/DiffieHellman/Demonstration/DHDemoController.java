@@ -7,30 +7,38 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class ExplainKeyExchangeController extends AbstractVisualizationController {
+public class DHDemoController extends AbstractVisualizationController {
 	
-	private ExplainKeyExchangeView view;
+	private DHDemoView view;
 	
-	public ExplainKeyExchangeController(AbstractVisualizationInfo visualizationInfo) {
+	public DHDemoController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return view.getHelp();
 	}
 
 	@Override
 	public void loadView() {
-		// TODO Auto-generated method stub
-		view = new ExplainKeyExchangeView();
+		this.view = new DHDemoView();
+		this.view.setRemember(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
+			}
+		});
+		
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
+				for(ActionListener al : getView().getNextButton().getActionListeners()) {
+					getView().getNextButton().removeActionListener(al);
+				}
+				view.startDemo();
 			}
 		});
 		
@@ -38,11 +46,10 @@ public class ExplainKeyExchangeController extends AbstractVisualizationControlle
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				((VisualizationContainerController) getParentController()).presentPreviousVisualizationController();
 			}
 		});
-
 	}
 	
 	/*
@@ -51,13 +58,12 @@ public class ExplainKeyExchangeController extends AbstractVisualizationControlle
 	 */
 	@Override
 	public void unloadView() {
-		// TODO stop all timers!
+		this.getView().getColorChannel().stopTimer();
 		this.view = null;
 	}
 	
 	@Override
-	public ExplainKeyExchangeView getView() {
-		return (ExplainKeyExchangeView) this.view;
+	public DHDemoView getView() {
+		return (DHDemoView) this.view;
 	}
-
 }

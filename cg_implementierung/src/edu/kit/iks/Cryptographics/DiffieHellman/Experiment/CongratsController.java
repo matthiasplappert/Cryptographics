@@ -3,22 +3,19 @@ package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
-public class ChooseSecretColorController extends AbstractVisualizationController {
+public class CongratsController extends AbstractVisualizationController {
+	private CongratsView view;
 	
-	private ChooseSecretColorView view;
-	
-	public ChooseSecretColorController(
+	public CongratsController(
 			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		view = new ChooseSecretColorView();
-		
+		view = new CongratsView();
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return view.getHelp();
 	}
 
 	@Override
@@ -26,7 +23,7 @@ public class ChooseSecretColorController extends AbstractVisualizationController
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
@@ -37,8 +34,7 @@ public class ChooseSecretColorController extends AbstractVisualizationController
 	}
 	
 	@Override
-	public ChooseSecretColorView getView() {
-		return (ChooseSecretColorView) this.view;
+	public CongratsView getView() {
+		return (CongratsView) this.view;
 	}
-
 }

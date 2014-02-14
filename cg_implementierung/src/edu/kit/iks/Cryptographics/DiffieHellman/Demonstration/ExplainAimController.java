@@ -8,20 +8,20 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class ExplainAimController extends AbstractVisualizationController {
 	
+	private ExplainAimView view;
+	
 	public ExplainAimController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return view.getHelp();
 	}
 
 	@Override
 	public void loadView() {
 		this.view = new ExplainAimView();
-		// TODO use mouselistener instead of actionlistener
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			
 			@Override

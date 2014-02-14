@@ -6,7 +6,10 @@ import java.awt.Insets;
 
 import javax.swing.JLabel;
 
+import org.xnap.commons.i18n.I18n;
+
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.PopoverView;
 import edu.kit.iks.CryptographicsLib.VisualizationButton;
 
@@ -47,6 +50,11 @@ public class TimelinePopoverView extends PopoverView {
      * Button to start the currently displayed visualization
      */
 	private VisualizationButton startButton;
+	
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(TimelinePopoverView.class);
 	
 	/**
 	 * Constructor of the timeline popover.
@@ -96,7 +104,7 @@ public class TimelinePopoverView extends PopoverView {
 		startConstraints.gridwidth = 3;
 		startConstraints.anchor = GridBagConstraints.ABOVE_BASELINE;
 		this.startButton = new VisualizationButton(visualizationInfo);
-		this.startButton.setText("Start");
+		this.startButton.setText(i18n.tr("Start"));
 		this.getContentView().add(this.startButton, startConstraints);
 		
 		this.getContentView().validate();

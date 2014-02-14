@@ -3,6 +3,8 @@ package edu.kit.iks.CryptographicsLib;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import org.xnap.commons.i18n.I18n;
+
 /**
  * View for UI elements which all visualizations have in common
  * 
@@ -15,6 +17,11 @@ public class VisualizationView extends JPanel {
 	 */
 	private static final long serialVersionUID = -988624050394454370L;
 
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(VisualizationView.class);
+	
 	/**
 	 * Next button
 	 */
@@ -29,10 +36,10 @@ public class VisualizationView extends JPanel {
 	 * Constructor initializing a new instance of {VisualizationView}
 	 */
 	public VisualizationView() {
-		nextButton = new JButton("Next");
+		nextButton = new JButton(i18n.tr("Next"));
 		this.add(nextButton);
 		
-		backButton = new JButton("Back");
+		backButton = new JButton(i18n.tr("Back"));
 		this.add(backButton);
 		this.validate();
 	}

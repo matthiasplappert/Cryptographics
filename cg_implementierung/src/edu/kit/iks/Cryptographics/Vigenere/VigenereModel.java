@@ -22,4 +22,22 @@ public class VigenereModel {
 			return 0;
 		}
 	}
+	
+	static public String getCharPositionated(int start, int num, String input) {
+		String returnString = "";
+		int x = 0;
+		for (int i = start; i < input.length(); i++) {
+			char c = input.charAt(i);
+			int index = (int)c - 64;
+			if (index >= 0 && index <= 26) {
+				if (x > 0) {
+					x = 0;
+					continue;
+				}
+				returnString = returnString + input.charAt(i);
+				x++;
+			} 
+		}
+		return returnString;
+	}
 }

@@ -5,43 +5,46 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
 public class YourTurnController extends AbstractVisualizationController {
 	
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(YourTurnController.class);
+	
 	private YourTurnView view;
 
 	public YourTurnController(
 			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		view = new YourTurnView();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String getHelp() {
-		// TODO Auto-generated method stub
-		return null;
+		return view.getHelp();
 	}
 
 	@Override
 	public void loadView() {
-		// TODO Auto-generated method stub
 		view = new YourTurnView();
 		JButton next = this.getView().getNextButton();
 		JButton back = this.getView().getBackButton();
-		next.setText("Start Experiment");
+		next.setText(i18n.tr("Start Experiment"));
 		next.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
 			}
 		});
-		back.setText("Back to Demonstration");
+		back.setText(i18n.tr("Back to Demonstration"));
 		back.addActionListener(new ActionListener() {
 			
 			@Override

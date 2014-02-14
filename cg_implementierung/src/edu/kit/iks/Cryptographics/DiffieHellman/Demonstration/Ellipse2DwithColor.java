@@ -12,10 +12,8 @@ import java.awt.geom.Ellipse2D;
 
 public class Ellipse2DwithColor extends Ellipse2D.Double {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8676966439493063852L;
+	
 	private Color color;
 	
 	public Ellipse2DwithColor(double x, double y, double w, double h) {

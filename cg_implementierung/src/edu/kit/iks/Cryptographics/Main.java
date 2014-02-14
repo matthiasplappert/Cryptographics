@@ -2,6 +2,7 @@ package edu.kit.iks.Cryptographics;
 
 import javax.swing.SwingUtilities;
 
+import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.Logger;
 
 /**

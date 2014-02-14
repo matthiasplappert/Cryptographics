@@ -1,13 +1,14 @@
 package edu.kit.iks.CryptographicsLib;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.text.html.HTMLEditorKit;
 
 /**
  * View of the information page
@@ -29,18 +30,18 @@ public class InformationView extends JPanel {
 	/**
 	 * File path to the local HTML file with further information
 	 */
-	private String url;
+	private String html;
 	
 	/**
 	 * Constructor initializing a new instance of {InformationView}
-	 * with given {path} and {qrCode}
+	 * with given {HTML} and {qrCode}
 	 * 
-	 * @param path File path to the local HTML file with further information
+	 * @param html The HTML used to display the additional informations
 	 * @param qrCode QR code for further information
 	 */
-	public InformationView(String url, Image qrCode) {
+	public InformationView(String html, Image qrCode) {
 		this.qrCode = qrCode;
-		this.url = url;
+		this.html = html;
 		
 		this.setLayout(new GridBagLayout());
 		
@@ -59,36 +60,44 @@ public class InformationView extends JPanel {
 		this.validate();
 	}
 	
+	/**
+	 * Loads the web view.
+	 */
 	private void loadWebView() {
-	    final JEditorPane editorPane = new JEditorPane();
-	    editorPane.setEditable(false);
-
-	    // Use HTML.
-	    editorPane.setEditorKitForContentType("text/html", new HTMLEditorKit());
-	    try {
-	    	editorPane.setPage(this.url);
-	    } catch(Exception e) {
-	    	Logger.e(e);
-	    }
-	    JScrollPane scrollPane = new JScrollPane(editorPane); 
-
-	    // Add the scroll pane.
-	    GridBagConstraints scrollConstraints = new GridBagConstraints();
-	    scrollConstraints.gridx = 0;
-	    scrollConstraints.gridy = 0;
-	    scrollConstraints.weighty = 0.9;
-	    scrollConstraints.weightx = 1.0;
-	    scrollConstraints.fill = GridBagConstraints.BOTH;
-	    this.add(scrollPane, scrollConstraints);
-	}
+		// Constraints.
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.gridx = 0;
+		constraints.gridy = 0;
+		constraints.weightx = 1.0;
+		constraints.weighty = 0.9;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		constraints.fill = GridBagConstraints.BOTH;
+		
+		// Editor pane used as a web view.
+		final JEditorPane editorPane = new JEditorPane();
+		editorPane.setEditable(false);
+		editorPane.setContentType("text/html");
+		editorPane.setBackground(Color.BLUE);
+		try {
+			editorPane.setText(this.getHtml());
+		} catch(Exception e) {
+			Logger.e(e);
+		}
+		editorPane.setCaretPosition(0); // scrolls to the top
+		
+		// Scroll pane that contains the editor pane.
+		JScrollPane scrollPane = new JScrollPane(editorPane);
+		scrollPane.validate();
+        this.add(scrollPane, constraints);
+    }
 	
 	/**
-	 * Gets the file path to the local HTML file with further information
+	 * Returns the HTML contents of the additional informations.
 	 * 
-	 * @return File path to the local HTML file with further information
+	 * @return the HTML contents
 	 */
-	public String getUrl() {
-		return this.url;
+	public String getHtml() {
+		return this.html;
 	}
 	
 	/**

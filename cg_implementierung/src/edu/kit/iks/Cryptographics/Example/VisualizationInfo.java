@@ -44,6 +44,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 		return "Test";
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List<Class> getControllerClasses() {
 		List<Class> controllerClasses = new ArrayList<Class>();
@@ -53,10 +54,5 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 		controllerClasses.add(InformationController.class);
 		
 		return controllerClasses;
-	}
-	
-	@Override
-	public String getAdditionalInformationFileURL() {
-		return "http://google.com";
 	}
 }

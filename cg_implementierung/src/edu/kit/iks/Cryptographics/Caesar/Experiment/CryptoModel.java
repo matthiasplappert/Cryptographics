@@ -1,7 +1,11 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.CryptographicsLib.Configuration;
+
 /**
- * Model of the visualization of Caesar's cipher.
+ * Model for the visualization of Caesar's cipher.
  * 
  * @author Wasilij Beskorovajnov.
  * 
@@ -11,24 +15,21 @@ public class CryptoModel {
 	// makes sure only one instance is being generated.
 	private static final CryptoModel model = new CryptoModel();
 
-	public static CryptoModel getInstance() {
-		return CryptoModel.model;
-	}
-
 	// ASCII lower case a code.
 	public final int ASCII_LC_A = 'a';
 
 	// ASCII upper case A code.
 	public final int ASCII_UC_A = 'A';
 
-	// The Header of a html string.
-	private final String HTML_HEADER = "<html><body>";
-
-	// number of chars in <html><body>.
-	private final int HTML_HEADER_LENGTH = 12;
-
 	// The reach of the key interval.
 	private final int MODULO = 26;
+
+	private static I18n i18n = Configuration.getInstance().getI18n(
+			CryptoModel.class);
+
+	public static CryptoModel getInstance() {
+		return CryptoModel.model;
+	}
 
 	/**
 	 * Constructor.
@@ -38,206 +39,179 @@ public class CryptoModel {
 	}
 
 	/**
-	 * @param textLines
-	 * @return
+	 * Function for encrypting of all sort of String.<br>
+	 * CAREFUL: If you want to encrypt html Strings, make sure all tags are closed!!!!<br>
+	 * 
+	 * @param key
+	 *            the key parameter for encryption.
+	 * @param text
+	 *            the text to encrypt.
+	 * @return the encrypted text.
 	 */
-	public String arrayToString(String[] textLines) {
-		String textString = "";
-		for (String textline : textLines) {
-			textString += textline;
+	public String enc(int key, String text) {
+		// TODO: Check if the String has valid HTML!
+		String cipher = "";
+		for (int i = 0; i < text.length(); i++) {
+			Character c = text.charAt(i);
+
+			if (Character.isLetter(c)) {
+
+				cipher += String.valueOf(this.shift(key, c));
+
+			} else {
+				if (c != '<') {
+					cipher += c;
+				} else {
+					cipher += c;
+					while (c != '>') {
+						i++;
+						c = text.charAt(i);
+						cipher += c;
+					}
+				}
+			}
+
 		}
-		return textString;
+		return cipher;
+
 	}
 
 	/**
+	 * Function for decrypting all sort of Strings.
+	 * 
 	 * @param key
+	 *            the key parameter for decryption.
 	 * @param cipher
-	 * @return
+	 *            the cipher to decrypt.
+	 * @return decrypted cipher.
 	 */
 	public String dec(int key, String cipher) {
 		return this.enc(-key, cipher);
 	}
 
 	/**
-	 * @param key
-	 * @param cipher
-	 * @return
-	 */
-	public String[] dec(int key, String[] cipher) {
-		return this.enc(-key, cipher);
-	}
-
-	/**
-	 * Function for decrypting and encrypting of small strings.
+	 * Generates a random Integer in the range of 1 and 26.
 	 * 
-	 * @param key
-	 * @param text
-	 * @return
+	 * @return the generated key.
 	 */
-	public String enc(int key, String text) {
-
-		String cipher = "";
-		for (int i = 0; i < text.length(); i++) {
-			Character c = text.charAt(i);
-
-			if (Character.isLetter(c)) {
-				if (Character.isUpperCase(c)) {
-					int offset = c - this.ASCII_UC_A;
-
-					cipher += String
-							.valueOf((char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_UC_A));
-				} else {
-					int offset = c - this.ASCII_LC_A;
-
-					cipher += String
-							.valueOf((char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_LC_A));
-				}
-
-			} else {
-				cipher += c;
-			}
-
-		}
-		return cipher;
-
-	}
-
-	/**
-	 * Function for encrypting bigger texts.
-	 * 
-	 * @param key
-	 * @param plainTextLines
-	 * @return
-	 */
-	public String[] enc(int key, String[] plainTextLines) {
-
-		String[] cipher = new String[plainTextLines.length];
-
-		for (int i = 0; i < plainTextLines.length; i++) {
-			cipher[i] = "";
-			for (int j = 0; j < plainTextLines[i].length(); j++) {
-				Character c = plainTextLines[i].charAt(j);
-
-				if (Character.isLetter(c)) {
-					if (Character.isUpperCase(c)) {
-						int offset = c - this.ASCII_UC_A;
-
-						cipher[i] += String
-								.valueOf((char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_UC_A));
-					} else {
-						int offset = c - this.ASCII_LC_A;
-
-						cipher[i] += String
-								.valueOf((char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_LC_A));
-					}
-
-				} else {
-					cipher[i] += c;
-				}
-
-			}
-		}
-		return cipher;
-
-	}
-
 	public int generateKey() {
 		return this.generateRandomInt(1, 26);
 	}
 
 	/**
+	 * Generates a random integer in an interval of a and b.
+	 * 
 	 * @param a
+	 *            the left border of the interval.
 	 * @param b
-	 * @return
+	 *            the right border of the interval.
+	 * @return the generated integer.
 	 */
 	private int generateRandomInt(int a, int b) {
 		return (int) (a + ((b - a) * Math.random()));
 	}
 
+	/**
+	 * Pulls 'randomly' a string from the local pool.
+	 * 
+	 * @return a random string.
+	 */
 	public String genRandomBlamings() {
-		String[] blamingPool = { "Oh no. What a pity! It went wrong!",
-				"No my friend. This one doesn't work!",
-				"Ok, dont be frustrated. Though your action was totally wrong." };
+		String[] blamingPool = {
+				CryptoModel.i18n.tr("Oh no. What a pity! It went wrong!"),
+				CryptoModel.i18n.tr("No my friend. This one doesn't work!"),
+				CryptoModel.i18n
+						.tr("Ok, dont be frustrated. Though your action was totally wrong.") };
 		int index = this.generateRandomInt(0, blamingPool.length);
 		return blamingPool[index];
 	}
 
 	/**
-	 * @param key
-	 * @return
+	 * Pulls 'randomly' a plainText from the local pool of genRandomPlainSequence() and encrypts it
+	 * with a given key.
+	 * 
+	 * @param key 
+	 * @return 'random' cipher.
 	 */
 	public String genRandomCipher(int key) {
 		String plain = this.genRandomPlainSequence();
 		return this.enc(key, plain);
 	}
 
+	/**
+	 * Pulls 'randomly' a string from the local pool.
+	 * @return 'random' string.
+	 */
 	public String genRandomGrats() {
-		String[] gratulationsPool = { "Great work oh mighty Caesar.",
-				"Very nice. I Like!", "Kryptochef approves!",
-				"Noone could do it better!" };
+		String[] gratulationsPool = {
+				CryptoModel.i18n.tr("Great work oh mighty Caesar."),
+				CryptoModel.i18n.tr("Very nice. I Like!",
+						"Kryptochef approves!"),
+				CryptoModel.i18n.tr("No one could've done it better!") };
 		int index = this.generateRandomInt(0, gratulationsPool.length);
 		return gratulationsPool[index];
 	}
 
 	/**
-	 * @return
+	 * Pulls 'randomly' string from the local pool.
+	 * @return 'random' string.
 	 */
 	public String genRandomPlainSequence() {
-		String[] plainTextPool = { "ANNA", "HANNAH", "BANANA", "KOKOS",
-				"KRYPTOCHEF", "HAMSTER", "WASILIJ", "SECRET", "EPSILON" };
+		String[] plainTextPool = { CryptoModel.i18n.tr("ANNA"),
+				CryptoModel.i18n.tr("HANNAH"), CryptoModel.i18n.tr("BANANA"),
+				CryptoModel.i18n.tr("KOKOS"),
+				CryptoModel.i18n.tr("KRYPTOCHEF"),
+				CryptoModel.i18n.tr("HAMSTER"), CryptoModel.i18n.tr("WASILIJ"),
+				CryptoModel.i18n.tr("SECRET"), CryptoModel.i18n.tr("EPSILON") };
 
 		int index = this.generateRandomInt(0, plainTextPool.length);
 		return plainTextPool[index];
 	}
 
-	// TODO: Not so much random at the moment.
-	/**
-	 * @return
+	
+	/** 
+	 * Pulls 'randomly' a bigger string from the local pool.
+	 * @return the 'random' text.
 	 */
 	public String genRandomText() {
-		String[] textPool = { "<html><body>"
-				+ "The diagram you see here shows the frequency of each letter<br>"
-				+ "in the text you are reading at the moment. It is called a<br>"
-				+ "Histogram. If you would count all E's in this explanation<br>"
-				+ "you would get the number you see in the diagram on the column<br>"
-				+ "above the letter E. Now the program will encrypt this explanation<br>"
-				+ "with an unknown key in a most awesome way and we will see the <br>"
-				+ "histogram of the cipher. Click Proceed and see the magic!" };
+		String[] textPool = { this
+				.wrapHtml(CryptoModel.i18n
+						.tr("The diagram you see here shows the frequency of each letter<br>"
+								+ "in the text you are reading at the moment. It is called a<br>"
+								+ "Histogram. If you would count all E's in this explanation<br>"
+								+ "you would get the number you see in the diagram on the column<br>"
+								+ "above the letter E. Now the program will encrypt this explanation<br>"
+								+ "with an unknown key in a most awesome way and we will see the <br>"
+								+ "histogram of the cipher. Click Proceed and see the magic!")) };
 		return textPool[0];
 	}
 
 	/**
-	 * @param stringToFormat
-	 * @return
-	 */
-	public String insertHtmlBreaks(String[] textLines) {
-		String formattedString = this.HTML_HEADER;
-		for (String textline : textLines) {
-			formattedString += textline + "<br>";
-		}
-		return formattedString;
-	}
-
-	/**
-	 * @param input
+	 * Checks if the input is valid.
+	 * @param input the input to check.
 	 */
 	public boolean isInputValid(String input) {
 		return (input.length() < 10 && input.length() > 0);
 	}
 
-	/**
-	 * @param key
-	 * @return
+	/**Checks if the key is valid.
+	 * @param key the key to check.
+	 * @return 
 	 */
 	public boolean isKeyValid(int key) {
 		return (key > 0 && key <= this.MODULO);
 	}
 
-	/**
-	 * @param stringToClear
-	 * @return
-	 */
-	public String[] removeHtmlBreaks(String stringToClear) {
-		return stringToClear.substring(this.HTML_HEADER_LENGTH).split("<br>");
+	private String wrapHtml(String text) {
+		return "<html><body>" + text + "</body></html>";
+	}
+
+	private char shift(int key, char charToShift) {
+		int offset = charToShift - this.ASCII_UC_A;
+		if (Character.isLowerCase(charToShift)) {
+			offset = charToShift - this.ASCII_LC_A;
+			return (char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_LC_A);
+		}
+		return (char) ((((offset + this.MODULO) + key) % this.MODULO) + this.ASCII_UC_A);
 	}
 }
