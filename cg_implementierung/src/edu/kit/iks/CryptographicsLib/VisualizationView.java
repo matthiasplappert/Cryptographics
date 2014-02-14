@@ -5,8 +5,6 @@ import javax.swing.JPanel;
 
 import org.xnap.commons.i18n.I18n;
 
-import edu.kit.iks.Cryptographics.Configuration;
-
 /**
  * View for UI elements which all visualizations have in common
  * 

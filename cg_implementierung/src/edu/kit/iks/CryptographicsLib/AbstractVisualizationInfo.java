@@ -11,7 +11,6 @@ import javax.imageio.ImageIO;
 
 import org.xnap.commons.i18n.I18n;
 
-import edu.kit.iks.Cryptographics.Configuration;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 

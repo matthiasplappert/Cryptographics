@@ -5,8 +5,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.StringWriter;
-import java.nio.charset.Charset;
 
 /**
  * Controller for each procedure displaying further
@@ -40,7 +38,7 @@ public class InformationController extends AbstractVisualizationController {
 		if (inputStream == null) {
 			System.out.println("no input stream!");
 		}
-		this.additionalInformationHtml = this.getStringFromInputStream(inputStream);
+		this.additionalInformationHtml = InformationController.getStringFromInputStream(inputStream);
 	}
 	
 	/*

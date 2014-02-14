@@ -15,7 +15,6 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 /**
  * View of the information page
@@ -138,12 +137,14 @@ public class InformationView extends JPanel implements ComponentListener {
 	@Override
 	public void componentResized(ComponentEvent e) {
 		// Set size.
-		this.setFxPanelSize(this.fxPanel.getSize());
+		//this.setFxPanelSize(this.fxPanel.getSize());
+		System.out.println("resized!");
 		
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				Dimension size = getFxPanelSize();
+				//Dimension size = getFxPanelSize();
+				Dimension size = new Dimension(300, 300);
 				if (webView == null) {
 					loadFXWebView(fxPanel, size);
 				}

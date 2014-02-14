@@ -2,7 +2,7 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
 import org.xnap.commons.i18n.I18n;
 
-import edu.kit.iks.Cryptographics.Configuration;
+import edu.kit.iks.CryptographicsLib.Configuration;
 
 /**
  * Model for the visualization of Caesar's cipher.

@@ -9,10 +9,10 @@ import javax.swing.JTextField;
 import org.jdom2.Element;
 import org.xnap.commons.i18n.I18n;
 
-import edu.kit.iks.Cryptographics.Configuration;
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.Cryptographics.Caesar.CryptoView;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoExperimentView;
+import edu.kit.iks.CryptographicsLib.Configuration;
 
 /**
  * Performs animations for demonstrating Caesar's idea.

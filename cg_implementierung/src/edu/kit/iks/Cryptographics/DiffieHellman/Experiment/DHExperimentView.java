@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import org.xnap.commons.i18n.I18n;
 
-import edu.kit.iks.Cryptographics.Configuration;
+import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorChannel;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorChooser;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorMix;
