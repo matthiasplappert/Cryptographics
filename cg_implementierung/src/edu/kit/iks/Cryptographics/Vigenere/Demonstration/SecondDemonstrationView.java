@@ -176,7 +176,6 @@ public class SecondDemonstrationView extends VisualizationView {
 				+ "the position of evey character, as you can see in the bottom, "
 				+ "in the alphabet under each character.")
 				+ "</div></html>"));
-		this.add(new JLabel("VIGENERE INTRODUCTION2"));
 		this.vigenereKeyDesc = new JLabel(i18n.tr("Vigenere Key") + ": " + this.vigenereKey);
 		
 		this.alphabet = new AlphabetStripView();
@@ -346,7 +345,10 @@ public class SecondDemonstrationView extends VisualizationView {
 		this.getNextButton().setBounds(1100, 600,
 	             size.width, size.height);
 	}
-
+	
+	/**
+	 * constructor of the view
+	 */
 	public SecondDemonstrationView() {
 		setupGUI();
 		setFonts();
