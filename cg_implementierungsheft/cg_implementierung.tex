@@ -430,13 +430,46 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
               Lädt die View.
         \item public void unloadView()\newline
               Entlädt die View.
-        \item public FirstDemonstrationView getView()\newline
+        \item public FirstExperimentView getView()\newline
               Liefert die View zurück.
         \item public String getHelp()\newline
               Liefert den String zur Hilfe zurück.
       \end{itemize}
 	  
     \subsubsection{Klasse FirstExperimentView}
+	Während der Implementierung hat sich herausgestellt dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void createKeyboard(JTextField input, final int flag)\newline
+              Erstellt eine Tastatur für die Nutzereingaben.
+		\item public void highlightTextBorder(int i)\newline
+              Hebt das gewünschte Eingabefeld hervor.
+		\item public void unHighlightTextBorder(int i)\newline
+              Löscht die Hervorhebung des gewünschten Eingabefeldes.
+		\item public KeyboardView getKeyboard()\newline
+              Liefert die Tastatur zurück.
+		\item public void setKeyboard(KeyboardView keyboard)\newline
+              Setzt die Tastatur.
+		\item public AlphabetStripView getAlphabet()\newline
+              Liefert das Alphabet-Element zurück.
+		\item public String getKey()\newline
+              Liefert den Verschlüsselungskey zurück.
+		\item public void setTextField(int i, String character)\newline
+              Setzt den Buchstaben an der Stelle i auf den gewünschten Parameter.
+		\item public JTextField getTextFieldDecrypted(int i)\newline
+              Liefert den entschlüsselten Buchstaben an der Stelle i zurück.
+		\item public JLabel getTextFieldPlain(int i)\newline
+              Liefert den Buchstaben an der Stelle i zurück.
+		\item public JTextField[] getTextFields()\newline
+              Liefert alle Textfelder zurück.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+		\item public void showError(int i)\newline
+              Zeigt eine Warnung und markiert das falsche Element rot.
+		\item public void hideError()\newline
+              Versteckt die Warnung.		
+	  \end{itemize}
 
     \subsubsection{Klasse SecondExperimentController}
 	Diese Klasse wurde vollständig entfernt, da im Verlauf der Implementierung festgestellt wurde,
