@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -55,7 +56,12 @@ public class VisualizationContainerView extends JPanel {
 	 * Constructor initializing a new instance of {VisualizationContainerView}
 	 */
 	public VisualizationContainerView() {
-		super(new GridBagLayout());
+		super(new BorderLayout());
+		
+		// Create the container for buttons and title.
+		JPanel container = new JPanel(new GridBagLayout());
+		container.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
+		this.add(container, BorderLayout.NORTH);
 		
 		// Create the exit button.
 		GridBagConstraints exitConstraints = new GridBagConstraints();
@@ -63,8 +69,9 @@ public class VisualizationContainerView extends JPanel {
 		exitConstraints.weighty = 0.1;
 		exitConstraints.gridx = 0;
 		exitConstraints.gridy = 0;
+		exitConstraints.anchor = GridBagConstraints.ABOVE_BASELINE_LEADING;
 		this.exitButton = new JButton(i18n.tr("Exit"));
-		this.add(this.exitButton, exitConstraints);
+		container.add(this.exitButton, exitConstraints);
 		
 		// Create the name label.
 		GridBagConstraints nameConstraints = new GridBagConstraints();
@@ -73,7 +80,7 @@ public class VisualizationContainerView extends JPanel {
 		nameConstraints.gridx = 1;
 		nameConstraints.gridy = 0;
 		this.nameLabel = new JLabel();
-		this.add(this.nameLabel, nameConstraints);
+		container.add(this.nameLabel, nameConstraints);
 		
 		// Create the help button.
 		GridBagConstraints helpConstraints = new GridBagConstraints();
@@ -81,20 +88,14 @@ public class VisualizationContainerView extends JPanel {
 		helpConstraints.weighty = 0.1;
 		helpConstraints.gridx = 2;
 		helpConstraints.gridy = 0;
+		helpConstraints.anchor = GridBagConstraints.ABOVE_BASELINE_TRAILING;
 		this.helpButton = new JButton(i18n.tr("Help"));
-		this.add(this.helpButton, helpConstraints);
+		container.add(this.helpButton, helpConstraints);
 		
 		// Create content view.
-		GridBagConstraints contentConstraints = new GridBagConstraints();
-		contentConstraints.weightx = 1.0;
-		contentConstraints.weighty = 0.9;
-		contentConstraints.gridx = 0;
-		contentConstraints.gridy = 1;
-		contentConstraints.fill = GridBagConstraints.BOTH;
-		contentConstraints.gridwidth = 3;
-	    this.contentView = new JPanel(new BorderLayout());
+		this.contentView = new JPanel(new BorderLayout());
 	    this.contentView.setName("visualizationContainerContent");
-	    this.add(this.contentView, contentConstraints);
+	    this.add(this.contentView, BorderLayout.CENTER);
 	    
 	    this.validate();
 	}
