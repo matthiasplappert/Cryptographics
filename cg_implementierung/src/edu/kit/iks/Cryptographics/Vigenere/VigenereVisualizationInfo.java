@@ -59,7 +59,7 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	}
 	
 	public String getQRCodeContent() {
-		return i18n.tr("http://en.wikipedia.org/wiki/Caesar_cipher");
+		return i18n.tr("http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher");
 	}
 
 	public float getTimelineOffset() {
