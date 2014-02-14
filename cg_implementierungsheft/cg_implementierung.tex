@@ -391,13 +391,35 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
     Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse ColorMix}
+    Diese Klasse wurde neu hinzugefügt
+    Ihre Aufgabe ist es als JPanel grafisch Farben zu mischen
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public ColorMix(int circleSize, Dimension dimension) wurde hinzugefügt\newline
+           \item public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb) wurde hinzugefügt\newline
+               Mischt grafisch zwei Farben zusammen
+           \item public void seperateColors(boolean seperate, boolean repeat) wurde hinzugefügt\newline
+               Trennt grafisch zwei Farben
+           \item public void setEllipColor(int which, Color color) wurde hinzugefügt\newline
+               Setzt erste oder zweite Farbe auf color
+           \item public Color getMixedColor() wurde hinzugefügt\newline
+               Gibt die gemischte Farbe zurück
+           \item public boolean isComputeFinalMix() wurde hinzugefügt\newline
+               Falls wahr, wird eine andere Formel zum Farbenmischen verwendet
+           \item public void setComputeFinalMix(boolean computeFinalMix)\newline
+               Setzt den Wert von computeFinalMix
+           \end{itemize}
 
 	\subsubsection{Klasse ColorChannel}
 
 	\subsubsection{Klasse ColorChooser}
+
 	\subsubsection{Klasse DemoOneWayController}
+
 	\subsubsection{Klasse DemoOneWayView}
+
 	\subsubsection{Klasse Ellipse2DwithColor}
+
 	\subsubsection{Klasse NextStepCallback}
 
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Experiment}
