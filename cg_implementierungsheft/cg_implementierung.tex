@@ -57,6 +57,44 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
   \subsection{Paket edu.kit.iks.Cryptographics}
 
   \subsection{Paket edu.kit.iks.CryptographicsLib}
+    \subsubsection{Configuration}
+    Während der Implementierung hat sich gezeigt, das an einigen Stellen Konstanten verwendet werden,
+    beispielsweise die Zeit in Sekunden nachdem der Benutzer als inaktiv gilt. Um diese global ändern zu können
+    wurde die Klasse Configuration angelegt. Die Werte stammen aus einer XML-Datei. Falls diese nicht existiert,
+    werden voreingestellte Default-Werte verwendet. Die Klasse Configuration verwendet das Singleton-Entwurfsmuster.\newline
+
+    \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+           
+    \textbf{Methoden}
+      \begin{itemize}
+        \item public static getInstance()\newline
+              Gibt die Singleton-Instanz zurück bzw. erzeugt diese.
+        \item public int getIdleTimeout()\newline
+              Gibt die Zeit in Millisekunden zurück nach der der Benutzer als inaktiv gilt.
+        \item public int getResetTimeout()\newline
+              Gibt die Zeit in Millisekunden zurück nach der sich das Programm in den Grundzustand
+              zurücksetzt zurück. Dieser Timeout beginnt erst, nachdem der Benutzer als inaktiv gilt.
+        \item public boolean isDebugModeEnabled()\newline
+              Deutet an, ob das Programm im Debug-Modus ausgeführt werden soll.
+        \item public boolean isMouseCursorEnabled()\newline
+              Deutet an, ob der Mauszeiger angezeigt werden soll. Falls das Programm nicht im Debug-Modus
+              ausgeführt wird, gibt diese Methode immer false zurück.
+        \item public boolean isLookAndFeelEnabled()\newline
+              Deutet an, ob das Look \& Feel verwendet werden soll. Falls das Programm nicht im Debug-Modus
+              ausgeführt wird, gibt diese Methode immer true zurück.
+        \item public boolean isFullscreenModeEnabled()\newline
+              Deutet an, ob das Programm im Vollbildmodus ausgeführt werden soll. Falls das Programm nicht
+              im Debug-Modus ausgeführt wird, gibt diese Methode immer true zurück.
+        \item public String getLanguageCode()\newline
+              Gibt den für die Lokalisierung notwendigen Sprachcode zurück. Dieser kann beispielsweise ``de''
+              oder ``en'' sein.
+        \item public I18n getI18n(Class className)\newline
+              Gibt die für die gegebene Klasse geeignete I18n-Instanz zurück. Diese wird zur Lokalisierung
+              verwendet.
+      \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
 
