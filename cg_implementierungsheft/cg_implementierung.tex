@@ -482,6 +482,21 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 
 	\subsubsection{Klasse ColorChooser}
     Diese Klasse wurde neu hinzugefügt
+    Dieses JPanel erlaubt uns eine Farbe auszuwählen
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public ColorChooser(Dimension d, Color color, Color[] colors) wurde hinzugefügt\newline
+               Der Konstruktor nimmt die Größe des JPanel als Parameter,
+               die Farbe die als erstes angezeigt werden soll, nämlich color,
+               und eine Liste an Farben aus denen man seine Farbe wählen kann colors
+           \item public Color getCurrentColor wurde hinzugefügt\newline
+               Gibt die momentan ausgewählte Farbe zurück
+           \item public void setToChooseFrom(Color[] colors) wurde hinzugefügt\newline
+               Setze die Farben die man wählen kann neu
+           \item public Color[] getToChooseFrom() wurde hinzugefügt\newline
+               Gebe die Farben zurück, die man wählen kann
+           \end{itemize}
+
 
 	\subsubsection{Klasse DemoOneWayController}
     Diese Klasse wurde neu hinzugefügt
