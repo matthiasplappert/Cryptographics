@@ -428,6 +428,25 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 	\subsubsection{Klasse MixColorView}
     Diese Klasse wurde entfernt
 
+	\subsubsection{Klasse DemoOneWayController}
+    Diese Klasse wurde neu hinzugefügt
+    Der Controller der DemoOneWayView
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \end{itemize}
+
+	\subsubsection{Klasse DemoOneWayView}
+    Diese Klasse wurde neu hinzugefügt
+    Diese View zeigt wie Einwegfunktionen agieren
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public DemoOneWayView() wurde hinzugefügt\newline
+               Der Konstruktor positioniert seine Subkomponenten etc.
+           \item public String getHelp() wurde hinzugefügt\newline
+               Gibt einen Hilfe-Zeichenkette zurück
+           \end{itemize}
+
+
 	\subsubsection{Klasse ColorMix}
     Diese Klasse wurde neu hinzugefügt
     Ihre Aufgabe ist es als JPanel grafisch Farben zu mischen
@@ -535,15 +554,21 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
                Gebe die Farben zurück, die man wählen kann
            \end{itemize}
 
-
-	\subsubsection{Klasse DemoOneWayController}
-    Diese Klasse wurde neu hinzugefügt
-
-	\subsubsection{Klasse DemoOneWayView}
-    Diese Klasse wurde neu hinzugefügt
-
 	\subsubsection{Klasse Ellipse2DwithColor}
     Diese Klasse wurde neu hinzugefügt
+    Diese Klasse ist ein Wrapper um Ellipse2D um
+    sie zusätzlich mit einer Farbe zu assozieren
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public Ellipse2DwithColor(double x, double y, double w, double h) wurde hinzugefügt\newline
+               Gleicht dem Konstruktor der Oberklasse und setzt die Farbe auf Schwarz
+           \item public Ellipse2DwithColor(double x, double y, double w, double h, Color color) wurde hinzugefügt\newline
+               Gleicht dem Konstruktor der Oberklasse und setzt die Farbe auf color
+           \item public Color getColor() wurde hinzugefügt\newline
+               Gibt die aktuelle Farbe zurück
+           \item public void setColor(Color color) wurde hinzugefügt\newline
+               Setzt einen neuen Wert für die aktuelle Farbe
+           \end{itemize}
 
 	\subsubsection{Interface NextStepCallback}
     Diese Interface wurde neu hinzugefügt
