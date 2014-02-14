@@ -3,8 +3,8 @@
   <idleTimeout>300000</idleTimeout>
   <resetTimeout>60000</resetTimeout>
   <debugMode>true</debugMode>
-  <fullscreenMode>true</fullscreenMode>
+  <fullscreenMode>false</fullscreenMode>
   <lookAndFeel>true</lookAndFeel>
   <mouseCursor>true</mouseCursor>
-  <languageCode>de</languageCode>
+  <languageCode>en</languageCode>
 </config>
