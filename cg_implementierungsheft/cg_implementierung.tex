@@ -355,7 +355,7 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
               Lädt die View.
         \item public void unloadView()\newline
               Entlädt die View.
-        \item public FirstDemonstrationView getView()\newline
+        \item public SecondDemonstrationView getView()\newline
               Liefert die View zurück.
         \item public String getHelp()\newline
               Liefert den String zur Hilfe zurück.
@@ -385,12 +385,57 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 	  \end{itemize}
 
     \subsubsection{Klasse ThirdDemonstrationController}
+	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public ThirdDemonstrationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
 
     \subsubsection{Klasse ThirdDemonstrationView}
-
+	Während der Implementierung hat sich herausgestellt dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void highlightAndSetText(int num, int pos, String character)\newline
+              Setzt den Buchstaben auf die gewünschte Stelle und hebt diesen hervor.
+		\item public void setCalculatorVisible(boolean b)\newline
+              Setzt die Sichtbarkeit des Rechners.
+		\item public AlphabetStripView getAlphabet()\newline
+              Liefert das Alphabet-Element zurück.
+		\item public void setTextField(int i, String character)\newline
+              Setzt den Buchstaben an der Stelle i auf den gewünschten Parameter.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+		\item public void setCalculator(int a, int b)\newline
+              Diese Methode übernimmt die Änderungen, welche an dem "Rechner" auf der rechten Seite nötig sind.
+	  \end{itemize}
+	  
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Experiment}
     \subsubsection{Klasse FirstExperimentController}
-
+	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public FirstDemonstrationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
+	  
     \subsubsection{Klasse FirstExperimentView}
 
     \subsubsection{Klasse SecondExperimentController}
@@ -402,11 +447,39 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 	dass sie nirgends benötigt wird (FirstExperimentView enthält jetzt die Funktionalität).
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanation}
     \subsubsection{Klasse FirstExplanationController}
-
+	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public FirstDemonstrationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
+	  
     \subsubsection{Klasse FirstExplanationView}
 
     \subsubsection{Klasse SecondExplanationController}
-
+	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public FirstDemonstrationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
+	  
     \subsubsection{Klasse SecondExplanationView}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
