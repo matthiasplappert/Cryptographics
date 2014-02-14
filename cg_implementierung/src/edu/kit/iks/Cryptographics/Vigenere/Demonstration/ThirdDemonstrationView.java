@@ -4,12 +4,21 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JLabel;
+
+import org.xnap.commons.i18n.I18n;
+
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 public class ThirdDemonstrationView extends VisualizationView{
 	private static final long serialVersionUID = 6294968461280032987L;
+	
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(ThirdDemonstrationView.class);
 	
 	//PLAINTEXTCHARS WITH THEIR INDEXES
 	private JLabel[] indexCharPlain;
@@ -21,7 +30,7 @@ public class ThirdDemonstrationView extends VisualizationView{
 	
 	//Visulisation of the Key
 	private JLabel vigenereKeyDesc;
-	private String vigenereKey = "KISS";
+	private String vigenereKey = i18n.tr("KISS");
 	
 	//Visualisation of calculation of the indexes
 	private JLabel charFirst;
@@ -36,9 +45,9 @@ public class ThirdDemonstrationView extends VisualizationView{
 		if (temp < 0)
 			temp = 26 + temp;
 		Dimension size;
-		this.charFirst.setText("Plaintext-Char: " + a);
-		this.charSecond.setText("Key-Char: "+ b);
-		this.charFinished.setText("Result: " + temp);
+		this.charFirst.setText(i18n.tr("Plaintext-Char") + ": " + a);
+		this.charSecond.setText(i18n.tr("Key-Char") + ": " + b);
+		this.charFinished.setText(i18n.tr("Result") + ": " + temp);
 		size = this.charFirst.getPreferredSize();
 		this.charFirst.setSize(size);
 		size = this.charSecond.getPreferredSize();
@@ -79,7 +88,10 @@ public class ThirdDemonstrationView extends VisualizationView{
 	
 	public ThirdDemonstrationView() {
 		this.setLayout(null);
-		this.add(this.explanation = new JLabel("<html><div width=\"1200\">Now we want to decrypt 'DMPL'. Insteading adding up, we use substraction to decrypt it! So lets go...</div></html>"));
+		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
+				+ i18n.tr("Now we want to decrypt 'DMPL'. Insteading adding up, we "
+				+ "use substraction to decrypt it! So lets go...")
+				+ "</div></html>"));
 		this.add(new JLabel("VIGENERE INTRODUCTION3"));
 		this.vigenereKeyDesc = new JLabel("Vigenere Key: " + this.vigenereKey);
 		this.alphabet = new AlphabetStripView();
