@@ -95,6 +95,7 @@ public class VisualizationContainerView extends JPanel {
 		// Create content view.
 		this.contentView = new JPanel(new BorderLayout());
 	    this.contentView.setName("visualizationContainerContent");
+	    this.contentView.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 	    this.add(this.contentView, BorderLayout.CENTER);
 	    
 	    this.validate();
