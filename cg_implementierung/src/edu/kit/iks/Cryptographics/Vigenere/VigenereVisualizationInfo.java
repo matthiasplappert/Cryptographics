@@ -11,7 +11,6 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.xnap.commons.i18n.I18n;
 
-import edu.kit.iks.Cryptographics.DiffieHellman.DHVisualizationInfo;
 import edu.kit.iks.Cryptographics.Vigenere.Demonstration.*;
 import edu.kit.iks.Cryptographics.Vigenere.Experiment.FirstExperimentController;
 import edu.kit.iks.Cryptographics.Vigenere.Explanation.FirstExplanationController;
@@ -23,13 +22,13 @@ import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
 public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
-	private Element vigenereResources;
 	
 	/**
 	 * Localization instance
 	 */
-	private static I18n i18n = Configuration.getInstance().getI18n(
-			DHVisualizationInfo.class);
+	private static I18n i18n = Configuration.getInstance().getI18n(VigenereVisualizationInfo.class);
+	
+	private Element vigenereResources;
 	
 	public VigenereVisualizationInfo() {
 		SAXBuilder saxBuilder = new SAXBuilder();
@@ -56,7 +55,7 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	}
 
 	public String getDescription() {
-		return i18n.tr("Get to know how Vigenere fixed the weaknesses of Caesar to make a 'secure' cipher for many hundred years!");
+		return i18n.tr("Get to know how Vigenère fixed the weaknesses of Caesar to make a 'secure' cipher for many hundred years!");
 	}
 	
 	public String getQRCodeContent() {
