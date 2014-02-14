@@ -7,7 +7,6 @@ import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 import org.jdom2.Element;
 import org.xnap.commons.i18n.I18n;

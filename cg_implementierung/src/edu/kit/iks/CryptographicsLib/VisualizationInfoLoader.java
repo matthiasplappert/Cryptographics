@@ -34,7 +34,10 @@ public class VisualizationInfoLoader {
 		visualizationInfos.add(new CaesarVisualizationInfo());
 		visualizationInfos.add(new DHVisualizationInfo());
 		visualizationInfos.add(new VigenereVisualizationInfo());
-		visualizationInfos.add(new VisualizationInfo());
+		
+		
+		// Example Package
+		//visualizationInfos.add(new VisualizationInfo());
 		return visualizationInfos;
 	}
 }

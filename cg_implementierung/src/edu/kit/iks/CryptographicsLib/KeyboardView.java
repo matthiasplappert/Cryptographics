@@ -5,14 +5,21 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.InputStream;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 import org.xnap.commons.i18n.I18n;
-
 
 /**
  * A displayable keyboard for character input per mouse click or touchscreen. Contains only
@@ -27,6 +34,12 @@ public class KeyboardView extends JPanel implements ActionListener {
 	 * Serial version UID
 	 */
 	private static final long serialVersionUID = -1797509729654756462L;
+	
+	/**
+	 * Resources of the keyboard
+	 * (Icons for enter and backspace)
+	 */
+	private Element resources;
 	
 	/**
 	 * When character mode is used, the buttons pressed will replace
@@ -71,6 +84,8 @@ public class KeyboardView extends JPanel implements ActionListener {
 	 */
 	public KeyboardView(JTextField textField, int mode) {
 		super();
+		
+		this.initResources();
 
 		this.textField = textField;
 		this.inputMode = mode; 
@@ -139,6 +154,24 @@ public class KeyboardView extends JPanel implements ActionListener {
 		
 	}
 	
+	private void initResources() {
+		SAXBuilder saxBuilder = new SAXBuilder();
+
+		// obtain file object
+		InputStream is = this.getClass().getResourceAsStream(
+				"/icons/IconResources.xml");
+
+		try {
+			// converted file to document object
+			Document document = saxBuilder.build(is);
+
+			// get root node from xml
+			this.resources = document.getRootElement().getChild("Keyboard");
+		} catch (JDOMException | IOException e) {
+			Logger.e(e);
+		}
+	}
+	
 	private void initKeyboardButtons() {
 		JButton[][] keysInit = {
 			// First row
@@ -182,17 +215,47 @@ public class KeyboardView extends JPanel implements ActionListener {
 	 * @return new Instance of JButton
 	 */
 	private JButton kf(String label, String name) {
-		JButton button = new JButton(label);
+		JButton button;
 		
 		if (name.equals("bs")) {
+			ImageIcon backspace = this.loadIcon(this.resources
+					.getChild("Backspace")
+					.getAttributeValue("path"));
+			
+			button = new JButton(backspace);
 			button.setName("button-backspace");
 		} else if (name.equals("e")) {
+			ImageIcon enter = this.loadIcon(this.resources
+					.getChild("Enter")
+					.getAttributeValue("path"));
+			
+			button = new JButton(enter);
 			button.setName("button-enter");
 		} else {
+			button = new JButton(label);
 			button.setName("button-key");
 		}
 		
 		
 		return button;
+	}
+	
+	/**
+	 * Loads an image icon from given path
+	 * 
+	 * @param path path to image
+	 * @return ImageIcon instance
+	 */
+	private ImageIcon loadIcon(String path) {
+		ImageIcon image = null;
+		
+    	try {                
+    		InputStream is = this.getClass().getResourceAsStream(path);
+            image = new ImageIcon(ImageIO.read(is));
+        } catch (IOException e) {
+        	Logger.e(e);
+        }
+    	
+    	return image;
 	}
 }

@@ -13,7 +13,6 @@ import javax.swing.JTextField;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
-import edu.kit.iks.Cryptographics.Caesar.CryptoView;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
