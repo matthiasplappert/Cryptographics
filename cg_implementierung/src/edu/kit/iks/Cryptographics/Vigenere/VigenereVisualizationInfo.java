@@ -9,18 +9,27 @@ import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import org.xnap.commons.i18n.I18n;
 
+import edu.kit.iks.Cryptographics.DiffieHellman.DHVisualizationInfo;
 import edu.kit.iks.Cryptographics.Vigenere.Demonstration.*;
 import edu.kit.iks.Cryptographics.Vigenere.Experiment.FirstExperimentController;
 import edu.kit.iks.Cryptographics.Vigenere.Explanation.FirstExplanationController;
 import edu.kit.iks.Cryptographics.Vigenere.Explanation.SecondExplanationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
 public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	private Element vigenereResources;
+	
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(
+			DHVisualizationInfo.class);
 	
 	public VigenereVisualizationInfo() {
 		SAXBuilder saxBuilder = new SAXBuilder();
@@ -43,15 +52,15 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	}
 	
 	public String getName() {
-		return "Vigenère";
+		return i18n.tr("Vigenère");
 	}
 
 	public String getDescription() {
-		return "Get to know how Vigenere fixed the weaknesses of Caesar to make a 'secure' cipher for many hundred years!";
+		return i18n.tr("Get to know how Vigenere fixed the weaknesses of Caesar to make a 'secure' cipher for many hundred years!");
 	}
 	
 	public String getQRCodeContent() {
-		return "";
+		return i18n.tr("http://en.wikipedia.org/wiki/Caesar_cipher");
 	}
 
 	public float getTimelineOffset() {
