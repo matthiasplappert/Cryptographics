@@ -127,7 +127,9 @@ public class DHExperimentView extends JPanel {
 	private ActionListener remember;
 
 	
-	
+	/**
+	 * Build the used objects and lay them out
+	 */
 	public DHExperimentView() {
 		super();
 		help = help1; //the first help text
@@ -376,10 +378,15 @@ public class DHExperimentView extends JPanel {
 		return randNum;
 	}
 	
+	/**
+	 * remember an actionlistener
+	 * @param remember remember this actionlistener
+	 */
 	public void setRemember(ActionListener remember) {
 		this.remember = remember;
 	}
 
+	/** return help string */
 	public String getHelp() {
 		return help;
 	}
