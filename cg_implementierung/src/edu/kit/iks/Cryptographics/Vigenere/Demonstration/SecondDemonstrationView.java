@@ -5,13 +5,22 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
+import org.xnap.commons.i18n.I18n;
+
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 
 public class SecondDemonstrationView extends VisualizationView {
 	private static final long serialVersionUID = 6294968461280032987L;
 
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(SecondDemonstrationView.class);
+	
 	// PLAINTEXTCHARS WITH THEIR INDEXES
 	private JLabel[] indexCharPlain;
 	private JLabel[] textCharPlain;
@@ -22,7 +31,7 @@ public class SecondDemonstrationView extends VisualizationView {
 
 	// Visulisation of the Key
 	private JLabel vigenereKeyDesc;
-	private String vigenereKey = "OKAY";
+	private String vigenereKey = i18n.tr("OKAY");
 
 	// Visualisation of calculation of the indexes
 	private JLabel charFirst;
@@ -37,9 +46,9 @@ public class SecondDemonstrationView extends VisualizationView {
 	public void setCalculator(int a, int b) {
 		int sum = ((a + b) % 26);
 		Dimension size;
-		this.charFirst.setText("Plaintext-Char: " + a);
-		this.charSecond.setText("Key-Char: "+ b);
-		this.charFinished.setText("Result: " + sum);
+		this.charFirst.setText(i18n.tr("Plaintext-Char") + ": " + a);
+		this.charSecond.setText(i18n.tr("Key-Char") + ": " + b);
+		this.charFinished.setText(i18n.tr("Result") + ": " + sum);
 		size = this.charFirst.getPreferredSize();
 		this.charFirst.setSize(size);
 		size = this.charSecond.getPreferredSize();
@@ -88,10 +97,14 @@ public class SecondDemonstrationView extends VisualizationView {
 
 	public SecondDemonstrationView() {
 		this.setLayout(null);
-		this.add(this.explanation = new JLabel("<html><div width=\"1200\">Now we want to encrypt 'ANNA'. First of all we add the position of evey character, as you can see in the bottom, in the alphabet under each character.</div></html>"));
+		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
+				+ i18n.tr("Now we want to encrypt 'ANNA'. First of all we add "
+				+ "the position of evey character, as you can see in the bottom, "
+				+ "in the alphabet under each character.")
+				+ "</div></html>"));
 		this.add(new JLabel("VIGENERE INTRODUCTION2"));
-		this.vigenereKeyDesc = new JLabel("Vigenere Key: " + this.vigenereKey);
-		this.proceed = new JButton("Proceed");
+		this.vigenereKeyDesc = new JLabel(i18n.tr("Vigenere Key") + ": " + this.vigenereKey);
+		this.proceed = new JButton(i18n.tr("Proceed"));
 		
 		this.alphabet = new AlphabetStripView();
 

@@ -3,17 +3,26 @@ package edu.kit.iks.Cryptographics.Vigenere.Experiment;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import org.xnap.commons.i18n.I18n;
+
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 public class FirstExperimentView extends VisualizationView{
 	private static final long serialVersionUID = 6294968461280032987L;
+	
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(FirstExperimentView.class);
 	
 	//PLAINTEXTCHARS WITH THEIR INDEXES
 	private JLabel[] indexCharPlain;
@@ -116,10 +125,12 @@ public class FirstExperimentView extends VisualizationView{
 	
 	public FirstExperimentView() {
 		this.setLayout(null);
-		this.add(this.explanation = new JLabel("<html><div width=\"1200\">Now its your turn! Decrypt this string...</div></html>"));
-		this.add(this.errorMessage = new JLabel("Wrong Answer! Try again!"));
+		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
+				+ i18n.tr("Now its your turn! Decrypt this string...")
+				+ "</div></html>"));
+		this.add(this.errorMessage = new JLabel(i18n.tr("Wrong Answer! Try again!")));
 		
-		this.vigenereKeyDesc = new JLabel("Vigenere Key: " + this.vigenereKey);
+		this.vigenereKeyDesc = new JLabel(i18n.tr("Vigenere Key") + ": " + this.vigenereKey);
 		this.alphabet = new AlphabetStripView();
 		
 		this.textCharPlain = new JLabel[5];

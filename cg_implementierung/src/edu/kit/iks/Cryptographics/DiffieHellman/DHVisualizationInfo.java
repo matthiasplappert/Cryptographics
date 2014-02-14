@@ -117,7 +117,6 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public String getQRCodeContent() {
-		// TODO Auto-generated method stub
-		return null;
+		return i18n.tr("http://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange");
 	}
 }

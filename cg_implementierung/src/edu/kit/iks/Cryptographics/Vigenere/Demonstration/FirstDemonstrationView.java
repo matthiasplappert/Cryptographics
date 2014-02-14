@@ -2,15 +2,24 @@ package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
 
 import java.awt.Dimension;
 import java.awt.Font;
+
 import javax.swing.JLabel;
+
 import org.jdom2.Element;
+import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 public class FirstDemonstrationView extends VisualizationView{
 	private static final long serialVersionUID = 6294968461280032987L;
+	
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(FirstDemonstrationView.class);
 	
 	private ImageView clock;
 	private ImageView vigenere;
@@ -42,8 +51,9 @@ public class FirstDemonstrationView extends VisualizationView{
 		
 		
 		this.vigenereXML = visualizationInfo.getResources();
-		this.vigenereText = new JLabel("Vigenere bla bla... Now go to modulo:");
-		this.moduloText = new JLabel("It's easy to describe the logical operation 'modulo'; we use it everyday in our... ");
+		this.vigenereText = new JLabel(i18n.tr("Vigenere bla bla... Now go to modulo:"));
+		this.moduloText = new JLabel(i18n.tr("It's easy to describe the logical operation "
+				+ "'modulo'; we use it everyday in our... "));
 		this.vigenere= new ImageView(vigenereXML.getChild(
 				"vigenereImage").getAttributeValue("path"));
 		this.clock = new ImageView(vigenereXML.getChild(
