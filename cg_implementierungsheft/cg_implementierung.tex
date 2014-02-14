@@ -381,14 +381,21 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
            \end{itemize}
 
 	\subsubsection{Klasse DHVisualizationInfo}
-    Hat sich nicht geändert
+    Hat sich entwurfstechnisch nicht geändert
 
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Demonstration}
 
 	\subsubsection{Klasse ExplainAimController}
-    Hat sich entwurfstechnisch nicht verändert
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+           \end{itemize}
 
 	\subsubsection{Klasse ExplainAimView}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von VisualizationView statt JPanel\newline
+           \end{itemize}
     \textbf{Änderungen an Methoden.}\newline
 	   \begin{itemize}
            \item public ColorChannel getColorChannel() wurde hinzugefügt\newline
@@ -396,9 +403,16 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
            \end{itemize}
 
 	\subsubsection{Klasse OnewayController}
-    Hat sich entwurfstechnisch nicht verändert
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+           \end{itemize}
 
 	\subsubsection{Klasse OnewayView}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von VisualizationView statt JPanel\newline
+           \end{itemize}
     \textbf{Änderungen an Methoden.}\newline
 	   \begin{itemize}
            \item public String getHelp() wurde hinzugefügt\newline
@@ -412,6 +426,10 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 
 	\subsubsection{Klasse AliceChooseSecretController}
     Diese Klasse wurde in DHDemoController umbenannt
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+           \end{itemize}
 
 	\subsubsection{Klasse AliceChooseSecretView}
     Diese Klasse wurde in DHDemoView umbenannt
@@ -431,10 +449,18 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 	\subsubsection{Klasse DemoOneWayController}
     Diese Klasse wurde neu hinzugefügt
     Der Controller der DemoOneWayView
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+           \end{itemize}
 
 	\subsubsection{Klasse DemoOneWayView}
     Diese Klasse wurde neu hinzugefügt
     Diese View zeigt wie Einwegfunktionen agieren
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von VisualizationView statt JPanel
+           \end{itemize}
     \textbf{Änderungen an Methoden.}\newline
 	   \begin{itemize}
            \item public DemoOneWayView() wurde hinzugefügt\newline
@@ -447,6 +473,10 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 	\subsubsection{Klasse ColorMix}
     Diese Klasse wurde neu hinzugefügt
     Ihre Aufgabe ist es als JPanel grafisch Farben zu mischen
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von JPanel\newline
+           \end{itemize}
     \textbf{Änderungen an Methoden.}\newline
 	   \begin{itemize}
            \item public ColorMix(int circleSize, Dimension dimension) wurde hinzugefügt\newline
@@ -470,6 +500,10 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
     Kommunikationskanal zwischen Alice, Bob und Eve
     zu vermitteln und Farben über diesen Kanal zu visuell
     zu verschicken.
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von JPanel\newline
+           \end{itemize}
     \textbf{Änderungen an Methoden.}\newline
 	   \begin{itemize}
            \item public ColorChannel(Dimension d, int circleSize) wurde hinzugefügt\newline
@@ -537,6 +571,10 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 	\subsubsection{Klasse ColorChooser}
     Diese Klasse wurde neu hinzugefügt
     Dieses JPanel erlaubt uns eine Farbe auszuwählen
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von JPanel\newline
+           \end{itemize}
     \textbf{Änderungen an Methoden.}\newline
 	   \begin{itemize}
            \item public ColorChooser(Dimension d, Color color, Color[] colors) wurde hinzugefügt\newline
@@ -555,6 +593,10 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
     Diese Klasse wurde neu hinzugefügt
     Diese Klasse ist ein Wrapper um Ellipse2D um
     sie zusätzlich mit einer Farbe zu assozieren
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von Ellipse2D\newline
+           \end{itemize}
     \textbf{Änderungen an Methoden.}\newline
 	   \begin{itemize}
            \item public Ellipse2DwithColor(double x, double y, double w, double h) wurde hinzugefügt\newline
@@ -593,9 +635,19 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 
 	\subsubsection{Klasse DHExperimentController}
     Diese Klasse wurde neu hinzugefügt
+    Sie ist der zur DHExperimentView korrespondierende Controller
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+        \end{itemize}
 
 	\subsubsection{Klasse DHExperimentView}
     Diese Klasse wurde neu hinzugefügt
+    Dient als View zum DH Experiment
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt von JPanel\newline
+        \end{itemize}
     \textbf{Änderungen an Methoden.}\newline
 	   \begin{itemize}
            \item public DHExperimentView() wurde hinzugefügt\newline
@@ -610,9 +662,25 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 
 	\subsubsection{Klasse CongratsController}
     Diese Klasse wurde neu hinzugefügt
+    Sie ist der zur CongratsView korrespondierende Controller
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt von AbstractVisualizationController \newline
+           \end{itemize}
 
 	\subsubsection{Klasse CongratsView}
     Diese Klasse wurde neu hinzugefügt
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt von JPanel \newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public CongratsView() wurde hinzugefügt
+               Der Konstruktor erstellt und positioniert seine Elemente
+           \item public String getHelp() wurde hinzugefügt
+               Gebe eine Hilfe-Zeichenkette zurück
+           \end{itemize}
 
 	\subsubsection{Klasse ChoosePublicColorController}
     Diese Klasse wurde entfernt
