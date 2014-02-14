@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-02-13 11:12+0100\n"
-"PO-Revision-Date: 2014-02-13 11:12+0100\n"
+"POT-Creation-Date: 2014-02-14 14:09+0100\n"
+"PO-Revision-Date: 2014-02-14 14:09+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,32 +15,42 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: ../src\n"
 
-#: ../src/edu/kit/iks/Cryptographics/IdlePopoverView.java:96
+#: ../src/edu/kit/iks/Cryptographics/IdlePopoverView.java:97
 msgid ""
 "You haven't done anything in a while. To keep this exhibit functional, the "
 "system will reset itself soon. If you want to continue using the system, "
 "just dismiss this dialog."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/IdlePopoverView.java:113
+#: ../src/edu/kit/iks/Cryptographics/IdlePopoverView.java:114
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:98
 msgid "Continue"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/TimelinePopoverView.java:106
+#: ../src/edu/kit/iks/Cryptographics/TimelinePopoverView.java:107
 msgid "Start"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:64
+#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:66
 msgid "Exit"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:82
+#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:84
 msgid "Help"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/WelcomeView.java:26
+#: ../src/edu/kit/iks/Cryptographics/WelcomeView.java:33
 msgid "Welcome"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/WelcomeView.java:39
+msgid ""
+"This is Cryptographics, a small tool with the aim to teach the functionality "
+"of historic and common cryptographic procedures. Below you can see a "
+"timeline with some buttons each representing a procedures. Just click on one "
+"of the buttons for a procedure you would like to know more about and a popup "
+"with further details will explain what awaits you. If you want to know how "
+"it works, press the 'Start' button."
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:85
@@ -140,18 +150,18 @@ msgid ""
 "defeat Caesar again!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:216
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:215
 msgid ""
 "Caesar was raging. But while he was toturing some Gauls suddenly a "
 "hellacious and an foolproof idea<br>crossed his mind. In his next message he "
 "will encrypt his name! Hue Hue Hue. Help him."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:221
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:220
 msgid "To caesar's idea"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:244
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:243
 msgid ""
 "If you want to hear the awesome legend about Caesar and Kryptolix press the "
 "button below the text. Else try the next button!"
@@ -678,30 +688,30 @@ msgid ""
 "Colors and to send the right Colors, just like in the Demonstration"
 msgstr ""
 
-#: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:149
+#: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:151
 msgid "Easy"
 msgstr ""
 
-#: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:150
+#: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:152
 msgid "Medium"
 msgstr ""
 
-#: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:151
+#: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:153
 msgid "Hard"
 msgstr ""
 
-#: ../src/edu/kit/iks/CryptographicsLib/KeyboardView.java:146
+#: ../src/edu/kit/iks/CryptographicsLib/KeyboardView.java:145
 msgid "keyboard-y"
 msgstr "Y"
 
-#: ../src/edu/kit/iks/CryptographicsLib/KeyboardView.java:154
+#: ../src/edu/kit/iks/CryptographicsLib/KeyboardView.java:153
 msgid "keyboard-z"
 msgstr "Z"
 
-#: ../src/edu/kit/iks/CryptographicsLib/VisualizationView.java:41
+#: ../src/edu/kit/iks/CryptographicsLib/VisualizationView.java:39
 msgid "Next"
 msgstr ""
 
-#: ../src/edu/kit/iks/CryptographicsLib/VisualizationView.java:44
+#: ../src/edu/kit/iks/CryptographicsLib/VisualizationView.java:42
 msgid "Back"
 msgstr ""
