@@ -1,5 +1,9 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -30,16 +34,34 @@ public class CongratsView extends JPanel {
 	/** label to hold the congrats string */
 	JLabel congrats = new JLabel("<html><div style=\"width:200px\">" +
 			congratulations + "</div></html>");
+
+	private JButton next;
 	
 	/** simple constructor */
 	public CongratsView() {
-		add(congrats);
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		add(congrats, gbc);
+		
+		
+		this.next = new JButton(i18n.tr("Next"));
+		gbc.gridx = 2;
+		gbc.gridy = 2;
+		add(next, gbc);
+		
 		validate();
 	}
 
 	/** return help */
 	public String getHelp() {
 		return help;
+	}
+
+	public JButton getNextBtn() {
+		return this.next;
 	}
 
 }

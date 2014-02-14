@@ -1,5 +1,9 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
@@ -40,7 +44,14 @@ public class CongratsController extends AbstractVisualizationController {
 	 */
 	@Override
 	public void loadView() {
-		view = new CongratsView();		
+		view = new CongratsView();
+		view.getNextBtn().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
+			}
+		});
 	}
 
 	/*
