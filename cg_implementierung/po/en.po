@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-02-14 14:09+0100\n"
-"PO-Revision-Date: 2014-02-14 14:09+0100\n"
+"POT-Creation-Date: 2014-02-14 17:21+0100\n"
+"PO-Revision-Date: 2014-02-14 17:21+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,11 +31,11 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:66
+#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:73
 msgid "Exit"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:84
+#: ../src/edu/kit/iks/Cryptographics/VisualizationContainerView.java:92
 msgid "Help"
 msgstr ""
 
@@ -62,6 +62,10 @@ msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:114
 msgid "Caesar"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:122
+msgid "http://en.wikipedia.org/wiki/Caesar_cipher"
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationController.java:159
@@ -108,104 +112,104 @@ msgstr ""
 msgid "Not sure if much help needed here."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:54
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:53
 msgid "Back to Introduction"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:56
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:55
 msgid "Go to Experiment."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:59
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:58
 msgid "CAESAR"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:79
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:78
 msgid ""
 "Imagine now you are the mighty caesar!! Of course your first idea is to "
 "substitute each <br>letter from your name with some other from the alphabet. "
 "But which one?"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:90
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:89
 msgid "Proceed!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:121
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:120
 msgid ""
 "Unfortunately his courier has taken the way through the forest, where "
 "Kryptolix chased<br>the wild boars."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:151
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:150
 msgid ""
 "When Kryptolix noticed the unsuspecting and whistling roman courier, he "
 "punched him via the air-line<br>back to Rome. And saw him losing a scroll."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:187
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:186
 msgid ""
 "When reading the scroll the courier lost, Kryptolix identified Caesar's "
 "plans of<br>conquering Gallia and Kryptolix and his awesome friends could "
 "defeat Caesar again!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:215
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:214
 msgid ""
 "Caesar was raging. But while he was toturing some Gauls suddenly a "
 "hellacious and an foolproof idea<br>crossed his mind. In his next message he "
 "will encrypt his name! Hue Hue Hue. Help him."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:220
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:219
 msgid "To caesar's idea"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:243
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:242
 msgid ""
 "If you want to hear the awesome legend about Caesar and Kryptolix press the "
 "button below the text. Else try the next button!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:93
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:92
 msgid "Skip the introduction"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:114
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:113
 msgid "Tell me more."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:137
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:136
 msgid ""
 "One fine day, ca 70 B.C., Caesar was puzzling on an ultra-mega-intelligent-"
 "plan<br>to finally conquer Gallia and sent it to his generals in Gallia."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:70
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:69
 msgid ""
 "If you only see the textfield then put your string in it. Else you've "
 "already done it and now you need to encrypt/decrypt the given String."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:194
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:193
 msgid "All done right!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:199
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:198
 msgid ""
 "Next step is to decrypt a given message!! When you accomplish it, then even "
 "the NSA and Kryptochef together<br>are superior to your power. Now lets move "
 "on. Click the button in the right top corner."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:214
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:213
 #, java-format
 msgid "You have {0} left!"
 msgid_plural "You have {0} left!"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:331
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:330
 msgid ""
 "In the steps before you learned how to encrypt a given message.<br>But what "
 "does it help you to encrypt messages when noone can decrypt them?<br>Now we "
@@ -217,19 +221,19 @@ msgid ""
 "be substracted!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:343
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:342
 msgid "Go to histograms"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:416
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:415
 msgid "Your input is invalid. Please try another one!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:431
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:430
 msgid "This input is ok. Now only the key is left."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:554
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:553
 msgid ""
 "This key is not valid. Please put a number between 1 and 25.<br>For "
 "demonstration purposes the keys between -1 and -25 are not "
@@ -238,11 +242,11 @@ msgid ""
 "to Introduction."
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:573
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:572
 msgid "The key field is empty!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:604
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:603
 msgid "This key is ok. Now put your name into the bigger box to the left."
 msgstr ""
 
@@ -451,6 +455,7 @@ msgid "Skip the histograms (Visualization Done)"
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:536
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:107
 msgid "Proceed"
 msgstr ""
 
@@ -463,6 +468,10 @@ msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/DHVisualizationInfo.java:55
 msgid "Diffie-Hellman"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/DHVisualizationInfo.java:116
+msgid "http://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange"
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/ColorChannel.java:206
@@ -688,6 +697,289 @@ msgid ""
 "Colors and to send the right Colors, just like in the Demonstration"
 msgstr ""
 
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/VigenereVisualizationInfo.java:54
+msgid "Vigenère"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/VigenereVisualizationInfo.java:58
+msgid ""
+"Get to know how Vigenère fixed the weaknesses of Caesar to make a 'secure' "
+"cipher for many hundred years!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/VigenereVisualizationInfo.java:62
+msgid "http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/FirstDemonstrationController.java:33
+msgid "There is nothing to help, just read the text"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/FirstDemonstrationView.java:54
+msgid "Vigenere bla bla... Now go to modulo:"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/FirstDemonstrationView.java:55
+msgid ""
+"It's easy to describe the logical operation 'modulo'; we use it everyday in "
+"our... "
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:28
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:29
+msgid "Follow the explanations!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:46
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:101
+msgid ""
+"Now we want to encrypt 'ANNA'. First of all we add the position of evey "
+"character, as you can see in the bottom, in the alphabet under each "
+"character."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:56
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:122
+msgid ""
+"This is the key for the encryption. Now we go to the next step and encrypt "
+"the first character."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:65
+msgid ""
+"The position of 'A' in the alphabet is 1. The position of 'O' is 14. Now we "
+"calculate 1 + 14 and get 15."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:80
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:145
+msgid ""
+"The number 16 represents 'P' in the alphabet. So the first encrypted "
+"character is 'P'. Lets go to the next one."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:92
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:155
+msgid ""
+"Now get to the next character. Its a 'N', which represents the number 14. "
+"The second character of they key is 'K', which is the 11. 14+11 = 25 -> 'Y'!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:105
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:166
+msgid "Now we continue..."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:131
+msgid ""
+"The position of 'A' in the alphabet is 1. The position of 'O' is 15. Now we "
+"calculate 1 + 15 and get 16."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:175
+msgid ""
+"E = 5 and Y = 25. 25 + 5 = 30, but our alphabet doesnt have 28 characters. "
+"So we now use the modulo: 28 modulo 26 = 2."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:34
+msgid "OKAY"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:49
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:48
+msgid "Plaintext-Char"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:50
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:49
+msgid "Key-Char"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:51
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:50
+msgid "Result"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:106
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentView.java:133
+msgid "Vigenere Key"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:47
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:92
+msgid ""
+"Now we want to decrypt 'DMPL'. Insteading adding up, we use substraction to "
+"decrypt it! So lets go..."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:54
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:106
+msgid ""
+"'E' = 5 and 'K' = 11. 3 - 11 = -6. What now? Well its easy, just reverse the "
+"modulo..."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:66
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:117
+msgid ""
+"Negative numbers mean you start from the 'Z' and go 7 steps backwards. So we "
+"get 'T' = 20!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:77
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:127
+msgid "'N' = 14 and 'I' = 9. 14 - 9 = 5 -> 'E'"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:87
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:136
+msgid ""
+"'Q' = 17 and 'S' = 19. 17 - 19 = -2 -> Go 2 Steps backwards from 'Z' -> 'X'"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:146
+msgid ""
+"'M' = 13 and 'S' = 19. 13 - 19 = -6 -> Go 6 Steps backwards from 'Z' -> 'T'"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:33
+msgid "KISS"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:40
+msgid ""
+"'T' = 20 and 'A' = 1, so just substract 1 from 20 and you have the answer!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:44
+msgid ""
+"'W' = 23 and 'B' = 2, so just substract 1 from 20 and you have the answer!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:48
+msgid ""
+"'S' = 19 and 'C' = 3, so just substract 1 from 20 and you have the answer!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:52
+msgid ""
+"'I' = 9 and 'D' = 4, so just substract 1 from 20 and you have the answer!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:56
+msgid ""
+"'W' = 23 and 'E' = 5, so just substract 1 from 20 and you have the answer!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:135
+msgid "Very nice, now the second character!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:146
+msgid "Second strike! Three left..."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:157
+msgid "Not much left, 2 to go..."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:168
+msgid "Almost done, last character..."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:179
+msgid "Nicely done!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentView.java:129
+msgid "Now its your turn! Decrypt this string..."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentView.java:131
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:123
+msgid "Wrong Answer! Try again!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationController.java:44
+msgid ""
+"Vigenere fixed a few weaknesses of Caesar, but still \thas flaws. If the key "
+"is shorter then the text to encrypt, Vigenère simply concatinates it with "
+"itself until the key is long enough. This again makes it weak against key-"
+"length-guessing. As soon as we guess the key-length, we can use a histogramm "
+"(explained in caesar) to make a static analysis. So lets crack this this "
+"chiffre by guessing the key-length (we will use the kasiski test for it)"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationController.java:64
+msgid "Length of key: 2"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationController.java:75
+msgid ""
+"Since we know that the key-length is 2, every second character will be "
+"encrypted with the first character of the key. To guess which is the first "
+"character of the key we need the histrogramm of every second character in "
+"the chiffre"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationController.java:104
+msgid "Just read the instructions!"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationView.java:103
+msgid ""
+"Vigenère fixed a few weaknesses of Caesar, but still has flaws. If the key "
+"is shorter then the text to encrypt, Vigenère simply concatinates it with "
+"itself until the key is long enough. This again makes it weak against key-"
+"length-guessing. As soon as we guess the key-length, we can use a histogramm "
+"(explained in caesar) to make a static analysis. So lets crack this this "
+"chiffre by guessing the key-length (we will use the kasiski test for it)"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationView.java:116
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:110
+msgid "This is the average distribution of the characters in english texts:"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationView.java:124
+msgid "Length of key: ?"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationView.java:129
+msgid ""
+"When we look closer at the histogramm we see some differences in the "
+"distribution of the characters; 'S' is has the most common occurance,in an "
+"average normal english text 'E' is the most common one. So maybe our 'S' "
+"couldve been an 'E' before the encryption. We do 19(position of 'S') - 5 "
+"(position of 'E') and we get 14, which meansthe first character of the key "
+"is 'N'."
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationController.java:69
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:102
+msgid ""
+"Now its your turn! You have to find the second character of the key. I was "
+"kind enough to give you a diagramm of every second character encrypted with "
+"the second part of the key.You know what to do:"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationController.java:92
+msgid "Very nice! We found the key 'NJ', now we can decrypt the message:"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationController.java:125
+msgid ""
+"Check the peaks in the histogramm and compare them to the other histogramm, "
+"do you see any similarities?"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:115
+msgid ""
+"Look at the peaks of both histogramm and calculate the second part of the "
+"key! Your answer:"
+msgstr ""
+
 #: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:151
 msgid "Easy"
 msgstr ""
@@ -700,11 +992,11 @@ msgstr ""
 msgid "Hard"
 msgstr ""
 
-#: ../src/edu/kit/iks/CryptographicsLib/KeyboardView.java:145
+#: ../src/edu/kit/iks/CryptographicsLib/KeyboardView.java:180
 msgid "keyboard-y"
 msgstr "Y"
 
-#: ../src/edu/kit/iks/CryptographicsLib/KeyboardView.java:153
+#: ../src/edu/kit/iks/CryptographicsLib/KeyboardView.java:188
 msgid "keyboard-z"
 msgstr "Z"
 

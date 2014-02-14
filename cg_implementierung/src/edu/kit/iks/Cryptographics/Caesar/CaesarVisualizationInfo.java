@@ -119,8 +119,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public String getQRCodeContent() {
-		// TODO Auto-generated method stub
-		return "www.google.de";
+		return i18n.tr("http://en.wikipedia.org/wiki/Caesar_cipher");
 	}
 
 	/**

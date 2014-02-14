@@ -8,8 +8,11 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import org.xnap.commons.i18n.I18n;
+
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 import edu.kit.iks.CryptographicsLib.CharacterFrequencyDiagramView;
+import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
@@ -20,6 +23,11 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
  */
 public class SecondExplanationView extends VisualizationView{
 	private static final long serialVersionUID = 6294968461280032987L;
+	
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(SecondExplanationView.class);
 	
 	private CharacterFrequencyDiagramView vigenereHistogramm;
 	private CharacterFrequencyDiagramView averageHistogramm;
@@ -90,20 +98,29 @@ public class SecondExplanationView extends VisualizationView{
 	public SecondExplanationView() {
 		this.setLayout(null);
 		this.add(new JLabel("VIGENERE EXPLANATATION"));
-		this.add(this.explanation = new JLabel("<html><div width=\"1200\">Now its your turn! You have to find the second character of the key. I was kind enough to give you a diagramm of every second character encrypted with the second part of the key."
-				+ "You know what to do: </div></html>"));
+		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
+				+ i18n.tr("Now its your turn! You have to find the second character of the "
+				+ "key. I was kind enough to give you a diagramm of every second "
+				+ "character encrypted with the second part of the key."
+				+ "You know what to do:")
+				+ "</div></html>"));
 		this.explanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		
-		this.add(this.secondExplanation = new JLabel("<html><div width=\"1200\">This is the average distribution of the characters in english texts:</div></html>"));
+		this.add(this.secondExplanation = new JLabel("<html><div width=\"1200\">"
+				+ i18n.tr("This is the average distribution of the characters in english texts:")
+				+ "</div></html>"));
 		this.secondExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		
-		this.add(this.thirdExplanation = new JLabel("<html><div width=\"1200\">Look at the peaks of both histogramm and calculate the second part of the key! Your answer:</div></html>"));
+		this.add(this.thirdExplanation = new JLabel("<html><div width=\"1200\">"
+				+ i18n.tr("Look at the peaks of both histogramm and calculate the second part "
+				+ "of the key! Your answer:")
+				+ "</div></html>"));
 		this.thirdExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		
 		this.add(this.answer = new JTextField(""));
 		this.answer.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		
-		this.add(this.wrong = new JLabel("Wrong Answer! Try again!"));
+		this.add(this.wrong = new JLabel(i18n.tr("Wrong Answer! Try again!")));
 		this.wrong.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		
 		this.vigenereHistogramm = new CharacterFrequencyDiagramView(VigenereModel.getCharPositionated(1, 2, FirstExplanationView.encryptedAverageText), 600,
