@@ -324,6 +324,8 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
            
     \textbf{Änderungen an Methoden.}
       \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
         \item public void unloadView()\newline
               Entlädt die View.
         \item public FirstDemonstrationView getView()\newline
@@ -333,20 +335,54 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
       \end{itemize}
 	  
     \subsubsection{Klasse FirstDemonstrationView}
-	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
-	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+	Während der Implementierung hat sich herausgestellt dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
            
     \textbf{Änderungen an Methoden.}
       \begin{itemize}
-        \item public ImageView getClock()()\newline
+        \item public ImageView getClock()\newline
               Liefert die Uhr zurück.
         \item public JLabel getModuloText()\newline
               Liefert den Modulo-Text zurück.
       \end{itemize}
 
     \subsubsection{Klasse SecondDemonstrationController}
+	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public FirstDemonstrationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
 
     \subsubsection{Klasse SecondDemonstrationView}
+	Während der Implementierung hat sich herausgestellt dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+        \item public void setCalculator(int a, int b)\newline
+              Diese Methode übernimmt die Änderungen, welche an dem "Rechner" auf der rechten Seite nötig sind.
+        \item public void setTextField(int i, String character)\newline
+              Setzt den Buchstaben an der Stelle i auf den gewünschten Parameter.
+		\item public void highlightAndSetText(int num, int pos, String character)\newline
+              Setzt den Buchstaben auf die gewünschte Stelle und hebt diesen hervor.
+		\item public AlphabetStripView getAlphabet()\newline
+              Liefert das Alphabet-Element zurück.
+		\item public void setEncryptedCharsVisible(boolean b)\newline
+              Setzt die Sichtbarkeit der verschlüsselten Buchstaben.
+		\item public void setCalculatorVisible(boolean b)\newline
+              Setzt die Sichtbarkeit des Rechners.
+		\item public void setKeyVisible(boolean b)\newline
+              Setzt die Sichtbarkeit des Schlüssels.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+	  \end{itemize}
 
     \subsubsection{Klasse ThirdDemonstrationController}
 
