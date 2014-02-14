@@ -14,6 +14,7 @@ import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
 
 /**
@@ -103,7 +104,7 @@ public class IntroductionController extends AbstractVisualizationController {
 			this.step4();
 			break;
 		default:
-			System.out.println("Invalid introduction step!!!! Check why!");
+			Logger.d("IntroductionController", "proceedIntroduction", "Invalid introduction step!");
 		}
 	}
 	

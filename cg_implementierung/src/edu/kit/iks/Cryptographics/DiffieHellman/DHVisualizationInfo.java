@@ -14,6 +14,7 @@ import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.DHExperimentControlle
 import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.CongratsController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
 /**
@@ -103,6 +104,7 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 		controllerClasses.add(YourTurnController.class);
 		controllerClasses.add(DHExperimentController.class);
 		controllerClasses.add(CongratsController.class);
+		controllerClasses.add(InformationController.class);
 		
 		return controllerClasses;
 	}

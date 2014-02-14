@@ -36,7 +36,6 @@ public class VisualizationInfoLoader {
 		visualizationInfos.add(new DHVisualizationInfo());
 		visualizationInfos.add(new VigenereVisualizationInfo());
 		
-		
 		// Example Package
 		//visualizationInfos.add(new VisualizationInfo());
 		return visualizationInfos;
