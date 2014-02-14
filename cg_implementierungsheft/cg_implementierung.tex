@@ -180,36 +180,68 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
   \subsection{Paket edu.kit.iks.CryptographicsLib}
     
   	\subsubsection{Klasse AbstractController}
+  	
+  	Die unloadView()-Methode wurde abstrakt gesetzt, um das implementieren zu erzwingen.
+  	Somit kann sichergestellt werden, dass eine View auch richtig freigegeben wird. Die Methode
+  	viewIsLoaded() wurde konventionsgemäß in isViewLoaded() umbenannt.
 
 	\subsubsection{Klasse AbstractVisualizationController}
 
 	\subsubsection{Klasse AbstractVisualizationInfo}
 
+	Die Methode getAdditionalInformationFileURL() wurde durch die Methode 
+	getAdditionalInformationPath() ersetzt, die einen Pfad als String zurückgibt, und kein
+	URL Objekt. Es wurde die Methode getHumanReadableDifficulty() hinzugefügt, um 
+	das VisualizationDifficulty-Enum lesbar zurückzugeben.
+
 	\subsubsection{Klasse AlphabetStripView}
+	
+	Es wurde ein weiterer Konstruktor hinzugefügt, mit dem man die Zellenbreite und -höhe
+	bei der Initialisierung setzen kann. Die neue Methode highlight() hebt eine bestimmte
+	Spalte des Alphabets an der übergebenen Stelle zur Visualisierung hervor. Die Methode 
+	unHighlight() löscht die Hervorhebung wieder an der übergebenen Stelle, und unHighlightAll() 
+	löscht alle Hervorhebungen.
 
 	\subsubsection{Klasse CharacterFrequencyDiagramView}
 
+	Der Konstruktor wurde angepasst um gleich bei der Erzeugung den zu überprüfenden Text
+	entgegenzunehmen, sowie die gewünschten Ausmaße des zu erzeugenden Diagramms. Des Weiteren
+	wurden Getter und Setter für die Aufkommen von Zeichen hinzugefügt.
+
 	\subsubsection{Klasse ImageView}
 
-	\subsubsection{Klasse InformationController}
+	Es wurde ein Getter hinzugefügt, um das geladene Bild das dargestellt werden soll zurückzugeben.
 
 	\subsubsection{Klasse InformationView}
 
+	Es wurde ein Getter hinzugefügt, um den HTML Inhalt zu bekommen.
+
 	\subsubsection{Klasse KeyboardButton}
+
+	Diese Klasse wurde vollständig entfernt, da es durch einfache JButtons darstellbar war.
 
 	\subsubsection{Klasse KeyboardView}
 
+	Der Konstruktor des Keyboards wurde angepasst, um ein JTextField und einen Modus entgegenzunehmen.
+	Das JTextField ist dasjenige Feld, welches durch das Keyboard manipuliert werden soll. Der zweite
+	Parameter, der Modus, gibt an, ob in das Feld ein einzelner Buchstabe eingegeben werden soll, oder
+	ein Text wie ein Name eingegeben werden kann. KeyboardView implementiert nun jetzt auch die
+	ActionListener-Schnittstelle und implementiert ihre actionPerformed() Methode, um Tastendrücke
+	des Keyboards abarbeiten und an das Textfeld weiterleiten zu können.
+
 	\subsubsection{Klasse NumbersStripView}
+
+	Diese Klasse wurde vollständig entfernt, da im Verlauf der Implementierung festgestellt wurde,
+	dass sie nirgends benötigt wird. (Auch wurde diese Klasse teilweise durch die NumpadView ersetzt).
 
 	\subsubsection{Klasse PopoverView}
 
-	\subsubsection{Klasse VisualizationButton}
-
-	\subsubsection{Enum VisualizationDifficulty}
-
-	\subsubsection{Klasse VisualizationInfoLoader}
+	Die Klasse wurde um eine dismiss()-Methode ergänzt, um ein Popover wieder schließen zu können.
+	Des Weiteren wurden Getter und Setter für die Umrandungsfarbe hinzugefügt.
 
 	\subsubsection{Klasse VisualizationView}
+
+	Es wurden lediglich Setter für den "Next" und den "Back"-Button hinzugefügt.
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
     \subsubsection{Klasse AbstractController}
@@ -258,7 +290,7 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
           
           \subsubsection{Klasse IntroductionController}
             Die Methode animationProceed() wurde entfernt. Und durch die private Hilfsmethode proceedIntroduction() ersetzt.
-            Diese erfüllt diesselbe Aufgabe und da sie zum Aufgabenbereich dieses Controllers gehört, ist ein globaler Zugriff
+            Diese erfüllt dieselbe Aufgabe und da sie zum Aufgabenbereich dieses Controllers gehört, ist ein globaler Zugriff
             unnötig.
        	  \subsubsection{Klasse IntroductionView}
             Die Methode animationStart() mitsamt ihrer privaten Hilfsfunktionen wurde in den IntroductionController ausgelagert.
@@ -268,7 +300,7 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
          
            \textbf{Änderungen an Methoden.}\newline
             proceedAnimation() wurde entfernt. Und durch die private Hilfsmethode demonstrate() ersetzt.
-            Diese erfüllt diesselbe Aufgabe und da sie zum Aufgabenbereich dieses Controllers gehört, 
+            Diese erfüllt dieselbe Aufgabe und da sie zum Aufgabenbereich dieses Controllers gehört, 
             ist ein globaler Zugriff unnötig.
 
 	\subsubsection{Klasse CipherDemoView}
