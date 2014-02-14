@@ -42,15 +42,6 @@ public class FirstDemonstrationController extends AbstractVisualizationControlle
 	}
 	
 	/**
-	 * returns the help string
-	 * @return help string
-	 */
-	@Override
-	public String getHelp() {
-		return i18n.tr("There is nothing to help, just read the text");
-	}
-	
-	/**
 	 * loads the view and registers the actionlistener's.
 	 */
 	@Override
@@ -97,6 +88,15 @@ public class FirstDemonstrationController extends AbstractVisualizationControlle
 	@Override
 	public FirstDemonstrationView getView() {
 		return (FirstDemonstrationView) this.view;
+	}
+	
+	/**
+	 * returns the help string
+	 * @return help string
+	 */
+	@Override
+	public String getHelp() {
+		return i18n.tr("There is nothing to help, just read the text");
 	}
 	
 }
