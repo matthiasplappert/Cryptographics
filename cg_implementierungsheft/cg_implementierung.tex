@@ -172,8 +172,10 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
       \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
+	
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Demonstration}
+	
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Experiment}
 
@@ -334,41 +336,272 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
     \subsubsection{Klasse AbstractController}
-
+	Diese Klasse wurde vollständig entfernt, da im Verlauf der Implementierung festgestellt wurde,
+	dass sie nirgends benötigt wird.
+	
     \subsubsection{Klasse VigenereModel}
+	Während der Entwicklung ist uns aufgefallen dass das Verfahren mehr Funktionalität braucht, deshalb wurden einige neue Methoden eingeführt.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item static public char enc(int key, char text)\newline
+              Verschiebt einen Buchstaben um einen Faktor.
+        \item static public char dec(char key, char cipher)\newline
+              Verschiebt einen Buchstaben um einen Faktor zurück.
+		\item static public int characterToInt(String character)\newline
+              Gibt die Position eines bestimmten Buchstabens im Alphabet zurück.
+		\item static public String getCharPositionated(int start, int num, String input)\newline
+              Wird vom Kasiski-Test genutzt, gibt jeden n-ten Buchstaben eines bestimmten Textes ab der x-ten Stelle zurück.			
+      \end{itemize}
 
     \subsubsection{Klasse VigenereVisualizationInfo}
+	Während der Entwicklung ist uns aufgefallen dass wir zum Einbinden der Bilder Resourcen nutzen sollten. Deshalb wurden einige Änderung dazu vorgenommen.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public VigenereVisualizationInfo()\newline
+              Konstruktor der Klasse.
+        \item public Element getResources()\newline
+              Gibt das Handle zur Resource zurück.
+      \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Demonstration}
     \subsubsection{Klasse FirstDemonstrationController}
-
+	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public FirstDemonstrationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
+	  
     \subsubsection{Klasse FirstDemonstrationView}
+	Während der Implementierung hat sich herausgestellt dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+        \item public ImageView getClock()\newline
+              Liefert die Uhr zurück.
+        \item public JLabel getModuloText()\newline
+              Liefert den Modulo-Text zurück.
+      \end{itemize}
 
     \subsubsection{Klasse SecondDemonstrationController}
+	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public SecondDemonstrationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
 
     \subsubsection{Klasse SecondDemonstrationView}
+	Während der Implementierung hat sich herausgestellt dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+        \item public void setCalculator(int a, int b)\newline
+              Diese Methode übernimmt die Änderungen, welche an dem "Rechner" auf der rechten Seite nötig sind.
+        \item public void setTextField(int i, String character)\newline
+              Setzt den Buchstaben an der Stelle i auf den gewünschten Parameter.
+		\item public void highlightAndSetText(int num, int pos, String character)\newline
+              Setzt den Buchstaben auf die gewünschte Stelle und hebt diesen hervor.
+		\item public AlphabetStripView getAlphabet()\newline
+              Liefert das Alphabet-Element zurück.
+		\item public void setEncryptedCharsVisible(boolean b)\newline
+              Setzt die Sichtbarkeit der verschlüsselten Buchstaben.
+		\item public void setCalculatorVisible(boolean b)\newline
+              Setzt die Sichtbarkeit des Rechners.
+		\item public void setKeyVisible(boolean b)\newline
+              Setzt die Sichtbarkeit des Schlüssels.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+	  \end{itemize}
 
     \subsubsection{Klasse ThirdDemonstrationController}
+	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public ThirdDemonstrationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
 
     \subsubsection{Klasse ThirdDemonstrationView}
-
+	Während der Implementierung hat sich herausgestellt dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void highlightAndSetText(int num, int pos, String character)\newline
+              Setzt den Buchstaben auf die gewünschte Stelle und hebt diesen hervor.
+		\item public void setCalculatorVisible(boolean b)\newline
+              Setzt die Sichtbarkeit des Rechners.
+		\item public AlphabetStripView getAlphabet()\newline
+              Liefert das Alphabet-Element zurück.
+		\item public void setTextField(int i, String character)\newline
+              Setzt den Buchstaben an der Stelle i auf den gewünschten Parameter.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+		\item public void setCalculator(int a, int b)\newline
+              Diese Methode übernimmt die Änderungen, welche an dem "Rechner" auf der rechten Seite nötig sind.
+	  \end{itemize}
+	  
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Experiment}
     \subsubsection{Klasse FirstExperimentController}
-
+	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public FirstExperimentView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
+	  
     \subsubsection{Klasse FirstExperimentView}
+	Während der Implementierung hat sich herausgestellt dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void createKeyboard(JTextField input, final int flag)\newline
+              Erstellt eine Tastatur für die Nutzereingaben.
+		\item public void highlightTextBorder(int i)\newline
+              Hebt das gewünschte Eingabefeld hervor.
+		\item public void unHighlightTextBorder(int i)\newline
+              Löscht die Hervorhebung des gewünschten Eingabefeldes.
+		\item public KeyboardView getKeyboard()\newline
+              Liefert die Tastatur zurück.
+		\item public void setKeyboard(KeyboardView keyboard)\newline
+              Setzt die Tastatur.
+		\item public AlphabetStripView getAlphabet()\newline
+              Liefert das Alphabet-Element zurück.
+		\item public String getKey()\newline
+              Liefert den Verschlüsselungskey zurück.
+		\item public void setTextField(int i, String character)\newline
+              Setzt den Buchstaben an der Stelle i auf den gewünschten Parameter.
+		\item public JTextField getTextFieldDecrypted(int i)\newline
+              Liefert den entschlüsselten Buchstaben an der Stelle i zurück.
+		\item public JLabel getTextFieldPlain(int i)\newline
+              Liefert den Buchstaben an der Stelle i zurück.
+		\item public JTextField[] getTextFields()\newline
+              Liefert alle Textfelder zurück.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+		\item public void showError(int i)\newline
+              Zeigt eine Warnung und markiert das falsche Element rot.
+		\item public void hideError()\newline
+              Versteckt die Warnung.		
+	  \end{itemize}
 
     \subsubsection{Klasse SecondExperimentController}
-
+	Diese Klasse wurde vollständig entfernt, da im Verlauf der Implementierung festgestellt wurde,
+	dass sie nirgends benötigt wird (FirstExperimentController enthält jetzt die Funktionalität).
+	
     \subsubsection{Klasse SecondExperimentView}
-
+	Diese Klasse wurde vollständig entfernt, da im Verlauf der Implementierung festgestellt wurde,
+	dass sie nirgends benötigt wird (FirstExperimentView enthält jetzt die Funktionalität).
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanation}
     \subsubsection{Klasse FirstExplanationController}
-
+	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public FirstExplanationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
+	  
     \subsubsection{Klasse FirstExplanationView}
-
+	Während der Implementierung hat sich herausgestellt dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void setKeyLength(String s)\newline
+              Setzt das Keylänge-Element.
+		\item public JButton getKeyLengthButton()\newline
+              Liefert das KeyLength-Button zurück.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+		\item public void visibleFirstState(boolean b)\newline
+              Setzt die Sichtbarkeit der Elemente für den ersten Schritt.
+		\item public void hideError()\newline
+              Setzt die Sichtbarkeit der Elemente für den zweiten Schritt.	
+	  \end{itemize}
+	  
     \subsubsection{Klasse SecondExplanationController}
-
+	Während der Implementierung hat sich herausgestellt dass wird AbstractVisualizationController implementieren sollen und dadruch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public SecondExplanationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
+	  
     \subsubsection{Klasse SecondExplanationView}
+	Während der Implementierung hat sich herausgestellt dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void createKeyboard(JTextField input, final int flag)\newline
+              Erstellt eine Tastatur für die Nutzereingaben.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+		\item public KeyboardView getKeyboard()\newline
+              Liefert die Tastatur zurück.
+		\item public void setKeyboard(KeyboardView keyboard)\newline
+              Setzt die Tastatur.
+		\item public JTextField getAnswerField()\newline
+              Liefert das Antwort-Feld zurück.
+		\item public void answerRight()\newline
+              Versteckt die Warnung und hebt die Hervorhebung auf.
+		\item public void answerFalse()\newline
+              Zeigt die Warunung und hebt das Eingabefeld hervor. 
+		\item public String getAnswer()\newline
+              Liefert die Nutzereingabe zurück. 
+		\item public void answerRight()\newline
+              Setzt die Sichtbarkeit der Elemente für den zweiten Schritt.		 
+		\item public void visibleFirstState(boolean b)\newline
+              Setzt die Sichtbarkeit der Elemente für den ersten Schritt.	 
+	  \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
   
