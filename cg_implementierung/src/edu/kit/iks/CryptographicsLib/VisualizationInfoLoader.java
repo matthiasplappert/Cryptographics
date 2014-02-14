@@ -15,6 +15,7 @@ import edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo;
  * 
  * @author Christian Dreher
  */
+@SuppressWarnings("unused")
 public class VisualizationInfoLoader {
 	
 	/**
