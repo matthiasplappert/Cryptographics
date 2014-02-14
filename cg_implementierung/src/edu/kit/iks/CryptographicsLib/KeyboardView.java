@@ -1,5 +1,6 @@
 package edu.kit.iks.CryptographicsLib;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Insets;
@@ -94,7 +95,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 
 		this.initKeyboardButtons();
 		
-		// Dimension keySize = new Dimension(35, 25);
+		Dimension keyMinSize = new Dimension(45, 45);
 		Insets keyMargin = new Insets(0, 5, 0, 5);
 		Font keyFont = new Font("Arial", Font.BOLD, 14);
 		
@@ -105,6 +106,9 @@ public class KeyboardView extends JPanel implements ActionListener {
 				if (this.keys[i][j] != null) {
 					this.keys[i][j].setMargin(keyMargin);
 					this.keys[i][j].setFont(keyFont);
+//					this.keys[i][j].setMinimumSize(keyMinSize);
+					this.keys[i][j].setPreferredSize(keyMinSize);
+//					this.keys[i][j].setMaximumSize(keyMaxSize);
 					this.keys[i][j].addActionListener(this);
 					
 					row.add(this.keys[i][j]);

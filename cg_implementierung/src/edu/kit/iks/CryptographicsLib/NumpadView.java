@@ -1,5 +1,6 @@
 package edu.kit.iks.CryptographicsLib;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Insets;
@@ -88,7 +89,7 @@ public class NumpadView extends JPanel implements ActionListener {
 
 		this.initKeyboardButtons();
 		
-		// Dimension keySize = new Dimension(35, 25);
+		Dimension keySize = new Dimension(45, 45);
 		Insets keyMargin = new Insets(0, 5, 0, 5);
 		Font keyFont = new Font("Arial", Font.BOLD, 14);
 		
@@ -99,6 +100,7 @@ public class NumpadView extends JPanel implements ActionListener {
 				if (this.keys[i][j] != null) {
 					this.keys[i][j].setMargin(keyMargin);
 					this.keys[i][j].setFont(keyFont);
+					this.keys[i][j].setPreferredSize(keySize);
 					this.keys[i][j].addActionListener(this);
 					
 					row.add(this.keys[i][j]);
@@ -215,14 +217,14 @@ public class NumpadView extends JPanel implements ActionListener {
 		
 		if (name.equals("bs")) {
 			ImageIcon backspace = this.loadIcon(this.resources
-					.getChild("BackspaceSmall")
+					.getChild("Backspace")
 					.getAttributeValue("path"));
 			
 			button = new JButton(backspace);
 			button.setName("button-backspace");
 		} else if (name.equals("e")) {
 			ImageIcon enter = this.loadIcon(this.resources
-					.getChild("EnterSmall")
+					.getChild("Enter")
 					.getAttributeValue("path"));
 			
 			button = new JButton(enter);
