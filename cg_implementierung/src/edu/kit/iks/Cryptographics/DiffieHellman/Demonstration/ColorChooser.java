@@ -43,7 +43,7 @@ public class ColorChooser extends JPanel {
 	private Color[] toChooseFrom;
 	
 	/**
-	 * 
+	 * Will setup the object, and layout correctly
 	 * @param d the size of the colorchooser
 	 * @param color the default color
 	 * @param colors all possible colors to choose from
@@ -103,14 +103,18 @@ public class ColorChooser extends JPanel {
 		
 	}
 	
-	/*
+	/**
 	 * return the currently displayed color
+	 * @return the current color
 	 */
 	public Color getCurrentColor() {
 		return this.current.getColor();
 	}
 	
-	/* change the possible colors */
+	/** 
+	 * change the possible colors
+	 * @param colors the possible colors to choose from
+	 */
 	public void setToChooseFrom(Color[] colors) {
 		this.index = 0;
 		this.toChooseFrom = colors;
@@ -118,7 +122,10 @@ public class ColorChooser extends JPanel {
 		repaint();
 	}
 
-	/* get the possible colors */
+	/** 
+	 * get the possible colors
+	 * @return the colors to choose from
+	 */
 	public Color[] getToChooseFrom() {
 		return toChooseFrom;
 	}

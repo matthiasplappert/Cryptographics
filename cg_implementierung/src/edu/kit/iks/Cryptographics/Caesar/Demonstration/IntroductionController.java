@@ -6,11 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
-import org.jdom2.Element;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
-import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
@@ -38,11 +36,6 @@ public class IntroductionController extends AbstractVisualizationController {
 	private int introductionStep;
 
 	/**
-     * 
-     */
-	private Element introResource;
-
-	/**
 	 * @param visualizationInfo
 	 */
 	public IntroductionController(AbstractVisualizationInfo visualizationInfo) {
@@ -62,14 +55,9 @@ public class IntroductionController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.introductionStep = 1;
-		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
-		this.introResource = vsInfo.getResources().getChild("Introduction");
 		this.view = new IntroductionView();
 
 		this.getView().getNextButton().addActionListener(new ActionListener() {
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
-			 */
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				VisualizationContainerController containerController = (VisualizationContainerController) IntroductionController.this
@@ -88,6 +76,10 @@ public class IntroductionController extends AbstractVisualizationController {
 		});
 
 	}
+	
+	
+	//----------------------------------------------------------//
+	//--------------------private methods-----------------------//
 	
 	private void proceedIntroduction(int step) {
 		switch (step) {
@@ -230,6 +222,8 @@ public class IntroductionController extends AbstractVisualizationController {
 
 	}
 
+	//----------------------------------------------------------//
+	//---------------------Getter/Setter-------------------------//
 	/**
 	 * @return the animationStep
 	 */
@@ -246,15 +240,9 @@ public class IntroductionController extends AbstractVisualizationController {
 		return help;
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
-	 */
 	@Override
 	public void unloadView() {
 		this.view = null;
-		this.introResource = null;
 	}
 
 }

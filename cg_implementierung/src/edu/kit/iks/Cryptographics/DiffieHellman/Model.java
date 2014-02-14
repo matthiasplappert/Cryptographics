@@ -12,62 +12,123 @@ import java.awt.Color;
 
 public class Model {
 	
+	/**
+	 * Our public color
+	 */
 	private Color publicColor;
 	
+	/**
+	 * Alices private color
+	 */
 	private Color alicePrivateColor;
 	
+	/**
+	 * Alices mixed color
+	 */
 	private Color aliceMixedColor;
 	
+	/**
+	 * Bobs private color
+	 */
 	private Color bobPrivateColor;
 	
+	/**
+	 * Bobs mixed color
+	 */
 	private Color bobMixedColor;
-	
+
+	/**
+	 * Constructor is empty, because
+	 * values should be initialized with setter
+	 */
 	public Model() {
-		
 	}
 	
+	/**
+	 * return the public color
+	 * @return the public color
+	 */
 	public Color getPublicColor() {
 		return publicColor;
 	}
 
+	/**
+	 * set the public color
+	 * @param publicColor which color to set to
+	 */
 	public void setPublicColor(Color publicColor) {
 		this.publicColor = publicColor;
 	}
 
+	/**
+	 * return alices private color
+	 * @return alices private color
+	 */
 	public Color getAlicePrivateColor() {
 		return alicePrivateColor;
 	}
 
+	/**
+	 * set alices private color
+	 * @param alicePrivateColor
+	 */
 	public void setAlicePrivateColor(Color alicePrivateColor) {
 		this.alicePrivateColor = alicePrivateColor;
 	}
 	
+	/**
+	 * return alices mixed color
+	 * @return alices mixed color, if it was set/mixed
+	 */
 	public Color getAliceMixedColor() {
 		return aliceMixedColor;
 	}
 
+	/**
+	 * return bobs private color
+	 * @return bobs private color
+	 */
 	public Color getBobPrivateColor() {
 		return bobPrivateColor;
 	}
 
+	/**
+	 * set bobs private color
+	 * @param bobPrivateColor the value to set bobs private color
+	 */
 	public void setBobPrivateColor(Color bobPrivateColor) {
 		this.bobPrivateColor = bobPrivateColor;
 	}
 
+	/**
+	 * return bobs mixed color if it was computed
+	 * @return bobs mixed color
+	 */
 	public Color getBobMixedColor() {
 		return bobMixedColor;
 	}
 	
+	/**
+	 * compute mixture of alices private and public color
+	 * and save the color
+	 */
 	public void mixAlicePrivateAndPublic() {
 		this.aliceMixedColor = computeMixedColor(this.alicePrivateColor, this.publicColor);
 	}
 	
+	/**
+	 * compute mixture of bobs private and public color
+	 * and save the color
+	 */
 	public void mixBobPrivateAndPublic() {
 		this.bobMixedColor = computeMixedColor(this.bobPrivateColor, publicColor);
 	}
 	
-	/*
-	 * computes the mixture of two colors
+	/**
+	 * compute mixture from two colors
+	 * @param color the first color
+	 * @param color2 the second color
+	 * @return the mixture
 	 */
 	private Color computeMixedColor(Color color, Color color2) {
 		int r1 = color.getRed();

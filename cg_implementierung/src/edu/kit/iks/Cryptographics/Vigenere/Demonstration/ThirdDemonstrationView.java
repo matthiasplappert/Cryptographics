@@ -12,6 +12,10 @@ import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
+/**
+ * in this step the decryption will be explained.
+ * @author Aydin Tekin
+ */
 public class ThirdDemonstrationView extends VisualizationView{
 	private static final long serialVersionUID = 6294968461280032987L;
 	
@@ -20,26 +24,71 @@ public class ThirdDemonstrationView extends VisualizationView{
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(ThirdDemonstrationView.class);
 	
-	//PLAINTEXTCHARS WITH THEIR INDEXES
+	/**
+	 * plain characters
+	 */
 	private JLabel[] indexCharPlain;
+	
+	/**
+	 * plain characters position in alphabet
+	 */
 	private JLabel[] textCharPlain;
 	
-	//ENCRYPTED CHARS WITH THEIR INDEXES
+	/**
+	 * decrypted characters
+	 */
 	private JLabel[] indexCharDecrypted;
+	
+	/**
+	 * decrypted characters position in alphabet
+	 */
 	private JLabel[] textCharDecrypted;
 	
-	//Visulisation of the Key
+	/**
+	 * description of the key
+	 */
 	private JLabel vigenereKeyDesc;
+	
+	/**
+	 * key to encrypt with
+	 */
 	private String vigenereKey = i18n.tr("KISS");
 	
-	//Visualisation of calculation of the indexes
+	/**
+	 * used for calculator
+	 */
 	private JLabel charFirst;
 	private JLabel charSecond;
 	private JLabel charFinished;
 	
+	/**
+	 * explanation field
+	 */
 	private JLabel explanation;
+	
+	/**
+	 * alphabet used for demonstration
+	 */
 	private AlphabetStripView alphabet;
 	
+	/**
+	 * this highlights the selected character in the AlphaStripView and sets the character in
+	 * the specified textfield
+	 * @param num character to be highlighted in the AlphaStripView
+	 * @param pos textfield to be changed
+	 * @param character character to be set
+	 */
+	public void highlightAndSetText(int num, int pos, String character) {
+		this.alphabet.unHighlightAll();
+		this.setTextField(pos, character);
+		this.alphabet.highlight(pos);
+	}
+	
+	/**
+	 * sets the calculator to given parameters
+	 * @param a first character
+	 * @param b amount of rotation
+	 */
 	public void setCalculator(int a, int b) {
 		int temp = (a - b);
 		if (temp < 0)
@@ -57,10 +106,19 @@ public class ThirdDemonstrationView extends VisualizationView{
 		this.validate();
 	}
 	
+	/**
+	 * returns the alphabet
+	 * @return alphabet
+	 */
 	public AlphabetStripView getAlphabet() {
 		return alphabet;
 	}
 	
+	/**
+	 * changes given textfield and also applies the numeration in the bottom label
+	 * @param i which textfield to be changed
+	 * @param character which character to be added
+	 */
 	public void setTextField(int i, String character) {
 		this.textCharDecrypted[i].setText(character);
 		if (character.isEmpty()) {
@@ -73,12 +131,20 @@ public class ThirdDemonstrationView extends VisualizationView{
 		this.validate();
 	}
 	
+	/**
+	 * sets the visibility of the calculator
+	 * @param b visibility of the calculator
+	 */
 	public void setCalculatorVisible(boolean b) {
 		this.charFirst.setVisible(b);
 		this.charSecond.setVisible(b);
 		this.charFinished.setVisible(b);
 	}
 	
+	/**
+	 * changes the explanation text
+	 * @param explanation text to change to
+	 */
 	public void setExplanation(String explanation) {
 		this.explanation.setText(explanation);
 		Dimension size = this.explanation.getPreferredSize();
@@ -86,13 +152,15 @@ public class ThirdDemonstrationView extends VisualizationView{
 		this.validate();
 	}
 	
-	public ThirdDemonstrationView() {
+	/**
+	 * creates and adds all GUI elements
+	 */
+	private void setupGUI() {
 		this.setLayout(null);
 		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
 				+ i18n.tr("Now we want to decrypt 'DMPL'. Insteading adding up, we "
 				+ "use substraction to decrypt it! So lets go...")
 				+ "</div></html>"));
-		this.add(new JLabel("VIGENERE INTRODUCTION3"));
 		this.vigenereKeyDesc = new JLabel("Vigenere Key: " + this.vigenereKey);
 		this.alphabet = new AlphabetStripView();
 		
@@ -134,7 +202,12 @@ public class ThirdDemonstrationView extends VisualizationView{
 		this.add(this.charFinished = new JLabel());
 		this.add(this.vigenereKeyDesc);
 		this.add(this.alphabet);
-
+	}
+	
+	/**
+	 * sets fonts to all elements
+	 */
+	private void setFonts() {
 		this.vigenereKeyDesc.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		this.charFirst.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		this.charSecond.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
@@ -152,7 +225,12 @@ public class ThirdDemonstrationView extends VisualizationView{
 	
 		for (int i = 0; i < this.indexCharDecrypted.length; i++)
 			this.indexCharDecrypted[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-
+	}
+	
+	/**
+	 * customizes the created GUI elements
+	 */
+	private void customizeGUI() {
 		Dimension size = this.vigenereKeyDesc.getPreferredSize();
 		this.vigenereKeyDesc.setBounds(90, 250, size.width, size.height);
 		
@@ -172,8 +250,6 @@ public class ThirdDemonstrationView extends VisualizationView{
 		this.textCharPlain[3].setBounds(650, 100,
 	             size.width, size.height);
 		
-		//TROLOLO
-		
 		size = this.indexCharPlain[0].getPreferredSize();
 		this.indexCharPlain[0].setBounds(500, 160,
 	             size.width, size.height);
@@ -189,8 +265,7 @@ public class ThirdDemonstrationView extends VisualizationView{
 		size = this.indexCharPlain[3].getPreferredSize();
 		this.indexCharPlain[3].setBounds(650, 160,
 	             size.width, size.height);
-		
-		//TROLOLOLO 2
+
 		size.width = 24;
 		size.height = 44;
 		this.textCharDecrypted[0].setBounds(500, 250,
@@ -204,8 +279,6 @@ public class ThirdDemonstrationView extends VisualizationView{
 
 		this.textCharDecrypted[3].setBounds(650, 250,
 	             size.width, size.height);
-		
-		//TROLOLO 3
 		
 		size = this.indexCharDecrypted[0].getPreferredSize();
 		this.indexCharDecrypted[0].setBounds(500, 310,
@@ -251,5 +324,14 @@ public class ThirdDemonstrationView extends VisualizationView{
 		size = this.getNextButton().getPreferredSize();
 		this.getNextButton().setBounds(1100, 600,
 	             size.width, size.height);
+	}
+	
+	/**
+	 * constructor of the view
+	 */
+	public ThirdDemonstrationView() {
+		setupGUI();
+		setFonts();
+		customizeGUI();
 	}
 }
