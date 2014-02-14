@@ -11,7 +11,6 @@ import org.xnap.commons.i18n.I18n;
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 import edu.kit.iks.CryptographicsLib.CharacterFrequencyDiagramView;
 import edu.kit.iks.CryptographicsLib.Configuration;
-import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /*
@@ -59,23 +58,61 @@ public class FirstExplanationView extends VisualizationView{
 			+ "HKYSBQ OVZ DVSBQG SBDC MCXGSROFKHSCX, W MCEZN VKFNZI PVOWS TIZWDSB TYF RWC CZWXWYB"
 			+ "BSCDOQDWXU SH.";
 	
+	/**
+	 * histogramm of encrypted text
+	 */
 	private CharacterFrequencyDiagramView vigenereHistogramm;
+	
+	/**
+	 * histogramm of average text
+	 */
 	private CharacterFrequencyDiagramView averageHistogramm;
+	
+	/**
+	 * explanation
+	 */
 	private JLabel explanation;
+	
+	/**
+	 * key length
+	 */
 	private JLabel keyLength;
+	
+	/**
+	 * explanation
+	 */
 	private JLabel secondExplanation;
+	
+	/**
+	 * explanation
+	 */
 	private JLabel thirdExplanation;
 	
+	/**
+	 * button to find key
+	 */
 	private JButton findKeyLength;
 	
+	/**
+	 * sets the keylength label
+	 * @param s text to change label to
+	 */
 	public void setKeyLength(String s) {
 		this.keyLength.setText(s);
 	}
 	
+	/**
+	 * returns the button to get keylength
+	 * @return button to get keylength
+	 */
 	public JButton getKeyLengthButton() {
 		return this.findKeyLength;
 	}
 	
+	/**
+	 * changes the explanation text
+	 * @param explanation text to change to
+	 */
 	public void setExplanation(String s){
 		this.explanation.setText(s);
 		Dimension size = this.explanation.getPreferredSize();
@@ -84,11 +121,19 @@ public class FirstExplanationView extends VisualizationView{
 		this.validate();
 	}
 	
+	/**
+	 * changes the visibility according to first step
+	 * @param b visibility according to first step
+	 */
 	public void visibleFirstState(boolean b) {
 		this.keyLength.setVisible(b);
 		this.findKeyLength.setVisible(b);
 	}
 	
+	/**
+	 * changes the visibility according to second step
+	 * @param b visibility according to second step
+	 */
 	public void visibleSecondState(boolean b) {
 		this.vigenereHistogramm.setVisible(b);
 		this.secondExplanation.setVisible(b);
@@ -96,9 +141,11 @@ public class FirstExplanationView extends VisualizationView{
 		this.thirdExplanation.setVisible(b);
 	}
 	
-	public FirstExplanationView() {
+	/**
+	 * creates and adds all GUI elements
+	 */
+	private void setupGUI() {
 		this.setLayout(null);
-		this.add(new JLabel("VIGENERE EXPLANATATION"));
 		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
 			+ i18n.tr("Vigenère fixed a few weaknesses of Caesar, but still has flaws. If "
 			+ "the key is shorter then the text to encrypt, "
@@ -110,21 +157,13 @@ public class FirstExplanationView extends VisualizationView{
        		+ ":<br><br>"
        		+ vigenereEncrypted
        		+ "</div></html>"));
-		this.explanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		
 		this.add(this.secondExplanation = new JLabel("<html><div width=\"1200\">"
 				+ i18n.tr("This is the average distribution of the characters in english texts:")
 				+ "</div></html>"));
-		this.secondExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		
 		this.add(this.findKeyLength = new JButton("Find Key-Length"));
-		this.findKeyLength.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		
 		this.add(this.keyLength = new JLabel("<html><div width=\"1200\">"
 				+ i18n.tr("Length of key: ?")
 				+ "</div></html>"));
-		this.keyLength.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-	
 		this.add(this.thirdExplanation = new JLabel("<html><div width=\"1200\">"
 				+ i18n.tr("When we look closer at the histogramm we see some differences in the "
 				+ "distribution of the characters; 'S' is has the most common occurance,"
@@ -133,8 +172,6 @@ public class FirstExplanationView extends VisualizationView{
 				+ "- 5 (position of 'E') and we get 14, which means"
 				+ "the first character of the key is 'N'.")
 				+ "</div></html>"));
-		this.thirdExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		
 		this.vigenereHistogramm = new CharacterFrequencyDiagramView(VigenereModel.getCharPositionated(0, 2, encryptedAverageText), 600,
 				100);
 		this.add(this.vigenereHistogramm);
@@ -144,7 +181,23 @@ public class FirstExplanationView extends VisualizationView{
 				100);
 		this.add(this.averageHistogramm);
 		this.averageHistogramm.setVisible(false);
-		
+	}
+	
+	/**
+	 * sets fonts to all elements
+	 */
+	private void setFonts() {
+		this.explanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		this.secondExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));		
+		this.findKeyLength.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		this.keyLength.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		this.thirdExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+	}
+	
+	/**
+	 * customizes the created GUI elements
+	 */
+	private void customizeGUI() {
 		Dimension size = this.explanation.getPreferredSize();
 		this.explanation.setBounds(10, 10,
 	             size.width, size.height);
@@ -179,6 +232,14 @@ public class FirstExplanationView extends VisualizationView{
 	             600, 100);
 		this.averageHistogramm.setBounds(10, 280,
 	             600, 100);
-		Logger.l(VigenereModel.getCharPositionated(0, 2, vigenereText));
+	}
+	
+	/**
+	 * Constructor
+	 */
+	public FirstExplanationView() {
+		setupGUI();
+		setFonts();
+		customizeGUI();
 	}
 }
