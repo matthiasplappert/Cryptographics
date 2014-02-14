@@ -128,6 +128,49 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
               verwendet.
       \end{itemize}
 
+
+    \subsubsection{Logger}
+    Diese Klasse dient dem Zweck, während der Implementierung eine einheitliche Debuggingschnittstelle
+    zu bieten, mögliche Exceptions durch Cryptographics abzufangen und in eine error.log-Datei zu schreiben,
+    und Nutzerstatistiken in statistics.csv zu speichern. Sämtliche Methoden innerhalb dieser Klasse
+    sind statisch und ohne Instanziierung zugreifbar.\newline
+
+    \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+           
+    \textbf{Methoden}
+      \begin{itemize}
+        \item public static void l(String logEntry)\newline
+              l steht für Log. Diese Methode loggt den übergebenen logEntry mit dem Zeitpunkt
+              des Aufrufs der l()-Methode in statistics.csv zur späteren Auswertung von Statistiken.
+              Während des Debugmodus' werden die Ausgaben auch in die Konsole geschrieben.
+		\item public static void d(String classID, String method, String debugText) \newline
+			  d steht für Debug. Diese Methode dient als einheitliche Debugausgabenschnittstelle, 
+			  welche die Debugausgaben nur dann in die Konsole schreibt, wenn der Debugmodus aktiviert ist.
+			  classID und method stehen dabei für die Klasse und die Methode, von der der Log aufgerufen wurde,
+			  und der debugText ist der Text, der ausgegeben werden soll.
+		\item public static void e(Exception exception) \newline
+			  e steht für Exception. Diese Methode wird innerhalb eines catch-Blocks aufgerufen, und schreibt
+			  die Exceptionmeldung sowie den Stacktrace der Exception in die error.log-Datei.
+      \end{itemize}
+
+    \subsubsection{MouseClickListener}
+    Einfacher Bequemlichkeitslistener für Mausklicks. Er implementiert sämtliche Methoden von 
+    MouseListener, jedoch sind alle bis auf clicked() nur Stummel.\newline
+
+    \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item MouseListener
+      \end{itemize}
+           
+    \textbf{Methoden}
+      \begin{itemize}
+        \item abstract public void clicked(MouseEvent event)\newline
+        	Muss implementiert werden, um zu definieren, was bei einem Mausklick geschehen soll.
+      \end{itemize}
+
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Demonstration}
