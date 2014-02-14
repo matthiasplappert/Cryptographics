@@ -411,16 +411,74 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
            \end{itemize}
 
 	\subsubsection{Klasse ColorChannel}
+    Diese Klasse wurde neu hinzugefügt
+    Ihre Aufgabe ist es als JPanel grafisch den
+    Kommunikationskanal zwischen Alice, Bob und Eve
+    zu vermitteln und Farben über diesen Kanal zu visuell
+    zu verschicken.
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public ColorChannel(Dimension d, int circleSize) wurde hinzugefügt\newline
+               Der Konstruktor nimmt die Dimension und die Größe der Kreise als Parameter,
+               und errechnet daraus wie die restlichen Elemente positioniert werden
+           \item public void sendToBob(final NextStepCallback cb, final boolean keepFirst) wurde hinzugefügt\newline
+               Schickt eine Farbkreis von Alice zu Bob, cb ist der Callback der aufgerufen wird, wenn dies
+               erledigt wurde.
+               Wenn keepFirst wahr ist, wird die Farbe neben Alice dauerhaft dargestellt
+           \item public void sendToAlice(final NextStepCallback cb, final boolean keepFirst) wurde hinzugefügt\newline
+               Tut das gleiche wie sendToBob, nur dass von Bob nach Alice die Farbe verschickt wird und
+               wenn keepFirst den Wert wahr hat, wird die Farbe neben Bob visualisiert
+           \item public void chooseColorToKeep(Color color, int who) wurde hinzugefügt\newline
+               Ein Farbkreis mit der Farbe color wird neben who hinzugefügt also neben alice, bob oder eve
+           \item public void stopTimer() wurde hinzugefügt\newline
+               Stoppt den Timer. Muss aufgerufen werden wenn ColorChannel nicht mehr verwendet wird,
+               da sonst der Timer weiterlaufen könnte
+           \item public void loadView() wurde hinzugefügt\newline
+               Tut im Grunde das gleiche wie im Konstruktor, nur dass diese Funktion dafür
+               aufgerufen werden muss, wenn sich die Größe ändert
+           \item public void choosePublicColor(Color color) wurde hinzugefügt\newline
+               Setzt die öffentliche Farbe
+           \item public void chooseAlicePrivateColor(Color color) wurde hinzugefügt\newline
+               Setzt die private Farbe von Alice
+           \item public void chooseBobPrivateColor(Color color) wurde hinzugefügt\newline
+               Setzt die private Farbe von Bob
+           \item public void mixAlicePrivatePublic() wurde hinzugefügt\newline
+               Mischt die private Farbe von Alice und die öffentliche Farbe
+               und speichert diese
+           \item public void mixBobPrivatePublic() wurde hinzugefügt\newline
+               Mischt die private Farbe von Bob und die öffentliche Farbe
+               und speichert diese
+           \item public void sendPublicColor() wurde hinzugefügt\newline
+               Sendet die öffentliche Farbe von Alice zu Bob
+           \item public void sendAliceMixedColorToBob(NextStepCallback cb) wurde hinzugefügt\newline
+               Sendet die Mixtur von Alice zu Bob, und ruft cb auf wenn dies geschehen ist
+           \item public void sendBobMixedColorToAlice(NextStepCallback cb) wurde hinzugefügt\newline
+               Sendet die Mixtur von Bob zu Alice , und ruft cb auf wenn dies geschehen ist
+           \item public void mixAliceFinalSecret(NextStepCallback cb) wurde hinzugefügt\newline
+               Mischt das gemeinsame Geheimnis zusammen und ruft cb auf, wenn dies geschehen ist
+           \item public void mixBobFinalSecret(NextStepCallback cb) wurde hinzugefügt\newline
+               Mischt das gemeinsame Geheimnis zusammen und ruft cb auf, wenn dies geschehen ist
+           \item public boolean isRepeat() wurde hinzugefügt\newline
+               Wahr wenn das Senden in einer periodischen Animation laufen soll
+           \item public void setRepeat(boolean repeat) wurde hinzugefügt\newline
+               Setzt den repeat Wert
+           \item 
+           \end{itemize}
 
 	\subsubsection{Klasse ColorChooser}
+    Diese Klasse wurde neu hinzugefügt
 
 	\subsubsection{Klasse DemoOneWayController}
+    Diese Klasse wurde neu hinzugefügt
 
 	\subsubsection{Klasse DemoOneWayView}
+    Diese Klasse wurde neu hinzugefügt
 
 	\subsubsection{Klasse Ellipse2DwithColor}
+    Diese Klasse wurde neu hinzugefügt
 
-	\subsubsection{Klasse NextStepCallback}
+	\subsubsection{Interface NextStepCallback}
+    Diese Interface wurde neu hinzugefügt
 
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Experiment}
 
