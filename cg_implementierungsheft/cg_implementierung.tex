@@ -55,11 +55,32 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 \section{Neue Klassen}
 
   \subsection{Paket edu.kit.iks.Cryptographics}
+    \subsubsection{IdlePopoverView}
+    Zur Zeit des Entwurfs war noch unklar, wie wir optimisch mit einem inaktiven Benutzer umgehen.
+    Nach einigen Tests haben wir uns dazu entschieden, das existierende Popover-System zu verwenden. Daher wurde
+    die Klasse IdlePopoverView nötig. Diese stellt einen kurzen Informationstext dar, der dem Benutzer erklärt,
+    dass sich das Programm in kürze zurücksetzen wird. Die verbleibende Zeit wird in Sekunden dargestellt. Außerdem
+    wird ein Button dargestellt, mit dem das Zurücksetzen verhindert werden kann.\newline
+
+    \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.PopoverView
+      \end{itemize}
+           
+    \textbf{Methoden}
+      \begin{itemize}
+        \item public IdlePopoverView(long initialTime)\newline
+              Konstruktor. Erzeugt eine neue Instanz. Der Countdown wird bei initialTime in Millisekunden
+              gestartet.
+        \item public JButton getContinueButton()\newline
+              Gibt den Fortfahren-Button zurück. Ein Controller kann mithilfe eines ActionListeners
+              das Zurücksetzen beim Anklicken verhindern.
+      \end{itemize}
 
   \subsection{Paket edu.kit.iks.CryptographicsLib}
     \subsubsection{Configuration}
     Während der Implementierung hat sich gezeigt, das an einigen Stellen Konstanten verwendet werden,
-    beispielsweise die Zeit in Sekunden nachdem der Benutzer als inaktiv gilt. Um diese global ändern zu können
+    beispielsweise die Zeit in Sekunden, nachdem der Benutzer als inaktiv gilt. Um diese global ändern zu können,
     wurde die Klasse Configuration angelegt. Die Werte stammen aus einer XML-Datei. Falls diese nicht existiert,
     werden voreingestellte Default-Werte verwendet. Die Klasse Configuration verwendet das Singleton-Entwurfsmuster.\newline
 
@@ -159,23 +180,65 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 \section{Änderungen an Klassen}
 
   \subsection{Paket edu.kit.iks.Cryptographics}
-    \subsubsection{Klasse HelpPopoverView}
+    \subsubsection{HelpPopoverView}
+      Keine Änderungen.
 
-    \subsubsection{Klasse Main}
+    \subsubsection{Main}
+      Keine Änderungen.
 
-    \subsubsection{Klasse MainController}
+    \subsubsection{MainController}
+      In der Klasse MainController wurden Getter für das JFrame, sowie der StartController
+      und VisualizationContainerController hinzugefügt.\newline
 
-    \subsubsection{Klasse StartController}
+      \textbf{Änderungen an Methoden}
+      \begin{itemize}
+        \item public JFrame getJFrame()\newline
+              Gibt das JFrame zurück.
+        \item public StartController getStartController()\newline
+              Gibt den StartController zurück.
+        \item public VisualizationContainerController getVisualizationContainerController()\newline
+              Gibt den VisualizationContainerController zurück.
+      \end{itemize}
 
-    \subsubsection{Klasse TimelinePopoverView}
+    \subsubsection{StartController}
+      StartController hat eine minimale Änderung an der Methodensignatur erfahren.\newline
 
-    \subsubsection{Klasse TimelineView}
+      \textbf{Änderungen an Methoden}
+      \begin{itemize}
+        \item public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo, JComponent sender)\newline
+              Die Methode erwartet nun einen zusätzlichen Parameter sender. Dieser gibt an, welches JComponent
+              die Aktion ausgelöst hat, um den Popover korrekt darstellen zu können.
+      \end{itemize}
 
-    \subsubsection{Klasse VisualizationContainerController}
+    \subsubsection{TimelinePopoverView}
+      Keine Änderungen.
 
-    \subsubsection{Klasse VisualizationContainerView}
+    \subsubsection{TimelineView}
+      Keine Änderungen.
 
-    \subsubsection{Klasse WelcomeView}
+    \subsubsection{VisualizationContainerController}
+      Der VisualizationContainerController unterstützt nun die Darstellung der IdlePopoverView.\newline
+
+      \textbf{Änderungen an Methoden}
+      \begin{itemize}
+        \item public void presentIdlePopover()\newline
+              Zeigt die IdlePopoverView an.
+        \item public void dismissIdlePopover()\newline
+              Verbirgt die IdlePopoverView.
+      \end{itemize}
+
+    \subsubsection{VisualizationContainerView}
+      Die VisualizationContainerView besitzt nun eine Content-View. Diese dient als Container für die Visualisierung
+      und erlaubt es uns, den Inhalt der Visualisierung korrekt zu positionieren.\newline
+
+      \textbf{Änderungen an Methoden}
+      \begin{itemize}
+        \item public JPanel getContentView()\newline
+              Gibt die Content-View zurück.
+      \end{itemize}
+
+    \subsubsection{WelcomeView}
+      Keine Änderungen.
 
   \subsection{Paket edu.kit.iks.CryptographicsLib}
     
