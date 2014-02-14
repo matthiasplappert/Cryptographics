@@ -48,18 +48,50 @@
 \section{Einleitung}
 In diesem Heft werden Änderungen zum Entwurf spezifiziert, die während der Implementierung entstanden sind.
 
+Der Entwurf des Rahmenwerks hat sich während der Implementierung nur geringfügig geändert. Grund für die Änderungen
+waren vor allem Implementierungsdetails von Swing sowie leicht geänderte Anforderungen an die geteilten UI-Komponenten.
+Die grundlegende Kommunikation zwischen den einzelnen Komponenten hat sich nicht geändert. Alle vorgesehenen Aufgaben
+konnten problemlos erfüllt werden, und auch die oben genannten Änderungen ließen sich problemlos durchführen.
+
+Der Entwurf der einzelnen Verfahren hat sich mitunter stark verändert. Dies war bereits während der Entwurfsphase
+absehbar (siehe Entwurfsheft). Der Grund hierfür liegt vor allem darin, dass sich die genaue Aufteilung der UI in die
+einzelnen Schritte sowie die Präsentation durch zahlreiche Iterationen und Selbsttests ergeben hat. Auch dies war
+problemlos möglich, da das Rahmenwerk den einzelnen Verfahren große Flexibilität in ihrer gewählten Darstellung
+erlaubt. 
+
 \section{Grundsätzliche Änderungen}
-Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
+Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen worden.
 
 % Hier kommen alle neuen Klassen rein
 \section{Neue Klassen}
 
   \subsection{Paket edu.kit.iks.Cryptographics}
+    \subsubsection{Klasse IdlePopoverView}
+    Zur Zeit des Entwurfs war noch unklar, wie wir optimisch mit einem inaktiven Benutzer umgehen.
+    Nach einigen Tests haben wir uns dazu entschieden, das existierende Popover-System zu verwenden. Daher wurde
+    die Klasse IdlePopoverView nötig. Diese stellt einen kurzen Informationstext dar, der dem Benutzer erklärt,
+    dass sich das Programm in kürze zurücksetzen wird. Die verbleibende Zeit wird in Sekunden dargestellt. Außerdem
+    wird ein Button dargestellt, mit dem das Zurücksetzen verhindert werden kann.\newline
+
+    \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item edu.kit.iks.CryptographicsLib.PopoverView
+      \end{itemize}
+           
+    \textbf{Methoden}
+      \begin{itemize}
+        \item public IdlePopoverView(long initialTime)\newline
+              Konstruktor. Erzeugt eine neue Instanz. Der Countdown wird bei initialTime in Millisekunden
+              gestartet.
+        \item public JButton getContinueButton()\newline
+              Gibt den Fortfahren-Button zurück. Ein Controller kann mithilfe eines ActionListeners
+              das Zurücksetzen beim Anklicken verhindern.
+      \end{itemize}
 
   \subsection{Paket edu.kit.iks.CryptographicsLib}
-    \subsubsection{Configuration}
+    \subsubsection{Klasse Configuration}
     Während der Implementierung hat sich gezeigt, das an einigen Stellen Konstanten verwendet werden,
-    beispielsweise die Zeit in Sekunden nachdem der Benutzer als inaktiv gilt. Um diese global ändern zu können
+    beispielsweise die Zeit in Sekunden, nachdem der Benutzer als inaktiv gilt. Um diese global ändern zu können,
     wurde die Klasse Configuration angelegt. Die Werte stammen aus einer XML-Datei. Falls diese nicht existiert,
     werden voreingestellte Default-Werte verwendet. Die Klasse Configuration verwendet das Singleton-Entwurfsmuster.\newline
 
@@ -96,16 +128,81 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
               verwendet.
       \end{itemize}
 
+
+    \subsubsection{Klasse Logger}
+    Diese Klasse dient dem Zweck, während der Implementierung eine einheitliche Debuggingschnittstelle
+    zu bieten, mögliche Exceptions durch Cryptographics abzufangen und in eine error.log-Datei zu schreiben,
+    und Nutzerstatistiken in statistics.csv zu speichern. Sämtliche Methoden innerhalb dieser Klasse
+    sind statisch und ohne Instanziierung zugreifbar.\newline
+
+    \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item \textit{keine}
+      \end{itemize}
+           
+    \textbf{Methoden}
+      \begin{itemize}
+        \item public static void l(String logEntry)\newline
+              l steht für Log. Diese Methode loggt den übergebenen logEntry mit dem Zeitpunkt
+              des Aufrufs der l()-Methode in statistics.csv zur späteren Auswertung von Statistiken.
+              Während des Debugmodus' werden die Ausgaben auch in die Konsole geschrieben.
+		\item public static void d(String classID, String method, String debugText) \newline
+			  d steht für Debug. Diese Methode dient als einheitliche Debugausgabenschnittstelle, 
+			  welche die Debugausgaben nur dann in die Konsole schreibt, wenn der Debugmodus aktiviert ist.
+			  classID und method stehen dabei für die Klasse und die Methode, von der der Log aufgerufen wurde,
+			  und der debugText ist der Text, der ausgegeben werden soll.
+		\item public static void e(Exception exception) \newline
+			  e steht für Exception. Diese Methode wird innerhalb eines catch-Blocks aufgerufen, und schreibt
+			  die Exceptionmeldung sowie den Stacktrace der Exception in die error.log-Datei.
+      \end{itemize}
+
+    \subsubsection{Klasse MouseClickListener}
+    Einfacher Bequemlichkeitslistener für Mausklicks. Er implementiert sämtliche Methoden von 
+    MouseListener, jedoch sind alle bis auf clicked() nur Stummel.\newline
+
+    \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item MouseListener
+      \end{itemize}
+           
+    \textbf{Methoden}
+      \begin{itemize}
+        \item abstract public void clicked(MouseEvent event)\newline
+        	Muss implementiert werden, um zu definieren, was bei einem Mausklick geschehen soll.
+      \end{itemize}
+      
+    \subsubsection{Klasse NumpadView}
+    Diese Klasse erzeugt ein einfaches Numpad mit Eingabetaste und Rücktaste.
+    
+    \textbf{Superklassen und Interfaces}
+      \begin{itemize}
+        \item JPanel
+        \item ActionListener
+      \end{itemize}
+
+    \textbf{Methoden}
+      \begin{itemize}
+        \item public NumpadView(JTextField textField, int mode)\newline
+        	Konstruktor der eine neue Instanz des Numpads erzeugt. textField ist das Textfeld,
+        	welches durch das Numpad manipuliert werden soll, mode ist der Modus welcher angewandt
+        	werden soll (Zifferneingabe oder Nummerneingabe).
+        \item public void actionPerformed(ActionEvent e)\newline
+        	Implementiert die actionPerformed()-Methode der Schnittstelle ActionListener. Hier
+        	werden die Tastenanschläge verarbeitet.
+      \end{itemize}
+
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
+	
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Demonstration}
+	
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Experiment}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanation}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
-   \subsubsection{CryptoView}
+   \subsubsection{Klasse CryptoView}
           Diese Klasse besteht aus dem Programmcode, der aus den vorherigen Klassen CryptoView, das jetzt CryptoExperimentView heißt,
           und CipherDemoView, das jetzt CryptoDemonstrationView heißt, rausfaktorisiert wurde.
           
@@ -142,9 +239,9 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
       \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Demonstration}
-   \textbf{Keine neuen Klassen. Nur Änderungen an bestehenden.}
+   Keine neuen Klassen.
   \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Experiment}
-   \textbf{Keine neuen Klassen. Nur Änderungen an bestehenden.}
+   Keine neuen Klassen.
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
   
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Demonstration}
@@ -160,105 +257,383 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 
   \subsection{Paket edu.kit.iks.Cryptographics}
     \subsubsection{Klasse HelpPopoverView}
+      Keine Änderungen.
 
     \subsubsection{Klasse Main}
+      Keine Änderungen.
 
     \subsubsection{Klasse MainController}
+      In der Klasse MainController wurden Getter für das JFrame, sowie der StartController
+      und VisualizationContainerController hinzugefügt.
 
     \subsubsection{Klasse StartController}
+      Die Methode presentPopoverAction() erwartet nun zusätzlich den Parameter sender. Dieser gibt an, welches
+      JComponent die Aktion ausgelöst hat, um den Popover korrekt darstellen zu können.
 
     \subsubsection{Klasse TimelinePopoverView}
+      Keine Änderungen.
 
     \subsubsection{Klasse TimelineView}
+      Keine Änderungen.
 
     \subsubsection{Klasse VisualizationContainerController}
+      Der VisualizationContainerController unterstützt nun die Darstellung der IdlePopoverView. Hierzu wurden
+      die Methoden presentIdlePopover() sowie dismissIdlePopover() hinzugefügt.\newline
 
     \subsubsection{Klasse VisualizationContainerView}
+      Die VisualizationContainerView besitzt nun eine Content-View. Diese dient als Container für die Visualisierung
+      und erlaubt es uns, den Inhalt der Visualisierung korrekt zu positionieren. Es wurde der Getter für
+      beschriebene Content-View hinzugefügt.\newline
 
     \subsubsection{Klasse WelcomeView}
+      Keine Änderungen.
 
   \subsection{Paket edu.kit.iks.CryptographicsLib}
     
   	\subsubsection{Klasse AbstractController}
+  	
+  	Die unloadView()-Methode wurde abstrakt gesetzt, um das implementieren zu erzwingen.
+  	Somit kann sichergestellt werden, dass eine View auch richtig freigegeben wird. Die Methode
+  	viewIsLoaded() wurde konventionsgemäß in isViewLoaded() umbenannt.
 
 	\subsubsection{Klasse AbstractVisualizationController}
+  Keine Änderungen.
 
 	\subsubsection{Klasse AbstractVisualizationInfo}
 
+	Die Methode getAdditionalInformationFileURL() wurde durch die Methode 
+	getAdditionalInformationPath() ersetzt, die einen Pfad als String zurückgibt, und kein
+	URL Objekt. Es wurde die Methode getHumanReadableDifficulty() hinzugefügt, um 
+	das VisualizationDifficulty-Enum lesbar zurückzugeben.
+
 	\subsubsection{Klasse AlphabetStripView}
+	
+	Es wurde ein weiterer Konstruktor hinzugefügt, mit dem man die Zellenbreite und -höhe
+	bei der Initialisierung setzen kann. Die neue Methode highlight() hebt eine bestimmte
+	Spalte des Alphabets an der übergebenen Stelle zur Visualisierung hervor. Die Methode 
+	unHighlight() löscht die Hervorhebung wieder an der übergebenen Stelle, und unHighlightAll() 
+	löscht alle Hervorhebungen.
 
 	\subsubsection{Klasse CharacterFrequencyDiagramView}
 
+	Der Konstruktor wurde angepasst um gleich bei der Erzeugung den zu überprüfenden Text
+	entgegenzunehmen, sowie die gewünschten Ausmaße des zu erzeugenden Diagramms. Des Weiteren
+	wurden Getter und Setter für die Aufkommen von Zeichen hinzugefügt.
+
 	\subsubsection{Klasse ImageView}
 
-	\subsubsection{Klasse InformationController}
+	Es wurde ein Getter hinzugefügt, um das geladene Bild das dargestellt werden soll zurückzugeben.
 
 	\subsubsection{Klasse InformationView}
 
+	Es wurde ein Getter hinzugefügt, um den HTML Inhalt zu bekommen.
+
 	\subsubsection{Klasse KeyboardButton}
+
+	Diese Klasse wurde vollständig entfernt, da es durch einfache JButtons darstellbar war.
 
 	\subsubsection{Klasse KeyboardView}
 
+	Der Konstruktor des Keyboards wurde angepasst, um ein JTextField und einen Modus entgegenzunehmen.
+	Das JTextField ist dasjenige Feld, welches durch das Keyboard manipuliert werden soll. Der zweite
+	Parameter, der Modus, gibt an, ob in das Feld ein einzelner Buchstabe eingegeben werden soll, oder
+	ein Text wie ein Name eingegeben werden kann. KeyboardView implementiert nun jetzt auch die
+	ActionListener-Schnittstelle und implementiert ihre actionPerformed() Methode, um Tastendrücke
+	des Keyboards abarbeiten und an das Textfeld weiterleiten zu können.
+
 	\subsubsection{Klasse NumbersStripView}
+
+	Diese Klasse wurde vollständig entfernt, da im Verlauf der Implementierung festgestellt wurde,
+	dass sie nirgends benötigt wird. (Auch wurde diese Klasse teilweise durch die NumpadView ersetzt).
 
 	\subsubsection{Klasse PopoverView}
 
-	\subsubsection{Klasse VisualizationButton}
-
-	\subsubsection{Enum VisualizationDifficulty}
-
-	\subsubsection{Klasse VisualizationInfoLoader}
+	Die Klasse wurde um eine dismiss()-Methode ergänzt, um ein Popover wieder schließen zu können.
+	Des Weiteren wurden Getter und Setter für die Umrandungsfarbe hinzugefügt.
 
 	\subsubsection{Klasse VisualizationView}
 
+	Es wurden lediglich Setter für den ``Next'' und den ``Back''-Button hinzugefügt.
+
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
     \subsubsection{Klasse AbstractController}
-
+	Diese Klasse wurde vollständig entfernt, da im Verlauf der Implementierung festgestellt wurde,
+	dass sie nirgends benötigt wird.
+	
     \subsubsection{Klasse VigenereModel}
+	Während der Entwicklung ist uns aufgefallen dass das Verfahren mehr Funktionalität braucht, deshalb wurden einige neue Methoden eingeführt.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item static public char enc(int key, char text)\newline
+              Verschiebt einen Buchstaben um einen Faktor.
+        \item static public char dec(char key, char cipher)\newline
+              Verschiebt einen Buchstaben um einen Faktor zurück.
+		\item static public int characterToInt(String character)\newline
+              Gibt die Position eines bestimmten Buchstabens im Alphabet zurück.
+		\item static public String getCharPositionated(int start, int num, String input)\newline
+              Wird vom Kasiski-Test genutzt, gibt jeden n-ten Buchstaben eines bestimmten Textes ab der x-ten Stelle zurück.			
+      \end{itemize}
 
     \subsubsection{Klasse VigenereVisualizationInfo}
+	Während der Entwicklung ist uns aufgefallen dass wir zum Einbinden der Bilder Resourcen nutzen sollten. Deshalb wurden einige Änderung dazu vorgenommen.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public VigenereVisualizationInfo()\newline
+              Konstruktor der Klasse.
+        \item public Element getResources()\newline
+              Gibt das Handle zur Resource zurück.
+      \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Demonstration}
     \subsubsection{Klasse FirstDemonstrationController}
-
+	Während der Implementierung hat sich herausgestellt, dass wir AbstractVisualizationController implementieren sollen und dadurch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public FirstDemonstrationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
+	  
     \subsubsection{Klasse FirstDemonstrationView}
+	Während der Implementierung hat sich herausgestellt, dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+        \item public ImageView getClock()\newline
+              Liefert die Uhr zurück.
+        \item public JLabel getModuloText()\newline
+              Liefert den Modulo-Text zurück.
+      \end{itemize}
 
     \subsubsection{Klasse SecondDemonstrationController}
+	Während der Implementierung hat sich herausgestellt, dass wir AbstractVisualizationController implementieren sollen und dadurch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public SecondDemonstrationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
 
     \subsubsection{Klasse SecondDemonstrationView}
+	Während der Implementierung hat sich herausgestellt, dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+        \item public void setCalculator(int a, int b)\newline
+              Diese Methode übernimmt die Änderungen, welche an dem "Rechner" auf der rechten Seite nötig sind.
+        \item public void setTextField(int i, String character)\newline
+              Setzt den Buchstaben an der Stelle i auf den gewünschten Parameter.
+		\item public void highlightAndSetText(int num, int pos, String character)\newline
+              Setzt den Buchstaben auf die gewünschte Stelle und hebt diesen hervor.
+		\item public AlphabetStripView getAlphabet()\newline
+              Liefert das Alphabet-Element zurück.
+		\item public void setEncryptedCharsVisible(boolean b)\newline
+              Setzt die Sichtbarkeit der verschlüsselten Buchstaben.
+		\item public void setCalculatorVisible(boolean b)\newline
+              Setzt die Sichtbarkeit des Rechners.
+		\item public void setKeyVisible(boolean b)\newline
+              Setzt die Sichtbarkeit des Schlüssels.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+	  \end{itemize}
 
     \subsubsection{Klasse ThirdDemonstrationController}
+	Während der Implementierung hat sich herausgestellt, dass wir AbstractVisualizationController implementieren sollen und dadurch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public ThirdDemonstrationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
 
     \subsubsection{Klasse ThirdDemonstrationView}
-
+	Während der Implementierung hat sich herausgestellt, dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void highlightAndSetText(int num, int pos, String character)\newline
+              Setzt den Buchstaben auf die gewünschte Stelle und hebt diesen hervor.
+		\item public void setCalculatorVisible(boolean b)\newline
+              Setzt die Sichtbarkeit des Rechners.
+		\item public AlphabetStripView getAlphabet()\newline
+              Liefert das Alphabet-Element zurück.
+		\item public void setTextField(int i, String character)\newline
+              Setzt den Buchstaben an der Stelle i auf den gewünschten Parameter.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+		\item public void setCalculator(int a, int b)\newline
+              Diese Methode übernimmt die Änderungen, welche an dem "Rechner" auf der rechten Seite nötig sind.
+	  \end{itemize}
+	  
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Experiment}
     \subsubsection{Klasse FirstExperimentController}
-
+	Während der Implementierung hat sich herausgestellt, dass wir AbstractVisualizationController implementieren sollen und dadurch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public FirstExperimentView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
+	  
     \subsubsection{Klasse FirstExperimentView}
+	Während der Implementierung hat sich herausgestellt, dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void createKeyboard(JTextField input, final int flag)\newline
+              Erstellt eine Tastatur für die Nutzereingaben.
+		\item public void highlightTextBorder(int i)\newline
+              Hebt das gewünschte Eingabefeld hervor.
+		\item public void unHighlightTextBorder(int i)\newline
+              Löscht die Hervorhebung des gewünschten Eingabefeldes.
+		\item public KeyboardView getKeyboard()\newline
+              Liefert die Tastatur zurück.
+		\item public void setKeyboard(KeyboardView keyboard)\newline
+              Setzt die Tastatur.
+		\item public AlphabetStripView getAlphabet()\newline
+              Liefert das Alphabet-Element zurück.
+		\item public String getKey()\newline
+              Liefert den Verschlüsselungskey zurück.
+		\item public void setTextField(int i, String character)\newline
+              Setzt den Buchstaben an der Stelle i auf den gewünschten Parameter.
+		\item public JTextField getTextFieldDecrypted(int i)\newline
+              Liefert den entschlüsselten Buchstaben an der Stelle i zurück.
+		\item public JLabel getTextFieldPlain(int i)\newline
+              Liefert den Buchstaben an der Stelle i zurück.
+		\item public JTextField[] getTextFields()\newline
+              Liefert alle Textfelder zurück.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+		\item public void showError(int i)\newline
+              Zeigt eine Warnung und markiert das falsche Element rot.
+		\item public void hideError()\newline
+              Versteckt die Warnung.		
+	  \end{itemize}
 
     \subsubsection{Klasse SecondExperimentController}
-
+	Diese Klasse wurde vollständig entfernt, da im Verlauf der Implementierung festgestellt wurde,
+	dass sie nirgends benötigt wird (FirstExperimentController enthält jetzt die Funktionalität).
+	
     \subsubsection{Klasse SecondExperimentView}
-
+	Diese Klasse wurde vollständig entfernt, da im Verlauf der Implementierung festgestellt wurde,
+	dass sie nirgends benötigt wird (FirstExperimentView enthält jetzt die Funktionalität).
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Explanation}
     \subsubsection{Klasse FirstExplanationController}
-
+	Während der Implementierung hat sich herausgestellt, dass wir AbstractVisualizationController implementieren sollen und dadurch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public FirstExplanationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
+	  
     \subsubsection{Klasse FirstExplanationView}
-
+	Während der Implementierung hat sich herausgestellt, dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void setKeyLength(String s)\newline
+              Setzt das Keylänge-Element.
+		\item public JButton getKeyLengthButton()\newline
+              Liefert das KeyLength-Button zurück.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+		\item public void visibleFirstState(boolean b)\newline
+              Setzt die Sichtbarkeit der Elemente für den ersten Schritt.
+		\item public void hideError()\newline
+              Setzt die Sichtbarkeit der Elemente für den zweiten Schritt.	
+	  \end{itemize}
+	  
     \subsubsection{Klasse SecondExplanationController}
-
+	Während der Implementierung hat sich herausgestellt, dass wir AbstractVisualizationController implementieren sollen und dadurch 
+	einige abstrakte Methoden implementiert werden mussten. Diese wurden deshalb implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void loadView()\newline
+              Lädt die View.
+        \item public void unloadView()\newline
+              Entlädt die View.
+        \item public SecondExplanationView getView()\newline
+              Liefert die View zurück.
+        \item public String getHelp()\newline
+              Liefert den String zur Hilfe zurück.
+      \end{itemize}
+	  
     \subsubsection{Klasse SecondExplanationView}
+	Während der Implementierung hat sich herausgestellt, dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void createKeyboard(JTextField input, final int flag)\newline
+              Erstellt eine Tastatur für die Nutzereingaben.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+		\item public KeyboardView getKeyboard()\newline
+              Liefert die Tastatur zurück.
+		\item public void setKeyboard(KeyboardView keyboard)\newline
+              Setzt die Tastatur.
+		\item public JTextField getAnswerField()\newline
+              Liefert das Antwort-Feld zurück.
+		\item public void answerRight()\newline
+              Versteckt die Warnung und hebt die Hervorhebung auf.
+		\item public void answerFalse()\newline
+              Zeigt die Warunung und hebt das Eingabefeld hervor. 
+		\item public String getAnswer()\newline
+              Liefert die Nutzereingabe zurück. 
+		\item public void answerRight()\newline
+              Setzt die Sichtbarkeit der Elemente für den zweiten Schritt.		 
+		\item public void visibleFirstState(boolean b)\newline
+              Setzt die Sichtbarkeit der Elemente für den ersten Schritt.	 
+	  \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
   
   	\subsubsection{Klasse CaesarVisualizationInfo}
-  	 \textbf{Keine Änderungen.}
+  	 Keine Änderungen.
 
  	\subsection{Paket edu.kit.iks.Cryptographics.Caesar.Demonstration}
           
           \subsubsection{Klasse IntroductionController}
             Die Methode animationProceed() wurde entfernt. Und durch die private Hilfsmethode proceedIntroduction() ersetzt.
-            Diese erfüllt diesselbe Aufgabe und da sie zum Aufgabenbereich dieses Controllers gehört, ist ein globaler Zugriff
+            Diese erfüllt dieselbe Aufgabe und da sie zum Aufgabenbereich dieses Controllers gehört, ist ein globaler Zugriff
             unnötig.
        	  \subsubsection{Klasse IntroductionView}
             Die Methode animationStart() mitsamt ihrer privaten Hilfsfunktionen wurde in den IntroductionController ausgelagert.
@@ -268,14 +643,14 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
          
            \textbf{Änderungen an Methoden.}\newline
             proceedAnimation() wurde entfernt. Und durch die private Hilfsmethode demonstrate() ersetzt.
-            Diese erfüllt diesselbe Aufgabe und da sie zum Aufgabenbereich dieses Controllers gehört, 
+            Diese erfüllt dieselbe Aufgabe und da sie zum Aufgabenbereich dieses Controllers gehört, 
             ist ein globaler Zugriff unnötig.
 
 	\subsubsection{Klasse CipherDemoView}
 	   Diese Klasse heißt jetzt CryptoDemonstrationView.\newline
 	   
 	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
-	     Diese Klasse erbt nun von CryptoView(siehe das Kapitel 'Neue Klassen') und nicht mehr direkt von VisualizationView.\newline
+	     Diese Klasse erbt nun von CryptoView (siehe das Kapitel ``Neue Klassen'') und nicht mehr direkt von VisualizationView.\newline
 	   
 	    \textbf{Änderungen an Methoden.}\newline
 	     Die Methode animationStart() mitsamt ihrer privaten Hilfsfunktionen wurde in den CryptoDemonstrationController ausgelagert.
@@ -314,30 +689,30 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
              \item public String dec(int key, String cipher) wurde hinzugefügt.\newline
                    Ruft enc mit einem negativen Schlüssel auf. Bentötigt bei Entschlüsselung.
              \item private int generateRandomInt(int a, int b) wurde hinzugefügt.\newline
-                   Erzeugt einen 'zufälligen' ganzzahligen Wert aus dem Intervall [a,b].
+                   Erzeugt einen ``zufälligen'' ganzzahligen Wert aus dem Intervall [a,b].
              \item public int generateKey() wurde hinzugefügt.\newline
-                   Diese Methode erzeugt 'zufällig' einen Schlüssel für Caesar Ver-/Entschlüsselung.
+                   Diese Methode erzeugt ``zufällig'' einen Schlüssel für Caesar Ver-/Entschlüsselung.
                    Verwendet die methode private int generateRandomInt(int a, int b) mit Grenzen [1,26].
              \item public String genRandomBlamings() wurde hinzugefügt.\newline
-                   Erzeugt 'zufällig' eine Negativmeldung zu den Interaktionen des Users
+                   Erzeugt ``zufällig'' eine Negativmeldung zu den Interaktionen des Users
                    aus einem local Stringpool.  
              \item public String genRandomCipher(int key) wurde hinzugefügt.\newline
                    Verschlüsselt einen zufälligen Text mit dem gegebenen Schlüssel 
                    und gibt diesen aus.
              \item public String genRandomGrats() wurde hinzugefügt.\newline
-                   Erzeugt 'zufällig' eine Positivmeldung zu den Interaktionen des Users
+                   Erzeugt ``zufällig'' eine Positivmeldung zu den Interaktionen des Users
                    aus einem local Stringpool. 
              \item public String genRandomPlainSequence() wurde hinzugefügt.\newline
-                   Erzeugt 'zufällig' ein kleines Wort aus einem local Stringpool zum verschlüsseln. 
+                   Erzeugt ``zufällig'' ein kleines Wort aus einem local Stringpool zum verschlüsseln. 
              \item public String genRandomText() wurde hinzugefügt\newline
-                   Erzeugt 'zufällig' einen größeren Text aus einem local Stringpool zum verschlüsseln.      
+                   Erzeugt ``zufällig'' einen größeren Text aus einem local Stringpool zum verschlüsseln.      
             \end{itemize}
 
 	\subsubsection{Klasse CryptoView}
 	 Diese Klasse wurde in CryptoExperimentView umbenannt.\newline
 	 
 	 \textbf{Änderungen an Superklassen und Interfaces.}\newline
-	     Diese Klasse erbt nun von CryptoView(siehe das Kapitel 'Neue Klassen') und nicht mehr direkt von VisualizationView.\newline
+	     Diese Klasse erbt nun von CryptoView (siehe Kapitel ``Neue Klassen'') und nicht mehr direkt von VisualizationView.\newline
 	   
 	 \textbf{Änderungen an Methoden.}\newline
 	   \begin{itemize}
@@ -359,63 +734,430 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
   
     \subsubsection{Klasse AbstractController}
+    Diese Klasse wurde nicht gebraucht, ergo existiert sie nicht mehr
 
   	\subsubsection{Klasse Model}
+    Singleton-Pattern wurde rückgängig gemacht, da die unterschiedlichen Zustände
+    in einer Klasse behandelt werden und somit globale Variablen (also Singletons)
+    unnötig werden
+
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item Konstruktor ist nicht mehr privat\newline
+           \item public Model getInstance() wurde entfernt\newline
+           \item public Color getPublicColor() wurde hinzugefügt\newline
+           \item public void setPublicColor() wurde hinzugefügt\newline
+           \item public void getAlicePublicColor() wurde entfernt\newline
+           \item public void setAlicePublicColor() wurde entfernt\newline
+           \item public Color getSharedColor() wurde entfernt\newline
+           \item public void setSharedColor(Color setSharedColor) wurde entfernt\newline
+           \item public void getBobPublicColor() wurde entfernt\newline
+           \item public Color setBobPublicColor(Color bobPublicColor) wurde entfernt\newline
+           \end{itemize}
 
 	\subsubsection{Klasse DHVisualizationInfo}
+    Hat sich entwurfstechnisch nicht geändert
 
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Demonstration}
 
 	\subsubsection{Klasse ExplainAimController}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+           \end{itemize}
 
 	\subsubsection{Klasse ExplainAimView}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von VisualizationView statt JPanel\newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public ColorChannel getColorChannel() wurde hinzugefügt\newline
+           \item public String getHelp() wurde hinzugefügt\newline
+           \end{itemize}
 
 	\subsubsection{Klasse OnewayController}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+           \end{itemize}
 
 	\subsubsection{Klasse OnewayView}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von VisualizationView statt JPanel\newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public String getHelp() wurde hinzugefügt\newline
+           \end{itemize}
 
 	\subsubsection{Klasse ExplainKeyExchangeController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse ExplainKeyExchangeView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse AliceChooseSecretController}
+    Diese Klasse wurde in DHDemoController umbenannt
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+           \end{itemize}
 
 	\subsubsection{Klasse AliceChooseSecretView}
+    Diese Klasse wurde in DHDemoView umbenannt
 
 	\subsubsection{Klasse BobChooseSecretController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse BobChooseSecretView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse MixColorController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse MixColorView}
+    Diese Klasse wurde entfernt
+
+	\subsubsection{Klasse DemoOneWayController}
+    Diese Klasse wurde neu hinzugefügt
+    Der Controller der DemoOneWayView
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+           \end{itemize}
+
+	\subsubsection{Klasse DemoOneWayView}
+    Diese Klasse wurde neu hinzugefügt
+    Diese View zeigt wie Einwegfunktionen agieren
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von VisualizationView statt JPanel
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public DemoOneWayView() wurde hinzugefügt\newline
+               Der Konstruktor positioniert seine Subkomponenten etc.
+           \item public String getHelp() wurde hinzugefügt\newline
+               Gibt einen Hilfe-Zeichenkette zurück
+           \end{itemize}
+
+
+	\subsubsection{Klasse ColorMix}
+    Diese Klasse wurde neu hinzugefügt
+    Ihre Aufgabe ist es als JPanel grafisch Farben zu mischen
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von JPanel\newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public ColorMix(int circleSize, Dimension dimension) wurde hinzugefügt\newline
+           \item public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb) wurde hinzugefügt\newline
+               Mischt grafisch zwei Farben zusammen
+           \item public void seperateColors(boolean seperate, boolean repeat) wurde hinzugefügt\newline
+               Trennt grafisch zwei Farben
+           \item public void setEllipColor(int which, Color color) wurde hinzugefügt\newline
+               Setzt erste oder zweite Farbe auf color
+           \item public Color getMixedColor() wurde hinzugefügt\newline
+               Gibt die gemischte Farbe zurück
+           \item public boolean isComputeFinalMix() wurde hinzugefügt\newline
+               Falls wahr, wird eine andere Formel zum Farbenmischen verwendet
+           \item public void setComputeFinalMix(boolean computeFinalMix)\newline
+               Setzt den Wert von computeFinalMix
+           \end{itemize}
+
+	\subsubsection{Klasse ColorChannel}
+    Diese Klasse wurde neu hinzugefügt
+    Ihre Aufgabe ist es als JPanel grafisch den
+    Kommunikationskanal zwischen Alice, Bob und Eve
+    zu vermitteln und Farben über diesen Kanal zu visuell
+    zu verschicken.
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von JPanel\newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public ColorChannel(Dimension d, int circleSize) wurde hinzugefügt\newline
+               Der Konstruktor nimmt die Dimension und die Größe der Kreise als Parameter,
+               und errechnet daraus wie die restlichen Elemente positioniert werden
+           \item public void sendToBob(final NextStepCallback cb, final boolean keepFirst) wurde hinzugefügt\newline
+               Schickt eine Farbkreis von Alice zu Bob, cb ist der Callback der aufgerufen wird, wenn dies
+               erledigt wurde.
+               Wenn keepFirst wahr ist, wird die Farbe neben Alice dauerhaft dargestellt
+           \item public void sendToAlice(final NextStepCallback cb, final boolean keepFirst) wurde hinzugefügt\newline
+               Tut das gleiche wie sendToBob, nur dass von Bob nach Alice die Farbe verschickt wird und
+               wenn keepFirst den Wert wahr hat, wird die Farbe neben Bob visualisiert
+           \item public void chooseColorToKeep(Color color, int who) wurde hinzugefügt\newline
+               Ein Farbkreis mit der Farbe color wird neben who hinzugefügt also neben alice, bob oder eve
+           \item public void stopTimer() wurde hinzugefügt\newline
+               Stoppt den Timer. Muss aufgerufen werden wenn ColorChannel nicht mehr verwendet wird,
+               da sonst der Timer weiterlaufen könnte
+           \item public void loadView() wurde hinzugefügt\newline
+               Tut im Grunde das gleiche wie im Konstruktor, nur dass diese Funktion dafür
+               aufgerufen werden muss, wenn sich die Größe ändert
+           \item public void choosePublicColor(Color color) wurde hinzugefügt\newline
+               Setzt die öffentliche Farbe
+           \item public void chooseAlicePrivateColor(Color color) wurde hinzugefügt\newline
+               Setzt die private Farbe von Alice
+           \item public void chooseBobPrivateColor(Color color) wurde hinzugefügt\newline
+               Setzt die private Farbe von Bob
+           \item public void mixAlicePrivatePublic() wurde hinzugefügt\newline
+               Mischt die private Farbe von Alice und die öffentliche Farbe
+               und speichert diese
+           \item public void mixBobPrivatePublic() wurde hinzugefügt\newline
+               Mischt die private Farbe von Bob und die öffentliche Farbe
+               und speichert diese
+           \item public void sendPublicColor() wurde hinzugefügt\newline
+               Sendet die öffentliche Farbe von Alice zu Bob
+           \item public void sendAliceMixedColorToBob(NextStepCallback cb) wurde hinzugefügt\newline
+               Sendet die Mixtur von Alice zu Bob, und ruft cb auf wenn dies geschehen ist
+           \item public void sendBobMixedColorToAlice(NextStepCallback cb) wurde hinzugefügt\newline
+               Sendet die Mixtur von Bob zu Alice , und ruft cb auf wenn dies geschehen ist
+           \item public void mixAliceFinalSecret(NextStepCallback cb) wurde hinzugefügt\newline
+               Mischt das gemeinsame Geheimnis zusammen und ruft cb auf, wenn dies geschehen ist
+           \item public void mixBobFinalSecret(NextStepCallback cb) wurde hinzugefügt\newline
+               Mischt das gemeinsame Geheimnis zusammen und ruft cb auf, wenn dies geschehen ist
+           \item public boolean isRepeat() wurde hinzugefügt\newline
+               Wahr wenn das Senden in einer periodischen Animation laufen soll
+           \item public void setRepeat(boolean repeat) wurde hinzugefügt\newline
+               Setzt den repeat Wert
+           \item public Color getColor() wurde hinzugefügt\newline
+               Gibt die Farbe die als nächstes versendet wird zurück
+           \item public void setColorNextToSend(Color color) wurde hinzugefügt\newline
+               Setze die Farbe die als nächstes versendet werden soll
+           \item public boolean isKeepColor() wurde hinzugefügt\newline
+               Wenn Wahr, werden die verschickten Farben neben den Empfängern visualisiert
+           \item public Color getPublicColor() wurde hinzugefügt\newline
+               Gibt die öffentliche Farbe zurück
+           \item public Color getAlicePrivateColor() wurde hinzugefügt\newline
+               Gibt die private Farbe von Alice zurück
+           \item public Color getAliceMixedColor() wurde hinzugefügt\newline
+               Gibt die Mixtur von öffentlicher und privater Farbe von Alice zurück
+           \item public Color getBobPrivateColor() wurde hinzugefügt\newline
+               Gibt die private Farbe von Bob zurück
+           \item public Color getBobMixedColor() wurde hinzugefügt\newline
+               Gibt die Mixtur von öffentlicher und privater Farbe von Bob zurück
+           \end{itemize}
+
+	\subsubsection{Klasse ColorChooser}
+    Diese Klasse wurde neu hinzugefügt
+    Dieses JPanel erlaubt uns eine Farbe auszuwählen
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von JPanel\newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public ColorChooser(Dimension d, Color color, Color[] colors) wurde hinzugefügt\newline
+               Der Konstruktor nimmt die Größe des JPanel als Parameter,
+               die Farbe die als erstes angezeigt werden soll, nämlich color,
+               und eine Liste an Farben aus denen man seine Farbe wählen kann colors
+           \item public Color getCurrentColor wurde hinzugefügt\newline
+               Gibt die momentan ausgewählte Farbe zurück
+           \item public void setToChooseFrom(Color[] colors) wurde hinzugefügt\newline
+               Setze die Farben die man wählen kann neu
+           \item public Color[] getToChooseFrom() wurde hinzugefügt\newline
+               Gebe die Farben zurück, die man wählen kann
+           \end{itemize}
+
+	\subsubsection{Klasse Ellipse2DwithColor}
+    Diese Klasse wurde neu hinzugefügt
+    Diese Klasse ist ein Wrapper um Ellipse2D um
+    sie zusätzlich mit einer Farbe zu assozieren
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+	   \begin{itemize}
+            \item Diese Klasse erbt von Ellipse2D\newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public Ellipse2DwithColor(double x, double y, double w, double h) wurde hinzugefügt\newline
+               Gleicht dem Konstruktor der Oberklasse und setzt die Farbe auf Schwarz
+           \item public Ellipse2DwithColor(double x, double y, double w, double h, Color color) wurde hinzugefügt\newline
+               Gleicht dem Konstruktor der Oberklasse und setzt die Farbe auf color
+           \item public Color getColor() wurde hinzugefügt\newline
+               Gibt die aktuelle Farbe zurück
+           \item public void setColor(Color color) wurde hinzugefügt\newline
+               Setzt einen neuen Wert für die aktuelle Farbe
+           \end{itemize}
+
+	\subsubsection{Interface NextStepCallback}
+    Diese Interface wurde neu hinzugefügt
+    Dient als Imitator von Funktionen höherer Ordnung,
+    da Java diese nicht hat
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public void callback() wurde hinzugefügt\newline
+               Unser Callback
+           \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Experiment}
 
 	\subsubsection{Klasse YourTurnController}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+        \end{itemize}
 
 	\subsubsection{Klasse YourTurnView}
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt jetzt von VisualizationView statt JPanel\newline
+        \end{itemize}
+
+	\subsubsection{Klasse DHExperimentController}
+    Diese Klasse wurde neu hinzugefügt
+    Sie ist der zur DHExperimentView korrespondierende Controller
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt jetzt von AbstractVisualizationController statt AbstractController\newline
+        \end{itemize}
+
+	\subsubsection{Klasse DHExperimentView}
+    Diese Klasse wurde neu hinzugefügt
+    Dient als View zum DH Experiment
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt von JPanel\newline
+        \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public DHExperimentView() wurde hinzugefügt\newline
+               Der Konstruktor erstellt seine Subkomponenten und
+               positioniert diese Korrekt
+           \item public void setRemember(ActionListener remember) wurde hinzugefügt\newline
+               Merkt sich einen ActionListener damit die View seinem Button den ursprünglichen
+               ActionListener wieder setzen kann
+           \item public String getHelp() wurde hinzugefügt\newline
+               Gibt einen Hilfe-Zeichenkette zurück
+           \end{itemize}
+
+	\subsubsection{Klasse CongratsController}
+    Diese Klasse wurde neu hinzugefügt
+    Sie ist der zur CongratsView korrespondierende Controller
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt von AbstractVisualizationController \newline
+           \end{itemize}
+
+	\subsubsection{Klasse CongratsView}
+    Diese Klasse wurde neu hinzugefügt
+	    \textbf{Änderungen an Superklassen und Interfaces.}\newline
+        \begin{itemize}
+            \item Diese Klasse erbt von JPanel \newline
+           \end{itemize}
+    \textbf{Änderungen an Methoden.}\newline
+	   \begin{itemize}
+           \item public CongratsView() wurde hinzugefügt
+               Der Konstruktor erstellt und positioniert seine Elemente
+           \item public String getHelp() wurde hinzugefügt
+               Gebe eine Hilfe-Zeichenkette zurück
+           \end{itemize}
 
 	\subsubsection{Klasse ChoosePublicColorController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse ChoosePublicColorView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse SendColorController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse SendColorView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse ChooseSecretColorController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse ChooseSecretColorView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse SendRightColorController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse SendRightColorView}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse MixFinalSecretController}
+    Diese Klasse wurde entfernt
 
 	\subsubsection{Klasse MixFinalSecretView}
-	
+    Diese Klasse wurde entfernt
+
+\section{Tests}
+Während der Implementierung wurden bereits einige JUnit-Tests geschrieben, um vor allem die korrekte Funktionalität
+der Kryptografie-Algorithmen zu überprüfen.
+  
+  \subsection{Paket edu.kit.iks.Cryptographics}
+  \subsubsection{Test MainControllerTest}
+  \begin{itemize}
+    \item testLoadView()\newline
+          Testet ob die View korrekt gealden wird.
+    \item testUnloadView()\newline
+          Testet ob die View korrekt freigegeben wird.
+    \item testPresentStartAction()\newline
+          Testet ob der StartController korrekt geladen und angezeigt wird.
+    \item testPresentVisualizationAction()\newline
+          Testet ob der VisualizationContainerController korrekt geladen und angezeigt wird.
+    \item testAddChildController()\newline
+          Testet ob ein Controller korrekt als Kind hinzugefügt werden kann.
+    \item testRemoveChildController()\newline
+          Testet ob ein Controller korrekt als Kind gelöscht werden kann.
+    \item testGetParentController()\newline
+          Testet ob die Parent-Child-Relationship korrekt zurückgegeben wird.
+    \item testIsViewLoaded()\newline
+         Testet ob die View tatsächlich als geladen angezeigt wird.
+  \end{itemize}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
+  \subsubsection{Test CryptoModelTest}
+  \begin{itemize}
+    \item testEnc()\newline
+          Testet die Verschlüsselung.
+    \item testDec()\newline
+          Testet die Entschlüsselung.
+    \item testIsKeyValid()\newline
+          Testet ob eine Schlüssel gültig ist.
+    \item testIsInputValid()\newline
+          Testet ob eine Eingabe korrekt als gültig/ungültig erkannt wird.
+    \item testGenRandomGrats()\newline
+          Testet ob ein gültiges Lob generiert wird.
+    \item testGenRandomBlamings()\newline
+          Testet ob eine gültige Aufmunterung generiert wird.
+    \item testGenRandomPlainSequence()\newline
+          Testet ob ein gültiger Klartext generiert wird.
+    \item testGenRandomCipher()\newline
+          Testet ob eine gültige zufälliger Chiffre generiert wird.
+    \item testGenRandomText()\newline
+          Testet ob ein gültiger zufälliger Text generiert wird.
+    \item testGenerateKey()\newline
+          Testet ob ein gültiger Schlüssel generiert wird.
+	\end{itemize}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
+  \subsubsection{Test VigenereModelTest}
+   \begin{itemize}
+    \item testEnc()\newline
+          Testet die Verschlüsselung.
+    \item testDec()\newline
+          Testet die Entschlüsselung.
+    \item testCharacterToInt()\newline
+          Testet ob ein Zeichen korrekt in seinen numerischen ASCII-Wert übersetzt wird.
+    \item testGetCharPositionated()\newline
+          Testet ob jedes n-te Zeichen zurückgegeben wird.
+  \end{itemize}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
+  \subsubsection{Test ModelTest}
+   \begin{itemize}
+    \item testMixAlicePrivateAndPublic()\newline
+          Testet ob die private und öffentliche Farbe von Alice korrekt gemischt wird.
+    \item testMixBobPrivateAndPublic()\newline
+          Testet ob die private und öffentliche Farbe von Bob korrekt gemischt wird.
+  \end{itemize}
  \restoregeometry
 
 \glsaddall

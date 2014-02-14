@@ -16,10 +16,11 @@ import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
-/*
+/**
  * This class represents the view of the first explanatation step. In this step a cipher will be given
  * to the user. He has the choice to create a histogramm and use an algorithm to get the length of 
  * the key. Then he has to extract the password. 
+ * @author Aydin Tekin
  */
 public class SecondExplanationView extends VisualizationView{
 	private static final long serialVersionUID = 6294968461280032987L;
@@ -29,15 +30,51 @@ public class SecondExplanationView extends VisualizationView{
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(SecondExplanationView.class);
 	
+	/**
+	 * histogramm of encrypted text
+	 */
 	private CharacterFrequencyDiagramView vigenereHistogramm;
+	
+	/**
+	 * histogramm of average text
+	 */
 	private CharacterFrequencyDiagramView averageHistogramm;
+	
+	/**
+	 * explanation
+	 */
 	private JLabel explanation;
+	
+	/**
+	 * explanation
+	 */
 	private JLabel secondExplanation;
+	
+	/**
+	 * explanation
+	 */
 	private JLabel thirdExplanation;
+	
+	/**
+	 * error message
+	 */
 	private JLabel wrong;
+	
+	/**
+	 * textfield for answer
+	 */
 	private JTextField answer;
+	
+	/**
+	 * keyboard used for user input
+	 */
 	private KeyboardView keyboard;
 	
+	/**
+	 * creates the keyboard
+	 * @param input listener for the keyboard
+	 * @param flag which type of keyboard we want
+	 */
 	public void createKeyboard(JTextField input, final int flag) {
 		this.keyboard = new KeyboardView(input, flag);
 		this.add(this.keyboard);
@@ -46,6 +83,10 @@ public class SecondExplanationView extends VisualizationView{
 		this.validate();
 	}
 	
+	/**
+	 * changes the explanation text
+	 * @param explanation text to change to
+	 */
 	public void setExplanation(String s){
 		this.explanation.setText(s);
 		Dimension size = this.explanation.getPreferredSize();
@@ -69,24 +110,43 @@ public class SecondExplanationView extends VisualizationView{
 		this.keyboard = keyboard;
 	}
 	
+	/**
+	 * returns the answer field
+	 * @return answer field
+	 */
 	public JTextField getAnswerField() {
 		return this.answer;
 	}
 	
+	/**
+	 * changes GUI if answer is right
+	 */
 	public void answerRight() {
 		this.answer.setBorder(BorderFactory.createLineBorder(Color.blue, 5));
 		this.wrong.setVisible(false);
 	}
 	
+	/**
+	 * changes GUI if answer is true
+	 */
 	public void answerFalse() {
 		this.answer.setBorder(BorderFactory.createLineBorder(Color.red, 5));
 		this.wrong.setVisible(true);
 		this.answer.setText("");
 	}
 	
+	/**
+	 * returns the user input
+	 * @return user input
+	 */
 	public String getAnswer() {
 		return this.answer.getText();
 	}
+	
+	/**
+	 * changes the visibility according to first step
+	 * @param b visibility according to first step
+	 */
 	public void visibleFirstState(boolean b) {
 		this.vigenereHistogramm.setVisible(b);
 		this.secondExplanation.setVisible(b);
@@ -95,7 +155,10 @@ public class SecondExplanationView extends VisualizationView{
 		this.answer.setVisible(b);
 	}
 	
-	public SecondExplanationView() {
+	/**
+	 * creates and adds all GUI elements
+	 */
+	private void setupGUI() {
 		this.setLayout(null);
 		this.add(new JLabel("VIGENERE EXPLANATATION"));
 		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
@@ -104,25 +167,15 @@ public class SecondExplanationView extends VisualizationView{
 				+ "character encrypted with the second part of the key."
 				+ "You know what to do:")
 				+ "</div></html>"));
-		this.explanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		
 		this.add(this.secondExplanation = new JLabel("<html><div width=\"1200\">"
 				+ i18n.tr("This is the average distribution of the characters in english texts:")
 				+ "</div></html>"));
-		this.secondExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		
 		this.add(this.thirdExplanation = new JLabel("<html><div width=\"1200\">"
 				+ i18n.tr("Look at the peaks of both histogramm and calculate the second part "
 				+ "of the key! Your answer:")
 				+ "</div></html>"));
-		this.thirdExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		
 		this.add(this.answer = new JTextField(""));
-		this.answer.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		
 		this.add(this.wrong = new JLabel(i18n.tr("Wrong Answer! Try again!")));
-		this.wrong.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		
 		this.vigenereHistogramm = new CharacterFrequencyDiagramView(VigenereModel.getCharPositionated(1, 2, FirstExplanationView.encryptedAverageText), 600,
 				100);
 		this.add(this.vigenereHistogramm);
@@ -130,7 +183,23 @@ public class SecondExplanationView extends VisualizationView{
 		this.averageHistogramm = new CharacterFrequencyDiagramView(FirstExplanationView.averageText, 600,
 				100);
 		this.add(this.averageHistogramm);
-		
+	}
+	
+	/**
+	 * sets fonts to all elements
+	 */
+	private void setFonts() {
+		this.explanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		this.secondExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		this.thirdExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		this.answer.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+		this.wrong.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+	}
+	
+	/**
+	 * customizes the created GUI elements
+	 */
+	private void customizeGUI() {
 		Dimension size = this.explanation.getPreferredSize();
 		this.explanation.setBounds(10, 10,
 	             size.width, size.height);
@@ -164,6 +233,11 @@ public class SecondExplanationView extends VisualizationView{
 	             600, 100);
 		this.averageHistogramm.setBounds(10, 220,
 	             600, 100);
-       
+	}
+	
+	public SecondExplanationView() {
+		setupGUI();
+		setFonts();
+		customizeGUI();
 	}
 }

@@ -19,6 +19,10 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
 
+/**
+ * Controller class of the first phase
+ * @author Aydin Tekin
+ */
 public class FirstExperimentController extends AbstractVisualizationController {
 
 	/**
@@ -26,43 +30,25 @@ public class FirstExperimentController extends AbstractVisualizationController {
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(FirstExperimentController.class);
 	
+	/**
+	 * current state
+	 */
 	private int state;
 	
+	/**
+	 * Constructor of the controller
+	 * @param visualizationInfo
+	 */
 	public FirstExperimentController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
-
-	@Override
-	public String getHelp() {
-		String returnString = "";
-		switch (this.state) {
-		case 0:
-			returnString = i18n.tr("'T' = 20 and 'A' = 1, so just substract 1 from 20 and "
-					+ "you have the answer!");
-			break;
-		case 1:
-			returnString = i18n.tr("'W' = 23 and 'B' = 2, so just substract 1 from 20 and "
-					+ "you have the answer!");
-			break;
-		case 2:
-			returnString = i18n.tr("'S' = 19 and 'C' = 3, so just substract 1 from 20 and "
-					+ "you have the answer!");
-			break;
-		case 3:
-			returnString = i18n.tr("'I' = 9 and 'D' = 4, so just substract 1 from 20 and "
-					+ "you have the answer!");
-			break;
-		case 4:
-			returnString = i18n.tr("'W' = 23 and 'E' = 5, so just substract 1 from 20 and "
-					+ "you have the answer!");
-			break;
-		default:
-			return null;
-		}
-		return returnString;
-	}
 	
-	public boolean testInput(int index) {
+	/**
+	 * checks if the current input is correct
+	 * @param index which character has to be checked
+	 * @return correctness of the user input
+	 */
+	private boolean testInput(int index) {
 		if (index > 4)
 			return true;
 		
@@ -81,6 +67,73 @@ public class FirstExperimentController extends AbstractVisualizationController {
 			return false;
 	}
 
+	/**
+	 * changes the GUI according to step
+	 */
+	private void stepForward() {
+		state++;
+		switch (state) {
+		case 1:
+			getView().setExplanation("<html><div width=\"1200\">"
+					+ i18n.tr("Very nice, now the second character!")
+					+ "</div></html>");
+			getView().setTextField(0, "S");
+			getView().getAlphabet().unHighlightAll();
+			getView().getAlphabet().highlight(22);
+			getView().getAlphabet().highlight(1);
+			getView().unHighlightTextBorder(0);
+			getView().highlightTextBorder(1);
+			break;
+		case 2:
+			getView().setExplanation("<html><div width=\"1200\">"
+					+ i18n.tr("Second strike! Three left...")
+					+ "</div></html>");
+			getView().setTextField(1, "U");
+			getView().getAlphabet().unHighlightAll();
+			getView().getAlphabet().highlight(18);
+			getView().getAlphabet().highlight(2);
+			getView().unHighlightTextBorder(1);
+			getView().highlightTextBorder(2);
+			break;
+		case 3:
+			getView().setExplanation("<html><div width=\"1200\">"
+					+ i18n.tr("Not much left, 2 to go...")
+					+ "</div></html>");
+			getView().setTextField(2, "P");
+			getView().getAlphabet().unHighlightAll();
+			getView().getAlphabet().highlight(7);
+			getView().getAlphabet().highlight(3);
+			getView().unHighlightTextBorder(2);
+			getView().highlightTextBorder(3);
+			break;
+		case 4:
+			getView().setExplanation("<html><div width=\"1200\">"
+					+ i18n.tr("Almost done, last character...")
+					+ "</div></html>");
+			getView().setTextField(3, "E");
+			getView().getAlphabet().unHighlightAll();
+			getView().getAlphabet().highlight(22);
+			getView().getAlphabet().highlight(4);
+			getView().unHighlightTextBorder(3);
+			getView().highlightTextBorder(4);
+			break;
+		case 5:
+			getView().setExplanation("<html><div width=\"1200\">"
+					+ i18n.tr("Nicely done!")
+					+ "</div></html>");
+			getView().setTextField(4, "R");
+			getView().getAlphabet().unHighlightAll();
+			getView().unHighlightTextBorder(4);
+			break;	
+		case 6:
+			VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+			containerController.presentNextVisualizationController();
+		}
+	}
+	
+	/**
+	 * loads the view and registers action listeners
+	 */
 	@Override
 	public void loadView() {
 		this.state = 0;
@@ -128,81 +181,60 @@ public class FirstExperimentController extends AbstractVisualizationController {
 				}
 				if (testInput(state)) {
 					getView().hideError();
-					state++;
-					switch (state) {
-					case 1:
-						getView().setExplanation("<html><div width=\"1200\">"
-								+ i18n.tr("Very nice, now the second character!")
-								+ "</div></html>");
-						getView().setTextField(0, "S");
-						getView().getAlphabet().unHighlightAll();
-						getView().getAlphabet().highlight(22);
-						getView().getAlphabet().highlight(1);
-						getView().unHighlightTextBorder(0);
-						getView().highlightTextBorder(1);
-						break;
-					case 2:
-						getView().setExplanation("<html><div width=\"1200\">"
-								+ i18n.tr("Second strike! Three left...")
-								+ "</div></html>");
-						getView().setTextField(1, "U");
-						getView().getAlphabet().unHighlightAll();
-						getView().getAlphabet().highlight(18);
-						getView().getAlphabet().highlight(2);
-						getView().unHighlightTextBorder(1);
-						getView().highlightTextBorder(2);
-						break;
-					case 3:
-						getView().setExplanation("<html><div width=\"1200\">"
-								+ i18n.tr("Not much left, 2 to go...")
-								+ "</div></html>");
-						getView().setTextField(2, "P");
-						getView().getAlphabet().unHighlightAll();
-						getView().getAlphabet().highlight(7);
-						getView().getAlphabet().highlight(3);
-						getView().unHighlightTextBorder(2);
-						getView().highlightTextBorder(3);
-						break;
-					case 4:
-						getView().setExplanation("<html><div width=\"1200\">"
-								+ i18n.tr("Almost done, last character...")
-								+ "</div></html>");
-						getView().setTextField(3, "E");
-						getView().getAlphabet().unHighlightAll();
-						getView().getAlphabet().highlight(22);
-						getView().getAlphabet().highlight(4);
-						getView().unHighlightTextBorder(3);
-						getView().highlightTextBorder(4);
-						break;
-					case 5:
-						getView().setExplanation("<html><div width=\"1200\">"
-								+ i18n.tr("Nicely done!")
-								+ "</div></html>");
-						getView().setTextField(4, "R");
-						getView().getAlphabet().unHighlightAll();
-						getView().unHighlightTextBorder(4);
-						break;	
-					case 6:
-						VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
-						containerController.presentNextVisualizationController();
-					}
+					stepForward();
 				} else {
 					getView().showError(state);
-					
 				}
 			}
 		});
 	}
+	
+	/**
+	 * returns the help string
+	 * @return help string
+	 */
+	@Override
+	public String getHelp() {
+		String returnString = "";
+		switch (this.state) {
+		case 0:
+			returnString = i18n.tr("'T' = 20 and 'A' = 1, so just substract 1 from 20 and "
+					+ "you have the answer!");
+			break;
+		case 1:
+			returnString = i18n.tr("'W' = 23 and 'B' = 2, so just substract 1 from 20 and "
+					+ "you have the answer!");
+			break;
+		case 2:
+			returnString = i18n.tr("'S' = 19 and 'C' = 3, so just substract 1 from 20 and "
+					+ "you have the answer!");
+			break;
+		case 3:
+			returnString = i18n.tr("'I' = 9 and 'D' = 4, so just substract 1 from 20 and "
+					+ "you have the answer!");
+			break;
+		case 4:
+			returnString = i18n.tr("'W' = 23 and 'E' = 5, so just substract 1 from 20 and "
+					+ "you have the answer!");
+			break;
+		default:
+			return null;
+		}
+		return returnString;
+	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	/**
+	 * unloads the view
 	 */
 	@Override
 	public void unloadView() {
 		this.view = null;
 	}
 	
+	/**
+	 * returns the view
+	 * @return view of current step
+	 */
 	@Override
 	public FirstExperimentView getView() {
 		return (FirstExperimentView)this.view;

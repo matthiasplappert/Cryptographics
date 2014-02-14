@@ -12,6 +12,10 @@ import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
+/**
+ * in this step the decryption will be explained.
+ * @author Aydin Tekin
+ */
 public class ThirdDemonstrationView extends VisualizationView{
 	private static final long serialVersionUID = 6294968461280032987L;
 	
@@ -24,6 +28,7 @@ public class ThirdDemonstrationView extends VisualizationView{
 	 * plain characters
 	 */
 	private JLabel[] indexCharPlain;
+	
 	/**
 	 * plain characters position in alphabet
 	 */

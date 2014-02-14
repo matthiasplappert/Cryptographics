@@ -10,8 +10,14 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
 
+/**
+ * Controller class of the first phase
+ * @author Aydin Tekin
+ */
 public class FirstExplanationController extends AbstractVisualizationController {
-	
+	/**
+	 * current state
+	 */
 	private int state;
 	
 	/**
@@ -19,15 +25,26 @@ public class FirstExplanationController extends AbstractVisualizationController 
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(FirstExplanationController.class);
 	
+	/**
+	 * Constructor of the controller
+	 * @param visualizationInfo
+	 */
 	public FirstExplanationController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 	
+	/**
+	 * returns the view
+	 * @return view of current step
+	 */
 	@Override
 	public FirstExplanationView getView() {
 		return (FirstExplanationView)this.view;
 	}
 	
+	/**
+	 * loads the view and registers action listeners
+	 */
 	@Override
 	public void loadView() {
 		this.state = 0;
@@ -90,15 +107,18 @@ public class FirstExplanationController extends AbstractVisualizationController 
 		});
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	/**
+	 * unloads the view
 	 */
 	@Override
 	public void unloadView() {
 		this.view = null;
 	}
 	
+	/**
+	 * returns the help string
+	 * @return help string
+	 */
 	@Override
 	public String getHelp() {
 		return i18n.tr("Just read the instructions!");

@@ -12,6 +12,12 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
+/**
+ * The controller that holds the yourturnview
+ * 
+ * @author kai
+ *
+ */
 public class YourTurnController extends AbstractVisualizationController {
 	
 	/**
@@ -19,18 +25,28 @@ public class YourTurnController extends AbstractVisualizationController {
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(YourTurnController.class);
 	
+	/** the corresponding view */
 	private YourTurnView view;
 
+	/** simple constructor */
 	public YourTurnController(
 			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationController#getHelp()
+	 */
 	@Override
 	public String getHelp() {
 		return view.getHelp();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#loadView()
+	 */
 	@Override
 	public void loadView() {
 		view = new YourTurnView();
@@ -63,6 +79,10 @@ public class YourTurnController extends AbstractVisualizationController {
 		this.view = null;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#getView()
+	 */
 	@Override
 	public YourTurnView getView() {
 		return (YourTurnView) this.view;

@@ -42,8 +42,6 @@ public class IntroductionView extends VisualizationView {
 	 */
 	private JPanel animationContainer;
 
-	private ImageView backgroundImg;
-	private ImageView boar;
 	private ImageView caesarEvil;
 	private ImageView caesarIdeaImg;
 	private ImageView kryptolix;
@@ -145,19 +143,14 @@ public class IntroductionView extends VisualizationView {
 		this.validate();
 
 	}
+	//----------------------------------------------------------//
+	//------------------------Getter/Setter---------------------//
 
 	/**
 	 * @return the animationContainer
 	 */
 	public JPanel getAnimationContainer() {
 		return this.animationContainer;
-	}
-
-	/**
-	 * @return the boar
-	 */
-	public ImageView getBoar() {
-		return this.boar;
 	}
 
 	/**
