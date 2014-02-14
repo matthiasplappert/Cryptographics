@@ -22,16 +22,31 @@ public class SecondExplanationController extends AbstractVisualizationController
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(SecondExplanationController.class);
 	
+	/**
+	 * current state
+	 */
 	private int state;
+	
+	/**
+	 * Constructor of the controller
+	 * @param visualizationInfo
+	 */
 	public SecondExplanationController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 	
+	/**
+	 * returns the view
+	 * @return view of current step
+	 */
 	@Override
 	public SecondExplanationView getView() {
 		return (SecondExplanationView)this.view;
 	}
 	
+	/**
+	 * loads the view and registers action listeners
+	 */
 	@Override
 	public void loadView() {
 		this.state = 0;
@@ -111,15 +126,18 @@ public class SecondExplanationController extends AbstractVisualizationController
 		});
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	/**
+	 * unloads the view
 	 */
 	@Override
 	public void unloadView() {
 		this.view = null;
 	}
 	
+	/**
+	 * returns the help string
+	 * @return help string
+	 */
 	@Override
 	public String getHelp() {
 		return i18n.tr("Check the peaks in the histogramm and compare them to the other histogramm, do you see any similarities?");
