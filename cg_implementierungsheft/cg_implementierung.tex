@@ -217,9 +217,9 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
       \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Demonstration}
-   \textbf{Keine neuen Klassen. Nur Änderungen an bestehenden.}
+   Keine neuen Klassen.
   \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Experiment}
-   \textbf{Keine neuen Klassen. Nur Änderungen an bestehenden.}
+   Keine neuen Klassen.
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
   
   \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman.Demonstration}
@@ -242,27 +242,11 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
 
     \subsubsection{MainController}
       In der Klasse MainController wurden Getter für das JFrame, sowie der StartController
-      und VisualizationContainerController hinzugefügt.\newline
-
-      \textbf{Änderungen an Methoden}
-      \begin{itemize}
-        \item public JFrame getJFrame()\newline
-              Gibt das JFrame zurück.
-        \item public StartController getStartController()\newline
-              Gibt den StartController zurück.
-        \item public VisualizationContainerController getVisualizationContainerController()\newline
-              Gibt den VisualizationContainerController zurück.
-      \end{itemize}
+      und VisualizationContainerController hinzugefügt.
 
     \subsubsection{StartController}
-      StartController hat eine minimale Änderung an der Methodensignatur erfahren.\newline
-
-      \textbf{Änderungen an Methoden}
-      \begin{itemize}
-        \item public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo, JComponent sender)\newline
-              Die Methode erwartet nun einen zusätzlichen Parameter sender. Dieser gibt an, welches JComponent
-              die Aktion ausgelöst hat, um den Popover korrekt darstellen zu können.
-      \end{itemize}
+      Die Methode presentPopoverAction() erwartet nun zusätzlich den Parameter sender. Dieser gibt an, welches
+      JComponent die Aktion ausgelöst hat, um den Popover korrekt darstellen zu können.
 
     \subsubsection{TimelinePopoverView}
       Keine Änderungen.
@@ -271,25 +255,13 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
       Keine Änderungen.
 
     \subsubsection{VisualizationContainerController}
-      Der VisualizationContainerController unterstützt nun die Darstellung der IdlePopoverView.\newline
-
-      \textbf{Änderungen an Methoden}
-      \begin{itemize}
-        \item public void presentIdlePopover()\newline
-              Zeigt die IdlePopoverView an.
-        \item public void dismissIdlePopover()\newline
-              Verbirgt die IdlePopoverView.
-      \end{itemize}
+      Der VisualizationContainerController unterstützt nun die Darstellung der IdlePopoverView. Hierzu wurden
+      die Methoden presentIdlePopover() sowie dismissIdlePopover() hinzugefügt.\newline
 
     \subsubsection{VisualizationContainerView}
       Die VisualizationContainerView besitzt nun eine Content-View. Diese dient als Container für die Visualisierung
-      und erlaubt es uns, den Inhalt der Visualisierung korrekt zu positionieren.\newline
-
-      \textbf{Änderungen an Methoden}
-      \begin{itemize}
-        \item public JPanel getContentView()\newline
-              Gibt die Content-View zurück.
-      \end{itemize}
+      und erlaubt es uns, den Inhalt der Visualisierung korrekt zu positionieren. Es wurde der Getter für
+      beschriebene Content-View hinzugefügt.\newline
 
     \subsubsection{WelcomeView}
       Keine Änderungen.
@@ -401,7 +373,7 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
   \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
   
   	\subsubsection{Klasse CaesarVisualizationInfo}
-  	 \textbf{Keine Änderungen.}
+  	 Keine Änderungen.
 
  	\subsection{Paket edu.kit.iks.Cryptographics.Caesar.Demonstration}
           
