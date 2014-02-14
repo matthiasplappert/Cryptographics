@@ -314,8 +314,30 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
 	dass sie nirgends benötigt wird.
 	
     \subsubsection{Klasse VigenereModel}
+	Während der Entwicklung ist uns aufgefallen dass das Verfahren mehr Funktionalität braucht, deshalb wurden einige neue Methoden eingeführt.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item static public char enc(int key, char text)\newline
+              Verschiebt einen Buchstaben um einen Faktor.
+        \item static public char dec(char key, char cipher)\newline
+              Verschiebt einen Buchstaben um einen Faktor zurück.
+		\item static public int characterToInt(String character)\newline
+              Gibt die Position eines bestimmten Buchstabens im Alphabet zurück.
+		\item static public String getCharPositionated(int start, int num, String input)\newline
+              Wird vom Kasiski-Test genutzt, gibt jeden n-ten Buchstaben eines bestimmten Textes ab der x-ten Stelle zurück.			
+      \end{itemize}
 
     \subsubsection{Klasse VigenereVisualizationInfo}
+	Während der Entwicklung ist uns aufgefallen dass wir zum Einbinden der Bilder Resourcen nutzen sollten. Deshalb wurden einige Änderung dazu vorgenommen.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public VigenereVisualizationInfo()\newline
+              Konstruktor der Klasse.
+        \item public Element getResources()\newline
+              Gibt das Handle zur Resource zurück.
+      \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Vigenere.Demonstration}
     \subsubsection{Klasse FirstDemonstrationController}
@@ -522,13 +544,38 @@ Hier kommt rein wenn z.B. ein Package komplett weggefallen ist oder so
               Lädt die View.
         \item public void unloadView()\newline
               Entlädt die View.
-        \item public FirstDemonstrationView getView()\newline
+        \item public SecondExplanationView getView()\newline
               Liefert die View zurück.
         \item public String getHelp()\newline
               Liefert den String zur Hilfe zurück.
       \end{itemize}
 	  
     \subsubsection{Klasse SecondExplanationView}
+	Während der Implementierung hat sich herausgestellt dass wir einige neue Schnittstellen für die GUI brauchen. Diese wurden implementiert.\newline
+           
+    \textbf{Änderungen an Methoden.}
+      \begin{itemize}
+		\item public void createKeyboard(JTextField input, final int flag)\newline
+              Erstellt eine Tastatur für die Nutzereingaben.
+		\item public void setExplanation(String explanation)\newline
+              Zeigt die gewünschte Erklärung.
+		\item public KeyboardView getKeyboard()\newline
+              Liefert die Tastatur zurück.
+		\item public void setKeyboard(KeyboardView keyboard)\newline
+              Setzt die Tastatur.
+		\item public JTextField getAnswerField()\newline
+              Liefert das Antwort-Feld zurück.
+		\item public void answerRight()\newline
+              Versteckt die Warnung und hebt die Hervorhebung auf.
+		\item public void answerFalse()\newline
+              Zeigt die Warunung und hebt das Eingabefeld hervor. 
+		\item public String getAnswer()\newline
+              Liefert die Nutzereingabe zurück. 
+		\item public void answerRight()\newline
+              Setzt die Sichtbarkeit der Elemente für den zweiten Schritt.		 
+		\item public void visibleFirstState(boolean b)\newline
+              Setzt die Sichtbarkeit der Elemente für den ersten Schritt.	 
+	  \end{itemize}
 
   \subsection{Paket edu.kit.iks.Cryptographics.Caesar}
   
