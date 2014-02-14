@@ -108,7 +108,6 @@ public class DHDemoView extends VisualizationView {
 		gbc.gridx = 2;
 		gbc.gridy = 0;
 		this.add(this.cm, gbc);
-		//TODO remove loadView?
 		this.cc.loadView();
 		this.cc.setRepeat(false);
 		this.cc.setKeepColor(true);

@@ -33,7 +33,6 @@ public class ExplainAimView extends VisualizationView {
 	private static final long serialVersionUID = 5986978581223106407L;
 
 	public ExplainAimView() {
-		// TODO move some stuff out of the constructor into a start method
 		super();
 		GridBagLayout layout = new GridBagLayout();
 		this.setLayout(layout);
@@ -60,7 +59,6 @@ public class ExplainAimView extends VisualizationView {
 		gbc.weighty = 0.1;
 		gbc.fill = GridBagConstraints.BOTH;
 		this.add(this.cc, gbc);
-		//TODO try not to do work in constructor
 		this.cc.setColorNextToSend(Color.BLUE);
 		this.cc.setKeepColor(false);
 		this.cc.setRepeat(true);

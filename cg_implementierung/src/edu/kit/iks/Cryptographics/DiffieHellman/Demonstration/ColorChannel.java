@@ -124,7 +124,6 @@ public class ColorChannel extends JPanel {
 		container = new JPanel();
 		container.setSize(new Dimension((int)d.getWidth(), (int)d.getHeight()/3));
 		container.setPreferredSize(new Dimension((int)d.getWidth(), (int)d.getHeight()/3));
-		//TODO add conditional flag to use color mixers or not
 		this.cm1 = new ColorMix(circleSize, new Dimension((int)d.getWidth()/2, (int)d.getHeight()/4));
 		this.cm2 = new ColorMix(circleSize, new Dimension((int)d.getWidth()/2, (int)d.getHeight()/4));
 		this.setLayout(new BorderLayout());
@@ -208,8 +207,6 @@ public class ColorChannel extends JPanel {
 		g2.drawString(i18n.tr("Eve"), (x1+x2)/2 - 15, x4-10);
 	}
 	
-	// TODO refactor sendToBob and sendToAlice into one method
-	// instead of waiting for arrival of the message to bob/alice 
 	public void sendToBob(final NextStepCallback cb, final boolean keepFirst) {
 		if(sendAlice) {
 			/* don't want to send colors
@@ -220,7 +217,6 @@ public class ColorChannel extends JPanel {
 		this.sendBob = true;
 		this.ellip.setColor(this.colorNextToSend);
 		this.ellip2.setColor(this.colorNextToSend);
-		//TODO remove hardcoded values
 		this.x1 = this.leftEnd;
 		this.x2 = this.middleCircle;
 		this.y2 = this.originaly2;
@@ -228,7 +224,6 @@ public class ColorChannel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO remove hardcoded values
 				Logger.d(this.getClass().getName(),"sendToBob" , "timer event");
 				if(firstTimerEventBob && !repeatPeriodically && keepFirst) {
 					chooseColorToKeep(colorNextToSend, 0);
@@ -278,7 +273,6 @@ public class ColorChannel extends JPanel {
 		this.ellip2.setColor(this.colorNextToSend);
 		this.x1 = this.rightCircle;
 		this.x2 = this.middleCircle;
-		//TODO refactor
 		this.y2 = this.originaly2;
 		timer = new Timer(timerInterval, new ActionListener() {
 			

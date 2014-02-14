@@ -9,8 +9,7 @@ public class CongratsController extends AbstractVisualizationController {
 	public CongratsController(
 			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
-		view = new CongratsView();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
@@ -20,8 +19,7 @@ public class CongratsController extends AbstractVisualizationController {
 
 	@Override
 	public void loadView() {
-		// TODO Auto-generated method stub
-		
+		view = new CongratsView();		
 	}
 
 	/*
