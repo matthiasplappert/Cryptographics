@@ -262,9 +262,9 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
 
     \textbf{Methoden.}\newline
 	   \begin{itemize}
-           \item public DemoOneWayView() wurde hinzugefügt\newline
+           \item public DemoOneWayView() \newline
                Der Konstruktor positioniert seine Subkomponenten etc.\newline
-           \item public String getHelp() wurde hinzugefügt\newline
+           \item public String getHelp() \newline
                Gibt einen Hilfe-Zeichenkette zurück\newline
            \end{itemize}
 
@@ -279,16 +279,16 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
 
     \textbf{Methoden.}\newline
 	   \begin{itemize}
-           \item public ColorMix(int circleSize, Dimension dimension) wurde hinzugefügt\newline
-           \item public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb) wurde hinzugefügt\newline
+           \item public ColorMix(int circleSize, Dimension dimension) \newline
+           \item public void mixColors(boolean mix, boolean repeat, final NextStepCallback cb) \newline
                Mischt grafisch zwei Farben zusammen\newline
-           \item public void seperateColors(boolean seperate, boolean repeat) wurde hinzugefügt\newline
+           \item public void seperateColors(boolean seperate, boolean repeat) \newline
                Trennt grafisch zwei Farben\newline
-           \item public void setEllipColor(int which, Color color) wurde hinzugefügt\newline
+           \item public void setEllipColor(int which, Color color) \newline
                Setzt erste oder zweite Farbe auf color\newline
-           \item public Color getMixedColor() wurde hinzugefügt\newline
+           \item public Color getMixedColor() \newline
                Gibt die gemischte Farbe zurück\newline
-           \item public boolean isComputeFinalMix() wurde hinzugefügt\newline
+           \item public boolean isComputeFinalMix() \newline
                Falls wahr, wird eine andere Formel zum Farbenmischen verwendet\newline
            \item public void setComputeFinalMix(boolean computeFinalMix)\newline
                Setzt den Wert von computeFinalMix\newline
@@ -307,65 +307,65 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
 
     \textbf{Methoden.}\newline
 	   \begin{itemize}
-           \item public ColorChannel(Dimension d, int circleSize) wurde hinzugefügt\newline
+           \item public ColorChannel(Dimension d, int circleSize) \newline
                Der Konstruktor nimmt die Dimension und die Größe der Kreise als Parameter,\newline
                und errechnet daraus wie die restlichen Elemente positioniert werden\newline
-           \item public void sendToBob(final NextStepCallback cb, final boolean keepFirst) wurde hinzugefügt\newline
+           \item public void sendToBob(final NextStepCallback cb, final boolean keepFirst) \newline
                Schickt eine Farbkreis von Alice zu Bob, cb ist der Callback der aufgerufen wird, wenn dies\newline
                erledigt wurde.\newline
                Wenn keepFirst wahr ist, wird die Farbe neben Alice dauerhaft dargestellt\newline
-           \item public void sendToAlice(final NextStepCallback cb, final boolean keepFirst) wurde hinzugefügt\newline
+           \item public void sendToAlice(final NextStepCallback cb, final boolean keepFirst) \newline
                Tut das gleiche wie sendToBob, nur dass von Bob nach Alice die Farbe verschickt wird und\newline
                wenn keepFirst den Wert wahr hat, wird die Farbe neben Bob visualisiert\newline
-           \item public void chooseColorToKeep(Color color, int who) wurde hinzugefügt\newline
+           \item public void chooseColorToKeep(Color color, int who) \newline
                Ein Farbkreis mit der Farbe color wird neben who hinzugefügt also neben Alice, Bob oder Eve\newline
-           \item public void stopTimer() wurde hinzugefügt\newline
+           \item public void stopTimer() \newline
                Stoppt den Timer. Muss aufgerufen werden wenn ColorChannel nicht mehr verwendet wird,\newline
                da sonst der Timer weiterlaufen könnte\newline
-           \item public void loadView() wurde hinzugefügt\newline
+           \item public void loadView() \newline
                Tut im Grunde das gleiche wie im Konstruktor, nur dass diese Funktion dafür\newline
                aufgerufen werden muss, wenn sich die Größe ändert\newline
-           \item public void choosePublicColor(Color color) wurde hinzugefügt\newline
+           \item public void choosePublicColor(Color color) \newline
                Setzt die öffentliche Farbe\newline
-           \item public void chooseAlicePrivateColor(Color color) wurde hinzugefügt\newline
+           \item public void chooseAlicePrivateColor(Color color) \newline
                Setzt die private Farbe von Alice\newline
-           \item public void chooseBobPrivateColor(Color color) wurde hinzugefügt\newline
+           \item public void chooseBobPrivateColor(Color color) \newline
                Setzt die private Farbe von Bob\newline
-           \item public void mixAlicePrivatePublic() wurde hinzugefügt\newline
+           \item public void mixAlicePrivatePublic() \newline
                Mischt die private Farbe von Alice und die öffentliche Farbe\newline
                und speichert diese\newline
-           \item public void mixBobPrivatePublic() wurde hinzugefügt\newline
+           \item public void mixBobPrivatePublic() \newline
                Mischt die private Farbe von Bob und die öffentliche Farbe\newline
                und speichert diese\newline
-           \item public void sendPublicColor() wurde hinzugefügt\newline
+           \item public void sendPublicColor() \newline
                Sendet die öffentliche Farbe von Alice zu Bob\newline
-           \item public void sendAliceMixedColorToBob(NextStepCallback cb) wurde hinzugefügt\newline
+           \item public void sendAliceMixedColorToBob(NextStepCallback cb) \newline
                Sendet die Mixtur von Alice zu Bob, und ruft cb auf wenn dies geschehen ist\newline
-           \item public void sendBobMixedColorToAlice(NextStepCallback cb) wurde hinzugefügt\newline
+           \item public void sendBobMixedColorToAlice(NextStepCallback cb) \newline
                Sendet die Mixtur von Bob zu Alice , und ruft cb auf wenn dies geschehen ist\newline
-           \item public void mixAliceFinalSecret(NextStepCallback cb) wurde hinzugefügt\newline
+           \item public void mixAliceFinalSecret(NextStepCallback cb) \newline
                Mischt das gemeinsame Geheimnis zusammen und ruft cb auf, wenn dies geschehen ist\newline
-           \item public void mixBobFinalSecret(NextStepCallback cb) wurde hinzugefügt\newline
+           \item public void mixBobFinalSecret(NextStepCallback cb) \newline
                Mischt das gemeinsame Geheimnis zusammen und ruft cb auf, wenn dies geschehen ist\newline
-           \item public boolean isRepeat() wurde hinzugefügt\newline
+           \item public boolean isRepeat() \newline
                Wahr wenn das Senden in einer periodischen Animation laufen soll\newline
-           \item public void setRepeat(boolean repeat) wurde hinzugefügt\newline
+           \item public void setRepeat(boolean repeat) \newline
                Setzt den repeat Wert\newline
-           \item public Color getColor() wurde hinzugefügt\newline
+           \item public Color getColor() \newline
                Gibt die Farbe die als nächstes versendet wird zurück\newline
-           \item public void setColorNextToSend(Color color) wurde hinzugefügt\newline
+           \item public void setColorNextToSend(Color color) \newline
                Setze die Farbe die als nächstes versendet werden soll\newline
-           \item public boolean isKeepColor() wurde hinzugefügt\newline
+           \item public boolean isKeepColor() \newline
                Wenn Wahr, werden die verschickten Farben neben den Empfängern visualisiert\newline
-           \item public Color getPublicColor() wurde hinzugefügt\newline
+           \item public Color getPublicColor() \newline
                Gibt die öffentliche Farbe zurück\newline
-           \item public Color getAlicePrivateColor() wurde hinzugefügt\newline
+           \item public Color getAlicePrivateColor() \newline
                Gibt die private Farbe von Alice zurück\newline
-           \item public Color getAliceMixedColor() wurde hinzugefügt\newline
+           \item public Color getAliceMixedColor() \newline
                Gibt die Mixtur von öffentlicher und privater Farbe von Alice zurück\newline
-           \item public Color getBobPrivateColor() wurde hinzugefügt\newline
+           \item public Color getBobPrivateColor() \newline
                Gibt die private Farbe von Bob zurück\newline
-           \item public Color getBobMixedColor() wurde hinzugefügt\newline
+           \item public Color getBobMixedColor() \newline
                Gibt die Mixtur von öffentlicher und privater Farbe von Bob zurück\newline
            \end{itemize}
 
@@ -379,15 +379,15 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
 
     \textbf{Methoden.}\newline
 	   \begin{itemize}
-           \item public ColorChooser(Dimension d, Color color, Color[] colors) wurde hinzugefügt\newline
+           \item public ColorChooser(Dimension d, Color color, Color[] colors) \newline
                Der Konstruktor nimmt die Größe des JPanel als Parameter,\newline
                die Farbe die als erstes angezeigt werden soll, nämlich color,\newline
                und eine Liste an Farben aus denen man seine Farbe wählen kann colors\newline
-           \item public Color getCurrentColor wurde hinzugefügt\newline
+           \item public Color getCurrentColor \newline
                Gibt die momentan ausgewählte Farbe zurück\newline
-           \item public void setToChooseFrom(Color[] colors) wurde hinzugefügt\newline
+           \item public void setToChooseFrom(Color[] colors) \newline
                Setze die Farben die man wählen kann neu\newline
-           \item public Color[] getToChooseFrom() wurde hinzugefügt\newline
+           \item public Color[] getToChooseFrom() \newline
                Gebe die Farben zurück, die man wählen kann\newline
            \end{itemize}
 
@@ -402,13 +402,13 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
 
     \textbf{Methoden.}\newline
 	   \begin{itemize}
-           \item public Ellipse2DwithColor(double x, double y, double w, double h) wurde hinzugefügt\newline
+           \item public Ellipse2DwithColor(double x, double y, double w, double h) \newline
                Gleicht dem Konstruktor der Oberklasse und setzt die Farbe auf Schwarz\newline
-           \item public Ellipse2DwithColor(double x, double y, double w, double h, Color color) wurde hinzugefügt\newline
+           \item public Ellipse2DwithColor(double x, double y, double w, double h, Color color) \newline
                Gleicht dem Konstruktor der Oberklasse und setzt die Farbe auf color\newline
-           \item public Color getColor() wurde hinzugefügt\newline
+           \item public Color getColor() \newline
                Gibt die aktuelle Farbe zurück\newline
-           \item public void setColor(Color color) wurde hinzugefügt\newline
+           \item public void setColor(Color color) \newline
                Setzt einen neuen Wert für die aktuelle Farbe\newline
            \end{itemize}
 
@@ -419,7 +419,7 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
 
     \textbf{Methoden.}\newline
 	   \begin{itemize}
-           \item public void callback() wurde hinzugefügt\newline
+           \item public void callback() \newline
                Unser Callback\newline
            \end{itemize}
 
@@ -442,13 +442,13 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
 
     \textbf{Methoden.}\newline
 	   \begin{itemize}
-           \item public DHExperimentView() wurde hinzugefügt\newline
+           \item public DHExperimentView() \newline
                Der Konstruktor erstellt seine Subkomponenten und\newline
                positioniert diese Korrekt\newline
-           \item public void setRemember(ActionListener remember) wurde hinzugefügt\newline
+           \item public void setRemember(ActionListener remember) \newline
                Merkt sich einen ActionListener damit die View seinem Button den ursprünglichen\newline
                ActionListener wieder setzen kann\newline
-           \item public String getHelp() wurde hinzugefügt\newline
+           \item public String getHelp() \newline
                Gibt einen Hilfe-Zeichenkette zurück\newline
            \end{itemize}
 
@@ -469,9 +469,9 @@ Während der Implementierung sind keine grundsätzlichen Änderungen vorgenommen
 
     \textbf{Methoden.}\newline
 	   \begin{itemize}
-           \item public CongratsView() wurde hinzugefügt\newline
+           \item public CongratsView() \newline
                Der Konstruktor erstellt und positioniert seine Elemente\newline
-           \item public String getHelp() wurde hinzugefügt\newline
+           \item public String getHelp() \newline
                Gebe eine Hilfe-Zeichenkette zurück\newline
            \end{itemize}
 
