@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Icons>
 	<Keyboard>
-		<Backspace path="/icons/backspace.png" />
-		<Enter path="/icons/enter.png" />
+		<Backspace 		path="/icons/backspace.png" />
+		<BackspaceSmall path="/icons/backspace_mini.png" />
+		<Enter 			path="/icons/enter.png" />
+		<EnterSmall 	path="/icons/enter_mini.png" />
 	</Keyboard>
 </Icons>

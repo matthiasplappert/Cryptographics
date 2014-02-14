@@ -5,11 +5,20 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.InputStream;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 
 /**
  * A displayable keyboard for character input per mouse click or touchscreen. 
@@ -25,6 +34,8 @@ public class NumpadView extends JPanel implements ActionListener {
 	 */
 	private static final long serialVersionUID = 5986894202162733671L;
 
+	private Element resources;
+	
 	/**
 	 * When digit mode is used, the buttons pressed will replace
 	 * the number in the given input field
@@ -67,6 +78,8 @@ public class NumpadView extends JPanel implements ActionListener {
 	 */
 	public NumpadView(JTextField textField, int mode) {
 		super();
+		
+		this.initResources();
 
 		this.textField = textField;
 		this.inputMode = mode; 
@@ -135,6 +148,24 @@ public class NumpadView extends JPanel implements ActionListener {
 		
 	}
 	
+	private void initResources() {
+		SAXBuilder saxBuilder = new SAXBuilder();
+
+		// obtain file object
+		InputStream is = this.getClass().getResourceAsStream(
+				"/icons/IconResources.xml");
+
+		try {
+			// converted file to document object
+			Document document = saxBuilder.build(is);
+
+			// get root node from xml
+			this.resources = document.getRootElement().getChild("Keyboard");
+		} catch (JDOMException | IOException e) {
+			Logger.e(e);
+		}
+	}
+	
 	private void initKeyboardButtons() {
 		JButton[][] keysInit = {
 				
@@ -180,17 +211,47 @@ public class NumpadView extends JPanel implements ActionListener {
 	 * @return new Instance of JButton
 	 */
 	private JButton kf(String label, String name) {
-		JButton button = new JButton(label);
+		JButton button;
 		
 		if (name.equals("bs")) {
+			ImageIcon backspace = this.loadIcon(this.resources
+					.getChild("BackspaceSmall")
+					.getAttributeValue("path"));
+			
+			button = new JButton(backspace);
 			button.setName("button-backspace");
 		} else if (name.equals("e")) {
+			ImageIcon enter = this.loadIcon(this.resources
+					.getChild("EnterSmall")
+					.getAttributeValue("path"));
+			
+			button = new JButton(enter);
 			button.setName("button-enter");
 		} else {
+			button = new JButton(label);
 			button.setName("button-key");
 		}
 		
 		
 		return button;
+	}
+	
+	/**
+	 * Loads an image icon from given path
+	 * 
+	 * @param path path to image
+	 * @return ImageIcon instance
+	 */
+	private ImageIcon loadIcon(String path) {
+		ImageIcon image = null;
+		
+    	try {                
+    		InputStream is = this.getClass().getResourceAsStream(path);
+            image = new ImageIcon(ImageIO.read(is));
+        } catch (IOException e) {
+        	Logger.e(e);
+        }
+    	
+    	return image;
 	}
 }
