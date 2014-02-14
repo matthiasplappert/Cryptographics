@@ -10,6 +10,13 @@ import org.xnap.commons.i18n.I18n;
 import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
+/**
+ * Explains one-way functions
+ * 
+ * @author kai
+ *
+ */
+
 public class OnewayView extends VisualizationView {
 	
 	/**
