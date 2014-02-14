@@ -11,7 +11,7 @@ import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 
 /**
- * Explains one-way functions
+ * Explains one-way functions and visualizes them
  * 
  * @author kai
  *
@@ -24,16 +24,22 @@ public class OnewayView extends VisualizationView {
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(OnewayView.class);
 	
+	/** hold the explanation string */
 	private JLabel onewayExplain;
 
+	/** no help need here */
 	private String help = i18n.tr("No help");
 	
+	/** explanation string */
 	private String explain = i18n.tr("To achive this, we use " +
 				"something called one-way function. This function is easy to compute " +
 				"in one direction, but difficult to reverse.");
 	
 	private static final long serialVersionUID = 6243104730541136349L;
 	
+	/**
+	 * Construct subcomponents and layout
+	 */
 	public OnewayView() {
 		super();
 		GridBagLayout layout = new GridBagLayout();
@@ -59,6 +65,10 @@ public class OnewayView extends VisualizationView {
 		
 	}
 
+	/**
+	 * return help string
+	 * @return the help string
+	 */
 	public String getHelp() {
 		return help ;
 	}
