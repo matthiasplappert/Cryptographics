@@ -95,7 +95,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 
 		this.initKeyboardButtons();
 		
-		Dimension keyMinSize = new Dimension(45, 45);
+		Dimension keySize = new Dimension(45, 45);
 		Insets keyMargin = new Insets(0, 5, 0, 5);
 		Font keyFont = new Font("Arial", Font.BOLD, 14);
 		
@@ -106,9 +106,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 				if (this.keys[i][j] != null) {
 					this.keys[i][j].setMargin(keyMargin);
 					this.keys[i][j].setFont(keyFont);
-//					this.keys[i][j].setMinimumSize(keyMinSize);
-					this.keys[i][j].setPreferredSize(keyMinSize);
-//					this.keys[i][j].setMaximumSize(keyMaxSize);
+					this.keys[i][j].setPreferredSize(keySize);
 					this.keys[i][j].addActionListener(this);
 					
 					row.add(this.keys[i][j]);
