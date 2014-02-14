@@ -11,6 +11,10 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
 
+/**
+ * Controller class of the first phase
+ * @author Aydin Tekin
+ */
 public class FirstDemonstrationController extends AbstractVisualizationController {
 
 	/**
@@ -18,21 +22,28 @@ public class FirstDemonstrationController extends AbstractVisualizationControlle
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(FirstDemonstrationController.class);
 	
-	/* Checks if vigenere text is read */
+	/** 
+	 * Checks if vigenere text is read 
+	 */
 	private boolean vigenereRead = false;
+	
+	/**
+	 * Instance of the visualisation info
+	 */
 	private VigenereVisualizationInfo vsInfo;
 	
-	
+	/**
+	 * Constructor of the controller
+	 * @param visualizationInfo
+	 */
 	public FirstDemonstrationController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 		this.vsInfo = (VigenereVisualizationInfo)visualizationInfo;
 	}
-
-	@Override
-	public String getHelp() {
-		return i18n.tr("There is nothing to help, just read the text");
-	}
-
+	
+	/**
+	 * loads the view and registers the actionlistener's.
+	 */
 	@Override
 	public void loadView() {
 		this.vigenereRead = false;
@@ -62,14 +73,30 @@ public class FirstDemonstrationController extends AbstractVisualizationControlle
 		this.view.validate();
 	}
 	
+	/**
+	 * unloads the view
+	 */
 	@Override
 	public void unloadView() {
 		this.view = null;
 	}
 	
+	/**
+	 * returns the view
+	 * @return view of current step
+	 */
 	@Override
 	public FirstDemonstrationView getView() {
 		return (FirstDemonstrationView) this.view;
+	}
+	
+	/**
+	 * returns the help string
+	 * @return help string
+	 */
+	@Override
+	public String getHelp() {
+		return i18n.tr("There is nothing to help, just read the text");
 	}
 	
 }

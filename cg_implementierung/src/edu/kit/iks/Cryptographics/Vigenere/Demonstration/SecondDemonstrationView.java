@@ -3,7 +3,6 @@ package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import org.xnap.commons.i18n.I18n;
@@ -13,6 +12,10 @@ import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 
+/**
+ * in this step, the encryption will be explained
+ * @author Aydin Tekin
+ */
 public class SecondDemonstrationView extends VisualizationView {
 	private static final long serialVersionUID = 6294968461280032987L;
 
@@ -22,27 +25,57 @@ public class SecondDemonstrationView extends VisualizationView {
 	private static I18n i18n = Configuration.getInstance().getI18n(SecondDemonstrationView.class);
 	
 	// PLAINTEXTCHARS WITH THEIR INDEXES
+	/**
+	 * plain characters
+	 */
 	private JLabel[] indexCharPlain;
+	/**
+	 * plain characters position in alphabet
+	 */
 	private JLabel[] textCharPlain;
 
-	// ENCRYPTED CHARS WITH THEIR INDEXES
+	/**
+	 * encrypted characters
+	 */
 	private JLabel[] indexCharEncrypted;
+	
+	/**
+	 * encrypted characters position in alphabet
+	 */
 	private JLabel[] textCharEncrypted;
 
-	// Visulisation of the Key
+	/**
+	 * description of the key
+	 */
 	private JLabel vigenereKeyDesc;
+	
+	/**
+	 * key to encrypt with
+	 */
 	private String vigenereKey = i18n.tr("OKAY");
 
-	// Visualisation of calculation of the indexes
+	/**
+	 * used for calculator
+	 */
 	private JLabel charFirst;
 	private JLabel charSecond;
 	private JLabel charFinished;
 	
+	/**
+	 * explanation field
+	 */
 	private JLabel explanation;
 	
-	private JButton proceed;
+	/**
+	 * alphabet used for demonstration
+	 */
 	private AlphabetStripView alphabet;
 	
+	/**
+	 * sets the calculator to given parameters
+	 * @param a first character
+	 * @param b amount of rotation
+	 */
 	public void setCalculator(int a, int b) {
 		int sum = ((a + b) % 26);
 		Dimension size;
@@ -57,7 +90,12 @@ public class SecondDemonstrationView extends VisualizationView {
 		this.charFinished.setSize(size);
 		this.validate();
 	}
-
+	
+	/**
+	 * changes given textfield and also applies the numeration in the bottom label
+	 * @param i which textfield to be changed
+	 * @param character which character to be added
+	 */
 	public void setTextField(int i, String character) {
 		this.textCharEncrypted[i].setText(character);
 		if (character.isEmpty()) {
@@ -70,10 +108,31 @@ public class SecondDemonstrationView extends VisualizationView {
 		this.validate();
 	}
 
+	/**
+	 * this highlights the selected character in the AlphaStripView and sets the character in
+	 * the specified textfield
+	 * @param num character to be highlighted in the AlphaStripView
+	 * @param pos textfield to be changed
+	 * @param character character to be set
+	 */
+	public void highlightAndSetText(int num, int pos, String character) {
+		this.alphabet.unHighlightAll();
+		this.setTextField(pos, character);
+		this.alphabet.highlight(pos);
+	}
+	
+	/**
+	 * returns the alphabet
+	 * @return alphabet
+	 */
 	public AlphabetStripView getAlphabet() {
 		return alphabet;
 	}
 
+	/**
+	 * changes visibility of all label containing encrypted chars
+	 * @param b visibility of all label containing encrypted chars
+	 */
 	public void setEncryptedCharsVisible(boolean b) {
 		for (int i = 0; i < this.indexCharEncrypted.length; i++) {
 			this.indexCharEncrypted[i].setVisible(b);
@@ -81,30 +140,43 @@ public class SecondDemonstrationView extends VisualizationView {
 		}
 	}
 	
+	/**
+	 * sets the visibility of the calculator
+	 * @param b visibility of the calculator
+	 */
 	public void setCalculatorVisible(boolean b) {
 		this.charFirst.setVisible(b);
 		this.charSecond.setVisible(b);
 		this.charFinished.setVisible(b);
 	}
 	
+	/**
+	 * sets the visibility of the key
+	 * @param b visibility of the key
+	 */
 	public void setKeyVisible(boolean b) {
 		this.vigenereKeyDesc.setVisible(b);
 	}
-
+	
+	/**
+	 * changes the explanation text
+	 * @param explanation text to change to
+	 */
 	public void setExplanation(String explanation) {
 		this.explanation.setText(explanation);
 	}
-
-	public SecondDemonstrationView() {
+	
+	/**
+	 * creates and adds all GUI elements
+	 */
+	private void setupGUI() {
 		this.setLayout(null);
 		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
 				+ i18n.tr("Now we want to encrypt 'ANNA'. First of all we add "
 				+ "the position of evey character, as you can see in the bottom, "
 				+ "in the alphabet under each character.")
 				+ "</div></html>"));
-		this.add(new JLabel("VIGENERE INTRODUCTION2"));
 		this.vigenereKeyDesc = new JLabel(i18n.tr("Vigenere Key") + ": " + this.vigenereKey);
-		this.proceed = new JButton(i18n.tr("Proceed"));
 		
 		this.alphabet = new AlphabetStripView();
 
@@ -139,25 +211,24 @@ public class SecondDemonstrationView extends VisualizationView {
 		this.indexCharEncrypted[3] = new JLabel("  ");
 		for (int i = 0; i < this.indexCharEncrypted.length; i++)
 			this.add(this.indexCharEncrypted[i]);
-		//this.indexCharEncrypted[1].setBorder(BorderFactory
-		//		.createLineBorder(Color.blue, 5));
 
 		this.add(this.charFirst = new JLabel());
 		this.add(this.charSecond = new JLabel());
 		this.add(this.charFinished = new JLabel());
 		this.add(this.vigenereKeyDesc);
 		this.add(this.alphabet);
-		this.add(this.proceed);
-		
-		setCalculatorVisible(false);
-		setEncryptedCharsVisible(false);
-		setKeyVisible(false);
-		
+	}
+	
+	/**
+	 * sets fonts to all elements
+	 */
+	private void setFonts() {
 		this.vigenereKeyDesc.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		this.charFirst.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		this.charSecond.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		this.charFinished.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		this.explanation.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+		
 		
 		for (int i = 0; i < this.textCharPlain.length; i++)
 			this.textCharPlain[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
@@ -170,7 +241,16 @@ public class SecondDemonstrationView extends VisualizationView {
 	
 		for (int i = 0; i < this.indexCharEncrypted.length; i++)
 			this.indexCharEncrypted[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-
+	}
+	
+	/**
+	 * customizes the created GUI elements
+	 */
+	private void customizeGUI() {
+		setCalculatorVisible(false);
+		setEncryptedCharsVisible(false);
+		setKeyVisible(false);
+		
 		Dimension size = this.vigenereKeyDesc.getPreferredSize();
 		this.vigenereKeyDesc.setBounds(90, 250, size.width, size.height);
 		
@@ -190,8 +270,6 @@ public class SecondDemonstrationView extends VisualizationView {
 		this.textCharPlain[3].setBounds(650, 100,
 	             size.width, size.height);
 		
-		//TROLOLO
-		
 		size = this.indexCharPlain[0].getPreferredSize();
 		this.indexCharPlain[0].setBounds(500, 160,
 	             size.width, size.height);
@@ -208,7 +286,6 @@ public class SecondDemonstrationView extends VisualizationView {
 		this.indexCharPlain[3].setBounds(650, 160,
 	             size.width, size.height);
 		
-		//TROLOLOLO 2
 		size.width = 24;
 		size.height = 44;
 		this.textCharEncrypted[0].setBounds(500, 250,
@@ -222,8 +299,6 @@ public class SecondDemonstrationView extends VisualizationView {
 
 		this.textCharEncrypted[3].setBounds(650, 250,
 	             size.width, size.height);
-		
-		//TROLOLO 3
 		
 		size = this.indexCharEncrypted[0].getPreferredSize();
 		this.indexCharEncrypted[0].setBounds(500, 310,
@@ -269,5 +344,14 @@ public class SecondDemonstrationView extends VisualizationView {
 		size = this.getNextButton().getPreferredSize();
 		this.getNextButton().setBounds(1100, 600,
 	             size.width, size.height);
+	}
+	
+	/**
+	 * constructor of the view
+	 */
+	public SecondDemonstrationView() {
+		setupGUI();
+		setFonts();
+		customizeGUI();
 	}
 }

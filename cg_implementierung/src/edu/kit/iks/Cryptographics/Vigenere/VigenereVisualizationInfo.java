@@ -21,6 +21,10 @@ import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
 
+/**
+ * @author Aydin Tekin
+ * This class provides all needed information for the vigenere-section
+ */
 public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	
 	/**
@@ -28,9 +32,15 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(VigenereVisualizationInfo.class);
 	
+	/**
+	 * link to the resources
+	 */
 	private Element vigenereResources;
 	
-	public VigenereVisualizationInfo() {
+	/**
+	 * loads the resources which are bundled with the jar file
+	 */
+	private void loadResources() {
 		SAXBuilder saxBuilder = new SAXBuilder();
 
 		InputStream is = this.getClass().getResourceAsStream("/vigenere/VigenereResources.xml");
@@ -46,38 +56,74 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 		}
 	}
 	
+	/**
+	 * Constructor
+	 */
+	public VigenereVisualizationInfo() {
+		loadResources();
+	}
+	
+	/**
+	 * returns the ID
+	 * @return ID
+	 */
 	public String getId() {
 		return "vigenere";
 	}
 	
+	/**
+	 * returns the name
+	 * @return name
+	 */
 	public String getName() {
 		return i18n.tr("Vigenère");
 	}
-
+	
+	/**
+	 * returns the description of vigenere.
+	 * @return description of vigenere.
+	 */
 	public String getDescription() {
 		return i18n.tr("Get to know how Vigenère fixed the weaknesses of Caesar to make a 'secure' cipher for many hundred years!");
 	}
 	
+	/**
+	 * returns the QRCode-source
+	 * @return QRCode-source
+	 */
 	public String getQRCodeContent() {
 		return i18n.tr("http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher");
 	}
-
+	
+	/**
+	 * returns the offset in the timeline
+	 * @return offset in the timeline
+	 */
 	public float getTimelineOffset() {
 		return 0.5f;
 	}
 
+	/**
+	 * returns the difficulty
+	 * @return difficulty
+	 */
 	public VisualizationDifficulty getDifficulty() {
 		return VisualizationDifficulty.MEDIUM;
 	}
 	
 	
-	/* gets the year of the cryptographic algorithm
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getYear()
+	/**
+	 * gets the year of the cryptographic algorithm
+	 * @return year of the cryptographic algorithm
 	 */
 	public int getYear() {
 		return 1600; //inaccurate
 	}
 	
+	/**
+	 * returns all the needed classes for this algorithm
+	 * @return all the needed classes for this algorithm
+	 */
 	@SuppressWarnings("rawtypes")
 	public List<Class> getControllerClasses() {
 		List<Class> controllerClasses = new ArrayList<Class>();
@@ -91,6 +137,10 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 		return controllerClasses;
 	}
 	
+	/**
+	 * returns the link to the resources
+	 * @return link to the resources
+	 */
 	public Element getResources() {
 		return vigenereResources;
 	}
