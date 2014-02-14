@@ -7,8 +7,17 @@ import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 
+/**
+ * The controller for DemoOneWayView,
+ * which demonstrates one-way functions
+ * 
+ * @author kai
+ *
+ */
+
 public class DemoOneWayController extends AbstractVisualizationController {
 	
+	/** the corresponding view */
 	private DemoOneWayView view;
 	
 	public DemoOneWayController(AbstractVisualizationInfo visualizationInfo) {
