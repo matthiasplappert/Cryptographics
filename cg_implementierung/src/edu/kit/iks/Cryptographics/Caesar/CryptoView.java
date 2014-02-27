@@ -254,7 +254,9 @@ public class CryptoView extends VisualizationView {
 		expConst.weighty = 0.1;
 		expConst.gridx = xGrid;
 		expConst.gridy = yGrid;
+		expConst.insets = new Insets(10, 0, 10, 0);
 		expConst.gridwidth = widthGrid;
+		expConst.fill = GridBagConstraints.BOTH;
 		this.add(this.explanations, expConst);
 
 	}

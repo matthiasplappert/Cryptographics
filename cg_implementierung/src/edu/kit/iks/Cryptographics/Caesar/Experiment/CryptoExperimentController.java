@@ -62,12 +62,20 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 		super(visualizationInfo);
 
 	}
-	
+
 	@Override
 	public String getHelp() {
+		if (this.decryptionPhase) {
+			return CryptoExperimentController.i18n
+					.tr("Remember: If you want to decrypt for example D with the key of 3.<br>"
+							+ "You need to substract 3 from the position of C in the alphabet.<br>"
+							+ "D - key = 4 - 3 = 1 = A.");
+		}
 		return CryptoExperimentController.i18n
-				.tr("If you only see the textfield then put your string in it. Else you've already "
-						+ "done it and now you need to encrypt/decrypt the given String.");
+				.tr("Remember: If you want to encrypt for example A with the key of 3.<br>"
+						+ "You need to add 3 to the position of A in the alphabet.<br>"
+						+ "A + key = 1 + 3 = 4 = D.");
+
 	}
 
 	@Override
@@ -195,8 +203,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 								+ this.getModel().genRandomGrats()
 								+ " "
 								+ CryptoExperimentController.i18n
-										.tr("Next step is to decrypt a given message!! When you accomplish it, then even the NSA and Kryptochef together<br>"
-												+ "are superior to your power. Now lets move on. Click the button in the right top corner.")));
+										.tr("Next step is to decrypt a given message! Lets move on to Decryption.")));
 		this.getView().removeKeyboard();
 	}
 
@@ -327,13 +334,8 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 							.setText(
 									CryptoExperimentController.this
 											.wrapHtml(CryptoExperimentController.i18n
-													.tr("In the steps before you learned how to encrypt a given message.<br>"
-															+ "But what does it help you to encrypt messages when noone can decrypt them?<br>"
-															+ "Now we are going to help us by ourselves. Lets think logically. When we shift<br>"
-															+ "a letter to 3 positions forwards, then we can get back to it when we shift the given<br>"
-															+ "cipher 3 positions back! The important fact is also that we can shift up to 25 positions back<br>"
-															+ "as we can shift 25 positions forward. Lets try this one. Remember: The key you added <br>"
-															+ "while encrypting, now needs to be substracted!")));
+													.tr("You have learned much. But the main question is how to decrypt?<br>"
+															+ "It's simple: subtract the key from a given letter.")));
 					CryptoExperimentController.this
 							.getView()
 							.getNextButton()
@@ -550,10 +552,9 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 											explanationContent
 													+ "<br>"
 													+ CryptoExperimentController.i18n
-															.tr("This key is not valid. Please put a number between 1 and 25.<br>"
+															.tr("This key is not valid. Please put a number between 1 and 26.<br>"
 																	+ "For demonstration purposes the keys between -1 and -25 are not necessary<br>"
-																	+ "therefore not possible, but could be used in general as keys too. And 0 as key has no<br>"
-																	+ " sense, if you dont understand why, then go back to Introduction."));
+																	+ "therefore not possible, but could be used in general as keys too."));
 							CryptoExperimentController.this
 									.getView()
 									.getKeyInput()
@@ -591,6 +592,8 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 
 		// Generate Listener for the userOutput JTextfield
 		this.generateIOListener(input);
+
+		this.getView().getUserOutput()[0].requestFocus();
 	}
 
 	private void notifyOfValidKey(String explanationContent) {

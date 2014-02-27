@@ -54,12 +54,12 @@ public class CryptoExperimentView extends CryptoView {
 		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
 		this.cryptoResource = vsInfo.getResources().getChild(
 				CryptoExperimentView.i18n.tr("Encrypt"));
-		
-		//setup the caption of the next/back Buttons.
-		this.getBackButton().setText(CryptoExperimentView.i18n
-					.tr("Back to demonstration."));
-		this.getNextButton().setText(CryptoExperimentView.i18n
-					.tr("Go to Decryption."));
+
+		// setup the caption of the next/back Buttons.
+		this.getBackButton().setText(
+				CryptoExperimentView.i18n.tr("Back to demonstration."));
+		this.getNextButton().setText(
+				CryptoExperimentView.i18n.tr("Go to Decryption."));
 
 		// setup the input/output elements for further steps.
 		this.setupUserIO();
@@ -70,23 +70,19 @@ public class CryptoExperimentView extends CryptoView {
 		// setup the explanations.
 		String explanation = "<html><body> "
 				+ CryptoExperimentView.i18n
-						.tr("Ok. Previously you saw that you can encrypt a message with the traditional Caesar cipher<br>"
-								+ "when you shift each letter 3 positions next in the alphabet. Lets think a little further.<br>"
-								+ "When we can shift 3 positions to substitute A with D, then we can also shift 1,2,4,5,6,...,25 positions.<br>"
-								+ "And substitute A with some other letter. The shift value is called the 'Key'. The Key in the examples before was 3.<br>"
-								+ "The key is needed when you want to decrypt a cipher. Without the key it would costs much more effort<br>"
-								+ " and in most cases uneligible. <br>"
+						.tr("In the demonstration you encrypted with the key 3. On further thoughts it seems logical, that the key can vary<br>"
+								+ "up to each position in the alphabet. From 1 to 26.<br>"
 								+ "Now you have 2 options:<br>"
 								+ "<br>"
 								+ "1. You put you own key and plaintext into the textfield.<br>"
 								+ "<br>"
-								+ "2.Or you just click generate and this awesome programm generates you everything you need with real real complex calculations.");
+								+ "2. Or you just click generate and this awesome programm generates you everything you need with real complex calculations.");
 		this.setupExplanations(explanation, GridBagConstraints.PAGE_START, 1,
-				0, 2);
+				0, 6);
 
 		this.validate();
 	}
-	
+
 	/**
 	 * Called when the user done the needed input in a valid way.
 	 * 
@@ -108,17 +104,7 @@ public class CryptoExperimentView extends CryptoView {
 		// setup the explanations.
 		String explanations = "<html><body>"
 				+ CryptoExperimentView.i18n
-						.tr("Now it is up to you. Test your skills. Remember the key is")
-				+ " "
-				+ key
-				+ ".<br>"
-				+ CryptoExperimentView.i18n
-						.tr("You need to add the key to the position of the letter your want to shift to get<br>"
-								+ "the needed cipher. If you get a bigger number then 25 you need to subtract 25 from it. <br>"
-								+ "For example: You want to encrypt X with the key 3. When you add 3 to X you get 23 + 3 = 26. <br>"
-								+ "26 is obvious bigger then 25. Then you subtract 26 - 25 = 1. This is your cipher. <br>"
-								+ "It is also called modulo calculation. For example 26 mod 25 = 1. But this is a little more complex<br>"
-								+ "and therefore not important here. You will see more in the Vigenère visualization.");
+						.tr("Let's test what you have learned. If help needed touch the help button.");
 		this.setupExplanations(explanations,
 				GridBagConstraints.LAST_LINE_START, 0, 0, 4);
 
@@ -126,7 +112,7 @@ public class CryptoExperimentView extends CryptoView {
 		this.validate();
 		this.repaint();
 	}
-	
+
 	/**
 	 * Creates the keyboard with numerical values and presents it.
 	 * 
@@ -147,7 +133,7 @@ public class CryptoExperimentView extends CryptoView {
 		this.add(this.numpad, numpadConst);
 		this.validate();
 	}
-	
+
 	/**
 	 * Removes the numpad from the view.
 	 */
@@ -177,15 +163,14 @@ public class CryptoExperimentView extends CryptoView {
 
 	private void setupUserIOContainer() {
 		this.userCharacterIOContainer = new JPanel(new GridBagLayout());
-		// this.input.setAlignmentY(JTextField.TOP_ALIGNMENT);
 		GridBagConstraints inConst = new GridBagConstraints();
 		inConst.anchor = GridBagConstraints.CENTER;
 		inConst.weightx = 0.5;
 		inConst.weighty = 1.0;
 		inConst.gridx = 0;
 		inConst.gridy = 2;
-		inConst.gridheight = 6;
-		inConst.gridwidth = 3;
+		inConst.gridheight = 10;
+		inConst.gridwidth = 4;
 		this.add(this.userCharacterIOContainer, inConst);
 	}
 
@@ -195,7 +180,9 @@ public class CryptoExperimentView extends CryptoView {
 		GridBagConstraints inputConst = new GridBagConstraints();
 		inputConst.gridx = 0;
 		inputConst.gridy = 1;
+		inputConst.gridheight = 2;
 		inputConst.insets = new Insets(0, 0, 0, 50);
+		inputConst.fill = GridBagConstraints.BOTH;
 		this.userCharacterIOContainer.add(this.literalInput, inputConst);
 		this.literalInput
 				.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -207,6 +194,7 @@ public class CryptoExperimentView extends CryptoView {
 		capConst.gridx = 0;
 		capConst.gridy = 0;
 		capConst.insets = new Insets(0, 0, 0, 50);
+		capConst.fill = GridBagConstraints.BOTH;
 		this.userCharacterIOContainer.add(inputCaption, capConst);
 	}
 
@@ -216,14 +204,17 @@ public class CryptoExperimentView extends CryptoView {
 		GridBagConstraints keyConst = new GridBagConstraints();
 		keyConst.gridx = 2;
 		keyConst.gridy = 1;
+		keyConst.gridheight = 2;
+		keyConst.fill = GridBagConstraints.BOTH;
 		this.userCharacterIOContainer.add(this.keyInput, keyConst);
 		this.keyInput.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		// add the caption for the input field.
-		JLabel keyCaption = new JLabel("Key");
+		JLabel keyCaption = new JLabel("The key goes here.");
 		GridBagConstraints keyCapConst = new GridBagConstraints();
 		keyCapConst.gridx = 2;
 		keyCapConst.gridy = 0;
+		keyCapConst.fill = GridBagConstraints.BOTH;
 		this.userCharacterIOContainer.add(keyCaption, keyCapConst);
 	}
 
@@ -234,8 +225,9 @@ public class CryptoExperimentView extends CryptoView {
 		GridBagConstraints genConst = new GridBagConstraints();
 		genConst.weightx = 1.0;
 		genConst.gridx = 0;
-		genConst.gridy = 2;
+		genConst.gridy = 4;
 		genConst.gridwidth = 3;
+//		genConst.fill = GridBagConstraints.BOTH;
 		this.userCharacterIOContainer.add(this.generator, genConst);
 	}
 
