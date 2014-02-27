@@ -3,6 +3,7 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -167,16 +168,12 @@ public class HistogramView extends VisualizationView {
 
 		String explanation = "<html><body>"
 				+ HistogramView.i18n
-						.tr("Great. Up to now you learned how to encrypt or decrypt given letter sequences with a given key.<br>"
-								+ "The question is now, how do you decrypt without a key?!<br>"
+						.tr("It is called 'breaking' the cipher if you try to decrypt without knowing the key.<br>" +
+								"There are always 2 Options when it comes to this.<br>"
 								+ "<br>"
-								+ "It is also called 'breaking' the cipher if you try to decrypt without a given key parameter. The following <br>"
-								+ "experiments will teach you how to break caesar's cipher. There are always 2 Options when it comes to this.<br>"
+								+ "1. You use literally brute force, meaning you simply try to decrypt with all possible keys.<br>"
 								+ "<br>"
-								+ "1. The First one is the method called 'Brute Force', it means that you just try simply to decrypt with each possible<br>"
-								+ "key. This one you will see in the next step.<br>"
-								+ "<br>"
-								+ "2. The Second one is to use cryptology techniques.");
+								+ "2. You use elaborate cryptology techniques.");
 
 		this.setupExplanationAndForwarding(explanation);
 	}
@@ -190,6 +187,7 @@ public class HistogramView extends VisualizationView {
 
 		// setup the explanations.
 		this.setExplanations(new JLabel(explanations));
+		this.explanations.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints explanationConstraint = new GridBagConstraints();
 		explanationConstraint.gridx = 1;
 		explanationConstraint.gridy = 0;
