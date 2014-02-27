@@ -3,6 +3,7 @@ package edu.kit.iks.Cryptographics.Caesar;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -246,6 +247,7 @@ public class CryptoView extends VisualizationView {
 			int yGrid, int xGrid, int widthGrid) {
 		// setup the explanations.
 		this.explanations = new JLabel(explanations);
+		this.explanations.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = flag;
 		expConst.weightx = 0.5;
@@ -286,14 +288,26 @@ public class CryptoView extends VisualizationView {
 	}
 
 	private void setupKeyDisplay(int xGrid, int key) {
+		JLabel keyLabel = new JLabel("Key");
+		GridBagConstraints labelConst = new GridBagConstraints();
+		keyLabel.setPreferredSize(new Dimension(25, 25));
+		keyLabel.setFont(new Font("Arial", 2, 20));
+		labelConst.insets = new Insets(25, 25, 25, 25);
+		labelConst.gridx = xGrid;
+		labelConst.gridy = 0;
+		labelConst.ipadx = 20;
+		labelConst.ipady = 20;
+		this.userCharacterIOContainer.add(keyLabel, labelConst);
+		
 		this.keyInput = new JTextField();
 		GridBagConstraints keyConst = new GridBagConstraints();
 		this.keyInput.setText("" + key);
 		this.keyInput.setPreferredSize(new Dimension(25, 25));
 		this.keyInput.setEditable(false);
+		this.keyInput.setFont(new Font("Arial", 2, 20));
 		keyConst.insets = new Insets(25, 25, 25, 25);
 		keyConst.gridx = xGrid;
-		keyConst.gridy = 0;
+		keyConst.gridy = 1;
 		keyConst.ipadx = 20;
 		keyConst.ipady = 20;
 		this.userCharacterIOContainer.add(this.keyInput, keyConst);
@@ -305,6 +319,7 @@ public class CryptoView extends VisualizationView {
 		this.userInput[i].setText("" + content);
 		this.userInput[i].setBorder(null);
 		this.userInput[i].setPreferredSize(new Dimension(25, 25));
+		this.userInput[i].setFont(new Font("Arial", 2, 20));
 		GridBagConstraints inputConst = new GridBagConstraints();
 		inputConst.insets = new Insets(25, 25, 25, 25);
 		inputConst.gridx = i;
@@ -323,6 +338,8 @@ public class CryptoView extends VisualizationView {
 		this.userOutput[i].setOpaque(true);
 		this.userOutput[i].setBorder(BorderFactory
 				.createLineBorder(Color.darkGray));
+		this.userOutput[i].setFont(new Font("Arial", 2, 20));
+		
 		GridBagConstraints outConst = new GridBagConstraints();
 		outConst.gridx = i;
 		outConst.gridy = 1;

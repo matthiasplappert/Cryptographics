@@ -1,6 +1,7 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -69,7 +70,6 @@ public class CryptoDemonstrationController extends
 		this.model = CryptoModel.getInstance();
 		// set the initial first step.
 		this.demonstrationStep = 1;
-
 		// generate ActionListener for the navigationButtons.
 		this.generateNavigationListener();
 
@@ -121,11 +121,11 @@ public class CryptoDemonstrationController extends
 			this.step3();
 			break;
 		default:
-           
+
 		}
 
 	}
-	
+
 	private void generateUserOutputActionListener(int i,
 			final JTextField userOutput) {
 		this.getView().getUserOutput()[i]
@@ -156,9 +156,11 @@ public class CryptoDemonstrationController extends
 											.setText(
 													CryptoDemonstrationController.this
 															.wrapHtml(CryptoDemonstrationController.i18n
-																	.tr("Great work oh mighty Caesar. May your enemies shutter over your intelligence.")));
+																	.tr("Great work oh mighty Caesar. May your enemies shutter over your intelligence.<br>"
+																			+ "Now we can move on to the real experiment and test your skills.")));
 									// remove all unnecessary elements.
-									//TODO: make removeAlphabet protected in the upper class of the view.
+									// TODO: make removeAlphabet protected in the upper class of the
+									// view.
 									CryptoDemonstrationController.this
 											.getView().removeAlphabet();
 									CryptoDemonstrationController.this
@@ -180,7 +182,7 @@ public class CryptoDemonstrationController extends
 											.setText(
 													CryptoDemonstrationController.this
 															.wrapHtml(CryptoDemonstrationController.i18n
-																	.tr("Very nice! Lets encrypt the rest of this childish challenge.")));
+																	.tr("Very nice! Lets encrypt the rest of this childish challenge. Touch proceed.")));
 								} else {
 									// User encrypted correctly the given char.
 									CryptoDemonstrationController.this
@@ -268,9 +270,6 @@ public class CryptoDemonstrationController extends
 
 	private void generateNavigationListener() {
 		this.getView().getBackButton().addActionListener(new ActionListener() {
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
-			 */
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				VisualizationContainerController containerController = (VisualizationContainerController) CryptoDemonstrationController.this
@@ -279,9 +278,6 @@ public class CryptoDemonstrationController extends
 			}
 		});
 		this.getView().getNextButton().addActionListener(new ActionListener() {
-			/*
-			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
-			 */
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				VisualizationContainerController containerController = (VisualizationContainerController) CryptoDemonstrationController.this
@@ -364,7 +360,7 @@ public class CryptoDemonstrationController extends
 						this.wrapHtml(CryptoDemonstrationController.i18n
 								.tr("Because of your inferior intelligence you look at the first letter of your name: C.<br>"
 										+ "Then you look at the 3rd letter after C and take F. Great!! Now you encrypted the <br>"
-										+ "first letter of your name.")));
+										+ "first letter of your name. Touch proceed.")));
 		this.getView().getUserInput()[0].setBorder(BorderFactory
 				.createLineBorder(Color.green));
 		this.getView().getUserOutput()[0].setBorder(BorderFactory
@@ -386,18 +382,17 @@ public class CryptoDemonstrationController extends
 				.getExplanations()
 				.setText(
 						this.wrapHtml(CryptoDemonstrationController.i18n
-								.tr("As you saw in the first step you need to add to your letter position in the alphabet 3<br>"
-										+ "and then you get the position of the needed letter. For example C has the position 2 <br>"
-										+ "if you add 2+3 you get 5, which corresponds to the letter F. Now encrypt the next letter.<br>"
-										+ "To acomplish this click on the white area and type the needed letter.")));
+								.tr("Now lets try to encrypt the next letter by yourself."
+										+ "If more help needed touch the button help.")));
 		this.getView().getUserInput()[1].setBorder(BorderFactory
 				.createLineBorder(Color.green));
 		this.getView().getUserOutput()[1].setEditable(true);
+		this.getView().getUserOutput()[1].requestFocus();
 		this.getView().validate();
 	}
 
 	/**
-	 * Describe the general Caesar cipher. (The key can vary from 0-25.)
+	 * Describe the general Caesar cipher. (The key can vary from 1-26.)
 	 */
 	private void step3() {
 		this.demonstrationStep++;
@@ -416,6 +411,7 @@ public class CryptoDemonstrationController extends
 								.tr("Oh mighty Caesar. No one will ever be able to destroy you! Because of that fact lets end <br>"
 										+ "this childish games and finish the rest of the fields fast. Then we can send the courier again<br>"
 										+ "but this time your enemies will have no idea who wrote it and you will conquer the world.")));
+		this.getView().getUserOutput()[2].requestFocus();
 		this.getView().validate();
 
 	}
@@ -440,7 +436,8 @@ public class CryptoDemonstrationController extends
 	@Override
 	public String getHelp() {
 		String help = CryptoDemonstrationController.i18n
-				.tr("Not sure if much help needed here.");
+				.tr("Remember: Position of C in the alphabet is 3 and the key is also 3. C + key = C + 3 = 3 + 3 = 6.<br>"
+						+ "And 6 is the position of letter F in the alphabet. Et voila you encrypted C with the key of 3.");
 
 		return help;
 	}
@@ -476,11 +473,6 @@ public class CryptoDemonstrationController extends
 		this.model = model;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
-	 */
 	@Override
 	public void unloadView() {
 		this.view = null;

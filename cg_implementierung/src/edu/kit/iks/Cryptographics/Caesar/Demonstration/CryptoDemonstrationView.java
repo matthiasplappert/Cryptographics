@@ -1,6 +1,7 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 
 import javax.swing.JButton;
@@ -60,9 +61,9 @@ public class CryptoDemonstrationView extends CryptoView {
 
 		// Setup the io textfields.
 		this.setupInOutElements(chars, 3);
-		
-		//Make the Textfields uneditable for the first steps.
-		for (JTextField output: this.userOutput) {
+
+		// Make the Textfields uneditable for the first steps.
+		for (JTextField output : this.userOutput) {
 			output.setEditable(false);
 		}
 
@@ -75,8 +76,9 @@ public class CryptoDemonstrationView extends CryptoView {
 		// setup the explanation label.
 		String explanations = "<html><body>"
 				+ CryptoDemonstrationView.i18n
-						.tr("Imagine now you are the mighty caesar!! Of course your first idea is to substitute each <br>"
-								+ "letter from your name with some other from the alphabet. But which one?");
+						.tr("Imagine now you are the mighty caesar! Of course your first idea is to substitute each <br>"
+								+ "letter from your name with some other from the alphabet. But which one?<br>"
+								+ "Click proceed to move on.");
 		this.setupExplanations(explanations,
 				GridBagConstraints.LAST_LINE_START, 0, 0, 4);
 
