@@ -217,7 +217,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 	 * @return new Instance of JButton
 	 */
 	private JButton kf(String label, String name) {
-		JButton button;
+		JButton button = null;
 		
 		if (name.equals("bs")) {
 			ImageIcon backspace = this.loadIcon(this.resources
@@ -226,14 +226,14 @@ public class KeyboardView extends JPanel implements ActionListener {
 			
 			button = new JButton(backspace);
 			button.setName("button-backspace");
-		} else if (name.equals("e")) {
+		} else if (name.equals("e") && this.inputMode == KeyboardView.STRING_MODE) {
 			ImageIcon enter = this.loadIcon(this.resources
 					.getChild("Enter")
 					.getAttributeValue("path"));
 			
 			button = new JButton(enter);
 			button.setName("button-enter");
-		} else {
+		} else if (name.equals("key")) {
 			button = new JButton(label);
 			button.setName("button-key");
 		}

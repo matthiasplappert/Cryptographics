@@ -39,7 +39,7 @@ public class WelcomeView extends JPanel {
 	private String description = i18n.tr("This is Cryptographics, a small tool "
 			+ "with the aim to teach the functionality of historic and common "
 			+ "cryptographic procedures. Below you can see a timeline with some "
-			+ "buttons each representing a procedures. Just click on one of the buttons "
+			+ "buttons each representing a procedure. Just click on one of the buttons "
 			+ "for a procedure you would like to know more about and a popup with further details "
 			+ "will explain what awaits you. If you want to know how it works, "
 			+ "press the 'Start' button.");
