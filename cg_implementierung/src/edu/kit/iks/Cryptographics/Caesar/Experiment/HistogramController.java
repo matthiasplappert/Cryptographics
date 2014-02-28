@@ -41,6 +41,8 @@ public class HistogramController extends AbstractVisualizationController {
 	 * Integer value that shows what step the visualization has proceed.
 	 */
 	private int step;
+	
+	private boolean bruteForceKeyFound = false;
 
 	/**
 	 * Constructor
@@ -124,7 +126,7 @@ public class HistogramController extends AbstractVisualizationController {
 									.wrapHtml(HistogramController.i18n
 											.tr("You found the right key! See how easy it is with histograms?"
 													+ " If you want to try one more press proceed. Else you can go next to further information."
-													+ " There you can learn more about caesar's cipher."));
+													+ " There you can learn more about caesar's cipher."), 600);
 							HistogramController.this.getView()
 									.getExplanations().setText(explanations);
 							HistogramController.this.getView().getProceed()
@@ -143,7 +145,7 @@ public class HistogramController extends AbstractVisualizationController {
 											.getModel().genRandomBlamings()
 											+ " "
 											+ HistogramController.i18n
-													.tr("The key was wrong."));
+													.tr("The key was wrong."), 600);
 							HistogramController.this.getView()
 									.getExplanations().setText(explanations);
 							HistogramController.this
@@ -160,7 +162,7 @@ public class HistogramController extends AbstractVisualizationController {
 								+ " "
 								+ HistogramController.i18n
 										.tr("This key is invalid. Please type a number between 1 and 26. If you dont understand why,"
-												+ " it is recommended to go to early stages."));
+												+ " it is recommended to go to early stages."),600);
 						HistogramController.this.getView().getExplanations()
 								.setText(explanations);
 						HistogramController.this
@@ -176,7 +178,7 @@ public class HistogramController extends AbstractVisualizationController {
 									.genRandomBlamings()
 									+ " "
 									+ HistogramController.i18n
-											.tr("The key field was empty!"));
+											.tr("The key field was empty!"), 600);
 					HistogramController.this.getView().getExplanations()
 							.setText(explanations);
 					HistogramController.this
@@ -313,11 +315,11 @@ public class HistogramController extends AbstractVisualizationController {
 							// if the button is not visible, then it means that the key wasnt
 							// found
 							// yet.
-							// if (!HistogramController.this.getView()
-							// .getProceed().isVisible()) {
+							 if (!bruteForceKeyFound) {
 							// compare the keys.
 							if (nextBFKey == HistogramController.this.getView()
 									.getSecretKey()) {
+								HistogramController.this.bruteForceKeyFound = true;
 								HistogramController.this
 										.getView()
 										.getKeyControl()
@@ -336,11 +338,11 @@ public class HistogramController extends AbstractVisualizationController {
 																+ HistogramController.i18n
 																		.tr("You found the secret key and are now able to read the secret message. The Key was")
 																+ " "
-																+ nextBFKey));
+																+ nextBFKey, 600));
 								// HistogramController.this.setStep(1);
 								// HistogramController.this.getView()
 								// .getProceed().setVisible(true);
-								HistogramController.this.getView().revalidate();
+								//HistogramController.this.getView().revalidate();
 
 							} else {
 								HistogramController.this
@@ -358,11 +360,11 @@ public class HistogramController extends AbstractVisualizationController {
 														Color.orange, 5));
 							}
 						} else {
-							// Also nothing to do ;)
+							// Key is not the right one. Try next. ;)
 						}
-						// } else {
-						// // Nothing to do here ;)
-						// }
+						 } else {
+						 // Key already found. Northing do to. ;)
+						 }
 					}
 				});
 	}
@@ -408,19 +410,20 @@ public class HistogramController extends AbstractVisualizationController {
 					HistogramController.this.getView().remove(
 							HistogramController.this.getView().getKeyControl());
 					HistogramController.this.getView().setKeyControl(null);
-
-					String explanation = HistogramController.this
-							.wrapHtml(HistogramController.i18n
+                    
+					String explanation = HistogramController.i18n
 									.tr("The diagram you see here shows the frequency of each letter"
 											+ " in the text you are reading at the moment. It is called a"
 											+ " Histogram. If you would count all E's in this explanation"
 											+ " you would get the number you see in the diagram on the column"
 											+ " above the letter E. Now the program will encrypt this explanation"
 											+ " with an unknown key in a most awesome way and we will see the"
-											+ " histogram of the cipher. Click Proceed and see the magic!"));
+											+ " histogram of the cipher. Click Proceed and see the magic!");
+					
+					HistogramController.this.getView().setHistogramOriginalText(HistogramController.this.wrapHtml(explanation, 400));
 
 					HistogramController.this.getView()
-							.setupExplanationAndForwarding(explanation);
+							.setupExplanationAndForwarding(HistogramController.this.wrapHtml(explanation, 700));
 
 					// Build the new experiment.
 					HistogramController.this.setStep(2);
@@ -436,10 +439,10 @@ public class HistogramController extends AbstractVisualizationController {
 					HistogramController.this.getView().getProceed()
 							.setVisible(false);
 					HistogramController.this.setStep(3);
-					String htmlText = HistogramController.this.getView()
-							.getExplanations().getText();
+					String textToEncrypt = HistogramController.this.getView()
+							.getHistogramOriginalText();
 					String htmlCipher = HistogramController.this.getModel()
-							.enc(3, htmlText);
+							.enc(3, textToEncrypt);
 
 					HistogramController.this
 							.getView()
@@ -448,7 +451,7 @@ public class HistogramController extends AbstractVisualizationController {
 									HistogramController.this.wrapHtml(HistogramController.i18n
 											.tr("When you look at the histogram of the cipher you can see that 'H' is now the most frequent one."
 													+ " It is obvious that the letter 'E' was shifted to 'H'. When we substract 'H' - 'E' we get the key."
-													+ " Put the key 3 in the box below and let the programm decrypt the cipher with it.")));
+													+ " Put the key 3 in the box below and let the programm decrypt the cipher with it."), 700));
 
 					HistogramController.this.getView().setupCipherHistogram(
 							htmlCipher);
@@ -506,8 +509,8 @@ public class HistogramController extends AbstractVisualizationController {
 		});
 	}
 
-	private String wrapHtml(String text) {
-		return "<html><body><div width=600px>" + text + "</div></body></html>";
+	private String wrapHtml(String text, int width) {
+		return "<html><body><div width="+ width + "px>" + text + "</div></body></html>";
 	}
 
 	// ---------------------------------------------------------------------------------//

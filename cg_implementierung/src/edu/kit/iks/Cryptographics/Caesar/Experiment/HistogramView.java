@@ -112,6 +112,7 @@ public class HistogramView extends VisualizationView {
 	 */
 	private CharacterFrequencyDiagramView plainTextHistogram;
 	private CharacterFrequencyDiagramView cipherHistogram;
+	private String histogramOriginalText;
 	private String histogramCipher;
 
 	/**
@@ -366,15 +367,15 @@ public class HistogramView extends VisualizationView {
 	 */
 	public void setupPlainHistogram(String text) {
 
-		JLabel cipherHistogramHint = new JLabel(
+		JLabel plainHistogramHint = new JLabel(
 				this.wrapHtml(HistogramView.i18n
-						.tr("&darr;Histogram of the cipher.&darr;")));
+						.tr("&darr;Histogram of the original text.&darr;")));
 		GridBagConstraints hintConst = new GridBagConstraints();
 		hintConst.gridx = 0;
 		hintConst.gridy = 2;
 		hintConst.insets = new Insets(0, 50, 5, 50);
 		hintConst.fill = GridBagConstraints.HORIZONTAL;
-		this.histogramContainer.add(cipherHistogramHint, hintConst);
+		this.histogramContainer.add(plainHistogramHint, hintConst);
 
 		this.plainTextHistogram = new CharacterFrequencyDiagramView(text, 600,
 				100);
@@ -928,5 +929,19 @@ public class HistogramView extends VisualizationView {
 
 	private String wrapHtml(String text) {
 		return "<html><body>" + text + "</body></html>";
+	}
+
+	/**
+	 * @return the histogramOriginalText
+	 */
+	public String getHistogramOriginalText() {
+		return histogramOriginalText;
+	}
+
+	/**
+	 * @param histogramOriginalText the histogramOriginalText to set
+	 */
+	public void setHistogramOriginalText(String histogramOriginalText) {
+		this.histogramOriginalText = histogramOriginalText;
 	}
 }
