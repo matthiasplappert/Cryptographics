@@ -68,16 +68,16 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 		if (this.decryptionPhase) {
 			return CryptoExperimentController.i18n
 					.tr("Remember: If you want to decrypt for example D with the key of 3."
-							+ "You need to substract 3 from the position of C in the alphabet."
-							+ "D - key = 4 - 3 = 1 = A. And if you get a negative Value add 26."
-							+ "For example: A - 8 = 1 - 8 = -7. Now add 26 + (-7) = 19 = S.");
+							+ " You need to substract 3 from the position of C in the alphabet."
+							+ " D - key = 4 - 3 = 1 = A. And if you get a negative Value add 26."
+							+ " For example: A - 8 = 1 - 8 = -7. Now add 26 + (-7) = 19 = S.");
 		}
 		return CryptoExperimentController.i18n
 				.tr("Remember: If you want to encrypt for example A with the key of 3."
-						+ "You need to add 3 to the position of A in the alphabet."
-						+ "A + key = 1 + 3 = 4 = D. And if you get a value that is bigger then 26"
+						+ " You need to add 3 to the position of A in the alphabet."
+						+ " A + key = 1 + 3 = 4 = D. And if you get a value that is bigger then 26"
 						+ " then substract 26 from it. For example: S + 8 = 20 + 7 = 27."
-						+ "Now substract 26: 27 - 26 = 1 = A.");
+						+ " Now substract 26: 27 - 26 = 1 = A.");
 
 	}
 
@@ -559,8 +559,8 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 													+ CryptoExperimentController.this
 															.wrapHtml(CryptoExperimentController.i18n
 																	.tr("This key is not valid. Please put a number between 1 and 26."
-																			+ "For demonstration purposes the keys between -1 and -26 are not necessary"
-																			+ "therefore not possible, but could be used in general as keys too.")));
+																			+ " For demonstration purposes the keys between -1 and -26 are not necessary"
+																			+ " therefore not possible, but could be used in general as keys too.")));
 							CryptoExperimentController.this
 									.getView()
 									.getKeyInput()
