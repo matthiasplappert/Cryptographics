@@ -219,7 +219,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 	private JButton kf(String label, String name) {
 		JButton button = null;
 		
-		if (name.equals("bs")) {
+		if (name.equals("bs") && this.inputMode == KeyboardView.STRING_MODE) {
 			ImageIcon backspace = this.loadIcon(this.resources
 					.getChild("Backspace")
 					.getAttributeValue("path"));
