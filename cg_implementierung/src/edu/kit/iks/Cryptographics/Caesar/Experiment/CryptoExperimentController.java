@@ -67,14 +67,17 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 	public String getHelp() {
 		if (this.decryptionPhase) {
 			return CryptoExperimentController.i18n
-					.tr("Remember: If you want to decrypt for example D with the key of 3.<br>"
-							+ "You need to substract 3 from the position of C in the alphabet.<br>"
-							+ "D - key = 4 - 3 = 1 = A.");
+					.tr("Remember: If you want to decrypt for example D with the key of 3."
+							+ "You need to substract 3 from the position of C in the alphabet."
+							+ "D - key = 4 - 3 = 1 = A. And if you get a negative Value add 26."
+							+ "For example: A - 8 = 1 - 8 = -7. Now add 26 + (-7) = 19 = S.");
 		}
 		return CryptoExperimentController.i18n
-				.tr("Remember: If you want to encrypt for example A with the key of 3.<br>"
-						+ "You need to add 3 to the position of A in the alphabet.<br>"
-						+ "A + key = 1 + 3 = 4 = D.");
+				.tr("Remember: If you want to encrypt for example A with the key of 3."
+						+ "You need to add 3 to the position of A in the alphabet."
+						+ "A + key = 1 + 3 = 4 = D. And if you get a value that is bigger then 26"
+						+ " then substract 26 from it. For example: S + 8 = 20 + 7 = 27."
+						+ "Now substract 26: 27 - 26 = 1 = A.");
 
 	}
 
@@ -332,10 +335,11 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 							.getView()
 							.getExplanations()
 							.setText(
-									CryptoExperimentController.this
-											.wrapHtml(CryptoExperimentController.i18n
-													.tr("You have learned much. But the main question is how to decrypt?<br>"
-															+ "It's simple: subtract the key from a given letter.")));
+									CryptoExperimentController.this.wrapHtml(CryptoExperimentController.i18n
+											.tr("You have learned much. But the main question is how to decrypt?")
+											+ "<br>"
+											+ CryptoExperimentController.i18n
+													.tr("It's simple: subtract the key from a given letter. And if you get a negative value add 26 to it.")));
 					CryptoExperimentController.this
 							.getView()
 							.getNextButton()
@@ -545,16 +549,18 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 										.prepareExperimentPhase(key, inputChars);
 							}
 						} else {
+							// TODO: buggy
 							CryptoExperimentController.this
 									.getView()
 									.getExplanations()
 									.setText(
 											explanationContent
 													+ "<br>"
-													+ CryptoExperimentController.i18n
-															.tr("This key is not valid. Please put a number between 1 and 26.<br>"
-																	+ "For demonstration purposes the keys between -1 and -25 are not necessary<br>"
-																	+ "therefore not possible, but could be used in general as keys too."));
+													+ CryptoExperimentController.this
+															.wrapHtml(CryptoExperimentController.i18n
+																	.tr("This key is not valid. Please put a number between 1 and 26."
+																			+ "For demonstration purposes the keys between -1 and -26 are not necessary"
+																			+ "therefore not possible, but could be used in general as keys too.")));
 							CryptoExperimentController.this
 									.getView()
 									.getKeyInput()
@@ -707,6 +713,6 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 	}
 
 	private String wrapHtml(String text) {
-		return "<html><body>" + text + "</body></html>";
+		return "<html><body><div width=900px>" + text + "</div></body></html>";
 	}
 }

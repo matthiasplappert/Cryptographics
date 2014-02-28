@@ -68,8 +68,10 @@ public class CryptoDemonstrationController extends
 	public void loadView() {
 		this.view = new CryptoDemonstrationView();
 		this.model = CryptoModel.getInstance();
+		
 		// set the initial first step.
 		this.demonstrationStep = 1;
+		
 		// generate ActionListener for the navigationButtons.
 		this.generateNavigationListener();
 
@@ -80,6 +82,7 @@ public class CryptoDemonstrationController extends
 			// Needed for delegating to the inner type ActionListener, when the actionEvent from the
 			// Button "ENTER" on the Keyboard is fired.
 			final JTextField userOutput = this.getView().getUserOutput()[i];
+			
 			// FocusListener for the textfields.
 			this.generateUserOutputFocusListener(i, userOutput);
 			// actionListener for the textfields.
@@ -156,7 +159,7 @@ public class CryptoDemonstrationController extends
 											.setText(
 													CryptoDemonstrationController.this
 															.wrapHtml(CryptoDemonstrationController.i18n
-																	.tr("Great work oh mighty Caesar. May your enemies shutter over your intelligence.<br>"
+																	.tr("Great work oh mighty Caesar. May your enemies shutter over your intelligence."
 																			+ "Now we can move on to the real experiment and test your skills.")));
 									// remove all unnecessary elements.
 									// TODO: make removeAlphabet protected in the upper class of the
@@ -358,9 +361,9 @@ public class CryptoDemonstrationController extends
 				.getExplanations()
 				.setText(
 						this.wrapHtml(CryptoDemonstrationController.i18n
-								.tr("Because of your inferior intelligence you look at the first letter of your name: C.<br>"
-										+ "Then you look at the 3rd letter after C and take F. Great!! Now you encrypted the <br>"
-										+ "first letter of your name. Touch proceed.")));
+								.tr("Because of your inferior intelligence you look at the first letter of your name: C."
+										+ " Then you look at the 3rd letter after C and take F. Great! Now you encrypted the"
+										+ " first letter of your name. Touch proceed.")));
 		this.getView().getUserInput()[0].setBorder(BorderFactory
 				.createLineBorder(Color.green));
 		this.getView().getUserOutput()[0].setBorder(BorderFactory
@@ -383,7 +386,7 @@ public class CryptoDemonstrationController extends
 				.setText(
 						this.wrapHtml(CryptoDemonstrationController.i18n
 								.tr("Now lets try to encrypt the next letter by yourself."
-										+ "If more help needed touch the button help.")));
+										+ " If more help needed touch the button help.")));
 		this.getView().getUserInput()[1].setBorder(BorderFactory
 				.createLineBorder(Color.green));
 		this.getView().getUserOutput()[1].setEditable(true);
@@ -408,9 +411,9 @@ public class CryptoDemonstrationController extends
 				.getExplanations()
 				.setText(
 						this.wrapHtml(CryptoDemonstrationController.i18n
-								.tr("Oh mighty Caesar. No one will ever be able to destroy you! Because of that fact lets end <br>"
-										+ "this childish games and finish the rest of the fields fast. Then we can send the courier again<br>"
-										+ "but this time your enemies will have no idea who wrote it and you will conquer the world.")));
+								.tr("Oh mighty Caesar. No one will ever be able to destroy you! Because of that fact lets end"
+										+ " this childish games and finish the rest of the fields fast. Then we can send the courier again"
+										+ " but this time your enemies will have no idea who wrote it and you will conquer the world.")));
 		this.getView().getUserOutput()[2].requestFocus();
 		this.getView().validate();
 
@@ -436,8 +439,8 @@ public class CryptoDemonstrationController extends
 	@Override
 	public String getHelp() {
 		String help = CryptoDemonstrationController.i18n
-				.tr("Remember: Position of C in the alphabet is 3 and the key is also 3. C + key = C + 3 = 3 + 3 = 6.<br>"
-						+ "And 6 is the position of letter F in the alphabet. Et voila you encrypted C with the key of 3.");
+				.tr("Remember: Position of C in the alphabet is 3 and the key is also 3. C + key = C + 3 = 3 + 3 = 6."
+						+ " And 6 is the position of letter F in the alphabet. Et voila you encrypted C with the key of 3.");
 
 		return help;
 	}
@@ -479,6 +482,6 @@ public class CryptoDemonstrationController extends
 	}
 
 	private String wrapHtml(String text) {
-		return "<html><body>" + text + "</body></html>";
+		return "<html><body><div width=700px>" + text + "</div></body></html>";
 	}
 }

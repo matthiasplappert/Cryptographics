@@ -247,14 +247,14 @@ public class CryptoView extends VisualizationView {
 			int yGrid, int xGrid, int widthGrid) {
 		// setup the explanations.
 		this.explanations = new JLabel(explanations);
-		this.explanations.setFont(new Font("Arial", 2, 20));
+		this.explanations.setFont(new Font("Arial", 2, 25));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = flag;
 		expConst.weightx = 0.5;
 		expConst.weighty = 0.1;
 		expConst.gridx = xGrid;
 		expConst.gridy = yGrid;
-		expConst.insets = new Insets(10, 0, 10, 0);
+		expConst.insets = new Insets(30, 0, 10, 0);
 		expConst.gridwidth = widthGrid;
 		expConst.fill = GridBagConstraints.BOTH;
 		this.add(this.explanations, expConst);

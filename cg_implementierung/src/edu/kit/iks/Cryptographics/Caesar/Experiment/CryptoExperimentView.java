@@ -68,15 +68,21 @@ public class CryptoExperimentView extends CryptoView {
 		this.userCharacterIOContainer.validate();
 
 		// setup the explanations.
-		String explanation = "<html><body> "
-				+ CryptoExperimentView.i18n
-						.tr("In the demonstration you encrypted with the key 3. On further thoughts it seems logical, that the key can vary<br>"
-								+ "up to each position in the alphabet. From 1 to 26.<br>"
-								+ "Now you have 2 options:<br>"
-								+ "<br>"
-								+ "1. You put you own key and plaintext into the textfield.<br>"
-								+ "<br>"
-								+ "2. Or you just click generate and this awesome programm generates you everything you need with real complex calculations.");
+		String explanation = this
+				.wrapHtml(CryptoExperimentView.i18n
+						.tr("In the demonstration you encrypted with the key 3. On further thoughts it seems logical, that the key can vary"
+								+ "up to each position in the alphabet. From 1 to 26.")
+						+ "<br>"
+						+ CryptoExperimentView.i18n
+								.tr("Now you have 2 options:")
+						+ "<br>"
+						+ "<br>"
+						+ CryptoExperimentView.i18n
+								.tr("1. You put you own key and plaintext into the textfield.")
+						+ "<br>"
+						+ "<br>"
+						+ CryptoExperimentView.i18n
+								.tr("2. Or you just click generate and this awesome programm generates you everything you need with real complex calculations."));
 		this.setupExplanations(explanation, GridBagConstraints.PAGE_START, 1,
 				0, 6);
 
@@ -102,9 +108,9 @@ public class CryptoExperimentView extends CryptoView {
 		this.setupAlphabet();
 
 		// setup the explanations.
-		String explanations = "<html><body>"
-				+ CryptoExperimentView.i18n
-						.tr("Let's test what you have learned. If help needed touch the help button.");
+		String explanations = this
+				.wrapHtml(CryptoExperimentView.i18n
+						.tr("Let's test what you have learned. If help needed touch the help button."));
 		this.setupExplanations(explanations,
 				GridBagConstraints.LAST_LINE_START, 0, 0, 4);
 
@@ -227,8 +233,12 @@ public class CryptoExperimentView extends CryptoView {
 		genConst.gridx = 0;
 		genConst.gridy = 4;
 		genConst.gridwidth = 3;
-//		genConst.fill = GridBagConstraints.BOTH;
+		// genConst.fill = GridBagConstraints.BOTH;
 		this.userCharacterIOContainer.add(this.generator, genConst);
+	}
+
+	private String wrapHtml(String text) {
+		return "<html><body><div width=900px>" + text + "</div></body></html>";
 	}
 
 }
