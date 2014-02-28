@@ -217,7 +217,7 @@ public class IntroductionController extends AbstractVisualizationController {
 				finishConstraint);
 		this.getView().remove(this.getView().getProceed());
 		this.getView().setProceed(null);
-
+        this.getView().repaint();
 		this.getView().validate();
 
 	}

@@ -56,7 +56,7 @@ public class CryptoModel {
 
 			if (Character.isLetter(c)) {
 
-				cipher += String.valueOf(this.shift(key, c));
+				cipher += String.valueOf(this.shiftChar(key, c));
 
 			} else {
 				if (c != '<') {
@@ -176,13 +176,13 @@ public class CryptoModel {
 	public String genRandomText() {
 		String[] textPool = { this
 				.wrapHtml(CryptoModel.i18n
-						.tr("The diagram you see here shows the frequency of each letter<br>"
-								+ "in the text you are reading at the moment. It is called a<br>"
-								+ "Histogram. If you would count all E's in this explanation<br>"
-								+ "you would get the number you see in the diagram on the column<br>"
-								+ "above the letter E. Now the program will encrypt this explanation<br>"
-								+ "with an unknown key in a most awesome way and we will see the <br>"
-								+ "histogram of the cipher. Click Proceed and see the magic!")) };
+						.tr("The diagram you see here shows the frequency of each letter"
+								+ " in the text you are reading at the moment. It is called a"
+								+ " Histogram. If you would count all E's in this explanation"
+								+ " you would get the number you see in the diagram on the column"
+								+ " above the letter E. Now the program will encrypt this explanation"
+								+ " with an unknown key in a most awesome way and we will see the "
+								+ " histogram of the cipher. Click Proceed and see the magic!")) };
 		return textPool[0];
 	}
 
@@ -203,10 +203,10 @@ public class CryptoModel {
 	}
 
 	private String wrapHtml(String text) {
-		return "<html><body>" + text + "</body></html>";
+		return "<html><body><div width=600px>" + text + "</div></body></html>";
 	}
 
-	private char shift(int key, char charToShift) {
+	private char shiftChar(int key, char charToShift) {
 		int offset = charToShift - this.ASCII_UC_A;
 		if (Character.isLowerCase(charToShift)) {
 			offset = charToShift - this.ASCII_LC_A;

@@ -1,6 +1,7 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 
 import javax.swing.JButton;
@@ -60,9 +61,9 @@ public class CryptoDemonstrationView extends CryptoView {
 
 		// Setup the io textfields.
 		this.setupInOutElements(chars, 3);
-		
-		//Make the Textfields uneditable for the first steps.
-		for (JTextField output: this.userOutput) {
+
+		// Make the Textfields uneditable for the first steps.
+		for (JTextField output : this.userOutput) {
 			output.setEditable(false);
 		}
 
@@ -73,10 +74,10 @@ public class CryptoDemonstrationView extends CryptoView {
 		this.setupAlphabet();
 
 		// setup the explanation label.
-		String explanations = "<html><body>"
-				+ CryptoDemonstrationView.i18n
-						.tr("Imagine now you are the mighty caesar!! Of course your first idea is to substitute each <br>"
-								+ "letter from your name with some other from the alphabet. But which one?");
+		String explanations = this.wrapHtml(CryptoDemonstrationView.i18n
+						.tr("Imagine now you are the mighty caesar! Of course your first idea is to substitute each"
+								+ " letter from your name with some other from the alphabet. But which one?"
+								+ " Click proceed to move on."));
 		this.setupExplanations(explanations,
 				GridBagConstraints.LAST_LINE_START, 0, 0, 4);
 
@@ -94,6 +95,13 @@ public class CryptoDemonstrationView extends CryptoView {
 		proceedConst.gridwidth = 3;
 		this.add(this.proceed, proceedConst);
 	}
+	
+	private String wrapHtml(String text) {
+		return "<html><body><div width=600px>" + text + "</div></body></html>";
+	}
+	
+	//-----------------------------------------------------//
+	//-------------------Getter/Setter---------------------//
 
 	/**
 	 * @return the cipherDemoResource
@@ -126,5 +134,7 @@ public class CryptoDemonstrationView extends CryptoView {
 	public void setProceed(JButton proceed) {
 		this.proceed = proceed;
 	}
+	
+	
 
 }

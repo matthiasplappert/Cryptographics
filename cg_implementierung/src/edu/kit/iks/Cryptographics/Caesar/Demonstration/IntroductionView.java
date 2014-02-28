@@ -1,6 +1,7 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -136,7 +137,7 @@ public class IntroductionView extends VisualizationView {
 
 		));
 
-		// this.explanation.setFont(new Font("Arial", 2, 20));
+		this.explanation.setFont(new Font("Arial", 2, 20));
 		this.add(this.explanation, explanationConstraint);
 
 		// layout the component of the Panel.
