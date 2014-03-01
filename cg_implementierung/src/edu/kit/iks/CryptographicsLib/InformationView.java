@@ -311,11 +311,11 @@ public class InformationView extends JPanel implements MouseListener {
 		JScrollBar vertical = this.webViewContainer.getVerticalScrollBar();
 		switch (direction) {
 			case UP:
-				vertical.setValue(vertical.getValue() - vertical.getBlockIncrement());
+				vertical.setValue(Math.max(vertical.getMinimum(), vertical.getValue() - vertical.getBlockIncrement()));
 				break;
 				
 			case DOWN:
-				vertical.setValue(vertical.getValue() + vertical.getBlockIncrement());
+				vertical.setValue(Math.min(vertical.getMaximum(), vertical.getValue() + vertical.getBlockIncrement()));
 				break;
 				
 			default:
