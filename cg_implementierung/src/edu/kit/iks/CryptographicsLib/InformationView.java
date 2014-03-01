@@ -166,12 +166,12 @@ public class InformationView extends JPanel implements MouseListener {
 	 */
 	private void loadScrollButtons() {
 		// Scroll up button.
-		this.scrollUpButton = new JButton("Up");
+		this.scrollUpButton = new JButton(" ↑ ");
 		this.scrollUpButton.setName("up");
 		this.scrollUpButton.addMouseListener(this);
 		
 		// Scroll down button.
-		this.scrollDownButton = new JButton("Down");
+		this.scrollDownButton = new JButton(" ↓ ");
 		this.scrollDownButton.setName("down");
 		this.scrollDownButton.addMouseListener(this);
 	}
