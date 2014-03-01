@@ -47,7 +47,8 @@ public class InformationController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		Image qrCode = this.getVisualizationInfo().getQrCode();
-		this.view = new InformationView(this.additionalInformationHtml, qrCode);
+		String qrCodeContent = this.getVisualizationInfo().getQRCodeContent();
+		this.view = new InformationView(this.additionalInformationHtml, qrCode, qrCodeContent);
 	}
 	
 	/*
