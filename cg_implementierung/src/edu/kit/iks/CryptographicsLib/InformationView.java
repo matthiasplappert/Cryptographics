@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -52,9 +53,19 @@ public class InformationView extends JPanel implements MouseListener {
 	private String html;
 	
 	/**
+	 * The content of the QR code.
+	 */
+	private String qrCodeContent;
+	
+	/**
 	 * The QR code view.
 	 */
 	private ImageView qrCodeView;
+	
+	/**
+	 * Displays the contents of the QR code. 
+	 */
+	private JLabel qrCodeLabel;
 	
 	/**
 	 * The scrollable container of the web view.
@@ -94,16 +105,18 @@ public class InformationView extends JPanel implements MouseListener {
 	 * 
 	 * @param html The HTML used to display the additional informations
 	 * @param qrCode QR code for further information
+	 * @param url The content of the QR code
 	 */
-	public InformationView(String html, Image qrCode) {
+	public InformationView(String html, Image qrCode, String qrCodeContent) {
 		this.qrCode = qrCode;
 		this.html = html;
+		this.qrCodeContent = qrCodeContent;
 		
 		// Initialize view.
 		this.setLayout(new BorderLayout());
 		this.loadWebViewComponents();
 		this.loadScrollButtons();
-		this.loadQRCodeView();
+		this.loadQRCodeViewComponents();
 		this.validate();
 	}
 	
@@ -164,15 +177,22 @@ public class InformationView extends JPanel implements MouseListener {
 	}
 	
 	/**
-	 * Loads the QR code view.
+	 * Loads the QR code view and related components.
 	 */
-	private void loadQRCodeView() {
+	private void loadQRCodeViewComponents() {
 		// We use a container to horizontally center the QR code.
 		JPanel container = new JPanel(new GridBagLayout());
-		GridBagConstraints constraints = new GridBagConstraints();
-		constraints.anchor = GridBagConstraints.ABOVE_BASELINE;
+		
+		GridBagConstraints imageConstraints = new GridBagConstraints();
+		imageConstraints.anchor = GridBagConstraints.ABOVE_BASELINE;
 		this.qrCodeView = new ImageView(this.qrCode);
-		container.add(this.qrCodeView, constraints);
+		container.add(this.qrCodeView, imageConstraints);
+		
+		GridBagConstraints labelConstraints = new GridBagConstraints();
+		labelConstraints.anchor = GridBagConstraints.ABOVE_BASELINE;
+		this.qrCodeLabel = new JLabel(this.qrCodeContent);
+		container.add(this.qrCodeLabel, labelConstraints);
+		
 		this.add(container, BorderLayout.SOUTH);
 	}
 	
@@ -192,6 +212,15 @@ public class InformationView extends JPanel implements MouseListener {
 	 */
 	public Image getQrCode() {
 		return this.qrCode;
+	}
+	
+	/**
+	 * The QR code content.
+	 * 
+	 * @return QR code content
+	 */
+	public String getQrCodeContent() {
+		return this.qrCodeContent;
 	}
 
 	@Override
