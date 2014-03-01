@@ -34,7 +34,7 @@ public class InformationView extends JPanel implements MouseListener {
 	/**
 	 * The delay between scroll events when a scroll button is pressed.
 	 */
-	static private int scrollDelay = 50; 
+	private static final int scrollDelay = 50; 
 	
 	/**
 	 * Serial Version UID
@@ -279,7 +279,6 @@ public class InformationView extends JPanel implements MouseListener {
 	 * @param direction the scroll direction
 	 */
 	private void scroll(ScrollDirection direction) {
-		System.out.println("scrolling to " + direction);
 		JScrollBar vertical = this.webViewContainer.getVerticalScrollBar();
 		switch (direction) {
 			case UP:
