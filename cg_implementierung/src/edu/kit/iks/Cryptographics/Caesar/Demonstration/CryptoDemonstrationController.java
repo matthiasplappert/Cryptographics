@@ -86,7 +86,7 @@ public class CryptoDemonstrationController extends
 			// get root node from xml
 			this.cryptoResources = document.getRootElement();
 		} catch (JDOMException | IOException e) {
-			Logger.e(e);
+			Logger.error(e);
 		}
 	}
 
