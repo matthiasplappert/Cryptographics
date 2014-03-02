@@ -26,17 +26,17 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 
 	@Override
 	public float getTimelineOffset() {
-		return 0.99f;
+		return 0.73f;
 	}
 
 	@Override
 	public VisualizationDifficulty getDifficulty() {
-		return VisualizationDifficulty.EASY;
+		return VisualizationDifficulty.HARD;
 	}
 
 	@Override
 	public int getYear() {
-		return 2014;
+		return 1300;
 	}
 
 	@Override

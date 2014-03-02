@@ -96,7 +96,7 @@ public class PopoverView extends JPanel {
 		
 		this.setOpaque(false);
 		this.setMaximumSize(new Dimension(500, 500));
-		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.9f));
+		this.setBackground(new Color(250, 250, 250, 230));
 		this.setBorderColor(Color.LIGHT_GRAY);
 		
 		// Create close button.
@@ -188,12 +188,17 @@ public class PopoverView extends JPanel {
 		PopoverView.containerView.repaint();
 	}
 	
+	/**
+	 * Paints the popover.
+	 */
+	@Override
 	protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         
         final Area shape = this.createShape();
         Graphics2D g2d = (Graphics2D)g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_OFF);
         
         // Fill.
         g2d.setPaint(this.getBackground());
@@ -205,21 +210,32 @@ public class PopoverView extends JPanel {
         g2d.draw(shape);
     }
 
+	/**
+	 * Creates the popover shape
+	 * @return The popover shape
+	 */
 	private Area createShape() {
+		final Insets insets = new Insets(1, 1, 1, 1);
+		Rectangle bounds = this.getBounds();
+		bounds.x += insets.left;
+		bounds.y += insets.top;
+		bounds.width -= insets.left + insets.right;
+		bounds.height -= insets.top + insets.bottom;
+		
 		// Create the basic rounded shape.
 		Area shape = null;
 		switch (this.arrowLocation) {
 			case TOP:
-				shape = new Area(new RoundRectangle2D.Double(0.0, ARROW_HEIGHT, this.getSize().getWidth(), this.getSize().getHeight() - ARROW_HEIGHT, CORNER_RADIUS, CORNER_RADIUS));
+				shape = new Area(new RoundRectangle2D.Double(insets.left, insets.top + ARROW_HEIGHT, bounds.getWidth(), bounds.getHeight() - ARROW_HEIGHT, CORNER_RADIUS, CORNER_RADIUS));
 				break;
 				
 			case BOTTOM:
-				shape = new Area(new RoundRectangle2D.Double(0.0, 0.0, this.getSize().getWidth(), this.getSize().getHeight() - ARROW_HEIGHT, CORNER_RADIUS, CORNER_RADIUS));
+				shape = new Area(new RoundRectangle2D.Double(insets.left, insets.top, bounds.getWidth(), bounds.getHeight() - ARROW_HEIGHT, CORNER_RADIUS, CORNER_RADIUS));
 				break;
 		}
 		
 		// Calculate the offset for the arrow.
-		int centerLocationX = (int)(this.getLocation().getX() + this.getWidth() / 2); 
+		int centerLocationX = (int)(this.getLocation().getX() + this.getWidth() / 2 + insets.left); 
 		int offsetX = (int)(this.anchorPoint.getX() - centerLocationX);
 		
 		// Create the arrow path.
@@ -227,14 +243,14 @@ public class PopoverView extends JPanel {
 	    Point arrowLocation = null;
 	    switch (this.arrowLocation) {
 			case TOP:
-				arrowLocation = new Point((int)(this.getSize().getWidth() / 2 + offsetX), ARROW_HEIGHT);
+				arrowLocation = new Point((int)((insets.left + bounds.width) / 2 + offsetX), insets.top + ARROW_HEIGHT);
 				path.moveTo(arrowLocation.getX() - ARROW_WIDTH / 2, arrowLocation.getY());
 				path.lineTo(arrowLocation.getX(), arrowLocation.getY() - ARROW_HEIGHT);
 			    path.lineTo(arrowLocation.getX() + ARROW_WIDTH / 2, arrowLocation.getY());
 			    break;
 				
 			case BOTTOM:
-				arrowLocation = new Point((int)(this.getSize().getWidth() / 2 + offsetX), (int)(this.getSize().getHeight() - ARROW_HEIGHT));
+				arrowLocation = new Point((int)((insets.left + bounds.width) / 2 + offsetX), (int)(insets.top + bounds.height - ARROW_HEIGHT));
 				path.moveTo(arrowLocation.getX() - ARROW_WIDTH / 2, arrowLocation.getY());
 				path.lineTo(arrowLocation.getX(), arrowLocation.getY() + ARROW_HEIGHT);
 			    path.lineTo(arrowLocation.getX() + ARROW_WIDTH / 2, arrowLocation.getY());
@@ -281,6 +297,9 @@ public class PopoverView extends JPanel {
 		this.setBorder(border);
 	}
 	
+	/**
+	 * Updates the bounds of the popover.
+	 */
 	private void updateBounds() {
 		Dimension size = this.getPreferredSize();
 		
@@ -314,11 +333,21 @@ public class PopoverView extends JPanel {
 		this.setBounds(bounds);
 	}
 	
+	/**
+	 * Sets the border color.
+	 * 
+	 * @param color The border color
+	 */
 	public void setBorderColor(Color color) {
 		this.borderColor = color;
 		this.repaint();
 	}
 	
+	/**
+	 * Gets the border color.
+	 * 
+	 * @return The border color
+	 */
 	public Color getBorderColor() {
 		return this.borderColor;
 	}
