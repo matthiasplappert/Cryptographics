@@ -67,7 +67,7 @@ public class IntroductionController extends AbstractVisualizationController {
 			// get root node from xml
 			this.caesarResources = document.getRootElement();
 		} catch (JDOMException | IOException e) {
-			Logger.e(e);
+			Logger.error(e);
 		}
 	}
 
@@ -126,7 +126,7 @@ public class IntroductionController extends AbstractVisualizationController {
 			this.step4();
 			break;
 		default:
-			Logger.d("IntroductionController", "proceedIntroduction",
+			Logger.debug("IntroductionController", "proceedIntroduction",
 					"Invalid introduction step!");
 		}
 	}

@@ -145,7 +145,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 												.getView().getKeyInput()
 												.getText());
 							} catch (NumberFormatException e1) {
-								Logger.e(e1);
+								Logger.error(e1);
 							}
 							// If the phase is decrypting use dec, else the phase is
 							// encrypting, therefore use enc.
@@ -560,7 +560,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 									.parseInt(CryptoExperimentController.this
 											.getView().getKeyInput().getText());
 						} catch (NumberFormatException e1) {
-							Logger.e(e1);
+							Logger.error(e1);
 						}
 
 						if (CryptoExperimentController.this.getModel()

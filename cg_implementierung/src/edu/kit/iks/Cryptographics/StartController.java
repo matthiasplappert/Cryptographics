@@ -163,7 +163,7 @@ public class StartController extends AbstractController {
 	public void startVisualizationAction(AbstractVisualizationInfo visualizationInfo) {
 		this.dismissPopoverAction();
 		MainController mainController = (MainController) this.getParentController();
-		Logger.l("User chose " + visualizationInfo.getId());
+		Logger.log("User chose " + visualizationInfo.getId());
 		mainController.presentVisualizationAction(visualizationInfo);
 	}
 

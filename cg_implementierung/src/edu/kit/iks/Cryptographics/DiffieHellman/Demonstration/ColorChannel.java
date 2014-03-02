@@ -232,7 +232,7 @@ public class ColorChannel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Logger.d(this.getClass().getName(),"sendToBob" , "timer event");
+				Logger.debug(this.getClass().getName(),"sendToBob" , "timer event");
 				if(firstTimerEventBob && !repeatPeriodically && keepFirst) {
 					chooseColorToKeep(colorNextToSend, 0);
 					firstTimerEventBob = false;
@@ -254,7 +254,7 @@ public class ColorChannel extends JPanel {
 					if(cb != null) {
 						cb.callback();
 					} else if (repeatPeriodically) {
-						Logger.d(this.getClass().getName(), "", "repeat now");
+						Logger.debug(this.getClass().getName(), "", "repeat now");
 						// set to orignal values, to start all over
 						sendBob = true;
 						x1 = leftEnd;
@@ -291,7 +291,7 @@ public class ColorChannel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Logger.d(this.getClass().getName(),"sendToAlice" , "timer event");
+				Logger.debug(this.getClass().getName(),"sendToAlice" , "timer event");
 				if(firstTimerEventAlice && !repeatPeriodically && keepFirst) {
 					chooseColorToKeep(colorNextToSend, 1);
 					firstTimerEventAlice = false;
@@ -312,7 +312,7 @@ public class ColorChannel extends JPanel {
 					if(cb != null) {
 						cb.callback();
 					} else if (repeatPeriodically) {
-						Logger.d(this.getClass().getName(), "", "repeat now");
+						Logger.debug(this.getClass().getName(), "", "repeat now");
 						// set to orignal values, to start all over
 						sendAlice = true;
 						x1 = rightCircle;

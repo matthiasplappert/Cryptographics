@@ -157,7 +157,7 @@ abstract public class AbstractVisualizationInfo {
 		try {
 			image = ImageIO.read(input);
 		} catch (IOException e) {
-			Logger.e(e);
+			Logger.error(e);
 		}
 		this.qrCode = image;
 	}

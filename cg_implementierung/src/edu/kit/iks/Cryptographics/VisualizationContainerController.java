@@ -137,7 +137,7 @@ public class VisualizationContainerController extends AbstractController {
 			@Override
 			public void clicked(MouseEvent e) {
 				MainController mainController = (MainController) getParentController();
-				Logger.l("User went back to start screen");
+				Logger.log("User went back to start screen");
 				mainController.presentStartAction();
 			}
 		});
@@ -250,7 +250,7 @@ public class VisualizationContainerController extends AbstractController {
 					
 					MainController mainController = (MainController) getParentController();
 					mainController.presentStartAction();
-					Logger.l("Reset due to user inactivity");
+					Logger.log("Reset due to user inactivity");
 				}
 				
 			});
@@ -428,7 +428,7 @@ public class VisualizationContainerController extends AbstractController {
 		} catch (InstantiationException | IllegalAccessException
 				| NoSuchMethodException | SecurityException
 				| IllegalArgumentException | InvocationTargetException e) {
-			Logger.e(e);
+			Logger.error(e);
 		}
 
 		this.visualizationControllers[index] = controller;

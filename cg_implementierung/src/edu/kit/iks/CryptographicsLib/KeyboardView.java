@@ -127,10 +127,10 @@ public class KeyboardView extends JPanel implements ActionListener {
 		String buttonName = trigger.getName();
 		
 		if (buttonName.equals("button-enter")) {
-			Logger.d("KeyboardView", "actionPerformed", "Enter pressed");
+			Logger.debug("KeyboardView", "actionPerformed", "Enter pressed");
 			this.textField.getActionListeners()[0].actionPerformed(e);
 		} else if (buttonName.equals("button-backspace")) {
-			Logger.d("KeyboardView", "actionPerformed", "Backspace pressed");
+			Logger.debug("KeyboardView", "actionPerformed", "Backspace pressed");
 			String currentText = this.textField.getText();
 			
 			if (currentText.length() > 1) {
@@ -141,7 +141,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 				this.textField.setText("");
 			}
 		} else if (buttonName.equals("button-key")) {
-			Logger.d("KeyboardView", "actionPerformed", "Key pressed");
+			Logger.debug("KeyboardView", "actionPerformed", "Key pressed");
 			
 			if (this.inputMode == KeyboardView.STRING_MODE) {
 				
@@ -172,7 +172,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 			// get root node from xml
 			this.resources = document.getRootElement().getChild("Keyboard");
 		} catch (JDOMException | IOException e) {
-			Logger.e(e);
+			Logger.error(e);
 		}
 	}
 	
@@ -257,7 +257,7 @@ public class KeyboardView extends JPanel implements ActionListener {
     		InputStream is = this.getClass().getResourceAsStream(path);
             image = new ImageIcon(ImageIO.read(is));
         } catch (IOException e) {
-        	Logger.e(e);
+        	Logger.error(e);
         }
     	
     	return image;
