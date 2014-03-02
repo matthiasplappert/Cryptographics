@@ -155,7 +155,7 @@ public class InformationView extends JPanel implements MouseListener {
 		try {
 			this.webView.setText(this.getHtml());
 		} catch(Exception e) {
-			Logger.e(e);
+			Logger.error(e);
 		}
 		this.webView.setCaretPosition(0); // scrolls to the top
 		

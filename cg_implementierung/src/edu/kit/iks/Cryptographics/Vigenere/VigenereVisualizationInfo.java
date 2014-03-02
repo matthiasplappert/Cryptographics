@@ -52,7 +52,7 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 			// get root node from xml
 			this.vigenereResources = document.getRootElement().getChild("vigenere");
 		} catch (JDOMException | IOException e) {
-			Logger.e(e);
+			Logger.error(e);
 		}
 	}
 	

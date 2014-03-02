@@ -121,10 +121,10 @@ public class NumpadView extends JPanel implements ActionListener {
 		String buttonName = trigger.getName();
 		
 		if (buttonName.equals("button-enter")) {
-			Logger.d("NumpadView", "actionPerformed", "Enter pressed");
+			Logger.debug("NumpadView", "actionPerformed", "Enter pressed");
 			this.textField.getActionListeners()[0].actionPerformed(e);
 		} else if (buttonName.equals("button-backspace")) {
-			Logger.d("NumpadView", "actionPerformed", "Backspace pressed");
+			Logger.debug("NumpadView", "actionPerformed", "Backspace pressed");
 			String currentText = this.textField.getText();
 			
 			if (currentText.length() > 1) {
@@ -135,7 +135,7 @@ public class NumpadView extends JPanel implements ActionListener {
 				this.textField.setText("");
 			}
 		} else if (buttonName.equals("button-key")) {
-			Logger.d("NumpadView", "actionPerformed", "Key pressed");
+			Logger.debug("NumpadView", "actionPerformed", "Key pressed");
 			
 			if (this.inputMode == NumpadView.NUMBER_MODE) {
 				String currentText = this.textField.getText();
@@ -164,7 +164,7 @@ public class NumpadView extends JPanel implements ActionListener {
 			// get root node from xml
 			this.resources = document.getRootElement().getChild("Keyboard");
 		} catch (JDOMException | IOException e) {
-			Logger.e(e);
+			Logger.error(e);
 		}
 	}
 	
@@ -251,7 +251,7 @@ public class NumpadView extends JPanel implements ActionListener {
     		InputStream is = this.getClass().getResourceAsStream(path);
             image = new ImageIcon(ImageIO.read(is));
         } catch (IOException e) {
-        	Logger.e(e);
+        	Logger.error(e);
         }
     	
     	return image;

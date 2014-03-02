@@ -103,7 +103,7 @@ public class HistogramController extends AbstractVisualizationController {
 						key = Integer.parseInt(HistogramController.this
 								.getView().getKeyInput().getText());
 					} catch (NumberFormatException e1) {
-						Logger.e(e1);
+						Logger.error(e1);
 					}
 					if (HistogramController.this.getModel().isKeyValid(key)) {
 						String decryptedCipher = HistogramController.this
