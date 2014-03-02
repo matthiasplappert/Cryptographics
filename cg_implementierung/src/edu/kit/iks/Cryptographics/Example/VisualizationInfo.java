@@ -31,7 +31,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 
 	@Override
 	public VisualizationDifficulty getDifficulty() {
-		return VisualizationDifficulty.EASY;
+		return VisualizationDifficulty.HARD;
 	}
 
 	@Override

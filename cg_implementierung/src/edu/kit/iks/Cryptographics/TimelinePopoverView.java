@@ -86,6 +86,7 @@ public class TimelinePopoverView extends PopoverView {
 		difficultyConstraints.anchor = GridBagConstraints.LINE_END;
 		difficultyConstraints.insets = new Insets(20, 0, 0, 0);
 		this.difficultyLabel = new JLabel(visualizationInfo.getHumanReadableDifficulty());
+		this.difficultyLabel.setForeground(visualizationInfo.getDifficultyColor());
 		this.getContentView().add(this.difficultyLabel, difficultyConstraints);
 		
 		// Create description label.

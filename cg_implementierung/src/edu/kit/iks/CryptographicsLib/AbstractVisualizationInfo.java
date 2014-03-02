@@ -25,17 +25,17 @@ abstract public class AbstractVisualizationInfo {
 	/**
 	 * The color used for easy difficulty.
 	 */
-	public static final Color COLOR_EASY = Color.GREEN;
+	public static final Color COLOR_EASY = new Color(0, 168, 79);
 	
 	/**
 	 * The color used for medium difficulty.
 	 */
-	public static final Color COLOR_MEDIUM = Color.YELLOW;
+	public static final Color COLOR_MEDIUM = new Color(255, 204, 0);
 	
 	/**
 	 * The color used for hard difficulty.
 	 */
-	public static final Color COLOR_HARD = Color.RED;
+	public static final Color COLOR_HARD = new Color(188, 11, 28);
 	
 	/**
 	 * Localization instance
