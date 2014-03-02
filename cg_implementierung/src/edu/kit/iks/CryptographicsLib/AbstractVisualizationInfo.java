@@ -1,5 +1,6 @@
 package edu.kit.iks.CryptographicsLib;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -20,6 +21,21 @@ import net.glxn.qrgen.image.ImageType;
  * @author Christian Dreher
  */
 abstract public class AbstractVisualizationInfo {
+	
+	/**
+	 * The color used for easy difficulty.
+	 */
+	public static final Color COLOR_EASY = Color.GREEN;
+	
+	/**
+	 * The color used for medium difficulty.
+	 */
+	public static final Color COLOR_MEDIUM = Color.YELLOW;
+	
+	/**
+	 * The color used for hard difficulty.
+	 */
+	public static final Color COLOR_HARD = Color.RED;
 	
 	/**
 	 * Localization instance
@@ -152,6 +168,20 @@ abstract public class AbstractVisualizationInfo {
 			case MEDIUM: return i18n.tr("Medium");
 			case HARD: return i18n.tr("Hard");
 			default: return null;
+		}
+	}
+	
+	/**
+	 * Gets the color to represent the difficulty
+	 * 
+	 * @return The color
+	 */
+	public Color getDifficultyColor() {
+		switch (this.getDifficulty()) {
+	    	case EASY: return COLOR_EASY;
+	    	case MEDIUM: return COLOR_MEDIUM;
+	    	case HARD: return COLOR_HARD;
+	    	default: return null;
 		}
 	}
 }
