@@ -74,8 +74,8 @@ public class TimelinePopoverView extends PopoverView {
 		nameConstraints.gridx = 0;
 		nameConstraints.gridy = 0;
 		nameConstraints.gridwidth = 2;
-		nameConstraints.insets = new Insets(20, 0, 0, 0);
-		this.nameLabel = new JLabel(visualizationInfo.getName());
+		nameConstraints.insets = new Insets(0, 0, 0, 0);
+		this.nameLabel = new JLabel("<html><h2>" + visualizationInfo.getName() + "</h2></html>");
 		this.getContentView().add(this.nameLabel, nameConstraints);
 		
 		// TODO: map to human readable string
@@ -84,8 +84,9 @@ public class TimelinePopoverView extends PopoverView {
 		difficultyConstraints.gridx = 2;
 		difficultyConstraints.gridy = 0;
 		difficultyConstraints.anchor = GridBagConstraints.LINE_END;
-		difficultyConstraints.insets = new Insets(20, 0, 0, 0);
+		difficultyConstraints.insets = new Insets(0, 0, 0, 0);
 		this.difficultyLabel = new JLabel(visualizationInfo.getHumanReadableDifficulty());
+		this.difficultyLabel.setForeground(visualizationInfo.getDifficultyColor());
 		this.getContentView().add(this.difficultyLabel, difficultyConstraints);
 		
 		// Create description label.
