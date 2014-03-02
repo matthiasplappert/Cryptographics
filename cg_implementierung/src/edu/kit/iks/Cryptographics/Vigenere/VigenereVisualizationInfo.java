@@ -100,7 +100,7 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	 * @return offset in the timeline
 	 */
 	public float getTimelineOffset() {
-		return 0.8f;
+		return 0.5f;
 	}
 
 	/**

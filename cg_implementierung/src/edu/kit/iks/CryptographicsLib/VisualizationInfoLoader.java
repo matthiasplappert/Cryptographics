@@ -5,7 +5,6 @@ import java.util.List;
 
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.Cryptographics.DiffieHellman.DHVisualizationInfo;
-import edu.kit.iks.Cryptographics.Example.VisualizationInfo;
 import edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo;
 
 /**
@@ -35,9 +34,12 @@ public class VisualizationInfoLoader {
 		visualizationInfos.add(new CaesarVisualizationInfo());
 		visualizationInfos.add(new DHVisualizationInfo());
 		visualizationInfos.add(new VigenereVisualizationInfo());
+		visualizationInfos.add(new edu.kit.iks.Cryptographics.OneTimePad.VisualizationInfo());
+		visualizationInfos.add(new edu.kit.iks.Cryptographics.AES.VisualizationInfo());
+		visualizationInfos.add(new edu.kit.iks.Cryptographics.SHA2.VisualizationInfo());
 		
 		// Example Package
-		//visualizationInfos.add(new VisualizationInfo());
+		//visualizationInfos.add(new edu.kit.iks.Cryptographics.Example.VisualizationInfo());
 		return visualizationInfos;
 	}
 }

@@ -20,5 +20,11 @@ public enum VisualizationDifficulty {
 	/**
 	 * Hard difficulty 
 	 */
-	HARD
+	HARD,
+	
+	/**
+	 * Used to describe visualization that do not have an interactive visualization
+	 * yet and only present additional information
+	 */
+	NOT_INTERACTIVE
 }

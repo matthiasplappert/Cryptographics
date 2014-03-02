@@ -38,6 +38,11 @@ abstract public class AbstractVisualizationInfo {
 	private static final Color COLOR_HARD = new Color(188, 11, 28);
 	
 	/**
+	 * The color used for hard difficulty.
+	 */
+	private static final Color COLOR_NO_VISUALIZATION = Color.LIGHT_GRAY;
+	
+	/**
 	 * Localization instance
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(
@@ -167,6 +172,7 @@ abstract public class AbstractVisualizationInfo {
 			case EASY: return i18n.tr("Easy");
 			case MEDIUM: return i18n.tr("Medium");
 			case HARD: return i18n.tr("Hard");
+			case NOT_INTERACTIVE: return i18n.tr("Not Interactive");
 			default: return null;
 		}
 	}
@@ -181,6 +187,7 @@ abstract public class AbstractVisualizationInfo {
 	    	case EASY: return COLOR_EASY;
 	    	case MEDIUM: return COLOR_MEDIUM;
 	    	case HARD: return COLOR_HARD;
+	    	case NOT_INTERACTIVE: return COLOR_NO_VISUALIZATION;
 	    	default: return null;
 		}
 	}
