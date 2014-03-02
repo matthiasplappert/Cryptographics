@@ -107,7 +107,7 @@ public class CryptoModel {
 	 *            the right border of the interval.
 	 * @return the generated integer.
 	 */
-	public int generateRandomInt(int a, int b) {
+	private int generateRandomInt(int a, int b) {
 		return (int) (a + ((b - a) * Math.random()));
 	}
 
@@ -130,7 +130,7 @@ public class CryptoModel {
 	 * Pulls 'randomly' a plainText from the local pool of genRandomPlainSequence() and encrypts it
 	 * with a given key.
 	 * 
-	 * @param key 
+	 * @param key
 	 * @return 'random' cipher.
 	 */
 	public String genRandomCipher(int key) {
@@ -140,6 +140,7 @@ public class CryptoModel {
 
 	/**
 	 * Pulls 'randomly' a string from the local pool.
+	 * 
 	 * @return 'random' string.
 	 */
 	public String genRandomGrats() {
@@ -154,23 +155,22 @@ public class CryptoModel {
 
 	/**
 	 * Pulls 'randomly' string from the local pool.
+	 * 
 	 * @return 'random' string.
 	 */
 	public String genRandomPlainSequence() {
 		String[] plainTextPool = { CryptoModel.i18n.tr("ANNA"),
 				CryptoModel.i18n.tr("HANNAH"), CryptoModel.i18n.tr("BANANA"),
-				CryptoModel.i18n.tr("KOKOS"),
-				CryptoModel.i18n.tr("KRYPTOCHEF"),
-				CryptoModel.i18n.tr("HAMSTER"), CryptoModel.i18n.tr("WASILIJ"),
-				CryptoModel.i18n.tr("SECRET"), CryptoModel.i18n.tr("EPSILON") };
+				CryptoModel.i18n.tr("KOKOS"), CryptoModel.i18n.tr("SECRET"),
+				CryptoModel.i18n.tr("EPSILON") };
 
 		int index = this.generateRandomInt(0, plainTextPool.length);
 		return plainTextPool[index];
 	}
 
-	
-	/** 
+	/**
 	 * Pulls 'randomly' a bigger string from the local pool.
+	 * 
 	 * @return the 'random' text.
 	 */
 	public String genRandomText() {
@@ -188,15 +188,20 @@ public class CryptoModel {
 
 	/**
 	 * Checks if the input is valid.
-	 * @param input the input to check.
+	 * 
+	 * @param input
+	 *            the input to check.
 	 */
 	public boolean isInputValid(String input) {
 		return (input.length() < 10 && input.length() > 0);
 	}
 
-	/**Checks if the key is valid.
-	 * @param key the key to check.
-	 * @return 
+	/**
+	 * Checks if the key is valid.
+	 * 
+	 * @param key
+	 *            the key to check.
+	 * @return
 	 */
 	public boolean isKeyValid(int key) {
 		return (key > 0 && key <= this.MODULO);
