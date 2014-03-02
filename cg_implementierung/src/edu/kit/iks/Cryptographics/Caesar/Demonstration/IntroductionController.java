@@ -172,6 +172,7 @@ public class IntroductionController extends AbstractVisualizationController {
 
 	private void step2() {
 		this.introductionStep++;
+		this.getView().getAnimationContainer().removeAll();
 		this.getView()
 				.getExplanation()
 				.setText(
@@ -179,7 +180,7 @@ public class IntroductionController extends AbstractVisualizationController {
 								+ IntroductionController.i18n
 										.tr("When Kryptolix noticed the unsuspecting and whistling roman courier, he punched him via the air-line<br>"
 												+ "back to Rome. And saw him losing a scroll."));
-
+		this.setResourceImage("FlyingCourier");
 		
 
 	}
@@ -187,7 +188,6 @@ public class IntroductionController extends AbstractVisualizationController {
 	private void step3() {
 		this.introductionStep++;
 		this.getView().getAnimationContainer().removeAll();
-
 		this.getView()
 				.getExplanation()
 				.setText(
@@ -196,7 +196,7 @@ public class IntroductionController extends AbstractVisualizationController {
 										.tr("When reading the scroll the courier lost, Kryptolix identified Caesar's plans of<br>"
 												+ "conquering Gallia and Kryptolix and his awesome friends could defeat Caesar again!"));
 
-		this.setResourceImage("FlyingCourier");
+		this.setResourceImage("Kryptolix");
 		
 		 this.getView().validate();
 		 this.getView().repaint();

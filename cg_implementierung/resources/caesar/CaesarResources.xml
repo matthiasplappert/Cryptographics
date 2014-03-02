@@ -4,7 +4,7 @@
 		<CaesarIdea path="/caesar/CaesarIdea.png" />
 		<Courier path="/caesar/Courier.png" />
 		<FlyingCourier path="/caesar/CourierFlying.png" />
-		<Cryptolix path="/caesar/KryptolixReading.png" />
+		<Kryptolix path="/caesar/KryptolixReading.png" />
 		<CaesarAngry path="/caesar/CaesarAngry.png" />
 	</Introduction>
 	<CryptoResources>
