@@ -160,8 +160,6 @@ public class CryptoDemonstrationController extends
 																	.tr("Great work oh mighty Caesar. May your enemies shutter over your intelligence."
 																			+ " Now we can move on to the real experiment and test your skills.")));
 									// remove all unnecessary elements.
-									// TODO: make removeAlphabet protected in the upper class of the
-									// view.
 									CryptoDemonstrationController.this
 											.getView().removeAlphabet();
 									CryptoDemonstrationController.this
