@@ -26,6 +26,15 @@
     </state>
   </style>
 
+    <!-- Visualization container controller footer style -->
+  <style id="containerControllerFooterStyle">
+    <opaque value="TRUE"/>
+    <state>
+      <color value="#f0f0f0" type="BACKGROUND" />
+      <color value="BLACK" type="FOREGROUND" />
+    </state>
+  </style>
+
   <!-- The default button style -->
   <style id="defaultButton">
     <property key="Button.textShiftOffset" type="integer" value="1" />
@@ -56,6 +65,7 @@
   <bind style="defaultStyle" type="region" key=".*" />
   <bind style="containerControllerHeaderStyle" type="name" key="visualizationContainerController" />
   <bind style="containerControllerContentStyle" type="name" key="visualizationContainerContent" />
+  <bind style="containerControllerFooterStyle" type="name" key="visualizationContainerFooter" />
   <bind style="defaultButton" type="region" key="Button" />
   <bind style="visualizationButtonStyle" type="name" key="visualizationButton" />
   <bind style="closeButtonStyle" type="name" key="closeButton" />

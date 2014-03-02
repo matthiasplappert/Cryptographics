@@ -1,15 +1,18 @@
 package edu.kit.iks.CryptographicsLib;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
@@ -125,6 +128,7 @@ public class InformationView extends JPanel implements MouseListener {
 	 */
 	private void loadWebViewComponents() {
 		JPanel layoutContainer = new JPanel(new BorderLayout());
+		layoutContainer.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 		
 		this.loadWebView();
         layoutContainer.add(this.webViewContainer, BorderLayout.CENTER);
@@ -133,6 +137,7 @@ public class InformationView extends JPanel implements MouseListener {
         JPanel buttonLayoutContainer = new JPanel(new BorderLayout());
         buttonLayoutContainer.add(this.scrollUpButton, BorderLayout.NORTH);
         buttonLayoutContainer.add(this.scrollDownButton, BorderLayout.SOUTH);
+        buttonLayoutContainer.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         layoutContainer.add(buttonLayoutContainer, BorderLayout.EAST);
         
         // Valdiate and add.
@@ -145,6 +150,7 @@ public class InformationView extends JPanel implements MouseListener {
 		this.webView = new JEditorPane();
 		this.webView.setEditable(false);
 		this.webView.setContentType("text/html");
+		this.webView.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 		try {
 			this.webView.setText(this.getHtml());
 		} catch(Exception e) {
@@ -156,6 +162,7 @@ public class InformationView extends JPanel implements MouseListener {
 		this.webViewContainer = new JScrollPane(this.webView);
 		this.webViewContainer.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		this.webViewContainer.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+		this.webViewContainer.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		this.webViewContainer.validate();
 	}
 	
@@ -184,6 +191,7 @@ public class InformationView extends JPanel implements MouseListener {
 		JPanel container = new JPanel(new GridBagLayout());
 		
 		GridBagConstraints imageConstraints = new GridBagConstraints();
+		imageConstraints.insets = new Insets(10, 10, 10, 10);
 		imageConstraints.anchor = GridBagConstraints.ABOVE_BASELINE;
 		this.qrCodeView = new ImageView(this.qrCode);
 		container.add(this.qrCodeView, imageConstraints);
@@ -192,6 +200,7 @@ public class InformationView extends JPanel implements MouseListener {
 		labelConstraints.anchor = GridBagConstraints.ABOVE_BASELINE;
 		this.qrCodeLabel = new JLabel(this.qrCodeContent);
 		container.add(this.qrCodeLabel, labelConstraints);
+		container.setName("visualizationContainerFooter");
 		
 		this.add(container, BorderLayout.SOUTH);
 	}

@@ -60,7 +60,7 @@ public class VisualizationContainerView extends JPanel {
 		
 		// Create the container for buttons and title.
 		JPanel container = new JPanel(new GridBagLayout());
-		container.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
+		container.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		this.add(container, BorderLayout.NORTH);
 		
 		// Create the exit button.

@@ -3,6 +3,35 @@
 </head>
 <body>
 <h2>SHA-2</h2>
-<p>Placeholder.</p>
+<p>SHA-2 is a set of cryptographic hash functions (SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224, SHA-512/256) designed by the U.S. National Security Agency (NSA) and published in 2001 by the NIST as a U.S. Federal Information Processing Standard (FIPS). SHA stands for Secure Hash Algorithm. SHA-2 includes a significant number of changes from its predecessor, SHA-1. SHA-2 currently consists of a set of six hash functions with digests that are 224, 256, 384 or 512 bits.</p>
+
+<p>SHA-256 and SHA-512 are novel hash functions computed with 32 and 64-bit words, respectively. They use different shift amounts and additive constants, but their structures are otherwise virtually identical, differing only in the number of rounds. SHA-224 and SHA-384 are simply truncated versions of the first two, computed with different initial values.</p>
+
+<p>SHA-512/224 and SHA-512/256 are also truncated versions of SHA-512, but the initial values are generated using the method described in FIPS PUB 180-4. The SHA-2 family of algorithms are patented in US 6829355. The United States has released the patent under a royalty-free license.</p>
+
+<p>In 2005, security flaws were identified in SHA-1, namely that a mathematical weakness might exist, indicating that a stronger hash function would be desirable. Although SHA-2 bears some similarity to the SHA-1 algorithm, these attacks have not been successfully extended to SHA-2.</p>
+
+<p>Currently, the best public attacks break preimage resistance 52 rounds of SHA-256 or 57 rounds of SHA-512, and collision resistance for 46 rounds of SHA-256, as shown in the "Cryptanalysis and Validation" section below.</p>
+
+<h3>Example</h3>
+
+<p>The SHA256 hash value of "Hello" is:</p>
+
+<pre>
+SHA256("Hello") = <br>
+185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969
+</pre>
+
+<p>Even a small change in the message will (with overwhelming probability) result in a mostly different hash, due to the avalanche effect. For example, consider these almost identical sentences:</p>
+
+<pre>
+SHA256("Hello Fran<b>k</b>, how are you?") = <br>
+15153df260fe870f8a493794edf65c32ea94a62e2eb59296f075dfb32b8e6933<br><br>
+SHA256("Hello Fran<b>z</b>, how are you?") = <br>
+2197069cee67441e8968dc930e1f60f92648c51cb8fd47323b46504ca8439fa2
+</pre>
+
+<p style="text-align:right;"><i>Source: http://en.wikipedia.org/wiki/SHA-2<i></p>
+
 </body>
 </html>
