@@ -116,10 +116,8 @@ public class DHExperimentView extends JPanel {
 	
 	private GridBagConstraints gbc;
 	
-	private Color[] toChooseFrom = {Color.BLUE, Color.CYAN,
-			Color.DARK_GRAY, Color.GREEN, Color.MAGENTA,
-			Color.ORANGE, Color.PINK, Color.RED,
-			Color.YELLOW
+	private Color[] toChooseFrom = {Color.BLUE, Color.GREEN, Color.YELLOW,
+			Color.RED,
 	};
 	
 	private Color[] rememberColors = toChooseFrom;
