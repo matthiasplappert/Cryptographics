@@ -49,6 +49,8 @@ public class IntroductionController extends AbstractVisualizationController {
 	private Element caesarResources;
 
 	/**
+	 * Constructor.
+	 * 
 	 * @param visualizationInfo
 	 */
 	public IntroductionController(AbstractVisualizationInfo visualizationInfo) {

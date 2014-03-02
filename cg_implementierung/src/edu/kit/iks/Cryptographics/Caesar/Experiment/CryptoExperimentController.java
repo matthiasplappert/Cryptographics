@@ -1,22 +1,31 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
 import java.awt.Color;
+import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
+import edu.kit.iks.Cryptographics.Caesar.Demonstration.CryptoDemonstrationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
@@ -52,6 +61,8 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 	 */
 	private CryptoModel model;
 
+	private Element cryptoResources;
+
 	/**
 	 * Constructor.
 	 * 
@@ -60,6 +71,22 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 	public CryptoExperimentController(
 			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
+
+		SAXBuilder saxBuilder = new SAXBuilder();
+
+		// obtain file object
+		InputStream is = this.getClass().getResourceAsStream(
+				"/caesar/CaesarResources.xml");
+
+		try {
+			// converted file to document object
+			Document document = saxBuilder.build(is);
+
+			// get root node from xml
+			this.cryptoResources = document.getRootElement();
+		} catch (JDOMException | IOException e) {
+			Logger.e(e);
+		}
 
 	}
 
@@ -157,7 +184,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 
 							if ((encryptedOrDecryptedcipher).equals(userOutput
 									.getText())) {
-
+                               CryptoExperimentController.this.setFeedbackImage("CaesarPositive");
 								// user encrypted/decrypted correctly.
 								if ((CryptoExperimentController.this
 										.getEditableFields() - 1) != 0) {
@@ -171,6 +198,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 											.notifyUserFinishedExperiment(userOutput);
 								}
 							} else {
+								CryptoExperimentController.this.setFeedbackImage("CaesarNegative");
 								// User encrypted invalid! Need another try.
 								CryptoExperimentController.this
 										.notifyUserInvalidAction(userOutput);
@@ -180,6 +208,29 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 					}
 
 				});
+	}
+
+	private void setFeedbackImage(String resourceID) {
+		this.getView().getFeedback().removeAll();
+		String path = "";
+		try {
+			path = CryptoExperimentController.this.getCryptoResources()
+					.getChild("CryptoResources").getChild(resourceID)
+					.getAttributeValue("path");
+		} catch (NullPointerException nullException) {
+			// Element not found.
+			System.out.println("[NullPointerException] Ressource not found.");
+			nullException.printStackTrace();
+		}
+
+		GridBagConstraints imgConstraint = new GridBagConstraints();
+		imgConstraint.gridx = this.getView().getUserInput().length + 1;
+		imgConstraint.gridy = 0;
+		ImageView imageToSet = new ImageView(path);
+		this.getView().getFeedback().add(imageToSet, imgConstraint);
+
+		this.getView().validate();
+		this.getView().repaint();
 	}
 
 	private void notifyUserInvalidAction(JTextField userOutput) {
@@ -549,7 +600,6 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 										.prepareExperimentPhase(key, inputChars);
 							}
 						} else {
-							// TODO: buggy
 							CryptoExperimentController.this
 									.getView()
 									.getExplanations()
@@ -714,5 +764,20 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 
 	private String wrapHtml(String text) {
 		return "<html><body><div width=900px>" + text + "</div></body></html>";
+	}
+
+	/**
+	 * @return the cryptoResources
+	 */
+	public Element getCryptoResources() {
+		return cryptoResources;
+	}
+
+	/**
+	 * @param cryptoResources
+	 *            the cryptoResources to set
+	 */
+	public void setCryptoResources(Element cryptoResources) {
+		this.cryptoResources = cryptoResources;
 	}
 }
