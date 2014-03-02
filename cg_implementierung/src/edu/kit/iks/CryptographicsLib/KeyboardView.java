@@ -69,6 +69,9 @@ public class KeyboardView extends JPanel implements ActionListener {
 	 */
 	private JButton[][] keys;
 
+	/**
+	 * Localization instance 
+	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(KeyboardView.class);
 	
 	/**
@@ -120,6 +123,9 @@ public class KeyboardView extends JPanel implements ActionListener {
 		this.setVisible(true);
 	}
 
+	/**
+	 * Method to be called on action performed 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton trigger = (JButton) e.getSource();
@@ -158,6 +164,9 @@ public class KeyboardView extends JPanel implements ActionListener {
 		
 	}
 	
+	/**
+	 * Helper to init the resources 
+	 */
 	private void initResources() {
 		SAXBuilder saxBuilder = new SAXBuilder();
 
@@ -176,6 +185,9 @@ public class KeyboardView extends JPanel implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Helper to init the buttons 
+	 */
 	private void initKeyboardButtons() {
 		JButton[][] keysInit = {
 			// First row
@@ -214,7 +226,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 	 * button representing a character
 	 * 
 	 * @param label The label of the button
-	 * @param name (bs|e|?), according to the button which should be created
+	 * @param name (bs|e|key), according to the button which should be created
 	 * 
 	 * @return new Instance of JButton
 	 */

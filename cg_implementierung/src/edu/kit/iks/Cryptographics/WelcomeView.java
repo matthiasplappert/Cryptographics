@@ -36,13 +36,10 @@ public class WelcomeView extends JPanel {
 	 * String to be displayed as a description of how
 	 * to use the timeline
 	 */
-	private String description = i18n.tr("This is Cryptographics, a small tool "
-			+ "with the aim to teach the functionality of historic and common "
-			+ "cryptographic procedures. Below you can see a timeline with some "
-			+ "buttons each representing a procedure. Just click on one of the buttons "
-			+ "for a procedure you would like to know more about and a popup with further details "
-			+ "will explain what awaits you. If you want to know how it works, "
-			+ "press the 'Start' button.");
+	private String description = i18n.tr("This is Cryptographics, a small tool with the aim"
+			+ " to show how basic and advanced cryptographic procedures work in principle."
+			+ " Below you can see a timeline with some procedures. Tap on the dots representing"
+			+ " their date of invention to view a small description and start the visualization.");
 	
 	public WelcomeView() {
 		super(new GridBagLayout());
