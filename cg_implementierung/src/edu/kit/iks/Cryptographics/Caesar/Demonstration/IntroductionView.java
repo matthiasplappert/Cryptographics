@@ -66,10 +66,6 @@ public class IntroductionView extends VisualizationView {
 	 */
 	public IntroductionView() {
 		super();
-		// load the resources from the xml, that can be accessed over the
-		// visualizationInfo
-		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
-		Element introResource = vsInfo.getResources().getChild("Introduction");
 
 		this.introLayout = new GridBagLayout();
 		GridBagConstraints nextConstraint = new GridBagConstraints();
@@ -115,14 +111,14 @@ public class IntroductionView extends VisualizationView {
 		this.add(this.proceed, proceedConstraint);
 
 		// set the alignment of the masterPlan image.
-		GridBagConstraints planConstraint = new GridBagConstraints();
-		planConstraint.gridx = 1;
-		planConstraint.gridy = 0;
-
-		// take the image from the xml-resource.
-		this.setCaesarIdeaImg(new ImageView(introResource
-				.getChild("CaesarIdea").getAttributeValue("path")));
-		this.animationContainer.add(this.caesarIdeaImg, planConstraint);
+//		GridBagConstraints planConstraint = new GridBagConstraints();
+//		planConstraint.gridx = 1;
+//		planConstraint.gridy = 0;
+//
+//		// take the image from the xml-resource.
+//		this.setCaesarIdeaImg(new ImageView(introResource
+//				.getChild("CaesarIdea").getAttributeValue("path")));
+//		this.animationContainer.add(this.caesarIdeaImg, planConstraint);
 
 		// set the alignment of the Explanations.
 		GridBagConstraints explanationConstraint = new GridBagConstraints();
@@ -144,6 +140,8 @@ public class IntroductionView extends VisualizationView {
 		this.validate();
 
 	}
+	
+	
 	//----------------------------------------------------------//
 	//------------------------Getter/Setter---------------------//
 

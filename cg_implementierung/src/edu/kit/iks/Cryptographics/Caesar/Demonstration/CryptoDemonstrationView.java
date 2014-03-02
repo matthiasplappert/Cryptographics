@@ -45,9 +45,6 @@ public class CryptoDemonstrationView extends CryptoView {
 	 */
 	public CryptoDemonstrationView() {
 		super();
-		// load the resources.
-		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
-		this.cipherDemoResource = vsInfo.getResources().getChild("CipherDemo");
 
 		// setup the caption of the next/back Buttons.
 		this.getBackButton().setText(

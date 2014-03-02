@@ -39,21 +39,12 @@ public class CryptoExperimentView extends CryptoView {
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(
 			CryptoExperimentView.class);
-
-	/**
-	 * XML root element of the CryptoView resources.
-	 */
-	protected Element cryptoResource;
-
+	
 	/**
 	 * 
 	 */
 	public CryptoExperimentView() {
 		super();
-		// load the resources.
-		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
-		this.cryptoResource = vsInfo.getResources().getChild(
-				CryptoExperimentView.i18n.tr("Encrypt"));
 
 		// setup the caption of the next/back Buttons.
 		this.getBackButton().setText(
