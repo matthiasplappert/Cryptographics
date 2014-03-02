@@ -1,6 +1,10 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+
+import java.awt.GridBagConstraints;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import org.jdom2.Document;
@@ -196,6 +201,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 									// User encrypted all characters valid.
 									CryptoExperimentController.this
 											.notifyUserFinishedExperiment(userOutput);
+
 								}
 							} else {
 								CryptoExperimentController.this.setFeedbackImage("CaesarNegative");
@@ -259,6 +265,21 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 								+ CryptoExperimentController.i18n
 										.tr("Next step is to decrypt a given message! Lets move on to Decryption.")));
 		this.getView().removeKeyboard();
+		this.getView().removeAlphabet();
+
+		this.getView().getNavigationPanel()
+				.remove(this.getView().getNextButton());
+		GridBagConstraints nextConst = new GridBagConstraints();
+		nextConst.anchor = GridBagConstraints.CENTER;
+		nextConst.weightx = 1.0;
+		nextConst.weighty = 0.1;
+		nextConst.gridx = 1;
+		nextConst.gridy = 1;
+		nextConst.gridwidth = 26;
+		nextConst.gridheight = 2;
+		this.getView().add(this.getView().getNextButton(), nextConst);
+
+		this.getView().requestFocus();
 	}
 
 	private void notifyUserValidAction(JTextField userOutput) {
@@ -362,6 +383,20 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				if (!CryptoExperimentController.this.decryptionPhase) {
+
+					CryptoExperimentController.this.getView().remove(
+							CryptoExperimentController.this.getView()
+									.getNextButton());
+
+					// set up the aligment of the button Next;
+					CryptoExperimentController.this.getView().getNextButton()
+							.setPreferredSize(new Dimension(300, 50));
+					CryptoExperimentController.this
+							.getView()
+							.getNavigationPanel()
+							.add(CryptoExperimentController.this.getView()
+									.getNextButton(), BorderLayout.EAST);
+
 					int key = CryptoExperimentController.this.getModel()
 							.generateKey();
 
