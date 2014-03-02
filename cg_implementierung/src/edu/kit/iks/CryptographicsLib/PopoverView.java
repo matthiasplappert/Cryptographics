@@ -96,7 +96,7 @@ public class PopoverView extends JPanel {
 		
 		this.setOpaque(false);
 		this.setMaximumSize(new Dimension(500, 500));
-		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.9f));
+		this.setBackground(new Color(250, 250, 250, 230));
 		this.setBorderColor(Color.LIGHT_GRAY);
 		
 		// Create close button.
@@ -188,12 +188,17 @@ public class PopoverView extends JPanel {
 		PopoverView.containerView.repaint();
 	}
 	
+	/**
+	 * Paints the popover.
+	 */
+	@Override
 	protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         
         final Area shape = this.createShape();
         Graphics2D g2d = (Graphics2D)g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_OFF);
         
         // Fill.
         g2d.setPaint(this.getBackground());
@@ -205,6 +210,10 @@ public class PopoverView extends JPanel {
         g2d.draw(shape);
     }
 
+	/**
+	 * Creates the popover shape
+	 * @return The popover shape
+	 */
 	private Area createShape() {
 		// Create the basic rounded shape.
 		Area shape = null;
@@ -281,6 +290,9 @@ public class PopoverView extends JPanel {
 		this.setBorder(border);
 	}
 	
+	/**
+	 * Updates the bounds of the popover.
+	 */
 	private void updateBounds() {
 		Dimension size = this.getPreferredSize();
 		
@@ -314,11 +326,21 @@ public class PopoverView extends JPanel {
 		this.setBounds(bounds);
 	}
 	
+	/**
+	 * Sets the border color.
+	 * 
+	 * @param color The border color
+	 */
 	public void setBorderColor(Color color) {
 		this.borderColor = color;
 		this.repaint();
 	}
 	
+	/**
+	 * Gets the border color.
+	 * 
+	 * @return The border color
+	 */
 	public Color getBorderColor() {
 		return this.borderColor;
 	}

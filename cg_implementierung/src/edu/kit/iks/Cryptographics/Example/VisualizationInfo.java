@@ -26,7 +26,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 
 	@Override
 	public float getTimelineOffset() {
-		return 0.99f;
+		return 0.73f;
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 
 	@Override
 	public int getYear() {
-		return 2014;
+		return 1300;
 	}
 
 	@Override
