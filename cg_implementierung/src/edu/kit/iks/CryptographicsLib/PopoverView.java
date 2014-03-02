@@ -215,20 +215,27 @@ public class PopoverView extends JPanel {
 	 * @return The popover shape
 	 */
 	private Area createShape() {
+		final Insets insets = new Insets(1, 1, 1, 1);
+		Rectangle bounds = this.getBounds();
+		bounds.x += insets.left;
+		bounds.y += insets.top;
+		bounds.width -= insets.left + insets.right;
+		bounds.height -= insets.top + insets.bottom;
+		
 		// Create the basic rounded shape.
 		Area shape = null;
 		switch (this.arrowLocation) {
 			case TOP:
-				shape = new Area(new RoundRectangle2D.Double(0.0, ARROW_HEIGHT, this.getSize().getWidth(), this.getSize().getHeight() - ARROW_HEIGHT, CORNER_RADIUS, CORNER_RADIUS));
+				shape = new Area(new RoundRectangle2D.Double(insets.left, insets.top + ARROW_HEIGHT, bounds.getWidth(), bounds.getHeight() - ARROW_HEIGHT, CORNER_RADIUS, CORNER_RADIUS));
 				break;
 				
 			case BOTTOM:
-				shape = new Area(new RoundRectangle2D.Double(0.0, 0.0, this.getSize().getWidth(), this.getSize().getHeight() - ARROW_HEIGHT, CORNER_RADIUS, CORNER_RADIUS));
+				shape = new Area(new RoundRectangle2D.Double(insets.left, insets.top, bounds.getWidth(), bounds.getHeight() - ARROW_HEIGHT, CORNER_RADIUS, CORNER_RADIUS));
 				break;
 		}
 		
 		// Calculate the offset for the arrow.
-		int centerLocationX = (int)(this.getLocation().getX() + this.getWidth() / 2); 
+		int centerLocationX = (int)(this.getLocation().getX() + this.getWidth() / 2 + insets.left); 
 		int offsetX = (int)(this.anchorPoint.getX() - centerLocationX);
 		
 		// Create the arrow path.
@@ -236,14 +243,14 @@ public class PopoverView extends JPanel {
 	    Point arrowLocation = null;
 	    switch (this.arrowLocation) {
 			case TOP:
-				arrowLocation = new Point((int)(this.getSize().getWidth() / 2 + offsetX), ARROW_HEIGHT);
+				arrowLocation = new Point((int)((insets.left + bounds.width) / 2 + offsetX), insets.top + ARROW_HEIGHT);
 				path.moveTo(arrowLocation.getX() - ARROW_WIDTH / 2, arrowLocation.getY());
 				path.lineTo(arrowLocation.getX(), arrowLocation.getY() - ARROW_HEIGHT);
 			    path.lineTo(arrowLocation.getX() + ARROW_WIDTH / 2, arrowLocation.getY());
 			    break;
 				
 			case BOTTOM:
-				arrowLocation = new Point((int)(this.getSize().getWidth() / 2 + offsetX), (int)(this.getSize().getHeight() - ARROW_HEIGHT));
+				arrowLocation = new Point((int)((insets.left + bounds.width) / 2 + offsetX), (int)(insets.top + bounds.height - ARROW_HEIGHT));
 				path.moveTo(arrowLocation.getX() - ARROW_WIDTH / 2, arrowLocation.getY());
 				path.lineTo(arrowLocation.getX(), arrowLocation.getY() + ARROW_HEIGHT);
 			    path.lineTo(arrowLocation.getX() + ARROW_WIDTH / 2, arrowLocation.getY());
