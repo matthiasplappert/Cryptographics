@@ -17,7 +17,10 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import org.xnap.commons.i18n.I18n;
+
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.VisualizationButton;
 
 /**
@@ -71,6 +74,11 @@ public class TimelineView extends JPanel implements ComponentListener {
 	 * Serial Version UID
 	 */
 	private static final long serialVersionUID = -4974243564527826198L;
+	
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(TimelineView.class);
 
 	/**
 	 * Buttons to open the popover of a specific procedure to eventually 
@@ -186,7 +194,7 @@ public class TimelineView extends JPanel implements ComponentListener {
 		if (visualizationInfo.getYear() >= 0) {
 			year = new Integer(visualizationInfo.getYear()).toString();
 		} else {
-			year = String.format("%d BC", Math.abs(visualizationInfo.getYear()));
+			year = String.format(i18n.tr("%d BC"), Math.abs(visualizationInfo.getYear()));
 		}
 		FontMetrics yearMetrics = g2.getFontMetrics(g2.getFont());
 		Rectangle2D yearRect = yearMetrics.getStringBounds(year, g2);
