@@ -118,9 +118,10 @@ public class InformationView extends JPanel implements MouseListener {
 		// Initialize view.
 		this.setLayout(new BorderLayout());
 		this.loadWebViewComponents();
-		this.loadScrollButtons();
 		this.loadQRCodeViewComponents();
 		this.validate();
+		
+		this.updateButtonStates();
 	}
 	
 	/**
@@ -174,12 +175,10 @@ public class InformationView extends JPanel implements MouseListener {
 	private void loadScrollButtons() {
 		// Scroll up button.
 		this.scrollUpButton = new JButton(" ↑ ");
-		this.scrollUpButton.setName("up");
 		this.scrollUpButton.addMouseListener(this);
 		
 		// Scroll down button.
 		this.scrollDownButton = new JButton(" ↓ ");
-		this.scrollDownButton.setName("down");
 		this.scrollDownButton.addMouseListener(this);
 	}
 	
@@ -273,17 +272,10 @@ public class InformationView extends JPanel implements MouseListener {
 	 * the event cannot be properly mapped.
 	 */
 	private ScrollDirection getScrollDirectionFromMouseEvent(MouseEvent e) {
-		// For some weird reason, we can't directly compare the source to
-		// scrollUpButton or scrollDownButton. We therefore us the name as a
-		// workaround.
 		Component source = (Component)e.getSource();
-		String name = source.getName();
-		
-		if (name == null) {
-			return ScrollDirection.NONE;
-		} else if (this.scrollUpButton.getName().equals(name)) {
+		if (this.scrollUpButton.equals(source)) {
 			return ScrollDirection.UP;
-		} else if (this.scrollDownButton.getName().equals(name)) {
+		} else if (this.scrollDownButton.equals(source)) {
 			return ScrollDirection.DOWN;
 		} else {
 			return ScrollDirection.NONE;
@@ -330,6 +322,26 @@ public class InformationView extends JPanel implements MouseListener {
 			default:
 				// Do nothing.
 				break;
+		}
+		this.updateButtonStates();
+	}
+	
+	/**
+	 * Updates the scroll button states.
+	 */
+	private void updateButtonStates() {
+		JScrollBar vertical = this.webViewContainer.getVerticalScrollBar();
+		
+		if (vertical.getValue() <= vertical.getMinimum()) {
+			this.scrollUpButton.setEnabled(false);
+		} else {
+			this.scrollUpButton.setEnabled(true);
+		}
+		
+		if (vertical.getValue() >= vertical.getMaximum() - vertical.getModel().getExtent() - 1) {
+			this.scrollDownButton.setEnabled(false);
+		} else {
+			this.scrollDownButton.setEnabled(true);
 		}
 	}
 }
