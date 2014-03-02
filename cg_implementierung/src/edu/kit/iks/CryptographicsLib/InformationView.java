@@ -150,6 +150,7 @@ public class InformationView extends JPanel implements MouseListener {
 		this.webView = new JEditorPane();
 		this.webView.setEditable(false);
 		this.webView.setContentType("text/html");
+		this.webView.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 		try {
 			this.webView.setText(this.getHtml());
 		} catch(Exception e) {
