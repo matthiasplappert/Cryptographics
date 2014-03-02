@@ -95,7 +95,7 @@ public class TimelinePopoverView extends PopoverView {
 		descriptionConstraints.gridy = 1;
 		descriptionConstraints.gridwidth = 3;
 		descriptionConstraints.insets = new Insets(20, 0, 20, 0);
-		this.descriptionLabel = new JLabel("<html><div style=\"width:200px;\">" + visualizationInfo.getDescription() + "</div></html>");
+		this.descriptionLabel = new JLabel("<html><div style=\"width:220px;\">" + visualizationInfo.getDescription() + "</div></html>");
 		this.getContentView().add(this.descriptionLabel, descriptionConstraints);
 		
 		// Create start button
