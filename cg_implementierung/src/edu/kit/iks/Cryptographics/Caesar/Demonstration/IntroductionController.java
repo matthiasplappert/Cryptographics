@@ -209,10 +209,17 @@ public class IntroductionController extends AbstractVisualizationController {
 								+ IntroductionController.i18n
 										.tr("Caesar was raging. But while he was toturing some Gauls suddenly a hellacious and an foolproof idea<br>"
 												+ "crossed his mind. In his next message he will encrypt his name! Hue Hue Hue. Help him."));
-
+        GridBagLayout introLayout = (GridBagLayout) this.getView().getLayout();
+        this.getView().getNextButton().setText(IntroductionController.i18n.tr("To Caesar's idea."));
+        GridBagConstraints finishConstraints = new GridBagConstraints();
+        finishConstraints.gridx = 1;
+        finishConstraints.gridy = 2;
+        introLayout.setConstraints(this.getView().getNextButton(), finishConstraints);
+		
 		this.setResourceImage("CaesarAngry");
 		this.getView().remove(this.getView().getProceed());
 		this.getView().setProceed(null);
+		
 		this.getView().repaint();
 		this.getView().validate();
 
@@ -231,7 +238,7 @@ public class IntroductionController extends AbstractVisualizationController {
 	public String getHelp() {
 		String help = IntroductionController.i18n
 				.tr("If you want to hear the awesome legend about Caesar "
-						+ "and Kryptolix press the button below the text. Else try the next button!");
+						+ "and Kryptolix press the button below the text. Else you can skip this with the button in the top right corner!");
 
 		return help;
 	}
@@ -255,10 +262,5 @@ public class IntroductionController extends AbstractVisualizationController {
 	public void setCaesarResources(Element caesarResources) {
 		this.caesarResources = caesarResources;
 	}
-
-	// @Override
-	// public CaesarVisualizationInfo getVisualizationInfo() {
-	// return (CaesarVisualizationInfo) this.getVisualizationInfo();
-	// }
 
 }

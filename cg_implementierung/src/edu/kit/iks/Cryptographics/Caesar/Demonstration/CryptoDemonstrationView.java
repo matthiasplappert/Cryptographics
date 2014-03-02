@@ -74,7 +74,7 @@ public class CryptoDemonstrationView extends CryptoView {
 		String explanations = this.wrapHtml(CryptoDemonstrationView.i18n
 						.tr("Imagine now you are the mighty caesar! Of course your first idea is to substitute each"
 								+ " letter from your name with some other from the alphabet. But which one?"
-								+ " Click proceed to move on."));
+								+ " Press proceed to move on."));
 		this.setupExplanations(explanations,
 				GridBagConstraints.LAST_LINE_START, 0, 0, 4);
 

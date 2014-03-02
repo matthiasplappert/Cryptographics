@@ -68,10 +68,10 @@ public class CryptoDemonstrationController extends
 	public void loadView() {
 		this.view = new CryptoDemonstrationView();
 		this.model = CryptoModel.getInstance();
-		
+
 		// set the initial first step.
 		this.demonstrationStep = 1;
-		
+
 		// generate ActionListener for the navigationButtons.
 		this.generateNavigationListener();
 
@@ -82,7 +82,7 @@ public class CryptoDemonstrationController extends
 			// Needed for delegating to the inner type ActionListener, when the actionEvent from the
 			// Button "ENTER" on the Keyboard is fired.
 			final JTextField userOutput = this.getView().getUserOutput()[i];
-			
+
 			// FocusListener for the textfields.
 			this.generateUserOutputFocusListener(i, userOutput);
 			// actionListener for the textfields.
@@ -159,9 +159,8 @@ public class CryptoDemonstrationController extends
 															.wrapHtml(CryptoDemonstrationController.i18n
 																	.tr("Great work oh mighty Caesar. May your enemies shutter over your intelligence."
 																			+ " Now we can move on to the real experiment and test your skills.")));
+
 									// remove all unnecessary elements.
-									CryptoDemonstrationController.this
-											.getView().removeAlphabet();
 									CryptoDemonstrationController.this
 											.presentFinish();
 									CryptoDemonstrationController.this
@@ -209,7 +208,7 @@ public class CryptoDemonstrationController extends
 								}
 							} else {
 								// User didn't encrypt correctly.
-//								userOutput.setText("");
+								// userOutput.setText("");
 								CryptoDemonstrationController.this
 										.getView()
 										.getExplanations()
@@ -302,6 +301,8 @@ public class CryptoDemonstrationController extends
 	}
 
 	private void presentFinish() {
+		this.getView().removeAlphabet();
+
 		this.getView().getNavigationPanel()
 				.remove(this.getView().getNextButton());
 		GridBagConstraints nextConst = new GridBagConstraints();
