@@ -5,13 +5,21 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.io.InputStream;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
+import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
 
@@ -36,10 +44,31 @@ public class IntroductionController extends AbstractVisualizationController {
 	private int introductionStep;
 
 	/**
+	 * Caesar root element from the xml file.
+	 */
+	private Element caesarResources;
+
+	/**
 	 * @param visualizationInfo
 	 */
 	public IntroductionController(AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
+
+		SAXBuilder saxBuilder = new SAXBuilder();
+
+		// obtain file object
+		InputStream is = this.getClass().getResourceAsStream(
+				"/caesar/CaesarResources.xml");
+
+		try {
+			// converted file to document object
+			Document document = saxBuilder.build(is);
+
+			// get root node from xml
+			this.caesarResources = document.getRootElement();
+		} catch (JDOMException | IOException e) {
+			Logger.e(e);
+		}
 	}
 
 	/**
@@ -56,6 +85,8 @@ public class IntroductionController extends AbstractVisualizationController {
 	public void loadView() {
 		this.introductionStep = 1;
 		this.view = new IntroductionView();
+
+		this.setResourceImage("CaesarIdea");
 
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			@Override
@@ -76,11 +107,10 @@ public class IntroductionController extends AbstractVisualizationController {
 		});
 
 	}
-	
-	
-	//----------------------------------------------------------//
-	//--------------------private methods-----------------------//
-	
+
+	// ----------------------------------------------------------//
+	// --------------------private methods-----------------------//
+
 	private void proceedIntroduction(int step) {
 		switch (step) {
 		case 1:
@@ -96,15 +126,33 @@ public class IntroductionController extends AbstractVisualizationController {
 			this.step4();
 			break;
 		default:
-			Logger.d("IntroductionController", "proceedIntroduction", "Invalid introduction step!");
+			Logger.d("IntroductionController", "proceedIntroduction",
+					"Invalid introduction step!");
 		}
 	}
-	
+
+	private void setResourceImage(String resourceID) {
+		String path = "";
+		try {
+			path = IntroductionController.this.getCaesarResources()
+					.getChild("Introduction").getChild(resourceID)
+					.getAttributeValue("path");
+		} catch (NullPointerException nullException) {
+			//Element not found.
+			System.out.println("[NullPointerException] Ressource not found.");
+			nullException.printStackTrace();
+		}
+		
+		GridBagConstraints imgConstraint = new GridBagConstraints();
+		imgConstraint.gridx = 1;
+		imgConstraint.gridy = 0;
+		ImageView imageToSet = new ImageView(path);
+		this.getView().getAnimationContainer().add(imageToSet, imgConstraint);
+	}
+
 	private void step1() {
 		this.introductionStep++;
-//		this.getView().getAnimationContainer()
-//				.remove(this.getView().getCaesarIdeaImg());
-//		this.getView().setCaesarIdeaImg(null);
+		this.getView().getAnimationContainer().removeAll();
 		this.getView()
 				.getExplanation()
 				.setText(
@@ -112,24 +160,11 @@ public class IntroductionController extends AbstractVisualizationController {
 								+ IntroductionController.i18n
 										.tr("Unfortunately his courier has taken the way through the forest, where Kryptolix chased<br>"
 												+ "the wild boars."));
+        
+		this.setResourceImage("Courier");
 
-
-//		// set the alignment of the masterPlan image.
-//		GridBagConstraints courierConstraint = new GridBagConstraints();
-//		courierConstraint.weightx = 1.0;
-//		courierConstraint.weighty = 0.1;
-//		courierConstraint.gridx = 0;
-//		courierConstraint.gridy = 0;
-//		courierConstraint.gridwidth = 1;
-//
-//		// take the image from the xml-resource.
-//		this.getView().setCourier(
-//				new ImageView(this.introResource.getChild("Courier")
-//						.getAttributeValue("path")));
-//		this.getView().getAnimationContainer()
-//				.add(this.getView().getCourier(), courierConstraint);
-//
-//		this.getView().getAnimationContainer().repaint();
+		this.getView().validate();
+		this.getView().getAnimationContainer().repaint();
 
 	}
 
@@ -143,33 +178,13 @@ public class IntroductionController extends AbstractVisualizationController {
 										.tr("When Kryptolix noticed the unsuspecting and whistling roman courier, he punched him via the air-line<br>"
 												+ "back to Rome. And saw him losing a scroll."));
 
-//		// set the alignment of boar.
-//		GridBagConstraints boarConst = new GridBagConstraints();
-//		boarConst.gridx = 4;
-//		boarConst.gridy = 0;
-//		this.getView().getAnimationContainer()
-//				.add(this.getView().getBoar(), boarConst);
-//
-//		// set the alignment of obelix image.
-//		GridBagConstraints obelixConstraint = new GridBagConstraints();
-//		obelixConstraint.gridx = 3;
-//		obelixConstraint.gridy = 0;
-//
-//		// take the image from the xml-resource.
-//		this.getView().setKryptolix(
-//				new ImageView(this.introResource.getChild("Obelix")
-//						.getAttributeValue("path")));
-//		this.getView().getAnimationContainer()
-//				.add(this.getView().getKryptolix(), obelixConstraint);
+		
 
 	}
 
 	private void step3() {
 		this.introductionStep++;
-//		this.getView().getAnimationContainer()
-//				.remove(this.getView().getCourier());
-//		this.getView().setCourier(null);
-//		this.getView().getAnimationContainer().remove(this.getView().getBoar());
+		this.getView().getAnimationContainer().removeAll();
 
 		this.getView()
 				.getExplanation()
@@ -179,26 +194,14 @@ public class IntroductionController extends AbstractVisualizationController {
 										.tr("When reading the scroll the courier lost, Kryptolix identified Caesar's plans of<br>"
 												+ "conquering Gallia and Kryptolix and his awesome friends could defeat Caesar again!"));
 
-//		GridBagConstraints orderConstraints = new GridBagConstraints();
-//		orderConstraints.gridx = 5;
-//		orderConstraints.gridy = 0;
-//		this.getView().setOrders(
-//				new ImageView(this.introResource.getChild("Orders")
-//						.getAttributeValue("path")));
-//		this.getView().getAnimationContainer()
-//				.add(this.getView().getOrders(), orderConstraints);
-//
-//		this.getView().validate();
+		this.setResourceImage("FlyingCourier");
+		
+		 this.getView().validate();
+		 this.getView().repaint();
 	}
 
 	private void step4() {
-//		this.getView().getAnimationContainer()
-//				.remove(this.getView().getKryptolix());
-//		this.getView().getAnimationContainer()
-//				.remove(this.getView().getOrders());
-//		this.getView().setKryptolix(null);
-//		this.getView().setOrders(null);
-
+		this.getView().getAnimationContainer().removeAll();
 		this.getView()
 				.getExplanation()
 				.setText(
@@ -207,23 +210,16 @@ public class IntroductionController extends AbstractVisualizationController {
 										.tr("Caesar was raging. But while he was toturing some Gauls suddenly a hellacious and an foolproof idea<br>"
 												+ "crossed his mind. In his next message he will encrypt his name! Hue Hue Hue. Help him."));
 
-		GridBagLayout introLayout = (GridBagLayout) this.getView().getLayout();
-		this.getView().getNextButton()
-				.setText(IntroductionController.i18n.tr("To caesar's idea"));
-		GridBagConstraints finishConstraint = new GridBagConstraints();
-		finishConstraint.gridx = 1;
-		finishConstraint.gridy = 2;
-		introLayout.setConstraints(this.getView().getNextButton(),
-				finishConstraint);
+		this.setResourceImage("CaesarAngry");
 		this.getView().remove(this.getView().getProceed());
 		this.getView().setProceed(null);
-        this.getView().repaint();
+		this.getView().repaint();
 		this.getView().validate();
 
 	}
 
-	//----------------------------------------------------------//
-	//---------------------Getter/Setter-------------------------//
+	// ----------------------------------------------------------//
+	// ---------------------Getter/Setter-------------------------//
 	/**
 	 * @return the animationStep
 	 */
@@ -239,10 +235,30 @@ public class IntroductionController extends AbstractVisualizationController {
 
 		return help;
 	}
-	
+
 	@Override
 	public void unloadView() {
 		this.view = null;
 	}
+
+	/**
+	 * @return the caesarResources
+	 */
+	public Element getCaesarResources() {
+		return caesarResources;
+	}
+
+	/**
+	 * @param caesarResources
+	 *            the caesarResources to set
+	 */
+	public void setCaesarResources(Element caesarResources) {
+		this.caesarResources = caesarResources;
+	}
+
+	// @Override
+	// public CaesarVisualizationInfo getVisualizationInfo() {
+	// return (CaesarVisualizationInfo) this.getVisualizationInfo();
+	// }
 
 }

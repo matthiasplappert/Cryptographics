@@ -34,29 +34,10 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 			CaesarVisualizationInfo.class);
 
 	/**
-	 * Caesar root element from the xml file.
-	 */
-	private Element caesarResources;
-
-	/**
 	 * Constructor for the visualizationInfo.
 	 */
 	public CaesarVisualizationInfo() {
-		SAXBuilder saxBuilder = new SAXBuilder();
-
-		// obtain file object
-		InputStream is = this.getClass().getResourceAsStream(
-				"/caesar/CaesarResources.xml");
-
-		try {
-			// converted file to document object
-			Document document = saxBuilder.build(is);
-
-			// get root node from xml
-			this.caesarResources = document.getRootElement();
-		} catch (JDOMException | IOException e) {
-			Logger.e(e);
-		}
+	
 	}
 
 	/*
@@ -122,13 +103,6 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 		return i18n.tr("http://en.wikipedia.org/wiki/Caesar_cipher");
 	}
 
-	/**
-	 * @return the resources
-	 */
-	public Element getResources() {
-		return this.caesarResources;
-	}
-
 	/*
 	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getTimelineOffset ()
 	 */
@@ -145,14 +119,6 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 		// when getYear() negative then it's the year B.C.
 		// The year is an estimation!!!
 		return -70;
-	}
-
-	/**
-	 * @param resources
-	 *            the resources to set
-	 */
-	public void setResources(Element caesarResources) {
-		this.caesarResources = caesarResources;
 	}
 
 }

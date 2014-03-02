@@ -47,11 +47,6 @@ public class HistogramView extends VisualizationView {
 	private static I18n i18n = Configuration.getInstance().getI18n(
 			HistogramView.class);
 
-	/**
-	 * XML root element for this view.
-	 */
-	private Element histResource;
-
 	// GUI container for other GUI elements:
 	/**
 	 * JPanel that contain JLabel explanations and the Button proceed.
@@ -155,10 +150,6 @@ public class HistogramView extends VisualizationView {
 	 * Constructor.
 	 */
 	public HistogramView() {
-		// load the resources from the xml, that can be accessed over the
-		// visualizationInfo
-		CaesarVisualizationInfo vsInfo = new CaesarVisualizationInfo();
-		this.histResource = vsInfo.getResources().getChild("Histogram");
 
 		// setup the layout.
 		this.setupViewLayout();
@@ -689,13 +680,6 @@ public class HistogramView extends VisualizationView {
 	}
 
 	/**
-	 * @return the histResource
-	 */
-	public Element getHistResource() {
-		return this.histResource;
-	}
-
-	/**
 	 * @return the increment
 	 */
 	public JButton getIncrement() {
@@ -843,14 +827,6 @@ public class HistogramView extends VisualizationView {
 	 */
 	public void setHistogramContainer(JPanel histogramContainer) {
 		this.histogramContainer = histogramContainer;
-	}
-
-	/**
-	 * @param histResource
-	 *            the histResource to set
-	 */
-	public void setHistResource(Element histResource) {
-		this.histResource = histResource;
 	}
 
 	/**
