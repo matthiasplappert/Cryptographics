@@ -2,14 +2,14 @@
 <head>
 </head>
 <body>
-<h2>One-Time Pad</h2>
+<h2>Introduction</h2>
 <p>In cryptography, a one-time pad (OTP) is an encryption technique that cannot be cracked if used correctly. In this technique, a plaintext is paired with random, secret key (or pad). Then, each bit or character of the plaintext is encrypted by combining it with the corresponding bit or character from the pad using modular addition. If the key is truly random, at least as long as the plaintext, never reused in whole or in part, and kept completely secret, the resulting ciphertext will be impossible to decrypt or break. It has also been proven that any cipher with the perfect secrecy property must use keys with effectively the same requirements as OTP keys. However, practical problems have prevented one-time pads from being widely used.</p>
 
 <p>First described by Frank Miller in 1882, the one-time pad was re-invented in 1917 and patented a couple of years later. It is derived from the Vernam cipher, named after Gilbert Vernam, one of its inventors. Vernam's system was a cipher that combined a message with a key read from a punched tape. In its original form, Vernam's system was vulnerable because the key tape was a loop, which was reused whenever the loop made a full cycle. One-time use came a little later when Joseph Mauborgne recognized that if the key tape were totally random, cryptanalysis would be impossible.</p>
 
 <p>The "pad" part of the name comes from early implementations where the key material was distributed as a pad of paper, so the top sheet could be easily torn off and destroyed after use. For easy concealment, the pad was sometimes reduced to such a small size that a powerful magnifying glass was required to use it. Photos show captured KGB pads that fit in the palm of one's hand, or in a walnut shell. To increase security, one-time pads were sometimes printed onto sheets of highly flammable nitrocellulose so they could be quickly burned.</p>
 
-<h3>Example</h3>
+<h2>Example</h2>
 <p>Suppose Alice wishes to send the message "HELLO" to Bob. Assume two pads of paper containing identical random sequences of letters were somehow previously produced and securely issued to both. Alice chooses the appropriate unused page from the pad. The way to do this is normally arranged for in advance, as for instance 'use the 12th sheet on 1 May', or 'use the next available sheet for the next message'. The material on the selected sheet is the <i>key</i> for this message. Each letter from the pad will be combined in a predetermined way with one letter of the message. It is common, but not required, to assign each letter a numerical value: e.g. "A" is 0, "B" is 1, and so on. In this example, the technique is to combine the key and the message using modular addition. The numerical values of corresponding message and key letters are added together, modulo 26. If key material begins with "XMCKL" and the message is "HELLO", then the coding would be done as follows:</p>
 
 <pre>
@@ -40,7 +40,7 @@
 
 <p>The classical one-time pad of espionage used actual pads of minuscule, easily concealed paper, a sharp pencil, and some mental arithmetic. The method can be implemented now as a software program, using data files as input (plaintext), output (ciphertext) and key material (the required random sequence). The XOR operation is often used to combine the plaintext and the key elements, and is especially attractive on computers since it is usually a native machine instruction and is therefore very fast. However, ensuring that the key material is actually random, is used only once, never becomes known to the opposition, and is completely destroyed after use is hard to do. The auxiliary parts of a software one-time pad implementation present real challenges: secure handling/transmission of plaintext, truly random keys, and one-time-only use of the key.</p>
 
-<h3>Attempt at cryptanalysis</h3>
+<h2>Attempt at cryptanalysis</h2>
 <p>To continue the example from above, suppose Eve intercepts Alice's ciphertext: "EQNVZ". If Eve had infinite computing power, she would instantly find that the key "XMCKL" would produce the plaintext "HELLO", but she would also find that the key "TQURI" would produce the plaintext "LATER", an equally plausible message:</p>
 
 <pre>
