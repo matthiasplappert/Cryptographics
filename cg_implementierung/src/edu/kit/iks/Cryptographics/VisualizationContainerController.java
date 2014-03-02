@@ -131,7 +131,7 @@ public class VisualizationContainerController extends AbstractController {
 		this.view.setName("visualization-container-controller-view");
 		// Styling purpose
 		this.view.setName("visualizationContainerController");
-		this.view.getNameLabel().setText(this.getVisualizationInfo().getName());
+		this.view.getNameLabel().setText("<html><h1>" + this.getVisualizationInfo().getName() + "</h1></html>");
 		
 		this.view.getExitButton().addMouseListener(new MouseClickListener() {
 			@Override

@@ -3,6 +3,28 @@
 </head>
 <body>
 <h2>SHA-2</h2>
-<p>Platzhalter.</p>
+<p>SHA-2 (von englisch secure hash algorithm, sicherer Hash-Algorithmus) ist die Bezeichnung für die vier kryptologischen Hashfunktionen SHA-224, SHA-256, SHA-384 und SHA-512, die 2001 vom US-amerikanischen NIST als Nachfolger von SHA-1 standardisiert wurden.</p>
+
+<p>Als Reaktion auf die bekanntgewordenen Angriffe gegen SHA-1 hielt das National Institute of Standards and Technology (NIST) im Oktober 2005 einen Workshop ab, in dem der aktuelle Stand kryptologischer Hashfunktionen diskutiert wurde. NIST empfiehlt den Übergang von SHA-1 zu Hashfunktionen der SHA-2-Familie (SHA-224, SHA-256, SHA-384, SHA-512). Um eine Hashfunktion mit einem andersartigen Konstruktionsprinzip zu erhalten, rief das NIST nach Vorbild des Advanced Encryption Standard (AES) zu einer Ausschreibung für SHA-3 auf. Die endgültige Wahl und Benennung fiel dann im Oktober 2012 auf den Algorithmus Keccak. SHA-2 wird aber weiterhin als sicher betrachtet und zur Benutzung empfohlen.</p>
+
+<h3>Beispiel</h3>
+<p>Der SHA256-Hash des Textes "Hallo" ist:</p>
+
+<pre>
+SHA256("Hallo") = <br>
+753692ec36adb4c794c973945eb2a99c1649703ea6f76bf259abb4fb838e013e
+</pre>
+
+<p>Eine kleine Änderung der Nachricht erzeugt einen komplett anderen Hash. Diese Eigenschaft wird in der Kryptographie auch als Lawineneffekt bezeichnet.</p>
+
+<pre>
+SHA256("Hallo Fran<b>k</b>, wie geht's?") = <br>
+e1f2886e2a8c345160991b50f83afa32785b5f133d1d7b2f077db044048364c6<br><br>
+SHA256("Hallo Fran<b>z</b>, wie geht's?") = <br>
+47061aa8395215cf171027a46bb2d5cfdcf3f5eabe142b35b92773b47b7722ac
+</pre>
+
+<p style="text-align:right;"><i>Source: http://de.wikipedia.org/wiki/SHA-2<i></p>
+
 </body>
 </html>
