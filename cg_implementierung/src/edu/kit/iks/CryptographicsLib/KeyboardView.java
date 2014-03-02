@@ -144,13 +144,15 @@ public class KeyboardView extends JPanel implements ActionListener {
 			Logger.d("KeyboardView", "actionPerformed", "Key pressed");
 			
 			if (this.inputMode == KeyboardView.STRING_MODE) {
+				
 				String currentText = this.textField.getText();
 				String newText = currentText + buttonLabel;
-				
 				this.textField.setText(newText);
-			} else if (this.inputMode == KeyboardView.CHAR_MODE) {
-				this.textField.setText(buttonLabel);
 				
+			} else if (this.inputMode == KeyboardView.CHAR_MODE) {
+
+				this.textField.setText(buttonLabel);
+				this.textField.getActionListeners()[0].actionPerformed(e);
 			}
 		}
 		

@@ -203,7 +203,7 @@ public class CryptoModel {
 	}
 
 	private String wrapHtml(String text) {
-		return "<html><body><div width=600px>" + text + "</div></body></html>";
+		return "<html><body><div width=400px>" + text + "</div></body></html>";
 	}
 
 	private char shiftChar(int key, char charToShift) {

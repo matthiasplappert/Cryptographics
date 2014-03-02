@@ -137,8 +137,6 @@ public class CryptoDemonstrationController extends
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						if (userOutput.isEditable()) {
-							// standart key for the caesar cipher. +3 when encrypting. -3 when
-							// decrypting.
 							if (CryptoDemonstrationController.this.getModel()
 									.enc(3, userOutput.getName())
 									.equals(userOutput.getText())) {
@@ -213,9 +211,7 @@ public class CryptoDemonstrationController extends
 								}
 							} else {
 								// User didn't encrypt correctly.
-								userOutput.setBorder(BorderFactory
-										.createLineBorder(Color.red));
-								userOutput.setText("");
+//								userOutput.setText("");
 								CryptoDemonstrationController.this
 										.getView()
 										.getExplanations()
