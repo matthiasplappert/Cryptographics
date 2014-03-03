@@ -258,5 +258,9 @@ public class DHDemoView extends VisualizationView {
 	public String getHelp() {
 		return help ;
 	}
+	
+	public JButton getSkip() {
+		return skip;
+	}
 
 }
