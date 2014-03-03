@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-03-03 15:16+0100\n"
-"PO-Revision-Date: 2014-03-03 16:07+0100\n"
+"POT-Creation-Date: 2014-03-03 17:02+0100\n"
+"PO-Revision-Date: 2014-03-03 17:13+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -539,18 +539,23 @@ msgid ""
 "When we substract 'H' - 'E' we get the key. Put the key 3 in the box below "
 "and let the programm decrypt the cipher with it."
 msgstr ""
+"Wenn du dir das Histogramm des Chiffrats ansiehst, erkennst du, dass 'H' der "
+"häufigste Buchstabe ist. Offenbar wurde also 'E' nach 'H' verschoben. Wenn "
+"du 'E' von 'H' subtrahierst, erhälst du den Schlüssel 3. Gib den Schlüssel "
+"in das Feld unten ein und das Programm wird das Chiffrat entschlüsseln."
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:481
 msgid "Ok lets try another one!"
 msgstr "Okay, nochmal eins!"
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:161
+#, fuzzy
 msgid ""
 "cryptologists call it 'breaking a cipher' when someone tries to decrypt text "
 "without knowing the key.<br>There are always 2 options when it comes to this."
 "<br><br>1. You use literally brute force, meaning you simply try each "
 "possible key.<br><br>2. You use elaborate cryptology techniques."
-msgstr ""
+msgstr "still breaks in it..."
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:323
 msgid "&darr;Histogram of the cipher.&darr;"
@@ -900,6 +905,8 @@ msgid ""
 "Find out how you can encrypt something in such a way that it is impossible "
 "for someone else to crack it!"
 msgstr ""
+"Finde heraus, wie man etwas so verschlüsseln kann, dass es unmöglich für "
+"jemanden wird, es zu knacken!"
 
 #: ../src/edu/kit/iks/Cryptographics/OneTimePad/VisualizationInfo.java:73
 msgid "http://en.wikipedia.org/wiki/One-time_pad"
@@ -915,6 +922,9 @@ msgid ""
 "you to transform your data in one direction only, making it impossible to "
 "reverse the process!"
 msgstr ""
+"Erfahre mehr über die kryptographische Hashfunktion SHA-2. Eine Hashfunktion "
+"verschlüsselt Daten und macht es dabei unmöglich, die Daten wieder zu "
+"entschlüsseln!"
 
 #: ../src/edu/kit/iks/Cryptographics/SHA2/VisualizationInfo.java:73
 msgid "http://en.wikipedia.org/wiki/SHA_2"
