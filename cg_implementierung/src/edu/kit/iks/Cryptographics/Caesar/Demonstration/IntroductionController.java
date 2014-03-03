@@ -157,10 +157,10 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>"
+						"<html><div style=\"width:600px;\">"
 								+ IntroductionController.i18n
-										.tr("Unfortunately his courier has taken the way through the forest, where Kryptolix chased<br>"
-												+ "the wild boars."));
+										.tr("Unfortunately his courier took the way through the forest, where Kryptolix chased "
+												+ "some wild boars.") + "</div></html>");
         
 		this.setResourceImage("Courier");
 
@@ -175,10 +175,10 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>"
+						"<html><div style=\"width:600px;\">"
 								+ IntroductionController.i18n
-										.tr("When Kryptolix noticed the unsuspecting and whistling roman courier, he punched him via the air-line<br>"
-												+ "back to Rome. And saw him losing a scroll."));
+										.tr("When Kryptolix noticed the unsuspecting and whistling roman courier, he punched him back to Rome as the crow flies. "
+												+ "But the courier had lost his invaluable scroll!") + "</div></html>");
 		this.setResourceImage("FlyingCourier");
 		
 
@@ -190,10 +190,10 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>"
+						"<html><div style=\"width:700px;\">"
 								+ IntroductionController.i18n
-										.tr("When reading the scroll the courier lost, Kryptolix identified Caesar's plans of<br>"
-												+ "conquering Gallia and Kryptolix and his awesome friends could defeat Caesar again!"));
+										.tr("When reading the scroll the courier lost, Kryptolix identified it as Caesar's plan to "
+												+ "conquer Gallia. Because of this, Kryptolix and his friends were able to defeat Caesar once more!") + "</div></html>");
 
 		this.setResourceImage("Kryptolix");
 		
@@ -206,12 +206,12 @@ public class IntroductionController extends AbstractVisualizationController {
 		this.getView()
 				.getExplanation()
 				.setText(
-						"<html><body>"
+						"<html><div style=\"width:700px;\">"
 								+ IntroductionController.i18n
-										.tr("Caesar was raging. But while he was toturing some Gauls suddenly a hellacious and an foolproof idea<br>"
-												+ "crossed his mind. In his next message he will encrypt his name! Hue Hue Hue. Help him."));
+										.tr("Caesar was ragin! While he was torturing some Gauls, suddenly an hellacious and foolproof idea "
+												+ "crossed his mind. In his next message he would encrypt his name! Hue Hue Hue. Help him!"));
         GridBagLayout introLayout = (GridBagLayout) this.getView().getLayout();
-        this.getView().getNextButton().setText(IntroductionController.i18n.tr("To Caesar's idea."));
+        this.getView().getNextButton().setText(IntroductionController.i18n.tr("To Caesar's idea"));
         GridBagConstraints finishConstraints = new GridBagConstraints();
         finishConstraints.gridx = 1;
         finishConstraints.gridy = 2;
@@ -239,7 +239,7 @@ public class IntroductionController extends AbstractVisualizationController {
 	public String getHelp() {
 		String help = IntroductionController.i18n
 				.tr("If you want to hear the awesome legend about Caesar "
-						+ "and Kryptolix press the button below the text. Else you can skip this with the button in the top right corner!");
+						+ "and Kryptolix press the button below the text. Otherwise you can skip this with the button in the top right corner!");
 
 		return help;
 	}

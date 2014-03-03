@@ -205,7 +205,7 @@ public class CryptoDemonstrationController extends
 											.setText(
 													CryptoDemonstrationController.this
 															.wrapHtml(CryptoDemonstrationController.i18n
-																	.tr("Very nice! Lets encrypt the rest of this childish challenge. Touch proceed.")));
+																	.tr("Very nice! Let's encrypt the rest of your name. Touch proceed.")));
 									CryptoDemonstrationController.this.setFeedbackImage("CaesarPositive");
 								} else {
 									// User encrypted correctly the given char.
@@ -433,8 +433,8 @@ public class CryptoDemonstrationController extends
 				.getExplanations()
 				.setText(
 						this.wrapHtml(CryptoDemonstrationController.i18n
-								.tr("Now lets try to encrypt the next letter by yourself."
-										+ " If more help needed touch the button help.")));
+								.tr("Now try to encrypt the next letter yourself."
+										+ " If you need help, you can always use the help button.")));
 		this.getView().getUserInput()[1].setBorder(BorderFactory
 				.createLineBorder(Color.green));
 		this.getView().getUserOutput()[1].setEditable(true);

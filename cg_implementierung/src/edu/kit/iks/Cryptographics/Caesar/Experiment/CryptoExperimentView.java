@@ -46,9 +46,9 @@ public class CryptoExperimentView extends CryptoView {
 
 		// setup the caption of the next/back Buttons.
 		this.getBackButton().setText(
-				CryptoExperimentView.i18n.tr("Back to demonstration."));
+				CryptoExperimentView.i18n.tr("Back to Demonstration"));
 		this.getNextButton().setText(
-				CryptoExperimentView.i18n.tr("Go to Decryption."));
+				CryptoExperimentView.i18n.tr("Go to Decryption"));
 
 		// setup the input/output elements for further steps.
 		this.setupUserIO();
@@ -59,19 +59,19 @@ public class CryptoExperimentView extends CryptoView {
 		// setup the explanations.
 		String explanation = this
 				.wrapHtml(CryptoExperimentView.i18n
-						.tr("In the demonstration you encrypted with the key 3. On further thoughts it seems logical, that the key can vary"
-								+ "up to each position in the alphabet. From 1 to 26.")
+						.tr("In the demonstration you encrypted with the key 3. On further thought it seems logical that this key can vary"
+								+ " from 1 to 26.")
 						+ "<br>"
 						+ CryptoExperimentView.i18n
 								.tr("Now you have 2 options:")
 						+ "<br>"
 						+ "<br>"
 						+ CryptoExperimentView.i18n
-								.tr("1. You put you own key and plaintext into the textfield.")
+								.tr("1. You can either put your own key and plaintext into the textfield,")
 						+ "<br>"
 						+ "<br>"
 						+ CryptoExperimentView.i18n
-								.tr("2. Or you just click generate and this awesome programm generates you everything you need with real complex calculations."));
+								.tr("2. or you just click \"Generate\" and this awesome program will generate a key and plaintext for you."));
 		this.setupExplanations(explanation, GridBagConstraints.PAGE_START, 1,
 				0, 6);
 

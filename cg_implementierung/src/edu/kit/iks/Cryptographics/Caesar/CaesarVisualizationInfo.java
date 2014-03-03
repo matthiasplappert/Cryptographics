@@ -59,7 +59,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 				.tr("Get to know how Ceasar fooled his enemys that "
 						+ "intercepted his orders and see one of the oldest "
 						+ "attempts to make confidential material unreadable "
-						+ "for undesireable readers");
+						+ "for undesireable readers.");
 
 		return description;
 	}
