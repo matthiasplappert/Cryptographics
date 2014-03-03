@@ -158,7 +158,7 @@ public class HistogramView extends VisualizationView {
 
 		String explanation = "<html><body>"
 				+ HistogramView.i18n
-						.tr("cryptologists call it 'breaking a cipher' when someone tries to decrypt text without knowing the key.")
+						.tr("Cryptologists call it 'breaking a cipher' when someone tries to decrypt text without knowing the key.")
 				+ "<br>"
 				+ HistogramView.i18n
 						.tr("There are always 2 options when it comes to this.")
