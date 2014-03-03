@@ -13,11 +13,13 @@ import javax.swing.JTextField;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
+import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoExperimentController;
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
+import edu.kit.iks.CryptographicsLib.Logger;
 
 /**
  * Controller class of the first phase
@@ -170,7 +172,26 @@ public class FirstExperimentController extends AbstractVisualizationController {
 							
 						}
 					});
+			userOutput
+			.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if (getView().getKeyboard() != null) {
+							getView().remove(getView().getKeyboard());
+							getView().setKeyboard(null);
+							getView().validate();
+							getView().repaint();
+						}
+						if (testInput(state)) {
+							getView().hideError();
+							stepForward();
+						} else {
+							getView().showError(state);
+						}
+					}
+			});
 			}
+
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				if (getView().getKeyboard() != null) {
@@ -185,6 +206,13 @@ public class FirstExperimentController extends AbstractVisualizationController {
 				} else {
 					getView().showError(state);
 				}
+			}
+		});
+		
+		this.getView().getSkipButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+				containerController.presentNextVisualizationController();
 			}
 		});
 	}

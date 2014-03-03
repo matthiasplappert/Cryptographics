@@ -169,7 +169,7 @@ public class SecondDemonstrationController extends AbstractVisualizationControll
 		case 6:
 			getView().setExplanation("<html><div width=\"1200\">"
 					+ i18n.tr("E = 5 and Y = 25. 25 + 5 = 30, but our alphabet doesnt "
-					+ "have 28 characters. So we now use the modulo: 28 modulo "
+					+ "have 30 characters. So we now use the modulo: 30 modulo "
 					+ "26 = 2.")
 					+ "</div></html>");
 			getView().setCalculator(5,25);
@@ -197,6 +197,12 @@ public class SecondDemonstrationController extends AbstractVisualizationControll
 		this.getView().getNextButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				stepForward();
+			}
+		});
+		this.getView().getSkipButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+				containerController.presentNextVisualizationController();
 			}
 		});
 	}
