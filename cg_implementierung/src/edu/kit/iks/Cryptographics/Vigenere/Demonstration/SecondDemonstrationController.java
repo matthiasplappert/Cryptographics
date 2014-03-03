@@ -170,7 +170,7 @@ public class SecondDemonstrationController extends AbstractVisualizationControll
 			getView().setExplanation("<html><div width=\"1200\">"
 					+ i18n.tr("E = 5 and Y = 25. 25 + 5 = 30, but our alphabet doesnt "
 					+ "have 30 characters. So we now use the modulo: 30 modulo "
-					+ "26 = 2.")
+					+ "26 = 4.")
 					+ "</div></html>");
 			getView().setCalculator(5,25);
 			getView().highlightAndSetText(3, 3, "D");
