@@ -1,7 +1,6 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 
 import javax.swing.JButton;
@@ -10,7 +9,6 @@ import javax.swing.JTextField;
 import org.jdom2.Element;
 import org.xnap.commons.i18n.I18n;
 
-import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.Cryptographics.Caesar.CryptoView;
 import edu.kit.iks.CryptographicsLib.Configuration;
 
