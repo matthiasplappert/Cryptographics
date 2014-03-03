@@ -1,7 +1,6 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 
 import javax.swing.JButton;
@@ -10,7 +9,6 @@ import javax.swing.JTextField;
 import org.jdom2.Element;
 import org.xnap.commons.i18n.I18n;
 
-import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
 import edu.kit.iks.Cryptographics.Caesar.CryptoView;
 import edu.kit.iks.CryptographicsLib.Configuration;
 
@@ -50,7 +48,7 @@ public class CryptoDemonstrationView extends CryptoView {
 		this.getBackButton().setText(
 				CryptoDemonstrationView.i18n.tr("Back to Introduction"));
 		this.getNextButton().setText(
-				CryptoDemonstrationView.i18n.tr("Go to Experiment."));
+				CryptoDemonstrationView.i18n.tr("Go to Experiment"));
 
 		// setup the fields for the demonstratoin of the encryption.
 		String caesar = CryptoDemonstrationView.i18n.tr("CAESAR");
@@ -72,9 +70,9 @@ public class CryptoDemonstrationView extends CryptoView {
 
 		// setup the explanation label.
 		String explanations = this.wrapHtml(CryptoDemonstrationView.i18n
-						.tr("Imagine now you are the mighty caesar! Of course your first idea is to substitute each"
-								+ " letter from your name with some other from the alphabet. But which one?"
-								+ " Click proceed to move on."));
+						.tr("Imagine now you are the mighty Caesar! Of course your first idea is to substitute each"
+								+ " letter from your name with another one from the alphabet. But which one?"
+								+ " Press proceed to move on."));
 		this.setupExplanations(explanations,
 				GridBagConstraints.LAST_LINE_START, 0, 0, 4);
 
@@ -84,7 +82,7 @@ public class CryptoDemonstrationView extends CryptoView {
 	private void setupProceed() {
 		// setup the aligment of the button proceed.
 		GridBagConstraints proceedConst = new GridBagConstraints();
-		this.proceed = new JButton(CryptoDemonstrationView.i18n.tr("Proceed!"));
+		this.proceed = new JButton(CryptoDemonstrationView.i18n.tr("Proceed"));
 		this.proceed.setPreferredSize(new Dimension(250, 50));
 		proceedConst.anchor = GridBagConstraints.PAGE_END;
 		proceedConst.gridx = 2;

@@ -22,8 +22,8 @@ public class Main {
 			Logger.setDebugMode();
 		}
 		
-		Logger.l("Cryptographics launched");
-		Logger.d("Main", "main", "Debugger running.");
+		Logger.log("Cryptographics launched");
+		Logger.debug("Main", "main", "Debugger running.");
 		
 		// Run app on the AWT event queue.
 		SwingUtilities.invokeLater(new Runnable() {

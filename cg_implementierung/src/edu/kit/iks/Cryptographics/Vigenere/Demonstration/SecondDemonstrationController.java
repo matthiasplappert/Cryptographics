@@ -40,7 +40,7 @@ public class SecondDemonstrationController extends AbstractVisualizationControll
 	 */
 	private void stepBack() {
 		state--;
-		Logger.d("SecondDemonstrationController", "stepBack()", "State: " + state);
+		Logger.debug("SecondDemonstrationController", "stepBack()", "State: " + state);
 		switch (state) {
 		case -1:
 			VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
@@ -117,7 +117,7 @@ public class SecondDemonstrationController extends AbstractVisualizationControll
 	 */
 	private void stepForward() {
 		state++;
-		Logger.d("SecondDemonstrationController", "stepForward()", "State: " + state);
+		Logger.debug("SecondDemonstrationController", "stepForward()", "State: " + state);
 		switch (state) {
 		case 1:
 			getView().setExplanation("<html><div width=\"1200\">"

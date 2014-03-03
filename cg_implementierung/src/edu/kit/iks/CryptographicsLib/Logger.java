@@ -47,7 +47,7 @@ public class Logger {
 	 * 
 	 * @param logEntry Action which should be logged
 	 */
-	public static void l(String logEntry) {
+	public static void log(String logEntry) {
 		String unixTimestamp = Logger.getUnixTimestamp();
 		
 		if (Logger.isDebugModeActive()) {
@@ -64,7 +64,7 @@ public class Logger {
 	 * @param method Method name of this debug output
 	 * @param debugText Debug text which should be printed
 	 */
-	public static void d(String classID, String method, String debugText) {
+	public static void debug(String classID, String method, String debugText) {
 		if (Logger.debugMode) {
 			
 			System.out.println("[Debug]: " + classID + "::" + method + "() - " + debugText);
@@ -77,7 +77,7 @@ public class Logger {
 	 * 
 	 * @param exception Exception to trace
 	 */
-	public static void e(Exception exception) {
+	public static void error(Exception exception) {
 		if (Logger.debugMode) {
 			exception.printStackTrace();
 		} else {

@@ -189,7 +189,7 @@ public class MainController extends AbstractController {
 			this.frame.setAlwaysOnTop(true);
 		} else {
 			this.frame.setSize(1366, 768); // Basic size for debugging
-			Logger.d("MainController", "loadFrame", "Fullscreen mode disabled due to debugging.");
+			Logger.debug("MainController", "loadFrame", "Fullscreen mode disabled due to debugging.");
 		}
 		
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -212,16 +212,16 @@ public class MainController extends AbstractController {
 				
 				lookAndFeel.load(is, this.getClass());
 			} catch (ParseException e) {
-				Logger.e(e);
+				Logger.error(e);
 			}
 			
 			try {
 				UIManager.setLookAndFeel(lookAndFeel);
 			} catch (UnsupportedLookAndFeelException e) {
-				Logger.e(e);
+				Logger.error(e);
 			}
 		} else {
-			Logger.d("MainController", "loadLookAndFeel", "Look and feel disabled due to debugging.");
+			Logger.debug("MainController", "loadLookAndFeel", "Look and feel disabled due to debugging.");
 		}
 	}
 	
@@ -244,7 +244,7 @@ public class MainController extends AbstractController {
 			
 			this.frame.setCursor(nullCursor);
 		} else {
-			Logger.d("MainController", "disableCursor", "Curser is visible due to debugging.");
+			Logger.debug("MainController", "disableCursor", "Curser is visible due to debugging.");
 		}
 	}
 }

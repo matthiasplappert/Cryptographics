@@ -1,17 +1,22 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
@@ -20,7 +25,9 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
+import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
 
 /**
@@ -53,6 +60,8 @@ public class CryptoDemonstrationController extends
 	 * The model of this controller.
 	 */
 	private CryptoModel model;
+	
+	private Element cryptoResources;
 
 	/**
 	 * Constructor.
@@ -62,16 +71,32 @@ public class CryptoDemonstrationController extends
 	public CryptoDemonstrationController(
 			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
+		
+		SAXBuilder saxBuilder = new SAXBuilder();
+
+		// obtain file object
+		InputStream is = this.getClass().getResourceAsStream(
+				"/caesar/CaesarResources.xml");
+
+		try {
+			// converted file to document object
+			Document document = saxBuilder.build(is);
+
+			// get root node from xml
+			this.cryptoResources = document.getRootElement();
+		} catch (JDOMException | IOException e) {
+			Logger.error(e);
+		}
 	}
 
 	@Override
 	public void loadView() {
 		this.view = new CryptoDemonstrationView();
 		this.model = CryptoModel.getInstance();
-		
+
 		// set the initial first step.
 		this.demonstrationStep = 1;
-		
+
 		// generate ActionListener for the navigationButtons.
 		this.generateNavigationListener();
 
@@ -82,7 +107,7 @@ public class CryptoDemonstrationController extends
 			// Needed for delegating to the inner type ActionListener, when the actionEvent from the
 			// Button "ENTER" on the Keyboard is fired.
 			final JTextField userOutput = this.getView().getUserOutput()[i];
-			
+
 			// FocusListener for the textfields.
 			this.generateUserOutputFocusListener(i, userOutput);
 			// actionListener for the textfields.
@@ -159,11 +184,8 @@ public class CryptoDemonstrationController extends
 															.wrapHtml(CryptoDemonstrationController.i18n
 																	.tr("Great work oh mighty Caesar. May your enemies shutter over your intelligence."
 																			+ " Now we can move on to the real experiment and test your skills.")));
+
 									// remove all unnecessary elements.
-									// TODO: make removeAlphabet protected in the upper class of the
-									// view.
-									CryptoDemonstrationController.this
-											.getView().removeAlphabet();
 									CryptoDemonstrationController.this
 											.presentFinish();
 									CryptoDemonstrationController.this
@@ -183,7 +205,8 @@ public class CryptoDemonstrationController extends
 											.setText(
 													CryptoDemonstrationController.this
 															.wrapHtml(CryptoDemonstrationController.i18n
-																	.tr("Very nice! Lets encrypt the rest of this childish challenge. Touch proceed.")));
+																	.tr("Very nice! Let's encrypt the rest of your name. Touch proceed.")));
+									CryptoDemonstrationController.this.setFeedbackImage("CaesarPositive");
 								} else {
 									// User encrypted correctly the given char.
 									CryptoDemonstrationController.this
@@ -201,6 +224,8 @@ public class CryptoDemonstrationController extends
 																					.getEditableFields(),
 																			CryptoDemonstrationController.this
 																					.getEditableFields()));
+									CryptoDemonstrationController.this.setFeedbackImage("CaesarPositive");
+									
 									// The next textfield to the right requests now the focus.
 									CryptoDemonstrationController.this
 											.getView().getUserOutput()[CryptoDemonstrationController.this
@@ -211,7 +236,6 @@ public class CryptoDemonstrationController extends
 								}
 							} else {
 								// User didn't encrypt correctly.
-//								userOutput.setText("");
 								CryptoDemonstrationController.this
 										.getView()
 										.getExplanations()
@@ -219,11 +243,37 @@ public class CryptoDemonstrationController extends
 												CryptoDemonstrationController.this
 														.getModel()
 														.genRandomBlamings());
+								
+								CryptoDemonstrationController.this.setFeedbackImage("CaesarNegative");
+								
 								userOutput.requestFocus();
 							}
 						}
 					}
 				});
+	}
+	
+	private void setFeedbackImage(String resourceID) {
+		this.getView().getFeedback().removeAll();
+		String path = "";
+		try {
+			path = CryptoDemonstrationController.this.getCryptoResource()
+					.getChild("CryptoResources").getChild(resourceID)
+					.getAttributeValue("path");
+		} catch (NullPointerException nullException) {
+			//Element not found.
+			System.out.println("[NullPointerException] Ressource not found.");
+			nullException.printStackTrace();
+		}
+		
+		GridBagConstraints imgConstraint = new GridBagConstraints();
+		imgConstraint.gridx = this.getView().getUserInput().length + 1;
+		imgConstraint.gridy = 0;
+		ImageView imageToSet = new ImageView(path);
+		this.getView().getFeedback().add(imageToSet, imgConstraint);
+		
+		this.getView().validate();
+		this.getView().repaint();
 	}
 
 	private void generateUserOutputFocusListener(int i,
@@ -304,6 +354,8 @@ public class CryptoDemonstrationController extends
 	}
 
 	private void presentFinish() {
+		this.getView().removeAlphabet();
+
 		this.getView().getNavigationPanel()
 				.remove(this.getView().getNextButton());
 		GridBagConstraints nextConst = new GridBagConstraints();
@@ -381,8 +433,8 @@ public class CryptoDemonstrationController extends
 				.getExplanations()
 				.setText(
 						this.wrapHtml(CryptoDemonstrationController.i18n
-								.tr("Now lets try to encrypt the next letter by yourself."
-										+ " If more help needed touch the button help.")));
+								.tr("Now try to encrypt the next letter yourself."
+										+ " If you need help, you can always use the help button.")));
 		this.getView().getUserInput()[1].setBorder(BorderFactory
 				.createLineBorder(Color.green));
 		this.getView().getUserOutput()[1].setEditable(true);
@@ -479,5 +531,19 @@ public class CryptoDemonstrationController extends
 
 	private String wrapHtml(String text) {
 		return "<html><body><div width=700px>" + text + "</div></body></html>";
+	}
+
+	/**
+	 * @return the cryptoResource
+	 */
+	public Element getCryptoResource() {
+		return cryptoResources;
+	}
+
+	/**
+	 * @param cryptoResource the cryptoResource to set
+	 */
+	public void setCryptoResource(Element cryptoResource) {
+		this.cryptoResources = cryptoResource;
 	}
 }

@@ -69,6 +69,9 @@ public class KeyboardView extends JPanel implements ActionListener {
 	 */
 	private JButton[][] keys;
 
+	/**
+	 * Localization instance 
+	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(KeyboardView.class);
 	
 	/**
@@ -120,6 +123,9 @@ public class KeyboardView extends JPanel implements ActionListener {
 		this.setVisible(true);
 	}
 
+	/**
+	 * Method to be called on action performed 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton trigger = (JButton) e.getSource();
@@ -127,10 +133,10 @@ public class KeyboardView extends JPanel implements ActionListener {
 		String buttonName = trigger.getName();
 		
 		if (buttonName.equals("button-enter")) {
-			Logger.d("KeyboardView", "actionPerformed", "Enter pressed");
+			Logger.debug("KeyboardView", "actionPerformed", "Enter pressed");
 			this.textField.getActionListeners()[0].actionPerformed(e);
 		} else if (buttonName.equals("button-backspace")) {
-			Logger.d("KeyboardView", "actionPerformed", "Backspace pressed");
+			Logger.debug("KeyboardView", "actionPerformed", "Backspace pressed");
 			String currentText = this.textField.getText();
 			
 			if (currentText.length() > 1) {
@@ -141,7 +147,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 				this.textField.setText("");
 			}
 		} else if (buttonName.equals("button-key")) {
-			Logger.d("KeyboardView", "actionPerformed", "Key pressed");
+			Logger.debug("KeyboardView", "actionPerformed", "Key pressed");
 			
 			if (this.inputMode == KeyboardView.STRING_MODE) {
 				
@@ -158,6 +164,9 @@ public class KeyboardView extends JPanel implements ActionListener {
 		
 	}
 	
+	/**
+	 * Helper to init the resources 
+	 */
 	private void initResources() {
 		SAXBuilder saxBuilder = new SAXBuilder();
 
@@ -172,10 +181,13 @@ public class KeyboardView extends JPanel implements ActionListener {
 			// get root node from xml
 			this.resources = document.getRootElement().getChild("Keyboard");
 		} catch (JDOMException | IOException e) {
-			Logger.e(e);
+			Logger.error(e);
 		}
 	}
 	
+	/**
+	 * Helper to init the buttons 
+	 */
 	private void initKeyboardButtons() {
 		JButton[][] keysInit = {
 			// First row
@@ -214,7 +226,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 	 * button representing a character
 	 * 
 	 * @param label The label of the button
-	 * @param name (bs|e|?), according to the button which should be created
+	 * @param name (bs|e|key), according to the button which should be created
 	 * 
 	 * @return new Instance of JButton
 	 */
@@ -257,7 +269,7 @@ public class KeyboardView extends JPanel implements ActionListener {
     		InputStream is = this.getClass().getResourceAsStream(path);
             image = new ImageIcon(ImageIO.read(is));
         } catch (IOException e) {
-        	Logger.e(e);
+        	Logger.error(e);
         }
     	
     	return image;
