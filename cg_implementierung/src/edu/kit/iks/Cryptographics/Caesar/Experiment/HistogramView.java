@@ -229,7 +229,7 @@ public class HistogramView extends VisualizationView {
 		numpadConst.gridy = 0;
 		numpadConst.gridwidth = 11;
 		numpadConst.gridheight = 3;
-		numpadConst.insets = new Insets(100, 0, 50, 0);
+		numpadConst.insets = new Insets(75, 0, 0, 0);
 		this.add(this.numpad, numpadConst);
 		this.validate();
 	}
@@ -508,6 +508,7 @@ public class HistogramView extends VisualizationView {
 	private void setupCipherPlainPresentationLabels(String cipher) {
 
 		this.bruteForceCipherLabel = new JLabel(cipher);
+		this.bruteForceCipherLabel.setFont(new Font("Arial", 2, 25));
 		this.bruteForceCipherLabel.setPreferredSize(new Dimension(150, 50));
 		GridBagConstraints cipherConst = new GridBagConstraints();
 		cipherConst.gridx = 0;
@@ -516,6 +517,7 @@ public class HistogramView extends VisualizationView {
 		this.keyControl.add(this.bruteForceCipherLabel, cipherConst);
 
 		this.plainText = new JLabel("");
+		this.plainText.setFont(new Font("Arial", 2, 25));
 		this.plainText.setPreferredSize(new Dimension(150, 50));
 		GridBagConstraints plainConst = new GridBagConstraints();
 		plainConst.gridx = 0;
@@ -564,7 +566,7 @@ public class HistogramView extends VisualizationView {
 		keyConst.gridy = 0;
 		keyConst.gridwidth = 3;
 		keyConst.gridheight = 4;
-		keyConst.insets = new Insets(300, 0, 0, 0);
+		keyConst.insets = new Insets(200, 0, 0, 0);
 		// keyConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.keyControl, keyConst);
 	}

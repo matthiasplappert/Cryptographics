@@ -311,7 +311,6 @@ public class HistogramController extends AbstractVisualizationController {
 																	.getCipherBruteForce()
 																	.getText())));
 							
-							//TODO:BUGGY.
 							// if the button is not visible, then it means that the key wasnt
 							// found
 							// yet.
@@ -338,11 +337,9 @@ public class HistogramController extends AbstractVisualizationController {
 																+ HistogramController.i18n
 																		.tr("You found the secret key and are now able to read the secret message. The Key was")
 																+ " "
-																+ nextBFKey, 600));
-								// HistogramController.this.setStep(1);
-								// HistogramController.this.getView()
-								// .getProceed().setVisible(true);
-								//HistogramController.this.getView().revalidate();
+																+ nextBFKey +
+																HistogramController.i18n
+																		.tr("Now only the histogram technique left. Press the button in the middle."), 600));
 
 							} else {
 								HistogramController.this
@@ -374,8 +371,6 @@ public class HistogramController extends AbstractVisualizationController {
 			@Override
 			public void clicked(MouseEvent e) {
 				if (HistogramController.this.getStep() == 0) {
-					// HistogramController.this.getView().getProceed()
-					// .setVisible(false);
 					HistogramController.this.setStep(1);
 					int secret = 0;
 					// Keys smaller than 5 are too simple.
