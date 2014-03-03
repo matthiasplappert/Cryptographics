@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
 "POT-Creation-Date: 2014-03-03 22:15+0100\n"
-"PO-Revision-Date: 2014-03-03 22:18+0100\n"
+"PO-Revision-Date: 2014-03-03 23:18+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -1000,6 +1000,8 @@ msgid ""
 "character, as you can see in the bottom, in the alphabet under each "
 "character."
 msgstr ""
+"Nun wollen wir 'ANNA' verschlüsseln. Zuerst fügen wir unter jedem Buchstaben "
+"im Alphabet eine Position hinzu, wie du unten sehen kannst."
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:61
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:124
@@ -1007,12 +1009,16 @@ msgid ""
 "This is the key for the encryption. Now we go to the next step and encrypt "
 "the first character."
 msgstr ""
+"Das ist der Schlüssel für die Verschlüsselung. Nun gehen wir zum nächsten "
+"Schritt und verschlüsseln das erste Zeichen."
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:70
 msgid ""
 "The position of 'A' in the alphabet is 1. The position of 'O' is 14. Now we "
 "calculate 1 + 14 and get 15."
 msgstr ""
+"Die Position von 'A' im Alphabet ist 1. Die Position von 'O' ist 14. Also "
+"berechnen wir 1 + 14 und erhalten 15."
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:85
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:147
@@ -1020,6 +1026,8 @@ msgid ""
 "The number 16 represents 'P' in the alphabet. So the first encrypted "
 "character is 'P'. Lets go to the next one."
 msgstr ""
+"Die Zahl 16 repräsentiert 'P' im Alphabet. Also ist das erste verschlüsselte "
+"Zeichen 'P'. Weiter gehts mit dem nächsten."
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:95
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:155
@@ -1027,6 +1035,9 @@ msgid ""
 "Now get to the next character. Its a 'N', which represents the number 14. "
 "The second character of they key is 'K', which is the 11. 14+11 = 25 -> 'Y'!"
 msgstr ""
+"Nun zum nächsten Buchstaben. Es ist ein 'N' welches durch 14 repräsentiert "
+"wird. Das zweite Zeichen des Schlüssels ist 'K', also 11. 14 + 11 = 25 -> "
+"'Y'!"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:106
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:164
@@ -1038,12 +1049,16 @@ msgid ""
 "The position of 'A' in the alphabet is 1. The position of 'O' is 15. Now we "
 "calculate 1 + 15 and get 16."
 msgstr ""
+"Die Position von 'A' im Alphabet ist 1. Die Position von 'O' ist 15. Also "
+"berechnen wir 1 + 15 und erhalten 16."
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:171
 msgid ""
 "E = 5 and Y = 25. 25 + 5 = 30, but our alphabet doesnt have 28 characters. "
 "So we now use the modulo: 28 modulo 26 = 2."
 msgstr ""
+"E = 5 und Y = 25. 25 + 5 = 30, aber unser Alphabet hat nur 26 Buchstaben. "
+"Also verwenden wir Modulo: 30 modulo 26 = 4."
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:218
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:40
@@ -1080,6 +1095,8 @@ msgid ""
 "Now we want to decrypt 'DMPL'. Insteading adding up, we use substraction to "
 "decrypt it! So lets go..."
 msgstr ""
+"Nun wollen wir 'DMPL' entschlüsseln. Anstatt nun zu addieren, subtrahieren "
+"wir um zu entschlüsseln. Los gehts..."
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:63
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:110
@@ -1087,6 +1104,8 @@ msgid ""
 "'E' = 5 and 'K' = 11. 3 - 11 = -6. What now? Well its easy, just reverse the "
 "modulo..."
 msgstr ""
+"'E' = 5 und 'K' = 11. 3 - 11 = -6. Was jetzt? Ganz einfach, wir invertieren "
+"Modulo..."
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:75
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:121
@@ -1094,22 +1113,28 @@ msgid ""
 "Negative numbers mean you start from the 'Z' and go 7 steps backwards. So we "
 "get 'T' = 20!"
 msgstr ""
+"Negative Zahlen bedeuten, du fängst bei 'Z' an und gehst 7 Schritte zurück. "
+"So erhalten wir 'T' = 20!"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:84
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:129
 msgid "'N' = 14 and 'I' = 9. 14 - 9 = 5 -> 'E'"
-msgstr ""
+msgstr "'N' = 14 und 'I' = 9. 14 - 9 = 5 -> 'E'"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:92
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:136
 msgid ""
 "'Q' = 17 and 'S' = 19. 17 - 19 = -2 -> Go 2 Steps backwards from 'Z' -> 'X'"
 msgstr ""
+"'Q' = 17 und 'S' = 19. 17 - 19 = -2 -> Gehe 2 Schritte zurück von 'Z' aus -> "
+"'X'"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:144
 msgid ""
 "'M' = 13 and 'S' = 19. 13 - 19 = -6 -> Go 6 Steps backwards from 'Z' -> 'T'"
 msgstr ""
+"'M' = 13 und 'S' = 19. 13 - 19 = -6 -> Gehe 6 Schritte zurück von 'Z' aus -> "
+"'T'"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:55
 msgid "KISS"
@@ -1139,11 +1164,13 @@ msgstr "Sehr gut!"
 msgid ""
 "'T' = 20 and 'A' = 1, so just substract 1 from 20 and you have the answer!"
 msgstr ""
+"'T' = 20 und 'A' = 1, also subtrahierst du 1 von 20 und du hast die Antwort!"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:205
 msgid ""
 "'W' = 23 and 'B' = 2, so just substract 1 from 20 and you have the answer!"
 msgstr ""
+"'W' = 23 und 'B' = 2, also subtrahierst du 1 von 20 und du hast die Antwort!"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:209
 msgid ""
@@ -1231,6 +1258,10 @@ msgid ""
 "kind enough to give you a diagramm of every second character encrypted with "
 "the second part of the key.You know what to do:"
 msgstr ""
+"Nun bist du dran! Du musst das zweite Zeichen des Schlüssels finden. Ich war "
+"nett genug dir die Diagramme jedes zweiten verschlüsselten Zeichens zu "
+"geben, welches mit dem zweiten Zeichens des Schlüssels verschlüsselt wurden. "
+"Du weißt was zu tun ist:"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationController.java:107
 msgid "Very nice! We found the key 'NJ', now we can decrypt the message:"
