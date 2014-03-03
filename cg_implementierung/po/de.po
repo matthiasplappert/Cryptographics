@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-03-03 17:02+0100\n"
-"PO-Revision-Date: 2014-03-03 17:13+0100\n"
+"POT-Creation-Date: 2014-03-03 17:36+0100\n"
+"PO-Revision-Date: 2014-03-03 17:36+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -98,6 +98,10 @@ msgstr "Caesar"
 #: ../src/edu/kit/iks/Cryptographics/Caesar/CaesarVisualizationInfo.java:96
 msgid "http://en.wikipedia.org/wiki/Caesar_cipher"
 msgstr "http://de.wikipedia.org/wiki/Caesar-Verschl%C3%BCsselung"
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/CryptoView.java:308
+msgid "Key"
+msgstr "Schlüssel"
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationController.java:185
 msgid ""
