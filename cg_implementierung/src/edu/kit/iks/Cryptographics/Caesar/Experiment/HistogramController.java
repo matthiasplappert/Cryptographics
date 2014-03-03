@@ -420,14 +420,7 @@ public class HistogramController extends AbstractVisualizationController {
 							HistogramController.this.getView().getKeyControl());
 					HistogramController.this.getView().setKeyControl(null);
 
-					String explanation = HistogramController.i18n
-							.tr("The diagram you see here shows the frequency of each letter"
-									+ " in the text you are reading at the moment. It is called a"
-									+ " Histogram. If you would count all E's in this explanation"
-									+ " you would get the number you see in the diagram on the column"
-									+ " above the letter E. Now the program will encrypt this explanation"
-									+ " with an unknown key in a most awesome way and we will see the"
-									+ " histogram of the cipher. Press Proceed and see the magic!");
+					String explanation = HistogramController.this.getModel().genRandomText();
 
 					HistogramController.this.getView()
 							.setHistogramOriginalText(

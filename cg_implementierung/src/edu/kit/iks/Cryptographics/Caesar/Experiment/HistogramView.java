@@ -158,12 +158,17 @@ public class HistogramView extends VisualizationView {
 
 		String explanation = "<html><body>"
 				+ HistogramView.i18n
-						.tr("cryptologists call it 'breaking a cipher' when someone tries to decrypt text without knowing the key.<br>" +
-								"There are always 2 options when it comes to this.<br>"
-								+ "<br>"
-								+ "1. You use literally brute force, meaning you simply try each possible key.<br>"
-								+ "<br>"
-								+ "2. You use elaborate cryptology techniques.");
+						.tr("cryptologists call it 'breaking a cipher' when someone tries to decrypt text without knowing the key.")
+				+ "<br>"
+				+ HistogramView.i18n
+						.tr("There are always 2 options when it comes to this.")
+				+ "<br>"
+				+ HistogramView.i18n
+						.tr("1. You use literally brute force, meaning you simply try each possible key.")
+				+ "<br>"
+				+ "<br>"
+				+ HistogramView.i18n
+						.tr("2. You use elaborate cryptology techniques.");
 
 		this.setupExplanationAndForwarding(explanation);
 		this.proceed.setText(HistogramView.i18n.tr("Lets try brute force"));
@@ -327,9 +332,8 @@ public class HistogramView extends VisualizationView {
 	 */
 	public void setupPlainHistogram(String text) {
 
-		JLabel plainHistogramHint = new JLabel(
-				this.wrapHtml(HistogramView.i18n
-						.tr("&darr;Histogram of the original text.&darr;")));
+		JLabel plainHistogramHint = new JLabel(this.wrapHtml(HistogramView.i18n
+				.tr("&darr;Histogram of the original text.&darr;")));
 		GridBagConstraints hintConst = new GridBagConstraints();
 		hintConst.gridx = 0;
 		hintConst.gridy = 2;
@@ -886,7 +890,8 @@ public class HistogramView extends VisualizationView {
 	}
 
 	/**
-	 * @param histogramOriginalText the histogramOriginalText to set
+	 * @param histogramOriginalText
+	 *            the histogramOriginalText to set
 	 */
 	public void setHistogramOriginalText(String histogramOriginalText) {
 		this.histogramOriginalText = histogramOriginalText;
