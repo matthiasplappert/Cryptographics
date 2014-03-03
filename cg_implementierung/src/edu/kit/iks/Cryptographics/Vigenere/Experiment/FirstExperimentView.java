@@ -217,7 +217,7 @@ public class FirstExperimentView extends VisualizationView{
 	private void setupGUI() {
 		this.setLayout(null);
 		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
-				+ i18n.tr("Now its your turn! Decrypt this string...")
+				+ i18n.tr("Now it's your turn! Decrypt this string...")
 				+ "</div></html>"));
 		this.add(this.errorMessage = new JLabel(i18n.tr("Wrong Answer! Try again!")));
 		

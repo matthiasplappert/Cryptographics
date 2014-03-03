@@ -194,7 +194,7 @@ public class TimelineView extends JPanel implements ComponentListener {
 		if (visualizationInfo.getYear() >= 0) {
 			year = new Integer(visualizationInfo.getYear()).toString();
 		} else {
-			year = String.format(i18n.tr("%d B.C."), Math.abs(visualizationInfo.getYear()));
+			year = String.format(i18n.tr("{0} B.C.", Math.abs(visualizationInfo.getYear())));
 		}
 		FontMetrics yearMetrics = g2.getFontMetrics(g2.getFont());
 		Rectangle2D yearRect = yearMetrics.getStringBounds(year, g2);
