@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-03-03 22:03+0100\n"
-"PO-Revision-Date: 2014-03-03 22:03+0100\n"
+"POT-Creation-Date: 2014-03-03 22:14+0100\n"
+"PO-Revision-Date: 2014-03-03 22:15+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1065,6 +1065,14 @@ msgstr ""
 
 #: ../src/edu/kit/iks/CryptographicsLib/AbstractVisualizationInfo.java:174
 msgid "Not Interactive"
+msgstr ""
+
+#: ../src/edu/kit/iks/CryptographicsLib/InformationController.java:76
+#, java-format
+msgid ""
+"Here you can learn more about {0}. You can also scan the QR code at the "
+"bottom of the page to take additional information home. Once you're done, "
+"just click the exit button."
 msgstr ""
 
 #: ../src/edu/kit/iks/CryptographicsLib/KeyboardView.java:194
