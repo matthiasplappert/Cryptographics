@@ -97,7 +97,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 		if (this.decryptionPhase) {
 			return CryptoExperimentController.i18n
 					.tr("Remember: If you want to decrypt for example D with the key of 3."
-							+ " You need to substract 3 from the position of C in the alphabet."
+							+ " You need to substract 3 from the position of D in the alphabet."
 							+ " D - key = 4 - 3 = 1 = A. And if you get a negative Value add 26."
 							+ " For example: A - 8 = 1 - 8 = -7. Now add 26 + (-7) = 19 = S.");
 		}
@@ -105,7 +105,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 				.tr("Remember: If you want to encrypt for example A with the key of 3."
 						+ " You need to add 3 to the position of A in the alphabet."
 						+ " A + key = 1 + 3 = 4 = D. And if you get a value that is bigger then 26"
-						+ " then substract 26 from it. For example: S + 8 = 20 + 7 = 27."
+						+ " then substract 26 from it. For example: S + 8 = 19 + 8 = 27."
 						+ " Now substract 26: 27 - 26 = 1 = A.");
 
 	}

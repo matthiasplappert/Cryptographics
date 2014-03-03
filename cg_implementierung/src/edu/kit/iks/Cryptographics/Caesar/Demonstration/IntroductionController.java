@@ -208,7 +208,7 @@ public class IntroductionController extends AbstractVisualizationController {
 				.setText(
 						"<html><div style=\"width:700px;\">"
 								+ IntroductionController.i18n
-										.tr("Caesar was ragin! While he was torturing some Gauls, suddenly an hellacious and foolproof idea "
+										.tr("Caesar was raging! While he was torturing some Gauls, suddenly an hellacious and foolproof idea "
 												+ "crossed his mind. In his next message he would encrypt his name! Hue Hue Hue. Help him!"));
         GridBagLayout introLayout = (GridBagLayout) this.getView().getLayout();
         this.getView().getNextButton().setText(IntroductionController.i18n.tr("To Caesar's idea"));

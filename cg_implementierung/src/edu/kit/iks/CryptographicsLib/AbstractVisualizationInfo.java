@@ -47,7 +47,6 @@ abstract public class AbstractVisualizationInfo {
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(
 			AbstractVisualizationInfo.class);
-
 	
 	/**
 	 * Gets the ID of the procedure
