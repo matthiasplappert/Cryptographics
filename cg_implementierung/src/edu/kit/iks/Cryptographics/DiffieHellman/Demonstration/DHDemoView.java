@@ -77,7 +77,7 @@ public class DHDemoView extends VisualizationView {
 		GridBagLayout layout = new GridBagLayout();
 		this.setLayout(layout);
 		
-		skip = new JButton("Skip Introduction");
+		skip = new JButton(i18n.tr("Skip Introduction"));
 		
 		gbc.gridx = 2;
 		gbc.gridy = 0;
