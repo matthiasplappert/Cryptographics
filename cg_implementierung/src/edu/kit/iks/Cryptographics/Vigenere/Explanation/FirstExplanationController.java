@@ -59,7 +59,7 @@ public class FirstExplanationController extends AbstractVisualizationController 
 				case 0:
 					getView().setExplanation("<html><div width=\"1200\">"
 							+ i18n.tr("Vigenere fixed a few weaknesses of Caesar, but still "
-							+ "	has flaws. If the key is shorter then the text to encrypt, "
+							+ "has flaws. If the key is shorter then the text to encrypt, "
 				       		+ "Vigenère simply concatinates it with itself until the key is "
 				       		+ "long enough. This again makes it weak against key-length-guessing. "
 				       		+ "As soon as we guess the key-length, we can use a histogramm "

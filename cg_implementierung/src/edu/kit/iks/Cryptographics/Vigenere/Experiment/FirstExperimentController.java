@@ -230,19 +230,19 @@ public class FirstExperimentController extends AbstractVisualizationController {
 					+ "you have the answer!");
 			break;
 		case 1:
-			returnString = i18n.tr("'W' = 23 and 'B' = 2, so just substract 1 from 20 and "
+			returnString = i18n.tr("'W' = 23 and 'B' = 2, so just substract 2 from 23 and "
 					+ "you have the answer!");
 			break;
 		case 2:
-			returnString = i18n.tr("'S' = 19 and 'C' = 3, so just substract 1 from 20 and "
+			returnString = i18n.tr("'S' = 19 and 'C' = 3, so just substract 3 from 19 and "
 					+ "you have the answer!");
 			break;
 		case 3:
-			returnString = i18n.tr("'I' = 9 and 'D' = 4, so just substract 1 from 20 and "
+			returnString = i18n.tr("'I' = 9 and 'D' = 4, so just substract 4 from 9 and "
 					+ "you have the answer!");
 			break;
 		case 4:
-			returnString = i18n.tr("'W' = 23 and 'E' = 5, so just substract 1 from 20 and "
+			returnString = i18n.tr("'W' = 23 and 'E' = 5, so just substract 5 from 23 and "
 					+ "you have the answer!");
 			break;
 		default:
