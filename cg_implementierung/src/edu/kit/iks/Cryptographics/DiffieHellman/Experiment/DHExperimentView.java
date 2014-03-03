@@ -116,10 +116,8 @@ public class DHExperimentView extends JPanel {
 	
 	private GridBagConstraints gbc;
 	
-	private Color[] toChooseFrom = {Color.BLUE, Color.CYAN,
-			Color.DARK_GRAY, Color.GREEN, Color.MAGENTA,
-			Color.ORANGE, Color.PINK, Color.RED,
-			Color.YELLOW
+	private Color[] toChooseFrom = {Color.BLUE, Color.GREEN, Color.YELLOW,
+			Color.RED,
 	};
 	
 	private Color[] rememberColors = toChooseFrom;
@@ -253,6 +251,7 @@ public class DHExperimentView extends JPanel {
 			for(ActionListener al : multiBtn.getActionListeners()) {
 				multiBtn.removeActionListener(al);
 			}
+			chooser.setVisible(false);
 			explainLbl.setText("<html><div style=\"width:300px\">" + rightColor + "</div></html>");
 			cc.sendAliceMixedColorToBob(new NextStepCallback() {
 				
@@ -305,6 +304,7 @@ public class DHExperimentView extends JPanel {
 						explainLbl.setText("<html><div style=\"width:300px\">" + finalSecret + "</div></html>");
 						multiBtn.setText(mixFinal);
 						validate();
+						chooser.setVisible(true);
 						multiBtn.addActionListener(new ActionListener() {
 							
 							@Override
@@ -337,6 +337,8 @@ public class DHExperimentView extends JPanel {
 						@Override
 						public void callback() {
 							multiBtn.setText(contin);
+							chooser.setVisible(false);
+							chooser2.setVisible(false);
 							multiBtn.addActionListener(remember);
 						}
 					});
