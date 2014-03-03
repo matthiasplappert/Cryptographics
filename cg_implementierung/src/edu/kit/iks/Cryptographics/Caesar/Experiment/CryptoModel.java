@@ -205,10 +205,6 @@ public class CryptoModel {
 		return (key > 0 && key <= this.MODULO);
 	}
 
-	private String wrapHtml(String text) {
-		return "<html><body><div width=400px>" + text + "</div></body></html>";
-	}
-
 	private char shiftChar(int key, char charToShift) {
 		int offset = charToShift - this.ASCII_UC_A;
 		if (Character.isLowerCase(charToShift)) {

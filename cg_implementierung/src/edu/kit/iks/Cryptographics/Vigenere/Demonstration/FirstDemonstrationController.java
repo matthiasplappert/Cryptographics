@@ -3,13 +3,10 @@ package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import org.xnap.commons.i18n.I18n;
-
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.Configuration;
 
 /**
  * Controller class of the first phase
@@ -17,11 +14,6 @@ import edu.kit.iks.CryptographicsLib.Configuration;
  */
 public class FirstDemonstrationController extends AbstractVisualizationController {
 
-	/**
-	 * Localization instance
-	 */
-	private static I18n i18n = Configuration.getInstance().getI18n(FirstDemonstrationController.class);
-	
 	/** 
 	 * Checks if vigenere text is read 
 	 */
