@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -70,6 +71,19 @@ public class SecondExplanationView extends VisualizationView{
 	 */
 	private KeyboardView keyboard;
 	
+	/**
+	 * Button to skip step
+	 */
+	private JButton skip;
+
+	/**
+	 * returns skip button
+	 * @return skip button
+	 */
+	public JButton getSkipButton() {
+		return this.skip;
+	}
+
 	/**
 	 * creates the keyboard
 	 * @param input listener for the keyboard
@@ -174,6 +188,8 @@ public class SecondExplanationView extends VisualizationView{
 				+ i18n.tr("Look at the peaks of both histogramm and calculate the second part "
 				+ "of the key! Your answer:")
 				+ "</div></html>"));
+		this.add(this.skip = new JButton("Skip"));
+		this.skip.setVisible(true);
 		this.add(this.answer = new JTextField(""));
 		this.add(this.wrong = new JLabel(i18n.tr("Wrong Answer! Try again!")));
 		this.vigenereHistogramm = new CharacterFrequencyDiagramView(VigenereModel.getCharPositionated(1, 2, FirstExplanationView.encryptedAverageText), 600,
@@ -233,6 +249,10 @@ public class SecondExplanationView extends VisualizationView{
 	             600, 100);
 		this.averageHistogramm.setBounds(10, 220,
 	             600, 100);
+		
+		size = this.getSkipButton().getPreferredSize();
+		this.getSkipButton().setBounds(550, 600,
+	             size.width, size.height);
 	}
 	
 	public SecondExplanationView() {

@@ -57,9 +57,14 @@ public class FirstDemonstrationView extends VisualizationView{
 		this.vigenereXML = visualizationInfo.getResources();
 		this.setLayout(null);
 		// create GUI Elements
-		this.vigenereText = new JLabel(i18n.tr("Vigenere bla bla... Now go to modulo:"));
-		this.moduloText = new JLabel(i18n.tr("It's easy to describe the logical operation "
-				+ "'modulo'; we use it everyday in our... "));
+		this.vigenereText = new JLabel("<html><div width=\"1200\">" + 
+				i18n.tr("After Caesar's cipher was broken, Vigenère started to create his own cipher which would fix the weaknesses of Caesar. He also used the same logic by addition and subtraction of characters but this time"
+						+ "he key would not be a simple number but a whole string. To understand how Vigenères cipher works, we need to know how 'modulo' works...")
+				+ "</div></html>");
+		this.moduloText = new JLabel("<html><div width=\"1200\">" + 
+				i18n.tr("We use modulo in our daily life without maybe noticing it: If you look at your clock, you have a cyclic sequence of numbers. Like you see in the picture at the bottom, 4 hours after 9 means it's 1. So our "
+				+ "clock uses a modulo of 12, because we have only 12 steps in it. If we overflow, we start from the beginnig. The same system will now be used with the alphabet (which has 26 characters) to create Vigenère's cipher...")
+				+ "</div></html>");
 		this.vigenere= new ImageView(vigenereXML.getChild(
 				"vigenereImage").getAttributeValue("path"));
 		this.clock = new ImageView(vigenereXML.getChild(
@@ -87,11 +92,11 @@ public class FirstDemonstrationView extends VisualizationView{
 	             size.width, size.height);
 		
 		size = this.moduloText.getPreferredSize();
-		this.moduloText.setBounds(180, 160,
+		this.moduloText.setBounds(180, 260,
 	             size.width, size.height);
 		
 		size = this.clock.getPreferredSize();
-		this.clock.setBounds(500, 400,
+		this.clock.setBounds(500, 500,
 	             size.width, size.height);
 		
 		size = this.getBackButton().getPreferredSize();

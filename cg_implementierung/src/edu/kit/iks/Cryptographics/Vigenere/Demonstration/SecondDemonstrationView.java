@@ -3,6 +3,7 @@ package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import org.xnap.commons.i18n.I18n;
@@ -33,6 +34,11 @@ public class SecondDemonstrationView extends VisualizationView {
 	 * plain characters position in alphabet
 	 */
 	private JLabel[] textCharPlain;
+	
+	/**
+	 * Button to skip step
+	 */
+	private JButton skip;
 
 	/**
 	 * encrypted characters
@@ -70,6 +76,14 @@ public class SecondDemonstrationView extends VisualizationView {
 	 * alphabet used for demonstration
 	 */
 	private AlphabetStripView alphabet;
+	
+	/**
+	 * returns skip button
+	 * @return skip button
+	 */
+	public JButton getSkipButton() {
+		return this.skip;
+	}
 	
 	/**
 	 * sets the calculator to given parameters
@@ -172,12 +186,14 @@ public class SecondDemonstrationView extends VisualizationView {
 	private void setupGUI() {
 		this.setLayout(null);
 		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
-				+ i18n.tr("Now we want to encrypt 'ANNA'. First of all we add "
-				+ "the position of evey character, as you can see in the bottom, "
+				+ i18n.tr("Now we want to encrypt 'ANNE'. First of all we add "
+				+ "the position of every character, as you can see in the bottom, "
 				+ "in the alphabet under each character.")
 				+ "</div></html>"));
 		this.vigenereKeyDesc = new JLabel(i18n.tr("Vigenere Key") + ": " + this.vigenereKey);
 		
+		this.add(this.skip = new JButton("Skip"));
+		this.skip.setVisible(true);
 		this.alphabet = new AlphabetStripView();
 
 		this.textCharPlain = new JLabel[4];
@@ -344,7 +360,12 @@ public class SecondDemonstrationView extends VisualizationView {
 		size = this.getNextButton().getPreferredSize();
 		this.getNextButton().setBounds(1100, 600,
 	             size.width, size.height);
+		
+		size = this.getSkipButton().getPreferredSize();
+		this.getSkipButton().setBounds(550, 600,
+	             size.width, size.height);
 	}
+	
 	
 	/**
 	 * constructor of the view

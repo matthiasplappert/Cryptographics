@@ -96,7 +96,7 @@ public class FirstDemonstrationController extends AbstractVisualizationControlle
 	 */
 	@Override
 	public String getHelp() {
-		return i18n.tr("There is nothing to help, just read the text");
+		return null;
 	}
 	
 }
