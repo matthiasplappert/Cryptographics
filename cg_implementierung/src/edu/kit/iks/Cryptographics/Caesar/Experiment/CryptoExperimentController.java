@@ -394,8 +394,9 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 							.add(CryptoExperimentController.this.getView()
 									.getNextButton(), BorderLayout.EAST);
 
+					//Keys bigger then 10 could be too annoying. 1 as key is also too simple.
 					int key = CryptoExperimentController.this.getModel()
-							.generateKey();
+							.generateRandomInt(2, 10);
 
 					// start Decryption!
 					if (CryptoExperimentController.this.getView().getKeyboard() != null) {
