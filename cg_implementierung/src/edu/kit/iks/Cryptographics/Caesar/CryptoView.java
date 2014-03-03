@@ -190,6 +190,7 @@ public class CryptoView extends VisualizationView {
 		kbConst.gridwidth = 11;
 		kbConst.gridheight = 3;
 		this.add(this.keyboard, kbConst);
+		this.repaint();
 		this.validate();
 	}
 

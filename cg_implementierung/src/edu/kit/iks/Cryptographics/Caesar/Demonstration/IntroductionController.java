@@ -2,6 +2,7 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -215,6 +216,7 @@ public class IntroductionController extends AbstractVisualizationController {
         GridBagConstraints finishConstraints = new GridBagConstraints();
         finishConstraints.gridx = 1;
         finishConstraints.gridy = 2;
+        finishConstraints.insets = new Insets(0, 250, 0, 0);
         introLayout.setConstraints(this.getView().getNextButton(), finishConstraints);
 		
 		this.setResourceImage("CaesarAngry");
