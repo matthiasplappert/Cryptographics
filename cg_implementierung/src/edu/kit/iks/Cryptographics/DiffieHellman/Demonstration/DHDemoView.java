@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import org.xnap.commons.i18n.I18n;
@@ -58,6 +59,8 @@ public class DHDemoView extends VisualizationView {
 	
 	private JLabel aliceExplain;
 	
+	private JButton skip;
+	
 	private ColorChannel cc;
 	
 	private ColorMix cm;
@@ -73,6 +76,14 @@ public class DHDemoView extends VisualizationView {
 		GridBagConstraints gbc = new GridBagConstraints();
 		GridBagLayout layout = new GridBagLayout();
 		this.setLayout(layout);
+		
+		skip = new JButton(i18n.tr("Skip Introduction"));
+		
+		gbc.gridx = 2;
+		gbc.gridy = 0;
+		gbc.weightx = 0.1;
+		gbc.weighty = 0.1;
+		this.add(skip, gbc);
 		
 		gbc.gridx = 2;
 		gbc.gridy = 2;
@@ -101,12 +112,12 @@ public class DHDemoView extends VisualizationView {
 		this.add(this.cc, gbc);
 		
 		this.cc.choosePublicColor(Color.BLUE);
-		this.cm = new ColorMix(50, new Dimension(200, 200));
+		this.cm = new ColorMix(50, new Dimension(200, 50));
 		
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 2;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 		this.add(this.cm, gbc);
 		this.cc.loadView();
 		this.cc.setRepeat(false);
@@ -246,6 +257,10 @@ public class DHDemoView extends VisualizationView {
 
 	public String getHelp() {
 		return help ;
+	}
+	
+	public JButton getSkip() {
+		return skip;
 	}
 
 }
