@@ -127,7 +127,7 @@ public class ColorMix extends JPanel {
 					
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
-						Logger.d(this.getClass().getName(), "mixColors", "timer in colormix ");
+						Logger.debug(this.getClass().getName(), "mixColors", "timer in colormix ");
 						if(x1 < middle) {
 							x1 += 1;
 						}
@@ -137,7 +137,7 @@ public class ColorMix extends JPanel {
 						if(x2 <= middle && x1 >= middle) {
 							timer.stop();
 							if (cb != null) {
-								Logger.d(this.getClass().getName(), "mixColors", "called callback in colormix");
+								Logger.debug(this.getClass().getName(), "mixColors", "called callback in colormix");
 								cb.callback();	
 							}
 						}
@@ -189,7 +189,7 @@ public class ColorMix extends JPanel {
 					
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
-						Logger.d(this.getClass().getName(), "mixColors", "timer in colormix ");
+						Logger.debug(this.getClass().getName(), "mixColors", "timer in colormix ");
 						if(x1 > originalx1) {
 							x1 -= 1;
 						}
@@ -198,7 +198,7 @@ public class ColorMix extends JPanel {
 						}
 						if(x2 <= middle && x1 >= middle) {
 							timer.stop();
-							Logger.d(this.getClass().getName(), "mixColors", "stopped timer in colormix");
+							Logger.debug(this.getClass().getName(), "mixColors", "stopped timer in colormix");
 						}
 						repaint();
 					}

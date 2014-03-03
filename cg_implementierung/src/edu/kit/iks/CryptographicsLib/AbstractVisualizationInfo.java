@@ -47,7 +47,6 @@ abstract public class AbstractVisualizationInfo {
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(
 			AbstractVisualizationInfo.class);
-
 	
 	/**
 	 * Gets the ID of the procedure
@@ -157,7 +156,7 @@ abstract public class AbstractVisualizationInfo {
 		try {
 			image = ImageIO.read(input);
 		} catch (IOException e) {
-			Logger.e(e);
+			Logger.error(e);
 		}
 		this.qrCode = image;
 	}

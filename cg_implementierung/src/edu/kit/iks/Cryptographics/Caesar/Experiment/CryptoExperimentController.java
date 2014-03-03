@@ -1,15 +1,25 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+
+import java.awt.GridBagConstraints;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
@@ -17,6 +27,7 @@ import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
@@ -52,6 +63,8 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 	 */
 	private CryptoModel model;
 
+	private Element cryptoResources;
+
 	/**
 	 * Constructor.
 	 * 
@@ -61,6 +74,22 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 			AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 
+		SAXBuilder saxBuilder = new SAXBuilder();
+
+		// obtain file object
+		InputStream is = this.getClass().getResourceAsStream(
+				"/caesar/CaesarResources.xml");
+
+		try {
+			// converted file to document object
+			Document document = saxBuilder.build(is);
+
+			// get root node from xml
+			this.cryptoResources = document.getRootElement();
+		} catch (JDOMException | IOException e) {
+			Logger.error(e);
+		}
+
 	}
 
 	@Override
@@ -68,7 +97,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 		if (this.decryptionPhase) {
 			return CryptoExperimentController.i18n
 					.tr("Remember: If you want to decrypt for example D with the key of 3."
-							+ " You need to substract 3 from the position of C in the alphabet."
+							+ " You need to substract 3 from the position of D in the alphabet."
 							+ " D - key = 4 - 3 = 1 = A. And if you get a negative Value add 26."
 							+ " For example: A - 8 = 1 - 8 = -7. Now add 26 + (-7) = 19 = S.");
 		}
@@ -76,7 +105,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 				.tr("Remember: If you want to encrypt for example A with the key of 3."
 						+ " You need to add 3 to the position of A in the alphabet."
 						+ " A + key = 1 + 3 = 4 = D. And if you get a value that is bigger then 26"
-						+ " then substract 26 from it. For example: S + 8 = 20 + 7 = 27."
+						+ " then substract 26 from it. For example: S + 8 = 19 + 8 = 27."
 						+ " Now substract 26: 27 - 26 = 1 = A.");
 
 	}
@@ -140,7 +169,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 												.getView().getKeyInput()
 												.getText());
 							} catch (NumberFormatException e1) {
-								Logger.e(e1);
+								Logger.error(e1);
 							}
 							// If the phase is decrypting use dec, else the phase is
 							// encrypting, therefore use enc.
@@ -157,7 +186,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 
 							if ((encryptedOrDecryptedcipher).equals(userOutput
 									.getText())) {
-
+                               CryptoExperimentController.this.setFeedbackImage("CaesarPositive");
 								// user encrypted/decrypted correctly.
 								if ((CryptoExperimentController.this
 										.getEditableFields() - 1) != 0) {
@@ -169,8 +198,10 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 									// User encrypted all characters valid.
 									CryptoExperimentController.this
 											.notifyUserFinishedExperiment(userOutput);
+
 								}
 							} else {
+								CryptoExperimentController.this.setFeedbackImage("CaesarNegative");
 								// User encrypted invalid! Need another try.
 								CryptoExperimentController.this
 										.notifyUserInvalidAction(userOutput);
@@ -180,6 +211,29 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 					}
 
 				});
+	}
+
+	private void setFeedbackImage(String resourceID) {
+		this.getView().getFeedback().removeAll();
+		String path = "";
+		try {
+			path = CryptoExperimentController.this.getCryptoResources()
+					.getChild("CryptoResources").getChild(resourceID)
+					.getAttributeValue("path");
+		} catch (NullPointerException nullException) {
+			// Element not found.
+			System.out.println("[NullPointerException] Ressource not found.");
+			nullException.printStackTrace();
+		}
+
+		GridBagConstraints imgConstraint = new GridBagConstraints();
+		imgConstraint.gridx = this.getView().getUserInput().length + 1;
+		imgConstraint.gridy = 0;
+		ImageView imageToSet = new ImageView(path);
+		this.getView().getFeedback().add(imageToSet, imgConstraint);
+
+		this.getView().validate();
+		this.getView().repaint();
 	}
 
 	private void notifyUserInvalidAction(JTextField userOutput) {
@@ -206,8 +260,23 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 								+ this.getModel().genRandomGrats()
 								+ " "
 								+ CryptoExperimentController.i18n
-										.tr("Next step is to decrypt a given message! Lets move on to Decryption.")));
+										.tr("The next step is to decrypt a given message! Let's move on to decrypting.")));
 		this.getView().removeKeyboard();
+		this.getView().removeAlphabet();
+
+		this.getView().getNavigationPanel()
+				.remove(this.getView().getNextButton());
+		GridBagConstraints nextConst = new GridBagConstraints();
+		nextConst.anchor = GridBagConstraints.CENTER;
+		nextConst.weightx = 1.0;
+		nextConst.weighty = 0.1;
+		nextConst.gridx = 1;
+		nextConst.gridy = 1;
+		nextConst.gridwidth = 26;
+		nextConst.gridheight = 2;
+		this.getView().add(this.getView().getNextButton(), nextConst);
+
+		this.getView().requestFocus();
 	}
 
 	private void notifyUserValidAction(JTextField userOutput) {
@@ -311,6 +380,20 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				if (!CryptoExperimentController.this.decryptionPhase) {
+
+					CryptoExperimentController.this.getView().remove(
+							CryptoExperimentController.this.getView()
+									.getNextButton());
+
+					// set up the aligment of the button Next;
+					CryptoExperimentController.this.getView().getNextButton()
+							.setPreferredSize(new Dimension(300, 50));
+					CryptoExperimentController.this
+							.getView()
+							.getNavigationPanel()
+							.add(CryptoExperimentController.this.getView()
+									.getNextButton(), BorderLayout.EAST);
+
 					int key = CryptoExperimentController.this.getModel()
 							.generateKey();
 
@@ -336,7 +419,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 							.getExplanations()
 							.setText(
 									CryptoExperimentController.this.wrapHtml(CryptoExperimentController.i18n
-											.tr("You have learned much. But the main question is how to decrypt?")
+											.tr("You have already learned much. But you've probably already asked yourself: How do I decrypt?")
 											+ "<br>"
 											+ CryptoExperimentController.i18n
 													.tr("It's simple: subtract the key from a given letter. And if you get a negative value add 26 to it.")));
@@ -345,7 +428,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 							.getNextButton()
 							.setText(
 									CryptoExperimentController.i18n
-											.tr("Go to histograms"));
+											.tr("Go to Histograms"));
 
 				} else {
 					// load the previous state.
@@ -525,7 +608,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 									.parseInt(CryptoExperimentController.this
 											.getView().getKeyInput().getText());
 						} catch (NumberFormatException e1) {
-							Logger.e(e1);
+							Logger.error(e1);
 						}
 
 						if (CryptoExperimentController.this.getModel()
@@ -549,7 +632,6 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 										.prepareExperimentPhase(key, inputChars);
 							}
 						} else {
-							// TODO: buggy
 							CryptoExperimentController.this
 									.getView()
 									.getExplanations()
@@ -714,5 +796,20 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 
 	private String wrapHtml(String text) {
 		return "<html><body><div width=900px>" + text + "</div></body></html>";
+	}
+
+	/**
+	 * @return the cryptoResources
+	 */
+	public Element getCryptoResources() {
+		return cryptoResources;
+	}
+
+	/**
+	 * @param cryptoResources
+	 *            the cryptoResources to set
+	 */
+	public void setCryptoResources(Element cryptoResources) {
+		this.cryptoResources = cryptoResources;
 	}
 }

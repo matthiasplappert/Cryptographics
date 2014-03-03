@@ -45,7 +45,7 @@ public class ThirdDemonstrationController extends AbstractVisualizationControlle
 	 */
 	private void stepBack() {
 		state--;
-		Logger.d("SecondDemonstrationController", "backButton.addActionListener()", "State: " + state);
+		Logger.debug("SecondDemonstrationController", "backButton.addActionListener()", "State: " + state);
 		switch (state) {
 			case -1:
 				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();

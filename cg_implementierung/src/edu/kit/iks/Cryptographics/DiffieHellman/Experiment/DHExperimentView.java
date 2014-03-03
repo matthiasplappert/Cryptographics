@@ -30,28 +30,28 @@ public class DHExperimentView extends JPanel {
 	private static final long serialVersionUID = 5764374133753732451L;
 	
 	private String explanation1 = i18n.tr("Now it is your turn! Choose a public color, which " +
-			"will be the basis for the coming operations. If you are finished choosing, " +
+			"will be the basis for the coming operations. When you're are done, " +
 			"click the 'send color' button to send it to Bob.");
 	
 	private String explanation2 = i18n.tr("Now you can choose a private color which you can mix with the " +
-			"public color you previously send to Bob. If you have choosen the color you liked, click " +
-			"the 'Mix with public color' button");
+			"public color you previously send to Bob. When you're done, click " +
+			"the 'Mix with public color' button.");
 	
 	private String explanation3 = i18n.tr("The next step is to send the right color to Bob, as " +
 			"shown in the demonstration. You have three possible colors to send and " +
-			"one is the right color. If you need help click the 'help' button");
+			"one is the right color. If you need help click the 'Help' button.");
 	
-	private String wrongPrivate = i18n.tr("Oh no. You choosed the private color. This color " +
+	private String wrongPrivate = i18n.tr("Oh no. You chose the private color. This color " +
 			"is meant to be private. If you had send this color, Eve would be able " +
 			"to get the secret too, afterwards. " +
 			"Please try again, by choosing another color and clicking " +
-			"the 'send color' button");
+			"the 'send color' button.");
 	
-	private String wrongPublic = i18n.tr("Oh no. You choosed the public color. While Eve " +
+	private String wrongPublic = i18n.tr("Oh no. You chose the public color. While Eve " +
 			"won't be able to get the secret shared color, you still didn't follow " +
 			"the protocol instructions. Try again by choosing another color.");
 	
-	private String rightColor = i18n.tr("Good. You choosed to send your mixture to Bob. This is " +
+	private String rightColor = i18n.tr("Good. You chose to send your mixture to Bob. This is " +
 			"the right choice.");
 	
 	private String bobsTurn = i18n.tr("Now it is Bobs turn. Click the continue button, so that " +
@@ -61,8 +61,8 @@ public class DHExperimentView extends JPanel {
 			"Choose the right colors to produce the final secret, just like " +
 			"how it was explained at the demonstration.");
 	
-	private String congrats = i18n.tr("Congratulations, you choosed the right colors to mix, " +
-			"you and Bob established a shared secret that Eve doesn not know");
+	private String congrats = i18n.tr("Congratulations, you chose the right colors to mix, " +
+			"you and Bob established a shared secret that Eve doesn not know.");
 	
 	/*
 	 * the current help String
@@ -72,24 +72,24 @@ public class DHExperimentView extends JPanel {
 	private String help1 = i18n.tr("You have to choose a public color, " +
 			"to choose a different color you have to click the '->' or " +
 			"'<-' Button. You can't do much wrong. When you are ready " +
-			"click the 'send color' button");
+			"click the 'send color' button.");
 	
 	private String help2 = i18n.tr("You have to choose a private color, which " +
 			"is not the same as the public color. To choose a color, " +
 			"you have to click the '->' or the '<-' Button. You can't do " +
-			"much wrong. When you are ready, click the 'mix colors' button");
+			"much wrong. When you are ready, click the 'mix colors' button.");
 	
 	private String help3 = i18n.tr("You have to send the right color, the right color is the " +
 			"one you have not already sent, and the one you don't want to keep private. " +
-			"If you still have no clue, try the three different colors");
+			"If you still have no clue, try the three different colors.");
 	
 	private String help4 = i18n.tr("Just click the continue button and Bob will mix his color " +
-			"and will send it to you");
+			"and will send it to you.");
 	
 	private String help5 = i18n.tr("You have to choose the two colors that will be mixed to " +
-			"the final shared secret. Tip: Why can't Eve compute the secret. Right " +
-			"you have a color that Eve does not have, so have to use that one. The other " +
-			"color you have to think about yourself, or try different colors till it works");
+			"the final shared secret. Tip: Why can't Eve compute the secret. Right, " +
+			"you have a color that Eve does not have, so you have to use that one. The other " +
+			"color you have to think about yourself, or try different colors until it works.");
 	
 	private String mix = i18n.tr("Mix with public color");
 	
@@ -102,7 +102,7 @@ public class DHExperimentView extends JPanel {
 	
 	private String send = i18n.tr("Send color");
 	
-	private String wrongColor = i18n.tr("You choosed the wrong colors, try again");
+	private String wrongColor = i18n.tr("You chose the wrong colors, try again");
 	
 	private JLabel explainLbl;
 	
@@ -323,7 +323,7 @@ public class DHExperimentView extends JPanel {
 				&& chooser2.getCurrentColor().equals(cc.getBobMixedColor()))
 				|| (chooser.getCurrentColor().equals(cc.getBobMixedColor())
 						&& chooser2.getCurrentColor().equals(cc.getAlicePrivateColor()))) {
-			//choosed the right colors
+			//chose the right colors
 			for(ActionListener al : multiBtn.getActionListeners()) {
 				multiBtn.removeActionListener(al);
 			}

@@ -60,7 +60,7 @@ public class ImageView extends JPanel{
 			InputStream is = this.getClass().getResourceAsStream(filePath);
 		    image = ImageIO.read(is);
 		} catch (IOException e) {
-			Logger.e(e);
+			Logger.error(e);
 		}
 		
     	this.setPreferredSize(new Dimension(this.image.getWidth(), this.image.getHeight()));

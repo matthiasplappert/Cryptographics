@@ -14,8 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.xnap.commons.i18n.I18n;
+
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
-import edu.kit.iks.CryptographicsLib.ImageView;
+import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.NumpadView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
@@ -40,6 +42,11 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
  */
 public class CryptoView extends VisualizationView {
 
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(CryptoView.class);
+	
 	// Constants:
 	/**
 	 * 
@@ -107,10 +114,9 @@ public class CryptoView extends VisualizationView {
 	// GUI for feedback to the user:
 
 	/**
-	 * Images for supporting users action.
+	 * Contains image that support the feedback to users actions when encrypting/decrypting.
 	 */
-	protected ImageView caesarFrustrated;
-	protected ImageView caesarHappy;
+	protected JPanel feedback;
 
 	/**
 	 * Explanation textfield.
@@ -154,7 +160,7 @@ public class CryptoView extends VisualizationView {
 		this.validate();
 		this.repaint();
 	}
-	
+
 	/**
 	 * removes the alphabet.
 	 */
@@ -209,6 +215,16 @@ public class CryptoView extends VisualizationView {
 			if (i == inputChars.length) {
 				// sets the key into a Label with gridX = i(to the right from the IO-textfields.)
 				this.setupKeyDisplay(i, key);
+				
+				this.feedback = new JPanel();
+				GridBagConstraints feedbackConst = new GridBagConstraints();
+				feedbackConst.insets = new Insets(25, 25, 50, 25);
+				feedbackConst.gridx = i + 1;
+				feedbackConst.gridy = 0;
+				feedbackConst.gridheight = 2;
+				feedbackConst.fill = GridBagConstraints.BOTH;
+				this.userCharacterIOContainer.add(this.feedback, feedbackConst);
+				
 				break;
 			}
 			// setup the labels that present the input to decrypt/encrypt.
@@ -219,7 +235,7 @@ public class CryptoView extends VisualizationView {
 		}
 		this.userCharacterIOContainer.validate();
 	}
-	
+
 	protected void setupAlphabet() {
 		this.alphabet = new AlphabetStripView();
 		GridBagConstraints alphConst = new GridBagConstraints();
@@ -236,12 +252,11 @@ public class CryptoView extends VisualizationView {
 		this.remove(this.userCharacterIOContainer);
 		this.userCharacterIOContainer = null;
 	}
-	
+
 	protected void removeExplanations() {
 		this.remove(this.explanations);
 		this.explanations = null;
 	}
-
 
 	protected void setupExplanations(String explanations, final int flag,
 			int yGrid, int xGrid, int widthGrid) {
@@ -290,24 +305,24 @@ public class CryptoView extends VisualizationView {
 	}
 
 	private void setupKeyDisplay(int xGrid, int key) {
-		JLabel keyLabel = new JLabel("Key");
+		JLabel keyLabel = new JLabel(CryptoView.i18n.tr("Key"));
 		GridBagConstraints labelConst = new GridBagConstraints();
 		keyLabel.setPreferredSize(new Dimension(25, 25));
 		keyLabel.setFont(new Font("Arial", 2, 20));
-		labelConst.insets = new Insets(25, 25, 25, 25);
+		labelConst.insets = new Insets(5, 25, 25, 25);
 		labelConst.gridx = xGrid;
 		labelConst.gridy = 0;
 		labelConst.ipadx = 20;
 		labelConst.ipady = 20;
 		this.userCharacterIOContainer.add(keyLabel, labelConst);
-		
+
 		this.keyInput = new JTextField();
 		GridBagConstraints keyConst = new GridBagConstraints();
 		this.keyInput.setText("" + key);
 		this.keyInput.setPreferredSize(new Dimension(25, 25));
 		this.keyInput.setEditable(false);
 		this.keyInput.setFont(new Font("Arial", 2, 20));
-		keyConst.insets = new Insets(25, 25, 25, 25);
+		keyConst.insets = new Insets(5, 25, 25, 25);
 		keyConst.gridx = xGrid;
 		keyConst.gridy = 1;
 		keyConst.ipadx = 20;
@@ -323,7 +338,7 @@ public class CryptoView extends VisualizationView {
 		this.userInput[i].setPreferredSize(new Dimension(25, 25));
 		this.userInput[i].setFont(new Font("Arial", 2, 20));
 		GridBagConstraints inputConst = new GridBagConstraints();
-		inputConst.insets = new Insets(25, 25, 25, 25);
+		inputConst.insets = new Insets( 5, 25, 25, 25);
 		inputConst.gridx = i;
 		inputConst.gridy = 0;
 		inputConst.ipadx = 20;
@@ -341,14 +356,15 @@ public class CryptoView extends VisualizationView {
 		this.userOutput[i].setBorder(BorderFactory
 				.createLineBorder(Color.darkGray));
 		this.userOutput[i].setFont(new Font("Arial", 2, 20));
-		
+
 		GridBagConstraints outConst = new GridBagConstraints();
 		outConst.gridx = i;
 		outConst.gridy = 1;
 		outConst.ipadx = 20;
 		outConst.ipady = 20;
-		outConst.insets = new Insets(25, 25, 25, 25);
+		outConst.insets = new Insets(5, 25, 25, 25);
 		this.userCharacterIOContainer.add(this.userOutput[i], outConst);
+		
 	}
 
 	private void setupNavigation() {
@@ -584,32 +600,17 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
-	 * @return the caesarFrustrated
+	 * @return the feedback
 	 */
-	public ImageView getCaesarFrustrated() {
-		return this.caesarFrustrated;
+	public JPanel getFeedback() {
+		return feedback;
 	}
 
 	/**
-	 * @param caesarFrustrated
-	 *            the caesarFrustrated to set
+	 * @param feedback the feedback to set
 	 */
-	public void setCaesarFrustrated(ImageView caesarFrustrated) {
-		this.caesarFrustrated = caesarFrustrated;
+	public void setFeedback(JPanel feedback) {
+		this.feedback = feedback;
 	}
 
-	/**
-	 * @return the caesarHappy
-	 */
-	public ImageView getCaesarHappy() {
-		return this.caesarHappy;
-	}
-
-	/**
-	 * @param caesarHappy
-	 *            the caesarHappy to set
-	 */
-	public void setCaesarHappy(ImageView caesarHappy) {
-		this.caesarHappy = caesarHappy;
-	}
 }
