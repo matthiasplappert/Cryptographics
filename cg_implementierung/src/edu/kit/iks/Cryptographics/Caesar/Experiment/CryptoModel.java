@@ -173,15 +173,14 @@ public class CryptoModel {
 	 * @return the 'random' text.
 	 */
 	public String genRandomText() {
-		String[] textPool = { this
-				.wrapHtml(CryptoModel.i18n
+		String[] textPool = { CryptoModel.i18n
 						.tr("The diagram you see here shows the frequency of each letter"
 								+ " in the text you are reading at the moment. It is called a"
 								+ " Histogram. If you would count all E's in this explanation"
 								+ " you would get the number you see in the diagram on the column"
 								+ " above the letter E. Now the program will encrypt this explanation"
 								+ " with an unknown key in a most awesome way and we will see the "
-								+ " histogram of the cipher. Click Proceed and see the magic!")) };
+								+ " histogram of the cipher. Click Proceed and see the magic!") } ;
 		return textPool[0];
 	}
 
