@@ -401,7 +401,8 @@ public class HistogramController extends AbstractVisualizationController {
 							.getExplanations()
 							.setText(
 									HistogramController.i18n
-											.tr("Just try all keys till you find the right one. If you want to skip this click proceed."));
+											.tr("Just try all keys till you find the right one. If you want to skip this press the button below"));
+					HistogramController.this.getView().getProceed().setText(HistogramController.i18n.tr("Try histogram techniqie"));
 
 				} else if (HistogramController.this.getStep() == 1) {
 					// unload the old explanations.
@@ -418,7 +419,7 @@ public class HistogramController extends AbstractVisualizationController {
 											+ " you would get the number you see in the diagram on the column"
 											+ " above the letter E. Now the program will encrypt this explanation"
 											+ " with an unknown key in a most awesome way and we will see the"
-											+ " histogram of the cipher. Click Proceed and see the magic!");
+											+ " histogram of the cipher. Press Proceed and see the magic!");
 					
 					HistogramController.this.getView().setHistogramOriginalText(HistogramController.this.wrapHtml(explanation, 400));
 

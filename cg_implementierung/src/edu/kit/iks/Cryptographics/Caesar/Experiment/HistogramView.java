@@ -166,6 +166,7 @@ public class HistogramView extends VisualizationView {
 								+ "2. You use elaborate cryptology techniques.");
 
 		this.setupExplanationAndForwarding(explanation);
+		this.proceed.setText(HistogramView.i18n.tr("Lets try brute force"));
 	}
 
 	// -------------------------------------------------------------------public
@@ -282,36 +283,6 @@ public class HistogramView extends VisualizationView {
 		this.add(this.histogramContainer, containerConst);
 	}
 
-	// public void setupHistogram(String text, String caption, int xGrid, int yGrid, String
-	// contentText) {
-	// JLabel cipherHistogramHint = new JLabel(caption);
-	// GridBagConstraints hintConst = new GridBagConstraints();
-	// hintConst.gridx = xGrid;
-	// hintConst.gridy = yGrid;
-	// hintConst.insets = new Insets(0, 50, 5, 50);
-	// hintConst.fill = GridBagConstraints.HORIZONTAL;
-	// this.histogramContainer.add(cipherHistogramHint, hintConst);
-	//
-	// this.cipherHistogram = new CharacterFrequencyDiagramView(text, 600,
-	// 100);
-	// GridBagConstraints cipherHistConst = new GridBagConstraints();
-	// cipherHistConst.gridx = 2;
-	// cipherHistConst.gridy = 3;
-	// cipherHistConst.insets = new Insets(5, 50, 5, 50);
-	// cipherHistConst.fill = GridBagConstraints.BOTH;
-	// this.histogramContainer.add(this.cipherHistogram, cipherHistConst);
-	//
-	// JLabel content = new JLabel(contentText);
-	// GridBagConstraints cipherConst = new GridBagConstraints();
-	// cipherConst.gridx = 2;
-	// cipherConst.gridy = 4;
-	// cipherConst.insets = new Insets(5, 50, 5, 50);
-	// cipherConst.fill = GridBagConstraints.BOTH;
-	// this.histogramContainer.add(this.cipher, cipherConst);
-	//
-	// this.validate();
-	// this.repaint();
-	// }
 	/**
 	 * Creates a histogram of the cipher argument.
 	 * 

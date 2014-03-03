@@ -48,7 +48,7 @@ public class CryptoDemonstrationView extends CryptoView {
 		this.getBackButton().setText(
 				CryptoDemonstrationView.i18n.tr("Back to Introduction"));
 		this.getNextButton().setText(
-				CryptoDemonstrationView.i18n.tr("Go to Experiment"));
+				CryptoDemonstrationView.i18n.tr("Skip the demonstration"));
 
 		// setup the fields for the demonstratoin of the encryption.
 		String caesar = CryptoDemonstrationView.i18n.tr("CAESAR");

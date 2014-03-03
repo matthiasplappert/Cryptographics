@@ -215,7 +215,7 @@ public class CryptoExperimentView extends CryptoView {
 
 	private void setupIOGenerator() {
 		this.generator = new JButton(
-				CryptoExperimentView.i18n.tr("Generate letters!"));
+				CryptoExperimentView.i18n.tr("Generate letters"));
 		this.generator.setPreferredSize(new Dimension(300, 50));
 		GridBagConstraints genConst = new GridBagConstraints();
 		genConst.weightx = 1.0;
