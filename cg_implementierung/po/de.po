@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-03-03 22:15+0100\n"
-"PO-Revision-Date: 2014-03-03 23:18+0100\n"
+"POT-Creation-Date: 2014-03-03 23:40+0100\n"
+"PO-Revision-Date: 2014-03-03 23:44+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -979,22 +979,31 @@ msgstr ""
 "http://de.wikipedia.org/wiki/Polyalphabetische_Substitution#Vigen.C3.A8re-"
 "Verschl.C3.BCsselung"
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/FirstDemonstrationController.java:99
-msgid "There is nothing to help, just read the text"
-msgstr "Hier gibt es nicht viel zu helfen, les einfach den Text"
-
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/FirstDemonstrationView.java:60
-msgid "Vigenere bla bla... Now go to modulo:"
-msgstr ""
-
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/FirstDemonstrationView.java:61
 msgid ""
-"It's easy to describe the logical operation 'modulo'; we use it everyday in "
-"our... "
+"After Caesar's cipher was broken, Vigenère started to create his own cipher "
+"which would fix the weaknesses of Caesar. He also used the same logic by "
+"addition and subtraction of characters but this timehe key would not be a "
+"simple number but a whole string. To understand how Vigenères cipher works, "
+"we need to know how 'modulo' works..."
+msgstr ""
+"Nachdem die Caesar-Chiffre gebrochen wurde, fing Vigenère an, seine eigene "
+"Chiffre zu erstellen, welche die Schwächen von Caesar beheben soll. Er "
+"verwendete die gleiche Logik, jedoch mit einem Schlüssel der mehr als nur "
+"ein Zeichen enthält. Um zu wissen wie die Vigenère-Chiffre funktioniert, "
+"müssen wir erst sehen wie 'Modulo' funktioniert..."
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/FirstDemonstrationView.java:65
+msgid ""
+"We use modulo in our daily life without maybe noticing it: If you look at "
+"your clock, you have a cyclic sequence of numbers. Like you see in the "
+"picture at the bottom, 4 hours after 9 means it's 1. So our clock uses a "
+"modulo of 12, because we have only 12 steps in it. If we overflow, we start "
+"from the beginnig. The same system will now be used with the alphabet (which "
+"has 26 characters) to create Vigen�re's cipher..."
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:51
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:175
 msgid ""
 "Now we want to encrypt 'ANNA'. First of all we add the position of evey "
 "character, as you can see in the bottom, in the alphabet under each "
@@ -1054,43 +1063,52 @@ msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:171
 msgid ""
-"E = 5 and Y = 25. 25 + 5 = 30, but our alphabet doesnt have 28 characters. "
-"So we now use the modulo: 28 modulo 26 = 2."
+"E = 5 and Y = 25. 25 + 5 = 30, but our alphabet doesnt have 30 characters. "
+"So we now use the modulo: 30 modulo 26 = 2."
 msgstr ""
 "E = 5 und Y = 25. 25 + 5 = 30, aber unser Alphabet hat nur 26 Buchstaben. "
 "Also verwenden wir Modulo: 30 modulo 26 = 4."
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:218
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:224
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:40
 msgid "Follow the explanations!"
 msgstr "Folge den Anweisungen!"
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:55
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:61
 msgid "OKAY"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:82
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:97
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:96
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:112
 msgid "Plaintext-Char"
 msgstr "Klartextzeichen"
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:83
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:98
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:97
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:113
 msgid "Key-Char"
 msgstr "Schlüssel-Zeichen"
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:84
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:99
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:98
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:114
 msgid "Result"
 msgstr "Ergebnis"
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:179
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentView.java:224
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:189
+msgid ""
+"Now we want to encrypt 'ANNE'. First of all we add the position of every "
+"character, as you can see in the bottom, in the alphabet under each "
+"character."
+msgstr ""
+"Nun wollen wir 'ANNA' verschlüsseln. Zuerst fügen wir unter jedem Buchstaben "
+"im Alphabet eine Position hinzu, wie du unten sehen kannst."
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationView.java:193
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentView.java:239
 msgid "Vigenere Key"
 msgstr "Vigenère Schlüssel"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:56
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:161
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:176
 msgid ""
 "Now we want to decrypt 'DMPL'. Insteading adding up, we use substraction to "
 "decrypt it! So lets go..."
@@ -1136,63 +1154,61 @@ msgstr ""
 "'M' = 13 und 'S' = 19. 13 - 19 = -6 -> Gehe 6 Schritte zurück von 'Z' aus -> "
 "'T'"
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:55
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:56
 msgid "KISS"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:78
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:80
 msgid "Very nice, now the second character!"
 msgstr "Sehr gut, nun der zweite Buchstabe!"
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:89
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:91
 msgid "Second strike! Three left..."
 msgstr "Zweiter strike! Drei übrig..."
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:100
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:102
 msgid "Not much left, 2 to go..."
 msgstr "Nur noch zwei übrig..."
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:111
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:113
 msgid "Almost done, last character..."
 msgstr "Fast geschafft, letztes Zeichen..."
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:122
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:124
 msgid "Nicely done!"
 msgstr "Sehr gut!"
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:201
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:229
 msgid ""
 "'T' = 20 and 'A' = 1, so just substract 1 from 20 and you have the answer!"
 msgstr ""
-"'T' = 20 und 'A' = 1, also subtrahierst du 1 von 20 und du hast die Antwort!"
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:205
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:233
 msgid ""
 "'W' = 23 and 'B' = 2, so just substract 1 from 20 and you have the answer!"
 msgstr ""
-"'W' = 23 und 'B' = 2, also subtrahierst du 1 von 20 und du hast die Antwort!"
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:209
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:237
 msgid ""
 "'S' = 19 and 'C' = 3, so just substract 1 from 20 and you have the answer!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:213
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:241
 msgid ""
 "'I' = 9 and 'D' = 4, so just substract 1 from 20 and you have the answer!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:217
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:245
 msgid ""
 "'W' = 23 and 'E' = 5, so just substract 1 from 20 and you have the answer!"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentView.java:220
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentView.java:235
 msgid "Now it's your turn! Decrypt this string..."
 msgstr "Nun bist du dran! Entschlüsse den Text..."
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentView.java:222
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:178
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentView.java:237
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:194
 msgid "Wrong Answer! Try again!"
 msgstr "Falsche Antwort! Versuchs nochmal!"
 
@@ -1217,6 +1233,10 @@ msgid ""
 "character of the key we need the histrogramm of every second character in "
 "the chiffre"
 msgstr ""
+"Da wir wissen, dass die Schlüssellänge 2 ist, wird jedes zweite Zeichen mit "
+"dem ersten Buchstaben des Schlüssels verschlüsselt. Um herauszufinden, was "
+"der erste Buchstabe des Schlüssels ist, erstellen wir ein Histogramm mit "
+"jedem zweiten Buchstaben der Chiffre"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationController.java:124
 msgid "Just read the instructions!"
@@ -1231,11 +1251,18 @@ msgid ""
 "(explained in caesar) to make a static analysis. So lets crack this this "
 "chiffre by guessing the key-length (we will use the kasiski test for it)"
 msgstr ""
+"Vigenère behob ein paar Schwächen von Caesar, hat aber immernoch ein paar. "
+"Wenn der Schlüssel kürzer als der Text ist, konkateniert Vigenère ihn "
+"einfach an sich selbst bis er lang genug ist. Das wiederrum macht ihn "
+"schwach für Schlüssellängeraten. Sobald wir die Schlüssellänge wissen, "
+"können wir Histogramme verwenden (wie in Caesar). Los geht's mit dem Brechen "
+"der Chiffre durch Raten der Schlüssellänge (wir verwenden den Kasiski-Test "
+"dafür)"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationView.java:161
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:171
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:185
 msgid "This is the average distribution of the characters in english texts:"
-msgstr ""
+msgstr "Das ist die durchschnittliche Verteilung eines deutschen Texts:"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationView.java:165
 msgid "Length of key: ?"
@@ -1250,9 +1277,21 @@ msgid ""
 "(position of 'E') and we get 14, which meansthe first character of the key "
 "is 'N'."
 msgstr ""
+"Wenn wir uns die Histogramme genauer anschauen sehen wir einige Unterschiede "
+"in der Verteilung. 'S' kommt am häufigsten vor. In einem durchschnittlichen "
+"deutschen Text ist 'E' der häufigste. Also könnte 'S' vor der "
+"Verschlüsselung ein 'E' gewesen sein. Wir rechnen also 'S' - 'E' = 19 - 5 = "
+"15. Das heißt, das erste Zeichen unsres Schlüssels ist 'N'."
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationController.java:84
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:165
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationController.java:89
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationController.java:137
+msgid "Very nice! We found the key 'NJ', now we can decrypt the message:"
+msgstr ""
+"Sehr gut! Wir haben den Schlüssel 'NJ' gefunden. Nun können wir die "
+"Nachricht entschlüsseln:"
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationController.java:114
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:179
 msgid ""
 "Now its your turn! You have to find the second character of the key. I was "
 "kind enough to give you a diagramm of every second character encrypted with "
@@ -1263,13 +1302,7 @@ msgstr ""
 "geben, welches mit dem zweiten Zeichens des Schlüssels verschlüsselt wurden. "
 "Du weißt was zu tun ist:"
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationController.java:107
-msgid "Very nice! We found the key 'NJ', now we can decrypt the message:"
-msgstr ""
-"Sehr gut! Wir haben den Schlüssel 'NJ' gefunden. Nun können wir die "
-"Nachricht entschlüsseln:"
-
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationController.java:143
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationController.java:179
 msgid ""
 "Check the peaks in the histogramm and compare them to the other histogramm, "
 "do you see any similarities?"
@@ -1277,7 +1310,7 @@ msgstr ""
 "Prüfe die Spitzen des Histogramms und vergleiche sie mit dem anderen "
 "Histogramm. Siehst du Ähnlichkeiten?"
 
-#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:174
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:188
 msgid ""
 "Look at the peaks of both histogramm and calculate the second part of the "
 "key! Your answer:"
@@ -1323,6 +1356,9 @@ msgstr "Y"
 #: ../src/edu/kit/iks/CryptographicsLib/VisualizationView.java:42
 msgid "Back"
 msgstr "Zurück"
+
+#~ msgid "There is nothing to help, just read the text"
+#~ msgstr "Hier gibt es nicht viel zu helfen, les einfach den Text"
 
 #, fuzzy
 #~ msgid ""
