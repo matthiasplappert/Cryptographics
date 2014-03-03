@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-03-03 23:40+0100\n"
-"PO-Revision-Date: 2014-03-03 23:44+0100\n"
+"POT-Creation-Date: 2014-03-03 23:49+0100\n"
+"PO-Revision-Date: 2014-03-03 23:54+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -1000,8 +1000,14 @@ msgid ""
 "picture at the bottom, 4 hours after 9 means it's 1. So our clock uses a "
 "modulo of 12, because we have only 12 steps in it. If we overflow, we start "
 "from the beginnig. The same system will now be used with the alphabet (which "
-"has 26 characters) to create Vigen�re's cipher..."
+"has 26 characters) to create Vigenère's cipher..."
 msgstr ""
+"Wir verwenden Modulo täglich in unserem Leben ohne es vielleicht zu merken: "
+"Wenn du auf die Uhr schaust, hast du eine zyklische Sequenz von Zahlen. Wie "
+"du in dem Bild unten sehen kannst, ist 4 Stunden nach 9: 1. Also verwendet "
+"unsere Uhr den Modulo von 12, da wir nur 12 Ziffern haben. Wenn es "
+"überläuft, fängt es von vorne an. Das selbe System wird nun für das Alphabet "
+"verwendet, welches 26 Zeichen hat..."
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:51
 msgid ""
@@ -1064,7 +1070,7 @@ msgstr ""
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:171
 msgid ""
 "E = 5 and Y = 25. 25 + 5 = 30, but our alphabet doesnt have 30 characters. "
-"So we now use the modulo: 30 modulo 26 = 2."
+"So we now use the modulo: 30 modulo 26 = 4."
 msgstr ""
 "E = 5 und Y = 25. 25 + 5 = 30, aber unser Alphabet hat nur 26 Buchstaben. "
 "Also verwenden wir Modulo: 30 modulo 26 = 4."
@@ -1182,26 +1188,31 @@ msgstr "Sehr gut!"
 msgid ""
 "'T' = 20 and 'A' = 1, so just substract 1 from 20 and you have the answer!"
 msgstr ""
+"'T' = 20 und 'A' = 1, also subtrahierst du 1 von 20 und du hast das Ergebnis!"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:233
 msgid ""
-"'W' = 23 and 'B' = 2, so just substract 1 from 20 and you have the answer!"
+"'W' = 23 and 'B' = 2, so just substract 2 from 23 and you have the answer!"
 msgstr ""
+"'W' = 23 und 'B' = 2, also subtrahierst du 2 von 23 und du hast das Ergebnis!"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:237
 msgid ""
-"'S' = 19 and 'C' = 3, so just substract 1 from 20 and you have the answer!"
+"'S' = 19 and 'C' = 3, so just substract 3 from 19 and you have the answer!"
 msgstr ""
+"'S' = 19 und 'C' = 3, also subtrahierst du 3 von 19 und du hast das Ergebnis!"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:241
 msgid ""
-"'I' = 9 and 'D' = 4, so just substract 1 from 20 and you have the answer!"
+"'I' = 9 and 'D' = 4, so just substract 4 from 9 and you have the answer!"
 msgstr ""
+"'I' = 9 und 'D' = 4, also subtrahierst du 4 von 9 und du hast das Ergebnis!"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentController.java:245
 msgid ""
-"'W' = 23 and 'E' = 5, so just substract 1 from 20 and you have the answer!"
+"'W' = 23 and 'E' = 5, so just substract 5 from 23 and you have the answer!"
 msgstr ""
+"'W' = 23 und 'E' = 5, also subtrahierst du 5 von 23 und du hast das Ergebnis!"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Experiment/FirstExperimentView.java:235
 msgid "Now it's your turn! Decrypt this string..."
@@ -1214,13 +1225,20 @@ msgstr "Falsche Antwort! Versuchs nochmal!"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationController.java:61
 msgid ""
-"Vigenere fixed a few weaknesses of Caesar, but still \thas flaws. If the key "
+"Vigenere fixed a few weaknesses of Caesar, but still has flaws. If the key "
 "is shorter then the text to encrypt, Vigenère simply concatinates it with "
 "itself until the key is long enough. This again makes it weak against key-"
 "length-guessing. As soon as we guess the key-length, we can use a histogramm "
 "(explained in caesar) to make a static analysis. So lets crack this this "
 "chiffre by guessing the key-length (we will use the kasiski test for it)"
 msgstr ""
+"Vigenère behob ein paar Schwächen von Caesar, hat aber immernoch ein paar. "
+"Wenn der Schlüssel kürzer als der Text ist, konkateniert Vigenère ihn "
+"einfach an sich selbst bis er lang genug ist. Das wiederrum macht ihn "
+"schwach für Schlüssellängeraten. Sobald wir die Schlüssellänge wissen, "
+"können wir Histogramme verwenden (wie in Caesar). Los geht's mit dem Brechen "
+"der Chiffre durch Raten der Schlüssellänge (wir verwenden den Kasiski-Test "
+"dafür)"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationController.java:81
 msgid "Length of key: 2"
@@ -1356,27 +1374,3 @@ msgstr "Y"
 #: ../src/edu/kit/iks/CryptographicsLib/VisualizationView.java:42
 msgid "Back"
 msgstr "Zurück"
-
-#~ msgid "There is nothing to help, just read the text"
-#~ msgstr "Hier gibt es nicht viel zu helfen, les einfach den Text"
-
-#, fuzzy
-#~ msgid ""
-#~ "The diagram you see here shows the frequency of each letter in the text "
-#~ "you are reading at the moment. It is called a Histogram. If you would "
-#~ "count all E's in this explanation you would get the number you see in the "
-#~ "diagram on the column above the letter E. Now the program will encrypt "
-#~ "this explanation with an unknown key in a most awesome way and we will "
-#~ "see the histogram of the cipher. Press Proceed and see the magic!"
-#~ msgstr "doppelt..."
-
-#, fuzzy
-#~ msgid ""
-#~ "cryptologists call it 'breaking a cipher' when someone tries to decrypt "
-#~ "text without knowing the key.<br>There are always 2 options when it comes "
-#~ "to this.<br><br>1. You use literally brute force, meaning you simply try "
-#~ "each possible key.<br><br>2. You use elaborate cryptology techniques."
-#~ msgstr "still breaks in it..."
-
-#~ msgid "Go to Experiment"
-#~ msgstr "Zum Selbstversuch"
