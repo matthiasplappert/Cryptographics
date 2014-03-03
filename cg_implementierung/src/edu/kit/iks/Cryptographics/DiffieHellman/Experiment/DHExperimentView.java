@@ -337,6 +337,8 @@ public class DHExperimentView extends JPanel {
 						@Override
 						public void callback() {
 							multiBtn.setText(contin);
+							chooser.setVisible(false);
+							chooser2.setVisible(false);
 							multiBtn.addActionListener(remember);
 						}
 					});
