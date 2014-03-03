@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -76,6 +77,20 @@ public class FirstExperimentView extends VisualizationView{
 	 * keyboard used for inputs
 	 */
 	private KeyboardView keyboard;
+	
+	/**
+	 * Button to skip step
+	 */
+	private JButton skip;
+
+	
+	/**
+	 * returns skip button
+	 * @return skip button
+	 */
+	public JButton getSkipButton() {
+		return this.skip;
+	}
 	
 	/**
 	 * creates the keyboard
@@ -223,7 +238,8 @@ public class FirstExperimentView extends VisualizationView{
 		
 		this.vigenereKeyDesc = new JLabel(i18n.tr("Vigenere Key") + ": " + this.vigenereKey);
 		this.alphabet = new AlphabetStripView();
-		
+		this.add(this.skip = new JButton("Skip"));
+		this.skip.setVisible(true);
 		this.textCharPlain = new JLabel[5];
 		this.textCharPlain[0] = new JLabel("T");
 		this.textCharPlain[1] = new JLabel("W");
@@ -389,6 +405,10 @@ public class FirstExperimentView extends VisualizationView{
 		
 		size = this.getNextButton().getPreferredSize();
 		this.getNextButton().setBounds(1100, 600,
+	             size.width, size.height);
+		
+		size = this.getSkipButton().getPreferredSize();
+		this.getSkipButton().setBounds(550, 600,
 	             size.width, size.height);
 		
 		getAlphabet().highlight(0);

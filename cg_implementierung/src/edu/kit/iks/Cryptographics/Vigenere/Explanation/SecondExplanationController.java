@@ -71,6 +71,36 @@ public class SecondExplanationController extends AbstractVisualizationController
 				
 			}
 		});
+		userOutput
+		.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (getView().getKeyboard() != null) {
+						getView().remove(getView().getKeyboard());
+						getView().setKeyboard(null);
+						getView().validate();
+						getView().repaint();
+					}
+					state++;
+					switch (state) {
+					case 1:
+						if ((!getView().getAnswer().isEmpty()) && (getView().getAnswer().charAt(0) == 'J')) {
+							getView().setExplanation("<html><div width=\"1200\">"
+									+ i18n.tr("Very nice! We found the key 'NJ', now we can decrypt "
+									+ "the message:")
+									+ "<br><br>"
+									+ FirstExplanationView.vigenereText
+									+ "</div></html>");
+							getView().visibleFirstState(false);
+							getView().answerRight();
+						} else {
+							getView().answerFalse();
+							state--;
+						}
+						break;
+					}
+				}
+		});
 		this.getView().getBackButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				state--;
@@ -122,6 +152,12 @@ public class SecondExplanationController extends AbstractVisualizationController
 					break;
 				}
 				
+			}
+		});
+		this.getView().getSkipButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+				containerController.presentNextVisualizationController();
 			}
 		});
 	}

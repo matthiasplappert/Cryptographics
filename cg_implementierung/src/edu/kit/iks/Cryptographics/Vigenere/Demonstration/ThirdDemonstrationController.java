@@ -170,6 +170,12 @@ public class ThirdDemonstrationController extends AbstractVisualizationControlle
 				stepForward();
 			}
 		});
+		this.getView().getSkipButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+				containerController.presentNextVisualizationController();
+			}
+		});
 	}
 
 	/**

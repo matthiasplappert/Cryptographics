@@ -3,6 +3,7 @@ package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import org.xnap.commons.i18n.I18n;
@@ -70,6 +71,20 @@ public class ThirdDemonstrationView extends VisualizationView{
 	 * alphabet used for demonstration
 	 */
 	private AlphabetStripView alphabet;
+	
+	/**
+	 * Button to skip step
+	 */
+	private JButton skip;
+
+	
+	/**
+	 * returns skip button
+	 * @return skip button
+	 */
+	public JButton getSkipButton() {
+		return this.skip;
+	}
 	
 	/**
 	 * this highlights the selected character in the AlphaStripView and sets the character in
@@ -163,7 +178,8 @@ public class ThirdDemonstrationView extends VisualizationView{
 				+ "</div></html>"));
 		this.vigenereKeyDesc = new JLabel("Vigenere Key: " + this.vigenereKey);
 		this.alphabet = new AlphabetStripView();
-		
+		this.add(this.skip = new JButton("Skip"));
+		this.skip.setVisible(true);
 		this.textCharPlain = new JLabel[4];
 		this.textCharPlain[0] = new JLabel("E");
 		this.textCharPlain[1] = new JLabel("N");
@@ -323,6 +339,10 @@ public class ThirdDemonstrationView extends VisualizationView{
 		
 		size = this.getNextButton().getPreferredSize();
 		this.getNextButton().setBounds(1100, 600,
+	             size.width, size.height);
+		
+		size = this.getSkipButton().getPreferredSize();
+		this.getSkipButton().setBounds(550, 600,
 	             size.width, size.height);
 	}
 	
