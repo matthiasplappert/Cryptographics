@@ -58,12 +58,12 @@ public class FirstDemonstrationView extends VisualizationView{
 		this.setLayout(null);
 		// create GUI Elements
 		this.vigenereText = new JLabel("<html><div width=\"1100\">" + 
-				i18n.tr("After Caesar's cipher was broken, Vigenère started to create his own cipher which would fix the weaknesses of Caesar. He also used the same logic by addition and subtraction of characters but this time"
-						+ "he key would not be a simple number but a whole string. To understand how Vigenères cipher works, we need to know how 'modulo' works...")
+				i18n.tr("After Caesar's cipher was broken, VigenÃ¨re started to create his own cipher which would fix the weaknesses of Caesar. He also used the same logic by addition and subtraction of characters but this time"
+						+ "he key would not be a simple number but a whole string. To understand how VigenÃ¨res cipher works, we need to know how 'modulo' works...")
 				+ "</div></html>");
 		this.moduloText = new JLabel("<html><div width=\"1100\">" + 
 				i18n.tr("We use modulo in our daily life without maybe noticing it: If you look at your clock, you have a cyclic sequence of numbers. Like you see in the picture at the bottom, 4 hours after 9 means it's 1. So our "
-				+ "clock uses a modulo of 12, because we have only 12 steps in it. If we overflow, we start from the beginnig. The same system will now be used with the alphabet (which has 26 characters) to create Vigenère's cipher...")
+				+ "clock uses a modulo of 12, because we have only 12 steps in it. If we overflow, we start from the beginnig. The same system will now be used with the alphabet (which has 26 characters) to create VigenÃ¨re's cipher...")
 				+ "</div></html>");
 		this.vigenere= new ImageView(vigenereXML.getChild(
 				"vigenereImage").getAttributeValue("path"));

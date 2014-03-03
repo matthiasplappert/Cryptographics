@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.xnap.commons.i18n.I18n;
+
 /**
  * Controller for each procedure displaying further
  * information
@@ -13,6 +15,11 @@ import java.io.InputStreamReader;
  * @author Christian Dreher
  */
 public class InformationController extends AbstractVisualizationController {
+	
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(InformationController.class);
 	
 	/**
 	 * View of the controller
@@ -66,7 +73,11 @@ public class InformationController extends AbstractVisualizationController {
 	 */
 	@Override
 	public String getHelp() {
-		return "Here you can learn more about " + this.getVisualizationInfo().getName() + ". You can also scan the QR code at the bottom of the page to take additional information home. Once you're done, just click the exit button.";
+		String help = InformationController.i18n.tr("Here you can learn more about {0}. You can also"
+				+ " scan the QR code at the bottom of the page to take additional information home."
+				+ " Once you're done, just click the exit button.", this.getVisualizationInfo().getName());
+		
+		return help;
 	}
 	
 	/*
