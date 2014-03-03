@@ -14,7 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.xnap.commons.i18n.I18n;
+
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.NumpadView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
@@ -39,6 +42,11 @@ import edu.kit.iks.CryptographicsLib.VisualizationView;
  */
 public class CryptoView extends VisualizationView {
 
+	/**
+	 * Localization instance
+	 */
+	private static I18n i18n = Configuration.getInstance().getI18n(CryptoView.class);
+	
 	// Constants:
 	/**
 	 * 
@@ -297,7 +305,7 @@ public class CryptoView extends VisualizationView {
 	}
 
 	private void setupKeyDisplay(int xGrid, int key) {
-		JLabel keyLabel = new JLabel("Key");
+		JLabel keyLabel = new JLabel(CryptoView.i18n.tr("Key"));
 		GridBagConstraints labelConst = new GridBagConstraints();
 		keyLabel.setPreferredSize(new Dimension(25, 25));
 		keyLabel.setFont(new Font("Arial", 2, 20));
