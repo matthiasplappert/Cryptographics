@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-03-03 21:08+0100\n"
-"PO-Revision-Date: 2014-03-03 21:48+0100\n"
+"POT-Creation-Date: 2014-03-03 21:57+0100\n"
+"PO-Revision-Date: 2014-03-03 21:59+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -186,7 +186,7 @@ msgstr ""
 "Drücke 'Weiter'."
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:85
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:495
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:499
 msgid "Proceed"
 msgstr "Weiter"
 
@@ -336,7 +336,7 @@ msgstr "Die Eingabe ist ungültig. Versuch einen anderen!"
 msgid "This input is ok. Now only the key is left."
 msgstr "Die Eingabe ist in Ordnung. Nun noch der Schlüssel."
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:659
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:661
 msgid ""
 "This key is not valid. Please put a number between 1 and 26. For "
 "demonstration purposes the keys between -1 and -26 are not necessary "
@@ -347,11 +347,11 @@ msgstr ""
 "Belangen und demnach auch nicht möglich, aber im Allgemeinen können sie "
 "durchaus auch als Schlüssel verwendet werden."
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:677
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:679
 msgid "The key field is empty!"
 msgstr "Der Schlüssel ist leer!"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:710
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentController.java:712
 msgid "This key is ok. Now put your name into the bigger box to the left."
 msgstr ""
 "Der Schlüssel ist okay. Nun schreibe noch deinen Namen in das Feld links."
@@ -452,7 +452,7 @@ msgstr "GEHEIM"
 msgid "EPSILON"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:178
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoModel.java:177
 msgid ""
 "The diagram you see here shows the frequency of each letter in the text you "
 "are reading at the moment. It is called a Histogram. If you would count all "
@@ -487,7 +487,7 @@ msgid ""
 "you dont have to try many. In the worst case you have to try all of them."
 msgstr ""
 "Um einen unbekannten Schlüssel zu finden, musst du alle probieren. Wenn du "
-"glück hast findest du ihn schnell. Im schlechtesten Fall musst du alle "
+"Glück hast findest du ihn schnell. Im schlechtesten Fall musst du alle "
 "probieren."
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:127
@@ -542,18 +542,7 @@ msgstr ""
 msgid "Try histogram techniqie"
 msgstr "Versuche Histogramm-Methode"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:424
-#, fuzzy
-msgid ""
-"The diagram you see here shows the frequency of each letter in the text you "
-"are reading at the moment. It is called a Histogram. If you would count all "
-"E's in this explanation you would get the number you see in the diagram on "
-"the column above the letter E. Now the program will encrypt this explanation "
-"with an unknown key in a most awesome way and we will see the histogram of "
-"the cipher. Press Proceed and see the magic!"
-msgstr "doppelt..."
-
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:467
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:460
 msgid ""
 "When you look at the histogram of the cipher you can see that 'H' is now the "
 "most frequent one. It is obvious that the letter 'E' was shifted to 'H'. "
@@ -565,40 +554,54 @@ msgstr ""
 "du 'E' von 'H' subtrahierst, erhälst du den Schlüssel 3. Gib den Schlüssel "
 "in das Feld unten ein und das Programm wird das Chiffrat entschlüsseln."
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:497
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:490
 msgid "Ok lets try another one!"
 msgstr "Okay, nochmal eins!"
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:161
-#, fuzzy
 msgid ""
-"cryptologists call it 'breaking a cipher' when someone tries to decrypt text "
-"without knowing the key.<br>There are always 2 options when it comes to this."
-"<br><br>1. You use literally brute force, meaning you simply try each "
-"possible key.<br><br>2. You use elaborate cryptology techniques."
-msgstr "still breaks in it..."
+"Cryptologists call it 'breaking a cipher' when someone tries to decrypt text "
+"without knowing the key."
+msgstr ""
+"Kryptologen nennen es 'die Chiffre brechen' wenn jemand einen Text "
+"entschlüsselt, ohne den Schlüssel zu kennen."
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:169
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:164
+msgid "There are always 2 options when it comes to this."
+msgstr "Es gibt immer 2 Möglichkeiten dies zu tun."
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:167
+msgid ""
+"1. You use literally brute force, meaning you simply try each possible key."
+msgstr ""
+"1. Du verwendest Brute-Force, das bedeutet du versuchst einfach jeden "
+"Schlüssel."
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:171
+msgid "2. You use elaborate cryptology techniques."
+msgstr "2. Du verwendest kryptographische Verfahren."
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:174
 msgid "Lets try brute force"
 msgstr "Versuche Brute-Force"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:294
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:299
 msgid "&darr;Histogram of the cipher.&darr;"
 msgstr "&darr;Histogramm des Chiffrats.&darr;"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:332
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:336
 msgid "&darr;Histogram of the original text.&darr;"
 msgstr "&darr;Histogramm des Originaltexts.&darr;"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:367
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:371
 msgid "Type your key in this&darr; box and click 'Enter'."
 msgstr "Wähle den Schlüssel hier&darr; und drücke 'Eingabe'."
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:461
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:465
 msgid "Back to Experiment"
 msgstr "Zurück zum Selbstversuch"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:469
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:473
 msgid "Skip the Histograms"
 msgstr "Histogramme überspringen"
 
@@ -633,7 +636,7 @@ msgid "Eve"
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DemoOneWayView.java:32
-#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:67
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:70
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/ExplainAimView.java:35
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/OnewayView.java:31
 msgid "No help"
@@ -657,7 +660,7 @@ msgstr "einfach"
 msgid "hard"
 msgstr "schwer"
 
-#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:24
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:25
 msgid ""
 "Now to our Diffie-Hellman Key-Exchange Analogy. Here is how the protocol in "
 "principle works. Alice chooses a public color and sends it to Bob. As Eve "
@@ -668,7 +671,7 @@ msgstr ""
 "Farbe und sendet sie an Bob. Da Eve den Kanal abhorcht, erhält sie eine "
 "Kopie."
 
-#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:29
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:30
 msgid ""
 "Next, Alice chooses a private Color, that she keeps for herself, she does "
 "not send it. Then she mixes her private Color with the previously sent "
@@ -686,7 +689,7 @@ msgstr ""
 "verstehen wie das Protokoll funktioniert. Wie zuvor haben Bob und Eve die "
 "gesendete, gemischte Farbe von Alice."
 
-#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:38
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:39
 msgid ""
 "Now Bob does the exact same thing like Alice did in the previous step. He "
 "chooses a private color. Mixes it with the public Color, and sends the "
@@ -698,7 +701,7 @@ msgstr ""
 "Eve erhält auch dieses Mal eine Kopie, doch kann wieder nicht berechnen, was "
 "die geheime Farbe von Bob ist."
 
-#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:44
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:45
 msgid ""
 "Now comes the last step. Here we will produce the secret that Alice and Bob "
 "know, but Eve doesn't. Alice will mix her private color to the mixture of "
@@ -723,6 +726,11 @@ msgstr ""
 "Unterschied. In Wirklichkeit verwenden wir hierfür eine andere mathematische "
 "Operation,welche die Eigenschaft einer Einwegfunktion erfüllt. Jedoch ist "
 "das Prinzip das gleiche."
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:80
+#, fuzzy
+msgid "Skip Introduction"
+msgstr "Einführung überspringen"
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/ExplainAimView.java:38
 msgid ""
@@ -1274,6 +1282,24 @@ msgstr "Y"
 #: ../src/edu/kit/iks/CryptographicsLib/VisualizationView.java:42
 msgid "Back"
 msgstr "Zurück"
+
+#, fuzzy
+#~ msgid ""
+#~ "The diagram you see here shows the frequency of each letter in the text "
+#~ "you are reading at the moment. It is called a Histogram. If you would "
+#~ "count all E's in this explanation you would get the number you see in the "
+#~ "diagram on the column above the letter E. Now the program will encrypt "
+#~ "this explanation with an unknown key in a most awesome way and we will "
+#~ "see the histogram of the cipher. Press Proceed and see the magic!"
+#~ msgstr "doppelt..."
+
+#, fuzzy
+#~ msgid ""
+#~ "cryptologists call it 'breaking a cipher' when someone tries to decrypt "
+#~ "text without knowing the key.<br>There are always 2 options when it comes "
+#~ "to this.<br><br>1. You use literally brute force, meaning you simply try "
+#~ "each possible key.<br><br>2. You use elaborate cryptology techniques."
+#~ msgstr "still breaks in it..."
 
 #~ msgid "Go to Experiment"
 #~ msgstr "Zum Selbstversuch"
