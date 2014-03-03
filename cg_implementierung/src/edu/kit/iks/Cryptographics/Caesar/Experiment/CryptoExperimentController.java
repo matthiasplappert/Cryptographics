@@ -5,7 +5,6 @@ import java.awt.Color;
 
 import java.awt.GridBagConstraints;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -15,7 +14,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import org.jdom2.Document;
@@ -25,7 +23,6 @@ import org.jdom2.input.SAXBuilder;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
-import edu.kit.iks.Cryptographics.Caesar.Demonstration.CryptoDemonstrationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;

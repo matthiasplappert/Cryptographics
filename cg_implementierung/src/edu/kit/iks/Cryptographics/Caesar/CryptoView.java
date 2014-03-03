@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import edu.kit.iks.CryptographicsLib.AlphabetStripView;
-import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.NumpadView;
 import edu.kit.iks.CryptographicsLib.VisualizationView;
