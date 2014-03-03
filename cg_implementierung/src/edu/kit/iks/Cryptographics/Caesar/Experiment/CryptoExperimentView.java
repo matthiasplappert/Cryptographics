@@ -158,6 +158,7 @@ public class CryptoExperimentView extends CryptoView {
 
 	private void setupUserIOContainer() {
 		this.userCharacterIOContainer = new JPanel(new GridBagLayout());
+        this.userCharacterIOContainer.setMinimumSize(new Dimension(500,600));
 		GridBagConstraints inConst = new GridBagConstraints();
 		inConst.anchor = GridBagConstraints.CENTER;
 		inConst.weightx = 0.5;
@@ -166,6 +167,8 @@ public class CryptoExperimentView extends CryptoView {
 		inConst.gridy = 2;
 		inConst.gridheight = 10;
 		inConst.gridwidth = 4;
+		inConst.fill = GridBagConstraints.VERTICAL;
+		inConst.insets = new Insets(0, 0, 100, 0);
 		this.add(this.userCharacterIOContainer, inConst);
 	}
 
@@ -195,7 +198,7 @@ public class CryptoExperimentView extends CryptoView {
 
 	private void setupUserNumericalInput() {
 		this.keyInput = new JTextField();
-		this.keyInput.setPreferredSize(new Dimension(50, 50));
+		this.keyInput.setMinimumSize(new Dimension(50, 50));
 		GridBagConstraints keyConst = new GridBagConstraints();
 		keyConst.gridx = 2;
 		keyConst.gridy = 1;
@@ -222,7 +225,7 @@ public class CryptoExperimentView extends CryptoView {
 		genConst.gridx = 0;
 		genConst.gridy = 4;
 		genConst.gridwidth = 3;
-		// genConst.fill = GridBagConstraints.BOTH;
+        genConst.insets = new Insets(50, 0, 0, 0);
 		this.userCharacterIOContainer.add(this.generator, genConst);
 	}
 
