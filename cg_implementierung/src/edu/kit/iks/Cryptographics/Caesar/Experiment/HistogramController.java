@@ -125,7 +125,7 @@ public class HistogramController extends AbstractVisualizationController {
 							String explanations = HistogramController.this
 									.wrapHtml(HistogramController.i18n
 											.tr("You found the right key! See how easy it is with histograms?"
-													+ " If you want to try one more press proceed. Else you can go next to further information."
+													+ " If you want to try one more press proceed. Otherwise you can go directly to further information."
 													+ " There you can learn more about caesar's cipher."), 600);
 							HistogramController.this.getView()
 									.getExplanations().setText(explanations);

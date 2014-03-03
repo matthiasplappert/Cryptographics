@@ -260,7 +260,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 								+ this.getModel().genRandomGrats()
 								+ " "
 								+ CryptoExperimentController.i18n
-										.tr("Next step is to decrypt a given message! Lets move on to Decryption.")));
+										.tr("The next step is to decrypt a given message! Let's move on to decrypting.")));
 		this.getView().removeKeyboard();
 		this.getView().removeAlphabet();
 
@@ -419,7 +419,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 							.getExplanations()
 							.setText(
 									CryptoExperimentController.this.wrapHtml(CryptoExperimentController.i18n
-											.tr("You have learned much. But the main question is how to decrypt?")
+											.tr("You have already learned much. But you've probably already asked yourself: How do I decrypt?")
 											+ "<br>"
 											+ CryptoExperimentController.i18n
 													.tr("It's simple: subtract the key from a given letter. And if you get a negative value add 26 to it.")));
@@ -428,7 +428,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 							.getNextButton()
 							.setText(
 									CryptoExperimentController.i18n
-											.tr("Go to histograms"));
+											.tr("Go to Histograms"));
 
 				} else {
 					// load the previous state.

@@ -158,10 +158,10 @@ public class HistogramView extends VisualizationView {
 
 		String explanation = "<html><body>"
 				+ HistogramView.i18n
-						.tr("It is called 'breaking' the cipher if you try to decrypt without knowing the key.<br>" +
-								"There are always 2 Options when it comes to this.<br>"
+						.tr("cryptologists call it 'breaking a cipher' when someone tries to decrypt text without knowing the key.<br>" +
+								"There are always 2 options when it comes to this.<br>"
 								+ "<br>"
-								+ "1. You use literally brute force, meaning you simply try to decrypt with all possible keys.<br>"
+								+ "1. You use literally brute force, meaning you simply try each possible key.<br>"
 								+ "<br>"
 								+ "2. You use elaborate cryptology techniques.");
 
@@ -495,7 +495,7 @@ public class HistogramView extends VisualizationView {
 
 		// set up the aligment of the button Next;
 		this.setNextButton(new JButton(HistogramView.i18n
-				.tr("Skip the histograms (Visualization Done)")));
+				.tr("Skip the Histograms")));
 		this.getNextButton().setPreferredSize(new Dimension(300, 50));
 		this.getNextButton().setMinimumSize(new Dimension(300, 50));
 		// this.getNextButton().setFont(new Font("Arial", 2, 25));

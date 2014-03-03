@@ -103,7 +103,7 @@ public class IntroductionView extends VisualizationView {
 		proceedConstraint.gridx = 1;
 		proceedConstraint.gridy = 2;
 		proceedConstraint.gridwidth = 3;
-		this.setProceed(new JButton(IntroductionView.i18n.tr("Tell me more.")));
+		this.setProceed(new JButton(IntroductionView.i18n.tr("Tell me more")));
 		this.proceed.setPreferredSize(new Dimension(500, 50));
 		// this.proceed.setFont(new Font("Arial", 2, 25));
 		this.add(this.proceed, proceedConstraint);
@@ -124,10 +124,10 @@ public class IntroductionView extends VisualizationView {
 		explanationConstraint.gridy = 1;
 		explanationConstraint.gridwidth = 5;
 		this.setExplanation(new JLabel(
-				"<html><body>"
+				"<html><div style=\"width:600px;\">"
 						+ IntroductionView.i18n
-								.tr("One fine day, ca 70 B.C., Caesar was puzzling on an ultra-mega-intelligent-plan<br>"
-										+ "to finally conquer Gallia and sent it to his generals in Gallia.")
+								.tr("One fine day, ca 70 B.C., Caesar was puzzling on an extremely intelligent plan "
+										+ "to finally conquer Gallia and was about to send it to his generals.") + "</div></html>"
 
 		));
 

@@ -121,7 +121,7 @@ public class CryptoModel {
 				CryptoModel.i18n.tr("Oh no. What a pity! It went wrong!"),
 				CryptoModel.i18n.tr("No my friend. This one doesn't work!"),
 				CryptoModel.i18n
-						.tr("Ok, dont be frustrated. Though your action was totally wrong.") };
+						.tr("Sorry, that was wrong. Don't give up now!") };
 		int index = this.generateRandomInt(0, blamingPool.length);
 		return blamingPool[index];
 	}
@@ -145,9 +145,8 @@ public class CryptoModel {
 	 */
 	public String genRandomGrats() {
 		String[] gratulationsPool = {
-				CryptoModel.i18n.tr("Great work oh mighty Caesar."),
-				CryptoModel.i18n.tr("Very nice. I Like!",
-						"Kryptochef approves!"),
+				CryptoModel.i18n.tr("Great work, oh mighty Caesar!"),
+				CryptoModel.i18n.tr("Very nice. I like!"),
 				CryptoModel.i18n.tr("No one could've done it better!") };
 		int index = this.generateRandomInt(0, gratulationsPool.length);
 		return gratulationsPool[index];

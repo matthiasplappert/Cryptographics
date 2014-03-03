@@ -235,7 +235,7 @@ public class PopoverView extends JPanel {
 		}
 		
 		// Calculate the offset for the arrow.
-		int centerLocationX = (int)(this.getLocation().getX() + this.getWidth() / 2 + insets.left); 
+		int centerLocationX = (int)(this.getLocation().getX() + (insets.left + bounds.getWidth()) / 2); 
 		int offsetX = (int)(this.anchorPoint.getX() - centerLocationX);
 		
 		// Create the arrow path.
