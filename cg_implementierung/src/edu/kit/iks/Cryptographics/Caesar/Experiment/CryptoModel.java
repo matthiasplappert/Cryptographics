@@ -107,7 +107,7 @@ public class CryptoModel {
 	 *            the right border of the interval.
 	 * @return the generated integer.
 	 */
-	private int generateRandomInt(int a, int b) {
+	public int generateRandomInt(int a, int b) {
 		return (int) (a + ((b - a) * Math.random()));
 	}
 

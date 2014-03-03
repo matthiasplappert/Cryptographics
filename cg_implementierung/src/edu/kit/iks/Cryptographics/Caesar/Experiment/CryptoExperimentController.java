@@ -186,7 +186,8 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 
 							if ((encryptedOrDecryptedcipher).equals(userOutput
 									.getText())) {
-                               CryptoExperimentController.this.setFeedbackImage("CaesarPositive");
+								CryptoExperimentController.this
+										.setFeedbackImage("CaesarPositive");
 								// user encrypted/decrypted correctly.
 								if ((CryptoExperimentController.this
 										.getEditableFields() - 1) != 0) {
@@ -201,7 +202,8 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 
 								}
 							} else {
-								CryptoExperimentController.this.setFeedbackImage("CaesarNegative");
+								CryptoExperimentController.this
+										.setFeedbackImage("CaesarNegative");
 								// User encrypted invalid! Need another try.
 								CryptoExperimentController.this
 										.notifyUserInvalidAction(userOutput);
@@ -251,16 +253,28 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 				.unHighlight(
 						userOutput.getName().charAt(0)
 								- this.getModel().ASCII_UC_A);
-		this.getView()
-				.getExplanations()
-				.setText(
-						this.wrapHtml(CryptoExperimentController.i18n
-								.tr("All done right!")
-								+ " "
-								+ this.getModel().genRandomGrats()
-								+ " "
-								+ CryptoExperimentController.i18n
-										.tr("The next step is to decrypt a given message! Let's move on to decrypting.")));
+		String notifyString = "";
+		if (!this.decryptionPhase) {
+			notifyString = this
+					.wrapHtml(CryptoExperimentController.i18n
+							.tr("All done right!")
+							+ " "
+							+ this.getModel().genRandomGrats()
+							+ " "
+							+ CryptoExperimentController.i18n
+									.tr("The next step is to decrypt a given message! Let's move on to decrypting."));
+		} else {
+			notifyString = this
+					.wrapHtml(CryptoExperimentController.i18n
+							.tr("All done right!")
+							+ " "
+							+ this.getModel().genRandomGrats()
+							+ " "
+							+ CryptoExperimentController.i18n
+									.tr("In the next stage of the visualization you will learn how to decrypt without a key."));
+		}
+
+		this.getView().getExplanations().setText(notifyString);
 		this.getView().removeKeyboard();
 		this.getView().removeAlphabet();
 
@@ -394,8 +408,9 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 							.add(CryptoExperimentController.this.getView()
 									.getNextButton(), BorderLayout.EAST);
 
+					// Keys bigger then 10 could be too annoying. 1 as key is also too simple.
 					int key = CryptoExperimentController.this.getModel()
-							.generateKey();
+							.generateRandomInt(2, 10);
 
 					// start Decryption!
 					if (CryptoExperimentController.this.getView().getKeyboard() != null) {
@@ -539,8 +554,9 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 						char[] generatedCharacters = CryptoExperimentController.this
 								.getModel().genRandomPlainSequence()
 								.toCharArray();
+						// Keys bigger then 10 can be annoying and smaller then 2 senseless.
 						int key = CryptoExperimentController.this.getModel()
-								.generateKey();
+								.generateRandomInt(2, 10);
 						CryptoExperimentController.this.prepareExperimentPhase(
 								key, generatedCharacters);
 					}

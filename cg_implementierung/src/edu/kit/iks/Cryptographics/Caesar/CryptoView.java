@@ -191,6 +191,7 @@ public class CryptoView extends VisualizationView {
 		kbConst.gridheight = 3;
 		this.add(this.keyboard, kbConst);
 		this.validate();
+		this.repaint();
 	}
 
 	// --------------------------------------------------------------------------------------//
@@ -222,6 +223,7 @@ public class CryptoView extends VisualizationView {
 				feedbackConst.gridx = i + 1;
 				feedbackConst.gridy = 0;
 				feedbackConst.gridheight = 2;
+				feedbackConst.gridwidth = 2;
 				feedbackConst.fill = GridBagConstraints.BOTH;
 				this.userCharacterIOContainer.add(this.feedback, feedbackConst);
 				
@@ -307,7 +309,7 @@ public class CryptoView extends VisualizationView {
 	private void setupKeyDisplay(int xGrid, int key) {
 		JLabel keyLabel = new JLabel(CryptoView.i18n.tr("Key"));
 		GridBagConstraints labelConst = new GridBagConstraints();
-		keyLabel.setPreferredSize(new Dimension(25, 25));
+		keyLabel.setPreferredSize(new Dimension(100, 25));
 		keyLabel.setFont(new Font("Arial", 2, 20));
 		labelConst.insets = new Insets(5, 25, 25, 25);
 		labelConst.gridx = xGrid;
