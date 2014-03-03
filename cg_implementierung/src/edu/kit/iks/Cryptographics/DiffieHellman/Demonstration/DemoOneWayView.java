@@ -63,7 +63,7 @@ public class DemoOneWayView extends VisualizationView {
 		this.keyExchangeExplain.setText("<html><div style=\"width:200px;\">" + explain + "</div></html>");
 		
 		gbc.gridx = 1;
-		gbc.gridy = 2;
+		gbc.gridy = 1;
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		this.add(keyExchangeExplain, gbc);
