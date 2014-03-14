@@ -1,0 +1,87 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[ngerman]{translator}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{url}
+\usepackage[bottom]{footmisc}
+\usepackage{hyperref}
+\usepackage[nonumberlist, section=subsection]{glossaries}
+
+\title{\textbf{Validierungsphase} \\ Cryptographics}
+\author{}
+\date{\today}
+
+%Glossar-Befehle anschalten
+\makeglossaries
+% \newglossaryentry{identifier}{name={Name}, description={Description}}
+
+\begin{document}
+
+% The cover page.
+\maketitle
+\begin{table}[b]
+  \begin{tabular}{| l | l | l |}
+    \hline
+    \textbf{Phase} & \textbf{Verantwortlicher} & \textbf{Email} \\ \hline
+    Pflichtenheft & Matthias Jaenicke & matthias.jaenicke@student.kit.edu \\ \hline
+    Entwurf & Matthias Plappert & undkc@student.kit.edu \\
+            & Julien Duman & uncyc@student.kit.edu \\ \hline
+    Implementierung & Christian Dreher & uaeef@student.kit.edu \\ \hline
+    Qualitätssicherung & Wasilij Beskorovajnov & uajkm@student.kit.edu \\ \hline
+    Präsentation & Aydin Tekin & aydin.tekin@student.kit.edu \\ \hline
+    \end{tabular}
+\end{table}
+\thispagestyle{empty}
+\newpage
+
+% Table of contents page.
+\tableofcontents
+\newpage
+
+% Start of the actual document.
+\section{Einleitung}
+text here
+
+\section{Testszenarien}
+text here
+  \subsection{Testszenario 1: Titel aus Pflichtenheft}
+  \subsection{Testszenario 2: Titel aus Pflichtenheft}
+  \subsection{Testszenario 3: Titel aus Pflichtenheft}
+  \subsection{Testszenario 4: Titel aus Pflichtenheft}
+  \subsection{Zusammenfassung}
+
+\section{Coverage-Tests}
+text here
+  % They devide it like this on their table of contents,
+  % but since we only have juint test cases, this might be 
+  % senseless?
+  \subsection{Abdeckung der JUnit-Testfälle}
+    \subsubsection{Klasse ABC}
+    \subsubsection{Klasse XYZ}
+  \subsection{Abdeckung aller Testfälle}
+
+\section{Regressionstests}
+text here
+
+\section{Beschreibung der Fehler}
+text here
+
+% We may need this, or not...
+\section{Anhang}
+text here
+
+\section{Glossar}
+text here
+
+ \restoregeometry
+
+\glsaddall
+\printglossary[numberedsection, style=altlist]
+
+\end{document}

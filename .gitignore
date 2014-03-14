@@ -14,9 +14,10 @@
 *.ist
 
 # PDF
-/cg_pflichtenheft/cg_pse_pflichtenheft.pdf
-/cg_entwurf/cg_entwurf.pdf
+/cg_pflichtenheft/*.pdf
+/cg_entwurf/*.pdf
 /cg_implementierungsheft/*.pdf
+/cg_validierungsheft/*.pdf
 
 # Java
 /cg_implementierung/bin/*
