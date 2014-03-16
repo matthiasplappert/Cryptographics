@@ -65,9 +65,6 @@ public class CryptoDemonstrationView extends CryptoView {
 		// setup the forwarding button.
 		this.setupProceed();
 
-		// setup the alphabet.
-		this.setupAlphabet();
-
 		// setup the explanation label.
 		String explanations = this.wrapHtml(CryptoDemonstrationView.i18n
 						.tr("Imagine now you are the mighty Caesar! Of course your first idea is to substitute each"

@@ -193,6 +193,18 @@ public class CryptoView extends VisualizationView {
 		this.validate();
 		this.repaint();
 	}
+	
+	public void setupAlphabet() {
+		this.alphabet = new AlphabetStripView();
+		GridBagConstraints alphConst = new GridBagConstraints();
+		alphConst.anchor = GridBagConstraints.CENTER;
+		alphConst.gridx = 1;
+		alphConst.gridy = 1;
+		alphConst.gridwidth = 26;
+		alphConst.gridheight = 2;
+		alphConst.fill = GridBagConstraints.HORIZONTAL;
+		this.add(this.alphabet, alphConst);
+	}
 
 	// --------------------------------------------------------------------------------------//
 	// --------------------------------protected methods-------------------------------------//
@@ -236,18 +248,6 @@ public class CryptoView extends VisualizationView {
 			this.setupUserOutput(i, inputChars[i]);
 		}
 		this.userCharacterIOContainer.validate();
-	}
-
-	protected void setupAlphabet() {
-		this.alphabet = new AlphabetStripView();
-		GridBagConstraints alphConst = new GridBagConstraints();
-		alphConst.anchor = GridBagConstraints.CENTER;
-		alphConst.gridx = 1;
-		alphConst.gridy = 1;
-		alphConst.gridwidth = 26;
-		alphConst.gridheight = 2;
-		alphConst.fill = GridBagConstraints.HORIZONTAL;
-		this.add(this.alphabet, alphConst);
 	}
 
 	protected void removeUserIOContainer() {

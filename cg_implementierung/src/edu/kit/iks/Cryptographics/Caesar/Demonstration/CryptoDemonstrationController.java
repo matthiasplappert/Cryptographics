@@ -435,6 +435,8 @@ public class CryptoDemonstrationController extends
 						this.wrapHtml(CryptoDemonstrationController.i18n
 								.tr("Now try to encrypt the next letter yourself."
 										+ " If you need help, you can always use the help button.")));
+//		 setup the alphabet.
+		this.getView().setupAlphabet();
 		this.getView().getUserInput()[1].setBorder(BorderFactory
 				.createLineBorder(Color.green));
 		this.getView().getUserOutput()[1].setEditable(true);
