@@ -45,8 +45,9 @@ public class CryptoView extends VisualizationView {
 	/**
 	 * Localization instance
 	 */
-	private static I18n i18n = Configuration.getInstance().getI18n(CryptoView.class);
-	
+	private static I18n i18n = Configuration.getInstance().getI18n(
+			CryptoView.class);
+
 	// Constants:
 	/**
 	 * 
@@ -216,8 +217,9 @@ public class CryptoView extends VisualizationView {
 			if (i == inputChars.length) {
 				// sets the key into a Label with gridX = i(to the right from the IO-textfields.)
 				this.setupKeyDisplay(i, key);
-				
+
 				this.feedback = new JPanel();
+				this.feedback.setPreferredSize(new Dimension(130, 130));
 				GridBagConstraints feedbackConst = new GridBagConstraints();
 				feedbackConst.insets = new Insets(25, 25, 50, 25);
 				feedbackConst.gridx = i + 1;
@@ -226,7 +228,7 @@ public class CryptoView extends VisualizationView {
 				feedbackConst.gridwidth = 2;
 				feedbackConst.fill = GridBagConstraints.BOTH;
 				this.userCharacterIOContainer.add(this.feedback, feedbackConst);
-				
+
 				break;
 			}
 			// setup the labels that present the input to decrypt/encrypt.
@@ -246,6 +248,7 @@ public class CryptoView extends VisualizationView {
 		alphConst.gridy = 1;
 		alphConst.gridwidth = 26;
 		alphConst.gridheight = 2;
+		alphConst.insets = new Insets(50, 0, 0, 0);
 		alphConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.alphabet, alphConst);
 	}
@@ -264,16 +267,19 @@ public class CryptoView extends VisualizationView {
 			int yGrid, int xGrid, int widthGrid) {
 		// setup the explanations.
 		this.explanations = new JLabel(explanations);
-		this.explanations.setFont(new Font("Arial", 2, 25));
+		// this.explanations.setFont(new Font("Arial", 2, 25));
+		// this.explanations.setMaximumSize(new Dimension(800, 500));
+		// this.explanations.setMinimumSize(new Dimension(800, 500));
+		this.explanations.setPreferredSize(new Dimension(800, 200));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = flag;
-		expConst.weightx = 0.5;
-		expConst.weighty = 0.1;
+		// expConst.weightx = 0.5;
+		// expConst.weighty = 0.1;
 		expConst.gridx = xGrid;
 		expConst.gridy = yGrid;
-		expConst.insets = new Insets(30, 0, 10, 0);
+		// expConst.insets = new Insets(30, 0, 10, 0);
 		expConst.gridwidth = widthGrid;
-		expConst.fill = GridBagConstraints.BOTH;
+		// expConst.fill = GridBagConstraints.BOTH;
 		this.add(this.explanations, expConst);
 
 	}
@@ -295,14 +301,16 @@ public class CryptoView extends VisualizationView {
 
 	private void setupUserCharacterIOContainer(int widthGrid) {
 		this.userCharacterIOContainer = new JPanel(new GridBagLayout());
+//		this.userCharacterIOContainer.setPreferredSize(new Dimension(600, 200));
 		GridBagConstraints panelConst = new GridBagConstraints();
 		panelConst.anchor = GridBagConstraints.PAGE_START;
 		panelConst.weightx = 0.5;
 		panelConst.weighty = 0.5;
-		panelConst.gridx = 1;
+		panelConst.gridx = 0;
 		panelConst.gridy = 1;
 		panelConst.gridwidth = widthGrid;
 		panelConst.gridheight = 2;
+		panelConst.insets = new Insets(0, 0, 200, 0);
 		this.add(this.userCharacterIOContainer, panelConst);
 	}
 
@@ -340,7 +348,7 @@ public class CryptoView extends VisualizationView {
 		this.userInput[i].setPreferredSize(new Dimension(25, 25));
 		this.userInput[i].setFont(new Font("Arial", 2, 20));
 		GridBagConstraints inputConst = new GridBagConstraints();
-		inputConst.insets = new Insets( 5, 25, 25, 25);
+		inputConst.insets = new Insets(5, 25, 25, 25);
 		inputConst.gridx = i;
 		inputConst.gridy = 0;
 		inputConst.ipadx = 20;
@@ -366,7 +374,7 @@ public class CryptoView extends VisualizationView {
 		outConst.ipady = 20;
 		outConst.insets = new Insets(5, 25, 25, 25);
 		this.userCharacterIOContainer.add(this.userOutput[i], outConst);
-		
+
 	}
 
 	private void setupNavigation() {
@@ -609,7 +617,8 @@ public class CryptoView extends VisualizationView {
 	}
 
 	/**
-	 * @param feedback the feedback to set
+	 * @param feedback
+	 *            the feedback to set
 	 */
 	public void setFeedback(JPanel feedback) {
 		this.feedback = feedback;
