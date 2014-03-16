@@ -243,7 +243,7 @@ public class CryptoDemonstrationController extends
 												CryptoDemonstrationController.this
 														.getModel()
 														.genRandomBlamings());
-								
+								userOutput.setText("");
 								CryptoDemonstrationController.this.setFeedbackImage("CaesarNegative");
 								
 								userOutput.requestFocus();

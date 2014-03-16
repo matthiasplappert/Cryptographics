@@ -141,6 +141,7 @@ public class HistogramController extends AbstractVisualizationController {
 							HistogramController.this.getView().repaint();
 
 						} else {
+							HistogramController.this.getView().getKeyInput().setText("");
 							String explanations = HistogramController.this.wrapHtml(
 									HistogramController.this.getModel()
 											.genRandomBlamings()
@@ -177,6 +178,7 @@ public class HistogramController extends AbstractVisualizationController {
 												.createLineBorder(Color.red));
 					}
 				} else {
+					HistogramController.this.getView().getKeyInput().setText("");
 					String explanations = HistogramController.this.wrapHtml(
 							HistogramController.this.getModel()
 									.genRandomBlamings()
