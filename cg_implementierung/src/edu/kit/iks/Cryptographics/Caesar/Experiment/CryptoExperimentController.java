@@ -202,6 +202,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 
 								}
 							} else {
+								userOutput.setText("");
 								CryptoExperimentController.this
 										.setFeedbackImage("CaesarNegative");
 								// User encrypted invalid! Need another try.
@@ -239,9 +240,9 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 	}
 
 	private void notifyUserInvalidAction(JTextField userOutput) {
-		userOutput.setBorder(BorderFactory.createLineBorder(Color.red));
 		this.getView().getExplanations()
 				.setText(this.getModel().genRandomBlamings());
+		userOutput.requestFocus();
 	}
 
 	private void notifyUserFinishedExperiment(JTextField userOutput) {
