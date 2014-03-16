@@ -595,8 +595,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 											5));
 					CryptoExperimentController.this.getView().createKeyboard(
 							CryptoExperimentController.this.getView()
-									.getLiteralInput(),
-							KeyboardView.STRING_MODE);
+									.getLiteralInput());
 					CryptoExperimentController.this.getView().repaint();
 					CryptoExperimentController.this.getView().getKeyboard().repaint();
 				}
