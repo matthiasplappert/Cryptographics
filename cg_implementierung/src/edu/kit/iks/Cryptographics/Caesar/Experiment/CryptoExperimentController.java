@@ -574,7 +574,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 						&& CryptoExperimentController.this.getView()
 								.getKeyInput().isEditable()) {
 					CryptoExperimentController.this.getView().getKeyInput()
-							.setBorder(null);
+							.setBorder(BorderFactory.createLineBorder(Color.black));
 
 				}
 
@@ -727,7 +727,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 						&& CryptoExperimentController.this.getView()
 								.getLiteralInput().isEditable()) {
 					CryptoExperimentController.this.getView().getLiteralInput()
-							.setBorder(null);
+							.setBorder(BorderFactory.createLineBorder(Color.black));
 
 				}
 

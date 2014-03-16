@@ -125,7 +125,7 @@ public class CryptoExperimentView extends CryptoView {
 		numpadConst.gridy = 3;
 		numpadConst.gridwidth = 4;
 		numpadConst.gridheight = 5;
-		numpadConst.insets = new Insets(0, 10, 0, 200);
+		numpadConst.insets = new Insets(0, 10, 100, 200);
 		this.add(this.numpad, numpadConst);
 		this.validate();
 	}
