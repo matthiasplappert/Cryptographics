@@ -410,7 +410,7 @@ public class HistogramController extends AbstractVisualizationController {
 							.getProceed()
 							.setText(
 									HistogramController.i18n
-											.tr("Try histogram techniqie"));
+											.tr("Try histogram technique"));
 
 				} else if (HistogramController.this.getStep() == 1) {
 					// unload the old explanations.
