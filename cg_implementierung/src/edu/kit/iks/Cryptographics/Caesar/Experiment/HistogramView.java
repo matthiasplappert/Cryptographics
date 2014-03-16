@@ -170,20 +170,20 @@ public class HistogramView extends VisualizationView {
 				+ HistogramView.i18n
 						.tr("2. You use elaborate cryptology techniques.");
 
-		this.setupExplanationAndForwarding(explanation);
+		this.setupExplanationAndForwarding(explanation, GridBagConstraints.PAGE_START);
 		this.proceed.setText(HistogramView.i18n.tr("Lets try brute force"));
 	}
 
 	// -------------------------------------------------------------------public
 	// methods-------------------------------------------------//
 
-	public void setupExplanationAndForwarding(String explanations) {
+	public void setupExplanationAndForwarding(String explanations, int flag) {
 		// setup the container.
-		this.setupExplanationAndForwardingContainer();
+		this.setupExplanationAndForwardingContainer(flag);
 
 		// setup the explanations.
 		this.setExplanations(new JLabel(explanations));
-		this.explanations.setFont(new Font("Arial", 2, 20));
+//		this.explanations.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints explanationConstraint = new GridBagConstraints();
 		explanationConstraint.gridx = 1;
 		explanationConstraint.gridy = 0;
@@ -258,7 +258,9 @@ public class HistogramView extends VisualizationView {
 		// setup the labels that show the results of each iteration.
 		this.setupCipherPlainPresentationLabels(cipher);
 
-		this.announcement = new JLabel();
+		this.announcement = new JLabel(this.wrapHtml(HistogramView.i18n
+				.tr("Brute force means trying to decrypt with each possible key, till you find the right one." +
+						"The Key is in the middle. And pressing buttons increments or decrements it. Let's search.")));
 		this.announcement.setPreferredSize(new Dimension(600, 100));
 		GridBagConstraints annConst = new GridBagConstraints();
 		annConst.gridx = 0;
@@ -478,18 +480,18 @@ public class HistogramView extends VisualizationView {
 
 	}
 
-	private void setupExplanationAndForwardingContainer() {
+	private void setupExplanationAndForwardingContainer(int flag) {
 		this.explanationAndForwardingPanel = new JPanel(new GridBagLayout());
 		// set the alignment of the Container for the explanations and the button Proceed.
 		GridBagConstraints explanationPanelConstraint = new GridBagConstraints();
-		explanationPanelConstraint.anchor = GridBagConstraints.PAGE_START;
+		explanationPanelConstraint.anchor = flag;
 		explanationPanelConstraint.weightx = 1.0;
 		explanationPanelConstraint.weighty = 0.1;
 		explanationPanelConstraint.gridx = 0;
 		explanationPanelConstraint.gridy = 0;
 		explanationPanelConstraint.gridwidth = 6;
 		explanationPanelConstraint.gridheight = 6;
-		explanationPanelConstraint.insets = new Insets(50, 0, 0, 0);
+		explanationPanelConstraint.insets = new Insets(50, 0, 50, 0);
 		explanationPanelConstraint.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.explanationAndForwardingPanel, explanationPanelConstraint);
 	}
@@ -563,14 +565,14 @@ public class HistogramView extends VisualizationView {
 		this.keyControl = new JPanel(new GridBagLayout());
 		// this.keyControl.setBorder(BorderFactory.createLineBorder(Color.green));
 		GridBagConstraints keyConst = new GridBagConstraints();
-		keyConst.anchor = GridBagConstraints.CENTER;
+		keyConst.anchor = GridBagConstraints.PAGE_START;
 		keyConst.weightx = 0.5;
 		keyConst.weighty = 0.5;
 		keyConst.gridx = 1;
-		keyConst.gridy = 0;
+		keyConst.gridy = 1;
 		keyConst.gridwidth = 3;
 		keyConst.gridheight = 4;
-		keyConst.insets = new Insets(200, 0, 0, 0);
+		keyConst.insets = new Insets(50, 0, 0, 0);
 		// keyConst.fill = GridBagConstraints.HORIZONTAL;
 		this.add(this.keyControl, keyConst);
 	}

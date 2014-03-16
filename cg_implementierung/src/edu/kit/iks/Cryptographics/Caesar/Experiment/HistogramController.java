@@ -1,6 +1,7 @@
 package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
 import java.awt.Color;
+import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -141,7 +142,8 @@ public class HistogramController extends AbstractVisualizationController {
 							HistogramController.this.getView().repaint();
 
 						} else {
-							HistogramController.this.getView().getKeyInput().setText("");
+							HistogramController.this.getView().getKeyInput()
+									.setText("");
 							String explanations = HistogramController.this.wrapHtml(
 									HistogramController.this.getModel()
 											.genRandomBlamings()
@@ -178,7 +180,8 @@ public class HistogramController extends AbstractVisualizationController {
 												.createLineBorder(Color.red));
 					}
 				} else {
-					HistogramController.this.getView().getKeyInput().setText("");
+					HistogramController.this.getView().getKeyInput()
+							.setText("");
 					String explanations = HistogramController.this.wrapHtml(
 							HistogramController.this.getModel()
 									.genRandomBlamings()
@@ -343,14 +346,19 @@ public class HistogramController extends AbstractVisualizationController {
 																	HistogramController.this
 																			.getModel()
 																			.genRandomGrats()
-																			+ " "
 																			+ HistogramController.i18n
-																					.tr("You found the secret key and are now able to read the secret message. The Key was")
-																			+ " "
+																					.tr(" You found the secret key and are now able to read the secret message. The Key was ")
 																			+ nextBFKey
 																			+ HistogramController.i18n
-																					.tr("Now only the histogram technique left. Press the button in the middle."),
+																					.tr(". Now only the histogram technique left."),
 																	600));
+
+									HistogramController.this
+											.getView()
+											.getExplanations()
+											.setText(
+													HistogramController.i18n
+															.tr("Congratulations! Yeay! Now lets try to break it with histograms."));
 
 								} else {
 									HistogramController.this
@@ -366,8 +374,8 @@ public class HistogramController extends AbstractVisualizationController {
 											.setBorder(
 													BorderFactory
 															.createLineBorder(
-																	Color.orange,
-																	5));
+																	Color.blue,
+																	2));
 								}
 							} else {
 								// Key is not the right one. Try next. ;)
@@ -385,6 +393,8 @@ public class HistogramController extends AbstractVisualizationController {
 			public void clicked(MouseEvent e) {
 				if (HistogramController.this.getStep() == 0) {
 					HistogramController.this.setStep(1);
+					HistogramController.this.getView()
+							.unloadExplanationAndForwardingPanel();
 					// Keys smaller than 5 are too simple and bigger then 20 could be annoying.
 					int secret = HistogramController.this.getModel()
 							.generateRandomInt(5, 20);
@@ -399,14 +409,17 @@ public class HistogramController extends AbstractVisualizationController {
 							.getView()
 							.getKeyControl()
 							.setBorder(
-									BorderFactory.createLineBorder(
-											Color.orange, 5));
+									BorderFactory.createLineBorder(Color.blue,
+											2));
 					HistogramController.this
 							.getView()
-							.getExplanations()
-							.setText(
-									HistogramController.i18n
-											.tr("Just try all keys till you find the right one. If you want to skip this press the button below"));
+							.setupExplanationAndForwarding(
+									HistogramController.this.wrapHtml(
+											HistogramController.i18n
+													.tr("Or: If you want to try a more elaborate way breaking Caesar-cipher "
+															+ "you can try histogram technique by pressing the button below."),
+											900), GridBagConstraints.PAGE_END);
+					HistogramController.this.generateProceedListener();
 					HistogramController.this
 							.getView()
 							.getProceed()
@@ -422,7 +435,8 @@ public class HistogramController extends AbstractVisualizationController {
 							HistogramController.this.getView().getKeyControl());
 					HistogramController.this.getView().setKeyControl(null);
 
-					String explanation = HistogramController.this.getModel().genRandomText();
+					String explanation = HistogramController.this.getModel()
+							.genRandomText();
 
 					HistogramController.this.getView()
 							.setHistogramOriginalText(
@@ -432,7 +446,8 @@ public class HistogramController extends AbstractVisualizationController {
 					HistogramController.this.getView()
 							.setupExplanationAndForwarding(
 									HistogramController.this.wrapHtml(
-											explanation, 700));
+											explanation, 700),
+									GridBagConstraints.PAGE_START);
 
 					// Build the new experiment.
 					HistogramController.this.setStep(2);

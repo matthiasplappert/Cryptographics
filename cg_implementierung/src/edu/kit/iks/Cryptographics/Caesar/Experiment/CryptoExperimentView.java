@@ -19,6 +19,7 @@ import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.Caesar.CryptoView;
 import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.NumpadView;
 
 /**
@@ -124,9 +125,33 @@ public class CryptoExperimentView extends CryptoView {
 		numpadConst.gridy = 3;
 		numpadConst.gridwidth = 4;
 		numpadConst.gridheight = 5;
-		numpadConst.insets = new Insets(0, 10, 0, 200);
+		numpadConst.insets = new Insets(0, 10, 100, 200);
 		this.add(this.numpad, numpadConst);
 		this.validate();
+	}
+	
+	/**
+	 * Creates the keyboard and shows it in the main container. /**
+	 * 
+	 * @param input
+	 *            the textfield referred to the Keyboard.
+	 * @param flag
+	 *            the mode the Keyboard should be created in.
+	 */
+	public void createKeyboard(JTextField input) {
+		this.keyboard = new KeyboardView(input, KeyboardView.STRING_MODE);
+		GridBagConstraints kbConst = new GridBagConstraints();
+		kbConst.anchor = GridBagConstraints.LINE_END;
+		kbConst.weightx = 1.0;
+		kbConst.weighty = 0.5;
+		kbConst.gridx = 0;
+		kbConst.gridy = 2;
+		kbConst.gridwidth = 11;
+		kbConst.gridheight = 3;
+		kbConst.insets = new Insets(0, 10, 100, 100);
+		this.add(this.keyboard, kbConst);
+		this.validate();
+		this.repaint();
 	}
 
 	/**
@@ -160,7 +185,7 @@ public class CryptoExperimentView extends CryptoView {
 		this.userCharacterIOContainer = new JPanel(new GridBagLayout());
         this.userCharacterIOContainer.setMinimumSize(new Dimension(500,600));
 		GridBagConstraints inConst = new GridBagConstraints();
-		inConst.anchor = GridBagConstraints.CENTER;
+		inConst.anchor = GridBagConstraints.LINE_START;
 		inConst.weightx = 0.5;
 		inConst.weighty = 1.0;
 		inConst.gridx = 0;
@@ -168,11 +193,22 @@ public class CryptoExperimentView extends CryptoView {
 		inConst.gridheight = 10;
 		inConst.gridwidth = 4;
 		inConst.fill = GridBagConstraints.VERTICAL;
-		inConst.insets = new Insets(0, 0, 100, 0);
+		inConst.insets = new Insets(0, 100, 100, 0);
 		this.add(this.userCharacterIOContainer, inConst);
 	}
 
 	private void setupUserLiteralInput() {
+
+		// add the caption of the input field.
+		JLabel inputCaption = new JLabel(
+				CryptoExperimentView.i18n.tr("Put your name in here!"));
+		GridBagConstraints capConst = new GridBagConstraints();
+		capConst.gridx = 0;
+		capConst.gridy = 0;
+		capConst.insets = new Insets(0, 0, 0, 50);
+		capConst.fill = GridBagConstraints.BOTH;
+		this.userCharacterIOContainer.add(inputCaption, capConst);
+		
 		this.literalInput = new JTextField();
 		this.literalInput.setPreferredSize(new Dimension(250, 50));
 		GridBagConstraints inputConst = new GridBagConstraints();
@@ -184,16 +220,14 @@ public class CryptoExperimentView extends CryptoView {
 		this.userCharacterIOContainer.add(this.literalInput, inputConst);
 		this.literalInput
 				.setBorder(BorderFactory.createLineBorder(Color.black));
-
-		// add the caption of the input field.
-		JLabel inputCaption = new JLabel(
-				CryptoExperimentView.i18n.tr("Put your name in here!"));
-		GridBagConstraints capConst = new GridBagConstraints();
-		capConst.gridx = 0;
-		capConst.gridy = 0;
-		capConst.insets = new Insets(0, 0, 0, 50);
-		capConst.fill = GridBagConstraints.BOTH;
-		this.userCharacterIOContainer.add(inputCaption, capConst);
+		
+		JLabel textLabel = new JLabel(CryptoExperimentView.i18n.tr("Or"));
+		GridBagConstraints textConst = new GridBagConstraints();
+		textConst.gridx = 0;
+		textConst.gridy = 3;
+		textConst.insets = new Insets(50, 200, 0, 0);
+		textConst.fill = GridBagConstraints.BOTH;
+		this.userCharacterIOContainer.add(textLabel, textConst);
 	}
 
 	private void setupUserNumericalInput() {
@@ -223,7 +257,7 @@ public class CryptoExperimentView extends CryptoView {
 		GridBagConstraints genConst = new GridBagConstraints();
 		genConst.weightx = 1.0;
 		genConst.gridx = 0;
-		genConst.gridy = 4;
+		genConst.gridy = 5;
 		genConst.gridwidth = 3;
         genConst.insets = new Insets(50, 0, 0, 0);
 		this.userCharacterIOContainer.add(this.generator, genConst);
