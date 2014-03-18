@@ -160,6 +160,12 @@ public class SecondExplanationController extends AbstractVisualizationController
 				containerController.presentNextVisualizationController();
 			}
 		});
+		this.getView().getReturnButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+				containerController.presentPreviousVisualizationController();
+			}
+		});
 	}
 
 	/**
