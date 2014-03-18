@@ -155,7 +155,7 @@ public class DHExperimentView extends JPanel {
 		
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
-		gbc.gridx = 2;
+		gbc.gridx = 0;
 		gbc.gridy = 0;
 		this.add(this.cm, gbc);
 		
@@ -163,7 +163,7 @@ public class DHExperimentView extends JPanel {
 		
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
-		gbc.gridx = 3;
+		gbc.gridx = 0;
 		gbc.gridy = 1;
 		this.add(this.chooser, gbc);
 		
@@ -297,8 +297,8 @@ public class DHExperimentView extends JPanel {
 								cc.getAlicePrivateColor(), cc.getAliceMixedColor(),
 								cc.getBobMixedColor()};
 						chooser2 = new ColorChooser(new Dimension(50, 50), param[0], param);
-						gbc.gridx = 3;
-						gbc.gridy = 0;
+						gbc.gridx = 0;
+						gbc.gridy = 2;
 						add(chooser2, gbc);
 						chooser.setToChooseFrom(param);
 						explainLbl.setText("<html><div style=\"width:300px\">" + finalSecret + "</div></html>");
