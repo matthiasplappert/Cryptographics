@@ -11,10 +11,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
@@ -23,19 +28,28 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.Timer;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+
 /**
  * View of the information page
  * 
  * @author Matthias Plappert
  */
 public class InformationView extends JPanel implements MouseListener {
-	
 	/**
 	 * Possible scroll directions.
 	 */
 	private enum ScrollDirection {
 	    NONE, UP, DOWN 
 	};
+	
+	/**
+	 * Resources.
+	 */
+	private Element resources;
 	
 	/**
 	 * The delay between scroll events when a scroll button is pressed.
@@ -117,6 +131,8 @@ public class InformationView extends JPanel implements MouseListener {
 		this.html = html;
 		this.qrCodeContent = qrCodeContent;
 		
+		this.initResources();
+		
 		// Initialize view.
 		this.setLayout(new BorderLayout());
 		this.loadWebViewComponents();
@@ -124,6 +140,27 @@ public class InformationView extends JPanel implements MouseListener {
 		this.validate();
 		
 		this.updateButtonStates();
+	}
+	
+	/**
+	 * Helper to init the resources 
+	 */
+	private void initResources() {
+		SAXBuilder saxBuilder = new SAXBuilder();
+
+		// obtain file object
+		InputStream is = this.getClass().getResourceAsStream(
+				"/icons/IconResources.xml");
+
+		try {
+			// converted file to document object
+			Document document = saxBuilder.build(is);
+
+			// get root node from xml
+			this.resources = document.getRootElement().getChild("InformationView");
+		} catch (JDOMException | IOException e) {
+			Logger.error(e);
+		}
 	}
 	
 	/**
@@ -176,12 +213,32 @@ public class InformationView extends JPanel implements MouseListener {
 	 */
 	private void loadScrollButtons() {
 		// Scroll up button.
-		this.scrollUpButton = new JButton(" ↑ ");
+		this.scrollUpButton = new JButton();
+		this.scrollUpButton.setIcon(this.loadIcon("ArrowUp"));
 		this.scrollUpButton.addMouseListener(this);
 		
 		// Scroll down button.
-		this.scrollDownButton = new JButton(" ↓ ");
+		this.scrollDownButton = new JButton();
+		this.scrollDownButton.setIcon(this.loadIcon("ArrowDown"));
 		this.scrollDownButton.addMouseListener(this);
+	}
+	
+	/**
+	 * Loads an icon with the given name.
+	 * @param name The name
+	 * @return The icon
+	 */
+	private Icon loadIcon(String name) {
+		String path = this.resources.getChild(name).getAttributeValue("path");
+		ImageIcon icon = null;
+    	try {                
+    		InputStream is = this.getClass().getResourceAsStream(path);
+    		icon = new ImageIcon(ImageIO.read(is));
+        } catch (IOException e) {
+        	Logger.error(e);
+        }
+    	
+    	return icon;
 	}
 	
 	/**
