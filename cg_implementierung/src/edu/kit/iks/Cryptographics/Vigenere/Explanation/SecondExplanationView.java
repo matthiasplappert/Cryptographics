@@ -72,10 +72,23 @@ public class SecondExplanationView extends VisualizationView{
 	private KeyboardView keyboard;
 	
 	/**
+	 * Button to go back
+	 */
+	private JButton btnReturn;
+	
+	/**
 	 * Button to skip step
 	 */
 	private JButton skip;
-
+	
+	/**
+	 * returns back button
+	 * @return back button
+	 */
+	public JButton getReturnButton() {
+		return this.btnReturn;
+	}
+	
 	/**
 	 * returns skip button
 	 * @return skip button
@@ -93,7 +106,7 @@ public class SecondExplanationView extends VisualizationView{
 		this.keyboard = new KeyboardView(input, flag);
 		this.add(this.keyboard);
 		Dimension size = this.keyboard.getPreferredSize();
-		this.keyboard.setBounds(180, 420, size.width, size.height);
+		this.keyboard.setBounds(180, 470, size.width, size.height);
 		this.validate();
 	}
 	
@@ -104,7 +117,7 @@ public class SecondExplanationView extends VisualizationView{
 	public void setExplanation(String s){
 		this.explanation.setText(s);
 		Dimension size = this.explanation.getPreferredSize();
-		this.explanation.setBounds(10, 10,
+		this.explanation.setBounds(10, 60,
 	             size.width, size.height);
 		this.validate();
 	}
@@ -174,7 +187,8 @@ public class SecondExplanationView extends VisualizationView{
 	 */
 	private void setupGUI() {
 		this.setLayout(null);
-		this.add(new JLabel("VIGENERE EXPLANATATION"));
+		this.add(this.skip = new JButton("Go to Information"));
+		this.add(this.btnReturn = new JButton("Return to Explanation"));
 		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
 				+ i18n.tr("Now its your turn! You have to find the second character of the "
 				+ "key. I was kind enough to give you a diagramm of every second "
@@ -188,8 +202,6 @@ public class SecondExplanationView extends VisualizationView{
 				+ i18n.tr("Look at the peaks of both histogramm and calculate the second part "
 				+ "of the key! Your answer:")
 				+ "</div></html>"));
-		this.add(this.skip = new JButton("Skip"));
-		this.skip.setVisible(true);
 		this.add(this.answer = new JTextField(""));
 		this.add(this.wrong = new JLabel(i18n.tr("Wrong Answer! Try again!")));
 		this.vigenereHistogramm = new CharacterFrequencyDiagramView(VigenereModel.getCharPositionated(1, 2, FirstExplanationView.encryptedAverageText), 600,
@@ -217,23 +229,23 @@ public class SecondExplanationView extends VisualizationView{
 	 */
 	private void customizeGUI() {
 		Dimension size = this.explanation.getPreferredSize();
-		this.explanation.setBounds(10, 10,
+		this.explanation.setBounds(10, 50,
 	             size.width, size.height);
 		
 		size = this.secondExplanation.getPreferredSize();
-		this.secondExplanation.setBounds(10, 190,
+		this.secondExplanation.setBounds(10, 240,
 	             size.width, size.height);
 		
 		size = this.thirdExplanation.getPreferredSize();
-		this.thirdExplanation.setBounds(10, 330,
+		this.thirdExplanation.setBounds(10, 380,
 	             size.width, size.height);
 		
-		this.answer.setBounds(350, 370,
+		this.answer.setBounds(350, 420,
 	             40, 40);
 		this.answer.setBorder(BorderFactory.createLineBorder(Color.blue, 5));
 		
 		size = this.wrong.getPreferredSize();
-		this.wrong.setBounds(300, 460,
+		this.wrong.setBounds(300, 510,
 				size.width, size.height);
 		this.wrong.setVisible(false);
 		
@@ -244,15 +256,20 @@ public class SecondExplanationView extends VisualizationView{
 		size = this.getNextButton().getPreferredSize();
 		this.getNextButton().setBounds(1100, 600,
 	             size.width, size.height);
-		
-		this.vigenereHistogramm.setBounds(10, 80,
-	             600, 100);
-		this.averageHistogramm.setBounds(10, 220,
-	             600, 100);
+		this.getNextButton().setVisible(false);
 		
 		size = this.getSkipButton().getPreferredSize();
-		this.getSkipButton().setBounds(550, 600,
+		this.getSkipButton().setBounds(1100, 5,
 	             size.width, size.height);
+		
+		size = this.getReturnButton().getPreferredSize();
+		this.getReturnButton().setBounds(30, 5,
+	             size.width, size.height);
+		
+		this.vigenereHistogramm.setBounds(10, 130,
+	             600, 100);
+		this.averageHistogramm.setBounds(10, 270,
+	             600, 100);
 	}
 	
 	public SecondExplanationView() {

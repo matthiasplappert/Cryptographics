@@ -94,6 +94,32 @@ public class FirstExplanationView extends VisualizationView{
 	private JButton findKeyLength;
 	
 	/**
+	 * Button to go back
+	 */
+	private JButton btnReturn;
+	
+	/**
+	 * Button to skip step
+	 */
+	private JButton skip;
+	
+	/**
+	 * returns back button
+	 * @return back button
+	 */
+	public JButton getReturnButton() {
+		return this.btnReturn;
+	}
+	
+	/**
+	 * returns skip button
+	 * @return skip button
+	 */
+	public JButton getSkipButton() {
+		return this.skip;
+	}
+	
+	/**
 	 * sets the keylength label
 	 * @param s text to change label to
 	 */
@@ -116,7 +142,7 @@ public class FirstExplanationView extends VisualizationView{
 	public void setExplanation(String s){
 		this.explanation.setText(s);
 		Dimension size = this.explanation.getPreferredSize();
-		this.explanation.setBounds(10, 10,
+		this.explanation.setBounds(10, 50,
 	             size.width, size.height);
 		this.validate();
 	}
@@ -146,6 +172,8 @@ public class FirstExplanationView extends VisualizationView{
 	 */
 	private void setupGUI() {
 		this.setLayout(null);
+		this.add(this.skip = new JButton("Go to Cracking"));
+		this.add(this.btnReturn = new JButton("Return to Experiment"));
 		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
 			+ i18n.tr("Vigenère fixed a few weaknesses of Caesar, but still has flaws. If "
 			+ "the key is shorter then the text to encrypt, "
@@ -199,23 +227,23 @@ public class FirstExplanationView extends VisualizationView{
 	 */
 	private void customizeGUI() {
 		Dimension size = this.explanation.getPreferredSize();
-		this.explanation.setBounds(10, 10,
+		this.explanation.setBounds(10, 50,
 	             size.width, size.height);
 		size = this.findKeyLength.getPreferredSize();
-		this.findKeyLength.setBounds(600, 340,
+		this.findKeyLength.setBounds(600, 390,
 	             size.width, size.height);
 		
 		size = this.keyLength.getPreferredSize();
-		this.keyLength.setBounds(10, 340,
+		this.keyLength.setBounds(10, 390,
 	             size.width, size.height);
 		
 		size = this.secondExplanation.getPreferredSize();
-		this.secondExplanation.setBounds(10, 240,
+		this.secondExplanation.setBounds(10, 290,
 	             size.width, size.height);
 		this.secondExplanation.setVisible(false);
 		
 		size = this.thirdExplanation.getPreferredSize();
-		this.thirdExplanation.setBounds(10, 420,
+		this.thirdExplanation.setBounds(10, 470,
 	             size.width, size.height);
 		this.thirdExplanation.setVisible(false);
 		
@@ -228,9 +256,17 @@ public class FirstExplanationView extends VisualizationView{
 	             size.width, size.height);
 		this.getNextButton().setVisible(false);
 		
-		this.vigenereHistogramm.setBounds(10, 140,
+		size = this.getSkipButton().getPreferredSize();
+		this.getSkipButton().setBounds(1100, 5,
+	             size.width, size.height);
+		
+		size = this.getReturnButton().getPreferredSize();
+		this.getReturnButton().setBounds(30, 5,
+	             size.width, size.height);
+		
+		this.vigenereHistogramm.setBounds(10, 190,
 	             600, 100);
-		this.averageHistogramm.setBounds(10, 280,
+		this.averageHistogramm.setBounds(10, 330,
 	             600, 100);
 	}
 	

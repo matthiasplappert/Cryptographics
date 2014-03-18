@@ -62,6 +62,13 @@ public class FirstDemonstrationController extends AbstractVisualizationControlle
 			}
 		});
 		
+		this.getView().getSkipButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+				containerController.presentNextVisualizationController();
+			}
+		});
+		
 		this.view.validate();
 	}
 	
