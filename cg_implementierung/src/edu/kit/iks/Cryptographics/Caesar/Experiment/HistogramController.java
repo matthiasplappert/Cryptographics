@@ -313,20 +313,24 @@ public class HistogramController extends AbstractVisualizationController {
 									HistogramController.this.getModel()
 											.genRandomGrats()
 											+ HistogramController.i18n
-													.tr(" You found the secret key and are now able to read the secret message. The Key is ")
+													.tr(" You found the secret key and are now able to read the secret message. The Key is")
+											+ " "
 											+ bruteForceKey
+											+ ". "
 											+ HistogramController.i18n
-													.tr(". Now only the histogram technique left."),
+													.tr("Now only the histogram technique left."),
 									500));
 
 			HistogramController.this
 					.getView()
 					.getExplanations()
 					.setText(
-							HistogramController.i18n
-									.tr("The Key was ")
-									+ bruteForceKey 
-									+ HistogramController.i18n.tr(". Congratulations! Yeay! Now lets try to break it with histograms. "));
+							HistogramController.i18n.tr("The Key was")
+									+ " "
+									+ bruteForceKey
+									+ ". "
+									+ HistogramController.i18n
+											.tr("Congratulations! Yeay! Now lets try to break it with histograms. "));
 
 		} else {
 			HistogramController.this
