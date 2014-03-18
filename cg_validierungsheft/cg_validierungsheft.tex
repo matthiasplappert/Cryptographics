@@ -12,6 +12,7 @@
 \usepackage[bottom]{footmisc}
 \usepackage{hyperref}
 \usepackage[nonumberlist, section=subsection]{glossaries}
+\usepackage{tabularx}
 
 \usepackage{pifont}
 \newcommand{\cmark}{\ding{51}}
@@ -55,7 +56,7 @@ text here
 text here
   \subsection{Szenario 1}
     \begin{table}[H]
-      \begin{tabular}{| l | c |}
+      \begin{tabularx}{\textwidth}{| >{\raggedright\arraybackslash}X | c |}
         \hline
         \textbf{Funktion} & \textbf{Erfüllt?} \\
         \hline
@@ -89,12 +90,12 @@ text here
         \hline
         QR-Code enthält Link zu weiteren Informationen & \cmark \\
         \hline
-      \end{tabular}
+      \end{tabularx}
     \end{table}
 
   \subsection{Szenario 2}
     \begin{table}[H]
-      \begin{tabular}{| l | c |}
+      \begin{tabularx}{\textwidth}{| >{\raggedright\arraybackslash}X | c |}
         \hline
         \textbf{Funktion} & \textbf{Erfüllt?} \\
         \hline
@@ -104,7 +105,7 @@ text here
         \hline
         Programm hat jederzeit einen Button um zum Startbildschirm zurückzukehren & \cmark \\
         \hline
-      \end{tabular}
+      \end{tabularx}
     \end{table}
 
   \subsection{Szenario 3}
@@ -113,7 +114,7 @@ text here
     \newline
 
     \begin{table}[H]
-      \begin{tabular}{| l | c |}
+      \begin{tabularx}{\textwidth}{| >{\raggedright\arraybackslash}X | c |}
         \hline
         \textbf{Funktion} & \textbf{Erfüllt?} \\
         \hline
@@ -125,12 +126,13 @@ text here
         \hline
         Nach y Sekunden kehrt das Programm automatisch zum Startbildschirm zurück & \cmark \\
         \hline
-      \end{tabular}
+      \end{tabularx}
     \end{table}
 
   \subsection{Szenario 4}
+
     \begin{table}[H]
-      \begin{tabular}{| l | c |}
+      \begin{tabularx}{\textwidth}{| >{\raggedright\arraybackslash}X | c |}
         \hline
         \textbf{Funktion} & \textbf{Erfüllt?} \\
         \hline
@@ -140,7 +142,7 @@ text here
         \hline
         Programm kann mithilfe einer angeschlossenen Hardwaretastatur beendet werden & \cmark \\
         \hline
-      \end{tabular}
+      \end{tabularx}
     \end{table}
 
 \section{Coverage-Tests}
