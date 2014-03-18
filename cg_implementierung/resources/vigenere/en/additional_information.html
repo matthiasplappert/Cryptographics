@@ -1,134 +1,105 @@
-<html>
-</head>
+Ôªø<html>
+<h2>Vign√®re</h2>
 
-<body lang=DE style='tab-interval:35.4pt'>
-<div class=WordSection1>
-<h2><span class=SpellE><span lang=EN-US style='mso-fareast-font-family:"Times New Roman";
-mso-ansi-language:EN-US'>Vign√®re</span></span><span lang=EN-US
-style='mso-fareast-font-family:"Times New Roman";mso-ansi-language:EN-US'><o:p></o:p></span></h2>
-
-<p><span lang=EN-US style='mso-ansi-language:EN-US'>The idea behind the <span
-class=SpellE>Vigen√®re</span> cipher, like all polyalphabetic ciphers, is to
+The idea behind the Vigen√®re cipher, like all polyalphabetic ciphers, is to
 disguise plaintext letter frequencies, which interferes with a straightforward
 application of frequency analysis. For instance, if P is the most frequent
-letter in a <span class=SpellE>ciphertext</span> whose plaintext is in English,
+letter in a ciphertext whose plaintext is in English,
 one might suspect that P corresponds to E, because E is the most frequently
-used letter in English. However, using the <span class=SpellE>Vigen√®re</span>
-cipher, E can be enciphered as different <span class=SpellE>ciphertext</span>
+used letter in English. However, using the Vigen√®re
+cipher, E can be enciphered as different ciphertext
 letters at different points in the message, thus defeating simple frequency
-analysis. The primary weakness of the <span class=SpellE>Vigen√®re</span>
+analysis. The primary weakness of the Vigen√®re
 cipher is the repeating nature of its key. If a cryptanalyst correctly guesses
 the key's length, then the cipher text can be treated as interwoven Caesar
-ciphers, which individually are easily broken. The <span class=SpellE>Kasiski</span>
-and Friedman tests can help determine the key length. <o:p></o:p></span></p>
+ciphers, which individually are easily broken. The Kasiski
+and Friedman tests can help determine the key length.
 
-<h2><span style='mso-fareast-font-family:"Times New Roman"'>Kasiski examination<o:p></o:p></span></h2>
+<h2>Kasiski examination</h2>
 
-<p class=MsoNormal><span lang=EN-US style='mso-fareast-font-family:"Times New Roman";
-mso-ansi-language:EN-US'>For more details on this topic, see <span
-class=SpellE>Kasiski</span> examination. In 1863 Friedrich <span class=SpellE>Kasiski</span>
-was the first to publish a successful general attack on the <span class=SpellE>Vigen√®re</span>
+For more details on this topic, see Kasiski examination. In 1863 Friedrich Kasiski
+was the first to publish a successful general attack on the Vigen√®re
 cipher. Earlier attacks relied on knowledge of the plaintext, or use of a
-recognizable word as a key. <span class=SpellE>Kasiski's</span> method had no
-such dependencies. <span class=SpellE>Kasiski</span> was the first to publish
+recognizable word as a key. Kasiski's method had no
+such dependencies. Kasiski was the first to publish
 an account of the attack, but it is clear that there were others who were aware
-of it. In 1854, Charles Babbage was goaded into breaking the <span
-class=SpellE>Vigen√®re</span> cipher when John Hall Brock <span class=SpellE>Thwaites</span>
+of it. In 1854, Charles Babbage was goaded into breaking the 
+Vigen√®re cipher when John Hall Brock Thwaites
 submitted a &quot;new&quot; cipher to the Journal of the Society of the Arts.
-When Babbage showed that <span class=SpellE>Thwaites</span>' cipher was
-essentially just another recreation of the <span class=SpellE>Vigen√®re</span>
-cipher, <span class=SpellE>Thwaites</span> challenged Babbage to break his
+When Babbage showed that Thwaites' cipher was
+essentially just another recreation of the Vigen√®re
+cipher, Thwaites challenged Babbage to break his
 cipher encoded twice, with keys of different length. Babbage succeeded in
 decrypting a sample, which turned out to be the poem &quot;The Vision of
 Sin&quot;, by Alfred Tennyson, encrypted according to the keyword
 &quot;Emily&quot;, the first name of Tennyson's wife. Babbage never explained
 the method he used. Studies of Babbage's notes reveal that he had used the
-method later published by <span class=SpellE>Kasiski</span>, and suggest that
-he had been using the method as early as 1846. The <span class=SpellE>Kasiski</span>
-examination, also called the <span class=SpellE>Kasiski</span> test, takes
+method later published by Kasiski, and suggest that
+he had been using the method as early as 1846. The Kasiski
+examination, also called the Kasiski test, takes
 advantage of the fact that repeated words may, by chance, sometimes be
-encrypted using the same key letters, leading to repeated groups in the <span
-class=SpellE>ciphertext</span>. <o:p></o:p></span></p>
+encrypted using the same key letters, leading to repeated groups in the ciphertext.
 
-<p class=MsoNormal><span lang=EN-US style='mso-fareast-font-family:"Times New Roman";
-mso-ansi-language:EN-US'>For example, Consider the following encryption using
-the keyword ABCD: <o:p></o:p></span></p>
+For example, Consider the following encryption using
+the keyword ABCD:
+<br>
+<br>
+Key: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABCDABCDABCDABCDABCDABCDABCD 
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CRYPTOISSHORTFORCRYPTOGRAPHY
+<br>
+Ciphertext: CSASTPKVSIQUTGQUCSASTPIUAQJB
+<br><br>
 
-<p class=MsoNormal><span lang=EN-US style='mso-fareast-font-family:"Times New Roman";
-mso-ansi-language:EN-US'>Key: <span style='mso-tab-count:1'>†† </span><span
-style='mso-tab-count:1'>††††††††††† </span>ABCDABCDABCDABCDABCDABCDABCD <o:p></o:p></span></p>
-
-<p class=MsoNormal><span lang=EN-US style='mso-fareast-font-family:"Times New Roman";
-mso-ansi-language:EN-US'>Plaintext: <span style='mso-tab-count:1'>†††††† </span>CRYPTOISSHORTFORCRYPTOGRAPHY
-<o:p></o:p></span></p>
-
-<p class=MsoNormal><span class=SpellE><span lang=EN-US style='mso-fareast-font-family:
-"Times New Roman";mso-ansi-language:EN-US'>Ciphertext</span></span><span
-lang=EN-US style='mso-fareast-font-family:"Times New Roman";mso-ansi-language:
-EN-US'>: <span style='mso-tab-count:1'>†††† </span>CSASTPKVSIQUTGQUCSASTPIUAQJB
-<o:p></o:p></span></p>
-
-<p class=MsoNormal><span lang=EN-US style='mso-fareast-font-family:"Times New Roman";
-mso-ansi-language:EN-US'>There is an easily seen repetition in the <span
-class=SpellE>ciphertext</span>, and the <span class=SpellE>Kasiski</span> test
+There is an easily seen repetition in the ciphertext, and the Kasiski test
 will be effective. Here the distance between the repetitions of CSASTP is 16.
 Assuming that the repeated segments represent the same plaintext segments, this
 implies that the key is 16, 8, 4, 2, or 1 characters long. (All factors of the
-distance are possible key lengths a key of length one is just a simple <span
-class=SpellE>caesar</span> cipher, where cryptanalysis is much easier.) Since
-key lengths 2 and 1 are unrealistically short, one only needs to try lengths
+distance are possible key lengths a key of length one is just a simple caesar cipher, where cryptanalysis is much easier.) Since
+key lengths 2 and 1 are unrealistically short, one only needs to try lengths 
 16, 8, or 4. Longer messages make the test more accurate because they usually
-contain more repeated <span class=SpellE>ciphertext</span> segments. The
-following <span class=SpellE>ciphertext</span> has two segments that are
-repeated: <span class=SpellE>Ciphertext</span>:
-VHVSSPQUCEMRVBVBBBVHVSURQGIBDUGRNICJQUCERVUAXSSR <o:p></o:p></span></p>
-
-<p class=MsoNormal><span lang=EN-US style='mso-fareast-font-family:"Times New Roman";
-mso-ansi-language:EN-US'>The distance between the repetitions of VHVS is 18.
+contain more repeated ciphertext segments. The
+following ciphertext has two segments that are
+repeated: 
+<br><br>
+Ciphertext:VHVSSPQUCEMRVBVBBBVHVSURQGIBDUGRNICJQUCERVUAXSSR
+<br><br>
+The distance between the repetitions of VHVS is 18.
 Assuming that the repeated segments represent the same plaintext segments, this
 implies that the key is 18, 9, 6, 3, 2, or 1 characters long. The distance
 between the repetitions of QUCE is 30 characters. This means that the key
 length could be 30, 15, 10, 6, 5, 3, 2, or 1 characters long. By taking the
 intersection of these sets one could safely conclude that the most likely key
-length is 6, since 3, 2, and 1 are unrealistically short. <o:p></o:p></span></p>
+length is 6, since 3, 2, and 1 are unrealistically short.
 
-<h2><span lang=EN-US style='mso-fareast-font-family:"Times New Roman";
-mso-ansi-language:EN-US'>Frequency analysis<o:p></o:p></span></h2>
+<h2>Frequency analysis<o:p></o:p></h2>
 
-<p class=MsoNormal><span lang=EN-US style='mso-fareast-font-family:"Times New Roman";
-mso-ansi-language:EN-US'>Once the length of the key is known, the <span
-class=SpellE>ciphertext</span> can be rewritten into that many columns, with each
+Once the length of the key is known, the
+ciphertext can be rewritten into that many columns, with each
 column corresponding to a single letter of the key. Each column consists of
 plaintext that has been encrypted by a single Caesar cipher; the Caesar key
-(shift) is just the letter of the <span class=SpellE>Vigen√®re</span> key that
+(shift) is just the letter of the Vigen√®re key that
 was used for that column. Using methods similar to those used to break the
-Caesar cipher, the letters in the <span class=SpellE>ciphertext</span> can be
-discovered. An improvement to the <span class=SpellE>Kasiski</span>
-examination, known as <span class=SpellE>Kerckhoffs</span>' method, matches
+Caesar cipher, the letters in the ciphertext can be
+discovered. An improvement to the Kasiski
+examination, known as Kerckhoffs' method, matches
 each column's letter frequencies to shifted plaintext frequencies to discover
 the key letter (Caesar shift) for that column. Once every letter in the key is
-known, the cryptanalyst can simply decrypt the <span class=SpellE>ciphertext</span>
-and reveal the plaintext. <span class=SpellE>Kerckhoffs</span>' method is not
-applicable when the <span class=SpellE>Vigen√®re</span> table has been
-scrambled, rather than using normal alphabetic sequences, although <span
-class=SpellE>Kasiski</span> examination and coincidence tests can still be used
-to determine key length in that case. <o:p></o:p></span></p>
+known, the cryptanalyst can simply decrypt the ciphertext
+and reveal the plaintext. Kerckhoffs' method is not
+applicable when the Vigen√®re table has been
+scrambled, rather than using normal alphabetic sequences, although Kasiski examination and coincidence tests can still be used
+to determine key length in that case. 
 
-<h2><span lang=EN-US style='mso-fareast-font-family:"Times New Roman";
-mso-ansi-language:EN-US'>Key elimination<o:p></o:p></span></h2>
+<h2>Key elimination</h2>
 
-<p class=MsoNormal><span lang=EN-US style='mso-fareast-font-family:"Times New Roman";
-mso-ansi-language:EN-US'>The <span class=SpellE>Vigen√®re</span> cipher
+The Vigen√®re cipher
 function is essentially modulo arithmetic, and thus commutative. So if the key
 length is known (or guessed) then subtracting the cipher text from itself,
 offset by the key length will produce the cipher text encrypted with itself. If
 any words in the cipher text are known or can be guessed, then the plain text
 and also the key, will be revealed. This is useful if the key is an obscure
 sequence of letters because the plain text will generally be ordinary words.
-Key elimination is useful for making short versions of the plain text.<o:p></o:p></span></p>
-
-</div>
-
-</body>
+Key elimination is useful for making short versions of the plain text.
 
 </html>

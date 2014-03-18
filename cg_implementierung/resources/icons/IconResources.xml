@@ -4,4 +4,8 @@
 		<Backspace 		path="/icons/backspace.png" />
 		<Enter 			path="/icons/enter.png" />
 	</Keyboard>
+    <InformationView>
+        <ArrowUp      path="/icons/arrow_up.png" />
+        <ArrowDown    path="/icons/arrow_down.png" />
+    </InformationView>
 </Icons>

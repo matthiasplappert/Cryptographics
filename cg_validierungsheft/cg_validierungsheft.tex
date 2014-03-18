@@ -12,6 +12,10 @@
 \usepackage[bottom]{footmisc}
 \usepackage{hyperref}
 \usepackage[nonumberlist, section=subsection]{glossaries}
+\usepackage{tabularx}
+
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}
 
 \title{\textbf{Validierungsphase} \\ Cryptographics}
 \author{}
@@ -49,12 +53,100 @@
 text here
 
 \section{Testszenarien}
-text here
-  \subsection{Testszenario 1: Titel aus Pflichtenheft}
-  \subsection{Testszenario 2: Titel aus Pflichtenheft}
-  \subsection{Testszenario 3: Titel aus Pflichtenheft}
-  \subsection{Testszenario 4: Titel aus Pflichtenheft}
-  \subsection{Zusammenfassung}
+  Die folgenden Testszenarien sind bereits im Pflichtenheft im Kapitel 8 ``Testszenarien'' spezifiziert. Hier
+  findet sich nur eine tabellarische Darstellnug derselben, um Funktionen, die im Fließtext beschrieben werden,
+  einzeln verifizieren zu können.
+  
+  \subsection{Szenario 1}
+    \begin{table}[H]
+      \begin{tabularx}{\textwidth}{| >{\raggedright\arraybackslash}X | c |}
+        \hline
+        \textbf{Funktion} & \textbf{Erfüllt?} \\
+        \hline
+        Startbildschirm wird angezeigt & \cmark \\
+        \hline
+        Zeitleiste wird angezeigt & \cmark \\
+        \hline
+        Verfahren werden auf Zeitleiste dargestellt & \cmark \\
+        \hline
+        Verfahren sind farblich gekennzeichnet & \cmark \\
+        \hline
+        Caesar-Verfahren kann ausgewählt werden & \cmark \\
+        \hline
+        Popover mit Zusammenfassung wird dargestellt & \cmark \\
+        \hline
+        Verfahren kann gestartet werden & \cmark \\
+        \hline
+        Verfahren erlaubt mehrschrittige Navigation & \cmark \\
+        \hline
+        Verfahren enthält Einleitung & \cmark \\
+        \hline
+        Selbstversuch zur Verschlüsselung funktioniert & \cmark \\
+        \hline
+        Selbstversuch zur Entschlüsselung funktioniert & \cmark \\
+        \hline
+        Rückkehr zum Startbildschirm ist möglich & \cmark \\
+        \hline
+        Auswahl eines anderen Verfahrens ist möglich & \cmark \\
+        \hline
+        Am Ende des Verfahrens werden weitere Informationen sowie QR-Code dargestellt & \cmark \\
+        \hline
+        QR-Code enthält Link zu weiteren Informationen & \cmark \\
+        \hline
+      \end{tabularx}
+    \end{table}
+
+  \subsection{Szenario 2}
+    \begin{table}[H]
+      \begin{tabularx}{\textwidth}{| >{\raggedright\arraybackslash}X | c |}
+        \hline
+        \textbf{Funktion} & \textbf{Erfüllt?} \\
+        \hline
+        Zufällige Eingabe bringt das Programm nicht zum Abstürzen & \cmark \\
+        \hline
+        Verfahren kann ausgewählt werden & \cmark \\
+        \hline
+        Programm hat jederzeit einen Button um zum Startbildschirm zurückzukehren & \cmark \\
+        \hline
+      \end{tabularx}
+    \end{table}
+
+  \subsection{Szenario 3}
+    \textit{Hinweis: Die Variablen x und y richten sich nach der aktuellen Konfiguration des Programmes. Hierbei
+      ist x der Wert des Parameters \texttt{idleTimeout} sowie y der Wert des Parameters \texttt{resetTimeout}.}
+    \newline
+
+    \begin{table}[H]
+      \begin{tabularx}{\textwidth}{| >{\raggedright\arraybackslash}X | c |}
+        \hline
+        \textbf{Funktion} & \textbf{Erfüllt?} \\
+        \hline
+        Verfahren kann ausgewählt werden & \cmark \\
+        \hline
+        Programm erkennt fehlende Eingabe nach x Sekunden & \cmark \\
+        \hline
+        Programm zeigt Warnhinweis, dass sich das Programm in y Sekunden zurücksetzen wird, dar & \cmark \\
+        \hline
+        Nach y Sekunden kehrt das Programm automatisch zum Startbildschirm zurück & \cmark \\
+        \hline
+      \end{tabularx}
+    \end{table}
+
+  \subsection{Szenario 4}
+
+    \begin{table}[H]
+      \begin{tabularx}{\textwidth}{| >{\raggedright\arraybackslash}X | c |}
+        \hline
+        \textbf{Funktion} & \textbf{Erfüllt?} \\
+        \hline
+        Programm läuft im Vollbildmodus & \cmark \\
+        \hline
+        Programm hat keine Möglichkeit um per Touchscreen-Eingabe zum Betriebssystem zurückzukehren & \cmark \\
+        \hline
+        Programm kann mithilfe einer angeschlossenen Hardwaretastatur beendet werden & \cmark \\
+        \hline
+      \end{tabularx}
+    \end{table}
 
 \section{Coverage-Tests}
 text here
