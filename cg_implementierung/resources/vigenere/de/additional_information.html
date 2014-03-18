@@ -1,8 +1,24 @@
-<html>
+﻿<html>
 <head>
 </head>
 <body>
-<h2>Vignère</h2>
-<p>Das ist ein Platzhalter.</p>
+<h2>Vigenère</h2>
+Die im 16. Jahrhundert entstandene Vigenère-Verschlüsselung (nach Blaise de Vigenère) galt lange als sicherer Chiffrieralgorithmus („Le Chiffre indéchiffrable“, deutsch: „Die unentzifferbare Verschlüsselung“). Ein Schlüsselwort bestimmt, wie viele und welche Alphabete genutzt werden. Die Alphabete leiten sich aus der Caesar-Substitution ab.
+Dem britischen Mathematiker Charles Babbage gelang um das Jahr 1854 erstmals die Entzifferung einer Vigenère-Chiffre. Diese Entdeckung wurde jedoch damals nicht öffentlich bekannt gemacht. Der preußische Offizier Friedrich Kasiski veröffentlichte im Jahr 1863 seine Lösung und ging damit in die Geschichte ein.
+
+<h2>Kryptoanalyse</h2>
+Schlüsselwörter, die im Verhältnis zum Text relativ kurz sind, bieten kaum Sicherheit. Die Länge des Schlüssels lässt sich herausfinden, indem der Text mit sich selbst (um n Stellen verschoben) korreliert und das n mit dem größten Korrelationswert ermittelt wird. Ist somit die Schlüssellänge (Periode) n bekannt, reduziert sich die Kryptoanalyse der Vigenère-Verschlüsselung auf die der Caesar-Verschlüsselung: alle ersten, zweiten, …, n-ten Buchstaben einer Periode gehören jeweils zur selben Caesar-Verschlüsselung und eine Häufigkeitsanalyse verrät die Buchstabenzuordnung.
+Bei einem Text, der nur aus der Wiederholung eines Zeichens besteht, zeigt sich die Periode unmittelbar im Geheimtext. Ein normaler Text weist ausreichend Redundanzen auf, so dass ab einer gewissen Länge des Textes im Vergleich zum Schlüssel auch hier die Periode abgeleitet werden kann (Kasiski-Test, Friedman-Test).
+<br><br>
+Text:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eeeeeeeeeeeee<br>
+Schlüssel:&nbsp;&nbsp;&nbsp;&nbsp;AKEYAKEYAKEYA<br>
+Geheimtext:&nbsp;eoiceoiceoice<br>
+<br>
+Auf diese Weise bekommt man recht schnell die Schlüssellänge des verschlüsselten Textes heraus. Jetzt muss nur noch der Geheimtext spaltenweise zerlegt werden. Die Spalten, welche mit demselben Buchstaben verschlüsselt wurden, werden zusammengefasst. Die entsprechende Alphabetverschiebung der einzelnen Teiltexte löst man nun mittels Häufigkeitsanalyse.
+Weist der Text keine oder nur wenige Redundanzen auf, beispielsweise weil er kurz ist, lässt sich die Schlüssellänge nicht mit dem Kasiski-Test herausfinden. Unter der Voraussetzung, dass es sich bei dem Schlüssel um ein Wort aus einem Wörterbuch handelt und auch der Plaintext mit einem Wort beginnt, lässt sich jedoch durch geschicktes Aussortieren unwahrscheinlicher N-Gramm-Paare in vielen Fällen der Schlüssel finden. Dazu werden zuerst Plaintext/Schlüssel-Kombinationen bewertet, ohne dass es eine Rolle spielt, was davon Plaintext bzw. Schlüssel ist. Die Anzahl der Möglichkeiten wird so bereits im ersten Schritt von 26 auf 13 halbiert (N/E→R und E/N→R). Alle dann noch verbleibenden N-Gramm-Paare werden nun gemäß ihrer Wahrscheinlichkeit, am Anfang eines Wortes zu stehen, gewichtet. Ist mindestens eines der N-Gramme äußerst unwahrscheinlich an einem Wortanfang, wird das ganze Paar verworfen. Beispiel: EIN/TKX und alle diesem Zweig folgenden 4-Gramme können verworfen werden, da TKX als Beginn einer Nachricht/Schlüssel als extrem unwahrscheinlich erachtet wird. Meist zeigt sich bereits ab Tetragrammen, dass die Anzahl der übrig gebliebenen Paare so stark reduziert wurde, dass eine Überprüfung aller restlichen Möglichkeiten machbar ist. Es bleiben statt 456.976 (= 26^4 bei Tetragrammen) meist nur ca. einhundert sinnvolle Möglichkeiten übrig. Anhand eines Wörterbuches können nun alle Wörter, die mit diesen Tetragrammen beginnen, als Schlüssel ausprobiert werden, bis sich ein schlüssiger Plaintext ergibt. Eine ausführliche Beschreibung wurde 2008 veröffentlicht und ist in CrypTool v1.4.30 implementiert.
+Einzig ein Text aus statistisch gleich verteilten, unsinnigen Buchstabenfolgen wäre einem Ciphertext-only-Angriff nicht ohne Weiteres zugänglich.
+
 </body>
 </html>
+
+
