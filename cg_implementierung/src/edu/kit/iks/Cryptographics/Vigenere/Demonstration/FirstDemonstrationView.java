@@ -3,6 +3,7 @@ package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import org.jdom2.Element;
@@ -40,6 +41,11 @@ public class FirstDemonstrationView extends VisualizationView{
 	private JLabel vigenereText;
 	
 	/**
+	 * skip introduction
+	 */
+	private JButton skip;
+	
+	/**
 	 * text of modulo-explanation
 	 */
 	private JLabel moduloText;
@@ -48,6 +54,14 @@ public class FirstDemonstrationView extends VisualizationView{
 	 * link to the resource
 	 */
 	private Element vigenereXML;
+	
+	/**
+	 * returns skip button
+	 * @return skip button
+	 */
+	public JButton getSkipButton() {
+		return this.skip;
+	}
 	
 	/**
 	 * creates all needed GUI elements
@@ -69,6 +83,7 @@ public class FirstDemonstrationView extends VisualizationView{
 				"vigenereImage").getAttributeValue("path"));
 		this.clock = new ImageView(vigenereXML.getChild(
 				"moduloImage").getAttributeValue("path"));
+		this.skip = new JButton("Go to Encryption");
 		// set fonts
 		this.vigenereText.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		this.moduloText.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
@@ -77,6 +92,7 @@ public class FirstDemonstrationView extends VisualizationView{
 		this.add(this.vigenereText);
 		this.add(this.clock);
 		this.add(this.moduloText);
+		this.add(this.skip);
 	}
 	
 	/**
@@ -84,11 +100,15 @@ public class FirstDemonstrationView extends VisualizationView{
 	 */
 	private void customizeGUI() {
 		Dimension size = this.vigenereText.getPreferredSize();
-		this.vigenereText.setBounds(180, 5,
+		this.vigenereText.setBounds(180, 50,
 	             size.width, size.height);
 		
 		size = this.vigenere.getPreferredSize();
-		this.vigenere.setBounds(30, 5,
+		this.vigenere.setBounds(30, 50,
+	             size.width, size.height);
+		
+		size = this.skip.getPreferredSize();
+		this.skip.setBounds(1100, 5,
 	             size.width, size.height);
 		
 		size = this.moduloText.getPreferredSize();

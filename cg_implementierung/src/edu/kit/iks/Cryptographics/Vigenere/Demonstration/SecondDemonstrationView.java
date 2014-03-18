@@ -39,6 +39,11 @@ public class SecondDemonstrationView extends VisualizationView {
 	 * Button to skip step
 	 */
 	private JButton skip;
+	
+	/**
+	 * Button to go back
+	 */
+	private JButton btnReturn;
 
 	/**
 	 * encrypted characters
@@ -83,6 +88,14 @@ public class SecondDemonstrationView extends VisualizationView {
 	 */
 	public JButton getSkipButton() {
 		return this.skip;
+	}
+	
+	/**
+	 * returns back button
+	 * @return back button
+	 */
+	public JButton getReturnButton() {
+		return this.btnReturn;
 	}
 	
 	/**
@@ -192,7 +205,8 @@ public class SecondDemonstrationView extends VisualizationView {
 				+ "</div></html>"));
 		this.vigenereKeyDesc = new JLabel(i18n.tr("Vigenere Key") + ": " + this.vigenereKey);
 		
-		this.add(this.skip = new JButton("Skip"));
+		this.add(this.skip = new JButton("Go to Decryption"));
+		this.add(this.btnReturn = new JButton("Return to Introduction"));
 		this.skip.setVisible(true);
 		this.alphabet = new AlphabetStripView();
 
@@ -271,85 +285,85 @@ public class SecondDemonstrationView extends VisualizationView {
 		this.vigenereKeyDesc.setBounds(90, 250, size.width, size.height);
 		
 		size = this.textCharPlain[0].getPreferredSize();
-		this.textCharPlain[0].setBounds(500, 100,
+		this.textCharPlain[0].setBounds(500, 150,
 	             size.width, size.height);
 		
 		size = this.textCharPlain[1].getPreferredSize();
-		this.textCharPlain[1].setBounds(550, 100,
+		this.textCharPlain[1].setBounds(550, 150,
 	             size.width, size.height);
 		
 		size = this.textCharPlain[2].getPreferredSize();
-		this.textCharPlain[2].setBounds(600, 100,
+		this.textCharPlain[2].setBounds(600, 150,
 	             size.width, size.height);
 
 		size = this.textCharPlain[3].getPreferredSize();
-		this.textCharPlain[3].setBounds(650, 100,
+		this.textCharPlain[3].setBounds(650, 150,
 	             size.width, size.height);
 		
 		size = this.indexCharPlain[0].getPreferredSize();
-		this.indexCharPlain[0].setBounds(500, 160,
+		this.indexCharPlain[0].setBounds(500, 210,
 	             size.width, size.height);
 		
 		size = this.indexCharPlain[1].getPreferredSize();
-		this.indexCharPlain[1].setBounds(550, 160,
+		this.indexCharPlain[1].setBounds(550, 210,
 	             size.width, size.height);
 		
 		size = this.indexCharPlain[2].getPreferredSize();
-		this.indexCharPlain[2].setBounds(600, 160,
+		this.indexCharPlain[2].setBounds(600, 210,
 	             size.width, size.height);
 
 		size = this.indexCharPlain[3].getPreferredSize();
-		this.indexCharPlain[3].setBounds(650, 160,
+		this.indexCharPlain[3].setBounds(650, 210,
 	             size.width, size.height);
 		
 		size.width = 24;
 		size.height = 44;
-		this.textCharEncrypted[0].setBounds(500, 250,
+		this.textCharEncrypted[0].setBounds(500, 300,
 	             size.width, size.height);
 		
-		this.textCharEncrypted[1].setBounds(550, 250,
+		this.textCharEncrypted[1].setBounds(550, 300,
 	             size.width, size.height);
 		
-		this.textCharEncrypted[2].setBounds(600, 250,
+		this.textCharEncrypted[2].setBounds(600, 300,
 	             size.width, size.height);
 
-		this.textCharEncrypted[3].setBounds(650, 250,
+		this.textCharEncrypted[3].setBounds(650, 300,
 	             size.width, size.height);
 		
 		size = this.indexCharEncrypted[0].getPreferredSize();
-		this.indexCharEncrypted[0].setBounds(500, 310,
+		this.indexCharEncrypted[0].setBounds(500, 360,
 	             size.width, size.height);
 		
 		size = this.indexCharEncrypted[1].getPreferredSize();
-		this.indexCharEncrypted[1].setBounds(550, 310,
+		this.indexCharEncrypted[1].setBounds(550, 360,
 	             size.width, size.height);
 		
 		size = this.indexCharEncrypted[2].getPreferredSize();
-		this.indexCharEncrypted[2].setBounds(600, 310,
+		this.indexCharEncrypted[2].setBounds(600, 360,
 	             size.width, size.height);
 
 		size = this.indexCharEncrypted[3].getPreferredSize();
-		this.indexCharEncrypted[3].setBounds(650, 310,
+		this.indexCharEncrypted[3].setBounds(650, 360,
 	             size.width, size.height);
 		
 		size = this.alphabet.getPreferredSize();
-		this.alphabet.setBounds(100, 520,
+		this.alphabet.setBounds(150, 570,
 	             size.width, size.height);
 		
 		size = this.charFirst.getPreferredSize();
-		this.charFirst.setBounds(900, 160,
+		this.charFirst.setBounds(900, 210,
 	             size.width, size.height);
 		
 		size = this.charSecond.getPreferredSize();
-		this.charSecond.setBounds(900, 210,
+		this.charSecond.setBounds(900, 260,
 	             size.width, size.height);
 		
 		size = this.charFinished.getPreferredSize();
-		this.charFinished.setBounds(900, 260,
+		this.charFinished.setBounds(900, 310,
 	             size.width, size.height);
 		
 		size = this.explanation.getPreferredSize();
-		this.explanation.setBounds(10, 10,
+		this.explanation.setBounds(10, 50,
 	             size.width, size.height);
 		
 		size = this.getBackButton().getPreferredSize();
@@ -362,7 +376,11 @@ public class SecondDemonstrationView extends VisualizationView {
 	             size.width, size.height);
 		
 		size = this.getSkipButton().getPreferredSize();
-		this.getSkipButton().setBounds(550, 600,
+		this.getSkipButton().setBounds(1100, 5,
+	             size.width, size.height);
+		
+		size = this.getReturnButton().getPreferredSize();
+		this.getReturnButton().setBounds(30, 5,
 	             size.width, size.height);
 	}
 	
