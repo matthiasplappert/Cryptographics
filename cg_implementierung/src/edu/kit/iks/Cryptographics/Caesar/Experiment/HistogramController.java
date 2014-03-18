@@ -324,8 +324,9 @@ public class HistogramController extends AbstractVisualizationController {
 					.getExplanations()
 					.setText(
 							HistogramController.i18n
-									.tr("Congratulations! Yeay! Now lets try to break it with histograms. The Key was ")
-									+ bruteForceKey);
+									.tr("The Key was ")
+									+ bruteForceKey 
+									+ HistogramController.i18n.tr(". Congratulations! Yeay! Now lets try to break it with histograms. "));
 
 		} else {
 			HistogramController.this
