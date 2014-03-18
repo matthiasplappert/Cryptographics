@@ -96,7 +96,7 @@ public class DHDemoView extends VisualizationView {
 		layout.setConstraints(this.getBackButton(), gbc);
 		
 		this.aliceExplain = new JLabel();
-		this.aliceExplain.setText("<html><div style=\"width:300px\">" + explanation1 + "</div></html>");
+		this.aliceExplain.setText("<html><div style=\"width:400px\">" + explanation1 + "</div></html>");
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 1;
@@ -154,7 +154,7 @@ public class DHDemoView extends VisualizationView {
 	}
 
 	private void secondStep() {
-		aliceExplain.setText("<html><div style=\"width:350px\">" + explanation2 + "</div></html>");
+		aliceExplain.setText("<html><div style=\"width:500px\">" + explanation2 + "</div></html>");
 		cc.chooseAlicePrivateColor(Color.GREEN);
 		cc.mixAlicePrivatePublic();
 		cm.setEllipColor(0, cc.getPublicColor());
@@ -180,7 +180,7 @@ public class DHDemoView extends VisualizationView {
 	}
 	
 	private void thirdStep() {
-		aliceExplain.setText("<html><div style=\"width:350px\">" + explanation2 + "</div></html>");
+		aliceExplain.setText("<html><div style=\"width:500px\">" + explanation2 + "</div></html>");
 		cc.sendAliceMixedColorToBob(new NextStepCallback() {
 			
 			@Override
@@ -199,7 +199,7 @@ public class DHDemoView extends VisualizationView {
 	}
 	
 	private void fourthStep() {
-		aliceExplain.setText("<html><div style=\"width:350px\">" + explanation3 + "</div></html>");
+		aliceExplain.setText("<html><div style=\"width:500px\">" + explanation3 + "</div></html>");
 		cc.chooseBobPrivateColor(Color.RED);
 		cm.setEllipColor(1, cc.getBobPrivateColor());
 		cm.mixColors(true, false, new NextStepCallback() {
@@ -220,7 +220,7 @@ public class DHDemoView extends VisualizationView {
 	}
 	
 	private void fifthStep() {
-		aliceExplain.setText("<html><div style=\"width:350px\">" + explanation3 + "</div></html>");
+		aliceExplain.setText("<html><div style=\"width:500px\">" + explanation3 + "</div></html>");
 		cc.setColorNextToSend(cm.getMixedColor());
 		cc.sendBobMixedColorToAlice(new NextStepCallback() {
 			
@@ -240,7 +240,7 @@ public class DHDemoView extends VisualizationView {
 	}
 	
 	private void sixthStep() {
-		aliceExplain.setText("<html><div style=\"width:450px\">" + explanation4 + "</div></html>");
+		aliceExplain.setText("<html><div style=\"width:650px\">" + explanation4 + "</div></html>");
 		getNextButton().addActionListener(remember);
 		cc.mixAliceFinalSecret(new NextStepCallback() {
 			
