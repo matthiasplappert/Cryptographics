@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -197,7 +199,11 @@ public class InformationView extends JPanel implements MouseListener {
 		
 		GridBagConstraints labelConstraints = new GridBagConstraints();
 		labelConstraints.anchor = GridBagConstraints.ABOVE_BASELINE;
-		this.qrCodeLabel = new JLabel(this.qrCodeContent);
+		try {
+			this.qrCodeLabel = new JLabel(URLDecoder.decode(this.qrCodeContent, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			Logger.error(e);
+		}
 		container.add(this.qrCodeLabel, labelConstraints);
 		container.setName("visualizationContainerFooter");
 		
