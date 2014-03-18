@@ -162,7 +162,53 @@ text here
 text here
 
 \section{Beschreibung der Fehler}
-text here
+  Die meisten Bugs kamen aus der Sparte \textbf{Usability}. Vieles war in der Implementierungsphase nicht zu entdecken, da man damit beschäftigt
+  war die UI überhaupt zum funktionieren zu bringen. Die meisten Schwierigkeiten machte da der \textbf{Layoutmanager}, der für uns oft nicht
+  nachvollziehbare Reaktionen auf die Auslegung unsere UI-Elemente zeigte.\newline 
+  Dies erschwerte beträchtlich die Auslegung einer \textbf{benutzerfreundlichen UI} und führte zu vielen Mängel, die man
+  nur sehr spät entdeckt hatte. Somit sind in der Qualitätssicherung hauptsächlich usability Bugs ausgebessert worden. 
+  Man hat Feedback zur UI unter anderem auch von unabhängigen Personen herangezogen und sich anhand dessen orientiert. 
+  
+  \subsection{Usability Bugs}
+    \subsubsection{Caesar}
+     \begin{enumerate}
+      \item Das größte Problem bei der Caesar-UI waren die \textbf{springenden} UI-Elemente, die an ihrem ursprünglichen Ort hätten bleiben sollen.
+            Wenn allerdings ein neuer UI-Element erschienen ist oder ein alter verschwunden, beispielweise ein Button, dann hat der Layoutmanager kurzerhand auch alle anderen
+            Elemente nach seinem Belieben ausgerichet. Dies führte oft zu zufälligen Ergebnissen, die nicht nachvollzierbar waren. Manchmal sogar nicht reproduzierbar.
+            Nichtsdestotrotz konnte man nicht alle Fehler dieser Art beseitigen, da man den Ursprung nicht finden konnte.\newline 
+            Es wäre zwar möglich die UI von einem anderen Layoutmanager auslegen zu lassen, jedoch hätte das den Zeitrahmen gesprengt, da die UI
+            auf den \textbf{GridBagLayoutManager} ausgerichtet war. Das hätte ein völliges Neuschreiben der UI bedeutet. 
+            
+      \item Auch ein Problem waren die \textbf{Erklärungen}. Es hat sich herausgestellt, dass diese größtenteils sehr {unintuitiv} waren.
+            Viele der Testpersonen haben sehr große Schwierigkeiten gehabt, da die Texte anfangs größer waren und eine kleinere Schrift hatten.
+            Das erzeugte viel Mühseligkeit und war alles andere als \textbf{benutzerfreundlich}.\newline
+            Auch wenn das nix zur Logik des Programms beigetragen hat, so hat es die \textbf{Benutzerfreundlichkeit} erheblich verbessert. 
+            Schriftart wurde größer gesetzt und die Zeichen dick dargestellt, damit diese die \textbf{Aufmerksamkeit} des Users als erste auffangen.
+            
+      \item Viele \textbf{Unklarheiten} kamen mit der UI einher. Vor allem die Funktionalität mancher UI-Elemente war nicht auf einen Blick ersichtlich.
+            Das erschwerte die Visualisierung, da der User die meiste Zeit damit beschäftigt war sich mit der UI rumzuschlagen. Es bestand die Gefahr, dass
+            der Inhalt der UI in den Hintergrund gerückt wird und bei dem User \textbf{Frust} aufkommen könnte.\newline
+            Das beste Beispiel war das \textbf{Alphabet} in der Demonstration des Verfahrens. Der Sinn dessen war für den User nicht ersichtlich.
+            So kam es dazu, dass der User versucht hat vergeblich das Alphabet \textbf{anzuklicken}. Dies führte zu \textbf{Irritationen}. Folgedessen wurde das Alphabet 
+            in der Demonstration \textbf{entfernt}.\newline
+            Ein anderes Beispiel ist das ``Brute Force'' Experiment. Dieses leidete unter \textbf{mehreren} Mängeln. Die \textbf{ganze} UI war irritierend und unintuitiv.
+            Viele der Testpersonen waren damit deutlich überfordert. Selbst die Erklärungen haben nicht deutlich machen können, was zu tun ist. 
+            Man musste sich vieles selbst zusammenreimen. Die ganze UI wurde dann unter Usablity-Bugs eingestuft und musste überarbeitet werden.
+            \begin{itemize}
+             \item Als erstes wurde die \textbf{Farbe} des ``brute force'' Kastens zu \textbf{blau} umgestellt. Dies dient der Einheitlichkeit, da die ganze UI einen blauen 
+                   Ton hat. Mehrere Testpersonen haben positiv drauf reagiert.
+             
+             \item Die eigentliche Erklärung der ``brute force'' Methode wurde in den Kasten verlagert. Und eine andere Erklärung drunter um die die Bedeutung
+                   des Buttons zur den Histogrammen zu verdeutlichen. Früher stand dieser ohne viel Erklärung rum und führte zu vielen Beschwerden.
+                   
+             \item Der Button, der zu den Histogrammen führt wurde ganz nach unten verlagert, damit er die \textbf{Aufmerksamkeit} nicht fängt.
+% 
+             \item Ein letztes großes Problem dieses Experiments war, dass beim Finden des richtigen Schlüssels der Kasten \textbf{grün blieb} und die Glückwunsch Meldung
+                   \textbf{nicht verschwand} auch wenn man weitere Schlüssel durchprobiert habe. Dies führte dazu, dass der User in vielen Fällen einen \textbf{Fehler} im Programm
+                   angenommen hat. Dies wurde ausgebessert, sodass sich die Meldungen und der Kanten des Kastens dem aktuellen Schlüssel anpassen.
+            \end{itemize}
+     \end{enumerate}
+
 
 % We may need this, or not...
 \section{Anhang}
