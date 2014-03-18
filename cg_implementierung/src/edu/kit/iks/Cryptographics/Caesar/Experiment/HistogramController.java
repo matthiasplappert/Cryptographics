@@ -112,8 +112,12 @@ public class HistogramController extends AbstractVisualizationController {
 										key,
 										HistogramController.this.getView()
 												.getHistogramCipher());
-						HistogramController.this.getView().getPlainText()
-								.setText(decryptedCipher);
+						HistogramController.this
+								.getView()
+								.getPlainText()
+								.setText(
+										HistogramController.this.wrapHtml(
+												decryptedCipher, 400));
 
 						if (key == HistogramController.this.getView()
 								.getSecretKey()) {
@@ -260,9 +264,9 @@ public class HistogramController extends AbstractVisualizationController {
 				.addMouseListener(new MouseClickListener() {
 					@Override
 					public void clicked(MouseEvent e) {
-						int previousBFKey = 0;
+						int bruteForceKey = 0;
 						try {
-							previousBFKey = Integer
+							bruteForceKey = Integer
 									.parseInt(HistogramController.this
 											.getView().getBruteForceKey()
 											.getText()) - 1;
@@ -270,24 +274,71 @@ public class HistogramController extends AbstractVisualizationController {
 							e1.printStackTrace();
 						}
 						if (HistogramController.this.getModel().isKeyValid(
-								previousBFKey)) {
+								bruteForceKey)) {
 							HistogramController.this.getView()
 									.getBruteForceKey()
-									.setText("" + previousBFKey);
+									.setText("" + bruteForceKey);
 							HistogramController.this
 									.getView()
 									.getPlainText()
 									.setText(
 											(HistogramController.this
 													.getModel()
-													.dec(previousBFKey,
+													.dec(bruteForceKey,
 															HistogramController.this
 																	.getView()
 																	.getCipherBruteForce()
 																	.getText())));
+
+							HistogramController.this.isKeyFound(bruteForceKey);
+						} else {
+							// Key wrong. Nothing to do.
 						}
 					}
 				});
+	}
+
+	private void isKeyFound(int bruteForceKey) {
+
+		// compare the keys.
+		if (bruteForceKey == HistogramController.this.getView().getSecretKey()) {
+			HistogramController.this.bruteForceKeyFound = true;
+			HistogramController.this.getView().getKeyControl()
+					.setBorder(BorderFactory.createLineBorder(Color.green, 5));
+			HistogramController.this
+					.getView()
+					.getAnnouncement()
+					.setText(
+							HistogramController.this.wrapHtml(
+									HistogramController.this.getModel()
+											.genRandomGrats()
+											+ HistogramController.i18n
+													.tr(" You found the secret key and are now able to read the secret message. The Key is ")
+											+ bruteForceKey
+											+ HistogramController.i18n
+													.tr(". Now only the histogram technique left."),
+									500));
+
+			HistogramController.this
+					.getView()
+					.getExplanations()
+					.setText(
+							HistogramController.i18n
+									.tr("The Key was ")
+									+ bruteForceKey 
+									+ HistogramController.i18n.tr(". Congratulations! Yeay! Now lets try to break it with histograms. "));
+
+		} else {
+			HistogramController.this
+					.getView()
+					.getAnnouncement()
+					.setText(
+							HistogramController.this.getModel()
+									.genRandomBlamings());
+			HistogramController.this.getView().getKeyControl()
+					.setBorder(BorderFactory.createLineBorder(Color.blue, 2));
+		}
+
 	}
 
 	private void generateIncrementMouseListener() {
@@ -295,9 +346,9 @@ public class HistogramController extends AbstractVisualizationController {
 				.addMouseListener(new MouseClickListener() {
 					@Override
 					public void clicked(MouseEvent e) {
-						int nextBFKey = 0;
+						int bruteForceKey = 0;
 						try {
-							nextBFKey = Integer
+							bruteForceKey = Integer
 									.parseInt(HistogramController.this
 											.getView().getBruteForceKey()
 											.getText()) + 1;
@@ -305,83 +356,26 @@ public class HistogramController extends AbstractVisualizationController {
 							e1.printStackTrace();
 						}
 						if (HistogramController.this.getModel().isKeyValid(
-								nextBFKey)) {
+								bruteForceKey)) {
 
 							HistogramController.this.getView()
-									.getBruteForceKey().setText("" + nextBFKey);
+									.getBruteForceKey()
+									.setText("" + bruteForceKey);
 							HistogramController.this
 									.getView()
 									.getPlainText()
 									.setText(
 											(HistogramController.this
 													.getModel()
-													.dec(nextBFKey,
+													.dec(bruteForceKey,
 															HistogramController.this
 																	.getView()
 																	.getCipherBruteForce()
 																	.getText())));
 
-							// if the button is not visible, then it means that the key wasnt
-							// found
-							// yet.
-							if (!bruteForceKeyFound) {
-								// compare the keys.
-								if (nextBFKey == HistogramController.this
-										.getView().getSecretKey()) {
-									HistogramController.this.bruteForceKeyFound = true;
-									HistogramController.this
-											.getView()
-											.getKeyControl()
-											.setBorder(
-													BorderFactory
-															.createLineBorder(
-																	Color.green,
-																	5));
-									HistogramController.this
-											.getView()
-											.getAnnouncement()
-											.setText(
-													HistogramController.this
-															.wrapHtml(
-																	HistogramController.this
-																			.getModel()
-																			.genRandomGrats()
-																			+ HistogramController.i18n
-																					.tr(" You found the secret key and are now able to read the secret message. The Key was ")
-																			+ nextBFKey
-																			+ HistogramController.i18n
-																					.tr(". Now only the histogram technique left."),
-																	600));
-
-									HistogramController.this
-											.getView()
-											.getExplanations()
-											.setText(
-													HistogramController.i18n
-															.tr("Congratulations! Yeay! Now lets try to break it with histograms."));
-
-								} else {
-									HistogramController.this
-											.getView()
-											.getAnnouncement()
-											.setText(
-													HistogramController.this
-															.getModel()
-															.genRandomBlamings());
-									HistogramController.this
-											.getView()
-											.getKeyControl()
-											.setBorder(
-													BorderFactory
-															.createLineBorder(
-																	Color.blue,
-																	2));
-								}
-							} else {
-								// Key is not the right one. Try next. ;)
-							}
+							HistogramController.this.isKeyFound(bruteForceKey);
 						} else {
-							// Key already found. Northing do to. ;)
+							// Key wrong. Nothing to do.
 						}
 					}
 				});
@@ -513,7 +507,7 @@ public class HistogramController extends AbstractVisualizationController {
 							key, plainText);
 
 					HistogramController.this.getView().setupCipherHistogram(
-							cipher);
+							HistogramController.this.wrapHtml(cipher, 400));
 					HistogramController.this.getView().setupKeyInput();
 					HistogramController.this.generateKeyInputFocusListener();
 					HistogramController.this.generateKeyInputActionListener();
