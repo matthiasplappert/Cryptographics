@@ -75,7 +75,7 @@ public class ExplainAimView extends VisualizationView {
 		this.cc.setColorNextToSend(Color.BLUE);
 		this.cc.setKeepColor(false);
 		this.cc.setRepeat(true);
-		this.cc.sendToBob(null, false);
+		this.cc.sendToBob(null, false, "");
 	}
 
 	/**
