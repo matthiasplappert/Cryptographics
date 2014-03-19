@@ -105,6 +105,18 @@ public class FirstExplanationController extends AbstractVisualizationController 
 				}
 			}
 		});
+		this.getView().getSkipButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+				containerController.presentNextVisualizationController();
+			}
+		});
+		this.getView().getReturnButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();
+				containerController.presentPreviousVisualizationController();
+			}
+		});
 	}
 
 	/**

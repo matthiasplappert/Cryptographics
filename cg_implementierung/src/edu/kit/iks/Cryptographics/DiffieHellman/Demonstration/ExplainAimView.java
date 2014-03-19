@@ -58,7 +58,7 @@ public class ExplainAimView extends VisualizationView {
 		layout.setConstraints(this.getNextButton(), gbc);
 		
 		this.aimExplain = new JLabel();
-		this.aimExplain.setText("<html><div style=\"width:200px\">" + explain + "</div></html>");
+		this.aimExplain.setText("<html><div style=\"width:400px\">" + explain + "</div></html>");
 		gbc.gridx = 1;
 		gbc.gridy = 2;
 		gbc.weightx = 0.0;
@@ -75,7 +75,7 @@ public class ExplainAimView extends VisualizationView {
 		this.cc.setColorNextToSend(Color.BLUE);
 		this.cc.setKeepColor(false);
 		this.cc.setRepeat(true);
-		this.cc.sendToBob(null, false);
+		this.cc.sendToBob(null, false, "");
 	}
 
 	/**

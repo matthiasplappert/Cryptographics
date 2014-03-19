@@ -1,5 +1,6 @@
 package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -70,7 +71,7 @@ public class ColorChannel extends JPanel {
 	private int originalx1, originaly1, originalx2, originaly2;
 	
 	/** kept colors are drawn to the screen*/
-	private ArrayList<Ellipse2DwithColor> keptColors;
+	private ArrayList<Ellipse2DwithLabel> keptColors;
 	
 	/** those are used for sending over the channel */
 	private Ellipse2DwithColor ellip, ellip2;
@@ -166,36 +167,43 @@ public class ColorChannel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
+		super.paintComponent(g);
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2.setPaint(channelColor);
 		
 		drawChannel(g2, this.leftEnd, this.rightEnd, this.lowerEnd, this.upperEnd);
 		for(Ellipse2DwithColor circle : keptColors) {
-			g2.setPaint(circle.getColor());
-			g2.fill(circle);
+			paintCircle(g2, circle);
 		}
 		if (sendAlice) {
 			
 			ellip.setFrame(x1, y1, circleSize, circleSize);
-			g2.setPaint(ellip.getColor());
-			g2.fill(ellip);
+			paintCircle(g2, ellip);
 			if(x1 < this.middleCircle) {
 				ellip2.setFrame(x2, y2, circleSize, circleSize);
-				g2.setPaint(ellip2.getColor());
-				g2.fill(ellip2);
+				paintCircle(g2, ellip2);
 			}
 		} else if (sendBob) {
 			ellip.setFrame(x1, y1, circleSize, circleSize);
-			g2.setPaint(ellip.getColor());
-			g2.fill(ellip);
+			paintCircle(g2, ellip);
 			if(x1 > this.middleCircle) {
 				ellip2.setFrame(x2, y2, circleSize, circleSize);
-				g2.setPaint(ellip2.getColor());
-				g2.fill(ellip2);
+				paintCircle(g2, ellip2);
 			}
 			
 		}
 		
+	}
+
+	private void paintCircle(Graphics2D g, Ellipse2DwithColor circle) {
+		if(circle instanceof Ellipse2DwithLabel) {
+//			g.setStroke(new BasicStroke());
+			g.setColor(Color.BLACK);
+			g.drawString(((Ellipse2DwithLabel) circle).getLabel(), (int) circle.getX(), (int) circle.getY());
+		}
+		g.setColor(circle.getColor());
+		g.fill(circle);
+		return;
 	}
 
 	/* 
@@ -215,7 +223,7 @@ public class ColorChannel extends JPanel {
 	 * @param cb the step that should be called when this method is finished
 	 * @param keepFirst do we want to show the sent color after this method is finished
 	 */
-	public void sendToBob(final NextStepCallback cb, final boolean keepFirst) {
+	public void sendToBob(final NextStepCallback cb, final boolean keepFirst, final String label) {
 		if(sendAlice) {
 			/* don't want to send colors
 			 * if others are being send
@@ -234,7 +242,7 @@ public class ColorChannel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				Logger.debug(this.getClass().getName(),"sendToBob" , "timer event");
 				if(firstTimerEventBob && !repeatPeriodically && keepFirst) {
-					chooseColorToKeep(colorNextToSend, 0);
+					chooseColorToKeep(colorNextToSend, 0, label);
 					firstTimerEventBob = false;
 				}
 				if(x1 < rightCircle) {
@@ -248,7 +256,7 @@ public class ColorChannel extends JPanel {
 					timer.stop();
 					if(keepCircles && !repeatPeriodically) {
 						for(int i=1; i < 3; i++) {
-							chooseColorToKeep(colorNextToSend, i);
+							chooseColorToKeep(colorNextToSend, i, label);
 						}
 					}
 					if(cb != null) {
@@ -274,7 +282,7 @@ public class ColorChannel extends JPanel {
 	 * @param cb the step that should be called when this method is finished
 	 * @param keepFirst do we want to show the sent color after this method is finished
 	 */
-	public void sendToAlice(final NextStepCallback cb, final boolean keepFirst) {
+	public void sendToAlice(final NextStepCallback cb, final boolean keepFirst, final String label) {
 		if(sendBob) {
 			/* don't want to send if there
 			 * is already colors to be sent
@@ -293,7 +301,7 @@ public class ColorChannel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				Logger.debug(this.getClass().getName(),"sendToAlice" , "timer event");
 				if(firstTimerEventAlice && !repeatPeriodically && keepFirst) {
-					chooseColorToKeep(colorNextToSend, 1);
+					chooseColorToKeep(colorNextToSend, 1, label);
 					firstTimerEventAlice = false;
 				}
 				if(x1 > leftEnd) {
@@ -306,8 +314,8 @@ public class ColorChannel extends JPanel {
 					firstTimerEventAlice = true;
 					timer.stop();
 					if(keepCircles) {
-						chooseColorToKeep(colorNextToSend, 0);
-						chooseColorToKeep(colorNextToSend, 2);
+						chooseColorToKeep(colorNextToSend, 0, label);
+						chooseColorToKeep(colorNextToSend, 2, label);
 					}
 					if(cb != null) {
 						cb.callback();
@@ -371,8 +379,8 @@ public class ColorChannel extends JPanel {
 	 * @param color the color of the circle to keep
 	 * @param who alice, bob or eve
 	 */
-	public void chooseColorToKeep(Color color, int who) {
-		this.keptColors.add(new Ellipse2DwithColor(computeXCoordinate(numOfCircles[who], who), computeYCoordinate(numOfCircles[who], who), circleSize, circleSize, color));
+	public void chooseColorToKeep(Color color, int who, String label) {
+		this.keptColors.add(new Ellipse2DwithLabel(computeXCoordinate(numOfCircles[who], who), computeYCoordinate(numOfCircles[who], who), circleSize, circleSize, color, label));
 		this.numOfCircles[who]++;
 		repaint();
 	}
@@ -428,7 +436,7 @@ public class ColorChannel extends JPanel {
 	 */
 	public void chooseAlicePrivateColor(Color color) {
 		this.model.setAlicePrivateColor(color);
-		this.chooseColorToKeep(color, 0);
+		this.chooseColorToKeep(color, 0, "sA");
 	}
 	
 	/**
@@ -438,7 +446,7 @@ public class ColorChannel extends JPanel {
 	 */
 	public void chooseBobPrivateColor(Color color) {
 		this.model.setBobPrivateColor(color);
-		this.chooseColorToKeep(color, 1);
+		this.chooseColorToKeep(color, 1, "sB");
 	}
 	
 	/**
@@ -461,7 +469,7 @@ public class ColorChannel extends JPanel {
 	 */
 	public void sendPublicColor(NextStepCallback cb) {
 		this.setColorNextToSend(this.model.getPublicColor());
-		this.sendToBob(cb, true);
+		this.sendToBob(cb, true, "P");
 	}
 	
 	/**
@@ -471,7 +479,7 @@ public class ColorChannel extends JPanel {
 	public void sendAliceMixedColorToBob(NextStepCallback cb) {
 		this.model.mixAlicePrivateAndPublic();
 		this.setColorNextToSend(this.model.getAliceMixedColor());
-		this.sendToBob(cb, true);
+		this.sendToBob(cb, true, "AM");
 	}
 	
 	/**
@@ -481,7 +489,7 @@ public class ColorChannel extends JPanel {
 	public void sendBobMixedColorToAlice(NextStepCallback cb) {
 		this.model.mixBobPrivateAndPublic();
 		this.setColorNextToSend(this.model.getBobMixedColor());
-		this.sendToAlice(cb, true);
+		this.sendToAlice(cb, true, "BM");
 	}
 	
 	/**
