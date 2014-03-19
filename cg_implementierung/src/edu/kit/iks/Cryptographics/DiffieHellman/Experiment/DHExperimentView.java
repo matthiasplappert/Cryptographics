@@ -211,7 +211,7 @@ public class DHExperimentView extends JPanel {
 							mixPrivateColorStep();
 							
 						} else {
-							explainLbl.setText(notSame);
+							explainLbl.setText("<html><div style=\"width:300px; height:100px\">" + notSame + "</div></html>");
 						}
 					}
 				});
