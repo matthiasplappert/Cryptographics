@@ -42,6 +42,8 @@ public class ColorChooser extends JPanel {
 	/* all possible colors to choose from */
 	private Color[] toChooseFrom;
 	
+	private boolean hide;
+	
 	/**
 	 * Will setup the object, and layout correctly
 	 * @param d the size of the colorchooser
@@ -129,5 +131,23 @@ public class ColorChooser extends JPanel {
 	public Color[] getToChooseFrom() {
 		return toChooseFrom;
 	}
+	
+	@Override
+	public void paint(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		if(hide) {
+		} else {
+			super.paint(g2);
+		}
+		return;
+	}
 
+	public void setHide(boolean hide) {
+		this.hide = hide;
+		this.repaint();
+	}
+	
+	public boolean getHide() {
+		return this.hide;
+	}
 }
