@@ -253,6 +253,7 @@ public class DHExperimentView extends JPanel {
 				multiBtn.removeActionListener(al);
 			}
 			chooser.setVisible(false);
+			revalidate();
 			explainLbl.setText("<html><div style=\"width:300px; height:100px\">" + rightColor + "</div></html>");
 			cc.sendAliceMixedColorToBob(new NextStepCallback() {
 				
@@ -306,6 +307,7 @@ public class DHExperimentView extends JPanel {
 						multiBtn.setText(mixFinal);
 						validate();
 						chooser.setVisible(true);
+						revalidate();
 						multiBtn.addActionListener(new ActionListener() {
 							
 							@Override
@@ -340,6 +342,7 @@ public class DHExperimentView extends JPanel {
 							multiBtn.setText(contin);
 							chooser.setVisible(false);
 							chooser2.setVisible(false);
+							revalidate();
 							multiBtn.addActionListener(remember);
 						}
 					});
