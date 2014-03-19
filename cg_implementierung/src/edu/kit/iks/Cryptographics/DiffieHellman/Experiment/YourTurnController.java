@@ -65,7 +65,7 @@ public class YourTurnController extends AbstractVisualizationController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				((VisualizationContainerController) getParentController()).setCurrentVisualizationControllerIndex(0);
+				((VisualizationContainerController) getParentController()).setCurrentVisualizationControllerIndex(3);
 			}
 		});
 	}
