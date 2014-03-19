@@ -136,7 +136,7 @@ public class DHExperimentView extends JPanel {
 		this.setLayout(layout);
 		
 		this.explainLbl = new JLabel();
-		this.explainLbl.setText("<html><div style=\"width:300px\">" + explanation1 + "</div></html>");
+		this.explainLbl.setText("<html><div style=\"width:300px; height:100px\">" + explanation1 + "</div></html>");
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 1;
@@ -168,6 +168,7 @@ public class DHExperimentView extends JPanel {
 		this.add(this.chooser, gbc);
 		
 		this.multiBtn = new JButton("Send Color");
+		this.multiBtn.setPreferredSize(new Dimension(250, 40));
 		
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
@@ -197,7 +198,7 @@ public class DHExperimentView extends JPanel {
 			@Override
 			public void callback() {
 				help = help2;
-				explainLbl.setText("<html><div style=\"width:300px\">" + explanation2 + "</div></html>");
+				explainLbl.setText("<html><div style=\"width:300px; height:100px\">" + explanation2 + "</div></html>");
 				multiBtn.setText(mix);
 				multiBtn.addActionListener(new ActionListener() {
 					
@@ -233,7 +234,7 @@ public class DHExperimentView extends JPanel {
 						cm.getMixedColor()
 				});
 				toChooseFrom = chooser.getToChooseFrom();
-				explainLbl.setText("<html><div style=\"width:300px\">" + explanation3 + "</div></html>");
+				explainLbl.setText("<html><div style=\"width:300px; height:100px\">" + explanation3 + "</div></html>");
 				multiBtn.setText(send);
 				multiBtn.addActionListener(new ActionListener() {
 					
@@ -252,13 +253,13 @@ public class DHExperimentView extends JPanel {
 				multiBtn.removeActionListener(al);
 			}
 			chooser.setVisible(false);
-			explainLbl.setText("<html><div style=\"width:300px\">" + rightColor + "</div></html>");
+			explainLbl.setText("<html><div style=\"width:300px; height:100px\">" + rightColor + "</div></html>");
 			cc.sendAliceMixedColorToBob(new NextStepCallback() {
 				
 				@Override
 				public void callback() {
 					help = help4;
-					explainLbl.setText("<html><div style=\"width:300px\">" + bobsTurn + "</div></html>");
+					explainLbl.setText("<html><div style=\"width:300px; height:100px\">" + bobsTurn + "</div></html>");
 					multiBtn.setText(contin);
 					multiBtn.addActionListener(new ActionListener() {
 						
@@ -274,9 +275,9 @@ public class DHExperimentView extends JPanel {
 			});
 		} else {
 			if(chooser.getCurrentColor().equals(cc.getAlicePrivateColor())) {
-				explainLbl.setText("<html><div style=\"width:300px\">" + wrongPrivate + "</div></html>");
+				explainLbl.setText("<html><div style=\"width:300px; height:100px\">" + wrongPrivate + "</div></html>");
 			} else {
-				explainLbl.setText("<html><div style=\"width:300px\">" + wrongPublic + "</div></html>");
+				explainLbl.setText("<html><div style=\"width:300px; height:100px\">" + wrongPublic + "</div></html>");
 			}
 		}
 	}
@@ -301,7 +302,7 @@ public class DHExperimentView extends JPanel {
 						gbc.gridy = 2;
 						add(chooser2, gbc);
 						chooser.setToChooseFrom(param);
-						explainLbl.setText("<html><div style=\"width:300px\">" + finalSecret + "</div></html>");
+						explainLbl.setText("<html><div style=\"width:300px; height:100px\">" + finalSecret + "</div></html>");
 						multiBtn.setText(mixFinal);
 						validate();
 						chooser.setVisible(true);
@@ -327,7 +328,7 @@ public class DHExperimentView extends JPanel {
 			for(ActionListener al : multiBtn.getActionListeners()) {
 				multiBtn.removeActionListener(al);
 			}
-			explainLbl.setText("<html><div style=\"width:300px\">" + congrats + "</div></html>");
+			explainLbl.setText("<html><div style=\"width:300px; height:100px\">" + congrats + "</div></html>");
 			cc.mixAliceFinalSecret(new NextStepCallback() {
 				
 				@Override
@@ -345,7 +346,7 @@ public class DHExperimentView extends JPanel {
 				}
 			});
 		} else {
-			explainLbl.setText("<html><div style=\"width:120px\">" +
+			explainLbl.setText("<html><div style=\"width:300px; height:100px\">" +
 					wrongColor + "</div></html>");
 			
 			validate();
