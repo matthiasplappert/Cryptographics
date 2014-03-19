@@ -48,7 +48,11 @@ public class DemoOneWayController extends AbstractVisualizationController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
+				if(((DemoOneWayView) view).isNextText()) {
+					((VisualizationContainerController) getParentController()).presentNextVisualizationController();
+				} else {
+					((DemoOneWayView) view).setNextText();
+				}
 			}
 		});
 		
