@@ -45,18 +45,24 @@ public class OnewayView extends VisualizationView {
 		GridBagLayout layout = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.setLayout(layout);
+		
+		
+		
 		gbc.gridx = 2;
 		gbc.gridy = 2;
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		layout.setConstraints(this.getNextButton(), gbc);
+		
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		layout.setConstraints(this.getBackButton(), gbc);
+		
 		this.onewayExplain = new JLabel();
 		this.onewayExplain.setText("<html><div style=\"width:200px\">" + explain + "</div></html>");
+		
 		gbc.gridx = 1;
 		gbc.gridy = 1;
 		gbc.weightx = 0.1;

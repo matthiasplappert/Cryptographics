@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -69,6 +70,8 @@ public class DHDemoView extends VisualizationView {
 
 	private String help = i18n.tr("No help");
 	
+	private Navigation n;
+	
 	private static final long serialVersionUID = 87178534093974249L;
 	
 	public DHDemoView() {
@@ -77,22 +80,35 @@ public class DHDemoView extends VisualizationView {
 		GridBagLayout layout = new GridBagLayout();
 		this.setLayout(layout);
 		
-		skip = new JButton(i18n.tr("Skip Introduction"));
-		
-		gbc.gridx = 2;
-		gbc.gridy = 0;
+
 		gbc.weightx = 0.1;
-		gbc.weighty = 0.1;
-		this.add(skip, gbc);
+		gbc.weighty = 0.0;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 3;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		n = new Navigation("Back to Introduction", "Skip the Demonstration");
+		this.add(n, gbc);
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridwidth = 1;
+		
+//		
+		skip = new JButton(i18n.tr("Skip Introduction"));
+//		
+//		gbc.gridx = 2;
+//		gbc.gridy = 0;
+//		gbc.weightx = 0.1;
+//		gbc.weighty = 0.1;
+//		this.add(skip, gbc);
 		
 		gbc.gridx = 2;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		layout.setConstraints(this.getNextButton(), gbc);
 		
 		gbc.gridx = 0;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		layout.setConstraints(this.getBackButton(), gbc);
 		
 		this.aliceExplain = new JLabel();
@@ -100,14 +116,14 @@ public class DHDemoView extends VisualizationView {
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 1;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		this.add(aliceExplain, gbc);
 		this.cc = new ColorChannel(new Dimension(700, 200), 50);
 		
 		gbc.weightx = 0.2;
 		gbc.weighty = 0.2;
 		gbc.gridx = 1;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 		gbc.fill = GridBagConstraints.BOTH;
 		this.add(this.cc, gbc);
 		
@@ -117,7 +133,7 @@ public class DHDemoView extends VisualizationView {
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 0;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 //		gbc.fill = GridBagConstraints.NONE;
 		this.add(this.cm, gbc);
 		this.cc.loadView();
@@ -128,9 +144,9 @@ public class DHDemoView extends VisualizationView {
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 2;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		this.add(new LabelExplanation(), gbc);
-		this.validate();
+		this.revalidate();
 		
 	}
 
@@ -277,6 +293,14 @@ public class DHDemoView extends VisualizationView {
 		if(cc != null) {
 			cc.stopTimer();
 		}
+	}
+
+	public JButton getSkipButton() {
+		return n.getForward();
+	}
+
+	public JButton getReturnButton() {
+		return n.getBack();
 	}
 	
 	

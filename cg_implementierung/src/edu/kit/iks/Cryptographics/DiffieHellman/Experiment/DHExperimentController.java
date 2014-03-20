@@ -48,6 +48,22 @@ public class DHExperimentController extends AbstractVisualizationController {
 				((VisualizationContainerController) getParentController()).presentNextVisualizationController();
 			}
 		});
+		
+		this.getView().getSkipButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((VisualizationContainerController) getParentController()).setCurrentVisualizationControllerIndex(5);
+			}
+		});
+		
+		this.getView().getReturnButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((VisualizationContainerController) getParentController()).setCurrentVisualizationControllerIndex(2);
+			}
+		});
 	}
 	
 	/*

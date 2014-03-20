@@ -19,6 +19,7 @@ import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorChannel;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorChooser;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorMix;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.LabelExplanation;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.Navigation;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.NextStepCallback;
 
 public class DHExperimentView extends JPanel {
@@ -124,6 +125,8 @@ public class DHExperimentView extends JPanel {
 	private Color[] rememberColors = toChooseFrom;
 
 	private ActionListener remember;
+	
+	private Navigation n;
 
 	
 	/**
@@ -136,19 +139,30 @@ public class DHExperimentView extends JPanel {
 		GridBagLayout layout = new GridBagLayout();
 		this.setLayout(layout);
 		
+		gbc.weightx = 0.1;
+		gbc.weighty = 0.0;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 3;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		n = new Navigation("Back to Demonstration", "Skip the Experiment");
+		this.add(n, gbc);
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridwidth = 1;
+		
 		this.explainLbl = new JLabel();
 		this.explainLbl.setText("<html><div style=\"width:300px; height:100px\">" + explanation1 + "</div></html>");
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 1;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		this.add(explainLbl, gbc);
 		this.cc = new ColorChannel(new Dimension(700, 200), 50);
 		
 		gbc.weightx = 0.2;
 		gbc.weighty = 0.2;
 		gbc.gridx = 1;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 		gbc.fill = GridBagConstraints.BOTH;
 		this.add(this.cc, gbc);
 		
@@ -157,7 +171,7 @@ public class DHExperimentView extends JPanel {
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 0;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 		this.add(this.cm, gbc);
 		
 		this.chooser = new ColorChooser(new Dimension(50, 50), Color.BLUE, toChooseFrom);
@@ -165,7 +179,7 @@ public class DHExperimentView extends JPanel {
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 0;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		this.add(this.chooser, gbc);
 		
 		this.multiBtn = new JButton("Send Color");
@@ -174,7 +188,7 @@ public class DHExperimentView extends JPanel {
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 2;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		gbc.fill = GridBagConstraints.NONE;
 		this.add(this.multiBtn, gbc);
 		this.multiBtn.addActionListener(new ActionListener() {
@@ -191,7 +205,7 @@ public class DHExperimentView extends JPanel {
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 2;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		this.add(new LabelExplanation(), gbc);
 		validate();
 	}
@@ -307,7 +321,7 @@ public class DHExperimentView extends JPanel {
 								cc.getBobMixedColor()};
 						chooser2 = new ColorChooser(new Dimension(50, 50), param[0], param);
 						gbc.gridx = 0;
-						gbc.gridy = 2;
+						gbc.gridy = 3;
 						add(chooser2, gbc);
 						chooser.setToChooseFrom(param);
 						explainLbl.setText("<html><div style=\"width:300px; height:100px\">" + finalSecret + "</div></html>");
@@ -403,4 +417,14 @@ public class DHExperimentView extends JPanel {
 	public String getHelp() {
 		return help;
 	}
+	
+	public JButton getSkipButton() {
+		return n.getForward();
+	}
+
+	public JButton getReturnButton() {
+		return n.getBack();
+	}
+	
+	
 }

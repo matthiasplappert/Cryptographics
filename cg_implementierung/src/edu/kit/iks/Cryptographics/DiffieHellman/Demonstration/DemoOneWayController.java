@@ -63,7 +63,22 @@ public class DemoOneWayController extends AbstractVisualizationController {
 				((VisualizationContainerController) getParentController()).presentPreviousVisualizationController();
 			}
 		});
-
+		
+		this.getView().getSkipButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((VisualizationContainerController) getParentController()).setCurrentVisualizationControllerIndex(2);
+			}
+		});
+		
+		this.getView().getReturnButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((VisualizationContainerController) getParentController()).setCurrentVisualizationControllerIndex(0);
+			}
+		});
 	}
 	
 	/*

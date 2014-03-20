@@ -58,6 +58,22 @@ public class DHDemoController extends AbstractVisualizationController {
 				((VisualizationContainerController) getParentController()).setCurrentVisualizationControllerIndex(4);
 			}
 		});
+		
+		this.getView().getSkipButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((VisualizationContainerController) getParentController()).setCurrentVisualizationControllerIndex(3);
+			}
+		});
+		
+		this.getView().getReturnButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((VisualizationContainerController) getParentController()).setCurrentVisualizationControllerIndex(0);
+			}
+		});
 	}
 	
 	/*
