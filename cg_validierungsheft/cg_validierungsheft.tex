@@ -226,11 +226,29 @@ text here
              man schnell die Übersicht verloren hat, insbesonderer wenn man das Verfahren könnt.
              Um dies zu beheben haben wir die Farben mit Abkürzungen annotiert und eine Legende hinzugefügt,
              die erklärt welche Farbe was ist.
-         \item Das größte Usability Problem war allerdings, dass Buttons gesprungen sind, nach ein nach einem Aufruf
-             von label.setText(), da dieser eine neue Größe hat und somit eine Repositionierung stattfand.
-             Gelöst wurde dies indem wir mit HTML die Größe spezifiziert haben, wodurch die Größe konstant bleibt,
+         \item Das größte Usability Problem war allerdings dass Buttons gesprungen sind.
+             Dies wurde durch ein JLabel verursacht, welches seine Größe geändert hat,
+             wenn man den Text mit der setText() Methode geändert hat.
+             Dadurch wurde vom LayoutManager die aktuelle View repositioniert, was die springende Buttons
+             zu folge hatte.
+             Gelöst wurde dies, indem wir mit HTML die Größe spezifiziert haben, wodurch die Größe konstant bleibt,
              und somit keine Repositionierung stattfindet.
      \end{enumerate}
+
+     \subsection{Funktionalitätsfehler}
+     \subsubsection{Diffie-Hellman}
+     \begin{enumerate}
+         \item Da das Verfahren sehr simpel ist, haben wir nur einen Fehler entdeckt.
+             Dieser war allerdings nicht ein Fehler vom Verfahren selbst, sondern
+             ein kleiner Fehler vom Rahmenwerk. Der Fehler war, dass Timer vom DH-Verfahren weiterliefen,
+             wenn man den Exit-Button geklickt hat. Da das Rahmenwerk die Kontrolle über diesen Button
+             hat, ist es die Aufgabe des Exit-Button-Handler eine Methode vom Verfahren aufzurufen,
+             um dem Verfahren die Chance zu geben sich sauber zu beenden. Dies wurde
+             durch einen einfachen Einzeiler korrigiert. Es muss nur die unloadView() Methode der aktuellen
+             View des Verfahrens aufgerufen werden.
+             Da nur beim Diffie-Hellman Verfahren Timer verwendet wurden, ist dieser
+             Fehler bei den anderen Verfahren nicht aufgetreten.
+         \end{enumerate}
 
 
 % We may need this, or not...
