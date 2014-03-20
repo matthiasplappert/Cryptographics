@@ -309,4 +309,12 @@ public class ColorMix extends JPanel {
 	public void setComputeFinalMix(boolean computeFinalMix) {
 		this.computeFinalMix = computeFinalMix;
 	}
+	
+	public void stopTimer() {
+		if(timer != null) {
+			timer.stop();
+		}
+	}
+	
+	
 }

@@ -121,5 +121,14 @@ public class DemoOneWayView extends VisualizationView {
 	public boolean isNextText() {
 		return isNextText;
 	}
+	
+	public void stopTimers() {
+		if(cm != null) {
+			cm.stopTimer();
+		}
+		if(cm2 != null) {
+			cm2.stopTimer();
+		}
+	}
 
 }
