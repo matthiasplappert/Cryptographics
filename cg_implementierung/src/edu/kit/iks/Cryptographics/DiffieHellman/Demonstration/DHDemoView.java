@@ -7,7 +7,6 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -87,7 +86,7 @@ public class DHDemoView extends VisualizationView {
 		gbc.gridy = 0;
 		gbc.gridwidth = 3;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
-		n = new Navigation("Back to Introduction", "Skip the Demonstration");
+		n = new Navigation(i18n.tr("Back to Introduction"), i18n.tr("Skip the Demonstration"));
 		this.add(n, gbc);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridwidth = 1;

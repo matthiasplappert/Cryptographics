@@ -60,7 +60,7 @@ public class ExplainAimView extends VisualizationView {
 		gbc.gridy = 0;
 		gbc.gridwidth = 3;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
-		n = new Navigation("Skip the Introduction");
+		n = new Navigation(i18n.tr("Skip the Introduction"));
 		this.add(n, gbc);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridwidth = 1;

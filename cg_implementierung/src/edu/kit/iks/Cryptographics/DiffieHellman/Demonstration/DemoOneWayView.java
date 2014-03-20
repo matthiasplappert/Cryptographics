@@ -58,7 +58,7 @@ public class DemoOneWayView extends VisualizationView {
 		gbc.gridy = 0;
 		gbc.gridwidth = 3;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
-		n = new Navigation("Back to Introduction", "Go to Demo");
+		n = new Navigation(i18n.tr("Back to Introduction"), i18n.tr("Go to Demo"));
 		this.add(n, gbc);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridwidth = 1;

@@ -145,7 +145,7 @@ public class DHExperimentView extends JPanel {
 		gbc.gridy = 0;
 		gbc.gridwidth = 3;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
-		n = new Navigation("Back to Demonstration", "Skip the Experiment");
+		n = new Navigation(i18n.tr("Back to Demonstration"), i18n.tr("Skip the Experiment"));
 		this.add(n, gbc);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridwidth = 1;

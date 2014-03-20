@@ -7,11 +7,9 @@ import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainAimController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DHDemoController;
-import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.OnewayController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DemoOneWayController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.YourTurnController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.DHExperimentController;
-import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.CongratsController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.InformationController;
