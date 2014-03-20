@@ -104,8 +104,8 @@ public class DHDemoView extends VisualizationView {
 		this.add(aliceExplain, gbc);
 		this.cc = new ColorChannel(new Dimension(700, 200), 50);
 		
-		gbc.weightx = 0.1;
-		gbc.weighty = 0.1;
+		gbc.weightx = 0.2;
+		gbc.weighty = 0.2;
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
@@ -116,13 +116,20 @@ public class DHDemoView extends VisualizationView {
 		
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
-		gbc.gridx = 2;
+		gbc.gridx = 0;
 		gbc.gridy = 1;
+//		gbc.fill = GridBagConstraints.NONE;
 		this.add(this.cm, gbc);
 		this.cc.loadView();
 		this.cc.setRepeat(false);
 		this.cc.setKeepColor(true);
 		//TODO remove validate()?
+		
+		gbc.weightx = 0.1;
+		gbc.weighty = 0.1;
+		gbc.gridx = 2;
+		gbc.gridy = 1;
+		this.add(new LabelExplanation(), gbc);
 		this.validate();
 		
 	}
