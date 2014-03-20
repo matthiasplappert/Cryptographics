@@ -35,6 +35,8 @@ public class DemoOneWayView extends VisualizationView {
 	private String explain = i18n.tr("We use a simple analogy as the one-way function. " +
 			"Mixing colors is an easy process, determining which colors were " +
 			"originally used is a difficult process, thus this acts like an one-way function");
+
+	private boolean isNextText;
 	
 	private static final long serialVersionUID = 7529617215150828381L;
 	
@@ -60,7 +62,7 @@ public class DemoOneWayView extends VisualizationView {
 		layout.setConstraints(this.getBackButton(), gbc);
 		
 		this.keyExchangeExplain = new JLabel();
-		this.keyExchangeExplain.setText("<html><div style=\"width:200px;\">" + explain + "</div></html>");
+		this.keyExchangeExplain.setText("<html><div style=\"width:200px; height:100px\">" + explain + "</div></html>");
 		
 		gbc.gridx = 1;
 		gbc.gridy = 1;
@@ -107,6 +109,17 @@ public class DemoOneWayView extends VisualizationView {
 	 */
 	public String getHelp() {
 		return help;
+	}
+	
+	public void setNextText() {
+		this.keyExchangeExplain.setText("<html><div style=\"width:200px; height:100px\">" + i18n.tr("To achive this, we use " +
+				"something called one-way function. This function is easy to compute " +
+				"in one direction, but difficult to reverse." + "</div></html>"));
+		this.isNextText = true;
+	}
+	
+	public boolean isNextText() {
+		return isNextText;
 	}
 
 }

@@ -102,7 +102,6 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 		List<Class> controllerClasses = new ArrayList<Class>();
 		
 		controllerClasses.add(ExplainAimController.class);
-		controllerClasses.add(OnewayController.class);
 		controllerClasses.add(DemoOneWayController.class);
 		controllerClasses.add(DHDemoController.class);
 		controllerClasses.add(YourTurnController.class);

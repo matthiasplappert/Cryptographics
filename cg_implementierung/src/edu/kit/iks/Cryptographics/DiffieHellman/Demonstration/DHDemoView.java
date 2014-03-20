@@ -96,7 +96,7 @@ public class DHDemoView extends VisualizationView {
 		layout.setConstraints(this.getBackButton(), gbc);
 		
 		this.aliceExplain = new JLabel();
-		this.aliceExplain.setText("<html><div style=\"width:400px\">" + explanation1 + "</div></html>");
+		this.aliceExplain.setText("<html><div style=\"width:650px; height:117px\">" + explanation1 + "</div></html>");
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 1;
@@ -104,8 +104,8 @@ public class DHDemoView extends VisualizationView {
 		this.add(aliceExplain, gbc);
 		this.cc = new ColorChannel(new Dimension(700, 200), 50);
 		
-		gbc.weightx = 0.1;
-		gbc.weighty = 0.1;
+		gbc.weightx = 0.2;
+		gbc.weighty = 0.2;
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
@@ -116,13 +116,20 @@ public class DHDemoView extends VisualizationView {
 		
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
-		gbc.gridx = 2;
+		gbc.gridx = 0;
 		gbc.gridy = 1;
+//		gbc.fill = GridBagConstraints.NONE;
 		this.add(this.cm, gbc);
 		this.cc.loadView();
 		this.cc.setRepeat(false);
 		this.cc.setKeepColor(true);
 		//TODO remove validate()?
+		
+		gbc.weightx = 0.1;
+		gbc.weighty = 0.1;
+		gbc.gridx = 2;
+		gbc.gridy = 1;
+		this.add(new LabelExplanation(), gbc);
 		this.validate();
 		
 	}
@@ -154,7 +161,7 @@ public class DHDemoView extends VisualizationView {
 	}
 
 	private void secondStep() {
-		aliceExplain.setText("<html><div style=\"width:500px\">" + explanation2 + "</div></html>");
+		aliceExplain.setText("<html><div style=\"width:650px; height:117px\">" + explanation2 + "</div></html>");
 		cc.chooseAlicePrivateColor(Color.GREEN);
 		cc.mixAlicePrivatePublic();
 		cm.setEllipColor(0, cc.getPublicColor());
@@ -180,7 +187,7 @@ public class DHDemoView extends VisualizationView {
 	}
 	
 	private void thirdStep() {
-		aliceExplain.setText("<html><div style=\"width:500px\">" + explanation2 + "</div></html>");
+		aliceExplain.setText("<html><div style=\"width:650px; height:117px\">" + explanation2 + "</div></html>");
 		cc.sendAliceMixedColorToBob(new NextStepCallback() {
 			
 			@Override
@@ -199,7 +206,7 @@ public class DHDemoView extends VisualizationView {
 	}
 	
 	private void fourthStep() {
-		aliceExplain.setText("<html><div style=\"width:500px\">" + explanation3 + "</div></html>");
+		aliceExplain.setText("<html><div style=\"width:650px; height:117px\">" + explanation3 + "</div></html>");
 		cc.chooseBobPrivateColor(Color.RED);
 		cm.setEllipColor(1, cc.getBobPrivateColor());
 		cm.mixColors(true, false, new NextStepCallback() {
@@ -220,7 +227,7 @@ public class DHDemoView extends VisualizationView {
 	}
 	
 	private void fifthStep() {
-		aliceExplain.setText("<html><div style=\"width:500px\">" + explanation3 + "</div></html>");
+		aliceExplain.setText("<html><div style=\"width:650px; height:117px\">" + explanation3 + "</div></html>");
 		cc.setColorNextToSend(cm.getMixedColor());
 		cc.sendBobMixedColorToAlice(new NextStepCallback() {
 			
@@ -240,7 +247,7 @@ public class DHDemoView extends VisualizationView {
 	}
 	
 	private void sixthStep() {
-		aliceExplain.setText("<html><div style=\"width:650px\">" + explanation4 + "</div></html>");
+		aliceExplain.setText("<html><div style=\"width:650px; height:117px\">" + explanation4 + "</div></html>");
 		getNextButton().addActionListener(remember);
 		cc.mixAliceFinalSecret(new NextStepCallback() {
 			
