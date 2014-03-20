@@ -173,7 +173,7 @@ text here
     \subsubsection{Caesar}
      \begin{enumerate}
       \item Das größte Problem bei der Caesar-UI waren die \textbf{springenden} UI-Elemente, die an ihrem ursprünglichen Ort hätten bleiben sollen.
-            Wenn allerdings ein neuer UI-Element erschienen ist oder ein alter verschwunden, beispielweise ein Button, dann hat der Layoutmanager kurzerhand auch alle anderen
+            Wenn allerdings ein neues UI-Element erschienen ist oder ein alter verschwunden, beispielweise ein Button, dann hat der Layoutmanager kurzerhand auch alle anderen
             Elemente nach seinem Belieben ausgerichet. Dies führte oft zu zufälligen Ergebnissen, die nicht nachvollzierbar waren. Manchmal sogar nicht reproduzierbar.
             Nichtsdestotrotz konnte man nicht alle Fehler dieser Art beseitigen, da man den Ursprung nicht finden konnte.\newline 
             Es wäre zwar möglich die UI von einem anderen Layoutmanager auslegen zu lassen, jedoch hätte das den Zeitrahmen gesprengt, da die UI
@@ -207,6 +207,29 @@ text here
                    \textbf{nicht verschwand} auch wenn man weitere Schlüssel durchprobiert habe. Dies führte dazu, dass der User in vielen Fällen einen \textbf{Fehler} im Programm
                    angenommen hat. Dies wurde ausgebessert, sodass sich die Meldungen und der Kanten des Kastens dem aktuellen Schlüssel anpassen.
             \end{itemize}
+     \end{enumerate}
+
+     \subsubsection{Diffie-Hellman}
+     \begin{enumerate}
+         \item Beim Diffie-Hellman Verfahren, gab es mehrere unintuitive Bedienungselemente, welche behoben worden sind.
+             Dazu gehört dass es dem Nutzer beim Experiment unklar sein könnte, wessen Farben er mischen soll,
+             da die Farben die ausgewählt werden, neben Bob dargestellt wurden. Jetzt werden die Farben,
+             die man auswählen und mischen soll, neben Alice dargestellt. Somit sollte klarer sein wessen Rolle
+             der Nutzer einnimmt.
+             Es wird zwar im erklärenden Text erwähnt wessen Rolle der Nutzer einnimmt, aber durch die Positionierung
+             wird dies noch klarer.
+         \item Ein weiterer Fehler war, dass sich Farbkreise im Farbkanal überlappt haben,
+             was dadurch verursacht wurde, dass der Layoutmanager dem Farbkanal-JPanel zu wenig Platz eingeräumt hat.
+             Dies war leicht zu beheben, indem man die Gewichte (in den GridBagConstraints) erhöht,
+             und somit diesem JPanel mehr Platz einräumt.
+         \item Ein weiteres Problem war, dass bei den Unterschiedlichen Farben die dargestellt wurden,
+             man schnell die Übersicht verloren hat, insbesonderer wenn man das Verfahren könnt.
+             Um dies zu beheben haben wir die Farben mit Abkürzungen annotiert und eine Legende hinzugefügt,
+             die erklärt welche Farbe was ist.
+         \item Das größte Usability Problem war allerdings, dass Buttons gesprungen sind, nach ein nach einem Aufruf
+             von label.setText(), da dieser eine neue Größe hat und somit eine Repositionierung stattfand.
+             Gelöst wurde dies indem wir mit HTML die Größe spezifiziert haben, wodurch die Größe konstant bleibt,
+             und somit keine Repositionierung stattfindet.
      \end{enumerate}
 
 
