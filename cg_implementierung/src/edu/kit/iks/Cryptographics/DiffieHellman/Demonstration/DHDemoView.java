@@ -119,8 +119,8 @@ public class DHDemoView extends VisualizationView {
 		this.add(aliceExplain, gbc);
 		this.cc = new ColorChannel(new Dimension(700, 200), 50);
 		
-		gbc.weightx = 0.2;
-		gbc.weighty = 0.2;
+		gbc.weightx = 0.25;
+		gbc.weighty = 0.25;
 		gbc.gridx = 1;
 		gbc.gridy = 1;
 		gbc.fill = GridBagConstraints.BOTH;
