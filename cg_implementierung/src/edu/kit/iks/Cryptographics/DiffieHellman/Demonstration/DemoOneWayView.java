@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import org.xnap.commons.i18n.I18n;
@@ -38,6 +39,8 @@ public class DemoOneWayView extends VisualizationView {
 
 	private boolean isNextText;
 	
+	private Navigation n;
+	
 	private static final long serialVersionUID = 7529617215150828381L;
 	
 	/**
@@ -49,14 +52,25 @@ public class DemoOneWayView extends VisualizationView {
 		GridBagLayout layout = new GridBagLayout();
 		this.setLayout(layout);
 		
+		gbc.weightx = 0.1;
+		gbc.weighty = 0.0;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 3;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		n = new Navigation("Back to Introduction", "Go to Demo");
+		this.add(n, gbc);
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridwidth = 1;
+		
 		gbc.gridx = 2;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		layout.setConstraints(this.getNextButton(), gbc);
 		
 		gbc.gridx = 0;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		layout.setConstraints(this.getBackButton(), gbc);
@@ -65,7 +79,7 @@ public class DemoOneWayView extends VisualizationView {
 		this.keyExchangeExplain.setText("<html><div style=\"width:200px; height:100px\">" + explain + "</div></html>");
 		
 		gbc.gridx = 1;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		this.add(keyExchangeExplain, gbc);
@@ -78,24 +92,24 @@ public class DemoOneWayView extends VisualizationView {
 		cm2.setEllipColor(1, Color.YELLOW);
 		
 		gbc.gridx = 0;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		this.add(cm, gbc);
 		
 		gbc.gridx = 2;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		this.add(cm2, gbc);
 		
 		gbc.gridx = 0;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 		easy = new JLabel(i18n.tr("easy"));
 		this.add(easy, gbc);
 		
 		gbc.gridx = 2;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 		hard = new JLabel(i18n.tr("hard"));
 		this.add(hard, gbc);
 		
@@ -129,6 +143,14 @@ public class DemoOneWayView extends VisualizationView {
 		if(cm2 != null) {
 			cm2.stopTimer();
 		}
+	}
+	
+	public JButton getSkipButton() {
+		return n.getForward(); 
+	}
+	
+	public JButton getReturnButton() {
+		return n.getBack();
 	}
 
 }

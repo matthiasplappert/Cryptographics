@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import org.xnap.commons.i18n.I18n;
@@ -34,6 +35,8 @@ public class ExplainAimView extends VisualizationView {
 	/* no help need here */
 	private String help = i18n.tr("No help");
 	
+	private Navigation n;
+	
 	/* the explanation string */
 	private String explain = i18n.tr("Our aim is to exchange a secret on a public channel, " +
 			"without Eve getting the secret too. Therefore we can't simply send the secret, as shown " +
@@ -51,6 +54,17 @@ public class ExplainAimView extends VisualizationView {
 		this.setLayout(layout);
 		GridBagConstraints gbc = new GridBagConstraints();
 		
+		gbc.weightx = 0.1;
+		gbc.weighty = 0.0;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 3;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		n = new Navigation("Skip the Introduction");
+		this.add(n, gbc);
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridwidth = 1;
+		
 		gbc.gridx = 2;
 		gbc.gridy = 2;
 		gbc.weightx = 0.1;
@@ -67,7 +81,7 @@ public class ExplainAimView extends VisualizationView {
 		
 		this.cc = new ColorChannel(new Dimension(800, 200), 50);
 		gbc.gridx = 1;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.fill = GridBagConstraints.BOTH;
@@ -76,6 +90,7 @@ public class ExplainAimView extends VisualizationView {
 		this.cc.setKeepColor(false);
 		this.cc.setRepeat(true);
 		this.cc.sendToBob(null, false, "");
+		
 	}
 
 	/**
@@ -92,6 +107,10 @@ public class ExplainAimView extends VisualizationView {
 	 */
 	public String getHelp() {
 		return help ;
+	}
+	
+	public JButton getSkipButton() {
+		return n.getForward();
 	}
 	
 

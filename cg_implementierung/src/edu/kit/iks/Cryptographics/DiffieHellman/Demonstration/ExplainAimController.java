@@ -51,6 +51,14 @@ public class ExplainAimController extends AbstractVisualizationController {
 		});
 		
 		this.getView().getBackButton().setVisible(false);
+		
+		this.getView().getSkipButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				((VisualizationContainerController) getParentController()).setCurrentVisualizationControllerIndex(2);
+			}
+		});
 
 	}
 	
