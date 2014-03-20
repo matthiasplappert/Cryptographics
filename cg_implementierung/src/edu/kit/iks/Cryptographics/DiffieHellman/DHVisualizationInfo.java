@@ -106,7 +106,7 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 		controllerClasses.add(DHDemoController.class);
 		controllerClasses.add(YourTurnController.class);
 		controllerClasses.add(DHExperimentController.class);
-		controllerClasses.add(CongratsController.class);
+//		controllerClasses.add(CongratsController.class);
 		controllerClasses.add(InformationController.class);
 		
 		return controllerClasses;
