@@ -72,7 +72,7 @@ public class DemoOneWayController extends AbstractVisualizationController {
 	 */
 	@Override
 	public void unloadView() {
-		// TODO stop all timers!
+		this.getView().stopTimers();
 		this.view = null;
 	}
 	

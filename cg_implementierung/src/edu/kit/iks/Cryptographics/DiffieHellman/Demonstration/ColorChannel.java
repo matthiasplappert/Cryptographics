@@ -609,4 +609,5 @@ public class ColorChannel extends JPanel {
 		return this.model.getBobMixedColor();
 	}
 	
+	
 }

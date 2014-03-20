@@ -137,6 +137,7 @@ public class VisualizationContainerController extends AbstractController {
 			@Override
 			public void clicked(MouseEvent e) {
 				MainController mainController = (MainController) getParentController();
+				getCurrentVisualizationController().unloadView();
 				Logger.log("User went back to start screen");
 				mainController.presentStartAction();
 			}

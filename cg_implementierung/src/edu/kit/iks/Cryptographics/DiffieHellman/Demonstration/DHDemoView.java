@@ -270,4 +270,15 @@ public class DHDemoView extends VisualizationView {
 		return skip;
 	}
 
+	public void stopTimers() {
+		if(cm != null) {
+			cm.stopTimer();
+		}
+		if(cc != null) {
+			cc.stopTimer();
+		}
+	}
+	
+	
+
 }

@@ -66,7 +66,7 @@ public class DHDemoController extends AbstractVisualizationController {
 	 */
 	@Override
 	public void unloadView() {
-		this.getView().getColorChannel().stopTimer();
+		this.getView().stopTimers();
 		this.view = null;
 	}
 	
