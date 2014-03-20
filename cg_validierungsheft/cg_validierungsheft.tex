@@ -159,7 +159,25 @@ text here
   \subsection{Abdeckung aller Testfälle}
 
 \section{Regressionstests}
-text here
+ \subsubsection{Caesar}
+  \begin{enumerate}
+   \item Leider konnte die UI nicht überall statisch gemacht werden. Beispielsweise bei der Demonstration der Caesar-Chiffre 
+         Springt das alphabet wenn sich der untere Button ``Proceed'' mit der Tastatur abwechselt. Größenänderungen und Kapselung der 
+         Alphabets hat zu keinem sinnvollen Ergebnis geführt. Die UI außerhalb der Demophase ist überall im Griff und es konnten 
+         keine Sprüge mehr festgestellt werden.\newline 
+         \textbf{Regressionstests für springende UI:}\newline
+         Zu beachten ist, dass die Einführungsphase davon ausgeschlossen ist!\newline
+         Gehe die Visualisierung des Verfahrens durch und achte auf UI-Elemente, die nach der Interaktion mit der Oberfläche 
+         nicht an ihrem zugewiesenen Ort bleiben. Genauer:\newline
+         1. Experiment: Beim entschlüsseln und entschlüsseln sollte alles statisch an seinem Ort bleiben und sich nichts bewegen.\newline
+         2. Histogramme: Achte vor allem bei der Auswahl der Eingabebox für den Schlüssel, ob alles an seinem Ort bleibt, wenn die
+            Tastatur erscheint.
+   \item Überprüfe den ersten Schritt der Demonstration auf das Fehlen des Alphabets. Wenn er erst im 2ten Schritt erscheint, dann ist
+         alles richtig.
+   \item Experiment, ``Brute Force''-Phase: Probiere alle Schlüssel durch und wenn der richtige gefunden wird, drücke nochmals auf +1 oder -1
+         und überprüfe ob die Grenzen des Kastens sich wieder blau gefärbt haben. Überprüfe auch ob sich die Anzeige an der oberen Kante
+         des Kastens wieder anzeigt, dass der Schlüssel falsch ist.     
+  \end{enumerate}
 
 \section{Beschreibung der Fehler}
   Die meisten Bugs kamen aus der Sparte \textbf{Usability}. Vieles war in der Implementierungsphase nicht zu entdecken, da man damit beschäftigt

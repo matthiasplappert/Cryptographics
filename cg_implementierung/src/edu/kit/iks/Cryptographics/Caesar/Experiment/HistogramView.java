@@ -234,7 +234,7 @@ public class HistogramView extends VisualizationView {
 		numpadConst.gridy = 0;
 		numpadConst.gridwidth = 11;
 		numpadConst.gridheight = 3;
-		numpadConst.insets = new Insets(75, 0, 0, 0);
+		numpadConst.insets = new Insets(50, 0, 0, 0);
 		this.add(this.numpad, numpadConst);
 		this.validate();
 	}
@@ -286,7 +286,7 @@ public class HistogramView extends VisualizationView {
 		containerConst.gridy = 1;
 		containerConst.gridheight = 6;
 		containerConst.gridwidth = 3;
-		containerConst.fill = GridBagConstraints.BOTH;
+//		containerConst.fill = GridBagConstraints.BOTH;
 		this.add(this.histogramContainer, containerConst);
 	}
 
