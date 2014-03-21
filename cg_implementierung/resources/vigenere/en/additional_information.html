@@ -1,15 +1,15 @@
 ﻿<html>
-<h2>Vignère</h2>
+<h2>Vign&egrave;re</h2>
 
-The idea behind the Vigenère cipher, like all polyalphabetic ciphers, is to
+The idea behind the Vigen&egrave;re cipher, like all polyalphabetic ciphers, is to
 disguise plaintext letter frequencies, which interferes with a straightforward
 application of frequency analysis. For instance, if P is the most frequent
 letter in a ciphertext whose plaintext is in English,
 one might suspect that P corresponds to E, because E is the most frequently
-used letter in English. However, using the Vigenère
+used letter in English. However, using the Vigen&egrave;re
 cipher, E can be enciphered as different ciphertext
 letters at different points in the message, thus defeating simple frequency
-analysis. The primary weakness of the Vigenère
+analysis. The primary weakness of the Vigen&egrave;re
 cipher is the repeating nature of its key. If a cryptanalyst correctly guesses
 the key's length, then the cipher text can be treated as interwoven Caesar
 ciphers, which individually are easily broken. The Kasiski
@@ -18,16 +18,16 @@ and Friedman tests can help determine the key length.
 <h2>Kasiski examination</h2>
 
 For more details on this topic, see Kasiski examination. In 1863 Friedrich Kasiski
-was the first to publish a successful general attack on the Vigenère
+was the first to publish a successful general attack on the Vigen&egrave;re
 cipher. Earlier attacks relied on knowledge of the plaintext, or use of a
 recognizable word as a key. Kasiski's method had no
 such dependencies. Kasiski was the first to publish
 an account of the attack, but it is clear that there were others who were aware
 of it. In 1854, Charles Babbage was goaded into breaking the 
-Vigenère cipher when John Hall Brock Thwaites
+Vigen&egrave;re cipher when John Hall Brock Thwaites
 submitted a &quot;new&quot; cipher to the Journal of the Society of the Arts.
 When Babbage showed that Thwaites' cipher was
-essentially just another recreation of the Vigenère
+essentially just another recreation of the Vigen&egrave;re
 cipher, Thwaites challenged Babbage to break his
 cipher encoded twice, with keys of different length. Babbage succeeded in
 decrypting a sample, which turned out to be the poem &quot;The Vision of
@@ -78,7 +78,7 @@ Once the length of the key is known, the
 ciphertext can be rewritten into that many columns, with each
 column corresponding to a single letter of the key. Each column consists of
 plaintext that has been encrypted by a single Caesar cipher; the Caesar key
-(shift) is just the letter of the Vigenère key that
+(shift) is just the letter of the Vigen&egrave;re key that
 was used for that column. Using methods similar to those used to break the
 Caesar cipher, the letters in the ciphertext can be
 discovered. An improvement to the Kasiski
@@ -87,13 +87,13 @@ each column's letter frequencies to shifted plaintext frequencies to discover
 the key letter (Caesar shift) for that column. Once every letter in the key is
 known, the cryptanalyst can simply decrypt the ciphertext
 and reveal the plaintext. Kerckhoffs' method is not
-applicable when the Vigenère table has been
+applicable when the Vigen&egrave;re table has been
 scrambled, rather than using normal alphabetic sequences, although Kasiski examination and coincidence tests can still be used
 to determine key length in that case. 
 
 <h2>Key elimination</h2>
 
-The Vigenère cipher
+The Vigen&egrave;re cipher
 function is essentially modulo arithmetic, and thus commutative. So if the key
 length is known (or guessed) then subtracting the cipher text from itself,
 offset by the key length will produce the cipher text encrypted with itself. If

@@ -18,7 +18,7 @@
 + 23 (X)  12 (M)   2 (C)  10 (K)  11 (L) key<br>
 = 30      16      13      21      25     message + key<br>
 =  4 (E)  16 (Q)  13 (N)  21 (V)  25 (Z) message + key (mod 26)<br>
-      E       Q       N       V       Z  → ciphertext
+      E       Q       N       V       Z  -> ciphertext
 </pre>
 
 <p>If a number is larger than 26, then the remainder after subtraction of 26 is taken in modular arithmetic fashion. This simply means that if the computations "go past" Z, the sequence starts again at A.</p>
@@ -29,14 +29,14 @@
        E       Q       N       V       Z  ciphertext<br>
     4 (E)  16 (Q)  13 (N)  21 (V)  25 (Z) ciphertext<br>
 -  23 (X)  12 (M)   2 (C)  10 (K)  11 (L) key<br>
-= -19       4      11      11      14     ciphertext — key<br>
-=   7 (H)   4 (E)  11 (L)  11 (L)  14 (O) ciphertext — key (mod 26)<br>
-       H       E       L       L       O  → message
+= -19       4      11      11      14     ciphertext - key<br>
+=   7 (H)   4 (E)  11 (L)  11 (L)  14 (O) ciphertext - key (mod 26)<br>
+       H       E       L       L       O  -> message
 </pre>
 
 <p>Similar to the above, if a number is negative then 26 is added to make the number positive.</p>
 
-<p>Thus Bob recovers Alice's plaintext, the message "HELLO". Both Alice and Bob destroy the key sheet immediately after use, thus preventing reuse and an attack against the cipher. The KGB often issued its agents one-time pads printed on tiny sheets of "flash paper"—paper chemically converted to nitrocellulose, which burns almost instantly and leaves no ash.</p>
+<p>Thus Bob recovers Alice's plaintext, the message "HELLO". Both Alice and Bob destroy the key sheet immediately after use, thus preventing reuse and an attack against the cipher. The KGB often issued its agents one-time pads printed on tiny sheets of "flash paper"-paper chemically converted to nitrocellulose, which burns almost instantly and leaves no ash.</p>
 
 <p>The classical one-time pad of espionage used actual pads of minuscule, easily concealed paper, a sharp pencil, and some mental arithmetic. The method can be implemented now as a software program, using data files as input (plaintext), output (ciphertext) and key material (the required random sequence). The XOR operation is often used to combine the plaintext and the key elements, and is especially attractive on computers since it is usually a native machine instruction and is therefore very fast. However, ensuring that the key material is actually random, is used only once, never becomes known to the opposition, and is completely destroyed after use is hard to do. The auxiliary parts of a software one-time pad implementation present real challenges: secure handling/transmission of plaintext, truly random keys, and one-time-only use of the key.</p>
 
@@ -45,8 +45,8 @@
 
 <pre>
     4 (E)  16 (Q)  13 (N)  21 (V)  25 (Z) ciphertext<br>
-−  19 (T)  16 (Q)  20 (U)  17 (R)   8 (I) possible key<br>
-= −15       0      −7       4      17     ciphertext-key<br>
+-  19 (T)  16 (Q)  20 (U)  17 (R)   8 (I) possible key<br>
+= -15       0      -7       4      17     ciphertext-key<br>
 =  11 (L)   0 (A)  19 (T)   4 (E)  17 (R) ciphertext-key (mod 26)
 </pre>
 
