@@ -76,7 +76,7 @@ public class DemoOneWayView extends VisualizationView {
 		layout.setConstraints(this.getBackButton(), gbc);
 		
 		this.keyExchangeExplain = new JLabel();
-		this.keyExchangeExplain.setText("<html><div style=\"width:200px; height:100px\">" + explain + "</div></html>");
+		this.keyExchangeExplain.setText("<html><div style=\"width:200px; height:130px\">" + explain + "</div></html>");
 		
 		gbc.gridx = 1;
 		gbc.gridy = 2;
@@ -126,7 +126,7 @@ public class DemoOneWayView extends VisualizationView {
 	}
 	
 	public void setNextText() {
-		this.keyExchangeExplain.setText("<html><div style=\"width:200px; height:100px\">" + i18n.tr("To achieve this, we use " +
+		this.keyExchangeExplain.setText("<html><div style=\"width:200px; height:130px\">" + i18n.tr("To achieve this, we use " +
 				"something called one-way function. This type of function is easy to compute " +
 				"in one direction, but difficult to reverse.") + "</div></html>");
 		this.isNextText = true;
