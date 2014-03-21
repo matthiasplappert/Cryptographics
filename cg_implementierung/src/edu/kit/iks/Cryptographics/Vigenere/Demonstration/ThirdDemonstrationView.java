@@ -188,10 +188,11 @@ public class ThirdDemonstrationView extends VisualizationView{
 				+ i18n.tr("Now we want to decrypt 'DMPL'. Insteading adding up, we "
 				+ "use substraction to decrypt it! So lets go...")
 				+ "</div></html>"));
-		this.vigenereKeyDesc = new JLabel("Vigenere Key: " + this.vigenereKey);
+		this.vigenereKeyDesc = new JLabel(i18n.tr("Vigenere Key") +
+				": " + this.vigenereKey);
 		this.alphabet = new AlphabetStripView();
-		this.add(this.skip = new JButton("Go To Experiment"));
-		this.add(this.btnReturn = new JButton("Return to Encryption"));
+		this.add(this.skip = new JButton(i18n.tr("Go To Experiment")));
+		this.add(this.btnReturn = new JButton(i18n.tr("Return to Encryption")));
 		this.skip.setVisible(true);
 		this.textCharPlain = new JLabel[4];
 		this.textCharPlain[0] = new JLabel("E");

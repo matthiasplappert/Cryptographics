@@ -204,8 +204,8 @@ public class SecondDemonstrationView extends VisualizationView {
 				+ "</div></html>"));
 		this.vigenereKeyDesc = new JLabel(i18n.tr("Vigenere Key") + ": " + this.vigenereKey);
 		
-		this.add(this.skip = new JButton("Go to Decryption"));
-		this.add(this.btnReturn = new JButton("Return to Introduction"));
+		this.add(this.skip = new JButton(i18n.tr("Go to Decryption")));
+		this.add(this.btnReturn = new JButton(i18n.tr("Return to Introduction")));
 		this.skip.setVisible(true);
 		this.alphabet = new AlphabetStripView();
 

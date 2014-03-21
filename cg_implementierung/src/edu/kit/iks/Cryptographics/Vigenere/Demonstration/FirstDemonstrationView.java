@@ -82,7 +82,7 @@ public class FirstDemonstrationView extends VisualizationView{
 				"vigenereImage").getAttributeValue("path"));
 		this.clock = new ImageView(vigenereXML.getChild(
 				"moduloImage").getAttributeValue("path"));
-		this.skip = new JButton("Go to Encryption");
+		this.skip = new JButton(i18n.tr("Go to Encryption"));
 		// set fonts
 		// add to the view
 		this.add(this.vigenere);
