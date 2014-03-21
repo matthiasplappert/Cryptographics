@@ -44,7 +44,7 @@ public class DHExperimentView extends JPanel {
 			"one is the right color. If you need help click the 'Help' button.");
 	
 	private String wrongPrivate = i18n.tr("Oh no. You choosed the private color. This color " +
-			"is meant to be private. If you had send this color, Eve would be able " +
+			"is meant to be private. If you had sent this color, Eve would be able " +
 			"to get the secret too, afterwards. " +
 			"Please try again, by choosing another color and clicking " +
 			"the 'send color' button.");
@@ -63,8 +63,8 @@ public class DHExperimentView extends JPanel {
 			"Choose the right colors to produce the final secret, just like " +
 			"how it was explained at the demonstration.");
 	
-	private String congrats = i18n.tr("Congratulations, you chose the right colors to mix, " +
-			"you and Bob established a shared secret that Eve doesn not know.");
+	private String congrats = i18n.tr("Congratulations, you choosed the right colors to mix, " +
+			"you and Bob established a shared secret that Eve does not know.");
 	
 	/*
 	 * the current help String
