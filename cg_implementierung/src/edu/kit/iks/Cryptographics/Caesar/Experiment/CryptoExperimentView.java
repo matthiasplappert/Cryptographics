@@ -264,7 +264,7 @@ public class CryptoExperimentView extends CryptoView {
 	}
 
 	private String wrapHtml(String text) {
-		return "<html><body><div width=900px>" + text + "</div></body></html>";
+		return "<html><body><div width=1000px>" + text + "</div></body></html>";
 	}
 
 }

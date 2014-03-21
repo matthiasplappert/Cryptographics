@@ -412,6 +412,8 @@ public class CryptoDemonstrationController extends
 								.tr("Because of your inferior intelligence you look at the first letter of your name: C."
 										+ " Then you look at the 3rd letter after C and take F. Great! Now you encrypted the"
 										+ " first letter of your name. Touch proceed.")));
+//		 setup the alphabet.
+		this.getView().setupAlphabet();
 		this.getView().getUserInput()[0].setBorder(BorderFactory
 				.createLineBorder(Color.green));
 		this.getView().getUserOutput()[0].setBorder(BorderFactory
@@ -435,8 +437,7 @@ public class CryptoDemonstrationController extends
 						this.wrapHtml(CryptoDemonstrationController.i18n
 								.tr("Now try to encrypt the next letter yourself."
 										+ " If you need help, you can always use the help button.")));
-//		 setup the alphabet.
-		this.getView().setupAlphabet();
+
 		this.getView().getUserInput()[1].setBorder(BorderFactory
 				.createLineBorder(Color.green));
 		this.getView().getUserOutput()[1].setEditable(true);
