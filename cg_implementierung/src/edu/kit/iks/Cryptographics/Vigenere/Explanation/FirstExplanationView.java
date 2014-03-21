@@ -211,16 +211,6 @@ public class FirstExplanationView extends VisualizationView{
 		this.averageHistogramm.setVisible(false);
 	}
 	
-	/**
-	 * sets fonts to all elements
-	 */
-	private void setFonts() {
-		this.explanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		this.secondExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));		
-		this.findKeyLength.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		this.keyLength.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		this.thirdExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-	}
 	
 	/**
 	 * customizes the created GUI elements
@@ -275,7 +265,6 @@ public class FirstExplanationView extends VisualizationView{
 	 */
 	public FirstExplanationView() {
 		setupGUI();
-		setFonts();
 		customizeGUI();
 	}
 }

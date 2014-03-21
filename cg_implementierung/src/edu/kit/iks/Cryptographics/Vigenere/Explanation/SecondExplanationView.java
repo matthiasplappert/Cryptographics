@@ -214,17 +214,6 @@ public class SecondExplanationView extends VisualizationView{
 	}
 	
 	/**
-	 * sets fonts to all elements
-	 */
-	private void setFonts() {
-		this.explanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		this.secondExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		this.thirdExplanation.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		this.answer.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		this.wrong.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-	}
-	
-	/**
 	 * customizes the created GUI elements
 	 */
 	private void customizeGUI() {
@@ -274,7 +263,6 @@ public class SecondExplanationView extends VisualizationView{
 	
 	public SecondExplanationView() {
 		setupGUI();
-		setFonts();
 		customizeGUI();
 	}
 }
