@@ -2,8 +2,10 @@ package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import org.jdom2.Element;
@@ -11,6 +13,7 @@ import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.Caesar.CryptoView;
 import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
 
 /**
  * Performs animations for demonstrating Caesar's idea.
@@ -32,6 +35,8 @@ public class CryptoDemonstrationView extends CryptoView {
 	 * XML-root element for cipherdemoView elements.
 	 */
 	private Element cipherDemoResource;
+
+	private JPanel forwardingViewContainer;
 
 	/**
 	 * Button needed for proceeding the stepwise animations.
@@ -61,9 +66,23 @@ public class CryptoDemonstrationView extends CryptoView {
 		for (JTextField output : this.userOutput) {
 			output.setEditable(false);
 		}
+		
+		this.forwardingViewContainer = new JPanel(new GridBagLayout());
+		this.forwardingViewContainer.setPreferredSize(new Dimension(800,200));
+		GridBagConstraints kbConst = new GridBagConstraints();
+		kbConst.anchor = GridBagConstraints.PAGE_END;
+		kbConst.weightx = 1.0;
+		kbConst.weighty = 1.0;
+		kbConst.gridx = 0;
+		kbConst.gridy = 0;
+		kbConst.gridwidth = 11;
+		kbConst.gridheight = 3;
+		this.add(this.forwardingViewContainer, kbConst);
 
 		// setup the forwarding button.
-		this.setupProceed();
+		this.proceed = new JButton(CryptoDemonstrationView.i18n.tr("Proceed"));
+		this.proceed.setPreferredSize(new Dimension(200, 50));
+		this.forwardingViewContainer.add(this.proceed);
 
 		// setup the explanation label.
 		String explanations = this.wrapHtml(CryptoDemonstrationView.i18n
@@ -75,17 +94,30 @@ public class CryptoDemonstrationView extends CryptoView {
 
 		this.validate();
 	}
-
-	private void setupProceed() {
-		// setup the aligment of the button proceed.
-		GridBagConstraints proceedConst = new GridBagConstraints();
-		this.proceed = new JButton(CryptoDemonstrationView.i18n.tr("Proceed"));
-		this.proceed.setPreferredSize(new Dimension(250, 50));
-		proceedConst.anchor = GridBagConstraints.PAGE_END;
-		proceedConst.gridx = 2;
-		proceedConst.gridy = 3;
-		proceedConst.gridwidth = 3;
-		this.add(this.proceed, proceedConst);
+	
+	/**
+	 * Creates the keyboard and shows it in the main container. /**
+	 * 
+	 * @param input
+	 *            the textfield referred to the Keyboard.
+	 * @param flag
+	 *            the mode the Keyboard should be created in.
+	 */
+	public void createKeyboard(JTextField input, final int flag) {
+		this.keyboard = new KeyboardView(input, flag);
+		this.forwardingViewContainer.add(this.keyboard);
+		this.validate();
+		this.repaint();
+	}
+	
+	/**
+	 * Removes the keyboard from the view.
+	 */
+	public void removeKeyboard() {
+		this.forwardingViewContainer.remove(this.keyboard);
+		this.keyboard = null;
+		this.validate();
+		this.repaint();
 	}
 	
 	private String wrapHtml(String text) {
@@ -125,6 +157,20 @@ public class CryptoDemonstrationView extends CryptoView {
 	@Override
 	public void setProceed(JButton proceed) {
 		this.proceed = proceed;
+	}
+
+	/**
+	 * @return the forwardingViewContainer
+	 */
+	public JPanel getForwardingViewContainer() {
+		return forwardingViewContainer;
+	}
+
+	/**
+	 * @param forwardingViewContainer the forwardingViewContainer to set
+	 */
+	public void setForwardingViewContainer(JPanel forwardingViewContainer) {
+		this.forwardingViewContainer = forwardingViewContainer;
 	}
 	
 	

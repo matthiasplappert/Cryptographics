@@ -451,7 +451,7 @@ public class CryptoDemonstrationController extends
 	private void step3() {
 		this.demonstrationStep++;
 		this.editableFields = (this.getView().getUserInput().length - 2);
-		this.getView().remove(this.getView().getProceed());
+		this.getView().getForwardingViewContainer().remove(this.getView().getProceed());
 		this.getView().setProceed(null);
 		this.getView().getUserInput()[1].setBorder(null);
 		this.getView().getUserOutput()[1].setBorder(null);
