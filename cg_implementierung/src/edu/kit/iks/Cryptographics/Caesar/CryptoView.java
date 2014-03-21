@@ -268,7 +268,7 @@ public class CryptoView extends VisualizationView {
 		// this.explanations.setFont(new Font("Arial", 2, 25));
 		// this.explanations.setMaximumSize(new Dimension(800, 500));
 		// this.explanations.setMinimumSize(new Dimension(800, 500));
-		this.explanations.setPreferredSize(new Dimension(800, 200));
+		this.explanations.setPreferredSize(new Dimension(1000, 200));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = flag;
 		// expConst.weightx = 0.5;
