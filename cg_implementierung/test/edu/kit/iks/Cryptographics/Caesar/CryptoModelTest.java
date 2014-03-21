@@ -39,6 +39,14 @@ public class CryptoModelTest {
 		String actual = this.modelTT.dec(10, cipher);
 		assertEquals(MESSAGE_HEADER + "dec(String)\n", expected, actual);
 	}
+	
+	@Test
+	public void testEncHtml() {
+		String alphabet =     "<b>A</b>";
+		String expected = "<b>F</b>";
+		String actual = this.modelTT.enc(5, alphabet);
+		assertEquals(MESSAGE_HEADER + "enc(String)\n", expected, actual);
+	}
 
 	@Test
 	public void testIsKeyValid() {

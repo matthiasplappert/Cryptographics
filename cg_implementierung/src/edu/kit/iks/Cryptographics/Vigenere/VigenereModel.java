@@ -41,11 +41,16 @@ public class VigenereModel {
 	/**
 	 * converts ASCII number of uppercase characters to alphabetical number
 	 * @param character character to be converted
-	 * @return alphabetical number of character
+	 * @return alphabetical number of character or 0 if the character is invalid
 	 */
 	static public int characterToInt(String character) {
 		if (character.length() == 1) {
-			return (int)character.charAt(0) - ASCII_A;
+			int value = (int)character.charAt(0) - ASCII_A;
+			if (value < 1 || value > 26) {
+				return 0;
+			} else {
+				return value;
+			}
 		} else {
 			return 0;
 		}
