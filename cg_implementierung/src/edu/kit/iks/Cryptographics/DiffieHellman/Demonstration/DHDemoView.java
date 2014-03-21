@@ -43,7 +43,7 @@ public class DHDemoView extends VisualizationView {
 			"and sends the mixture to Alice. Eve gets a copy, but can't compute " +
 			"the private color of Bob, because of the one-way function property");
 	
-	private String explanation4 = i18n.tr(" Here we will " +
+	private String explanation4 = i18n.tr("Here we will " +
 			"produce the secret that Alice and Bob know, but Eve doesn't. " +
 			"Alice will mix her private color to the mixture of Bob " +
 			"and Bob will mix his private color to the mixture of Alice. " +
