@@ -179,6 +179,28 @@ text here
          des Kastens wieder anzeigt, dass der Schlüssel falsch ist.     
   \end{enumerate}
 
+  \subsection{Diffie-Hellman}
+  \begin{enumerate}
+      \item Da der meiste Code sich um die grafische Oberfläche kümmert, ist es schwierig
+          automatische Regressionstests zu schreiben, daher wurden manuelle Tests durchgeführt.
+          Nach jeder Behebung eines Fehlers wurde das komplette Verfahren mehrmals durchgegangen.
+          Dabei wurde drauf geachtet, das allen UI-Elemente weiterhin genug Platz eingeräumt wurde.
+
+          Beispielexperiment:
+          Überspringe die Einführung und Demonstration, gehe direkt zum Experiment.
+          Wähle eine öffentliche Farbe und schicke diese an Bob.
+          Wähle eine private Farbe und mische die Farben. Schicke eine falsche
+          Farbe an Bob. Dabei wird drauf geachtet das der richtige Text, richtig positioniert
+          erscheint, der dem Nutzer sagt, dass er eine falsche Farbe gewählt hat.
+
+          Wähle jetzt die richtige Farbe und schicke sie an Bob.
+          Klicke den Hilfe-Button um einen Tip zu bekommen.
+          
+          Klicke den Weiter-Button, damit Bob seine Mixtur an Alice sendet.
+          Mische die Farben zum finalen Geheimnis, und komme auf den Informationsbildschirm.
+      \end{enumerate}
+
+
 \section{Beschreibung der Fehler}
   Die meisten Bugs kamen aus der Sparte \textbf{Usability}. Vieles war in der Implementierungsphase nicht zu entdecken, da man damit beschäftigt
   war die UI überhaupt zum funktionieren zu bringen. Die meisten Schwierigkeiten machte da der \textbf{Layoutmanager}, der für uns oft nicht
