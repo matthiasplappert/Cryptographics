@@ -43,8 +43,6 @@ public class HistogramController extends AbstractVisualizationController {
 	 */
 	private int step;
 
-	private boolean bruteForceKeyFound = false;
-
 	/**
 	 * Constructor
 	 * 
@@ -302,7 +300,6 @@ public class HistogramController extends AbstractVisualizationController {
 
 		// compare the keys.
 		if (bruteForceKey == HistogramController.this.getView().getSecretKey()) {
-			HistogramController.this.bruteForceKeyFound = true;
 			HistogramController.this.getView().getKeyControl()
 					.setBorder(BorderFactory.createLineBorder(Color.green, 5));
 			HistogramController.this
