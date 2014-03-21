@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-03-21 16:56+0100\n"
-"PO-Revision-Date: 2014-03-21 16:56+0100\n"
+"POT-Creation-Date: 2014-03-21 19:08+0100\n"
+"PO-Revision-Date: 2014-03-21 19:08+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/IdlePopoverView.java:114
-#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:100
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:101
 msgid "Continue"
 msgstr ""
 
@@ -291,7 +291,7 @@ msgid "This key is ok. Now put your name into the bigger box to the left."
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/CryptoExperimentView.java:50
-#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:148
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:149
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/YourTurnController.java:63
 msgid "Back to Demonstration"
 msgstr ""
@@ -573,10 +573,9 @@ msgid "hard"
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DemoOneWayView.java:129
-#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/OnewayView.java:34
 msgid ""
-"To achive this, we use something called one-way function. This function is "
-"easy to compute in one direction, but difficult to reverse."
+"To achieve this, we use something called one-way function. This type of "
+"function is easy to compute in one direction, but difficult to reverse."
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:25
@@ -588,19 +587,19 @@ msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:30
 msgid ""
-"Next, Alice chooses a private Color, that she keeps for herself, she does "
-"not send it. Then she mixes her private Color with the previously sent "
-"public Color and sends the mixture to Bob. Note that because we use the "
+"Next, Alice chooses a private color, that she keeps for herself, she does "
+"not send it. Then she mixes her private color with the previously sent "
+"public color and sends the mixture to Bob. Note that because we use the "
 "mixing of colors as a one-way function, Eve cannot compute which private "
 "color Alice used to get the mixture. Keep this in mind, as this is critical "
-"to understand why this protocol works. As previous Bob and Eve have the send "
-"color, that means the mixture of Alice."
+"to understand why this protocol works. As previously Bob and Eve have the "
+"sent color, that means the mixture of Alice."
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:39
 msgid ""
 "Now Bob does the exact same thing like Alice did in the previous step. He "
-"chooses a private color. Mixes it with the public Color, and sends the "
+"chooses a private color. Mixes it with the public color, and sends the "
 "mixture to Alice. Eve gets a copy, but can't compute the private color of "
 "Bob, because of the one-way function property"
 msgstr ""
@@ -642,23 +641,29 @@ msgid "Skip the Introduction"
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/LabelExplanation.java:23
-msgid "p - The base color"
+msgid "P - The base color"
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/LabelExplanation.java:25
-msgid "sA - Alice's secret color"
+msgid "SA - Alice's secret color"
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/LabelExplanation.java:27
-msgid "sB - Bob's secret color"
+msgid "SB - Bob's secret color"
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/LabelExplanation.java:29
-msgid "AM - Mixture of sA and p"
+msgid "MA - Mixture of SA and P"
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/LabelExplanation.java:31
-msgid "BM - Mixture of sB and p"
+msgid "MB - Mixture of SB and P"
+msgstr ""
+
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/OnewayView.java:34
+msgid ""
+"To achive this, we use something called one-way function. This function is "
+"easy to compute in one direction, but difficult to reverse."
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/CongratsView.java:30
@@ -694,7 +699,7 @@ msgstr ""
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:46
 msgid ""
 "Oh no. You chose the private color. This color is meant to be private. If "
-"you had send this color, Eve would be able to get the secret too, "
+"you had sent this color, Eve would be able to get the secret too, "
 "afterwards. Please try again, by choosing another color and clicking the "
 "'send color' button."
 msgstr ""
@@ -707,7 +712,7 @@ msgid ""
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:56
-msgid "Good. You chose to send your mixture to Bob. This is the right choice."
+msgid "Good. You sent your mixture to Bob. This is the right choice."
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:59
@@ -725,7 +730,7 @@ msgstr ""
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:66
 msgid ""
 "Congratulations, you chose the right colors to mix, you and Bob established "
-"a shared secret that Eve doesn not know."
+"a shared secret that Eve does not know."
 msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:74
@@ -759,31 +764,32 @@ msgstr ""
 msgid ""
 "You have to choose the two colors that will be mixed to the final shared "
 "secret. Tip: Why can't Eve compute the secret. Right, you have a color that "
-"Eve does not have, so you have to use that one. The other color you have to "
-"think about yourself, or try different colors until it works."
+"Eve does not have, so you have to use that one. It is the colorwith the "
+"Label SA. The other color is the one you got from Bob which is the mixture "
+"of Bob,MB"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:96
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:97
 msgid "Mix with public color"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:98
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:99
 msgid "Mix colors to final secret"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:102
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:103
 msgid "The private color can't be the same as the public color"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:105
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:106
 msgid "Send color"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:107
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:108
 msgid "You chose the wrong colors, try again"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:148
+#: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Experiment/DHExperimentView.java:149
 msgid "Skip the Experiment"
 msgstr ""
 
