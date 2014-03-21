@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -42,20 +43,16 @@ public class DHDemoView extends VisualizationView {
 			"and sends the mixture to Alice. Eve gets a copy, but can't compute " +
 			"the private color of Bob, because of the one-way function property");
 	
-	private String explanation4 = i18n.tr("Now comes the last step. Here we will " +
+	private String explanation4 = i18n.tr("Here we will " +
 			"produce the secret that Alice and Bob know, but Eve doesn't. " +
 			"Alice will mix her private color to the mixture of Bob " +
 			"and Bob will mix his private color to the mixture of Alice. " +
-			"That means we mix three colors, the public color, the private color " +
-			"of Alice, and the private Color of Bob. " +
 			"The trick lies in the combination of the private Colors, that " +
 			"are kept private, through the use of the one-way function and " +
 			"that it doesn't matter in which order we mix the colors. So " +
 			"mixing first the public color with Alices private color and then Bobs private color " +
 			"yields the same color as mixing first the public color with Bobs private color " +
-			"and then Alices private color. In the real world, we need a mathematical operation " +
-			"that does this and color mixing isn't used of course, but the basic principles " +
-			"are the same.");
+			"and then Alices private color.");
 	
 	private JLabel aliceExplain;
 	
@@ -143,7 +140,8 @@ public class DHDemoView extends VisualizationView {
 		gbc.weightx = 0.1;
 		gbc.weighty = 0.1;
 		gbc.gridx = 2;
-		gbc.gridy = 2;
+		gbc.gridy = 1;
+		gbc.insets = new Insets(100, 0, 0, 0);
 		this.add(new LabelExplanation(), gbc);
 		this.revalidate();
 		
