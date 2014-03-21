@@ -8,6 +8,14 @@
     </state>
   </style>
   
+  <style id="histogramFontStyle">
+    <font name="Verdana" size="14" />
+    <state>
+      <color value="WHITE" type="BACKGROUND" />
+      <color value="BLACK" type="FOREGROUND" />
+    </state>
+  </style>
+  
   <!-- Visualization container controller content style -->
   <style id="containerControllerHeaderStyle">
     <opaque value="TRUE"/>
@@ -66,6 +74,7 @@
   
   <!-- Bindings -->
   <bind style="defaultStyle" type="region" key=".*" />
+  <bind style="histogramFontStyle" type="name" key="histogramFont" />
   <bind style="containerControllerHeaderStyle" type="name" key="visualizationContainerController" />
   <bind style="containerControllerContentStyle" type="name" key="visualizationContainerContent" />
   <bind style="containerControllerFooterStyle" type="name" key="visualizationContainerFooter" />

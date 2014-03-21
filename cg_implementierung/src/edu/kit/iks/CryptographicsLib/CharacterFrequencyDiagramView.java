@@ -100,6 +100,7 @@ public class CharacterFrequencyDiagramView extends JPanel {
 		if (height < 20) {
 			// Label to display number of occurrences.
 			JLabel number = new JLabel("" + occurrence);
+			number.setName("histogramFont");
 			number.setMinimumSize(new Dimension(width, 20));
 			number.setPreferredSize(new Dimension(width, 20));
 			number.setMaximumSize(new Dimension(width, 20));
@@ -111,6 +112,7 @@ public class CharacterFrequencyDiagramView extends JPanel {
 		} else {
 			// A label for the actual beam. Contains the number of occurrences of its character.
 			coloredBeam = new JLabel("" + occurrence);
+			coloredBeam.setName("histogramFont");
 			coloredBeam.setVerticalAlignment(JLabel.TOP);
 			coloredBeam.setHorizontalAlignment(JLabel.CENTER);
 			coloredBeam.setForeground(Color.white);
