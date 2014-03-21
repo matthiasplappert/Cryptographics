@@ -20,15 +20,15 @@ public class LabelExplanation extends JPanel {
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(LabelExplanation.class);
 
-	private String p = i18n.tr("p - The base color");
+	private String p = i18n.tr("P - The base color");
 	
-	private String sA = i18n.tr("sA - Alice's secret color");
+	private String sA = i18n.tr("SA - Alice's secret color");
 	
-	private String sB = i18n.tr("sB - Bob's secret color");
+	private String sB = i18n.tr("SB - Bob's secret color");
 	
-	private String AM = i18n.tr("AM - Mixture of sA and p");
+	private String AM = i18n.tr("MA - Mixture of SA and P");
 	
-	private String BM = i18n.tr("BM - Mixture of sB and p");
+	private String BM = i18n.tr("MB - Mixture of SB and P");
 	
 	public LabelExplanation() {
 		super();
