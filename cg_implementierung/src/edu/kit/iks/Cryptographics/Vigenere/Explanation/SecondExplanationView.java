@@ -2,7 +2,6 @@ package edu.kit.iks.Cryptographics.Vigenere.Explanation;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -187,8 +186,8 @@ public class SecondExplanationView extends VisualizationView{
 	 */
 	private void setupGUI() {
 		this.setLayout(null);
-		this.add(this.skip = new JButton("Go to Information"));
-		this.add(this.btnReturn = new JButton("Return to Explanation"));
+		this.add(this.skip = new JButton(i18n.tr("Go to Information")));
+		this.add(this.btnReturn = new JButton(i18n.tr("Return to Explanation")));
 		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
 				+ i18n.tr("Now its your turn! You have to find the second character of the "
 				+ "key. I was kind enough to give you a diagramm of every second "

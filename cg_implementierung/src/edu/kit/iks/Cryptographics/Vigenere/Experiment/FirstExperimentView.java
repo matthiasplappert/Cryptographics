@@ -2,7 +2,6 @@ package edu.kit.iks.Cryptographics.Vigenere.Experiment;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -250,8 +249,8 @@ public class FirstExperimentView extends VisualizationView{
 		
 		this.vigenereKeyDesc = new JLabel(i18n.tr("Vigenere Key") + ": " + this.vigenereKey);
 		this.alphabet = new AlphabetStripView();
-		this.add(this.skip = new JButton("Go to Explanation"));
-		this.add(this.btnReturn = new JButton("Return to Decryption"));
+		this.add(this.skip = new JButton(i18n.tr("Go to Explanation")));
+		this.add(this.btnReturn = new JButton(i18n.tr("Return to Decryption")));
 		this.skip.setVisible(true);
 		this.textCharPlain = new JLabel[5];
 		this.textCharPlain[0] = new JLabel("T");

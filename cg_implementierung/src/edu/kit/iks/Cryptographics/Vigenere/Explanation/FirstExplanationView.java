@@ -1,7 +1,6 @@
 package edu.kit.iks.Cryptographics.Vigenere.Explanation;
 
 import java.awt.Dimension;
-import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -172,8 +171,8 @@ public class FirstExplanationView extends VisualizationView{
 	 */
 	private void setupGUI() {
 		this.setLayout(null);
-		this.add(this.skip = new JButton("Go to Cracking"));
-		this.add(this.btnReturn = new JButton("Return to Experiment"));
+		this.add(this.skip = new JButton(i18n.tr("Go to Cracking")));
+		this.add(this.btnReturn = new JButton(i18n.tr("Return to Experiment")));
 		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
 			+ i18n.tr("Vigenère fixed a few weaknesses of Caesar, but still has flaws. If "
 			+ "the key is shorter then the text to encrypt, "
