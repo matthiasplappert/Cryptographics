@@ -1,7 +1,6 @@
 package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
 
 import java.awt.Dimension;
-import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -250,30 +249,6 @@ public class SecondDemonstrationView extends VisualizationView {
 	}
 	
 	/**
-	 * sets fonts to all elements
-	 */
-	private void setFonts() {
-		this.vigenereKeyDesc.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		this.charFirst.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		this.charSecond.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		this.charFinished.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		this.explanation.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		
-		
-		for (int i = 0; i < this.textCharPlain.length; i++)
-			this.textCharPlain[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-	
-		for (int i = 0; i < this.indexCharPlain.length; i++)
-			this.indexCharPlain[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		
-		for (int i = 0; i < this.textCharEncrypted.length; i++)
-			this.textCharEncrypted[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-	
-		for (int i = 0; i < this.indexCharEncrypted.length; i++)
-			this.indexCharEncrypted[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-	}
-	
-	/**
 	 * customizes the created GUI elements
 	 */
 	private void customizeGUI() {
@@ -390,7 +365,6 @@ public class SecondDemonstrationView extends VisualizationView {
 	 */
 	public SecondDemonstrationView() {
 		setupGUI();
-		setFonts();
 		customizeGUI();
 	}
 }

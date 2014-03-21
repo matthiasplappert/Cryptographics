@@ -296,27 +296,6 @@ public class FirstExperimentView extends VisualizationView{
 	}
 	
 	/**
-	 * sets fonts to all elements
-	 */
-	private void setFonts() {
-		this.vigenereKeyDesc.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		this.explanation.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		this.errorMessage.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		
-		for (int i = 0; i < this.textCharPlain.length; i++)
-			this.textCharPlain[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-	
-		for (int i = 0; i < this.indexCharPlain.length; i++)
-			this.indexCharPlain[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		
-		for (int i = 0; i < this.textCharDecrypted.length; i++)
-			this.textCharDecrypted[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-	
-		for (int i = 0; i < this.indexCharDecrypted.length; i++)
-			this.indexCharDecrypted[i].setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-	}
-	
-	/**
 	 * customizes the created GUI elements
 	 */
 	private void customizeGUI() {
@@ -439,7 +418,6 @@ public class FirstExperimentView extends VisualizationView{
 	 */
 	public FirstExperimentView() {
 		setupGUI();
-		setFonts();
 		customizeGUI();
 	}
 }

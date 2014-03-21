@@ -1,7 +1,6 @@
 package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
 
 import java.awt.Dimension;
-import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -85,8 +84,6 @@ public class FirstDemonstrationView extends VisualizationView{
 				"moduloImage").getAttributeValue("path"));
 		this.skip = new JButton("Go to Encryption");
 		// set fonts
-		this.vigenereText.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
-		this.moduloText.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
 		// add to the view
 		this.add(this.vigenere);
 		this.add(this.vigenereText);
