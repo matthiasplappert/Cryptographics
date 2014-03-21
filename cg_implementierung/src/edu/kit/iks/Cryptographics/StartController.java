@@ -94,21 +94,13 @@ public class StartController extends AbstractController {
 		welcomeViewLayout.weighty = 0.95f;
 		this.welcomeView = new WelcomeView();
 		this.view.add(this.welcomeView, welcomeViewLayout);
-
-		String path = "";
-		try {
-			path = startResources.getChild("welcomeImage")
-					.getAttributeValue("path");
-		} catch (NullPointerException nullException) {
-			// Element not found.
-			System.out.println("[NullPointerException] Ressource not found.");
-			nullException.printStackTrace();
-		}
+		
+		String path = startResources.getChild("welcomeImage").getAttributeValue("path");
 
 		GridBagConstraints imgConstraint = new GridBagConstraints();
 		imgConstraint.gridx = 0;
 		imgConstraint.gridy = 1;
-		imgConstraint.insets = new Insets(0, 0, 0, 300);
+		imgConstraint.insets = new Insets(0, 0, 50, 0);
 		ImageView imageToSet = new ImageView(path);
 		this.view.add(imageToSet, imgConstraint);
 
