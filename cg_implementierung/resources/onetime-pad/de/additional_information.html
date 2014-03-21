@@ -2,20 +2,20 @@
 <head>
 </head>
 <body>
-<h2>Einführung</h2>
-<p>Das One-Time-Pad (Abkürzung: OTP, deutsch: Einmalverschlüsselung oder Einmalschlüssel-Verfahren, wörtlich Einmal-Block, nicht zu verwechseln mit dem Einmal-Passwort-Verfahren) ist ein symmetrisches Verschlüsselungsverfahren zur geheimen Nachrichtenübermittlung. Kennzeichnend ist, dass ein Schlüssel verwendet wird, der (mindestens) so lang ist wie die Nachricht selbst. Das OTP ist informationstheoretisch sicher und kann nachweislich nicht gebrochen werden – vorausgesetzt, es wird bestimmungsgemäß verwendet.</p>
+<h2>Einf&uuml;hrung</h2>
+<p>Das One-Time-Pad (Abk&uuml;rzung: OTP, deutsch: Einmalverschl&uuml;sselung oder Einmalschl&uuml;ssel-Verfahren, w&ouml;rtlich Einmal-Block, nicht zu verwechseln mit dem Einmal-Passwort-Verfahren) ist ein symmetrisches Verschl&uuml;sselungsverfahren zur geheimen Nachrichten&uuml;bermittlung. Kennzeichnend ist, dass ein Schl&uuml;ssel verwendet wird, der (mindestens) so lang ist wie die Nachricht selbst. Das OTP ist informationstheoretisch sicher und kann nachweislich nicht gebrochen werden - vorausgesetzt, es wird bestimmungsgem&auml;&szlig; verwendet.</p>
 
 <h2>Beispiel</h2>
-<p>Eine einfache Handmethode zur Verschlüsselung ist beispielsweise die buchstabenweise Addition von Klartext und Schlüssel. Hierzu ersetzt man zunächst mithilfe einer beliebigen Substitutionstabelle die Buchstaben des Klartextalphabets durch Zahlen. Im einfachsten Fall ordnet man den 26 Großbuchstaben des lateinischen Alphabets Zahlen zu, die ihrer Position im Alphabet entsprechen. Mit anderen Worten, man nummeriert das Alphabet wie folgt durch:</p>
+<p>Eine einfache Handmethode zur Verschl&uuml;sselung ist beispielsweise die buchstabenweise Addition von Klartext und Schl&uuml;ssel. Hierzu ersetzt man zun&auml;chst mithilfe einer beliebigen Substitutionstabelle die Buchstaben des Klartextalphabets durch Zahlen. Im einfachsten Fall ordnet man den 26 Gro&szlig;buchstaben des lateinischen Alphabets Zahlen zu, die ihrer Position im Alphabet entsprechen. Mit anderen Worten, man nummeriert das Alphabet wie folgt durch:</p>
 
 <pre>
 A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z<br>
 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
 </pre>
 
-<p>Jetzt ist eine buchstabenweise Addition leicht möglich. Beispielsweise ergibt die Addition von <b>A</b> und <b>F</b> den Buchstaben <b>G</b>, entsprechend ihren Platznummern <b>1</b>&#160;+&#160;<b>6</b>&#160;=&#160;<b>7</b>. Falls die Summe den Wert 26 überschreiten sollte, so zieht man einfach 26 ab (Modulo-Operation) und erhält so wieder einen der 26 Alphabetbuchstaben. Beispielsweise <b>X</b> plus <b>U</b> ist numerisch <b>24</b>&#160;+&#160;<b>21</b>&#160;=&#160;45, nach abziehen von 26 ergibt sich <b>19</b> und damit der Buchstabe <b>S</b>, also <b>X&#160;+&#160;U&#160;=&#160;S</b>.</p>
+<p>Jetzt ist eine buchstabenweise Addition leicht m&ouml;glich. Beispielsweise ergibt die Addition von <b>A</b> und <b>F</b> den Buchstaben <b>G</b>, entsprechend ihren Platznummern <b>1</b>&#160;+&#160;<b>6</b>&#160;=&#160;<b>7</b>. Falls die Summe den Wert 26 &uuml;berschreiten sollte, so zieht man einfach 26 ab (Modulo-Operation) und erh&auml;lt so wieder einen der 26 Alphabetbuchstaben. Beispielsweise <b>X</b> plus <b>U</b> ist numerisch <b>24</b>&#160;+&#160;<b>21</b>&#160;=&#160;45, nach abziehen von 26 ergibt sich <b>19</b> und damit der Buchstabe <b>S</b>, also <b>X&#160;+&#160;U&#160;=&#160;S</b>.</p>
 
-<p>Die Zusammenhänge bei der Addition von Buchstaben lassen sich an der folgenden Tabelle, die Ähnlichkeit mit einer klassischen <i>Tabula recta</i> hat, übersichtlich darstellen:</p>
+<p>Die Zusammenh&auml;nge bei der Addition von Buchstaben lassen sich an der folgenden Tabelle, die &Auml;hnlichkeit mit einer klassischen <i>Tabula recta</i> hat, &uuml;bersichtlich darstellen:</p>
 
 <pre>
   <i>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</i><br>
@@ -47,43 +47,43 @@ A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z<br>
 <i>Z</i> A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
 </pre>
 
-<p>In der kursivgedruckten oberen Zeile und in der ersten Spalte am linken Rand sind die beiden zu addierenden Summanden angegeben. Im Kreuzungspunkt innerhalb der Tabelle lässt sich die Summe ablesen, also das Ergebnis der Summation von Klartext-Buchstaben und Schlüsselbuchstaben. Dies ist der entsprechende Buchstabe des Geheimtextes.</p>
+<p>In der kursivgedruckten oberen Zeile und in der ersten Spalte am linken Rand sind die beiden zu addierenden Summanden angegeben. Im Kreuzungspunkt innerhalb der Tabelle l&auml;sst sich die Summe ablesen, also das Ergebnis der Summation von Klartext-Buchstaben und Schl&uuml;sselbuchstaben. Dies ist der entsprechende Buchstabe des Geheimtextes.</p>
 
-<p>Zur Verschlüsselung wird man einen zufälligen Schlüssel benutzen, der in diesem Beispielfall passenderweise ebenfalls aus den 26 Großbuchstaben zusammengesetzt ist und dessen Länge (mindestens) der Länge des zu verschlüsselnden Klartextes entspricht. Entscheidend für die Sicherheit der Verschlüsselung ist, dass die einzelnen Buchstaben des Schlüssels wirklich zufällig verteilt sind, unvorhersagbar sind und in keinerlei Zusammenhang untereinander stehen. Als Beispiel für einen zufälligen Schlüssel dient die folgende Buchstabenfolge:</p>
+<p>Zur Verschl&uuml;sselung wird man einen zuf&auml;lligen Schl&uuml;ssel benutzen, der in diesem Beispielfall passenderweise ebenfalls aus den 26 Gro&szlig;buchstaben zusammengesetzt ist und dessen L&auml;nge (mindestens) der L&auml;nge des zu verschl&uuml;sselnden Klartextes entspricht. Entscheidend f&uuml;r die Sicherheit der Verschl&uuml;sselung ist, dass die einzelnen Buchstaben des Schl&uuml;ssels wirklich zuf&auml;llig verteilt sind, unvorhersagbar sind und in keinerlei Zusammenhang untereinander stehen. Als Beispiel f&uuml;r einen zuf&auml;lligen Schl&uuml;ssel dient die folgende Buchstabenfolge:</p>
 
 <pre>
 S = WZSLXWMFQUDMPJLYQOXXB
 </pre>
 
-<p>Der Schlüssel S ist in diesem Beispiel recht kurz, er umfasst nur 21 Buchstaben, und ist bei bestimmungsgemäßer Verwendung sehr schnell „verbraucht“, nämlich bereits nach Verschlüsselung eines Textes aus 21 Buchstaben.</p>
+<p>Der Schl&uuml;ssel S ist in diesem Beispiel recht kurz, er umfasst nur 21 Buchstaben, und ist bei bestimmungsgem&auml;&szlig;er Verwendung sehr schnell verbraucht, n&auml;mlich bereits nach Verschl&uuml;sselung eines Textes aus 21 Buchstaben.</p>
 
-<p>Beispielsweise soll der folgende Klartext K verschlüsselt werden:</p>
+<p>Beispielsweise soll der folgende Klartext K verschl&uuml;sselt werden:</p>
 
 <pre>
 K = ANGRIFFIMMORGENGRAUEN
 </pre>
 
-<p>Zur Verschlüsselung werden Klartext K und Schlüssel S, wie oben erläutert, buchstabenweise addiert. Als „Summe“ (K&#160;+&#160;S&#160;=&#160;G) erhält man nach der so durchgeführten Einmalverschlüsselung den Geheimtext G:</p>
+<p>Zur Verschl&uuml;sselung werden Klartext K und Schl&uuml;ssel S, wie oben erl&auml;utert, buchstabenweise addiert. Als Summe (K&#160;+&#160;S&#160;=&#160;G) erh&auml;lt man nach der so durchgef&uuml;hrten Einmalverschl&uuml;sselung den Geheimtext G:</p>
 
 <pre>
 G = XNZDGCSODHSEWOZFIPSCP
 </pre>
 
-<p>Der im Ergebnis erhaltene Geheimtext G ist von einem Zufallstext nicht zu unterscheiden und kann prinzipiell mit keiner noch so gearteten kryptoanalytischen Angriffsmethode (weder jetzt noch in Zukunft) entziffert werden. Allein die Kenntnis des Schlüssels S erlaubt es, aus dem Geheimtext G durch Subtraktion des Schlüssels wieder den Klartext K zu gewinnen. Ohne den Schlüssel kann man prinzipiell alle denkbaren und mehr oder weniger sinnvollen Buchstabenkombinationen aus 21 Buchstaben „konstruieren“. Theoretisch könnte ein Angreifer dies probieren. Er würde so eine Unmenge an Sätzen erhalten, die in beliebigen Sprachen beliebige Informationen verkünden würden, beispielsweise</p>
+<p>Der im Ergebnis erhaltene Geheimtext G ist von einem Zufallstext nicht zu unterscheiden und kann prinzipiell mit keiner noch so gearteten kryptoanalytischen Angriffsmethode (weder jetzt noch in Zukunft) entziffert werden. Allein die Kenntnis des Schl&uuml;ssels S erlaubt es, aus dem Geheimtext G durch Subtraktion des Schl&uuml;ssels wieder den Klartext K zu gewinnen. Ohne den Schl&uuml;ssel kann man prinzipiell alle denkbaren und mehr oder weniger sinnvollen Buchstabenkombinationen aus 21 Buchstaben konstruieren. Theoretisch k&ouml;nnte ein Angreifer dies probieren. Er w&uuml;rde so eine Unmenge an S&auml;tzen erhalten, die in beliebigen Sprachen beliebige Informationen verk&uuml;nden w&uuml;rden, beispielsweise</p>
 
 <pre>
 K' = WIKIPEDIAFINDENWIRGUT
 </pre>
 
-<p>mit dem dazu „passenden“ Schlüssel, der der Differenz zwischen Geheimtext G und dem konstruierten Pseudo-Klartext K' entspricht (S'&#160;=&#160;G&#160;-&#160;K'):</p>
+<p>mit dem dazu passenden Schl&uuml;ssel, der der Differenz zwischen Geheimtext G und dem konstruierten Pseudo-Klartext K' entspricht (S'&#160;=&#160;G&#160;-&#160;K'):</p>
 
 <pre>
 S' = AEOUQXOFCBJQSJLIZXLHV
 </pre>
 
-<p>Dieser Schlüssel S' erfüllt die Bedingung, dass die buchstabenweise Summe von ihm mit dem oben erzeugten (falschen) Klartext K' genau den gleichen Geheimtext ergibt wie die Summe aus dem echten, aber dem Angreifer unbekannten Schlüssel S mit dem echten, aber dem Angreifer ebenso unbekannten Klartext K. So kann der Angreifer eine unübersehbare Fülle von denkbaren Klartext-Schlüsselpaaren konstruieren, die in (buchstabenweiser) Summe alle den gleichen echten Geheimtext ergeben. Er hat jedoch keine Möglichkeit, daraus auf den echten Klartext zurückzuschließen. Auch Brute Force, also das erschöpfende Durchprobieren aller möglichen Schlüssel, führt nicht zum Erfolg. Der Angreifer kann zwar so&#160;– sogar ohne überhaupt den Geheimtext zu kennen&#160;– alle denkbaren Texte mit 21 Buchstaben erzeugen, unter denen natürlich auch der ursprüngliche sein wird. Es gibt jedoch keinerlei Anhaltspunkte zu entscheiden, welcher aus der Unmenge der durchaus sinnvollen Texte der tatsächliche Klartext ist. Solange ihm der Schlüssel nicht in die Hände fällt, bleibt der Klartext auf ewig ein Geheimnis.</p>
+<p>Dieser Schl&uuml;ssel S' erf&uuml;llt die Bedingung, dass die buchstabenweise Summe von ihm mit dem oben erzeugten (falschen) Klartext K' genau den gleichen Geheimtext ergibt wie die Summe aus dem echten, aber dem Angreifer unbekannten Schl&uuml;ssel S mit dem echten, aber dem Angreifer ebenso unbekannten Klartext K. So kann der Angreifer eine un&uuml;bersehbare F&uuml;lle von denkbaren Klartext-Schl&uuml;sselpaaren konstruieren, die in (buchstabenweiser) Summe alle den gleichen echten Geheimtext ergeben. Er hat jedoch keine M&ouml;glichkeit, daraus auf den echten Klartext zur&uuml;ckzuschlie&szlig;en. Auch Brute Force, also das ersch&ouml;pfende Durchprobieren aller m&ouml;glichen Schl&uuml;ssel, f&uuml;hrt nicht zum Erfolg. Der Angreifer kann zwar so-sogar ohne &uuml;berhaupt den Geheimtext zu kennen-alle denkbaren Texte mit 21 Buchstaben erzeugen, unter denen nat&uuml;rlich auch der urspr&uuml;ngliche sein wird. Es gibt jedoch keinerlei Anhaltspunkte zu entscheiden, welcher aus der Unmenge der durchaus sinnvollen Texte der tats&auml;chliche Klartext ist. Solange ihm der Schl&uuml;ssel nicht in die H&auml;nde f&auml;llt, bleibt der Klartext auf ewig ein Geheimnis.</p>
 
-<p>Um diese Sicherheit nicht zu gefährden, sollte der Einmalschlüssel nach bestimmungsgemäßem Gebrauch unwiederbringlich vernichtet werden.</p>
+<p>Um diese Sicherheit nicht zu gef&auml;hrden, sollte der Einmalschl&uuml;ssel nach bestimmungsgem&auml;&szlig;em Gebrauch unwiederbringlich vernichtet werden.</p>
 
 <p style="text-align:right;"><i>Quelle: http://de.wikipedia.org/wiki/One-Time-Pad<i></p>
 
