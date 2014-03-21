@@ -201,16 +201,14 @@
 \section{Regressionstests}
  \subsection{Caesar}
   \begin{enumerate}
-   \item Leider konnte die UI nicht überall statisch gemacht werden. Beispielsweise bei der Demonstration der Caesar-Chiffre 
-         Springt das Alphabet wenn sich der untere Button ``Proceed'' mit der Tastatur abwechselt. Größenänderungen und Kapselung des 
-         Alphabets hat zu keinem sinnvollen Ergebnis geführt. Die UI außerhalb der Demo-Phase ist überall im Griff und es konnten 
-         keine Sprünge mehr festgestellt werden.\newline 
-         \textbf{Regressionstests für springende UI:}\newline
+   \item \textbf{Regressionstests für springende UI:}\newline
          Zu beachten ist, dass die Einführungsphase davon ausgeschlossen ist!\newline
          Gehe die Visualisierung des Verfahrens durch und achte auf UI-Elemente, die nach der Interaktion mit der Oberfläche 
          nicht an ihrem zugewiesenen Ort bleiben. Genauer:\newline
-         1. Experiment: Beim Ent- und Verschlüsseln sollte alles statisch an seinem Ort bleiben und sich nichts bewegen.\newline
-         2. Histogramme: Achte vor allem bei der Auswahl der Eingabebox für den Schlüssel, ob alles an seinem Ort bleibt, wenn die
+         1. Demonstration: Bei der Demonstrierung der Chiffre sollte vor allem bei der Abwechslung vom ``weiter'' Button und 
+            der Tastatur darauf geachtet werden, dass die UI statisch bleibt.
+         2. Experiment: Beim Ent- und Verschlüsseln sollte alles statisch an seinem Ort bleiben und sich nichts bewegen.\newline
+         3. Histogramme: Achte vor allem bei der Auswahl der Eingabebox für den Schlüssel, ob alles an seinem Ort bleibt, wenn die
             Tastatur erscheint.
    \item Überprüfe den ersten Schritt der Demonstration auf das Fehlen des Alphabets. Wenn er erst im zweiten Schritt erscheint, dann ist
          alles richtig.
@@ -262,11 +260,11 @@
       \item Das größte Problem bei der Caesar-UI waren die \textbf{springenden} UI-Elemente, die an ihrem ursprünglichen Ort hätten bleiben sollen.
             Wenn allerdings ein neues UI-Element erschienen ist oder ein altes verschwunden ist, beispielsweise ein Button, dann hat der Layout-Manager kurzerhand auch alle anderen
             Elemente nach seinem Belieben ausgerichtet. Dies führte oft zu zufälligen Ergebnissen, die nicht nachvollziehbar waren. Manchmal sogar nicht reproduzierbar.
-            Infolgedessen konnte man nicht alle Fehler dieser Art beseitigen, da man den Ursprung nicht finden konnte.\newline 
+      
             Es wäre zwar möglich die UI von einem anderen Layout-Manager auslegen zu lassen, jedoch hätte das den Zeitrahmen gesprengt, da die UI
             auf den \textbf{GridBagLayoutManager} ausgerichtet war. Das hätte ein völliges Neuschreiben der UI bedeutet. 
             
-      \item Auch ein Problem waren die \textbf{Erklärungen}. Es hat sich herausgestellt, dass diese größtenteils sehr {gegenintuitiv} waren.
+      \item Auch ein Problem waren die \textbf{Erklärungen}. Es hat sich herausgestellt, dass diese größtenteils sehr \textbf{unintuitiv} waren.
             Viele der Testpersonen haben sehr große Schwierigkeiten gehabt, da die Texte anfangs länger waren und eine kleinere Schrift hatten.
             Das erzeugte viel Aufwand und war alles andere als \textbf{benutzerfreundlich}.\newline
             Auch wenn das nichts zur Logik des Programms beigetragen hat, so hat es die \textbf{Benutzerfreundlichkeit} erheblich verbessert. 
