@@ -108,23 +108,13 @@ public class IntroductionView extends VisualizationView {
 		// this.proceed.setFont(new Font("Arial", 2, 25));
 		this.add(this.proceed, proceedConstraint);
 
-		// set the alignment of the masterPlan image.
-//		GridBagConstraints planConstraint = new GridBagConstraints();
-//		planConstraint.gridx = 1;
-//		planConstraint.gridy = 0;
-//
-//		// take the image from the xml-resource.
-//		this.setCaesarIdeaImg(new ImageView(introResource
-//				.getChild("CaesarIdea").getAttributeValue("path")));
-//		this.animationContainer.add(this.caesarIdeaImg, planConstraint);
-
 		// set the alignment of the Explanations.
 		GridBagConstraints explanationConstraint = new GridBagConstraints();
 		explanationConstraint.gridx = 1;
 		explanationConstraint.gridy = 1;
 		explanationConstraint.gridwidth = 5;
 		this.setExplanation(new JLabel(
-				"<html><div style=\"width:600px;\">"
+				"<html><div style=\"width:1000px;\">"
 						+ IntroductionView.i18n
 								.tr("One fine day, ca 70 B.C., Caesar was puzzling on an extremely intelligent plan "
 										+ "to finally conquer Gallia and was about to send it to his generals.") + "</div></html>"
@@ -132,6 +122,7 @@ public class IntroductionView extends VisualizationView {
 		));
 
 		this.explanation.setFont(new Font("Arial", 2, 20));
+		this.explanation.setPreferredSize(new Dimension(1000, 75));
 		this.add(this.explanation, explanationConstraint);
 
 		// layout the component of the Panel.
