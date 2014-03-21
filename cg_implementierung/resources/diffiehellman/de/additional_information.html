@@ -2,19 +2,19 @@
 <head>
 </head>
 <body>
-<h2>Diffie-Hellman Schlüsselaustausch</h2>
-<p>Der Diffie-Hellman-Schlüsselaustausch oder Diffie-Hellman-Merkle-Schlüsselaustausch ist ein Protokoll aus dem Bereich der Kryptografie. Mit ihm erzeugen zwei Kommunikationspartner einen geheimen Schlüssel, den nur diese beiden kennen. Dieser Schlüssel wird üblicherweise verwendet, um verschlüsselte Nachrichten mittels eines symmetrischen Kryptosystems zu übertragen.</p>
+<h2>Diffie-Hellman Schl&uuml;sselaustausch</h2>
+<p>Der Diffie-Hellman-Schl&uuml;sselaustausch oder Diffie-Hellman-Merkle-Schl&uuml;sselaustausch ist ein Protokoll aus dem Bereich der Kryptografie. Mit ihm erzeugen zwei Kommunikationspartner einen geheimen Schl&uuml;ssel, den nur diese beiden kennen. Dieser Schl&uuml;ssel wird &uuml;blicherweise verwendet, um verschl&uuml;sselte Nachrichten mittels eines symmetrischen Kryptosystems zu &uuml;bertragen.</p>
 
 <p>
-Beim Diffie-Hellman-Schlüsselaustausch senden sich beide Kommunikationspartner über einen unsicheren Kanal jeweils eine Nachricht zu. Das Problem, aus diesen beiden Nachrichten den geheimen Schlüssel zu berechnen, wird als Diffie-Hellman-Problem bezeichnet. Von diesem nimmt man an, dass es praktisch nicht lösbar ist. Deshalb kann jemand, der beide Nachrichten mithört, daraus im Allgemeinen nicht den geheimen Schlüssel berechnen. Der Diffie-Hellman-Schlüsselaustausch ist jedoch nicht mehr sicher, wenn sich ein Angreifer zwischen die beiden Kommunikationspartner schalten und Nachrichten verändern kann. Diese Lücke schließen Protokolle wie das Station-to-Station-Protokoll, indem sie zusätzlich digitale Signaturen und Message Authentication Codes verwenden.
+Beim Diffie-Hellman-Schl&uuml;sselaustausch senden sich beide Kommunikationspartner &uuml;ber einen unsicheren Kanal jeweils eine Nachricht zu. Das Problem, aus diesen beiden Nachrichten den geheimen Schl&uuml;ssel zu berechnen, wird als Diffie-Hellman-Problem bezeichnet. Von diesem nimmt man an, dass es praktisch nicht l&ouml;sbar ist. Deshalb kann jemand, der beide Nachrichten mith&ouml;rt, daraus im Allgemeinen nicht den geheimen Schl&uuml;ssel berechnen. Der Diffie-Hellman-Schl&uuml;sselaustausch ist jedoch nicht mehr sicher, wenn sich ein Angreifer zwischen die beiden Kommunikationspartner schalten und Nachrichten ver&auml;ndern kann. Diese L&uuml;cke schlie&szlig;en Protokolle wie das Station-to-Station-Protokoll, indem sie zus&auml;tzlich digitale Signaturen und Message Authentication Codes verwenden.
 </p>
 
 <p>
-Der langen Tradition von Streichlisten und Codebüchern setzte das Diffie-Hellman-Verfahren ein Ende. Noch während des Zweiten Weltkrieges mussten die Benutzer der ausgeklügelten Verschlüsselungsmaschinen (zum Beispiel die Enigma) Codebücher mit sich führen, um für jeden einzelnen Tag des Jahres zu wissen, welchen Schlüssel der Absender verwendet. Wurde ein solches Codebuch geraubt, war die Verschlüsselung hinfällig. Besonders beim Militär war die Zuteilung und der Transport solcher hochgeheimer Codebücher stets das größte Sorgenkind.
+Der langen Tradition von Streichlisten und Codeb&uuml;chern setzte das Diffie-Hellman-Verfahren ein Ende. Noch w&auml;hrend des Zweiten Weltkrieges mussten die Benutzer der ausgekl&uuml;gelten Verschl&uuml;sselungsmaschinen (zum Beispiel die Enigma) Codeb&uuml;cher mit sich f&uuml;hren, um f&uuml;r jeden einzelnen Tag des Jahres zu wissen, welchen Schl&uuml;ssel der Absender verwendet. Wurde ein solches Codebuch geraubt, war die Verschl&uuml;sselung hinf&auml;llig. Besonders beim Milit&auml;r war die Zuteilung und der Transport solcher hochgeheimer Codeb&uuml;cher stets das gr&ouml;&szlig;te Sorgenkind.
 </p>
 
 <p>
-Der Diffie-Hellman-Schlüsselaustausch zählt zur Klasse der Schlüsselaustauschprotokolle und bildet die Grundlage des Elgamal-Verschlüsselungsverfahrens.
+Der Diffie-Hellman-Schl&uuml;sselaustausch z&auml;hlt zur Klasse der Schl&uuml;sselaustauschprotokolle und bildet die Grundlage des Elgamal-Verschl&uuml;sselungsverfahrens.
 </p>
 
 <p>
@@ -24,13 +24,13 @@ Die Implementierung mittels elliptischer Kurven ist als Elliptic Curve Diffie-He
 Geschichte
 </h2>
 <p>
-Der Algorithmus wurde von Martin Hellman gemeinsam mit Whitfield Diffie und Ralph Merkle an der Stanford-Universität (Kalifornien) entwickelt und 1976 veröffentlicht.
+Der Algorithmus wurde von Martin Hellman gemeinsam mit Whitfield Diffie und Ralph Merkle an der Stanford-Universit&auml;t (Kalifornien) entwickelt und 1976 ver&ouml;ffentlicht.
 </p>
 
 <p>
-Wie erst 1997 bekannt wurde, hatte das britische Government Communications Headquarters (GCHQ) schon in den 1960er Jahren den Auftrag erteilt, zur Vermeidung der hohen Kosten bei der damals üblichen Schlüsselverteilung einen anderen Weg für die Schlüsselverteilung zu finden. Die hierzu von James H. Ellis, Clifford Cocks und Malcolm J. Williamson geäußerten Ideen ähnelten dem Diffie-Hellman-Verfahren. Das GCHQ hat einerseits wegen der Geheimhaltung, andererseits wegen des für die Briten aus Sicht der frühen 1970er Jahre fraglichen Nutzens nie ein Patent beantragt.
+Wie erst 1997 bekannt wurde, hatte das britische Government Communications Headquarters (GCHQ) schon in den 1960er Jahren den Auftrag erteilt, zur Vermeidung der hohen Kosten bei der damals &uuml;blichen Schl&uuml;sselverteilung einen anderen Weg f&uuml;r die Schl&uuml;sselverteilung zu finden. Die hierzu von James H. Ellis, Clifford Cocks und Malcolm J. Williamson ge&auml;u&szlig;erten Ideen &auml;hnelten dem Diffie-Hellman-Verfahren. Das GCHQ hat einerseits wegen der Geheimhaltung, andererseits wegen des f&uuml;r die Briten aus Sicht der fr&uuml;hen 1970er Jahre fraglichen Nutzens nie ein Patent beantragt.
 </p>
 
-<p style="text-align:right;"><i>Source http://en.wikipedia.org/wiki/Diffie-Hellman-Schlüsselaustausch<i></p>
+<p style="text-align:right;"><i>Source http://en.wikipedia.org/wiki/Diffie-Hellman-Schl&uuml;sselaustausch<i></p>
 </body>
 </html>
