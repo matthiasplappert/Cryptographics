@@ -90,8 +90,8 @@ public class DHExperimentView extends JPanel {
 	
 	private String help5 = i18n.tr("You have to choose the two colors that will be mixed to " +
 			"the final shared secret. Tip: Why can't Eve compute the secret. Right, " +
-			"you have a color that Eve does not have, so you have to use that one. It is the color" +
-			"with the Label SA. The other color is the one you got from Bob which is the mixture of Bob," +
+			"you have a color that Eve does not have, so you have to use that one. It is the color " +
+			"with the label SA. The other color is the one you got from Bob which is the mixture of Bob, " +
 			"MB");
 	
 	private String mix = i18n.tr("Mix with public color");

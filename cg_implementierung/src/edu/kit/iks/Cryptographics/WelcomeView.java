@@ -45,6 +45,9 @@ public class WelcomeView extends JPanel {
 		super(new GridBagLayout());
 		
 		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.anchor = GridBagConstraints.NORTH;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		
@@ -52,7 +55,7 @@ public class WelcomeView extends JPanel {
 		
 		gbc.gridy = 1;
 		
-		this.add(new JLabel(this.wrapHtml("<div width=\"500\">"
+		this.add(new JLabel(this.wrapHtml("<div width=\"1000\">"
 				+ this.description
 				+ "</div>")), gbc);
 	}
