@@ -44,7 +44,7 @@ public class DHExperimentView extends JPanel {
 			"one is the right color. If you need help click the 'Help' button.");
 	
 	private String wrongPrivate = i18n.tr("Oh no. You chose the private color. This color " +
-			"is meant to be private. If you had send this color, Eve would be able " +
+			"is meant to be private. If you had sent this color, Eve would be able " +
 			"to get the secret too, afterwards. " +
 			"Please try again, by choosing another color and clicking " +
 			"the 'send color' button.");
@@ -53,7 +53,7 @@ public class DHExperimentView extends JPanel {
 			"won't be able to get the secret shared color, you still didn't follow " +
 			"the protocol instructions. Try again by choosing another color.");
 	
-	private String rightColor = i18n.tr("Good. You chose to send your mixture to Bob. This is " +
+	private String rightColor = i18n.tr("Good. You sent your mixture to Bob. This is " +
 			"the right choice.");
 	
 	private String bobsTurn = i18n.tr("Now it is Bobs turn. Click the continue button, so that " +
@@ -64,7 +64,7 @@ public class DHExperimentView extends JPanel {
 			"how it was explained at the demonstration.");
 	
 	private String congrats = i18n.tr("Congratulations, you chose the right colors to mix, " +
-			"you and Bob established a shared secret that Eve doesn not know.");
+			"you and Bob established a shared secret that Eve does not know.");
 	
 	/*
 	 * the current help String
@@ -90,8 +90,9 @@ public class DHExperimentView extends JPanel {
 	
 	private String help5 = i18n.tr("You have to choose the two colors that will be mixed to " +
 			"the final shared secret. Tip: Why can't Eve compute the secret. Right, " +
-			"you have a color that Eve does not have, so you have to use that one. The other " +
-			"color you have to think about yourself, or try different colors until it works.");
+			"you have a color that Eve does not have, so you have to use that one. It is the color" +
+			"with the Label SA. The other color is the one you got from Bob which is the mixture of Bob," +
+			"MB");
 	
 	private String mix = i18n.tr("Mix with public color");
 	

@@ -126,8 +126,8 @@ public class DemoOneWayView extends VisualizationView {
 	}
 	
 	public void setNextText() {
-		this.keyExchangeExplain.setText("<html><div style=\"width:200px; height:100px\">" + i18n.tr("To achive this, we use " +
-				"something called one-way function. This function is easy to compute " +
+		this.keyExchangeExplain.setText("<html><div style=\"width:200px; height:100px\">" + i18n.tr("To achieve this, we use " +
+				"something called one-way function. This type of function is easy to compute " +
 				"in one direction, but difficult to reverse.") + "</div></html>");
 		this.isNextText = true;
 	}

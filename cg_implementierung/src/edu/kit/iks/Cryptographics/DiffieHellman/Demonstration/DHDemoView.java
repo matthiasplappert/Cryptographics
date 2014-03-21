@@ -27,18 +27,18 @@ public class DHDemoView extends VisualizationView {
 			"Alice chooses a public color and sends it to Bob. " +
 				"As Eve listens to the channel she gets a copy.");
 	
-	private String explanation2 = i18n.tr("Next, Alice chooses a private Color, that she keeps " +
-			"for herself, she does not send it. Then she mixes her private Color with " +
-			"the previously sent public Color and sends the mixture to Bob. " +
+	private String explanation2 = i18n.tr("Next, Alice chooses a private color, that she keeps " +
+			"for herself, she does not send it. Then she mixes her private color with " +
+			"the previously sent public color and sends the mixture to Bob. " +
 			"Note that because we use the mixing of colors as a one-way function, " +
 			"Eve cannot compute which private color Alice used to get the mixture. " +
 			"Keep this in mind, as this is critical to understand why this " +
 			"protocol works. " +
-			"As previous Bob and Eve have the send color, that means the mixture of Alice.");
+			"As previously Bob and Eve have the sent color, that means the mixture of Alice.");
 	
 	private String explanation3 = i18n.tr("Now Bob does the exact same thing like Alice did " +
 			"in the previous step. " +
-			"He chooses a private color. Mixes it with the public Color, " +
+			"He chooses a private color. Mixes it with the public color, " +
 			"and sends the mixture to Alice. Eve gets a copy, but can't compute " +
 			"the private color of Bob, because of the one-way function property");
 	

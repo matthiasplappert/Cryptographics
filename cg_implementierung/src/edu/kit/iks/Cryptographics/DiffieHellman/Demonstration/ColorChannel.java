@@ -435,7 +435,7 @@ public class ColorChannel extends JPanel {
 	 */
 	public void chooseAlicePrivateColor(Color color) {
 		this.model.setAlicePrivateColor(color);
-		this.chooseColorToKeep(color, 0, "sA");
+		this.chooseColorToKeep(color, 0, "SA");
 	}
 	
 	/**
@@ -445,7 +445,7 @@ public class ColorChannel extends JPanel {
 	 */
 	public void chooseBobPrivateColor(Color color) {
 		this.model.setBobPrivateColor(color);
-		this.chooseColorToKeep(color, 1, "sB");
+		this.chooseColorToKeep(color, 1, "SB");
 	}
 	
 	/**
@@ -478,7 +478,7 @@ public class ColorChannel extends JPanel {
 	public void sendAliceMixedColorToBob(NextStepCallback cb) {
 		this.model.mixAlicePrivateAndPublic();
 		this.setColorNextToSend(this.model.getAliceMixedColor());
-		this.sendToBob(cb, true, "AM");
+		this.sendToBob(cb, true, "MA");
 	}
 	
 	/**
@@ -488,7 +488,7 @@ public class ColorChannel extends JPanel {
 	public void sendBobMixedColorToAlice(NextStepCallback cb) {
 		this.model.mixBobPrivateAndPublic();
 		this.setColorNextToSend(this.model.getBobMixedColor());
-		this.sendToAlice(cb, true, "BM");
+		this.sendToAlice(cb, true, "MB");
 	}
 	
 	/**
