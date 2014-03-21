@@ -43,13 +43,13 @@ public class DHExperimentView extends JPanel {
 			"shown in the demonstration. You have three possible colors to send and " +
 			"one is the right color. If you need help click the 'Help' button.");
 	
-	private String wrongPrivate = i18n.tr("Oh no. You choosed the private color. This color " +
+	private String wrongPrivate = i18n.tr("Oh no. You chose the private color. This color " +
 			"is meant to be private. If you had sent this color, Eve would be able " +
 			"to get the secret too, afterwards. " +
 			"Please try again, by choosing another color and clicking " +
 			"the 'send color' button.");
 	
-	private String wrongPublic = i18n.tr("Oh no. You choosed the public color. While Eve " +
+	private String wrongPublic = i18n.tr("Oh no. You chose the public color. While Eve " +
 			"won't be able to get the secret shared color, you still didn't follow " +
 			"the protocol instructions. Try again by choosing another color.");
 	
@@ -63,7 +63,7 @@ public class DHExperimentView extends JPanel {
 			"Choose the right colors to produce the final secret, just like " +
 			"how it was explained at the demonstration.");
 	
-	private String congrats = i18n.tr("Congratulations, you choosed the right colors to mix, " +
+	private String congrats = i18n.tr("Congratulations, you chose the right colors to mix, " +
 			"you and Bob established a shared secret that Eve does not know.");
 	
 	/*
@@ -105,7 +105,7 @@ public class DHExperimentView extends JPanel {
 	
 	private String send = i18n.tr("Send color");
 	
-	private String wrongColor = i18n.tr("You choosed the wrong colors, try again");
+	private String wrongColor = i18n.tr("You chose the wrong colors, try again");
 	
 	private JLabel explainLbl;
 	
