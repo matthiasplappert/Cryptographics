@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>IdlePopoverView.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics</a> &gt; <span class="el_source">IdlePopoverView.java</span></div><h1>IdlePopoverView.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">package edu.kit.iks.Cryptographics;</span>
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.Timer;
+
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.PopoverView;
+
+/**
+ * The idle popover is presented as soon as the user is detected as idle.
+ * It displays a count-down after which the program will reset itself along
+ * with an explanation how to continue using the application.
+ * 
+ * @author Matthias Plappert
+ *
+ */
+public class IdlePopoverView extends PopoverView {
+	
+	/**
+	 * Serial version UID
+	 */
+	private static final long serialVersionUID = -4551738579737944993L;
+	
+	/**
+	 * The text label that displays the explanation
+	 */
+	private JLabel textLabel;
+	
+	/**
+	 * The text label that displays the count-down
+	 */
+	private JLabel countdownLabel;
+	
+	/**
+	 * The button that allows the user to continue using the app. This
+	 * might be considered as a duplicate, since the close button does the same
+	 * thing, but it's probably easier for the user if he can simply press continue
+	 */
+	private JButton continueButton;
+	
+	/**
+	 * The remaining time in milliseconds
+	 */
+	private long remainingTime;
+	
+	/**
+	 * The timer used to update the count-down label 
+	 */
+	private Timer updateTimer;
+	
+	/**
+	 * Localization instance
+	 */
+<span class="nc" id="L63">	private static I18n i18n = Configuration.getInstance().getI18n(IdlePopoverView.class);</span>
+	
+	/**
+	 * Creates a new popover with a given remaining time in milliseconds.
+	 * The remaining time will be counted down until it reaches zero.
+	 * @param remaining the initial countdown time in milliseconds
+	 */
+	public IdlePopoverView(long initialTime) {
+<span class="nc" id="L71">		super();</span>
+<span class="nc" id="L72">		this.remainingTime = initialTime;</span>
+		
+		// Create a timer to update the view periodically.
+<span class="nc" id="L75">		this.updateTimer = new Timer(1000, new ActionListener() {</span>
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L79" title="All 2 branches missed.">				if (remainingTime &gt; 0) {</span>
+<span class="nc" id="L80">					remainingTime -= 1000;</span>
+<span class="nc" id="L81">					updateCountdownLabel();</span>
+<span class="nc" id="L82">				} else {</span>
+<span class="nc" id="L83">					updateTimer.stop();</span>
+<span class="nc" id="L84">					updateTimer = null;</span>
+				}
+<span class="nc" id="L86">			}</span>
+		});
+<span class="nc" id="L88">		this.updateTimer.start();</span>
+		
+		// Configure layout.
+<span class="nc" id="L91">		this.getContentView().setLayout(new GridBagLayout());</span>
+		
+		// Text label.
+<span class="nc" id="L94">		GridBagConstraints textConstraints = new GridBagConstraints();</span>
+<span class="nc" id="L95">		textConstraints.gridx = 0;</span>
+<span class="nc" id="L96">		textConstraints.gridy = 0;</span>
+<span class="nc" id="L97">		String text = i18n.tr(&quot;You haven't done anything in a while. To keep this exhibit functional, the system will reset itself soon. If you want to continue using the system, just dismiss this dialog.&quot;);</span>
+<span class="nc" id="L98">		this.textLabel = new JLabel(&quot;&lt;html&gt;&lt;div style=\&quot;width:200px;\&quot;&gt;&quot; + text + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L99">		this.getContentView().add(this.textLabel, textConstraints);</span>
+		
+		// Countdown label.
+<span class="nc" id="L102">		GridBagConstraints countdownConstraints = new GridBagConstraints();</span>
+<span class="nc" id="L103">		countdownConstraints.gridx = 0;</span>
+<span class="nc" id="L104">		countdownConstraints.gridy = 1;</span>
+<span class="nc" id="L105">		countdownConstraints.insets = new Insets(20, 0, 20, 0);</span>
+<span class="nc" id="L106">		this.countdownLabel = new JLabel();</span>
+<span class="nc" id="L107">		this.updateCountdownLabel();</span>
+<span class="nc" id="L108">		this.getContentView().add(this.countdownLabel, countdownConstraints);</span>
+		
+		// Continue button.
+<span class="nc" id="L111">		GridBagConstraints continueConstraints = new GridBagConstraints();</span>
+<span class="nc" id="L112">		continueConstraints.gridx = 0;</span>
+<span class="nc" id="L113">		continueConstraints.gridy = 2;</span>
+<span class="nc" id="L114">		this.continueButton = new JButton(i18n.tr(&quot;Continue&quot;));</span>
+<span class="nc" id="L115">		this.getContentView().add(this.continueButton, continueConstraints);</span>
+		
+<span class="nc" id="L117">		this.getContentView().validate();</span>
+<span class="nc" id="L118">	}</span>
+	
+	/**
+	 * Updates the text of the {countdownLabel}
+	 */
+	private void updateCountdownLabel() {
+<span class="nc" id="L124">		int seconds = (int)(this.remainingTime / 1000);</span>
+<span class="nc" id="L125">		String text = String.format(&quot;&lt;html&gt;&lt;div style=\&quot;width:200px;text-align:center;\&quot;&gt;%d:%02d:%02d&lt;/div&gt;&lt;/html&gt;&quot;, seconds/3600, (seconds%3600)/60, (seconds%60));</span>
+<span class="nc" id="L126">		this.countdownLabel.setText(text);</span>
+<span class="nc" id="L127">	}</span>
+	
+	/**
+	 * Returns the continue button
+	 * @return the continue button
+	 */
+	public JButton getContinueButton() {
+<span class="nc" id="L134">		return this.continueButton;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

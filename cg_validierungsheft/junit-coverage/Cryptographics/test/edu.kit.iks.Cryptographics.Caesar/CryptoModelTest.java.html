@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>CryptoModelTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics.Caesar</a> &gt; <span class="el_source">CryptoModelTest.java</span></div><h1>CryptoModelTest.java</h1><pre class="source lang-java linenums">package edu.kit.iks.Cryptographics.Caesar;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoModel;
+
+/**
+ * JUnit testcase class for testing the functionality of the model in the visualization of Caesar.
+ * 
+ * @author Wasilij Beskorovajnov.
+ * 
+ */
+<span class="fc" id="L16">public class CryptoModelTest {</span>
+	// Model to test.
+	private CryptoModel modelTT;
+
+<span class="fc" id="L20">	private final String MESSAGE_HEADER = &quot;[JUnit] Testing the functionality of &quot;;</span>
+
+	@Before
+	public void setUp() throws Exception {
+<span class="fc" id="L24">		this.modelTT = CryptoModel.getInstance();</span>
+<span class="fc" id="L25">	}</span>
+
+	@Test
+	public void testEnc() {
+<span class="fc" id="L29">		String alphabet =     &quot;!!!ABcdEFghIJKlmNOPqrSTUvwXYZ!!!&quot;;</span>
+<span class="fc" id="L30">		String expected = &quot;!!!FGhiJKlmNOPqrSTUvwXYZabCDE!!!&quot;;</span>
+<span class="fc" id="L31">		String actual = this.modelTT.enc(5, alphabet);</span>
+<span class="fc" id="L32">		assertEquals(MESSAGE_HEADER + &quot;enc(String)\n&quot;, expected, actual);</span>
+<span class="fc" id="L33">	}</span>
+
+	@Test
+	public void testDec() {
+<span class="fc" id="L37">		String cipher = &quot;!!!KLmnOPqrSTUvwXYZabCDEfgHIJ!!!&quot;;</span>
+<span class="fc" id="L38">		String expected = &quot;!!!ABcdEFghIJKlmNOPqrSTUvwXYZ!!!&quot;;</span>
+<span class="fc" id="L39">		String actual = this.modelTT.dec(10, cipher);</span>
+<span class="fc" id="L40">		assertEquals(MESSAGE_HEADER + &quot;dec(String)\n&quot;, expected, actual);</span>
+<span class="fc" id="L41">	}</span>
+	
+	@Test
+	public void testEncHtml() {
+<span class="fc" id="L45">		String alphabet =     &quot;&lt;b&gt;A&lt;/b&gt;&quot;;</span>
+<span class="fc" id="L46">		String expected = &quot;&lt;b&gt;F&lt;/b&gt;&quot;;</span>
+<span class="fc" id="L47">		String actual = this.modelTT.enc(5, alphabet);</span>
+<span class="fc" id="L48">		assertEquals(MESSAGE_HEADER + &quot;enc(String)\n&quot;, expected, actual);</span>
+<span class="fc" id="L49">	}</span>
+
+	@Test
+	public void testIsKeyValid() {
+<span class="fc" id="L53">		int[] validKeys = { 1, 13, 26 };</span>
+<span class="fc" id="L54">		int[] invalidKeys = { -25, 0, 27 };</span>
+
+<span class="fc bfc" id="L56" title="All 2 branches covered.">		for (int validKey : validKeys) {</span>
+<span class="fc" id="L57">			assertTrue(MESSAGE_HEADER + &quot;isKeyValid()\n&quot;,</span>
+<span class="fc" id="L58">					this.modelTT.isKeyValid(validKey));</span>
+		}
+
+<span class="fc bfc" id="L61" title="All 2 branches covered.">		for (int invalidKey : invalidKeys) {</span>
+<span class="fc" id="L62">			assertFalse(MESSAGE_HEADER + &quot;isKeyValid()\n&quot;,</span>
+<span class="fc" id="L63">					this.modelTT.isKeyValid(invalidKey));</span>
+		}
+<span class="fc" id="L65">	}</span>
+
+	@Test
+	public void testIsInputValid() {
+<span class="fc" id="L69">		String[] validInputArr = { &quot;A&quot;, &quot;ABCD&quot;, &quot;ABCDFHGRT&quot; };</span>
+<span class="fc" id="L70">		String[] invalidInputArr = { &quot;&quot;, &quot;ABCDHFGRTZ&quot;, &quot;ABDGFHRTEZSHD&quot; };</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">		for (String validInput : validInputArr) {</span>
+<span class="fc" id="L72">			assertTrue(MESSAGE_HEADER + &quot;isInputValid()\n&quot;,</span>
+<span class="fc" id="L73">					this.modelTT.isInputValid(validInput));</span>
+		}
+<span class="fc bfc" id="L75" title="All 2 branches covered.">		for (String invalidInput : invalidInputArr) {</span>
+<span class="fc" id="L76">			assertFalse(MESSAGE_HEADER + &quot;isInputValid()\n&quot;,</span>
+<span class="fc" id="L77">					this.modelTT.isInputValid(invalidInput));</span>
+		}
+<span class="fc" id="L79">	}</span>
+
+	@Test
+	public void testGenRandomGrats() {
+<span class="fc bfc" id="L83" title="All 2 branches covered.">		for (int i = 0; i &lt; 50; i++) {</span>
+<span class="fc" id="L84">		assertNotNull(this.modelTT.genRandomGrats());</span>
+		}
+<span class="fc" id="L86">	}</span>
+
+	@Test
+	public void testGenRandomBlamings() {
+<span class="fc bfc" id="L90" title="All 2 branches covered.">		for (int i = 0; i &lt; 50; i++) {</span>
+<span class="fc" id="L91">		assertNotNull(this.modelTT.genRandomBlamings());</span>
+		}
+<span class="fc" id="L93">	}</span>
+
+	@Test
+	public void testGenRandomPlainSequence() {
+<span class="fc bfc" id="L97" title="All 2 branches covered.">		for (int i = 0; i &lt; 50; i++) {</span>
+<span class="fc" id="L98">		assertNotNull(this.modelTT.genRandomPlainSequence());</span>
+		}
+<span class="fc" id="L100">	}</span>
+
+	@Test
+	public void testGenRandomCipher() {
+<span class="fc bfc" id="L104" title="All 2 branches covered.">		for (int i = 0; i &lt; 50; i++) {</span>
+<span class="fc" id="L105">		assertNotNull(this.modelTT.genRandomCipher(i));</span>
+		}
+<span class="fc" id="L107">	}</span>
+
+	@Test
+	public void testGenRandomText() {
+<span class="fc" id="L111">		assertNotNull(this.modelTT.genRandomText());</span>
+		
+<span class="fc" id="L113">	}</span>
+
+	@Test
+	public void testGenerateKey() {
+<span class="fc" id="L117">		int key = 0;</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">		for (int i = 0; i &lt; 99; i++) {</span>
+<span class="fc" id="L119">			key = this.modelTT.generateKey();</span>
+<span class="pc bpc" id="L120" title="2 of 4 branches missed.">			if (key &gt; 0 &amp;&amp; key &lt; 27) {</span>
+<span class="fc" id="L121">				assertTrue(true);</span>
+<span class="fc" id="L122">			} else {</span>
+<span class="nc" id="L123">				assertTrue(false);</span>
+			}
+		}
+<span class="fc" id="L126">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

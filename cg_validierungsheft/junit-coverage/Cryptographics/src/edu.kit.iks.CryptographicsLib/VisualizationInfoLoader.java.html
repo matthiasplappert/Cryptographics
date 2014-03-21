@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>VisualizationInfoLoader.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.CryptographicsLib</a> &gt; <span class="el_source">VisualizationInfoLoader.java</span></div><h1>VisualizationInfoLoader.java</h1><pre class="source lang-java linenums">package edu.kit.iks.CryptographicsLib;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
+import edu.kit.iks.Cryptographics.DiffieHellman.DHVisualizationInfo;
+import edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo;
+
+/**
+ * This class is a registry where all {VisualisationInfo}-objects are 
+ * accessible through the static {loadAllVisualizationInfo()}-method.
+ * Objects of this class cannot be instantiated
+ * 
+ * @author Christian Dreher
+ */
+public class VisualizationInfoLoader {
+	
+	/**
+	 * Private constructor to prevent this class from being instantiated
+	 */
+<span class="nc" id="L22">	private VisualizationInfoLoader() {</span>
+		
+<span class="nc" id="L24">	}</span>
+	
+	/**
+	 * Returns a list of all {VisualizationInfo}-objects 
+	 * 
+	 * @return A list of all {VisualizationInfo}-objects 
+	 */
+	static public List&lt;AbstractVisualizationInfo&gt; loadAllVisualizationInfos() {
+<span class="fc" id="L32">		List&lt;AbstractVisualizationInfo&gt; visualizationInfos = new ArrayList&lt;AbstractVisualizationInfo&gt;();</span>
+<span class="fc" id="L33">		visualizationInfos.add(new CaesarVisualizationInfo());</span>
+<span class="fc" id="L34">		visualizationInfos.add(new DHVisualizationInfo());</span>
+<span class="fc" id="L35">		visualizationInfos.add(new VigenereVisualizationInfo());</span>
+<span class="fc" id="L36">		visualizationInfos.add(new edu.kit.iks.Cryptographics.OneTimePad.VisualizationInfo());</span>
+<span class="fc" id="L37">		visualizationInfos.add(new edu.kit.iks.Cryptographics.AES.VisualizationInfo());</span>
+<span class="fc" id="L38">		visualizationInfos.add(new edu.kit.iks.Cryptographics.SHA2.VisualizationInfo());</span>
+		
+		// Example Package
+		//visualizationInfos.add(new edu.kit.iks.Cryptographics.Example.VisualizationInfo());
+<span class="fc" id="L42">		return visualizationInfos;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

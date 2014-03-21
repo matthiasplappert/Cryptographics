@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>HistogramView.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics.Caesar.Experiment</a> &gt; <span class="el_source">HistogramView.java</span></div><h1>HistogramView.java</h1><pre class="source lang-java linenums">package edu.kit.iks.Cryptographics.Caesar.Experiment;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.CryptographicsLib.CharacterFrequencyDiagramView;
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
+import edu.kit.iks.CryptographicsLib.NumpadView;
+import edu.kit.iks.CryptographicsLib.VisualizationView;
+
+/**
+ * This view represents the last view of the experiment phase. The elements contained here allow the
+ * user to break a given caesar cipher and have the purpose to show him the disadvantages of the
+ * caesar cipher, in particular how easy it is to break it. In addition user gets explanations
+ * presented about what histograms are and how they could help him solving his task to break the
+ * cipher.
+ * 
+ * @author Wasilij Beskorovajnov.
+ * 
+ */
+public class HistogramView extends VisualizationView {
+	// General parameters:
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * localization.
+	 */
+<span class="nc" id="L45">	private static I18n i18n = Configuration.getInstance().getI18n(</span>
+<span class="nc" id="L46">			HistogramView.class);</span>
+
+	// GUI container for other GUI elements:
+	/**
+	 * JPanel that contain JLabel explanations and the Button proceed.
+	 */
+	private JPanel explanationAndForwardingPanel;
+
+	/**
+	 * Panel that contains the core elements for the histogram experiment.&lt;br&gt;
+	 * 1. The both histograms.&lt;br&gt;
+	 * 2. inputfield for the key.&lt;br&gt;
+	 * 3. cipher and the decrypted cipher according to given histograms.&lt;br&gt;
+	 */
+	private JPanel histogramContainer;
+
+	/**
+	 * Container for the increment/decrement Buttons.&lt;br&gt;
+	 * is used in the brute force step of the experiment.&lt;br&gt;
+	 */
+	private JPanel keyControl;
+
+	/**
+	 * Container for the next/back buttons.
+	 */
+	private JPanel navigationPanel;
+
+	// GUI for feedback from the user.
+	/**
+	 * Button for stepping further in the experiment. Not part of the navigation. Unidirectional.
+	 */
+	private JButton proceed;
+
+	/**
+	 * GUI-element for literal feedback from the user.
+	 */
+	private KeyboardView keyboard;
+
+	/**
+	 * GUI-element for numerical Feedback from the user.
+	 */
+	private NumpadView numpad;
+
+	// GUI for feedback to the user:
+	/**
+	 * JLabel that contains the feedback on the input from the user. E.g. User typed a key in the
+	 * inputfield/clicked a button.
+	 */
+	private JLabel announcement;
+
+	/**
+	 * The name is selfexplanatory.
+	 */
+	private JLabel explanations;
+
+	// Core elements of the experiment in the histogramphase.:
+	/**
+	 * This gui-element is a normal diagram, that displays the distribution of letters in a given
+	 * plaintext/cipher.
+	 */
+	private CharacterFrequencyDiagramView plainTextHistogram;
+	private CharacterFrequencyDiagramView cipherHistogram;
+	private String histogramOriginalText;
+	private String histogramCipher;
+
+	/**
+	 * JLabel that contains the decrypted cipher.
+	 */
+	private JLabel plainText;
+
+	/**
+	 * JLabel that contains the cipher which the histogram above is presenting.
+	 */
+	private JLabel cipher;
+
+	/**
+	 * Inputfield that allows the user to type a numerical value.
+	 */
+	private JTextField keyInput;
+
+	/**
+	 * The secret key, the user has to find out.
+	 */
+	private int secretKey;
+
+	// Core elements of the experiment in the bruteforce phase:
+	/**
+	 * Contains the cipher in the brute force stage.
+	 */
+	private JLabel bruteForceCipherLabel;
+
+	/**
+	 * Buttons for iterating the key.
+	 */
+	private JButton increment;
+	private JButton decrement;
+
+	/**
+	 * Key that is being incremented and decremented.
+	 */
+	private JLabel bruteFoceKey;
+
+	/**
+	 * Constructor.
+	 */
+<span class="nc" id="L151">	public HistogramView() {</span>
+
+		// setup the layout.
+<span class="nc" id="L154">		this.setupViewLayout();</span>
+
+		// setup the navigation.
+<span class="nc" id="L157">		this.setupNavigation();</span>
+
+<span class="nc" id="L159">		String explanation = &quot;&lt;html&gt;&lt;body&gt;&quot;</span>
+<span class="nc" id="L160">				+ HistogramView.i18n</span>
+<span class="nc" id="L161">						.tr(&quot;Cryptologists call it 'breaking a cipher' when someone tries to decrypt text without knowing the key.&quot;)</span>
+<span class="nc" id="L162">				+ &quot;&lt;br&gt;&quot;</span>
+<span class="nc" id="L163">				+ HistogramView.i18n</span>
+<span class="nc" id="L164">						.tr(&quot;There are always 2 options when it comes to this.&quot;)</span>
+<span class="nc" id="L165">				+ &quot;&lt;br&gt;&quot;</span>
+<span class="nc" id="L166">				+ HistogramView.i18n</span>
+<span class="nc" id="L167">						.tr(&quot;1. You use literally brute force, meaning you simply try each possible key.&quot;)</span>
+<span class="nc" id="L168">				+ &quot;&lt;br&gt;&quot;</span>
+<span class="nc" id="L169">				+ &quot;&lt;br&gt;&quot;</span>
+<span class="nc" id="L170">				+ HistogramView.i18n</span>
+<span class="nc" id="L171">						.tr(&quot;2. You use elaborate cryptology techniques.&quot;);</span>
+
+<span class="nc" id="L173">		this.setupExplanationAndForwarding(explanation, GridBagConstraints.PAGE_START);</span>
+<span class="nc" id="L174">		this.proceed.setText(HistogramView.i18n.tr(&quot;Lets try brute force&quot;));</span>
+<span class="nc" id="L175">	}</span>
+
+	// -------------------------------------------------------------------public
+	// methods-------------------------------------------------//
+
+	public void setupExplanationAndForwarding(String explanations, int flag) {
+		// setup the container.
+<span class="nc" id="L182">		this.setupExplanationAndForwardingContainer(flag);</span>
+
+		// setup the explanations.
+<span class="nc" id="L185">		this.setExplanations(new JLabel(explanations));</span>
+//		this.explanations.setFont(new Font(&quot;Arial&quot;, 2, 20));
+<span class="nc" id="L187">		GridBagConstraints explanationConstraint = new GridBagConstraints();</span>
+<span class="nc" id="L188">		explanationConstraint.gridx = 1;</span>
+<span class="nc" id="L189">		explanationConstraint.gridy = 0;</span>
+<span class="nc" id="L190">		explanationConstraint.gridwidth = 5;</span>
+<span class="nc" id="L191">		explanationConstraint.gridheight = 5;</span>
+<span class="nc" id="L192">		explanationConstraint.insets = new Insets(10, 0, 10, 0);</span>
+<span class="nc" id="L193">		explanationConstraint.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L194">		this.explanationAndForwardingPanel.add(this.explanations,</span>
+<span class="nc" id="L195">				explanationConstraint);</span>
+
+		// setup the forwarding.
+<span class="nc" id="L198">		this.setupProceed();</span>
+<span class="nc" id="L199">		this.explanationAndForwardingPanel.validate();</span>
+<span class="nc" id="L200">		this.validate();</span>
+<span class="nc" id="L201">	}</span>
+
+	/**
+	 * Creates the keyboard with literals and shows it in the main container.
+	 * 
+	 * @param input
+	 */
+	public void createKeyboard(JTextField input) {
+<span class="nc" id="L209">		this.keyboard = new KeyboardView(input, KeyboardView.CHAR_MODE);</span>
+<span class="nc" id="L210">		GridBagConstraints kbConst = new GridBagConstraints();</span>
+<span class="nc" id="L211">		kbConst.anchor = GridBagConstraints.PAGE_END;</span>
+<span class="nc" id="L212">		kbConst.weightx = 1.0;</span>
+<span class="nc" id="L213">		kbConst.weighty = 0.5;</span>
+<span class="nc" id="L214">		kbConst.gridx = 0;</span>
+<span class="nc" id="L215">		kbConst.gridy = 0;</span>
+<span class="nc" id="L216">		kbConst.gridwidth = 11;</span>
+<span class="nc" id="L217">		kbConst.gridheight = 3;</span>
+<span class="nc" id="L218">		this.add(this.keyboard, kbConst);</span>
+<span class="nc" id="L219">		this.validate();</span>
+<span class="nc" id="L220">	}</span>
+
+	/**
+	 * Creates the keyboard with numerical values and presents it.
+	 * 
+	 * @param input
+	 */
+	public void createNumpad(JTextField input) {
+<span class="nc" id="L228">		this.numpad = new NumpadView(input, NumpadView.NUMBER_MODE);</span>
+<span class="nc" id="L229">		GridBagConstraints numpadConst = new GridBagConstraints();</span>
+<span class="nc" id="L230">		numpadConst.anchor = GridBagConstraints.FIRST_LINE_START;</span>
+<span class="nc" id="L231">		numpadConst.weightx = 1.0;</span>
+<span class="nc" id="L232">		numpadConst.weighty = 0.5;</span>
+<span class="nc" id="L233">		numpadConst.gridx = 0;</span>
+<span class="nc" id="L234">		numpadConst.gridy = 0;</span>
+<span class="nc" id="L235">		numpadConst.gridwidth = 11;</span>
+<span class="nc" id="L236">		numpadConst.gridheight = 3;</span>
+<span class="nc" id="L237">		numpadConst.insets = new Insets(50, 0, 0, 0);</span>
+<span class="nc" id="L238">		this.add(this.numpad, numpadConst);</span>
+<span class="nc" id="L239">		this.validate();</span>
+<span class="nc" id="L240">	}</span>
+
+	/**
+	 * Setup method for the first step of the histogram experiment.
+	 * 
+	 * @param secretKey
+	 * @param cipher
+	 */
+	public void setupBruteForceCore(int secretKey, String cipher) {
+		// set the key user has to find out.
+<span class="nc" id="L250">		this.secretKey = secretKey;</span>
+
+		// setup the container for the core gui of the experiment.
+<span class="nc" id="L253">		this.setupKeyControlContainer();</span>
+
+		// setup the core iteration elements.
+<span class="nc" id="L256">		this.setupKeyIterationButtons();</span>
+
+		// setup the labels that show the results of each iteration.
+<span class="nc" id="L259">		this.setupCipherPlainPresentationLabels(cipher);</span>
+
+<span class="nc" id="L261">		this.announcement = new JLabel(this.wrapHtml(HistogramView.i18n</span>
+<span class="nc" id="L262">				.tr(&quot;Brute force means trying to decrypt with each possible key, till you find the right one.&quot; +</span>
+						&quot;The Key is in the middle. And pressing buttons increments or decrements it. Let's search.&quot;)));
+<span class="nc" id="L264">		this.announcement.setPreferredSize(new Dimension(600, 100));</span>
+<span class="nc" id="L265">		GridBagConstraints annConst = new GridBagConstraints();</span>
+<span class="nc" id="L266">		annConst.gridx = 0;</span>
+<span class="nc" id="L267">		annConst.gridy = 0;</span>
+<span class="nc" id="L268">		annConst.gridwidth = 4;</span>
+<span class="nc" id="L269">		this.keyControl.add(this.announcement, annConst);</span>
+
+		// layout the buttons.
+<span class="nc" id="L272">		this.repaint();</span>
+<span class="nc" id="L273">		this.validate();</span>
+<span class="nc" id="L274">	}</span>
+
+	/**
+	 * Sets the container for the following histogram elements.
+	 */
+	public void setupHistogramContainer() {
+<span class="nc" id="L280">		this.histogramContainer = new JPanel(new GridBagLayout());</span>
+<span class="nc" id="L281">		GridBagConstraints containerConst = new GridBagConstraints();</span>
+<span class="nc" id="L282">		containerConst.anchor = GridBagConstraints.PAGE_END;</span>
+<span class="nc" id="L283">		containerConst.weightx = 1.0;</span>
+<span class="nc" id="L284">		containerConst.weighty = 1.0;</span>
+<span class="nc" id="L285">		containerConst.gridx = 0;</span>
+<span class="nc" id="L286">		containerConst.gridy = 1;</span>
+<span class="nc" id="L287">		containerConst.gridheight = 6;</span>
+<span class="nc" id="L288">		containerConst.gridwidth = 3;</span>
+//		containerConst.fill = GridBagConstraints.BOTH;
+<span class="nc" id="L290">		this.add(this.histogramContainer, containerConst);</span>
+<span class="nc" id="L291">	}</span>
+
+	/**
+	 * Creates a histogram of the cipher argument.
+	 * 
+	 * @param cipher
+	 */
+	public void setupCipherHistogram(String cipher) {
+<span class="nc" id="L299">		JLabel cipherHistogramHint = new JLabel(</span>
+<span class="nc" id="L300">				this.wrapHtml(HistogramView.i18n</span>
+<span class="nc" id="L301">						.tr(&quot;&amp;darr;Histogram of the cipher.&amp;darr;&quot;)));</span>
+<span class="nc" id="L302">		GridBagConstraints hintConst = new GridBagConstraints();</span>
+<span class="nc" id="L303">		hintConst.gridx = 2;</span>
+<span class="nc" id="L304">		hintConst.gridy = 2;</span>
+<span class="nc" id="L305">		hintConst.insets = new Insets(0, 50, 5, 50);</span>
+<span class="nc" id="L306">		hintConst.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L307">		this.histogramContainer.add(cipherHistogramHint, hintConst);</span>
+
+<span class="nc" id="L309">		this.cipherHistogram = new CharacterFrequencyDiagramView(cipher, 600,</span>
+<span class="nc" id="L310">				100);</span>
+<span class="nc" id="L311">		GridBagConstraints cipherHistConst = new GridBagConstraints();</span>
+<span class="nc" id="L312">		cipherHistConst.gridx = 2;</span>
+<span class="nc" id="L313">		cipherHistConst.gridy = 3;</span>
+<span class="nc" id="L314">		cipherHistConst.insets = new Insets(5, 50, 5, 50);</span>
+<span class="nc" id="L315">		cipherHistConst.fill = GridBagConstraints.BOTH;</span>
+<span class="nc" id="L316">		this.histogramContainer.add(this.cipherHistogram, cipherHistConst);</span>
+
+<span class="nc" id="L318">		this.cipher = new JLabel(cipher);</span>
+<span class="nc" id="L319">		GridBagConstraints cipherConst = new GridBagConstraints();</span>
+<span class="nc" id="L320">		cipherConst.gridx = 2;</span>
+<span class="nc" id="L321">		cipherConst.gridy = 4;</span>
+<span class="nc" id="L322">		cipherConst.insets = new Insets(5, 50, 5, 50);</span>
+<span class="nc" id="L323">		cipherConst.fill = GridBagConstraints.BOTH;</span>
+<span class="nc" id="L324">		this.histogramContainer.add(this.cipher, cipherConst);</span>
+
+<span class="nc" id="L326">		this.validate();</span>
+<span class="nc" id="L327">		this.repaint();</span>
+<span class="nc" id="L328">	}</span>
+
+	/**
+	 * Creates a histogram of the plain text argument.
+	 * 
+	 * @param text
+	 */
+	public void setupPlainHistogram(String text) {
+
+<span class="nc" id="L337">		JLabel plainHistogramHint = new JLabel(this.wrapHtml(HistogramView.i18n</span>
+<span class="nc" id="L338">				.tr(&quot;&amp;darr;Histogram of the original text.&amp;darr;&quot;)));</span>
+<span class="nc" id="L339">		GridBagConstraints hintConst = new GridBagConstraints();</span>
+<span class="nc" id="L340">		hintConst.gridx = 0;</span>
+<span class="nc" id="L341">		hintConst.gridy = 2;</span>
+<span class="nc" id="L342">		hintConst.insets = new Insets(0, 50, 5, 50);</span>
+<span class="nc" id="L343">		hintConst.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L344">		this.histogramContainer.add(plainHistogramHint, hintConst);</span>
+
+<span class="nc" id="L346">		this.plainTextHistogram = new CharacterFrequencyDiagramView(text, 600,</span>
+<span class="nc" id="L347">				100);</span>
+<span class="nc" id="L348">		GridBagConstraints plainTextHistConst = new GridBagConstraints();</span>
+<span class="nc" id="L349">		plainTextHistConst.gridx = 0;</span>
+<span class="nc" id="L350">		plainTextHistConst.gridy = 3;</span>
+<span class="nc" id="L351">		plainTextHistConst.insets = new Insets(5, 50, 5, 50);</span>
+<span class="nc" id="L352">		plainTextHistConst.fill = GridBagConstraints.BOTH;</span>
+<span class="nc" id="L353">		this.histogramContainer</span>
+<span class="nc" id="L354">				.add(this.plainTextHistogram, plainTextHistConst);</span>
+
+<span class="nc" id="L356">		this.plainText = new JLabel();</span>
+<span class="nc" id="L357">		GridBagConstraints plainConst = new GridBagConstraints();</span>
+<span class="nc" id="L358">		plainConst.gridx = 0;</span>
+<span class="nc" id="L359">		plainConst.gridy = 4;</span>
+<span class="nc" id="L360">		plainConst.insets = new Insets(5, 50, 5, 50);</span>
+<span class="nc" id="L361">		plainConst.fill = GridBagConstraints.BOTH;</span>
+<span class="nc" id="L362">		this.histogramContainer.add(this.plainText, plainConst);</span>
+
+<span class="nc" id="L364">		this.validate();</span>
+<span class="nc" id="L365">		this.repaint();</span>
+<span class="nc" id="L366">	}</span>
+
+	/**
+	 * Sets the inputfield where the user can type his key.
+	 */
+	public void setupKeyInput() {
+<span class="nc" id="L372">		JLabel keyCaption = new JLabel(this.wrapHtml(HistogramView.i18n</span>
+<span class="nc" id="L373">				.tr(&quot;Type your key in this&amp;darr; box and click 'Enter'.&quot;)));</span>
+<span class="nc" id="L374">		GridBagConstraints capConst = new GridBagConstraints();</span>
+<span class="nc" id="L375">		capConst.gridx = 0;</span>
+<span class="nc" id="L376">		capConst.gridy = 0;</span>
+<span class="nc" id="L377">		capConst.gridwidth = 3;</span>
+<span class="nc" id="L378">		capConst.insets = new Insets(0, 475, 0, 100);</span>
+<span class="nc" id="L379">		capConst.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L380">		this.histogramContainer.add(keyCaption, capConst);</span>
+
+<span class="nc" id="L382">		this.keyInput = new JTextField();</span>
+<span class="nc" id="L383">		this.keyInput.setMinimumSize(new Dimension(50, 50));</span>
+<span class="nc" id="L384">		this.keyInput.setBorder(BorderFactory.createLineBorder(Color.black));</span>
+<span class="nc" id="L385">		GridBagConstraints keyConst = new GridBagConstraints();</span>
+<span class="nc" id="L386">		keyConst.gridx = 0;</span>
+<span class="nc" id="L387">		keyConst.gridy = 1;</span>
+<span class="nc" id="L388">		keyConst.gridwidth = 3;</span>
+<span class="nc" id="L389">		keyConst.gridheight = 2;</span>
+<span class="nc" id="L390">		keyConst.insets = new Insets(5, 50, 5, 50);</span>
+<span class="nc" id="L391">		this.histogramContainer.add(this.keyInput, keyConst);</span>
+<span class="nc" id="L392">	}</span>
+
+	/**
+	 * Function that destroys the histogram of a cipher.
+	 */
+	public void unloadCipherHistogram() {
+<span class="nc" id="L398">		this.histogramContainer.remove(this.cipherHistogram);</span>
+<span class="nc" id="L399">		this.cipherHistogram = null;</span>
+<span class="nc" id="L400">		this.histogramContainer.remove(this.cipher);</span>
+<span class="nc" id="L401">		this.cipher = null;</span>
+<span class="nc" id="L402">		this.revalidate();</span>
+<span class="nc" id="L403">	}</span>
+
+	/**
+	 * Function that destroys the ExplanationAndForwardingPanel container.
+	 */
+	public void unloadExplanationAndForwardingPanel() {
+<span class="nc" id="L409">		this.explanationAndForwardingPanel.remove(this.proceed);</span>
+<span class="nc" id="L410">		this.explanationAndForwardingPanel.remove(this.explanations);</span>
+<span class="nc" id="L411">		this.proceed = null;</span>
+<span class="nc" id="L412">		this.explanations = null;</span>
+<span class="nc" id="L413">		this.remove(this.explanationAndForwardingPanel);</span>
+<span class="nc" id="L414">		this.explanationAndForwardingPanel = null;</span>
+<span class="nc" id="L415">		this.validate();</span>
+<span class="nc" id="L416">		this.repaint();</span>
+<span class="nc" id="L417">	}</span>
+
+	/**
+	 * Destroys the KeyInput.
+	 */
+	public void unloadKeyInput() {
+<span class="nc" id="L423">		this.histogramContainer.remove(this.keyInput);</span>
+<span class="nc" id="L424">		this.keyInput = null;</span>
+<span class="nc" id="L425">		this.validate();</span>
+<span class="nc" id="L426">	}</span>
+
+	// --------------------------------------------------------------private
+	// methods--------------------------------------------------//
+
+	private void setupViewLayout() {
+<span class="nc" id="L432">		GridBagLayout layout = new GridBagLayout();</span>
+<span class="nc" id="L433">		this.setLayout(layout);</span>
+<span class="nc" id="L434">		GridBagConstraints viewConst = new GridBagConstraints();</span>
+<span class="nc" id="L435">		viewConst.weightx = 1.0;</span>
+<span class="nc" id="L436">		viewConst.weighty = 1.0;</span>
+<span class="nc" id="L437">		viewConst.fill = GridBagConstraints.BOTH;</span>
+<span class="nc" id="L438">		layout.setConstraints(this, viewConst);</span>
+<span class="nc" id="L439">	}</span>
+
+	private void setupNavigationPanel() {
+		// set up a container for the navigation Buttons (Next and Back).
+<span class="nc" id="L443">		this.navigationPanel = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L444">		GridBagConstraints navConst = new GridBagConstraints();</span>
+<span class="nc" id="L445">		navConst.anchor = GridBagConstraints.NORTH;</span>
+<span class="nc" id="L446">		navConst.weightx = 1.0;</span>
+<span class="nc" id="L447">		navConst.weighty = 0.1;</span>
+<span class="nc" id="L448">		navConst.gridx = 0;</span>
+<span class="nc" id="L449">		navConst.gridy = 0;</span>
+<span class="nc" id="L450">		navConst.gridwidth = 13;</span>
+<span class="nc" id="L451">		navConst.gridheight = 1;</span>
+<span class="nc" id="L452">		navConst.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L453">		this.add(this.navigationPanel, navConst);</span>
+<span class="nc" id="L454">	}</span>
+
+	private void setupNavigation() {
+<span class="nc" id="L457">		this.setupNavigationPanel();</span>
+
+		// TODO: dont instantiate the buttons in the upper class.
+		// First need to remove the buttons because they are added in the upper
+		// class.
+<span class="nc" id="L462">		this.remove(this.getBackButton());</span>
+<span class="nc" id="L463">		this.remove(this.getNextButton());</span>
+
+		// set up the alignment of the button back;
+<span class="nc" id="L466">		this.setBackButton(new JButton(HistogramView.i18n</span>
+<span class="nc" id="L467">				.tr(&quot;Back to Experiment&quot;)));</span>
+<span class="nc" id="L468">		this.getBackButton().setPreferredSize(new Dimension(300, 50));</span>
+<span class="nc" id="L469">		this.getBackButton().setMaximumSize(new Dimension(300, 50));</span>
+		// this.getBackButton().setFont(new Font(&quot;Arial&quot;, 2, 25));
+<span class="nc" id="L471">		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);</span>
+
+		// set up the aligment of the button Next;
+<span class="nc" id="L474">		this.setNextButton(new JButton(HistogramView.i18n</span>
+<span class="nc" id="L475">				.tr(&quot;Skip the Histograms&quot;)));</span>
+<span class="nc" id="L476">		this.getNextButton().setPreferredSize(new Dimension(300, 50));</span>
+<span class="nc" id="L477">		this.getNextButton().setMinimumSize(new Dimension(300, 50));</span>
+		// this.getNextButton().setFont(new Font(&quot;Arial&quot;, 2, 25));
+<span class="nc" id="L479">		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);</span>
+
+<span class="nc" id="L481">	}</span>
+
+	private void setupExplanationAndForwardingContainer(int flag) {
+<span class="nc" id="L484">		this.explanationAndForwardingPanel = new JPanel(new GridBagLayout());</span>
+		// set the alignment of the Container for the explanations and the button Proceed.
+<span class="nc" id="L486">		GridBagConstraints explanationPanelConstraint = new GridBagConstraints();</span>
+<span class="nc" id="L487">		explanationPanelConstraint.anchor = flag;</span>
+<span class="nc" id="L488">		explanationPanelConstraint.weightx = 1.0;</span>
+<span class="nc" id="L489">		explanationPanelConstraint.weighty = 0.1;</span>
+<span class="nc" id="L490">		explanationPanelConstraint.gridx = 0;</span>
+<span class="nc" id="L491">		explanationPanelConstraint.gridy = 0;</span>
+<span class="nc" id="L492">		explanationPanelConstraint.gridwidth = 6;</span>
+<span class="nc" id="L493">		explanationPanelConstraint.gridheight = 6;</span>
+<span class="nc" id="L494">		explanationPanelConstraint.insets = new Insets(50, 0, 50, 0);</span>
+<span class="nc" id="L495">		explanationPanelConstraint.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L496">		this.add(this.explanationAndForwardingPanel, explanationPanelConstraint);</span>
+<span class="nc" id="L497">	}</span>
+
+	private void setupProceed() {
+		// setup the proceed button.
+<span class="nc" id="L501">		this.proceed = new JButton(HistogramView.i18n.tr(&quot;Proceed&quot;));</span>
+<span class="nc" id="L502">		this.proceed.setVisible(true);</span>
+<span class="nc" id="L503">		GridBagConstraints proceedConst = new GridBagConstraints();</span>
+<span class="nc" id="L504">		this.proceed.setPreferredSize(new Dimension(250, 50));</span>
+<span class="nc" id="L505">		this.proceed.setMinimumSize(new Dimension(100, 50));</span>
+<span class="nc" id="L506">		proceedConst.gridx = 3;</span>
+<span class="nc" id="L507">		proceedConst.gridy = 6;</span>
+<span class="nc" id="L508">		proceedConst.gridwidth = 6;</span>
+<span class="nc" id="L509">		proceedConst.insets = new Insets(0, 0, 10, 0);</span>
+<span class="nc" id="L510">		this.explanationAndForwardingPanel.add(this.proceed, proceedConst);</span>
+
+<span class="nc" id="L512">	}</span>
+
+	private void setupCipherPlainPresentationLabels(String cipher) {
+
+<span class="nc" id="L516">		this.bruteForceCipherLabel = new JLabel(cipher);</span>
+<span class="nc" id="L517">		this.bruteForceCipherLabel.setFont(new Font(&quot;Arial&quot;, 2, 25));</span>
+<span class="nc" id="L518">		this.bruteForceCipherLabel.setPreferredSize(new Dimension(150, 50));</span>
+<span class="nc" id="L519">		GridBagConstraints cipherConst = new GridBagConstraints();</span>
+<span class="nc" id="L520">		cipherConst.gridx = 0;</span>
+<span class="nc" id="L521">		cipherConst.gridy = 1;</span>
+<span class="nc" id="L522">		cipherConst.insets = new Insets(5, 5, 5, 5);</span>
+<span class="nc" id="L523">		this.keyControl.add(this.bruteForceCipherLabel, cipherConst);</span>
+
+<span class="nc" id="L525">		this.plainText = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L526">		this.plainText.setFont(new Font(&quot;Arial&quot;, 2, 25));</span>
+<span class="nc" id="L527">		this.plainText.setPreferredSize(new Dimension(150, 50));</span>
+<span class="nc" id="L528">		GridBagConstraints plainConst = new GridBagConstraints();</span>
+<span class="nc" id="L529">		plainConst.gridx = 0;</span>
+<span class="nc" id="L530">		plainConst.gridy = 2;</span>
+<span class="nc" id="L531">		plainConst.insets = new Insets(5, 5, 5, 5);</span>
+<span class="nc" id="L532">		this.keyControl.add(this.plainText, plainConst);</span>
+<span class="nc" id="L533">	}</span>
+
+	private void setupKeyIterationButtons() {
+		// key
+<span class="nc" id="L537">		this.bruteFoceKey = new JLabel(&quot;&quot; + 1);</span>
+<span class="nc" id="L538">		GridBagConstraints keyLabelConst = new GridBagConstraints();</span>
+<span class="nc" id="L539">		keyLabelConst.gridx = 3;</span>
+<span class="nc" id="L540">		keyLabelConst.gridy = 1;</span>
+<span class="nc" id="L541">		keyLabelConst.insets = new Insets(5, 5, 50, 5);</span>
+<span class="nc" id="L542">		this.keyControl.add(this.bruteFoceKey, keyLabelConst);</span>
+
+		// increment.
+<span class="nc" id="L545">		this.increment = new JButton(&quot;+1&quot;);</span>
+<span class="nc" id="L546">		this.increment.setPreferredSize(new Dimension(100, 50));</span>
+<span class="nc" id="L547">		GridBagConstraints incConst = new GridBagConstraints();</span>
+<span class="nc" id="L548">		incConst.gridx = 4;</span>
+<span class="nc" id="L549">		incConst.gridy = 1;</span>
+<span class="nc" id="L550">		incConst.insets = new Insets(5, 5, 50, 5);</span>
+<span class="nc" id="L551">		this.keyControl.add(this.increment, incConst);</span>
+
+		// decrement.
+<span class="nc" id="L554">		this.decrement = new JButton(&quot;-1&quot;);</span>
+<span class="nc" id="L555">		this.decrement.setPreferredSize(new Dimension(100, 50));</span>
+<span class="nc" id="L556">		GridBagConstraints decConst = new GridBagConstraints();</span>
+<span class="nc" id="L557">		decConst.gridx = 4;</span>
+<span class="nc" id="L558">		decConst.gridy = 2;</span>
+<span class="nc" id="L559">		decConst.insets = new Insets(5, 5, 50, 5);</span>
+<span class="nc" id="L560">		this.keyControl.add(this.decrement, decConst);</span>
+<span class="nc" id="L561">	}</span>
+
+	private void setupKeyControlContainer() {
+		// setup the Panel for buttons for incrementing/decrementing the key.
+<span class="nc" id="L565">		this.keyControl = new JPanel(new GridBagLayout());</span>
+		// this.keyControl.setBorder(BorderFactory.createLineBorder(Color.green));
+<span class="nc" id="L567">		GridBagConstraints keyConst = new GridBagConstraints();</span>
+<span class="nc" id="L568">		keyConst.anchor = GridBagConstraints.PAGE_START;</span>
+<span class="nc" id="L569">		keyConst.weightx = 0.5;</span>
+<span class="nc" id="L570">		keyConst.weighty = 0.5;</span>
+<span class="nc" id="L571">		keyConst.gridx = 1;</span>
+<span class="nc" id="L572">		keyConst.gridy = 1;</span>
+<span class="nc" id="L573">		keyConst.gridwidth = 3;</span>
+<span class="nc" id="L574">		keyConst.gridheight = 4;</span>
+<span class="nc" id="L575">		keyConst.insets = new Insets(50, 0, 0, 0);</span>
+		// keyConst.fill = GridBagConstraints.HORIZONTAL;
+<span class="nc" id="L577">		this.add(this.keyControl, keyConst);</span>
+<span class="nc" id="L578">	}</span>
+
+	// --------------------------------------------------------------Getter/Setter----------------------------------------------------//
+
+	/**
+	 * @return the numpad
+	 */
+	public NumpadView getNumpad() {
+<span class="nc" id="L586">		return this.numpad;</span>
+	}
+
+	/**
+	 * @param numpad
+	 *            the numpad to set
+	 */
+	public void setNumpad(NumpadView numpad) {
+<span class="nc" id="L594">		this.numpad = numpad;</span>
+<span class="nc" id="L595">	}</span>
+
+	/**
+	 * @return the announcement
+	 */
+	public JLabel getAnnouncement() {
+<span class="nc" id="L601">		return this.announcement;</span>
+	}
+
+	/**
+	 * @return the cipher
+	 */
+	public JLabel getCipherBruteForce() {
+<span class="nc" id="L608">		return this.bruteForceCipherLabel;</span>
+	}
+
+	/**
+	 * @return the cipherHistogram
+	 */
+	public CharacterFrequencyDiagramView getCipherHistogram() {
+<span class="nc" id="L615">		return this.cipherHistogram;</span>
+	}
+
+	/**
+	 * @return the cipherText
+	 */
+	public JLabel getCipherText() {
+<span class="nc" id="L622">		return this.cipher;</span>
+	}
+
+	/**
+	 * @return the decrement
+	 */
+	public JButton getDecrement() {
+<span class="nc" id="L629">		return this.decrement;</span>
+	}
+
+	/**
+	 * @return the explanationPanel
+	 */
+	public JPanel getExplanationPanel() {
+<span class="nc" id="L636">		return this.explanationAndForwardingPanel;</span>
+	}
+
+	/**
+	 * @return the explanations
+	 */
+	public JLabel getExplanations() {
+<span class="nc" id="L643">		return this.explanations;</span>
+	}
+
+	/**
+	 * @return the histogramCipher
+	 */
+	public String getHistogramCipher() {
+<span class="nc" id="L650">		return this.histogramCipher;</span>
+	}
+
+	/**
+	 * @return the histogramContainer
+	 */
+	public JPanel getHistogramContainer() {
+<span class="nc" id="L657">		return this.histogramContainer;</span>
+	}
+
+	/**
+	 * @return the increment
+	 */
+	public JButton getIncrement() {
+<span class="nc" id="L664">		return this.increment;</span>
+	}
+
+	/**
+	 * @return the key
+	 */
+	public JLabel getBruteForceKey() {
+<span class="nc" id="L671">		return this.bruteFoceKey;</span>
+	}
+
+	/**
+	 * @return the keyboard
+	 */
+	public KeyboardView getKeyboard() {
+<span class="nc" id="L678">		return this.keyboard;</span>
+	}
+
+	/**
+	 * @return the keyControl
+	 */
+	public JPanel getKeyControl() {
+<span class="nc" id="L685">		return this.keyControl;</span>
+	}
+
+	/**
+	 * @return the keyInput
+	 */
+	public JTextField getKeyInput() {
+<span class="nc" id="L692">		return this.keyInput;</span>
+	}
+
+	/**
+	 * @return the navigationPanel
+	 */
+	public JPanel getNavigationPanel() {
+<span class="nc" id="L699">		return this.navigationPanel;</span>
+	}
+
+	/**
+	 * @return the plain
+	 */
+	public JLabel getPlainText() {
+<span class="nc" id="L706">		return this.plainText;</span>
+	}
+
+	/**
+	 * @return the plainTextHistogram
+	 */
+	public CharacterFrequencyDiagramView getPlainTextHistogram() {
+<span class="nc" id="L713">		return this.plainTextHistogram;</span>
+	}
+
+	/**
+	 * @return the proceed
+	 */
+	public JButton getProceed() {
+<span class="nc" id="L720">		return this.proceed;</span>
+	}
+
+	/**
+	 * @return the secretKey
+	 */
+	public int getSecretKey() {
+<span class="nc" id="L727">		return this.secretKey;</span>
+	}
+
+	/**
+	 * @param announcement
+	 *            the announcement to set
+	 */
+	public void setAnnouncement(JLabel announcement) {
+<span class="nc" id="L735">		this.announcement = announcement;</span>
+<span class="nc" id="L736">	}</span>
+
+	/**
+	 * @param cipher
+	 *            the cipher to set
+	 */
+	public void setCipher(JLabel cipher) {
+<span class="nc" id="L743">		this.bruteForceCipherLabel = cipher;</span>
+<span class="nc" id="L744">	}</span>
+
+	/**
+	 * @param cipherHistogram
+	 *            the cipherHistogram to set
+	 */
+	public void setCipherHistogram(CharacterFrequencyDiagramView cipherHistogram) {
+<span class="nc" id="L751">		this.cipherHistogram = cipherHistogram;</span>
+<span class="nc" id="L752">	}</span>
+
+	/**
+	 * @param cipherText
+	 *            the cipherText to set
+	 */
+	public void setCipherText(JLabel cipherText) {
+<span class="nc" id="L759">		this.cipher = cipherText;</span>
+<span class="nc" id="L760">	}</span>
+
+	/**
+	 * @param label
+	 * @param c
+	 */
+	public void setContent(JLabel label, char c) {
+
+<span class="nc" id="L768">	}</span>
+
+	/**
+	 * @param decrement
+	 *            the decrement to set
+	 */
+	public void setDecrement(JButton decrement) {
+<span class="nc" id="L775">		this.decrement = decrement;</span>
+<span class="nc" id="L776">	}</span>
+
+	/**
+	 * @param explanationPanel
+	 *            the explanationPanel to set
+	 */
+	public void setExplanationPanel(JPanel explanationPanel) {
+<span class="nc" id="L783">		this.explanationAndForwardingPanel = explanationPanel;</span>
+<span class="nc" id="L784">	}</span>
+
+	/**
+	 * @param explanations
+	 *            the explanations to set
+	 */
+	public void setExplanations(JLabel explanations) {
+<span class="nc" id="L791">		this.explanations = explanations;</span>
+<span class="nc" id="L792">	}</span>
+
+	/**
+	 * @param histogramCipher
+	 *            the histogramCipher to set
+	 */
+	public void setHistogramCipher(String histogramCipher) {
+<span class="nc" id="L799">		this.histogramCipher = histogramCipher;</span>
+<span class="nc" id="L800">	}</span>
+
+	/**
+	 * @param histogramContainer
+	 *            the histogramContainer to set
+	 */
+	public void setHistogramContainer(JPanel histogramContainer) {
+<span class="nc" id="L807">		this.histogramContainer = histogramContainer;</span>
+<span class="nc" id="L808">	}</span>
+
+	/**
+	 * @param increment
+	 *            the increment to set
+	 */
+	public void setIncrement(JButton increment) {
+<span class="nc" id="L815">		this.increment = increment;</span>
+<span class="nc" id="L816">	}</span>
+
+	/**
+	 * @param keyboard
+	 *            the keyboard to set
+	 */
+	public void setKeyboard(KeyboardView keyboard) {
+<span class="nc" id="L823">		this.keyboard = keyboard;</span>
+<span class="nc" id="L824">	}</span>
+
+	/**
+	 * @param keyControl
+	 *            the keyControl to set
+	 */
+	public void setKeyControl(JPanel keyControl) {
+<span class="nc" id="L831">		this.keyControl = keyControl;</span>
+<span class="nc" id="L832">	}</span>
+
+	/**
+	 * @param keyInput
+	 *            the keyInput to set
+	 */
+	public void setKeyInput(JTextField keyInput) {
+<span class="nc" id="L839">		this.keyInput = keyInput;</span>
+<span class="nc" id="L840">	}</span>
+
+	/**
+	 * @param navigationPanel
+	 *            the navigationPanel to set
+	 */
+	public void setNavigationPanel(JPanel navigationPanel) {
+<span class="nc" id="L847">		this.navigationPanel = navigationPanel;</span>
+<span class="nc" id="L848">	}</span>
+
+	/**
+	 * @param plain
+	 *            the plain to set
+	 */
+	public void setPlainText(JLabel plaintext) {
+<span class="nc" id="L855">		this.plainText = plaintext;</span>
+<span class="nc" id="L856">	}</span>
+
+	/**
+	 * @param plainTextHistogram
+	 *            the plainTextHistogram to set
+	 */
+	public void setPlainTextHistogram(
+			CharacterFrequencyDiagramView plainTextHistogram) {
+<span class="nc" id="L864">		this.plainTextHistogram = plainTextHistogram;</span>
+<span class="nc" id="L865">	}</span>
+
+	/**
+	 * @param proceed
+	 *            the proceed to set
+	 */
+	public void setProceed(JButton proceed) {
+<span class="nc" id="L872">		this.proceed = proceed;</span>
+<span class="nc" id="L873">	}</span>
+
+	/**
+	 * @param secretKey
+	 *            the secretKey to set
+	 */
+	public void setSecretKey(int secretKey) {
+<span class="nc" id="L880">		this.secretKey = secretKey;</span>
+<span class="nc" id="L881">	}</span>
+
+	private String wrapHtml(String text) {
+<span class="nc" id="L884">		return &quot;&lt;html&gt;&lt;body&gt;&quot; + text + &quot;&lt;/body&gt;&lt;/html&gt;&quot;;</span>
+	}
+
+	/**
+	 * @return the histogramOriginalText
+	 */
+	public String getHistogramOriginalText() {
+<span class="nc" id="L891">		return histogramOriginalText;</span>
+	}
+
+	/**
+	 * @param histogramOriginalText
+	 *            the histogramOriginalText to set
+	 */
+	public void setHistogramOriginalText(String histogramOriginalText) {
+<span class="nc" id="L899">		this.histogramOriginalText = histogramOriginalText;</span>
+<span class="nc" id="L900">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>ThirdDemonstrationView.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics.Vigenere.Demonstration</a> &gt; <span class="el_source">ThirdDemonstrationView.java</span></div><h1>ThirdDemonstrationView.java</h1><pre class="source lang-java linenums">package edu.kit.iks.Cryptographics.Vigenere.Demonstration;
+
+import java.awt.Dimension;
+import java.awt.Font;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
+import edu.kit.iks.CryptographicsLib.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.VisualizationView;
+
+/**
+ * in this step the decryption will be explained.
+ * @author Aydin Tekin
+ */
+public class ThirdDemonstrationView extends VisualizationView{
+	private static final long serialVersionUID = 6294968461280032987L;
+	
+	/**
+	 * Localization instance
+	 */
+<span class="nc" id="L26">	private static I18n i18n = Configuration.getInstance().getI18n(ThirdDemonstrationView.class);</span>
+	
+	/**
+	 * plain characters
+	 */
+	private JLabel[] indexCharPlain;
+	
+	/**
+	 * plain characters position in alphabet
+	 */
+	private JLabel[] textCharPlain;
+	
+	/**
+	 * decrypted characters
+	 */
+	private JLabel[] indexCharDecrypted;
+	
+	/**
+	 * decrypted characters position in alphabet
+	 */
+	private JLabel[] textCharDecrypted;
+	
+	/**
+	 * description of the key
+	 */
+	private JLabel vigenereKeyDesc;
+	
+	/**
+	 * key to encrypt with
+	 */
+<span class="nc" id="L56">	private String vigenereKey = i18n.tr(&quot;KISS&quot;);</span>
+	
+	/**
+	 * used for calculator
+	 */
+	private JLabel charFirst;
+	private JLabel charSecond;
+	private JLabel charFinished;
+	
+	/**
+	 * explanation field
+	 */
+	private JLabel explanation;
+	
+	/**
+	 * alphabet used for demonstration
+	 */
+	private AlphabetStripView alphabet;
+	
+	/**
+	 * Button to skip step
+	 */
+	private JButton skip;
+	
+	/**
+	 * Button to go back
+	 */
+	private JButton btnReturn;
+
+	
+	/**
+	 * returns skip button
+	 * @return skip button
+	 */
+	public JButton getSkipButton() {
+<span class="nc" id="L91">		return this.skip;</span>
+	}
+	
+	/**
+	 * returns back button
+	 * @return back button
+	 */
+	public JButton getReturnButton() {
+<span class="nc" id="L99">		return this.btnReturn;</span>
+	}
+	
+	/**
+	 * this highlights the selected character in the AlphaStripView and sets the character in
+	 * the specified textfield
+	 * @param num character to be highlighted in the AlphaStripView
+	 * @param pos textfield to be changed
+	 * @param character character to be set
+	 */
+	public void highlightAndSetText(int num, int pos, String character) {
+<span class="nc" id="L110">		this.alphabet.unHighlightAll();</span>
+<span class="nc" id="L111">		this.setTextField(pos, character);</span>
+<span class="nc" id="L112">		this.alphabet.highlight(pos);</span>
+<span class="nc" id="L113">	}</span>
+	
+	/**
+	 * sets the calculator to given parameters
+	 * @param a first character
+	 * @param b amount of rotation
+	 */
+	public void setCalculator(int a, int b) {
+<span class="nc" id="L121">		int temp = (a - b);</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">		if (temp &lt; 0)</span>
+<span class="nc" id="L123">			temp = 26 + temp;</span>
+		Dimension size;
+<span class="nc" id="L125">		this.charFirst.setText(i18n.tr(&quot;Plaintext-Char&quot;) + &quot;: &quot; + a);</span>
+<span class="nc" id="L126">		this.charSecond.setText(i18n.tr(&quot;Key-Char&quot;) + &quot;: &quot; + b);</span>
+<span class="nc" id="L127">		this.charFinished.setText(i18n.tr(&quot;Result&quot;) + &quot;: &quot; + temp);</span>
+<span class="nc" id="L128">		size = this.charFirst.getPreferredSize();</span>
+<span class="nc" id="L129">		this.charFirst.setSize(size);</span>
+<span class="nc" id="L130">		size = this.charSecond.getPreferredSize();</span>
+<span class="nc" id="L131">		this.charSecond.setSize(size);</span>
+<span class="nc" id="L132">		size = this.charFinished.getPreferredSize();</span>
+<span class="nc" id="L133">		this.charFinished.setSize(size);</span>
+<span class="nc" id="L134">		this.validate();</span>
+<span class="nc" id="L135">	}</span>
+	
+	/**
+	 * returns the alphabet
+	 * @return alphabet
+	 */
+	public AlphabetStripView getAlphabet() {
+<span class="nc" id="L142">		return alphabet;</span>
+	}
+	
+	/**
+	 * changes given textfield and also applies the numeration in the bottom label
+	 * @param i which textfield to be changed
+	 * @param character which character to be added
+	 */
+	public void setTextField(int i, String character) {
+<span class="nc" id="L151">		this.textCharDecrypted[i].setText(character);</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">		if (character.isEmpty()) {</span>
+<span class="nc" id="L153">			this.indexCharDecrypted[i].setText(&quot;&quot;);</span>
+<span class="nc" id="L154">		} else { </span>
+<span class="nc" id="L155">			this.indexCharDecrypted[i].setText(&quot;&quot; + VigenereModel.characterToInt(character));</span>
+		}
+<span class="nc" id="L157">		Dimension size = this.indexCharDecrypted[i].getPreferredSize();</span>
+<span class="nc" id="L158">		this.indexCharDecrypted[i].setSize(size);</span>
+<span class="nc" id="L159">		this.validate();</span>
+<span class="nc" id="L160">	}</span>
+	
+	/**
+	 * sets the visibility of the calculator
+	 * @param b visibility of the calculator
+	 */
+	public void setCalculatorVisible(boolean b) {
+<span class="nc" id="L167">		this.charFirst.setVisible(b);</span>
+<span class="nc" id="L168">		this.charSecond.setVisible(b);</span>
+<span class="nc" id="L169">		this.charFinished.setVisible(b);</span>
+<span class="nc" id="L170">	}</span>
+	
+	/**
+	 * changes the explanation text
+	 * @param explanation text to change to
+	 */
+	public void setExplanation(String explanation) {
+<span class="nc" id="L177">		this.explanation.setText(explanation);</span>
+<span class="nc" id="L178">		Dimension size = this.explanation.getPreferredSize();</span>
+<span class="nc" id="L179">		this.explanation.setSize(size.width, size.height);</span>
+<span class="nc" id="L180">		this.validate();</span>
+<span class="nc" id="L181">	}</span>
+	
+	/**
+	 * creates and adds all GUI elements
+	 */
+	private void setupGUI() {
+<span class="nc" id="L187">		this.setLayout(null);</span>
+<span class="nc" id="L188">		this.add(this.explanation = new JLabel(&quot;&lt;html&gt;&lt;div width=\&quot;1200\&quot;&gt;&quot;</span>
+<span class="nc" id="L189">				+ i18n.tr(&quot;Now we want to decrypt 'DMPL'. Insteading adding up, we &quot;</span>
+				+ &quot;use substraction to decrypt it! So lets go...&quot;)
+<span class="nc" id="L191">				+ &quot;&lt;/div&gt;&lt;/html&gt;&quot;));</span>
+<span class="nc" id="L192">		this.vigenereKeyDesc = new JLabel(&quot;Vigenere Key: &quot; + this.vigenereKey);</span>
+<span class="nc" id="L193">		this.alphabet = new AlphabetStripView();</span>
+<span class="nc" id="L194">		this.add(this.skip = new JButton(&quot;Go To Experiment&quot;));</span>
+<span class="nc" id="L195">		this.add(this.btnReturn = new JButton(&quot;Return to Encryption&quot;));</span>
+<span class="nc" id="L196">		this.skip.setVisible(true);</span>
+<span class="nc" id="L197">		this.textCharPlain = new JLabel[4];</span>
+<span class="nc" id="L198">		this.textCharPlain[0] = new JLabel(&quot;E&quot;);</span>
+<span class="nc" id="L199">		this.textCharPlain[1] = new JLabel(&quot;N&quot;);</span>
+<span class="nc" id="L200">		this.textCharPlain[2] = new JLabel(&quot;Q&quot;);</span>
+<span class="nc" id="L201">		this.textCharPlain[3] = new JLabel(&quot;M&quot;);</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">		for (int i = 0; i &lt; this.textCharPlain.length; i++)</span>
+<span class="nc" id="L203">			this.add(this.textCharPlain[i]);</span>
+
+<span class="nc" id="L205">		this.indexCharPlain = new JLabel[4];</span>
+<span class="nc" id="L206">		this.indexCharPlain[0] = new JLabel(&quot; 5&quot;);</span>
+<span class="nc" id="L207">		this.indexCharPlain[1] = new JLabel(&quot;14&quot;);</span>
+<span class="nc" id="L208">		this.indexCharPlain[2] = new JLabel(&quot;17&quot;);</span>
+<span class="nc" id="L209">		this.indexCharPlain[3] = new JLabel(&quot;13&quot;);</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">		for (int i = 0; i &lt; this.indexCharPlain.length; i++)</span>
+<span class="nc" id="L211">			this.add(this.indexCharPlain[i]);</span>
+
+<span class="nc" id="L213">		this.textCharDecrypted = new JLabel[4];</span>
+<span class="nc" id="L214">		this.textCharDecrypted[0] = new JLabel();</span>
+<span class="nc" id="L215">		this.textCharDecrypted[1] = new JLabel();</span>
+<span class="nc" id="L216">		this.textCharDecrypted[2] = new JLabel();</span>
+<span class="nc" id="L217">		this.textCharDecrypted[3] = new JLabel();</span>
+<span class="nc bnc" id="L218" title="All 2 branches missed.">		for (int i = 0; i &lt; this.textCharDecrypted.length; i++)</span>
+<span class="nc" id="L219">			this.add(this.textCharDecrypted[i]);</span>
+
+<span class="nc" id="L221">		this.indexCharDecrypted = new JLabel[4];</span>
+<span class="nc" id="L222">		this.indexCharDecrypted[0] = new JLabel(&quot;  &quot;);</span>
+<span class="nc" id="L223">		this.indexCharDecrypted[1] = new JLabel(&quot;  &quot;);</span>
+<span class="nc" id="L224">		this.indexCharDecrypted[2] = new JLabel(&quot;  &quot;);</span>
+<span class="nc" id="L225">		this.indexCharDecrypted[3] = new JLabel(&quot;  &quot;);</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">		for (int i = 0; i &lt; this.indexCharDecrypted.length; i++)</span>
+<span class="nc" id="L227">			this.add(this.indexCharDecrypted[i]);</span>
+		
+       
+<span class="nc" id="L230">		this.add(this.charFirst = new JLabel());</span>
+<span class="nc" id="L231">		this.add(this.charSecond = new JLabel());</span>
+<span class="nc" id="L232">		this.add(this.charFinished = new JLabel());</span>
+<span class="nc" id="L233">		this.add(this.vigenereKeyDesc);</span>
+<span class="nc" id="L234">		this.add(this.alphabet);</span>
+<span class="nc" id="L235">	}</span>
+	
+	/**
+	 * sets fonts to all elements
+	 */
+	private void setFonts() {
+<span class="nc" id="L241">		this.vigenereKeyDesc.setFont(new Font(&quot;Comic Sans MS&quot;, Font.BOLD, 28));</span>
+<span class="nc" id="L242">		this.charFirst.setFont(new Font(&quot;Comic Sans MS&quot;, Font.BOLD, 28));</span>
+<span class="nc" id="L243">		this.charSecond.setFont(new Font(&quot;Comic Sans MS&quot;, Font.BOLD, 28));</span>
+<span class="nc" id="L244">		this.charFinished.setFont(new Font(&quot;Comic Sans MS&quot;, Font.BOLD, 28));</span>
+<span class="nc" id="L245">		this.explanation.setFont(new Font(&quot;Comic Sans MS&quot;, Font.BOLD, 28));</span>
+		
+<span class="nc bnc" id="L247" title="All 2 branches missed.">		for (int i = 0; i &lt; this.textCharPlain.length; i++)</span>
+<span class="nc" id="L248">			this.textCharPlain[i].setFont(new Font(&quot;Comic Sans MS&quot;, Font.BOLD, 28));</span>
+	
+<span class="nc bnc" id="L250" title="All 2 branches missed.">		for (int i = 0; i &lt; this.indexCharPlain.length; i++)</span>
+<span class="nc" id="L251">			this.indexCharPlain[i].setFont(new Font(&quot;Comic Sans MS&quot;, Font.BOLD, 28));</span>
+		
+<span class="nc bnc" id="L253" title="All 2 branches missed.">		for (int i = 0; i &lt; this.textCharDecrypted.length; i++)</span>
+<span class="nc" id="L254">			this.textCharDecrypted[i].setFont(new Font(&quot;Comic Sans MS&quot;, Font.BOLD, 28));</span>
+	
+<span class="nc bnc" id="L256" title="All 2 branches missed.">		for (int i = 0; i &lt; this.indexCharDecrypted.length; i++)</span>
+<span class="nc" id="L257">			this.indexCharDecrypted[i].setFont(new Font(&quot;Comic Sans MS&quot;, Font.BOLD, 28));</span>
+<span class="nc" id="L258">	}</span>
+	
+	/**
+	 * customizes the created GUI elements
+	 */
+	private void customizeGUI() {
+<span class="nc" id="L264">		Dimension size = this.vigenereKeyDesc.getPreferredSize();</span>
+<span class="nc" id="L265">		this.vigenereKeyDesc.setBounds(90, 300, size.width, size.height);</span>
+		
+<span class="nc" id="L267">		size = this.textCharPlain[0].getPreferredSize();</span>
+<span class="nc" id="L268">		this.textCharPlain[0].setBounds(500, 150,</span>
+<span class="nc" id="L269">	             size.width, size.height);</span>
+		
+<span class="nc" id="L271">		size = this.textCharPlain[1].getPreferredSize();</span>
+<span class="nc" id="L272">		this.textCharPlain[1].setBounds(550, 150,</span>
+<span class="nc" id="L273">	             size.width, size.height);</span>
+		
+<span class="nc" id="L275">		size = this.textCharPlain[2].getPreferredSize();</span>
+<span class="nc" id="L276">		this.textCharPlain[2].setBounds(600, 150,</span>
+<span class="nc" id="L277">	             size.width, size.height);</span>
+
+<span class="nc" id="L279">		size = this.textCharPlain[3].getPreferredSize();</span>
+<span class="nc" id="L280">		this.textCharPlain[3].setBounds(650, 150,</span>
+<span class="nc" id="L281">	             size.width, size.height);</span>
+		
+<span class="nc" id="L283">		size = this.indexCharPlain[0].getPreferredSize();</span>
+<span class="nc" id="L284">		this.indexCharPlain[0].setBounds(500, 210,</span>
+<span class="nc" id="L285">	             size.width, size.height);</span>
+		
+<span class="nc" id="L287">		size = this.indexCharPlain[1].getPreferredSize();</span>
+<span class="nc" id="L288">		this.indexCharPlain[1].setBounds(550, 210,</span>
+<span class="nc" id="L289">	             size.width, size.height);</span>
+		
+<span class="nc" id="L291">		size = this.indexCharPlain[2].getPreferredSize();</span>
+<span class="nc" id="L292">		this.indexCharPlain[2].setBounds(600, 210,</span>
+<span class="nc" id="L293">	             size.width, size.height);</span>
+
+<span class="nc" id="L295">		size = this.indexCharPlain[3].getPreferredSize();</span>
+<span class="nc" id="L296">		this.indexCharPlain[3].setBounds(650, 210,</span>
+<span class="nc" id="L297">	             size.width, size.height);</span>
+
+<span class="nc" id="L299">		size.width = 24;</span>
+<span class="nc" id="L300">		size.height = 44;</span>
+<span class="nc" id="L301">		this.textCharDecrypted[0].setBounds(500, 300,</span>
+<span class="nc" id="L302">	             size.width, size.height);</span>
+		
+<span class="nc" id="L304">		this.textCharDecrypted[1].setBounds(550, 300,</span>
+<span class="nc" id="L305">	             size.width, size.height);</span>
+		
+<span class="nc" id="L307">		this.textCharDecrypted[2].setBounds(600, 300,</span>
+<span class="nc" id="L308">	             size.width, size.height);</span>
+
+<span class="nc" id="L310">		this.textCharDecrypted[3].setBounds(650, 300,</span>
+<span class="nc" id="L311">	             size.width, size.height);</span>
+		
+<span class="nc" id="L313">		size = this.indexCharDecrypted[0].getPreferredSize();</span>
+<span class="nc" id="L314">		this.indexCharDecrypted[0].setBounds(500, 360,</span>
+<span class="nc" id="L315">	             size.width, size.height);</span>
+		
+<span class="nc" id="L317">		size = this.indexCharDecrypted[1].getPreferredSize();</span>
+<span class="nc" id="L318">		this.indexCharDecrypted[1].setBounds(550, 360,</span>
+<span class="nc" id="L319">	             size.width, size.height);</span>
+		
+<span class="nc" id="L321">		size = this.indexCharDecrypted[2].getPreferredSize();</span>
+<span class="nc" id="L322">		this.indexCharDecrypted[2].setBounds(600, 360,</span>
+<span class="nc" id="L323">	             size.width, size.height);</span>
+
+<span class="nc" id="L325">		size = this.indexCharDecrypted[3].getPreferredSize();</span>
+<span class="nc" id="L326">		this.indexCharDecrypted[3].setBounds(650, 360,</span>
+<span class="nc" id="L327">	             size.width, size.height);</span>
+		
+<span class="nc" id="L329">		size = this.alphabet.getPreferredSize();</span>
+<span class="nc" id="L330">		this.alphabet.setBounds(150, 570,</span>
+<span class="nc" id="L331">	             size.width, size.height);</span>
+		
+<span class="nc" id="L333">		size = this.charFirst.getPreferredSize();</span>
+<span class="nc" id="L334">		this.charFirst.setBounds(900, 210,</span>
+<span class="nc" id="L335">	             size.width, size.height);</span>
+		
+<span class="nc" id="L337">		size = this.charSecond.getPreferredSize();</span>
+<span class="nc" id="L338">		this.charSecond.setBounds(900, 260,</span>
+<span class="nc" id="L339">	             size.width, size.height);</span>
+		
+<span class="nc" id="L341">		size = this.charFinished.getPreferredSize();</span>
+<span class="nc" id="L342">		this.charFinished.setBounds(900, 310,</span>
+<span class="nc" id="L343">	             size.width, size.height);</span>
+		
+<span class="nc" id="L345">		size = this.explanation.getPreferredSize();</span>
+<span class="nc" id="L346">		this.explanation.setBounds(10, 50,</span>
+<span class="nc" id="L347">	             size.width, size.height);</span>
+		
+<span class="nc" id="L349">		size = this.getBackButton().getPreferredSize();</span>
+<span class="nc" id="L350">		this.getBackButton().setBounds(30, 600,</span>
+<span class="nc" id="L351">	             size.width, size.height);</span>
+		
+		
+<span class="nc" id="L354">		size = this.getNextButton().getPreferredSize();</span>
+<span class="nc" id="L355">		this.getNextButton().setBounds(1100, 600,</span>
+<span class="nc" id="L356">	             size.width, size.height);</span>
+		
+<span class="nc" id="L358">		size = this.getSkipButton().getPreferredSize();</span>
+<span class="nc" id="L359">		this.getSkipButton().setBounds(1100, 5,</span>
+<span class="nc" id="L360">	             size.width, size.height);</span>
+		
+<span class="nc" id="L362">		size = this.getReturnButton().getPreferredSize();</span>
+<span class="nc" id="L363">		this.getReturnButton().setBounds(30, 5,</span>
+<span class="nc" id="L364">	             size.width, size.height);</span>
+<span class="nc" id="L365">	}</span>
+	
+	/**
+	 * constructor of the view
+	 */
+<span class="nc" id="L370">	public ThirdDemonstrationView() {</span>
+<span class="nc" id="L371">		setupGUI();</span>
+<span class="nc" id="L372">		setFonts();</span>
+<span class="nc" id="L373">		customizeGUI();</span>
+<span class="nc" id="L374">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

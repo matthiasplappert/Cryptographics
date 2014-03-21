@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>FirstExplanationController.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics.Vigenere.Explanation</a> &gt; <span class="el_source">FirstExplanationController.java</span></div><h1>FirstExplanationController.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">package edu.kit.iks.Cryptographics.Vigenere.Explanation;</span>
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.VisualizationContainerController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Configuration;
+
+/**
+ * Controller class of the first phase
+ * @author Aydin Tekin
+ */
+public class FirstExplanationController extends AbstractVisualizationController {
+	/**
+	 * current state
+	 */
+	private int state;
+	
+	/**
+	 * Localization instance
+	 */
+<span class="nc" id="L26">	private static I18n i18n = Configuration.getInstance().getI18n(FirstExplanationController.class);</span>
+	
+	/**
+	 * Constructor of the controller
+	 * @param visualizationInfo
+	 */
+	public FirstExplanationController(AbstractVisualizationInfo visualizationInfo) {
+<span class="nc" id="L33">		super(visualizationInfo);</span>
+<span class="nc" id="L34">	}</span>
+	
+	/**
+	 * returns the view
+	 * @return view of current step
+	 */
+	@Override
+	public FirstExplanationView getView() {
+<span class="nc" id="L42">		return (FirstExplanationView)this.view;</span>
+	}
+	
+	/**
+	 * loads the view and registers action listeners
+	 */
+	@Override
+	public void loadView() {
+<span class="nc" id="L50">		this.state = 0;</span>
+<span class="nc" id="L51">		this.view = new FirstExplanationView();</span>
+<span class="nc" id="L52">		this.getView().getBackButton().addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent event) {
+<span class="nc" id="L54">				state--;</span>
+<span class="nc bnc" id="L55" title="All 3 branches missed.">				switch (state) {</span>
+				case -1:
+<span class="nc" id="L57">					VisualizationContainerController containerController = (VisualizationContainerController)getParentController();</span>
+<span class="nc" id="L58">					containerController.presentPreviousVisualizationController();</span>
+				case 0:
+<span class="nc" id="L60">					getView().setExplanation(&quot;&lt;html&gt;&lt;div width=\&quot;1200\&quot;&gt;&quot;</span>
+<span class="nc" id="L61">							+ i18n.tr(&quot;Vigenere fixed a few weaknesses of Caesar, but still &quot;</span>
+							+ &quot;has flaws. If the key is shorter then the text to encrypt, &quot;
+				       		+ &quot;Vigenère simply concatinates it with itself until the key is &quot;
+				       		+ &quot;long enough. This again makes it weak against key-length-guessing. &quot;
+				       		+ &quot;As soon as we guess the key-length, we can use a histogramm &quot;
+				       		+ &quot;(explained in caesar) to make a static analysis. So lets crack &quot;
+				       		+ &quot;this this chiffre by guessing the key-length (we will use the &quot;
+				       		+ &quot;kasiski test for it)&quot;)
+<span class="nc" id="L69">				       		+ &quot;:&lt;br&gt;&lt;br&gt;&quot;</span>
+<span class="nc" id="L70">				       		+ FirstExplanationView.vigenereEncrypted</span>
+<span class="nc" id="L71">				       		+ &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L72">					getView().visibleSecondState(false);</span>
+<span class="nc" id="L73">					getView().visibleFirstState(true);</span>
+					break;
+				}
+<span class="nc" id="L76">			}</span>
+		});
+<span class="nc" id="L78">		this.getView().getKeyLengthButton().addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent event) {
+<span class="nc" id="L80">				getView().setKeyLength(&quot;&lt;html&gt;&lt;div width=\&quot;1200\&quot;&gt;&quot;</span>
+<span class="nc" id="L81">						+ i18n.tr(&quot;Length of key: 2&quot;)</span>
+<span class="nc" id="L82">						+ &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L83">				getView().getNextButton().setVisible(true);</span>
+<span class="nc" id="L84">			}</span>
+		});
+<span class="nc" id="L86">		this.getView().getNextButton().addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent event) {
+<span class="nc" id="L88">				state++;</span>
+<span class="nc bnc" id="L89" title="All 3 branches missed.">				switch (state) {</span>
+				case 1:
+<span class="nc" id="L91">					getView().setExplanation(&quot;&lt;html&gt;&lt;div width=\&quot;1200\&quot;&gt;&quot;</span>
+<span class="nc" id="L92">							+ i18n.tr(&quot;Since we know that the key-length is 2, &quot;</span>
+							+ &quot;every second character will be encrypted with the first &quot;
+							+ &quot;character of the key. To &quot;
+							+ &quot;guess which is the first character of the key we need the &quot;
+							+ &quot;histrogramm of every &quot;
+							+ &quot;second character in the chiffre&quot;)
+<span class="nc" id="L98">							+ &quot;:&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L99">					getView().visibleSecondState(true);</span>
+<span class="nc" id="L100">					getView().visibleFirstState(false);</span>
+<span class="nc" id="L101">					break;</span>
+				case 2:
+<span class="nc" id="L103">					VisualizationContainerController containerController = (VisualizationContainerController)getParentController();</span>
+<span class="nc" id="L104">					containerController.presentNextVisualizationController();</span>
+				}
+<span class="nc" id="L106">			}</span>
+		});
+<span class="nc" id="L108">		this.getView().getSkipButton().addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent event) {
+<span class="nc" id="L110">				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();</span>
+<span class="nc" id="L111">				containerController.presentNextVisualizationController();</span>
+<span class="nc" id="L112">			}</span>
+		});
+<span class="nc" id="L114">		this.getView().getReturnButton().addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent event) {
+<span class="nc" id="L116">				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();</span>
+<span class="nc" id="L117">				containerController.presentPreviousVisualizationController();</span>
+<span class="nc" id="L118">			}</span>
+		});
+<span class="nc" id="L120">	}</span>
+
+	/**
+	 * unloads the view
+	 */
+	@Override
+	public void unloadView() {
+<span class="nc" id="L127">		this.view = null;</span>
+<span class="nc" id="L128">	}</span>
+	
+	/**
+	 * returns the help string
+	 * @return help string
+	 */
+	@Override
+	public String getHelp() {
+<span class="nc" id="L136">		return i18n.tr(&quot;Just read the instructions!&quot;);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

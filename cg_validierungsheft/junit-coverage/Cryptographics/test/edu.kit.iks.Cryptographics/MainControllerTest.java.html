@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>MainControllerTest.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">test</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics</a> &gt; <span class="el_source">MainControllerTest.java</span></div><h1>MainControllerTest.java</h1><pre class="source lang-java linenums">package edu.kit.iks.Cryptographics;
+
+import static org.junit.Assert.*;
+
+import javax.swing.JFrame;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.AbstractController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+
+/**
+ * Tests for the MainController
+ * 
+ * @author Christian Dreher
+ */
+<span class="fc" id="L19">public class MainControllerTest {</span>
+	
+	/**
+	 * Unit under test
+	 */
+	private MainController uut;
+
+	@Before
+	public void setUp() throws Exception {
+<span class="fc" id="L28">		this.uut = new MainController();</span>
+<span class="fc" id="L29">	}</span>
+
+	@Test
+	public void testLoadView() {
+		// Init origin
+<span class="fc" id="L34">		JFrame actual = this.uut.getJFrame();</span>
+		
+		// Should be null, since it is not yet loaded
+<span class="fc" id="L37">		assertEquals(null, actual);</span>
+		
+		// Now the view gets loaded
+<span class="fc" id="L40">		this.uut.loadView();</span>
+<span class="fc" id="L41">		actual = this.uut.getJFrame();</span>
+		
+		// Confirm that the JFrame was loaded by testing
+		// against its component name and window title
+<span class="fc" id="L45">		assertEquals(&quot;main-view&quot;, actual.getName());</span>
+<span class="fc" id="L46">		assertEquals(&quot;Cryptographics&quot;, actual.getTitle());</span>
+<span class="fc" id="L47">	}</span>
+
+	@Test
+	public void testUnloadView() {
+		// Init origin
+<span class="fc" id="L52">		this.uut.loadView();</span>
+<span class="fc" id="L53">		JFrame actual = this.uut.getJFrame();</span>
+		
+		// Confirm that the JFrame was loaded by testing
+		// against its component name and window title
+<span class="fc" id="L57">		assertEquals(&quot;main-view&quot;, actual.getName());</span>
+<span class="fc" id="L58">		assertEquals(&quot;Cryptographics&quot;, actual.getTitle());</span>
+		
+		// Now the view gets unloaded
+<span class="fc" id="L61">		this.uut.unloadView();</span>
+<span class="fc" id="L62">		actual = this.uut.getJFrame();</span>
+		
+		// Should be null, since it was unloaded before
+<span class="fc" id="L65">		assertEquals(null, actual);</span>
+<span class="fc" id="L66">	}</span>
+
+	@Test
+	public void testPresentStartAction() {
+		// Init origin
+<span class="fc" id="L71">		this.uut.loadView();</span>
+<span class="fc" id="L72">		this.uut.presentStartAction();</span>
+		
+		// Now that the start controller should be loaded, we can obtain
+		// the actual value
+<span class="fc" id="L76">		AbstractController actual = this.uut.getStartController();</span>
+		
+		// Confirm that the view was loaded by testing
+		// against its component name
+<span class="fc" id="L80">		assertEquals(&quot;start-controller-view&quot;, actual.getView().getName());</span>
+		
+		// Now load any other view
+<span class="fc" id="L83">		this.uut.presentVisualizationAction(new CaesarVisualizationInfo());</span>
+		
+		// Now the view of the start controller should be set
+		// to null to free some memory
+<span class="fc" id="L87">		assertEquals(null, actual.getView());</span>
+<span class="fc" id="L88">	}</span>
+
+	@Test
+	public void testPresentVisualizationAction() {
+		// Init origin
+<span class="fc" id="L93">		this.uut.loadView();</span>
+<span class="fc" id="L94">		this.uut.presentStartAction();</span>
+<span class="fc" id="L95">		this.uut.presentVisualizationAction(new CaesarVisualizationInfo());</span>
+		
+		// Now that the caesar visualization should be loaded, we can obtain
+		// the actual value
+<span class="fc" id="L99">		AbstractVisualizationInfo actual = this.uut.getVisualizationContainerController().getVisualizationInfo();</span>
+		
+		// First, we check that the start controllers view, which was loaded before
+		// the visualization, is set to null
+<span class="fc" id="L103">		assertEquals(null, this.uut.getStartController().getView());</span>
+		
+		// Confirm that the visualization view was loaded by testing
+		// against id of the procedure passed through the visualization info
+<span class="fc" id="L107">		assertEquals(&quot;caesar&quot;, actual.getId());</span>
+		
+		// Now load start controller view again
+<span class="fc" id="L110">		this.uut.presentStartAction();</span>
+		
+		// Now the container controller should be completely unloaded again
+<span class="fc" id="L113">		assertEquals(null, this.uut.getVisualizationContainerController());</span>
+<span class="fc" id="L114">	}</span>
+
+	@Test
+	public void testAddChildController() {
+		// Init origin
+<span class="fc" id="L119">		this.uut.loadView();</span>
+		
+		// Since the main controller has just been initialized 
+		// at this point, there shouldn't be any child controllers
+<span class="fc" id="L123">		assertEquals(0, this.uut.getChildControllers().size());</span>
+		
+		// Now we load the start controller
+<span class="fc" id="L126">		this.uut.presentStartAction();</span>
+		
+		// Now we loaded the start controller, the size of the 
+		// child controller list should be 1
+<span class="fc" id="L130">		assertEquals(1, this.uut.getChildControllers().size());</span>
+<span class="fc" id="L131">	}</span>
+
+	@Test
+	public void testRemoveChildController() {
+		// Init origin:
+<span class="fc" id="L136">		this.uut.loadView();</span>
+<span class="fc" id="L137">		this.uut.presentStartAction();</span>
+<span class="fc" id="L138">		this.uut.presentVisualizationAction(new CaesarVisualizationInfo());</span>
+		
+		// Loading the start controller, and then a visualization,
+		// should result in having 2 child controllers
+<span class="fc" id="L142">		assertEquals(2, this.uut.getChildControllers().size());</span>
+		
+		// Now we load the start controller again, which
+		// should result in the removal of the visualization
+		// from the child controllers list
+<span class="fc" id="L147">		this.uut.presentStartAction();</span>
+		
+		// Check if the assumption is correct
+<span class="fc" id="L150">		assertEquals(1, this.uut.getChildControllers().size());</span>
+<span class="fc" id="L151">	}</span>
+	
+	@Test
+	public void testGetParentController() {
+		// Init origin
+<span class="fc" id="L156">		AbstractController actual = this.uut.getParentController();</span>
+		
+		// Should be null, because the main controller does not have any parent
+<span class="fc" id="L159">		assertEquals(null, actual);</span>
+<span class="fc" id="L160">	}</span>
+
+	@Test
+	public void testIsViewLoaded() {
+		// Since nothing is initialized, the function should return false
+<span class="fc" id="L165">		assertFalse(this.uut.isViewLoaded());</span>
+		
+		// Now we load the view
+<span class="fc" id="L168">		this.uut.loadView();</span>
+		
+		// Which should result in having the function returl true
+<span class="fc" id="L171">		assertTrue(this.uut.isViewLoaded());</span>
+		
+		// Note: With &quot;View&quot; in the context of the main controller
+		// the JFrame is meant
+<span class="fc" id="L175">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>CharacterFrequencyDiagramView.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.CryptographicsLib</a> &gt; <span class="el_source">CharacterFrequencyDiagramView.java</span></div><h1>CharacterFrequencyDiagramView.java</h1><pre class="source lang-java linenums">package edu.kit.iks.CryptographicsLib;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+/**
+ * 
+ * @author Matthias Jaenicke
+ *
+ * A bar diagram to show the frequencies of characters in a given text in comparison.
+ * 
+ * This bar diagram has a vertical beam for each character, with the beam for the most used character being at
+ * maximum height of the diagram. Each other beam has a corresponding fraction of this height.
+ * The equivalent characters are displayed beneath each beam.
+ * The number of occurrences of each character is displayed within or above each beam, 
+ * depending on the height of the beam.
+ */
+public class CharacterFrequencyDiagramView extends JPanel {
+
+	/**
+	 * Serial version UID
+	 */
+	private static final long serialVersionUID = -9014431293164765696L;
+	
+	// Quantities of all characters
+	private int [] occurrences;
+	
+	private String histogramText;
+	
+	/**
+	 * Generates a diagram showing character frequencies with the given parameters.
+	 * @param text Text which is analyzed and has its character occurrences displayed. 
+	 * 				Non-alphabetical characters are simply ignored.
+	 * @param width Total width of the diagram. Each column and the gaps between them will be a fraction of it.
+	 * 				Has to be at least 405 to work properly.
+	 * @param height Total height of the diagram. Has to be at least 60 to work properly.
+	 */
+	public CharacterFrequencyDiagramView(String text, int width, int height) {
+<span class="nc" id="L45">		super();</span>
+		
+<span class="nc" id="L47">		this.histogramText = text;</span>
+		
+<span class="nc" id="L49">		this.occurrences = calculateOccurrences(text);</span>
+		
+<span class="nc" id="L51">		int padding = (int)(width / occurrences.length * 0.10);</span>
+<span class="nc" id="L52">		GridLayout layout = new GridLayout(1, occurrences.length, 0, padding);</span>
+<span class="nc" id="L53">		this.setLayout(layout);</span>
+		
+<span class="nc" id="L55">		generateDiagram(width, height);</span>
+		
+<span class="nc" id="L57">		this.setPreferredSize(new Dimension(width, height));</span>
+<span class="nc" id="L58">		this.setVisible(true);</span>
+<span class="nc" id="L59">	}</span>
+	
+	
+	private void generateDiagram(int totalWidth, int totalHeight) {
+		
+		// Determine the width of a single beam with regard of gaps between beams.
+<span class="nc" id="L65">		int singleWidth = (int)(totalWidth  * 0.9 / occurrences.length);</span>
+		
+		// Determine the base value for calculating the height of each column.
+<span class="nc" id="L68">		int maxOccurrences = 0;</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">		for (int occ: occurrences) {</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">			if (occ &gt; maxOccurrences) {</span>
+<span class="nc" id="L71">				maxOccurrences = occ;</span>
+			}
+		}
+		// &quot;- 20&quot; for putting the corresponding character beneath each beam.
+<span class="nc" id="L75">		float heightBase = (float)(totalHeight - 20) / maxOccurrences;</span>
+		
+<span class="nc" id="L77">		int asciiA = 65;</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">		for (int i = 0; i &lt; occurrences.length; i++) {</span>
+			// Calculate the rounded height for the beam
+<span class="nc" id="L80">			int height = (int)(heightBase * occurrences[i] + 0.5);</span>
+<span class="nc" id="L81">			JPanel beam = generateBeam((char)(i+asciiA), occurrences[i], singleWidth, height);</span>
+<span class="nc" id="L82">			this.add(beam);</span>
+		}
+		
+<span class="nc" id="L85">	}</span>
+	
+	// Generates an entire beam including its value and corresponding character.
+	private JPanel generateBeam(char character, int occurrence, int width, int height) {
+		
+<span class="nc" id="L90">		JPanel beam = new JPanel();</span>
+<span class="nc" id="L91">		BoxLayout layout = new BoxLayout(beam, BoxLayout.Y_AXIS);</span>
+<span class="nc" id="L92">		beam.setLayout(layout);</span>
+		
+		// A filler to get the beam to the bottom of the panel.
+<span class="nc" id="L95">		beam.add(Box.createVerticalGlue());</span>
+		
+		
+		JLabel coloredBeam;
+		// If the beam is too short, the number of occurrences will be displayed above it.
+<span class="nc bnc" id="L100" title="All 2 branches missed.">		if (height &lt; 20) {</span>
+			// Label to display number of occurrences.
+<span class="nc" id="L102">			JLabel number = new JLabel(&quot;&quot; + occurrence);</span>
+<span class="nc" id="L103">			number.setMinimumSize(new Dimension(width, 20));</span>
+<span class="nc" id="L104">			number.setPreferredSize(new Dimension(width, 20));</span>
+<span class="nc" id="L105">			number.setMaximumSize(new Dimension(width, 20));</span>
+<span class="nc" id="L106">			number.setHorizontalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L107">			beam.add(number);</span>
+			
+			// An empty label for the actual beam
+<span class="nc" id="L110">			coloredBeam = new JLabel();</span>
+<span class="nc" id="L111">		} else {</span>
+			// A label for the actual beam. Contains the number of occurrences of its character.
+<span class="nc" id="L113">			coloredBeam = new JLabel(&quot;&quot; + occurrence);</span>
+<span class="nc" id="L114">			coloredBeam.setVerticalAlignment(JLabel.TOP);</span>
+<span class="nc" id="L115">			coloredBeam.setHorizontalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L116">			coloredBeam.setForeground(Color.white);</span>
+		}
+<span class="nc" id="L118">		coloredBeam.setOpaque(true);</span>
+<span class="nc" id="L119">		coloredBeam.setBackground(Color.BLUE.darker());</span>
+<span class="nc" id="L120">		coloredBeam.setMinimumSize(new Dimension(width, height));</span>
+<span class="nc" id="L121">		coloredBeam.setPreferredSize(new Dimension(width, height));</span>
+<span class="nc" id="L122">		coloredBeam.setMaximumSize(new Dimension(width, height));</span>
+<span class="nc" id="L123">		beam.add(coloredBeam);</span>
+		
+		// The &quot;legend&quot; of the beam, i.a. its corresponding character.
+<span class="nc" id="L126">		JLabel text = new JLabel(&quot;&quot; + character);</span>
+<span class="nc" id="L127">		text.setMinimumSize(new Dimension(width, 20));</span>
+<span class="nc" id="L128">		text.setPreferredSize(new Dimension(width, 20));</span>
+<span class="nc" id="L129">		text.setMaximumSize(new Dimension(width, 20));</span>
+<span class="nc" id="L130">		text.setHorizontalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L131">		beam.add(text);</span>
+
+<span class="nc" id="L133">		return beam;</span>
+	}
+
+	// Calculates the number of occurrences of alphabetical characters in the given String. 
+	// All other characters are ignored.
+	// Returns an Integer array with 26 items, each representing the &quot;index+1&quot;th character of the alphabet
+	// and containing its number of occurrences.
+	private int[] calculateOccurrences(String text) {
+<span class="nc" id="L141">		int[] result = new int[26];</span>
+<span class="nc" id="L142">		text = text.toUpperCase();</span>
+		
+<span class="nc bnc" id="L144" title="All 2 branches missed.">		for(int i = 0; i &lt; result.length; i++) {</span>
+<span class="nc" id="L145">			result[i] = 0;</span>
+		}
+		
+<span class="nc" id="L148">		int asciiA = 65;</span>
+<span class="nc" id="L149">		boolean inHtmlTag = false;</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">		for(int i = 0; i &lt; text.length(); i++) {</span>
+<span class="nc" id="L151">			char c = text.charAt(i);</span>
+<span class="nc" id="L152">			int index = (int)c - asciiA;</span>
+<span class="nc bnc" id="L153" title="All 4 branches missed.">			if (c == '&lt;' || c == '&gt;') {</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">				inHtmlTag = !inHtmlTag;</span>
+<span class="nc bnc" id="L155" title="All 6 branches missed.">			} else if (!inHtmlTag &amp;&amp; index &gt;= 0 &amp;&amp; index &lt; result.length) {</span>
+<span class="nc" id="L156">				result[index]++;</span>
+			}
+		}
+		
+		
+<span class="nc" id="L161">		return result;</span>
+	}
+
+	public int[] getOccurences() {
+<span class="nc" id="L165">		return occurrences;</span>
+	}
+
+	public void setOccurrences(int [] occurrences) {
+<span class="nc" id="L169">		this.occurrences = occurrences;</span>
+<span class="nc" id="L170">	}</span>
+
+
+	/**
+	 * @return the histogramText
+	 */
+	public String getHistogramText() {
+<span class="nc" id="L177">		return histogramText;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

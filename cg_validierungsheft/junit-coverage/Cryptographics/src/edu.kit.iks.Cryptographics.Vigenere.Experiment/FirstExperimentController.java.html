@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>FirstExperimentController.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics.Vigenere.Experiment</a> &gt; <span class="el_source">FirstExperimentController.java</span></div><h1>FirstExperimentController.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">package edu.kit.iks.Cryptographics.Vigenere.Experiment;</span>
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.VisualizationContainerController;
+import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
+
+/**
+ * Controller class of the first phase
+ * @author Aydin Tekin
+ */
+public class FirstExperimentController extends AbstractVisualizationController {
+
+	/**
+	 * Localization instance
+	 */
+<span class="nc" id="L31">	private static I18n i18n = Configuration.getInstance().getI18n(FirstExperimentController.class);</span>
+	
+	/**
+	 * current state
+	 */
+	private int state;
+	
+	/**
+	 * Constructor of the controller
+	 * @param visualizationInfo
+	 */
+	public FirstExperimentController(AbstractVisualizationInfo visualizationInfo) {
+<span class="nc" id="L43">		super(visualizationInfo);</span>
+<span class="nc" id="L44">	}</span>
+	
+	/**
+	 * checks if the current input is correct
+	 * @param index which character has to be checked
+	 * @return correctness of the user input
+	 */
+	private boolean testInput(int index) {
+<span class="nc bnc" id="L52" title="All 2 branches missed.">		if (index &gt; 4)</span>
+<span class="nc" id="L53">			return true;</span>
+		
+<span class="nc" id="L55">		JLabel tempPlainText = this.getView().getTextFieldPlain(index);</span>
+<span class="nc" id="L56">		JTextField tempPlainDecrypted = this.getView().getTextFieldDecrypted(index);</span>
+<span class="nc" id="L57">		String tempKey = this.getView().getKey();</span>
+		
+<span class="nc bnc" id="L59" title="All 4 branches missed.">		if (tempPlainText.getText().isEmpty() || tempPlainDecrypted.getText().isEmpty())</span>
+<span class="nc" id="L60">			return false;</span>
+		
+<span class="nc" id="L62">		char realInput = VigenereModel.dec(tempKey.charAt(index), tempPlainText.getText().charAt(0));</span>
+		
+<span class="nc bnc" id="L64" title="All 2 branches missed.">		if (tempPlainDecrypted.getText().charAt(0) == realInput) </span>
+<span class="nc" id="L65">			return true;</span>
+		else
+<span class="nc" id="L67">			return false;</span>
+	}
+
+	/**
+	 * changes the GUI according to step
+	 */
+	private void stepForward() {
+<span class="nc" id="L74">		state++;</span>
+<span class="nc bnc" id="L75" title="All 7 branches missed.">		switch (state) {</span>
+		case 1:
+<span class="nc" id="L77">			getView().setExplanation(&quot;&lt;html&gt;&lt;div width=\&quot;1200\&quot;&gt;&quot;</span>
+<span class="nc" id="L78">					+ i18n.tr(&quot;Very nice, now the second character!&quot;)</span>
+<span class="nc" id="L79">					+ &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L80">			getView().setTextField(0, &quot;S&quot;);</span>
+<span class="nc" id="L81">			getView().getAlphabet().unHighlightAll();</span>
+<span class="nc" id="L82">			getView().getAlphabet().highlight(22);</span>
+<span class="nc" id="L83">			getView().getAlphabet().highlight(1);</span>
+<span class="nc" id="L84">			getView().unHighlightTextBorder(0);</span>
+<span class="nc" id="L85">			getView().highlightTextBorder(1);</span>
+<span class="nc" id="L86">			break;</span>
+		case 2:
+<span class="nc" id="L88">			getView().setExplanation(&quot;&lt;html&gt;&lt;div width=\&quot;1200\&quot;&gt;&quot;</span>
+<span class="nc" id="L89">					+ i18n.tr(&quot;Second strike! Three left...&quot;)</span>
+<span class="nc" id="L90">					+ &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L91">			getView().setTextField(1, &quot;U&quot;);</span>
+<span class="nc" id="L92">			getView().getAlphabet().unHighlightAll();</span>
+<span class="nc" id="L93">			getView().getAlphabet().highlight(18);</span>
+<span class="nc" id="L94">			getView().getAlphabet().highlight(2);</span>
+<span class="nc" id="L95">			getView().unHighlightTextBorder(1);</span>
+<span class="nc" id="L96">			getView().highlightTextBorder(2);</span>
+<span class="nc" id="L97">			break;</span>
+		case 3:
+<span class="nc" id="L99">			getView().setExplanation(&quot;&lt;html&gt;&lt;div width=\&quot;1200\&quot;&gt;&quot;</span>
+<span class="nc" id="L100">					+ i18n.tr(&quot;Not much left, 2 to go...&quot;)</span>
+<span class="nc" id="L101">					+ &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L102">			getView().setTextField(2, &quot;P&quot;);</span>
+<span class="nc" id="L103">			getView().getAlphabet().unHighlightAll();</span>
+<span class="nc" id="L104">			getView().getAlphabet().highlight(7);</span>
+<span class="nc" id="L105">			getView().getAlphabet().highlight(3);</span>
+<span class="nc" id="L106">			getView().unHighlightTextBorder(2);</span>
+<span class="nc" id="L107">			getView().highlightTextBorder(3);</span>
+<span class="nc" id="L108">			break;</span>
+		case 4:
+<span class="nc" id="L110">			getView().setExplanation(&quot;&lt;html&gt;&lt;div width=\&quot;1200\&quot;&gt;&quot;</span>
+<span class="nc" id="L111">					+ i18n.tr(&quot;Almost done, last character...&quot;)</span>
+<span class="nc" id="L112">					+ &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L113">			getView().setTextField(3, &quot;E&quot;);</span>
+<span class="nc" id="L114">			getView().getAlphabet().unHighlightAll();</span>
+<span class="nc" id="L115">			getView().getAlphabet().highlight(22);</span>
+<span class="nc" id="L116">			getView().getAlphabet().highlight(4);</span>
+<span class="nc" id="L117">			getView().unHighlightTextBorder(3);</span>
+<span class="nc" id="L118">			getView().highlightTextBorder(4);</span>
+<span class="nc" id="L119">			break;</span>
+		case 5:
+<span class="nc" id="L121">			getView().setExplanation(&quot;&lt;html&gt;&lt;div width=\&quot;1200\&quot;&gt;&quot;</span>
+<span class="nc" id="L122">					+ i18n.tr(&quot;Nicely done!&quot;)</span>
+<span class="nc" id="L123">					+ &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L124">			getView().setTextField(4, &quot;R&quot;);</span>
+<span class="nc" id="L125">			getView().getAlphabet().unHighlightAll();</span>
+<span class="nc" id="L126">			getView().unHighlightTextBorder(4);</span>
+<span class="nc" id="L127">			break;	</span>
+		case 6:
+<span class="nc" id="L129">			VisualizationContainerController containerController = (VisualizationContainerController)getParentController();</span>
+<span class="nc" id="L130">			containerController.presentNextVisualizationController();</span>
+		}
+<span class="nc" id="L132">	}</span>
+	
+	/**
+	 * loads the view and registers action listeners
+	 */
+	@Override
+	public void loadView() {
+<span class="nc" id="L139">		this.state = 0;</span>
+<span class="nc" id="L140">		this.view = new FirstExperimentView();</span>
+<span class="nc" id="L141">		this.getView().getBackButton().addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent event) {
+<span class="nc" id="L143">				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();</span>
+<span class="nc" id="L144">				containerController.presentPreviousVisualizationController();</span>
+<span class="nc" id="L145">			}</span>
+		});
+		
+<span class="nc" id="L148">		JTextField[] fields = getView().getTextFields();</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">		for (int i = 0; i &lt; fields.length; i++) {</span>
+<span class="nc" id="L150">			final JTextField userOutput = fields[i];</span>
+
+<span class="nc" id="L152">			userOutput</span>
+<span class="nc" id="L153">					.addFocusListener(new FocusListener() {</span>
+						@Override
+						public void focusGained(FocusEvent e) {
+<span class="nc" id="L156">							userOutput.setBorder(BorderFactory.createLineBorder(Color.blue, 5));</span>
+<span class="nc" id="L157">							getView().hideError();</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">							if (getView().getKeyboard() != null) {</span>
+<span class="nc" id="L159">								getView().remove(getView().getKeyboard());</span>
+<span class="nc" id="L160">								getView().setKeyboard(null);</span>
+<span class="nc" id="L161">								getView().validate();</span>
+<span class="nc" id="L162">								getView().repaint();</span>
+							}
+<span class="nc bnc" id="L164" title="All 2 branches missed.">							if (userOutput.isEditable()) {</span>
+<span class="nc" id="L165">								getView().createKeyboard(userOutput, KeyboardView.CHAR_MODE);</span>
+							}
+<span class="nc" id="L167">						}</span>
+						@Override
+						public void focusLost(FocusEvent e) {
+							
+<span class="nc" id="L171">						}</span>
+					});
+<span class="nc" id="L173">			userOutput</span>
+<span class="nc" id="L174">			.addActionListener(new ActionListener() {</span>
+					@Override
+					public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L177" title="All 2 branches missed.">						if (getView().getKeyboard() != null) {</span>
+<span class="nc" id="L178">							getView().remove(getView().getKeyboard());</span>
+<span class="nc" id="L179">							getView().setKeyboard(null);</span>
+<span class="nc" id="L180">							getView().validate();</span>
+<span class="nc" id="L181">							getView().repaint();</span>
+						}
+<span class="nc bnc" id="L183" title="All 2 branches missed.">						if (testInput(state)) {</span>
+<span class="nc" id="L184">							getView().hideError();</span>
+<span class="nc" id="L185">							stepForward();</span>
+<span class="nc" id="L186">						} else {</span>
+<span class="nc" id="L187">							getView().showError(state);</span>
+						}
+<span class="nc" id="L189">					}</span>
+			});
+			}
+
+<span class="nc" id="L193">		this.getView().getNextButton().addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent event) {
+<span class="nc bnc" id="L195" title="All 2 branches missed.">				if (getView().getKeyboard() != null) {</span>
+<span class="nc" id="L196">					getView().remove(getView().getKeyboard());</span>
+<span class="nc" id="L197">					getView().setKeyboard(null);</span>
+<span class="nc" id="L198">					getView().validate();</span>
+<span class="nc" id="L199">					getView().repaint();</span>
+				}
+<span class="nc bnc" id="L201" title="All 2 branches missed.">				if (testInput(state)) {</span>
+<span class="nc" id="L202">					getView().hideError();</span>
+<span class="nc" id="L203">					stepForward();</span>
+<span class="nc" id="L204">				} else {</span>
+<span class="nc" id="L205">					getView().showError(state);</span>
+				}
+<span class="nc" id="L207">			}</span>
+		});
+		
+<span class="nc" id="L210">		this.getView().getSkipButton().addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent event) {
+<span class="nc" id="L212">				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();</span>
+<span class="nc" id="L213">				containerController.presentNextVisualizationController();</span>
+<span class="nc" id="L214">			}</span>
+		});
+<span class="nc" id="L216">		this.getView().getReturnButton().addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent event) {
+<span class="nc" id="L218">				VisualizationContainerController containerController = (VisualizationContainerController)getParentController();</span>
+<span class="nc" id="L219">				containerController.presentPreviousVisualizationController();</span>
+<span class="nc" id="L220">			}</span>
+		});
+<span class="nc" id="L222">	}</span>
+	
+	/**
+	 * returns the help string
+	 * @return help string
+	 */
+	@Override
+	public String getHelp() {
+<span class="nc" id="L230">		String returnString = &quot;&quot;;</span>
+<span class="nc bnc" id="L231" title="All 6 branches missed.">		switch (this.state) {</span>
+		case 0:
+<span class="nc" id="L233">			returnString = i18n.tr(&quot;'T' = 20 and 'A' = 1, so just substract 1 from 20 and &quot;</span>
+					+ &quot;you have the answer!&quot;);
+<span class="nc" id="L235">			break;</span>
+		case 1:
+<span class="nc" id="L237">			returnString = i18n.tr(&quot;'W' = 23 and 'B' = 2, so just substract 2 from 23 and &quot;</span>
+					+ &quot;you have the answer!&quot;);
+<span class="nc" id="L239">			break;</span>
+		case 2:
+<span class="nc" id="L241">			returnString = i18n.tr(&quot;'S' = 19 and 'C' = 3, so just substract 3 from 19 and &quot;</span>
+					+ &quot;you have the answer!&quot;);
+<span class="nc" id="L243">			break;</span>
+		case 3:
+<span class="nc" id="L245">			returnString = i18n.tr(&quot;'I' = 9 and 'D' = 4, so just substract 4 from 9 and &quot;</span>
+					+ &quot;you have the answer!&quot;);
+<span class="nc" id="L247">			break;</span>
+		case 4:
+<span class="nc" id="L249">			returnString = i18n.tr(&quot;'W' = 23 and 'E' = 5, so just substract 5 from 23 and &quot;</span>
+					+ &quot;you have the answer!&quot;);
+<span class="nc" id="L251">			break;</span>
+		default:
+<span class="nc" id="L253">			return null;</span>
+		}
+<span class="nc" id="L255">		return returnString;</span>
+	}
+
+	/**
+	 * unloads the view
+	 */
+	@Override
+	public void unloadView() {
+<span class="nc" id="L263">		this.view = null;</span>
+<span class="nc" id="L264">	}</span>
+	
+	/**
+	 * returns the view
+	 * @return view of current step
+	 */
+	@Override
+	public FirstExperimentView getView() {
+<span class="nc" id="L272">		return (FirstExperimentView)this.view;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

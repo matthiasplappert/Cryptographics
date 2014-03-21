@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>HistogramController.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics.Caesar.Experiment</a> &gt; <span class="el_source">HistogramController.java</span></div><h1>HistogramController.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">package edu.kit.iks.Cryptographics.Caesar.Experiment;</span>
+
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
+
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.VisualizationContainerController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.Logger;
+import edu.kit.iks.CryptographicsLib.MouseClickListener;
+
+/**
+ * Controller for the last step of the histogram experiment phase.
+ * 
+ * @author Wasilij Beskorovajnov.
+ * 
+ */
+public class HistogramController extends AbstractVisualizationController {
+
+	/**
+	 * localization.
+	 */
+<span class="nc" id="L33">	private static I18n i18n = Configuration.getInstance().getI18n(</span>
+<span class="nc" id="L34">			HistogramController.class);</span>
+
+	/**
+	 * The model of this Controller.
+	 */
+	private CryptoModel model;
+
+	/**
+	 * Integer value that shows what step the visualization has proceed.
+	 */
+	private int step;
+
+	/**
+	 * Constructor
+	 * 
+	 * @param visualizationInfo
+	 */
+	public HistogramController(AbstractVisualizationInfo visualizationInfo) {
+<span class="nc" id="L52">		super(visualizationInfo);</span>
+<span class="nc" id="L53">	}</span>
+
+	@Override
+	public void loadView() {
+<span class="nc" id="L57">		this.view = new HistogramView();</span>
+<span class="nc" id="L58">		this.model = CryptoModel.getInstance();</span>
+<span class="nc" id="L59">		this.step = 0;</span>
+
+		// generate listener for the button proceed.
+<span class="nc" id="L62">		this.generateProceedListener();</span>
+
+		// generate listener for the next/back buttons.
+<span class="nc" id="L65">		this.generateNavigationActionListener();</span>
+
+<span class="nc" id="L67">	}</span>
+
+	@Override
+	public String getHelp() {
+<span class="nc bnc" id="L71" title="All 2 branches missed.">		if (this.getView().getHistogramCipher() != null) {</span>
+<span class="nc" id="L72">			return HistogramController.i18n</span>
+<span class="nc" id="L73">					.tr(&quot;Remember 'E' is in most cases the most frequent letter in a text.&quot;</span>
+							+ &quot; The column in the histogramm above E would be the tallest one.&quot;
+							+ &quot; So the tallest column in the histogram of a cipher would be the value E was shifted to.&quot;
+							+ &quot; For example, 'H' is the tallest one. Simply 'H'- 'E' = 8 - 5 = 3. Et voila 3 is the key.&quot;);
+		}
+<span class="nc" id="L78">		return HistogramController.i18n</span>
+<span class="nc" id="L79">				.tr(&quot;In order to find an unknown key you must try all of them.&quot;</span>
+						+ &quot; If you are lucky, you dont have to try many. In the worst case you have to try all of them.&quot;);
+	}
+
+	@Override
+	public void unloadView() {
+<span class="nc" id="L85">		this.view = null;</span>
+<span class="nc" id="L86">		this.model = null;</span>
+<span class="nc" id="L87">	}</span>
+
+	// ---------------------------------------------------------------------------//
+	// -------------------------------private methods---------------------------//
+
+	private void generateKeyInputActionListener() {
+		// Not really much input checking necessary because the keyboard has only numerical values.
+<span class="nc" id="L94">		this.getView().getKeyInput().addActionListener(new ActionListener() {</span>
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L98">				if (HistogramController.this.getView().getKeyInput().getText()</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">						.length() &gt; 0) {</span>
+<span class="nc" id="L100">					int key = 0;</span>
+					try {
+<span class="nc" id="L102">						key = Integer.parseInt(HistogramController.this</span>
+<span class="nc" id="L103">								.getView().getKeyInput().getText());</span>
+<span class="nc" id="L104">					} catch (NumberFormatException e1) {</span>
+<span class="nc" id="L105">						Logger.error(e1);</span>
+					}
+<span class="nc bnc" id="L107" title="All 2 branches missed.">					if (HistogramController.this.getModel().isKeyValid(key)) {</span>
+<span class="nc" id="L108">						String decryptedCipher = HistogramController.this</span>
+<span class="nc" id="L109">								.getModel().dec(</span>
+<span class="nc" id="L110">										key,</span>
+<span class="nc" id="L111">										HistogramController.this.getView()</span>
+<span class="nc" id="L112">												.getHistogramCipher());</span>
+<span class="nc" id="L113">						HistogramController.this</span>
+<span class="nc" id="L114">								.getView()</span>
+<span class="nc" id="L115">								.getPlainText()</span>
+<span class="nc" id="L116">								.setText(</span>
+<span class="nc" id="L117">										HistogramController.this.wrapHtml(</span>
+<span class="nc" id="L118">												decryptedCipher, 400));</span>
+
+<span class="nc bnc" id="L120" title="All 2 branches missed.">						if (key == HistogramController.this.getView()</span>
+<span class="nc" id="L121">								.getSecretKey()) {</span>
+<span class="nc" id="L122">							HistogramController.this</span>
+<span class="nc" id="L123">									.getView()</span>
+<span class="nc" id="L124">									.getKeyInput()</span>
+<span class="nc" id="L125">									.setBorder(</span>
+											BorderFactory
+<span class="nc" id="L127">													.createLineBorder(Color.green));</span>
+<span class="nc" id="L128">							String explanations = HistogramController.this.wrapHtml(</span>
+<span class="nc" id="L129">									HistogramController.i18n</span>
+<span class="nc" id="L130">											.tr(&quot;You found the right key! See how easy it is with histograms?&quot;</span>
+													+ &quot; If you want to try one more press proceed. Otherwise you can go directly to further information.&quot;
+													+ &quot; There you can learn more about caesar's cipher.&quot;),
+<span class="nc" id="L133">									600);</span>
+<span class="nc" id="L134">							HistogramController.this.getView()</span>
+<span class="nc" id="L135">									.getExplanations().setText(explanations);</span>
+<span class="nc" id="L136">							HistogramController.this.getView().getProceed()</span>
+<span class="nc" id="L137">									.setVisible(true);</span>
+<span class="nc" id="L138">							HistogramController.this.getView().requestFocus();</span>
+<span class="nc" id="L139">							HistogramController.this.getView().remove(</span>
+<span class="nc" id="L140">									HistogramController.this.getView()</span>
+<span class="nc" id="L141">											.getNumpad());</span>
+<span class="nc" id="L142">							HistogramController.this.getView().setNumpad(null);</span>
+<span class="nc" id="L143">							HistogramController.this.getView().validate();</span>
+<span class="nc" id="L144">							HistogramController.this.getView().repaint();</span>
+
+<span class="nc" id="L146">						} else {</span>
+<span class="nc" id="L147">							HistogramController.this.getView().getKeyInput()</span>
+<span class="nc" id="L148">									.setText(&quot;&quot;);</span>
+<span class="nc" id="L149">							String explanations = HistogramController.this.wrapHtml(</span>
+<span class="nc" id="L150">									HistogramController.this.getModel()</span>
+<span class="nc" id="L151">											.genRandomBlamings()</span>
+<span class="nc" id="L152">											+ &quot; &quot;</span>
+<span class="nc" id="L153">											+ HistogramController.i18n</span>
+<span class="nc" id="L154">													.tr(&quot;The key was wrong.&quot;),</span>
+<span class="nc" id="L155">									600);</span>
+<span class="nc" id="L156">							HistogramController.this.getView()</span>
+<span class="nc" id="L157">									.getExplanations().setText(explanations);</span>
+<span class="nc" id="L158">							HistogramController.this</span>
+<span class="nc" id="L159">									.getView()</span>
+<span class="nc" id="L160">									.getKeyInput()</span>
+<span class="nc" id="L161">									.setBorder(</span>
+											BorderFactory
+<span class="nc" id="L163">													.createLineBorder(Color.red));</span>
+						}
+
+<span class="nc" id="L166">					} else {</span>
+<span class="nc" id="L167">						String explanations = HistogramController.this.wrapHtml(</span>
+<span class="nc" id="L168">								HistogramController.this.getModel()</span>
+<span class="nc" id="L169">										.genRandomBlamings()</span>
+<span class="nc" id="L170">										+ &quot; &quot;</span>
+<span class="nc" id="L171">										+ HistogramController.i18n</span>
+<span class="nc" id="L172">												.tr(&quot;This key is invalid. Please type a number between 1 and 26. If you dont understand why,&quot;</span>
+														+ &quot; it is recommended to go to early stages.&quot;),
+<span class="nc" id="L174">								600);</span>
+<span class="nc" id="L175">						HistogramController.this.getView().getExplanations()</span>
+<span class="nc" id="L176">								.setText(explanations);</span>
+<span class="nc" id="L177">						HistogramController.this</span>
+<span class="nc" id="L178">								.getView()</span>
+<span class="nc" id="L179">								.getKeyInput()</span>
+<span class="nc" id="L180">								.setBorder(</span>
+										BorderFactory
+<span class="nc" id="L182">												.createLineBorder(Color.red));</span>
+					}
+<span class="nc" id="L184">				} else {</span>
+<span class="nc" id="L185">					HistogramController.this.getView().getKeyInput()</span>
+<span class="nc" id="L186">							.setText(&quot;&quot;);</span>
+<span class="nc" id="L187">					String explanations = HistogramController.this.wrapHtml(</span>
+<span class="nc" id="L188">							HistogramController.this.getModel()</span>
+<span class="nc" id="L189">									.genRandomBlamings()</span>
+<span class="nc" id="L190">									+ &quot; &quot;</span>
+<span class="nc" id="L191">									+ HistogramController.i18n</span>
+<span class="nc" id="L192">											.tr(&quot;The key field was empty!&quot;),</span>
+<span class="nc" id="L193">							600);</span>
+<span class="nc" id="L194">					HistogramController.this.getView().getExplanations()</span>
+<span class="nc" id="L195">							.setText(explanations);</span>
+<span class="nc" id="L196">					HistogramController.this</span>
+<span class="nc" id="L197">							.getView()</span>
+<span class="nc" id="L198">							.getKeyInput()</span>
+<span class="nc" id="L199">							.setBorder(</span>
+<span class="nc" id="L200">									BorderFactory.createLineBorder(Color.red));</span>
+				}
+<span class="nc" id="L202">			}</span>
+		});
+<span class="nc" id="L204">	}</span>
+
+	private void generateKeyInputFocusListener() {
+<span class="nc" id="L207">		this.getView().getKeyInput().addFocusListener(new FocusListener() {</span>
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+<span class="nc bnc" id="L211" title="All 2 branches missed.">				if (HistogramController.this.getView().getNumpad() == null) {</span>
+<span class="nc" id="L212">					HistogramController.this.getView().createNumpad(</span>
+<span class="nc" id="L213">							HistogramController.this.getView().getKeyInput());</span>
+				}
+
+<span class="nc" id="L216">				if (HistogramController.this.getView().getKeyInput()</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">						.isEditable()) {</span>
+<span class="nc" id="L218">					HistogramController.this</span>
+<span class="nc" id="L219">							.getView()</span>
+<span class="nc" id="L220">							.getKeyInput()</span>
+<span class="nc" id="L221">							.setBorder(</span>
+<span class="nc" id="L222">									BorderFactory.createLineBorder(Color.blue,</span>
+<span class="nc" id="L223">											5));</span>
+				}
+<span class="nc" id="L225">			}</span>
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				// Nothing to do here.
+<span class="nc" id="L230">			}</span>
+
+		});
+<span class="nc" id="L233">	}</span>
+
+	private void generateNavigationActionListener() {
+<span class="nc" id="L236">		this.getView().getBackButton().addActionListener(new ActionListener() {</span>
+			/*
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
+			 */
+			@Override
+			public void actionPerformed(ActionEvent event) {
+<span class="nc" id="L242">				VisualizationContainerController containerController = (VisualizationContainerController) HistogramController.this</span>
+<span class="nc" id="L243">						.getParentController();</span>
+<span class="nc" id="L244">				containerController.presentPreviousVisualizationController();</span>
+<span class="nc" id="L245">			}</span>
+		});
+<span class="nc" id="L247">		this.getView().getNextButton().addActionListener(new ActionListener() {</span>
+			/*
+			 * @see java.awt.event.ActionListener#actionPerformed(java.awt .event.ActionEvent)
+			 */
+			@Override
+			public void actionPerformed(ActionEvent event) {
+<span class="nc" id="L253">				VisualizationContainerController containerController = (VisualizationContainerController) HistogramController.this</span>
+<span class="nc" id="L254">						.getParentController();</span>
+<span class="nc" id="L255">				containerController.presentNextVisualizationController();</span>
+<span class="nc" id="L256">			}</span>
+		});
+<span class="nc" id="L258">	}</span>
+
+	private void generateDecrementMouseListener() {
+<span class="nc" id="L261">		this.getView().getDecrement()</span>
+<span class="nc" id="L262">				.addMouseListener(new MouseClickListener() {</span>
+					@Override
+					public void clicked(MouseEvent e) {
+<span class="nc" id="L265">						int bruteForceKey = 0;</span>
+						try {
+<span class="nc" id="L267">							bruteForceKey = Integer</span>
+<span class="nc" id="L268">									.parseInt(HistogramController.this</span>
+<span class="nc" id="L269">											.getView().getBruteForceKey()</span>
+<span class="nc" id="L270">											.getText()) - 1;</span>
+<span class="nc" id="L271">						} catch (NumberFormatException e1) {</span>
+<span class="nc" id="L272">							e1.printStackTrace();</span>
+						}
+<span class="nc" id="L274">						if (HistogramController.this.getModel().isKeyValid(</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">								bruteForceKey)) {</span>
+<span class="nc" id="L276">							HistogramController.this.getView()</span>
+<span class="nc" id="L277">									.getBruteForceKey()</span>
+<span class="nc" id="L278">									.setText(&quot;&quot; + bruteForceKey);</span>
+<span class="nc" id="L279">							HistogramController.this</span>
+<span class="nc" id="L280">									.getView()</span>
+<span class="nc" id="L281">									.getPlainText()</span>
+<span class="nc" id="L282">									.setText(</span>
+<span class="nc" id="L283">											(HistogramController.this</span>
+<span class="nc" id="L284">													.getModel()</span>
+<span class="nc" id="L285">													.dec(bruteForceKey,</span>
+<span class="nc" id="L286">															HistogramController.this</span>
+<span class="nc" id="L287">																	.getView()</span>
+<span class="nc" id="L288">																	.getCipherBruteForce()</span>
+<span class="nc" id="L289">																	.getText())));</span>
+
+<span class="nc" id="L291">							HistogramController.this.isKeyFound(bruteForceKey);</span>
+						} else {
+							// Key wrong. Nothing to do.
+						}
+<span class="nc" id="L295">					}</span>
+				});
+<span class="nc" id="L297">	}</span>
+
+	private void isKeyFound(int bruteForceKey) {
+
+		// compare the keys.
+<span class="nc bnc" id="L302" title="All 2 branches missed.">		if (bruteForceKey == HistogramController.this.getView().getSecretKey()) {</span>
+<span class="nc" id="L303">			HistogramController.this.getView().getKeyControl()</span>
+<span class="nc" id="L304">					.setBorder(BorderFactory.createLineBorder(Color.green, 5));</span>
+<span class="nc" id="L305">			HistogramController.this</span>
+<span class="nc" id="L306">					.getView()</span>
+<span class="nc" id="L307">					.getAnnouncement()</span>
+<span class="nc" id="L308">					.setText(</span>
+<span class="nc" id="L309">							HistogramController.this.wrapHtml(</span>
+<span class="nc" id="L310">									HistogramController.this.getModel()</span>
+<span class="nc" id="L311">											.genRandomGrats()</span>
+<span class="nc" id="L312">											+ &quot; &quot;</span>
+<span class="nc" id="L313">											+ HistogramController.i18n</span>
+<span class="nc" id="L314">													.tr(&quot;You found the secret key and are now able to read the secret message. The Key is&quot;)</span>
+<span class="nc" id="L315">											+ &quot; &quot;</span>
+<span class="nc" id="L316">											+ bruteForceKey</span>
+<span class="nc" id="L317">											+ &quot;. &quot;</span>
+<span class="nc" id="L318">											+ HistogramController.i18n</span>
+<span class="nc" id="L319">													.tr(&quot;Now only the histogram technique left.&quot;),</span>
+<span class="nc" id="L320">									500));</span>
+
+<span class="nc" id="L322">			HistogramController.this</span>
+<span class="nc" id="L323">					.getView()</span>
+<span class="nc" id="L324">					.getExplanations()</span>
+<span class="nc" id="L325">					.setText(</span>
+<span class="nc" id="L326">							HistogramController.i18n.tr(&quot;The Key was&quot;)</span>
+<span class="nc" id="L327">									+ &quot; &quot;</span>
+<span class="nc" id="L328">									+ bruteForceKey</span>
+<span class="nc" id="L329">									+ &quot;. &quot;</span>
+<span class="nc" id="L330">									+ HistogramController.i18n</span>
+<span class="nc" id="L331">											.tr(&quot;Congratulations! Yeay! Now lets try to break it with histograms.&quot;));</span>
+
+<span class="nc" id="L333">		} else {</span>
+<span class="nc" id="L334">			HistogramController.this</span>
+<span class="nc" id="L335">					.getView()</span>
+<span class="nc" id="L336">					.getAnnouncement()</span>
+<span class="nc" id="L337">					.setText(</span>
+<span class="nc" id="L338">							HistogramController.this.getModel()</span>
+<span class="nc" id="L339">									.genRandomBlamings());</span>
+<span class="nc" id="L340">			HistogramController.this.getView().getKeyControl()</span>
+<span class="nc" id="L341">					.setBorder(BorderFactory.createLineBorder(Color.blue, 2));</span>
+		}
+
+<span class="nc" id="L344">	}</span>
+
+	private void generateIncrementMouseListener() {
+<span class="nc" id="L347">		this.getView().getIncrement()</span>
+<span class="nc" id="L348">				.addMouseListener(new MouseClickListener() {</span>
+					@Override
+					public void clicked(MouseEvent e) {
+<span class="nc" id="L351">						int bruteForceKey = 0;</span>
+						try {
+<span class="nc" id="L353">							bruteForceKey = Integer</span>
+<span class="nc" id="L354">									.parseInt(HistogramController.this</span>
+<span class="nc" id="L355">											.getView().getBruteForceKey()</span>
+<span class="nc" id="L356">											.getText()) + 1;</span>
+<span class="nc" id="L357">						} catch (NumberFormatException e1) {</span>
+<span class="nc" id="L358">							e1.printStackTrace();</span>
+						}
+<span class="nc" id="L360">						if (HistogramController.this.getModel().isKeyValid(</span>
+<span class="nc bnc" id="L361" title="All 2 branches missed.">								bruteForceKey)) {</span>
+
+<span class="nc" id="L363">							HistogramController.this.getView()</span>
+<span class="nc" id="L364">									.getBruteForceKey()</span>
+<span class="nc" id="L365">									.setText(&quot;&quot; + bruteForceKey);</span>
+<span class="nc" id="L366">							HistogramController.this</span>
+<span class="nc" id="L367">									.getView()</span>
+<span class="nc" id="L368">									.getPlainText()</span>
+<span class="nc" id="L369">									.setText(</span>
+<span class="nc" id="L370">											(HistogramController.this</span>
+<span class="nc" id="L371">													.getModel()</span>
+<span class="nc" id="L372">													.dec(bruteForceKey,</span>
+<span class="nc" id="L373">															HistogramController.this</span>
+<span class="nc" id="L374">																	.getView()</span>
+<span class="nc" id="L375">																	.getCipherBruteForce()</span>
+<span class="nc" id="L376">																	.getText())));</span>
+
+<span class="nc" id="L378">							HistogramController.this.isKeyFound(bruteForceKey);</span>
+						} else {
+							// Key wrong. Nothing to do.
+						}
+<span class="nc" id="L382">					}</span>
+				});
+<span class="nc" id="L384">	}</span>
+
+	private void generateProceedListener() {
+<span class="nc" id="L387">		this.getView().getProceed().addMouseListener(new MouseClickListener() {</span>
+			@Override
+			public void clicked(MouseEvent e) {
+<span class="nc bnc" id="L390" title="All 2 branches missed.">				if (HistogramController.this.getStep() == 0) {</span>
+<span class="nc" id="L391">					HistogramController.this.setStep(1);</span>
+<span class="nc" id="L392">					HistogramController.this.getView()</span>
+<span class="nc" id="L393">							.unloadExplanationAndForwardingPanel();</span>
+					// Keys smaller than 5 are too simple and bigger then 20 could be annoying.
+<span class="nc" id="L395">					int secret = HistogramController.this.getModel()</span>
+<span class="nc" id="L396">							.generateRandomInt(5, 20);</span>
+
+<span class="nc" id="L398">					HistogramController.this.getView().setupBruteForceCore(</span>
+<span class="nc" id="L399">							secret,</span>
+<span class="nc" id="L400">							HistogramController.this.getModel()</span>
+<span class="nc" id="L401">									.genRandomCipher(secret));</span>
+<span class="nc" id="L402">					HistogramController.this.generateIncrementMouseListener();</span>
+<span class="nc" id="L403">					HistogramController.this.generateDecrementMouseListener();</span>
+<span class="nc" id="L404">					HistogramController.this</span>
+<span class="nc" id="L405">							.getView()</span>
+<span class="nc" id="L406">							.getKeyControl()</span>
+<span class="nc" id="L407">							.setBorder(</span>
+<span class="nc" id="L408">									BorderFactory.createLineBorder(Color.blue,</span>
+<span class="nc" id="L409">											2));</span>
+<span class="nc" id="L410">					HistogramController.this</span>
+<span class="nc" id="L411">							.getView()</span>
+<span class="nc" id="L412">							.setupExplanationAndForwarding(</span>
+<span class="nc" id="L413">									HistogramController.this.wrapHtml(</span>
+<span class="nc" id="L414">											HistogramController.i18n</span>
+<span class="nc" id="L415">													.tr(&quot;Or: If you want to try a more elaborate way breaking Caesar-cipher &quot;</span>
+															+ &quot;you can try histogram technique by pressing the button below.&quot;),
+<span class="nc" id="L417">											900), GridBagConstraints.PAGE_END);</span>
+<span class="nc" id="L418">					HistogramController.this.generateProceedListener();</span>
+<span class="nc" id="L419">					HistogramController.this</span>
+<span class="nc" id="L420">							.getView()</span>
+<span class="nc" id="L421">							.getProceed()</span>
+<span class="nc" id="L422">							.setText(</span>
+<span class="nc" id="L423">									HistogramController.i18n</span>
+<span class="nc" id="L424">											.tr(&quot;Try histogram technique&quot;));</span>
+
+<span class="nc bnc" id="L426" title="All 2 branches missed.">				} else if (HistogramController.this.getStep() == 1) {</span>
+					// unload the old explanations.
+<span class="nc" id="L428">					HistogramController.this.getView()</span>
+<span class="nc" id="L429">							.unloadExplanationAndForwardingPanel();</span>
+<span class="nc" id="L430">					HistogramController.this.getView().remove(</span>
+<span class="nc" id="L431">							HistogramController.this.getView().getKeyControl());</span>
+<span class="nc" id="L432">					HistogramController.this.getView().setKeyControl(null);</span>
+
+<span class="nc" id="L434">					String explanation = HistogramController.this.getModel()</span>
+<span class="nc" id="L435">							.genRandomText();</span>
+
+<span class="nc" id="L437">					HistogramController.this.getView()</span>
+<span class="nc" id="L438">							.setHistogramOriginalText(</span>
+<span class="nc" id="L439">									HistogramController.this.wrapHtml(</span>
+<span class="nc" id="L440">											explanation, 400));</span>
+
+<span class="nc" id="L442">					HistogramController.this.getView()</span>
+<span class="nc" id="L443">							.setupExplanationAndForwarding(</span>
+<span class="nc" id="L444">									HistogramController.this.wrapHtml(</span>
+<span class="nc" id="L445">											explanation, 700),</span>
+<span class="nc" id="L446">									GridBagConstraints.PAGE_START);</span>
+
+					// Build the new experiment.
+<span class="nc" id="L449">					HistogramController.this.setStep(2);</span>
+<span class="nc" id="L450">					HistogramController.this.generateProceedListener();</span>
+<span class="nc" id="L451">					HistogramController.this.getView()</span>
+<span class="nc" id="L452">							.setupHistogramContainer();</span>
+<span class="nc" id="L453">					HistogramController.this.getView().setupPlainHistogram(</span>
+<span class="nc" id="L454">							explanation);</span>
+
+<span class="nc" id="L456">					HistogramController.this.getView().revalidate();</span>
+<span class="nc" id="L457">					HistogramController.this.getView().repaint();</span>
+<span class="nc bnc" id="L458" title="All 2 branches missed.">				} else if (HistogramController.this.getStep() == 2) {</span>
+<span class="nc" id="L459">					HistogramController.this.getView().getProceed()</span>
+<span class="nc" id="L460">							.setVisible(false);</span>
+<span class="nc" id="L461">					HistogramController.this.setStep(3);</span>
+<span class="nc" id="L462">					String textToEncrypt = HistogramController.this.getView()</span>
+<span class="nc" id="L463">							.getHistogramOriginalText();</span>
+<span class="nc" id="L464">					String htmlCipher = HistogramController.this.getModel()</span>
+<span class="nc" id="L465">							.enc(3, textToEncrypt);</span>
+
+<span class="nc" id="L467">					HistogramController.this</span>
+<span class="nc" id="L468">							.getView()</span>
+<span class="nc" id="L469">							.getExplanations()</span>
+<span class="nc" id="L470">							.setText(</span>
+<span class="nc" id="L471">									HistogramController.this.wrapHtml(</span>
+<span class="nc" id="L472">											HistogramController.i18n</span>
+<span class="nc" id="L473">													.tr(&quot;When you look at the histogram of the cipher you can see that 'H' is now the most frequent one.&quot;</span>
+															+ &quot; It is obvious that the letter 'E' was shifted to 'H'. When we substract 'H' - 'E' we get the key.&quot;
+															+ &quot; Put the key 3 in the box below and let the programm decrypt the cipher with it.&quot;),
+<span class="nc" id="L476">											700));</span>
+
+<span class="nc" id="L478">					HistogramController.this.getView().setupCipherHistogram(</span>
+<span class="nc" id="L479">							htmlCipher);</span>
+<span class="nc" id="L480">					HistogramController.this.getView().setHistogramCipher(</span>
+<span class="nc" id="L481">							htmlCipher);</span>
+<span class="nc" id="L482">					HistogramController.this.getView().setSecretKey(3);</span>
+<span class="nc" id="L483">					HistogramController.this.getView().setupKeyInput();</span>
+<span class="nc" id="L484">					HistogramController.this.generateKeyInputFocusListener();</span>
+<span class="nc" id="L485">					HistogramController.this.generateKeyInputActionListener();</span>
+<span class="nc" id="L486">					HistogramController.this.getView().validate();</span>
+<span class="nc" id="L487">					HistogramController.this.getView().repaint();</span>
+
+<span class="nc" id="L489">				} else {</span>
+					// Build the new experiment.
+<span class="nc" id="L491">					HistogramController.this.setStep(HistogramController.this</span>
+<span class="nc" id="L492">							.getStep() + 1);</span>
+<span class="nc" id="L493">					HistogramController.this.getView().unloadCipherHistogram();</span>
+<span class="nc" id="L494">					HistogramController.this.getView().unloadKeyInput();</span>
+<span class="nc" id="L495">					HistogramController.this.getView().getPlainText()</span>
+<span class="nc" id="L496">							.setText(&quot;&quot;);</span>
+<span class="nc" id="L497">					HistogramController.this.getView().requestFocus();</span>
+<span class="nc" id="L498">					HistogramController.this</span>
+<span class="nc" id="L499">							.getView()</span>
+<span class="nc" id="L500">							.getExplanations()</span>
+<span class="nc" id="L501">							.setText(</span>
+<span class="nc" id="L502">									HistogramController.i18n</span>
+<span class="nc" id="L503">											.tr(&quot;Ok lets try another one!&quot;));</span>
+
+<span class="nc" id="L505">					String plainText = HistogramController.this.getModel()</span>
+<span class="nc" id="L506">							.genRandomText();</span>
+<span class="nc" id="L507">					int key = HistogramController.this.getModel().generateKey();</span>
+<span class="nc" id="L508">					String cipher = HistogramController.this.getModel().enc(</span>
+<span class="nc" id="L509">							key, plainText);</span>
+
+<span class="nc" id="L511">					HistogramController.this.getView().setupCipherHistogram(</span>
+<span class="nc" id="L512">							HistogramController.this.wrapHtml(cipher, 400));</span>
+<span class="nc" id="L513">					HistogramController.this.getView().setupKeyInput();</span>
+<span class="nc" id="L514">					HistogramController.this.generateKeyInputFocusListener();</span>
+<span class="nc" id="L515">					HistogramController.this.generateKeyInputActionListener();</span>
+<span class="nc" id="L516">					HistogramController.this.getView().setHistogramCipher(</span>
+<span class="nc" id="L517">							cipher);</span>
+<span class="nc" id="L518">					HistogramController.this.getView().setSecretKey(key);</span>
+<span class="nc" id="L519">					HistogramController.this.getView().getProceed()</span>
+<span class="nc" id="L520">							.setVisible(false);</span>
+<span class="nc bnc" id="L521" title="All 2 branches missed.">					if (HistogramController.this.getView().getNumpad() != null) {</span>
+<span class="nc" id="L522">						HistogramController.this.getView().remove(</span>
+<span class="nc" id="L523">								HistogramController.this.getView().getNumpad());</span>
+<span class="nc" id="L524">						HistogramController.this.getView().setNumpad(null);</span>
+					}
+<span class="nc" id="L526">					HistogramController.this.getView().validate();</span>
+<span class="nc" id="L527">					HistogramController.this.getView().repaint();</span>
+				}
+
+<span class="nc" id="L530">			}</span>
+		});
+<span class="nc" id="L532">	}</span>
+
+	private String wrapHtml(String text, int width) {
+<span class="nc" id="L535">		return &quot;&lt;html&gt;&lt;body&gt;&lt;div width=&quot; + width + &quot;px&gt;&quot; + text</span>
+<span class="nc" id="L536">				+ &quot;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;;</span>
+	}
+
+	// ---------------------------------------------------------------------------------//
+	// -----------------------------------Getter/Setter---------------------------------//
+	/**
+	 * @return the model
+	 */
+	public CryptoModel getModel() {
+<span class="nc" id="L545">		return this.model;</span>
+	}
+
+	/**
+	 * @return the step
+	 */
+	public int getStep() {
+<span class="nc" id="L552">		return this.step;</span>
+	}
+
+	/**
+	 * Gets the view
+	 * 
+	 * @return The view of this controller
+	 */
+	@Override
+	public HistogramView getView() {
+<span class="nc" id="L562">		return (HistogramView) this.view;</span>
+	}
+
+	/**
+	 * @param model
+	 *            the model to set
+	 */
+	public void setModel(CryptoModel model) {
+<span class="nc" id="L570">		this.model = model;</span>
+<span class="nc" id="L571">	}</span>
+
+	/**
+	 * @param step
+	 *            the step to set
+	 */
+	public void setStep(int step) {
+<span class="nc" id="L578">		this.step = step;</span>
+<span class="nc" id="L579">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

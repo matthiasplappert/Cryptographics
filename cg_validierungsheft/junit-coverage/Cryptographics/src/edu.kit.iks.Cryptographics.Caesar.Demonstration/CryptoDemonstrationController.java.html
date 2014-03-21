@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>CryptoDemonstrationController.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics.Caesar.Demonstration</a> &gt; <span class="el_source">CryptoDemonstrationController.java</span></div><h1>CryptoDemonstrationController.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">package edu.kit.iks.Cryptographics.Caesar.Demonstration;</span>
+
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.swing.BorderFactory;
+import javax.swing.JTextField;
+
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.VisualizationContainerController;
+import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoModel;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.ImageView;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
+import edu.kit.iks.CryptographicsLib.Logger;
+import edu.kit.iks.CryptographicsLib.MouseClickListener;
+
+/**
+ * Controller for the last step of demonstration phase. Controls the needed elements from
+ * {@link CryptoDemonstrationView}
+ * 
+ * @author Wasilij Beskorovajnov.
+ * 
+ */
+public class CryptoDemonstrationController extends
+		AbstractVisualizationController {
+
+	/**
+	 * localization.
+	 */
+<span class="nc" id="L46">	private static I18n i18n = Configuration.getInstance().getI18n(</span>
+<span class="nc" id="L47">			CryptoDemonstrationController.class);</span>
+
+	/**
+	 * Identicates the step of the demonstration.
+	 */
+	private int demonstrationStep;
+
+	/**
+	 * Indicates how much fields left to edit.
+	 */
+	private int editableFields;
+
+	/**
+	 * The model of this controller.
+	 */
+	private CryptoModel model;
+	
+	private Element cryptoResources;
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param visualizationInfo
+	 */
+	public CryptoDemonstrationController(
+			AbstractVisualizationInfo visualizationInfo) {
+<span class="nc" id="L73">		super(visualizationInfo);</span>
+		
+<span class="nc" id="L75">		SAXBuilder saxBuilder = new SAXBuilder();</span>
+
+		// obtain file object
+<span class="nc" id="L78">		InputStream is = this.getClass().getResourceAsStream(</span>
+<span class="nc" id="L79">				&quot;/caesar/CaesarResources.xml&quot;);</span>
+
+		try {
+			// converted file to document object
+<span class="nc" id="L83">			Document document = saxBuilder.build(is);</span>
+
+			// get root node from xml
+<span class="nc" id="L86">			this.cryptoResources = document.getRootElement();</span>
+<span class="nc" id="L87">		} catch (JDOMException | IOException e) {</span>
+<span class="nc" id="L88">			Logger.error(e);</span>
+		}
+<span class="nc" id="L90">	}</span>
+
+	@Override
+	public void loadView() {
+<span class="nc" id="L94">		this.view = new CryptoDemonstrationView();</span>
+<span class="nc" id="L95">		this.model = CryptoModel.getInstance();</span>
+
+		// set the initial first step.
+<span class="nc" id="L98">		this.demonstrationStep = 1;</span>
+
+		// generate ActionListener for the navigationButtons.
+<span class="nc" id="L101">		this.generateNavigationListener();</span>
+
+		// generate ActionListener for the forwarding button proceed.
+<span class="nc" id="L104">		this.generateProceedListener();</span>
+
+<span class="nc bnc" id="L106" title="All 2 branches missed.">		for (int i = 1; i &lt; this.getView().getUserOutput().length; i++) {</span>
+			// Needed for delegating to the inner type ActionListener, when the actionEvent from the
+			// Button &quot;ENTER&quot; on the Keyboard is fired.
+<span class="nc" id="L109">			final JTextField userOutput = this.getView().getUserOutput()[i];</span>
+
+			// FocusListener for the textfields.
+<span class="nc" id="L112">			this.generateUserOutputFocusListener(i, userOutput);</span>
+			// actionListener for the textfields.
+<span class="nc" id="L114">			this.generateUserOutputActionListener(i, userOutput);</span>
+		}
+
+<span class="nc" id="L117">		this.getView().validate();</span>
+<span class="nc" id="L118">	}</span>
+
+	/**
+	 * Gets the view
+	 * 
+	 * @return The view of this controller
+	 */
+	@Override
+	public CryptoDemonstrationView getView() {
+<span class="nc" id="L127">		return (CryptoDemonstrationView) this.view;</span>
+	}
+
+	// ---------------------------------------------------------//
+	// -----------------private methods-------------------------//
+
+	/**
+	 * Function for performing the needed demonstration. After each step the demonstration stops and
+	 * continues when user wishes.
+	 * 
+	 * @param step
+	 *            {@link demonstrationStep}
+	 */
+	private void demonstrate(int step) {
+<span class="nc bnc" id="L141" title="All 4 branches missed.">		switch (step) {</span>
+		case 1:
+<span class="nc" id="L143">			this.step1();</span>
+<span class="nc" id="L144">			break;</span>
+		case 2:
+<span class="nc" id="L146">			this.step2();</span>
+<span class="nc" id="L147">			break;</span>
+		case 3:
+<span class="nc" id="L149">			this.step3();</span>
+			break;
+		default:
+
+		}
+
+<span class="nc" id="L155">	}</span>
+
+	private void generateUserOutputActionListener(int i,
+			final JTextField userOutput) {
+<span class="nc" id="L159">		this.getView().getUserOutput()[i]</span>
+<span class="nc" id="L160">				.addActionListener(new ActionListener() {</span>
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L164" title="All 2 branches missed.">						if (userOutput.isEditable()) {</span>
+<span class="nc" id="L165">							if (CryptoDemonstrationController.this.getModel()</span>
+<span class="nc" id="L166">									.enc(3, userOutput.getName())</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">									.equals(userOutput.getText())) {</span>
+
+								// user encrypted the given char successful.
+<span class="nc" id="L170">								CryptoDemonstrationController.this</span>
+<span class="nc" id="L171">										.presentSuccessfullCharEncrypt(userOutput);</span>
+
+<span class="nc bnc" id="L173" title="All 2 branches missed.">								if (CryptoDemonstrationController.this</span>
+<span class="nc" id="L174">										.getEditableFields() == 0</span>
+<span class="nc bnc" id="L175" title="All 2 branches missed.">										&amp;&amp; CryptoDemonstrationController.this</span>
+<span class="nc" id="L176">												.getAnimationStep() == 4) {</span>
+
+									// User encrypted all characters valid.
+<span class="nc" id="L179">									CryptoDemonstrationController.this</span>
+<span class="nc" id="L180">											.getView()</span>
+<span class="nc" id="L181">											.getExplanations()</span>
+<span class="nc" id="L182">											.setText(</span>
+<span class="nc" id="L183">													CryptoDemonstrationController.this</span>
+<span class="nc" id="L184">															.wrapHtml(CryptoDemonstrationController.i18n</span>
+<span class="nc" id="L185">																	.tr(&quot;Great work oh mighty Caesar. May your enemies shutter over your intelligence.&quot;</span>
+																			+ &quot; Now we can move on to the real experiment and test your skills.&quot;)));
+
+									// remove all unnecessary elements.
+<span class="nc" id="L189">									CryptoDemonstrationController.this</span>
+<span class="nc" id="L190">											.presentFinish();</span>
+<span class="nc" id="L191">									CryptoDemonstrationController.this</span>
+<span class="nc" id="L192">											.getView().removeKeyboard();</span>
+
+<span class="nc" id="L194">								} else if (CryptoDemonstrationController.this</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">										.getEditableFields() == 0</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">										&amp;&amp; CryptoDemonstrationController.this</span>
+<span class="nc" id="L197">												.getAnimationStep() == 3) {</span>
+
+									// User has to encrypt the last 3 fields.
+<span class="nc" id="L200">									CryptoDemonstrationController.this</span>
+<span class="nc" id="L201">											.prepareNextToLastStep(userOutput);</span>
+<span class="nc" id="L202">									CryptoDemonstrationController.this</span>
+<span class="nc" id="L203">											.getView()</span>
+<span class="nc" id="L204">											.getExplanations()</span>
+<span class="nc" id="L205">											.setText(</span>
+<span class="nc" id="L206">													CryptoDemonstrationController.this</span>
+<span class="nc" id="L207">															.wrapHtml(CryptoDemonstrationController.i18n</span>
+<span class="nc" id="L208">																	.tr(&quot;Very nice! Let's encrypt the rest of your name. Touch proceed.&quot;)));</span>
+<span class="nc" id="L209">									CryptoDemonstrationController.this.setFeedbackImage(&quot;CaesarPositive&quot;);</span>
+<span class="nc" id="L210">								} else {</span>
+									// User encrypted correctly the given char.
+<span class="nc" id="L212">									CryptoDemonstrationController.this</span>
+<span class="nc" id="L213">											.getView()</span>
+<span class="nc" id="L214">											.getExplanations()</span>
+<span class="nc" id="L215">											.setText(</span>
+<span class="nc" id="L216">													CryptoDemonstrationController.this</span>
+<span class="nc" id="L217">															.getModel()</span>
+<span class="nc" id="L218">															.genRandomGrats()</span>
+<span class="nc" id="L219">															+ &quot; &quot;</span>
+<span class="nc" id="L220">															+ CryptoDemonstrationController.i18n</span>
+<span class="nc" id="L221">																	.trn(&quot;Only {0} left.&quot;,</span>
+<span class="nc" id="L222">																			&quot;Only {0} left.&quot;,</span>
+<span class="nc" id="L223">																			CryptoDemonstrationController.this</span>
+<span class="nc" id="L224">																					.getEditableFields(),</span>
+<span class="nc" id="L225">																			CryptoDemonstrationController.this</span>
+<span class="nc" id="L226">																					.getEditableFields()));</span>
+<span class="nc" id="L227">									CryptoDemonstrationController.this.setFeedbackImage(&quot;CaesarPositive&quot;);</span>
+									
+									// The next textfield to the right requests now the focus.
+<span class="nc" id="L230">									CryptoDemonstrationController.this</span>
+<span class="nc" id="L231">											.getView().getUserOutput()[CryptoDemonstrationController.this</span>
+<span class="nc" id="L232">											.getView().getUserOutput().length</span>
+<span class="nc" id="L233">											- CryptoDemonstrationController.this</span>
+<span class="nc" id="L234">													.getEditableFields()]</span>
+<span class="nc" id="L235">											.requestFocus();</span>
+								}
+<span class="nc" id="L237">							} else {</span>
+								// User didn't encrypt correctly.
+<span class="nc" id="L239">								CryptoDemonstrationController.this</span>
+<span class="nc" id="L240">										.getView()</span>
+<span class="nc" id="L241">										.getExplanations()</span>
+<span class="nc" id="L242">										.setText(</span>
+<span class="nc" id="L243">												CryptoDemonstrationController.this</span>
+<span class="nc" id="L244">														.getModel()</span>
+<span class="nc" id="L245">														.genRandomBlamings());</span>
+<span class="nc" id="L246">								userOutput.setText(&quot;&quot;);</span>
+<span class="nc" id="L247">								CryptoDemonstrationController.this.setFeedbackImage(&quot;CaesarNegative&quot;);</span>
+								
+<span class="nc" id="L249">								userOutput.requestFocus();</span>
+							}
+						}
+<span class="nc" id="L252">					}</span>
+				});
+<span class="nc" id="L254">	}</span>
+	
+	private void setFeedbackImage(String resourceID) {
+<span class="nc" id="L257">		this.getView().getFeedback().removeAll();</span>
+<span class="nc" id="L258">		String path = &quot;&quot;;</span>
+		try {
+<span class="nc" id="L260">			path = CryptoDemonstrationController.this.getCryptoResource()</span>
+<span class="nc" id="L261">					.getChild(&quot;CryptoResources&quot;).getChild(resourceID)</span>
+<span class="nc" id="L262">					.getAttributeValue(&quot;path&quot;);</span>
+<span class="nc" id="L263">		} catch (NullPointerException nullException) {</span>
+			//Element not found.
+<span class="nc" id="L265">			System.out.println(&quot;[NullPointerException] Ressource not found.&quot;);</span>
+<span class="nc" id="L266">			nullException.printStackTrace();</span>
+		}
+		
+<span class="nc" id="L269">		GridBagConstraints imgConstraint = new GridBagConstraints();</span>
+<span class="nc" id="L270">		imgConstraint.gridx = this.getView().getUserInput().length + 1;</span>
+<span class="nc" id="L271">		imgConstraint.gridy = 0;</span>
+<span class="nc" id="L272">		ImageView imageToSet = new ImageView(path);</span>
+<span class="nc" id="L273">		this.getView().getFeedback().add(imageToSet, imgConstraint);</span>
+		
+<span class="nc" id="L275">		this.getView().validate();</span>
+<span class="nc" id="L276">		this.getView().repaint();</span>
+<span class="nc" id="L277">	}</span>
+
+	private void generateUserOutputFocusListener(int i,
+			final JTextField userOutput) {
+<span class="nc" id="L281">		this.getView().getUserOutput()[i].addFocusListener(new FocusListener() {</span>
+			@Override
+			public void focusGained(FocusEvent e) {
+
+<span class="nc" id="L285">				JTextField output = (JTextField) e.getSource();</span>
+				// resets the highlighting.
+<span class="nc" id="L287">				CryptoDemonstrationController.this.resetStateOfIOFields();</span>
+
+<span class="nc bnc" id="L289" title="All 2 branches missed.">				if (CryptoDemonstrationController.this.getView().getKeyboard() != null) {</span>
+					// remove the keyboard.
+<span class="nc" id="L291">					CryptoDemonstrationController.this.getView()</span>
+<span class="nc" id="L292">							.removeKeyboard();</span>
+				}
+<span class="nc bnc" id="L294" title="All 2 branches missed.">				if (output.isEditable()) {</span>
+					// highlights the character in the alphabet.
+<span class="nc" id="L296">					CryptoDemonstrationController.this</span>
+<span class="nc" id="L297">							.highlightInputField(userOutput);</span>
+				}
+<span class="nc" id="L299">			}</span>
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				// Nothing to do here.
+<span class="nc" id="L304">			}</span>
+		});
+<span class="nc" id="L306">	}</span>
+
+	private void generateProceedListener() {
+<span class="nc" id="L309">		this.getView().getProceed().addMouseListener(new MouseClickListener() {</span>
+			@Override
+			public void clicked(MouseEvent e) {
+<span class="nc" id="L312">				CryptoDemonstrationController.this</span>
+<span class="nc" id="L313">						.demonstrate(CryptoDemonstrationController.this</span>
+<span class="nc" id="L314">								.getAnimationStep());</span>
+<span class="nc" id="L315">			}</span>
+		});
+
+<span class="nc" id="L318">	}</span>
+
+	private void generateNavigationListener() {
+<span class="nc" id="L321">		this.getView().getBackButton().addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent event) {
+<span class="nc" id="L324">				VisualizationContainerController containerController = (VisualizationContainerController) CryptoDemonstrationController.this</span>
+<span class="nc" id="L325">						.getParentController();</span>
+<span class="nc" id="L326">				containerController.presentPreviousVisualizationController();</span>
+<span class="nc" id="L327">			}</span>
+		});
+<span class="nc" id="L329">		this.getView().getNextButton().addActionListener(new ActionListener() {</span>
+			@Override
+			public void actionPerformed(ActionEvent event) {
+<span class="nc" id="L332">				VisualizationContainerController containerController = (VisualizationContainerController) CryptoDemonstrationController.this</span>
+<span class="nc" id="L333">						.getParentController();</span>
+<span class="nc" id="L334">				containerController.presentNextVisualizationController();</span>
+<span class="nc" id="L335">			}</span>
+		});
+<span class="nc" id="L337">	}</span>
+
+	private void prepareNextToLastStep(JTextField userOutput) {
+<span class="nc" id="L340">		this.getView().requestFocus();</span>
+<span class="nc" id="L341">		this.getView().removeKeyboard();</span>
+<span class="nc" id="L342">		this.getView().getProceed().setVisible(true);</span>
+<span class="nc" id="L343">		this.getView()</span>
+<span class="nc" id="L344">				.getAlphabet()</span>
+<span class="nc" id="L345">				.unHighlight(</span>
+<span class="nc" id="L346">						userOutput.getName().charAt(0)</span>
+<span class="nc" id="L347">								- this.getModel().ASCII_UC_A);</span>
+<span class="nc" id="L348">	}</span>
+
+	private void presentSuccessfullCharEncrypt(JTextField userOutput) {
+<span class="nc" id="L351">		userOutput.setBorder(BorderFactory.createLineBorder(Color.green));</span>
+<span class="nc" id="L352">		this.setEditableFields(this.getEditableFields() - 1);</span>
+<span class="nc" id="L353">		userOutput.setEditable(false);</span>
+<span class="nc" id="L354">	}</span>
+
+	private void presentFinish() {
+<span class="nc" id="L357">		this.getView().removeAlphabet();</span>
+
+<span class="nc" id="L359">		this.getView().getNavigationPanel()</span>
+<span class="nc" id="L360">				.remove(this.getView().getNextButton());</span>
+<span class="nc" id="L361">		GridBagConstraints nextConst = new GridBagConstraints();</span>
+<span class="nc" id="L362">		nextConst.anchor = GridBagConstraints.CENTER;</span>
+<span class="nc" id="L363">		nextConst.weightx = 1.0;</span>
+<span class="nc" id="L364">		nextConst.weighty = 0.1;</span>
+<span class="nc" id="L365">		nextConst.gridx = 1;</span>
+<span class="nc" id="L366">		nextConst.gridy = 1;</span>
+<span class="nc" id="L367">		nextConst.gridwidth = 26;</span>
+<span class="nc" id="L368">		nextConst.gridheight = 2;</span>
+<span class="nc" id="L369">		this.getView().add(this.getView().getNextButton(), nextConst);</span>
+
+<span class="nc" id="L371">		this.getView().requestFocus();</span>
+<span class="nc" id="L372">	}</span>
+
+	private void highlightInputField(JTextField output) {
+<span class="nc" id="L375">		int charToEncryptAscii = output.getName().charAt(0);</span>
+<span class="nc" id="L376">		AlphabetStripView viewAlphabet = this.getView().getAlphabet();</span>
+<span class="nc" id="L377">		viewAlphabet.highlight(charToEncryptAscii - this.getModel().ASCII_UC_A);</span>
+
+<span class="nc" id="L379">		output.setBorder(BorderFactory.createLineBorder(Color.blue, 5));</span>
+<span class="nc" id="L380">		this.getView().createKeyboard(output, KeyboardView.CHAR_MODE);</span>
+<span class="nc" id="L381">	}</span>
+
+	private void resetStateOfIOFields() {
+<span class="nc bnc" id="L384" title="All 2 branches missed.">		for (JTextField outputIterator : this.getView().getUserOutput()) {</span>
+
+<span class="nc bnc" id="L386" title="All 2 branches missed.">			if (outputIterator.getText() != null</span>
+<span class="nc bnc" id="L387" title="All 2 branches missed.">					&amp;&amp; CryptoDemonstrationController.this.getView()</span>
+<span class="nc" id="L388">							.getAlphabet() != null) {</span>
+<span class="nc" id="L389">				int charToEncryptAscii = outputIterator.getName().charAt(0);</span>
+<span class="nc" id="L390">				AlphabetStripView viewAlphabet = CryptoDemonstrationController.this</span>
+<span class="nc" id="L391">						.getView().getAlphabet();</span>
+<span class="nc" id="L392">				viewAlphabet</span>
+<span class="nc" id="L393">						.unHighlight(charToEncryptAscii</span>
+<span class="nc" id="L394">								- CryptoDemonstrationController.this.getModel().ASCII_UC_A);</span>
+<span class="nc bnc" id="L395" title="All 2 branches missed.">				if (outputIterator.isEditable()) {</span>
+<span class="nc" id="L396">					outputIterator.setBorder(BorderFactory</span>
+<span class="nc" id="L397">							.createLineBorder(Color.darkGray));</span>
+				}
+			}
+		}
+<span class="nc" id="L401">	}</span>
+
+	/**
+	 * Explain the elements on the screen. Only explanations are shown.
+	 */
+	private void step1() {
+<span class="nc" id="L407">		this.demonstrationStep++;</span>
+<span class="nc" id="L408">		this.getView()</span>
+<span class="nc" id="L409">				.getExplanations()</span>
+<span class="nc" id="L410">				.setText(</span>
+<span class="nc" id="L411">						this.wrapHtml(CryptoDemonstrationController.i18n</span>
+<span class="nc" id="L412">								.tr(&quot;Because of your inferior intelligence you look at the first letter of your name: C.&quot;</span>
+										+ &quot; Then you look at the 3rd letter after C and take F. Great! Now you encrypted the&quot;
+										+ &quot; first letter of your name. Touch proceed.&quot;)));
+<span class="nc" id="L415">		this.getView().getUserInput()[0].setBorder(BorderFactory</span>
+<span class="nc" id="L416">				.createLineBorder(Color.green));</span>
+<span class="nc" id="L417">		this.getView().getUserOutput()[0].setBorder(BorderFactory</span>
+<span class="nc" id="L418">				.createLineBorder(Color.green));</span>
+<span class="nc" id="L419">		this.getView().getUserOutput()[0].setText(&quot;F&quot;);</span>
+<span class="nc" id="L420">		this.getView().validate();</span>
+<span class="nc" id="L421">	}</span>
+
+	/**
+	 * Describe how each character is encrypted.
+	 */
+	private void step2() {
+<span class="nc" id="L427">		this.demonstrationStep++;</span>
+<span class="nc" id="L428">		this.editableFields = 1;</span>
+<span class="nc" id="L429">		this.getView().getProceed().setVisible(false);</span>
+<span class="nc" id="L430">		this.getView().getUserInput()[0].setBorder(null);</span>
+<span class="nc" id="L431">		this.getView().getUserOutput()[0].setBorder(null);</span>
+<span class="nc" id="L432">		this.getView()</span>
+<span class="nc" id="L433">				.getExplanations()</span>
+<span class="nc" id="L434">				.setText(</span>
+<span class="nc" id="L435">						this.wrapHtml(CryptoDemonstrationController.i18n</span>
+<span class="nc" id="L436">								.tr(&quot;Now try to encrypt the next letter yourself.&quot;</span>
+										+ &quot; If you need help, you can always use the help button.&quot;)));
+//		 setup the alphabet.
+<span class="nc" id="L439">		this.getView().setupAlphabet();</span>
+<span class="nc" id="L440">		this.getView().getUserInput()[1].setBorder(BorderFactory</span>
+<span class="nc" id="L441">				.createLineBorder(Color.green));</span>
+<span class="nc" id="L442">		this.getView().getUserOutput()[1].setEditable(true);</span>
+<span class="nc" id="L443">		this.getView().getUserOutput()[1].requestFocus();</span>
+<span class="nc" id="L444">		this.getView().validate();</span>
+<span class="nc" id="L445">	}</span>
+
+	/**
+	 * Describe the general Caesar cipher. (The key can vary from 1-26.)
+	 */
+	private void step3() {
+<span class="nc" id="L451">		this.demonstrationStep++;</span>
+<span class="nc" id="L452">		this.editableFields = (this.getView().getUserInput().length - 2);</span>
+<span class="nc" id="L453">		this.getView().remove(this.getView().getProceed());</span>
+<span class="nc" id="L454">		this.getView().setProceed(null);</span>
+<span class="nc" id="L455">		this.getView().getUserInput()[1].setBorder(null);</span>
+<span class="nc" id="L456">		this.getView().getUserOutput()[1].setBorder(null);</span>
+<span class="nc bnc" id="L457" title="All 2 branches missed.">		for (int i = 2; i &lt; this.getView().getUserInput().length; i++) {</span>
+<span class="nc" id="L458">			this.getView().getUserOutput()[i].setEditable(true);</span>
+		}
+<span class="nc" id="L460">		this.getView()</span>
+<span class="nc" id="L461">				.getExplanations()</span>
+<span class="nc" id="L462">				.setText(</span>
+<span class="nc" id="L463">						this.wrapHtml(CryptoDemonstrationController.i18n</span>
+<span class="nc" id="L464">								.tr(&quot;Oh mighty Caesar. No one will ever be able to destroy you! Because of that fact lets end&quot;</span>
+										+ &quot; this childish games and finish the rest of the fields fast. Then we can send the courier again&quot;
+										+ &quot; but this time your enemies will have no idea who wrote it and you will conquer the world.&quot;)));
+<span class="nc" id="L467">		this.getView().getUserOutput()[2].requestFocus();</span>
+<span class="nc" id="L468">		this.getView().validate();</span>
+
+<span class="nc" id="L470">	}</span>
+
+	// -------------------------------------------------------//
+	// -------------------Getter/Setter-----------------------//
+
+	/**
+	 * @return the animationStep
+	 */
+	public int getAnimationStep() {
+<span class="nc" id="L479">		return this.demonstrationStep;</span>
+	}
+
+	/**
+	 * @return the editableFields
+	 */
+	public int getEditableFields() {
+<span class="nc" id="L486">		return this.editableFields;</span>
+	}
+
+	@Override
+	public String getHelp() {
+<span class="nc" id="L491">		String help = CryptoDemonstrationController.i18n</span>
+<span class="nc" id="L492">				.tr(&quot;Remember: Position of C in the alphabet is 3 and the key is also 3. C + key = C + 3 = 3 + 3 = 6.&quot;</span>
+						+ &quot; And 6 is the position of letter F in the alphabet. Et voila you encrypted C with the key of 3.&quot;);
+
+<span class="nc" id="L495">		return help;</span>
+	}
+
+	/**
+	 * @return the model
+	 */
+	public CryptoModel getModel() {
+<span class="nc" id="L502">		return this.model;</span>
+	}
+
+	/**
+	 * @param animationStep
+	 *            the animationStep to set
+	 */
+	public void setAnimationStep(int animationStep) {
+<span class="nc" id="L510">		this.demonstrationStep = animationStep;</span>
+<span class="nc" id="L511">	}</span>
+
+	/**
+	 * @param editableFields
+	 *            the editableFields to set
+	 */
+	public void setEditableFields(int editableFields) {
+<span class="nc" id="L518">		this.editableFields = editableFields;</span>
+<span class="nc" id="L519">	}</span>
+
+	/**
+	 * @param model
+	 *            the model to set
+	 */
+	public void setModel(CryptoModel model) {
+<span class="nc" id="L526">		this.model = model;</span>
+<span class="nc" id="L527">	}</span>
+
+	@Override
+	public void unloadView() {
+<span class="nc" id="L531">		this.view = null;</span>
+<span class="nc" id="L532">	}</span>
+
+	private String wrapHtml(String text) {
+<span class="nc" id="L535">		return &quot;&lt;html&gt;&lt;body&gt;&lt;div width=700px&gt;&quot; + text + &quot;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;;</span>
+	}
+
+	/**
+	 * @return the cryptoResource
+	 */
+	public Element getCryptoResource() {
+<span class="nc" id="L542">		return cryptoResources;</span>
+	}
+
+	/**
+	 * @param cryptoResource the cryptoResource to set
+	 */
+	public void setCryptoResource(Element cryptoResource) {
+<span class="nc" id="L549">		this.cryptoResources = cryptoResource;</span>
+<span class="nc" id="L550">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

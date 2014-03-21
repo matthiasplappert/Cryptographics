@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Logger.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.CryptographicsLib</a> &gt; <span class="el_source">Logger.java</span></div><h1>Logger.java</h1><pre class="source lang-java linenums">package edu.kit.iks.CryptographicsLib;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Date;
+
+<span class="nc" id="L11">public class Logger {</span>
+	
+	/**
+	 * Debug mode initially turned off (no debug outputs in console)
+	 */
+<span class="fc" id="L16">	private static boolean debugMode = false;</span>
+	
+	/**
+	 * Name of the log file 
+	 */
+	private static final String LOG_FILE_NAME = &quot;statistics.csv&quot;;
+	
+	/**
+	 * Name of the error log file
+	 */
+<span class="fc" id="L26">	private static final String ERROR_LOG_FILE = &quot;error.log&quot;;</span>
+	
+	/**
+	 * Check whether debug mode is activated or not
+	 * 
+	 * @return {true}, if debug mode is activated, {false} if not
+	 */
+	public static boolean isDebugModeActive() {
+<span class="nc" id="L34">		return Logger.debugMode;</span>
+	}
+	
+	/**
+	 * Sets the debug mode 
+	 */
+	public static void setDebugMode() {
+<span class="nc" id="L41">		Logger.debugMode = true;</span>
+<span class="nc" id="L42">	}</span>
+	
+	/**
+	 * Writes a new entry line in the logfile in this format:
+	 * {logEntry};{UNIX timestamp}
+	 * 
+	 * @param logEntry Action which should be logged
+	 */
+	public static void log(String logEntry) {
+<span class="nc" id="L51">		String unixTimestamp = Logger.getUnixTimestamp();</span>
+		
+<span class="nc bnc" id="L53" title="All 2 branches missed.">		if (Logger.isDebugModeActive()) {</span>
+<span class="nc" id="L54">			System.out.println(&quot;[Log]: (write '&quot; + Logger.LOG_FILE_NAME + &quot;') &quot; + logEntry);</span>
+		}
+		
+<span class="nc" id="L57">    	Logger.writeLogFileLine(logEntry, unixTimestamp);</span>
+<span class="nc" id="L58">	}</span>
+	
+	/**
+	 * Writes a new debug output to the console
+	 * 
+	 * @param classID Class name of this debug output
+	 * @param method Method name of this debug output
+	 * @param debugText Debug text which should be printed
+	 */
+	public static void debug(String classID, String method, String debugText) {
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">		if (Logger.debugMode) {</span>
+			
+<span class="nc" id="L70">			System.out.println(&quot;[Debug]: &quot; + classID + &quot;::&quot; + method + &quot;() - &quot; + debugText);</span>
+		}
+<span class="fc" id="L72">	}</span>
+	
+	/**
+	 * In production mode, this method writes exceptions into the error log file,
+	 * in debug mode, this method prints the stacktrace into the console.
+	 * 
+	 * @param exception Exception to trace
+	 */
+	public static void error(Exception exception) {
+<span class="nc bnc" id="L81" title="All 2 branches missed.">		if (Logger.debugMode) {</span>
+<span class="nc" id="L82">			exception.printStackTrace();</span>
+<span class="nc" id="L83">		} else {</span>
+<span class="nc" id="L84">			String unixTimestamp = getUnixTimestamp();</span>
+			
+<span class="nc" id="L86">			StringWriter stacktrace = new StringWriter();</span>
+<span class="nc" id="L87">			exception.printStackTrace(new PrintWriter(stacktrace));</span>
+			
+<span class="nc" id="L89">			writeErrorLogFileLine(stacktrace.toString(), unixTimestamp);</span>
+		}
+<span class="nc" id="L91">	}</span>
+	
+	/**
+	 * Helper method to write a new line into the logfile. Creates a logfile, if
+	 * it doesn't exist already
+	 * 
+	 * @param logEntry Log entry to be written
+	 * @param formattedDate To string formatted timestamp to be written
+	 */
+	private static void writeLogFileLine(String logEntry, String formattedDate) {
+		
+<span class="nc" id="L102">		String logEntryLine = logEntry + &quot;;&quot; + formattedDate + &quot;\n&quot;;</span>
+<span class="nc" id="L103">		File file = new File(Logger.LOG_FILE_NAME);</span>
+ 
+		// If file doesn't exists, then create it and append header
+<span class="nc bnc" id="L106" title="All 2 branches missed.">		if (!file.exists()) {</span>
+			try {
+<span class="nc" id="L108">				file.createNewFile();</span>
+<span class="nc" id="L109">			} catch (IOException e) {</span>
+<span class="nc" id="L110">				e.printStackTrace();</span>
+			}
+			
+<span class="nc" id="L113">			Logger.writeLogFileLine(&quot;Performed action&quot;, &quot;Unix Timestamp (milliseconds)&quot;);</span>
+		}
+ 
+<span class="nc" id="L116">		Logger.writeFile(file, logEntryLine);</span>
+<span class="nc" id="L117">	}</span>
+	
+	private static void writeErrorLogFileLine(String error, String formattedDate) {
+		
+<span class="nc" id="L121">		File file = new File(Logger.ERROR_LOG_FILE);</span>
+		
+<span class="nc" id="L123">		String lines = &quot;Exception occured at &quot; + formattedDate + &quot;\n&quot;</span>
+<span class="nc" id="L124">    				+ error;</span>
+ 
+		// If file doesn't exists, then create it and append header
+<span class="nc bnc" id="L127" title="All 2 branches missed.">		if (!file.exists()) {</span>
+			try {
+<span class="nc" id="L129">				file.createNewFile();</span>
+<span class="nc" id="L130">			} catch (IOException e) {</span>
+<span class="nc" id="L131">				e.printStackTrace();</span>
+			}
+<span class="nc" id="L133">		} else {</span>
+<span class="nc" id="L134">			lines = &quot;\n\n==============================\n&quot; + lines;</span>
+		}
+		
+<span class="nc" id="L137">		Logger.writeFile(file, lines);</span>
+<span class="nc" id="L138">	}</span>
+	
+	/**
+	 * Writes a line to a file. If more than one file needs to be written,
+	 * don't run this method in a loop. Rather indicate new lines with \n
+	 * and pass one string to this method instead.
+	 * 
+	 * @param file The file to write the line
+	 * @param lines The line(s) to write
+	 */
+	private static void writeFile(File file, String lines) {
+		try {
+			// true = append file
+<span class="nc" id="L151">			FileWriter fileWritter = new FileWriter(file.getName(), true);</span>
+<span class="nc" id="L152">		    BufferedWriter bufferWritter = new BufferedWriter(fileWritter);</span>
+<span class="nc" id="L153">		    bufferWritter.write(lines);</span>
+<span class="nc" id="L154">		    bufferWritter.close();</span>
+<span class="nc" id="L155">    	} catch (IOException e) {</span>
+<span class="nc" id="L156">    		e.printStackTrace();</span>
+    	}
+<span class="nc" id="L158">	}</span>
+	
+	/**
+	 * Helper method to get unix timestamp
+	 * 
+	 * @return String of unix timestamp
+	 */
+	private static String getUnixTimestamp() {
+<span class="nc" id="L166">		Date date = new java.util.Date();</span>
+<span class="nc" id="L167">		long unixTimestamp = date.getTime();</span>
+		
+<span class="nc" id="L169">		return String.valueOf(unixTimestamp);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

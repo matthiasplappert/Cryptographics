@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Configuration.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.CryptographicsLib</a> &gt; <span class="el_source">Configuration.java</span></div><h1>Configuration.java</h1><pre class="source lang-java linenums">package edu.kit.iks.CryptographicsLib;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Locale;
+
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+import org.xnap.commons.i18n.I18n;
+import org.xnap.commons.i18n.I18nFactory;
+
+/**
+ * This class allows to configure certain parameters of the application
+ * at a central place.
+ * 
+ * @author Matthias Plappert
+ */
+public class Configuration {
+	
+	/**
+	 * Shared instance for singleton
+	 */
+<span class="fc" id="L25">	static private Configuration sharedInstance = null;</span>
+	
+	/**
+	 * The timeout after which a user is considered idle in milliseconds.
+	 */
+<span class="fc" id="L30">	private int idleTimeout = 5 * 60 * 1000;</span>
+	
+	/**
+	 * The timeout after which the program resets itself after a user is
+	 * idle in milliseconds.
+	 */
+<span class="fc" id="L36">	private int resetTimeout = 60 * 1000;</span>
+	
+	/**
+	 * Indicates if the debug mode is enabled.
+	 */
+<span class="fc" id="L41">	private boolean debugMode= false;</span>
+	
+	/**
+	 * Indicates if the fullscreen mode is enabled.
+	 */
+<span class="fc" id="L46">	private boolean fullscreenMode= true;</span>
+	
+	/**
+	 * Indicates if the look and feel is enabled.
+	 */
+<span class="fc" id="L51">	private boolean lookAndFeel= true;</span>
+	
+	/**
+	 * Indicates if the mouse cursor is enabled.
+	 */
+<span class="fc" id="L56">	private boolean mouseCursor = false;</span>
+	
+	/**
+	 * The language code.
+	 */
+<span class="fc" id="L61">	private String languageCode = &quot;de&quot;;</span>
+	
+	/**
+	 * Marked as private to enforce singleton pattern.
+	 */
+<span class="fc" id="L66">	private Configuration(String path) {</span>
+		try {
+			// Load document.
+<span class="fc" id="L69">			SAXBuilder saxBuilder = new SAXBuilder();</span>
+<span class="fc" id="L70">			Document document = saxBuilder.build(new File(path));</span>
+
+			// Get root element.
+<span class="fc" id="L73">			Element element = document.getRootElement();</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">			for (Element child : element.getChildren()) {</span>
+<span class="fc" id="L75">				parseConfigElement(child);</span>
+			}
+<span class="pc" id="L77">		} catch (JDOMException | IOException e) {</span>
+			// Could not read configuration. Use default values and print stack
+			// trace.
+<span class="nc" id="L80">			e.printStackTrace();</span>
+		}
+<span class="fc" id="L82">	}</span>
+	
+	/**
+	 * Parses the values of the configuration XML.
+	 * @param child the current child element
+	 */
+	private void parseConfigElement(Element child) {
+<span class="fc" id="L89">		String value = child.getValue();</span>
+<span class="fc" id="L90">		String name = child.getName();</span>
+		
+<span class="pc bpc" id="L92" title="8 of 22 branches missed.">		switch (name) {</span>
+			case &quot;idleTimeout&quot;:
+<span class="fc" id="L94">				this.idleTimeout = Integer.parseInt(value);</span>
+<span class="fc" id="L95">				break;</span>
+				
+			case &quot;resetTimeout&quot;:
+<span class="fc" id="L98">				this.resetTimeout = Integer.parseInt(value);</span>
+<span class="fc" id="L99">				break;</span>
+				
+			case &quot;debugMode&quot;:
+<span class="fc" id="L102">				this.debugMode = Boolean.parseBoolean(value);</span>
+<span class="fc" id="L103">				break;</span>
+				
+			case &quot;fullscreenMode&quot;:
+<span class="fc" id="L106">				this.fullscreenMode = Boolean.parseBoolean(value);</span>
+<span class="fc" id="L107">				break;</span>
+				
+			case &quot;lookAndFeel&quot;:
+<span class="fc" id="L110">				this.lookAndFeel = Boolean.parseBoolean(value);</span>
+<span class="fc" id="L111">				break;</span>
+				
+			case &quot;mouseCursor&quot;:
+<span class="fc" id="L114">				this.mouseCursor = Boolean.parseBoolean(value);</span>
+<span class="fc" id="L115">				break;</span>
+				
+			case &quot;languageCode&quot;:
+<span class="fc" id="L118">				this.languageCode = value;</span>
+<span class="fc" id="L119">				break;</span>
+				
+			default:
+				// Do not use the logger here since this happens very early
+				// and the logger might not be configured yet.
+<span class="nc" id="L124">				System.out.println(&quot;Unknown configuration element &quot; + child.getName() + &quot;. Skipping.&quot;);</span>
+				break;
+		}
+<span class="fc" id="L127">	}</span>
+	
+	/**
+	 * Returns a shared instance (singleton pattern)
+	 * @return the shared instance
+	 */
+	static public Configuration getInstance() {
+<span class="fc bfc" id="L134" title="All 2 branches covered.">		if (sharedInstance == null) {</span>
+<span class="fc" id="L135">			sharedInstance = new Configuration(&quot;config.xml&quot;);</span>
+		}
+<span class="fc" id="L137">		return sharedInstance;</span>
+	}
+	
+	/**
+	 * Returns the time in milliseconds after that a user is considered idle.
+	 * @return the timeout in milliseconds
+	 */
+	public int getIdleTimeout() {
+<span class="fc" id="L145">		return this.idleTimeout;</span>
+	}
+	
+	/**
+	 * Returns the time in milliseconds for the program reset after a user is
+	 * detected as idle.
+	 * @return the timeout in milliseconds
+	 */
+	public int getResetTimeout() {
+<span class="nc" id="L154">		return this.resetTimeout;</span>
+	}
+	
+	/**
+	 * Returns true if the debug mode should be used.
+	 * @return true if the debug mode is enabled 
+	 */
+	public boolean isDebugModeEnabled() {
+<span class="fc" id="L162">		return this.debugMode;</span>
+	}
+	
+	/**
+	 * Returns true if the mouse cursor should be visible. This setting
+	 * will always return false if debug mode is disabled.
+	 * 
+	 * @return true if the mouse cursor should be visible
+	 */
+	public boolean isMouseCursorEnabled() {
+<span class="pc bpc" id="L172" title="1 of 2 branches missed.">		if (this.isDebugModeEnabled()) {</span>
+<span class="fc" id="L173">			return this.mouseCursor;</span>
+		} else {
+<span class="nc" id="L175">			return false;</span>
+		}
+	}
+	
+	/**
+	 * Returns true if the look and feel should be enabled. This setting
+	 * will always return true if debug mode is disabled.
+	 * 
+	 * @return true if the look and feel should be enabled
+	 */
+	public boolean isLookAndFeelEnabled() {
+<span class="pc bpc" id="L186" title="1 of 2 branches missed.">		if (this.isDebugModeEnabled()) {</span>
+<span class="fc" id="L187">			return this.lookAndFeel;</span>
+		} else {
+<span class="nc" id="L189">			return true;</span>
+		}
+	}
+	
+	/**
+	 * Returns true if the fullscreen mode should be enabled. This setting
+	 * will always return true if debug mode is disabled.
+	 * @return
+	 */
+	public boolean isFullscreenModeEnabled() {
+<span class="pc bpc" id="L199" title="1 of 2 branches missed.">		if (this.isDebugModeEnabled()) {</span>
+<span class="fc" id="L200">			return this.fullscreenMode;</span>
+		} else {
+<span class="nc" id="L202">			return true;</span>
+		}
+	}
+	
+	/**
+	 * Returns the language code used for localization.
+	 * @return the language code
+	 */
+	public String getLanguageCode() {
+<span class="fc" id="L211">		return this.languageCode;</span>
+	}
+	
+	/**
+	 * Returns the I18n instance for the package the given
+	 * class is in
+	 * 
+	 * @param className fully qualified class name (ClassName.class)
+	 * @return I18n instance to use the tr functions
+	 */
+	@SuppressWarnings(&quot;rawtypes&quot;)
+	public I18n getI18n(Class className) {
+<span class="fc" id="L223">		Locale loc = new Locale(this.getLanguageCode());</span>
+<span class="fc" id="L224">		I18n i18n = I18nFactory.getI18n(className, loc);</span>
+		
+<span class="fc" id="L226">		return i18n;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

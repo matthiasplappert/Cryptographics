@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>DHVisualizationInfo.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics.DiffieHellman</a> &gt; <span class="el_source">DHVisualizationInfo.java</span></div><h1>DHVisualizationInfo.java</h1><pre class="source lang-java linenums">package edu.kit.iks.Cryptographics.DiffieHellman;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ExplainAimController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DHDemoController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.DemoOneWayController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.YourTurnController;
+import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.DHExperimentController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.InformationController;
+import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
+
+/**
+ * The VisualizationInfo for Diffie-Hellman Key-Exchange Analogy
+ * @author kai
+ *
+ */
+<span class="fc" id="L23">public class DHVisualizationInfo extends AbstractVisualizationInfo {</span>
+	
+	/**
+	 * Localization instance
+	 */
+<span class="fc" id="L28">	private static I18n i18n = Configuration.getInstance().getI18n(</span>
+<span class="fc" id="L29">			DHVisualizationInfo.class);</span>
+
+	
+	/**
+	 * Our description of the procedure
+	 */
+<span class="fc" id="L35">	private String description = i18n.tr(&quot;The infamous Diffie-Hellman Key-Exchange &quot; +</span>
+			&quot;explained with a color-mixing analogy. Establish a shared secret, &quot; +
+			&quot;without an eavesdropper getting the secret, too!&quot;);
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getId()
+	 */
+	@Override
+	public String getId() {
+<span class="nc" id="L45">		return &quot;diffiehellman&quot;;</span>
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getName()
+	 */
+	@Override
+	public String getName() {
+<span class="fc" id="L54">		return i18n.tr(&quot;Diffie-Hellman&quot;);</span>
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getDescription()
+	 */
+	@Override
+	public String getDescription() {
+<span class="nc" id="L63">		return description;</span>
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getTimelineOffset()
+	 */
+	@Override
+	public float getTimelineOffset() {
+<span class="fc" id="L72">		return 0.86f;</span>
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getDifficulty()
+	 */
+	@Override
+	public VisualizationDifficulty getDifficulty() {
+<span class="fc" id="L81">		return VisualizationDifficulty.EASY;</span>
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getYear()
+	 */
+	@Override
+	public int getYear() {
+<span class="fc" id="L90">		return 1976;</span>
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getControllerClasses()
+	 */
+	@SuppressWarnings(&quot;rawtypes&quot;)
+	@Override
+	public List&lt;Class&gt; getControllerClasses() {
+<span class="nc" id="L100">		List&lt;Class&gt; controllerClasses = new ArrayList&lt;Class&gt;();</span>
+		
+<span class="nc" id="L102">		controllerClasses.add(ExplainAimController.class);</span>
+<span class="nc" id="L103">		controllerClasses.add(DemoOneWayController.class);</span>
+<span class="nc" id="L104">		controllerClasses.add(DHDemoController.class);</span>
+<span class="nc" id="L105">		controllerClasses.add(YourTurnController.class);</span>
+<span class="nc" id="L106">		controllerClasses.add(DHExperimentController.class);</span>
+//		controllerClasses.add(CongratsController.class);
+<span class="nc" id="L108">		controllerClasses.add(InformationController.class);</span>
+		
+<span class="nc" id="L110">		return controllerClasses;</span>
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getQRCodeContent()
+	 */
+	@Override
+	public String getQRCodeContent() {
+<span class="nc" id="L119">		return i18n.tr(&quot;http://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange&quot;);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

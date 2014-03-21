@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>AbstractVisualizationInfo.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.CryptographicsLib</a> &gt; <span class="el_source">AbstractVisualizationInfo.java</span></div><h1>AbstractVisualizationInfo.java</h1><pre class="source lang-java linenums">package edu.kit.iks.CryptographicsLib;
+
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+
+import org.xnap.commons.i18n.I18n;
+
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
+
+/**
+ * Abstract visualization information
+ * 
+ * @author Christian Dreher
+ */
+<span class="fc" id="L23">abstract public class AbstractVisualizationInfo {</span>
+	
+	/**
+	 * The color used for easy difficulty.
+	 */
+<span class="fc" id="L28">	private static final Color COLOR_EASY = new Color(0, 168, 79);</span>
+	
+	/**
+	 * The color used for medium difficulty.
+	 */
+<span class="fc" id="L33">	private static final Color COLOR_MEDIUM = new Color(255, 204, 0);</span>
+	
+	/**
+	 * The color used for hard difficulty.
+	 */
+<span class="fc" id="L38">	private static final Color COLOR_HARD = new Color(188, 11, 28);</span>
+	
+	/**
+	 * The color used for hard difficulty.
+	 */
+<span class="fc" id="L43">	private static final Color COLOR_NO_VISUALIZATION = Color.LIGHT_GRAY;</span>
+	
+	/**
+	 * Localization instance
+	 */
+<span class="fc" id="L48">	private static I18n i18n = Configuration.getInstance().getI18n(</span>
+<span class="fc" id="L49">			AbstractVisualizationInfo.class);</span>
+	
+	/**
+	 * Gets the ID of the procedure
+	 * 
+	 * @return ID of the procedure
+	 */
+	abstract public String getId();
+
+	/**
+	 * Gets the name of the procedure
+	 * 
+	 * @return Name of the procedure
+	 */
+	abstract public String getName();
+
+	/**
+	 * Gets the description of a procedure
+	 * 
+	 * @return Description of a procedure
+	 */
+	abstract public String getDescription();
+
+	/**
+	 * Offset on the timeline indicating the position on the timeline 
+	 * from left. The offset must be in the interval (0,1).
+	 * An offset equal to 0 or 1 will lead to undefined behaviour!
+	 * 
+	 * @return Position on the timeline in the interval (0,1)
+	 */
+	abstract public float getTimelineOffset();
+
+	/**
+	 * Gets the difficulty of the procedure
+	 * 
+	 * @return Difficulty of the procedure
+	 */
+	abstract public VisualizationDifficulty getDifficulty();
+
+	/**
+	 * Gets the year the procedure was invented
+	 * 
+	 * @return Year the procedure was invented
+	 */
+	abstract public int getYear();
+	
+	/**
+	 * Gets the plain text of what the QR is encoding
+	 * 
+	 * @return Plain text of what the QR is encoding
+	 */
+	abstract public String getQRCodeContent();
+	
+	/**
+	 * Gets a list of all controller classes belonging to the visualization
+	 * 
+	 * @todo fix warning here 
+	 * (&quot;Class is a raw type. References to generic type Class&lt;T&gt; should be parameterized&quot;)
+	 * @return List of all controller classes belonging to the visualization
+	 */
+	@SuppressWarnings(&quot;rawtypes&quot;)
+	abstract public List&lt;Class&gt; getControllerClasses();
+
+	/**
+	 * Gets the additional information as file path to display HTML
+	 * 
+	 * @return Additional information as file path to display HTML
+	 */
+	public String getAdditionalInformationPath() {
+		// Generate path.
+<span class="nc" id="L119">		String language = Configuration.getInstance().getLanguageCode();</span>
+<span class="nc" id="L120">		String path = &quot;/&quot; + this.getId() + &quot;/&quot; + language + &quot;/&quot; + &quot;additional_information.html&quot;;  </span>
+<span class="nc" id="L121">		return path;</span>
+	}
+	
+	/**
+	 * The QR code. Will be generated lazily.
+	 */
+<span class="fc" id="L127">	private Image qrCode = null;</span>
+
+	/**
+	 * Gets the QR code as image 
+	 * 
+	 * @return QR code as image 
+	 */
+	public Image getQrCode() {
+<span class="nc bnc" id="L135" title="All 2 branches missed.">		if (this.qrCode == null) {</span>
+<span class="nc" id="L136">			this.generateQrCode();</span>
+		}
+<span class="nc" id="L138">		return this.qrCode;</span>
+	}
+	
+	/**
+	 * Generates the QR code.
+	 */
+	private void generateQrCode() {
+		// Get the text
+<span class="nc" id="L146">		String text = this.getQRCodeContent();</span>
+		
+		// Generate QR code to output stream.
+<span class="nc" id="L149">		ByteArrayOutputStream output = new ByteArrayOutputStream();</span>
+<span class="nc" id="L150">		QRCode.from(text).to(ImageType.PNG).writeTo(output);</span>
+		
+		// Create BufferedImage from input stream.
+<span class="nc" id="L153">		byte[] data = output.toByteArray();</span>
+<span class="nc" id="L154">		ByteArrayInputStream input = new ByteArrayInputStream(data);</span>
+<span class="nc" id="L155">		BufferedImage image = null;</span>
+		try {
+<span class="nc" id="L157">			image = ImageIO.read(input);</span>
+<span class="nc" id="L158">		} catch (IOException e) {</span>
+<span class="nc" id="L159">			Logger.error(e);</span>
+		}
+<span class="nc" id="L161">		this.qrCode = image;</span>
+<span class="nc" id="L162">	}</span>
+	
+	/**
+	 * Gets the human-readable and localized difficulty
+	 * 
+	 * @return The difficulty string
+	 */
+	public String getHumanReadableDifficulty() {
+<span class="nc bnc" id="L170" title="All 5 branches missed.">		switch (this.getDifficulty()) {</span>
+<span class="nc" id="L171">			case EASY: return i18n.tr(&quot;Easy&quot;);</span>
+<span class="nc" id="L172">			case MEDIUM: return i18n.tr(&quot;Medium&quot;);</span>
+<span class="nc" id="L173">			case HARD: return i18n.tr(&quot;Hard&quot;);</span>
+<span class="nc" id="L174">			case NOT_INTERACTIVE: return i18n.tr(&quot;Not Interactive&quot;);</span>
+<span class="nc" id="L175">			default: return null;</span>
+		}
+	}
+	
+	/**
+	 * Gets the color to represent the difficulty
+	 * 
+	 * @return The color
+	 */
+	public Color getDifficultyColor() {
+<span class="pc bpc" id="L185" title="2 of 5 branches missed.">		switch (this.getDifficulty()) {</span>
+<span class="fc" id="L186">	    	case EASY: return COLOR_EASY;</span>
+<span class="fc" id="L187">	    	case MEDIUM: return COLOR_MEDIUM;</span>
+<span class="nc" id="L188">	    	case HARD: return COLOR_HARD;</span>
+<span class="fc" id="L189">	    	case NOT_INTERACTIVE: return COLOR_NO_VISUALIZATION;</span>
+<span class="nc" id="L190">	    	default: return null;</span>
+		}
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

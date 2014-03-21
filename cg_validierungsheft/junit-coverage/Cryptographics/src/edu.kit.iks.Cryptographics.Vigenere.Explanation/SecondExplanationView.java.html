@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>SecondExplanationView.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics.Vigenere.Explanation</a> &gt; <span class="el_source">SecondExplanationView.java</span></div><h1>SecondExplanationView.java</h1><pre class="source lang-java linenums">package edu.kit.iks.Cryptographics.Vigenere.Explanation;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
+import edu.kit.iks.CryptographicsLib.CharacterFrequencyDiagramView;
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.KeyboardView;
+import edu.kit.iks.CryptographicsLib.VisualizationView;
+
+/**
+ * This class represents the view of the first explanatation step. In this step a cipher will be given
+ * to the user. He has the choice to create a histogramm and use an algorithm to get the length of 
+ * the key. Then he has to extract the password. 
+ * @author Aydin Tekin
+ */
+public class SecondExplanationView extends VisualizationView{
+	private static final long serialVersionUID = 6294968461280032987L;
+	
+	/**
+	 * Localization instance
+	 */
+<span class="nc" id="L32">	private static I18n i18n = Configuration.getInstance().getI18n(SecondExplanationView.class);</span>
+	
+	/**
+	 * histogramm of encrypted text
+	 */
+	private CharacterFrequencyDiagramView vigenereHistogramm;
+	
+	/**
+	 * histogramm of average text
+	 */
+	private CharacterFrequencyDiagramView averageHistogramm;
+	
+	/**
+	 * explanation
+	 */
+	private JLabel explanation;
+	
+	/**
+	 * explanation
+	 */
+	private JLabel secondExplanation;
+	
+	/**
+	 * explanation
+	 */
+	private JLabel thirdExplanation;
+	
+	/**
+	 * error message
+	 */
+	private JLabel wrong;
+	
+	/**
+	 * textfield for answer
+	 */
+	private JTextField answer;
+	
+	/**
+	 * keyboard used for user input
+	 */
+	private KeyboardView keyboard;
+	
+	/**
+	 * Button to go back
+	 */
+	private JButton btnReturn;
+	
+	/**
+	 * Button to skip step
+	 */
+	private JButton skip;
+	
+	/**
+	 * returns back button
+	 * @return back button
+	 */
+	public JButton getReturnButton() {
+<span class="nc" id="L89">		return this.btnReturn;</span>
+	}
+	
+	/**
+	 * returns skip button
+	 * @return skip button
+	 */
+	public JButton getSkipButton() {
+<span class="nc" id="L97">		return this.skip;</span>
+	}
+
+	/**
+	 * creates the keyboard
+	 * @param input listener for the keyboard
+	 * @param flag which type of keyboard we want
+	 */
+	public void createKeyboard(JTextField input, final int flag) {
+<span class="nc" id="L106">		this.keyboard = new KeyboardView(input, flag);</span>
+<span class="nc" id="L107">		this.add(this.keyboard);</span>
+<span class="nc" id="L108">		Dimension size = this.keyboard.getPreferredSize();</span>
+<span class="nc" id="L109">		this.keyboard.setBounds(180, 470, size.width, size.height);</span>
+<span class="nc" id="L110">		this.validate();</span>
+<span class="nc" id="L111">	}</span>
+	
+	/**
+	 * changes the explanation text
+	 * @param explanation text to change to
+	 */
+	public void setExplanation(String s){
+<span class="nc" id="L118">		this.explanation.setText(s);</span>
+<span class="nc" id="L119">		Dimension size = this.explanation.getPreferredSize();</span>
+<span class="nc" id="L120">		this.explanation.setBounds(10, 60,</span>
+<span class="nc" id="L121">	             size.width, size.height);</span>
+<span class="nc" id="L122">		this.validate();</span>
+<span class="nc" id="L123">	}</span>
+	
+	/**
+	 * @return the keyboard
+	 */
+	public KeyboardView getKeyboard() {
+<span class="nc" id="L129">		return this.keyboard;</span>
+	}
+	
+	/**
+	 * @param keyboard
+	 *            the keyboard to set
+	 */
+	public void setKeyboard(KeyboardView keyboard) {
+<span class="nc" id="L137">		this.keyboard = keyboard;</span>
+<span class="nc" id="L138">	}</span>
+	
+	/**
+	 * returns the answer field
+	 * @return answer field
+	 */
+	public JTextField getAnswerField() {
+<span class="nc" id="L145">		return this.answer;</span>
+	}
+	
+	/**
+	 * changes GUI if answer is right
+	 */
+	public void answerRight() {
+<span class="nc" id="L152">		this.answer.setBorder(BorderFactory.createLineBorder(Color.blue, 5));</span>
+<span class="nc" id="L153">		this.wrong.setVisible(false);</span>
+<span class="nc" id="L154">	}</span>
+	
+	/**
+	 * changes GUI if answer is true
+	 */
+	public void answerFalse() {
+<span class="nc" id="L160">		this.answer.setBorder(BorderFactory.createLineBorder(Color.red, 5));</span>
+<span class="nc" id="L161">		this.wrong.setVisible(true);</span>
+<span class="nc" id="L162">		this.answer.setText(&quot;&quot;);</span>
+<span class="nc" id="L163">	}</span>
+	
+	/**
+	 * returns the user input
+	 * @return user input
+	 */
+	public String getAnswer() {
+<span class="nc" id="L170">		return this.answer.getText();</span>
+	}
+	
+	/**
+	 * changes the visibility according to first step
+	 * @param b visibility according to first step
+	 */
+	public void visibleFirstState(boolean b) {
+<span class="nc" id="L178">		this.vigenereHistogramm.setVisible(b);</span>
+<span class="nc" id="L179">		this.secondExplanation.setVisible(b);</span>
+<span class="nc" id="L180">		this.averageHistogramm.setVisible(b);</span>
+<span class="nc" id="L181">		this.thirdExplanation.setVisible(b);</span>
+<span class="nc" id="L182">		this.answer.setVisible(b);</span>
+<span class="nc" id="L183">	}</span>
+	
+	/**
+	 * creates and adds all GUI elements
+	 */
+	private void setupGUI() {
+<span class="nc" id="L189">		this.setLayout(null);</span>
+<span class="nc" id="L190">		this.add(this.skip = new JButton(&quot;Go to Information&quot;));</span>
+<span class="nc" id="L191">		this.add(this.btnReturn = new JButton(&quot;Return to Explanation&quot;));</span>
+<span class="nc" id="L192">		this.add(this.explanation = new JLabel(&quot;&lt;html&gt;&lt;div width=\&quot;1200\&quot;&gt;&quot;</span>
+<span class="nc" id="L193">				+ i18n.tr(&quot;Now its your turn! You have to find the second character of the &quot;</span>
+				+ &quot;key. I was kind enough to give you a diagramm of every second &quot;
+				+ &quot;character encrypted with the second part of the key.&quot;
+				+ &quot;You know what to do:&quot;)
+<span class="nc" id="L197">				+ &quot;&lt;/div&gt;&lt;/html&gt;&quot;));</span>
+<span class="nc" id="L198">		this.add(this.secondExplanation = new JLabel(&quot;&lt;html&gt;&lt;div width=\&quot;1200\&quot;&gt;&quot;</span>
+<span class="nc" id="L199">				+ i18n.tr(&quot;This is the average distribution of the characters in english texts:&quot;)</span>
+<span class="nc" id="L200">				+ &quot;&lt;/div&gt;&lt;/html&gt;&quot;));</span>
+<span class="nc" id="L201">		this.add(this.thirdExplanation = new JLabel(&quot;&lt;html&gt;&lt;div width=\&quot;1200\&quot;&gt;&quot;</span>
+<span class="nc" id="L202">				+ i18n.tr(&quot;Look at the peaks of both histogramm and calculate the second part &quot;</span>
+				+ &quot;of the key! Your answer:&quot;)
+<span class="nc" id="L204">				+ &quot;&lt;/div&gt;&lt;/html&gt;&quot;));</span>
+<span class="nc" id="L205">		this.add(this.answer = new JTextField(&quot;&quot;));</span>
+<span class="nc" id="L206">		this.add(this.wrong = new JLabel(i18n.tr(&quot;Wrong Answer! Try again!&quot;)));</span>
+<span class="nc" id="L207">		this.vigenereHistogramm = new CharacterFrequencyDiagramView(VigenereModel.getCharPositionated(1, 2, FirstExplanationView.encryptedAverageText), 600,</span>
+<span class="nc" id="L208">				100);</span>
+<span class="nc" id="L209">		this.add(this.vigenereHistogramm);</span>
+		
+<span class="nc" id="L211">		this.averageHistogramm = new CharacterFrequencyDiagramView(FirstExplanationView.averageText, 600,</span>
+<span class="nc" id="L212">				100);</span>
+<span class="nc" id="L213">		this.add(this.averageHistogramm);</span>
+<span class="nc" id="L214">	}</span>
+	
+	/**
+	 * sets fonts to all elements
+	 */
+	private void setFonts() {
+<span class="nc" id="L220">		this.explanation.setFont(new Font(&quot;Comic Sans MS&quot;, Font.BOLD, 18));</span>
+<span class="nc" id="L221">		this.secondExplanation.setFont(new Font(&quot;Comic Sans MS&quot;, Font.BOLD, 18));</span>
+<span class="nc" id="L222">		this.thirdExplanation.setFont(new Font(&quot;Comic Sans MS&quot;, Font.BOLD, 18));</span>
+<span class="nc" id="L223">		this.answer.setFont(new Font(&quot;Comic Sans MS&quot;, Font.BOLD, 28));</span>
+<span class="nc" id="L224">		this.wrong.setFont(new Font(&quot;Comic Sans MS&quot;, Font.BOLD, 28));</span>
+<span class="nc" id="L225">	}</span>
+	
+	/**
+	 * customizes the created GUI elements
+	 */
+	private void customizeGUI() {
+<span class="nc" id="L231">		Dimension size = this.explanation.getPreferredSize();</span>
+<span class="nc" id="L232">		this.explanation.setBounds(10, 50,</span>
+<span class="nc" id="L233">	             size.width, size.height);</span>
+		
+<span class="nc" id="L235">		size = this.secondExplanation.getPreferredSize();</span>
+<span class="nc" id="L236">		this.secondExplanation.setBounds(10, 240,</span>
+<span class="nc" id="L237">	             size.width, size.height);</span>
+		
+<span class="nc" id="L239">		size = this.thirdExplanation.getPreferredSize();</span>
+<span class="nc" id="L240">		this.thirdExplanation.setBounds(10, 380,</span>
+<span class="nc" id="L241">	             size.width, size.height);</span>
+		
+<span class="nc" id="L243">		this.answer.setBounds(350, 420,</span>
+<span class="nc" id="L244">	             40, 40);</span>
+<span class="nc" id="L245">		this.answer.setBorder(BorderFactory.createLineBorder(Color.blue, 5));</span>
+		
+<span class="nc" id="L247">		size = this.wrong.getPreferredSize();</span>
+<span class="nc" id="L248">		this.wrong.setBounds(300, 510,</span>
+<span class="nc" id="L249">				size.width, size.height);</span>
+<span class="nc" id="L250">		this.wrong.setVisible(false);</span>
+		
+<span class="nc" id="L252">		size = this.getBackButton().getPreferredSize();</span>
+<span class="nc" id="L253">		this.getBackButton().setBounds(30, 600,</span>
+<span class="nc" id="L254">	             size.width, size.height);</span>
+		
+<span class="nc" id="L256">		size = this.getNextButton().getPreferredSize();</span>
+<span class="nc" id="L257">		this.getNextButton().setBounds(1100, 600,</span>
+<span class="nc" id="L258">	             size.width, size.height);</span>
+<span class="nc" id="L259">		this.getNextButton().setVisible(false);</span>
+		
+<span class="nc" id="L261">		size = this.getSkipButton().getPreferredSize();</span>
+<span class="nc" id="L262">		this.getSkipButton().setBounds(1100, 5,</span>
+<span class="nc" id="L263">	             size.width, size.height);</span>
+		
+<span class="nc" id="L265">		size = this.getReturnButton().getPreferredSize();</span>
+<span class="nc" id="L266">		this.getReturnButton().setBounds(30, 5,</span>
+<span class="nc" id="L267">	             size.width, size.height);</span>
+		
+<span class="nc" id="L269">		this.vigenereHistogramm.setBounds(10, 130,</span>
+<span class="nc" id="L270">	             600, 100);</span>
+<span class="nc" id="L271">		this.averageHistogramm.setBounds(10, 270,</span>
+<span class="nc" id="L272">	             600, 100);</span>
+<span class="nc" id="L273">	}</span>
+	
+<span class="nc" id="L275">	public SecondExplanationView() {</span>
+<span class="nc" id="L276">		setupGUI();</span>
+<span class="nc" id="L277">		setFonts();</span>
+<span class="nc" id="L278">		customizeGUI();</span>
+<span class="nc" id="L279">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

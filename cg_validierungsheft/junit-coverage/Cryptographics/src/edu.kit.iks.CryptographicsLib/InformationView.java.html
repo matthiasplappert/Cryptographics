@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>InformationView.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.CryptographicsLib</a> &gt; <span class="el_source">InformationView.java</span></div><h1>InformationView.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">package edu.kit.iks.CryptographicsLib;</span>
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
+
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+
+/**
+ * View of the information page
+ * 
+ * @author Matthias Plappert
+ */
+public class InformationView extends JPanel implements MouseListener {
+	/**
+	 * Possible scroll directions.
+	 */
+<span class="nc" id="L46">	private enum ScrollDirection {</span>
+<span class="nc" id="L47">	    NONE, UP, DOWN </span>
+	};
+	
+	/**
+	 * Resources.
+	 */
+	private Element resources;
+	
+	/**
+	 * The delay between scroll events when a scroll button is pressed.
+	 */
+	private static final int scrollDelay = 50; 
+	
+	/**
+	 * Serial Version UID
+	 */
+	private static final long serialVersionUID = -8593552609491347799L;
+
+	/**
+	 * QR code for further information
+	 */
+	private Image qrCode;
+	
+	/**
+	 * The HTML used to display the additional information in a web view.
+	 */
+	private String html;
+	
+	/**
+	 * The content of the QR code.
+	 */
+	private String qrCodeContent;
+	
+	/**
+	 * The QR code view.
+	 */
+	private ImageView qrCodeView;
+	
+	/**
+	 * Displays the contents of the QR code. 
+	 */
+	private JLabel qrCodeLabel;
+	
+	/**
+	 * The scrollable container of the web view.
+	 */
+	private JScrollPane webViewContainer;
+	
+	/**
+	 * The web view.
+	 */
+	private JEditorPane webView;
+	
+	/**
+	 * Scrolls the web view up.
+	 */
+	private JButton scrollUpButton;
+	
+	/**
+	 * Scrolls the web view down.
+	 */
+	private JButton scrollDownButton;
+	
+	/**
+	 * The current scroll direction.
+	 */
+<span class="nc" id="L113">	private ScrollDirection scrollDirection = ScrollDirection.NONE;</span>
+	
+	/**
+	 * This timer is used to periodically scroll up or down depending on the
+	 * current value of scroll direction. This is used when pressing the up or
+	 * down button.
+	 */
+	private Timer scrollTimer;
+	
+	/**
+	 * Constructor initializing a new instance of {InformationView}
+	 * with given {HTML} and {qrCode}
+	 * 
+	 * @param html The HTML used to display the additional informations
+	 * @param qrCode QR code for further information
+	 * @param url The content of the QR code
+	 */
+<span class="nc" id="L130">	public InformationView(String html, Image qrCode, String qrCodeContent) {</span>
+<span class="nc" id="L131">		this.qrCode = qrCode;</span>
+<span class="nc" id="L132">		this.html = html;</span>
+<span class="nc" id="L133">		this.qrCodeContent = qrCodeContent;</span>
+		
+<span class="nc" id="L135">		this.initResources();</span>
+		
+		// Initialize view.
+<span class="nc" id="L138">		this.setLayout(new BorderLayout());</span>
+<span class="nc" id="L139">		this.loadWebViewComponents();</span>
+<span class="nc" id="L140">		this.loadQRCodeViewComponents();</span>
+<span class="nc" id="L141">		this.validate();</span>
+		
+		// The JScrollPane returns invalid scroll information, resulting in an invalid
+		// button state. Adding this slight delay fixes the problem.
+<span class="nc" id="L145">		SwingUtilities.invokeLater(new Runnable() {</span>
+
+			@Override
+			public void run() {
+<span class="nc" id="L149">				updateButtonStates();</span>
+<span class="nc" id="L150">			}</span>
+		});
+<span class="nc" id="L152">	}</span>
+	
+	/**
+	 * Helper to init the resources 
+	 */
+	private void initResources() {
+<span class="nc" id="L158">		SAXBuilder saxBuilder = new SAXBuilder();</span>
+
+		// obtain file object
+<span class="nc" id="L161">		InputStream is = this.getClass().getResourceAsStream(</span>
+<span class="nc" id="L162">				&quot;/icons/IconResources.xml&quot;);</span>
+
+		try {
+			// converted file to document object
+<span class="nc" id="L166">			Document document = saxBuilder.build(is);</span>
+
+			// get root node from xml
+<span class="nc" id="L169">			this.resources = document.getRootElement().getChild(&quot;InformationView&quot;);</span>
+<span class="nc" id="L170">		} catch (JDOMException | IOException e) {</span>
+<span class="nc" id="L171">			Logger.error(e);</span>
+		}
+<span class="nc" id="L173">	}</span>
+	
+	/**
+	 * Loads the web view and related components.
+	 */
+	private void loadWebViewComponents() {
+<span class="nc" id="L179">		JPanel layoutContainer = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L180">		layoutContainer.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));</span>
+		
+<span class="nc" id="L182">		this.loadWebView();</span>
+<span class="nc" id="L183">        layoutContainer.add(this.webViewContainer, BorderLayout.CENTER);</span>
+        
+<span class="nc" id="L185">        this.loadScrollButtons();</span>
+<span class="nc" id="L186">        JPanel buttonLayoutContainer = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L187">        buttonLayoutContainer.add(this.scrollUpButton, BorderLayout.NORTH);</span>
+<span class="nc" id="L188">        buttonLayoutContainer.add(this.scrollDownButton, BorderLayout.SOUTH);</span>
+<span class="nc" id="L189">        buttonLayoutContainer.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));</span>
+<span class="nc" id="L190">        layoutContainer.add(buttonLayoutContainer, BorderLayout.EAST);</span>
+        
+        // Valdiate and add.
+<span class="nc" id="L193">        layoutContainer.validate();</span>
+<span class="nc" id="L194">        this.add(layoutContainer, BorderLayout.CENTER);</span>
+<span class="nc" id="L195">    }</span>
+	
+	private void loadWebView() {
+		// Editor pane used as a web view.
+<span class="nc" id="L199">		this.webView = new JEditorPane();</span>
+<span class="nc" id="L200">		this.webView.setEditable(false);</span>
+<span class="nc" id="L201">		this.webView.setContentType(&quot;text/html&quot;);</span>
+<span class="nc" id="L202">		this.webView.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));</span>
+		try {
+<span class="nc" id="L204">			this.webView.setText(this.getHtml());</span>
+<span class="nc" id="L205">		} catch(Exception e) {</span>
+<span class="nc" id="L206">			Logger.error(e);</span>
+		}
+<span class="nc" id="L208">		this.webView.setCaretPosition(0); // scrolls to the top</span>
+		
+		// Scroll pane that contains the editor pane.
+<span class="nc" id="L211">		this.webViewContainer = new JScrollPane(this.webView);</span>
+<span class="nc" id="L212">		this.webViewContainer.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);</span>
+<span class="nc" id="L213">		this.webViewContainer.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);</span>
+<span class="nc" id="L214">		this.webViewContainer.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));</span>
+<span class="nc" id="L215">		this.webViewContainer.validate();</span>
+<span class="nc" id="L216">	}</span>
+	
+	/**
+	 * Loads the scroll up and scroll down buttons for scrolling the web view.
+	 * This is necessary because the scroll bar is very clumsy to control on
+	 * a touch screen device.
+	 */
+	private void loadScrollButtons() {
+		// Scroll up button.
+<span class="nc" id="L225">		this.scrollUpButton = new JButton();</span>
+<span class="nc" id="L226">		this.scrollUpButton.setIcon(this.loadIcon(&quot;ArrowUp&quot;));</span>
+<span class="nc" id="L227">		this.scrollUpButton.addMouseListener(this);</span>
+		
+		// Scroll down button.
+<span class="nc" id="L230">		this.scrollDownButton = new JButton();</span>
+<span class="nc" id="L231">		this.scrollDownButton.setIcon(this.loadIcon(&quot;ArrowDown&quot;));</span>
+<span class="nc" id="L232">		this.scrollDownButton.addMouseListener(this);</span>
+<span class="nc" id="L233">	}</span>
+	
+	/**
+	 * Loads an icon with the given name.
+	 * @param name The name
+	 * @return The icon
+	 */
+	private Icon loadIcon(String name) {
+<span class="nc" id="L241">		String path = this.resources.getChild(name).getAttributeValue(&quot;path&quot;);</span>
+<span class="nc" id="L242">		ImageIcon icon = null;</span>
+    	try {                
+<span class="nc" id="L244">    		InputStream is = this.getClass().getResourceAsStream(path);</span>
+<span class="nc" id="L245">    		icon = new ImageIcon(ImageIO.read(is));</span>
+<span class="nc" id="L246">        } catch (IOException e) {</span>
+<span class="nc" id="L247">        	Logger.error(e);</span>
+        }
+    	
+<span class="nc" id="L250">    	return icon;</span>
+	}
+	
+	/**
+	 * Loads the QR code view and related components.
+	 */
+	private void loadQRCodeViewComponents() {
+		// We use a container to horizontally center the QR code.
+<span class="nc" id="L258">		JPanel container = new JPanel(new GridBagLayout());</span>
+		
+<span class="nc" id="L260">		GridBagConstraints imageConstraints = new GridBagConstraints();</span>
+<span class="nc" id="L261">		imageConstraints.insets = new Insets(10, 10, 10, 10);</span>
+<span class="nc" id="L262">		imageConstraints.anchor = GridBagConstraints.ABOVE_BASELINE;</span>
+<span class="nc" id="L263">		this.qrCodeView = new ImageView(this.qrCode);</span>
+<span class="nc" id="L264">		container.add(this.qrCodeView, imageConstraints);</span>
+		
+<span class="nc" id="L266">		GridBagConstraints labelConstraints = new GridBagConstraints();</span>
+<span class="nc" id="L267">		labelConstraints.anchor = GridBagConstraints.ABOVE_BASELINE;</span>
+		try {
+<span class="nc" id="L269">			this.qrCodeLabel = new JLabel(URLDecoder.decode(this.qrCodeContent, &quot;UTF-8&quot;));</span>
+<span class="nc" id="L270">		} catch (UnsupportedEncodingException e) {</span>
+<span class="nc" id="L271">			Logger.error(e);</span>
+		}
+<span class="nc" id="L273">		container.add(this.qrCodeLabel, labelConstraints);</span>
+<span class="nc" id="L274">		container.setName(&quot;visualizationContainerFooter&quot;);</span>
+		
+<span class="nc" id="L276">		this.add(container, BorderLayout.SOUTH);</span>
+<span class="nc" id="L277">	}</span>
+	
+	/**
+	 * Returns the HTML contents of the additional informations.
+	 * 
+	 * @return the HTML contents
+	 */
+	public String getHtml() {
+<span class="nc" id="L285">		return this.html;</span>
+	}
+	
+	/**
+	 * Gets the QR code for further information
+	 * 
+	 * @return QR code for further information
+	 */
+	public Image getQrCode() {
+<span class="nc" id="L294">		return this.qrCode;</span>
+	}
+	
+	/**
+	 * The QR code content.
+	 * 
+	 * @return QR code content
+	 */
+	public String getQrCodeContent() {
+<span class="nc" id="L303">		return this.qrCodeContent;</span>
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+<span class="nc" id="L308">		this.scrollDirection = this.getScrollDirectionFromMouseEvent(e);</span>
+<span class="nc" id="L309">		this.scroll(this.scrollDirection);</span>
+<span class="nc bnc" id="L310" title="All 2 branches missed.">		if (this.scrollTimer != null) {</span>
+<span class="nc" id="L311">			this.stopScrollTimer();</span>
+		}
+<span class="nc" id="L313">		this.startScrollTimer();</span>
+<span class="nc" id="L314">	}</span>
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+<span class="nc bnc" id="L318" title="All 2 branches missed.">		if (this.scrollTimer != null) {</span>
+<span class="nc" id="L319">			this.stopScrollTimer();</span>
+		}
+<span class="nc" id="L321">		this.scrollDirection = ScrollDirection.NONE;</span>
+<span class="nc" id="L322">	}</span>
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// Unused
+<span class="nc" id="L327">	}</span>
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// Unused
+<span class="nc" id="L332">	}</span>
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// Unused
+<span class="nc" id="L337">	}</span>
+	
+	/**
+	 * Converts the given mouse event into the correct scroll direction.
+	 * 
+	 * @param e The MouseEvent that causes the scroll.
+	 * @return The scroll direction for that event or {ScrollDirection.NONE} if
+	 * the event cannot be properly mapped.
+	 */
+	private ScrollDirection getScrollDirectionFromMouseEvent(MouseEvent e) {
+<span class="nc" id="L347">		Component source = (Component)e.getSource();</span>
+<span class="nc bnc" id="L348" title="All 2 branches missed.">		if (this.scrollUpButton.equals(source)) {</span>
+<span class="nc" id="L349">			return ScrollDirection.UP;</span>
+<span class="nc bnc" id="L350" title="All 2 branches missed.">		} else if (this.scrollDownButton.equals(source)) {</span>
+<span class="nc" id="L351">			return ScrollDirection.DOWN;</span>
+		} else {
+<span class="nc" id="L353">			return ScrollDirection.NONE;</span>
+		}
+	}
+	
+	/**
+	 * Starts the scroll timer. We use this timer to scroll multiple times
+	 */
+	private void startScrollTimer() {
+<span class="nc" id="L361">		this.scrollTimer = new Timer(InformationView.scrollDelay, new ActionListener() {</span>
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L365">				scroll(scrollDirection);</span>
+<span class="nc" id="L366">			}</span>
+		});
+<span class="nc" id="L368">		this.scrollTimer.start();</span>
+<span class="nc" id="L369">	}</span>
+	
+	/**
+	 * Stops the scroll timer.
+	 */
+	private void stopScrollTimer() {
+<span class="nc" id="L375">		this.scrollTimer.stop();</span>
+<span class="nc" id="L376">		this.scrollTimer = null;</span>
+<span class="nc" id="L377">	}</span>
+	
+	/**
+	 * Scrolls the web view in the given direction.
+	 * @param direction the scroll direction
+	 */
+	private void scroll(ScrollDirection direction) {
+<span class="nc" id="L384">		JScrollBar vertical = this.webViewContainer.getVerticalScrollBar();</span>
+<span class="nc bnc" id="L385" title="All 3 branches missed.">		switch (direction) {</span>
+			case UP:
+<span class="nc" id="L387">				vertical.setValue(Math.max(vertical.getMinimum(), vertical.getValue() - vertical.getBlockIncrement()));</span>
+<span class="nc" id="L388">				break;</span>
+				
+			case DOWN:
+<span class="nc" id="L391">				vertical.setValue(Math.min(vertical.getMaximum(), vertical.getValue() + vertical.getBlockIncrement()));</span>
+<span class="nc" id="L392">				break;</span>
+				
+			default:
+				// Do nothing.
+				break;
+		}
+<span class="nc" id="L398">		this.updateButtonStates();</span>
+<span class="nc" id="L399">	}</span>
+	
+	/**
+	 * Updates the scroll button states.
+	 */
+	private void updateButtonStates() {
+<span class="nc" id="L405">		JScrollBar vertical = this.webViewContainer.getVerticalScrollBar();</span>
+		
+<span class="nc bnc" id="L407" title="All 2 branches missed.">		if (vertical.getValue() &lt;= vertical.getMinimum()) {</span>
+<span class="nc" id="L408">			this.scrollUpButton.setEnabled(false);</span>
+<span class="nc" id="L409">		} else {</span>
+<span class="nc" id="L410">			this.scrollUpButton.setEnabled(true);</span>
+		}
+		
+<span class="nc bnc" id="L413" title="All 2 branches missed.">		if (vertical.getValue() &gt;= vertical.getMaximum() - vertical.getModel().getExtent() - 1) {</span>
+<span class="nc" id="L414">			this.scrollDownButton.setEnabled(false);</span>
+<span class="nc" id="L415">		} else {</span>
+<span class="nc" id="L416">			this.scrollDownButton.setEnabled(true);</span>
+		}
+<span class="nc" id="L418">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

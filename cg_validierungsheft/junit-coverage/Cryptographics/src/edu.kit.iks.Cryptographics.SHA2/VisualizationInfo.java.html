@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>VisualizationInfo.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics.SHA2</a> &gt; <span class="el_source">VisualizationInfo.java</span></div><h1>VisualizationInfo.java</h1><pre class="source lang-java linenums">package edu.kit.iks.Cryptographics.SHA2;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.InformationController;
+import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
+
+<span class="fc" id="L13">public class VisualizationInfo extends AbstractVisualizationInfo {</span>
+	
+	/**
+	 * Localization instance
+	 */
+<span class="fc" id="L18">	private static I18n i18n = Configuration.getInstance().getI18n(VisualizationInfo.class);</span>
+	
+	/*
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getId()
+	 */
+	@Override
+	public String getId() {
+<span class="nc" id="L25">		return &quot;sha2&quot;;</span>
+	}
+	
+	/*
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getName()
+	 */
+	@Override
+	public String getName() {
+<span class="fc" id="L33">		return i18n.tr(&quot;SHA-2&quot;);</span>
+	}
+	
+	/*
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getDescription()
+	 */
+	@Override
+	public String getDescription() {
+<span class="nc" id="L41">		return i18n.tr(&quot;Learn about the cryptographic hash function SHA-2. A hash function allows you to transform your data in one direction only, making it impossible to reverse the process!&quot;);</span>
+	}
+	
+	/*
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getTimelineOffset()
+	 */
+	@Override
+	public float getTimelineOffset() {
+<span class="fc" id="L49">		return 0.97f;</span>
+	}
+	
+	/*
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getDifficulty()
+	 */
+	@Override
+	public VisualizationDifficulty getDifficulty() {
+<span class="fc" id="L57">		return VisualizationDifficulty.NOT_INTERACTIVE;</span>
+	}
+	
+	/*
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getYear()
+	 */
+	@Override
+	public int getYear() {
+<span class="fc" id="L65">		return 2001;</span>
+	}
+	
+	/*
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getQRCodeContent()
+	 */
+	@Override
+	public String getQRCodeContent() {
+<span class="nc" id="L73">		return i18n.tr(&quot;http://en.wikipedia.org/wiki/SHA_2&quot;);</span>
+	}
+	
+	/*
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getControllerClasses()
+	 */
+	@SuppressWarnings(&quot;rawtypes&quot;)
+	@Override
+	public List&lt;Class&gt; getControllerClasses() {
+<span class="nc" id="L82">		List&lt;Class&gt; controllerClasses = new ArrayList&lt;Class&gt;();</span>
+
+<span class="nc" id="L84">		controllerClasses.add(InformationController.class);</span>
+		
+<span class="nc" id="L86">		return controllerClasses;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

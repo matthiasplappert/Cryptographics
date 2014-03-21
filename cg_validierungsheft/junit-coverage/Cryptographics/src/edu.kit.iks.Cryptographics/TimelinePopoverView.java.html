@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>TimelinePopoverView.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics</a> &gt; <span class="el_source">TimelinePopoverView.java</span></div><h1>TimelinePopoverView.java</h1><pre class="source lang-java linenums">package edu.kit.iks.Cryptographics;
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.JLabel;
+
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.PopoverView;
+import edu.kit.iks.CryptographicsLib.VisualizationButton;
+
+/**
+ * Objects of this class represent the popover when
+ * the user clicks on a button in the timeline
+ * 
+ * @author Christian Dreher
+ */
+public class TimelinePopoverView extends PopoverView {
+	
+	/**
+	 * Serial Version UID
+	 */
+	private static final long serialVersionUID = 1914359780570867605L;
+
+	/**
+     * {VisualizationInfo}-object holding metadata of the current visualization
+     */
+	private AbstractVisualizationInfo visualizationInfo;
+	
+	/**
+     * Label to display the name of the current visualization
+     */
+	private JLabel nameLabel;
+
+	/**
+     * Label to display the current difficulty
+     */
+	private JLabel difficultyLabel;
+
+	/**
+     * Label to display a description
+     */
+	private JLabel descriptionLabel;
+
+	/**
+     * Button to start the currently displayed visualization
+     */
+	private VisualizationButton startButton;
+	
+	/**
+	 * Localization instance
+	 */
+<span class="nc" id="L57">	private static I18n i18n = Configuration.getInstance().getI18n(TimelinePopoverView.class);</span>
+	
+	/**
+	 * Constructor of the timeline popover.
+	 * 
+	 * @param visualizationInfo Informations about a cipher.
+	 */
+	public TimelinePopoverView(AbstractVisualizationInfo visualizationInfo) {
+<span class="nc" id="L65">		super();</span>
+		
+<span class="nc" id="L67">		this.visualizationInfo = visualizationInfo;</span>
+		
+		// Configure content view.
+<span class="nc" id="L70">		this.getContentView().setLayout(new GridBagLayout());</span>
+		
+		// Create name label.
+<span class="nc" id="L73">		GridBagConstraints nameConstraints = new GridBagConstraints();</span>
+<span class="nc" id="L74">		nameConstraints.gridx = 0;</span>
+<span class="nc" id="L75">		nameConstraints.gridy = 0;</span>
+<span class="nc" id="L76">		nameConstraints.gridwidth = 2;</span>
+<span class="nc" id="L77">		nameConstraints.insets = new Insets(0, 0, 0, 0);</span>
+<span class="nc" id="L78">		this.nameLabel = new JLabel(&quot;&lt;html&gt;&lt;h2&gt;&quot; + visualizationInfo.getName() + &quot;&lt;/h2&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L79">		this.getContentView().add(this.nameLabel, nameConstraints);</span>
+		
+		// TODO: map to human readable string
+		// Create difficulty label.
+<span class="nc" id="L83">		GridBagConstraints difficultyConstraints = new GridBagConstraints();</span>
+<span class="nc" id="L84">		difficultyConstraints.gridx = 2;</span>
+<span class="nc" id="L85">		difficultyConstraints.gridy = 0;</span>
+<span class="nc" id="L86">		difficultyConstraints.anchor = GridBagConstraints.LINE_END;</span>
+<span class="nc" id="L87">		difficultyConstraints.insets = new Insets(0, 0, 0, 0);</span>
+<span class="nc" id="L88">		this.difficultyLabel = new JLabel(visualizationInfo.getHumanReadableDifficulty());</span>
+<span class="nc" id="L89">		this.difficultyLabel.setForeground(visualizationInfo.getDifficultyColor());</span>
+<span class="nc" id="L90">		this.getContentView().add(this.difficultyLabel, difficultyConstraints);</span>
+		
+		// Create description label.
+<span class="nc" id="L93">		GridBagConstraints descriptionConstraints = new GridBagConstraints();</span>
+<span class="nc" id="L94">		descriptionConstraints.gridx = 0;</span>
+<span class="nc" id="L95">		descriptionConstraints.gridy = 1;</span>
+<span class="nc" id="L96">		descriptionConstraints.gridwidth = 3;</span>
+<span class="nc" id="L97">		descriptionConstraints.insets = new Insets(20, 0, 20, 0);</span>
+<span class="nc" id="L98">		this.descriptionLabel = new JLabel(&quot;&lt;html&gt;&lt;div style=\&quot;width:220px;\&quot;&gt;&quot; + visualizationInfo.getDescription() + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L99">		this.getContentView().add(this.descriptionLabel, descriptionConstraints);</span>
+		
+		// Create start button
+<span class="nc" id="L102">		GridBagConstraints startConstraints = new GridBagConstraints();</span>
+<span class="nc" id="L103">		startConstraints.gridx = 0;</span>
+<span class="nc" id="L104">		startConstraints.gridy = 2;</span>
+<span class="nc" id="L105">		startConstraints.gridwidth = 3;</span>
+<span class="nc" id="L106">		startConstraints.anchor = GridBagConstraints.ABOVE_BASELINE;</span>
+<span class="nc" id="L107">		this.startButton = new VisualizationButton(visualizationInfo);</span>
+<span class="nc" id="L108">		this.startButton.setText(i18n.tr(&quot;Start&quot;));</span>
+<span class="nc" id="L109">		this.getContentView().add(this.startButton, startConstraints);</span>
+		
+<span class="nc" id="L111">		this.getContentView().validate();</span>
+<span class="nc" id="L112">	}</span>
+
+	/**
+	 * Returns the StartButton.
+	 * 
+	 * @return the startButton button to return.
+	 */
+	public VisualizationButton getStartButton() {
+<span class="nc" id="L120">		return startButton;</span>
+	}
+	
+	/**
+	 * Returns the visualization info.
+	 * 
+	 * @return the visualization info.
+	 */
+	public AbstractVisualizationInfo getVisualizationInfo() {
+<span class="nc" id="L129">		return visualizationInfo;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>DHDemoView.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics.DiffieHellman.Demonstration</a> &gt; <span class="el_source">DHDemoView.java</span></div><h1>DHDemoView.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">package edu.kit.iks.Cryptographics.DiffieHellman.Demonstration;</span>
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.VisualizationView;
+
+public class DHDemoView extends VisualizationView {
+	
+	/**
+	 * Localization instance
+	 */
+<span class="nc" id="L23">	private static I18n i18n = Configuration.getInstance().getI18n(DHDemoView.class);</span>
+	
+<span class="nc" id="L25">	private String explanation1 = i18n.tr(&quot;Now to our Diffie-Hellman Key-Exchange Analogy. Here &quot; +</span>
+			&quot;is how the protocol in principle works. &quot; +
+			&quot;Alice chooses a public color and sends it to Bob. &quot; +
+				&quot;As Eve listens to the channel she gets a copy.&quot;);
+	
+<span class="nc" id="L30">	private String explanation2 = i18n.tr(&quot;Next, Alice chooses a private color, that she keeps &quot; +</span>
+			&quot;for herself, she does not send it. Then she mixes her private color with &quot; +
+			&quot;the previously sent public color and sends the mixture to Bob. &quot; +
+			&quot;Note that because we use the mixing of colors as a one-way function, &quot; +
+			&quot;Eve cannot compute which private color Alice used to get the mixture. &quot; +
+			&quot;Keep this in mind, as this is critical to understand why this &quot; +
+			&quot;protocol works. &quot; +
+			&quot;As previously Bob and Eve have the sent color, that means the mixture of Alice.&quot;);
+	
+<span class="nc" id="L39">	private String explanation3 = i18n.tr(&quot;Now Bob does the exact same thing like Alice did &quot; +</span>
+			&quot;in the previous step. &quot; +
+			&quot;He chooses a private color. Mixes it with the public color, &quot; +
+			&quot;and sends the mixture to Alice. Eve gets a copy, but can't compute &quot; +
+			&quot;the private color of Bob, because of the one-way function property&quot;);
+	
+<span class="nc" id="L45">	private String explanation4 = i18n.tr(&quot;Now comes the last step. Here we will &quot; +</span>
+			&quot;produce the secret that Alice and Bob know, but Eve doesn't. &quot; +
+			&quot;Alice will mix her private color to the mixture of Bob &quot; +
+			&quot;and Bob will mix his private color to the mixture of Alice. &quot; +
+			&quot;That means we mix three colors, the public color, the private color &quot; +
+			&quot;of Alice, and the private Color of Bob. &quot; +
+			&quot;The trick lies in the combination of the private Colors, that &quot; +
+			&quot;are kept private, through the use of the one-way function and &quot; +
+			&quot;that it doesn't matter in which order we mix the colors. So &quot; +
+			&quot;mixing first the public color with Alices private color and then Bobs private color &quot; +
+			&quot;yields the same color as mixing first the public color with Bobs private color &quot; +
+			&quot;and then Alices private color. In the real world, we need a mathematical operation &quot; +
+			&quot;that does this and color mixing isn't used of course, but the basic principles &quot; +
+			&quot;are the same.&quot;);
+	
+	private JLabel aliceExplain;
+	
+	private JButton skip;
+	
+	private ColorChannel cc;
+	
+	private ColorMix cm;
+	
+	private ActionListener remember;
+
+<span class="nc" id="L70">	private String help = i18n.tr(&quot;No help&quot;);</span>
+	
+	private Navigation n;
+	
+<span class="nc" id="L74">	private static final long serialVersionUID = 87178534093974249L;</span>
+	
+	public DHDemoView() {
+<span class="nc" id="L77">		super();</span>
+<span class="nc" id="L78">		GridBagConstraints gbc = new GridBagConstraints();</span>
+<span class="nc" id="L79">		GridBagLayout layout = new GridBagLayout();</span>
+<span class="nc" id="L80">		this.setLayout(layout);</span>
+		
+
+<span class="nc" id="L83">		gbc.weightx = 0.1;</span>
+<span class="nc" id="L84">		gbc.weighty = 0.0;</span>
+<span class="nc" id="L85">		gbc.gridx = 0;</span>
+<span class="nc" id="L86">		gbc.gridy = 0;</span>
+<span class="nc" id="L87">		gbc.gridwidth = 3;</span>
+<span class="nc" id="L88">		gbc.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L89">		n = new Navigation(i18n.tr(&quot;Back to Introduction&quot;), i18n.tr(&quot;Skip the Demonstration&quot;));</span>
+<span class="nc" id="L90">		this.add(n, gbc);</span>
+<span class="nc" id="L91">		gbc.fill = GridBagConstraints.NONE;</span>
+<span class="nc" id="L92">		gbc.gridwidth = 1;</span>
+		
+//		
+<span class="nc" id="L95">		skip = new JButton(i18n.tr(&quot;Skip Introduction&quot;));</span>
+//		
+//		gbc.gridx = 2;
+//		gbc.gridy = 0;
+//		gbc.weightx = 0.1;
+//		gbc.weighty = 0.1;
+//		this.add(skip, gbc);
+		
+<span class="nc" id="L103">		gbc.gridx = 2;</span>
+<span class="nc" id="L104">		gbc.gridy = 3;</span>
+<span class="nc" id="L105">		gbc.weightx = 0.1;</span>
+<span class="nc" id="L106">		gbc.weighty = 0.1;</span>
+<span class="nc" id="L107">		layout.setConstraints(this.getNextButton(), gbc);</span>
+		
+<span class="nc" id="L109">		gbc.gridx = 0;</span>
+<span class="nc" id="L110">		gbc.gridy = 3;</span>
+<span class="nc" id="L111">		layout.setConstraints(this.getBackButton(), gbc);</span>
+		
+<span class="nc" id="L113">		this.aliceExplain = new JLabel();</span>
+<span class="nc" id="L114">		this.aliceExplain.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:650px; height:117px\&quot;&gt;&quot; + explanation1 + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L115">		gbc.weightx = 0.1;</span>
+<span class="nc" id="L116">		gbc.weighty = 0.1;</span>
+<span class="nc" id="L117">		gbc.gridx = 1;</span>
+<span class="nc" id="L118">		gbc.gridy = 3;</span>
+<span class="nc" id="L119">		this.add(aliceExplain, gbc);</span>
+<span class="nc" id="L120">		this.cc = new ColorChannel(new Dimension(700, 200), 50);</span>
+		
+<span class="nc" id="L122">		gbc.weightx = 0.25;</span>
+<span class="nc" id="L123">		gbc.weighty = 0.25;</span>
+<span class="nc" id="L124">		gbc.gridx = 1;</span>
+<span class="nc" id="L125">		gbc.gridy = 1;</span>
+<span class="nc" id="L126">		gbc.fill = GridBagConstraints.BOTH;</span>
+<span class="nc" id="L127">		this.add(this.cc, gbc);</span>
+		
+<span class="nc" id="L129">		this.cc.choosePublicColor(Color.BLUE);</span>
+<span class="nc" id="L130">		this.cm = new ColorMix(50, new Dimension(200, 50));</span>
+		
+<span class="nc" id="L132">		gbc.weightx = 0.1;</span>
+<span class="nc" id="L133">		gbc.weighty = 0.1;</span>
+<span class="nc" id="L134">		gbc.gridx = 0;</span>
+<span class="nc" id="L135">		gbc.gridy = 2;</span>
+//		gbc.fill = GridBagConstraints.NONE;
+<span class="nc" id="L137">		this.add(this.cm, gbc);</span>
+<span class="nc" id="L138">		this.cc.loadView();</span>
+<span class="nc" id="L139">		this.cc.setRepeat(false);</span>
+<span class="nc" id="L140">		this.cc.setKeepColor(true);</span>
+		//TODO remove validate()?
+		
+<span class="nc" id="L143">		gbc.weightx = 0.1;</span>
+<span class="nc" id="L144">		gbc.weighty = 0.1;</span>
+<span class="nc" id="L145">		gbc.gridx = 2;</span>
+<span class="nc" id="L146">		gbc.gridy = 2;</span>
+<span class="nc" id="L147">		this.add(new LabelExplanation(), gbc);</span>
+<span class="nc" id="L148">		this.revalidate();</span>
+		
+<span class="nc" id="L150">	}</span>
+
+	public ColorChannel getColorChannel() {
+<span class="nc" id="L153">		return this.cc;</span>
+	}
+	
+	public void startDemo() {
+<span class="nc" id="L157">		this.cc.sendPublicColor(new NextStepCallback() {</span>
+			
+			@Override
+			public void callback() {
+<span class="nc bnc" id="L161" title="All 2 branches missed.">				for(ActionListener al : getNextButton().getActionListeners()) {</span>
+<span class="nc" id="L162">					getNextButton().removeActionListener(al);</span>
+				}
+<span class="nc" id="L164">				getNextButton().addActionListener(new ActionListener() {</span>
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L168" title="All 2 branches missed.">						for(ActionListener al : getNextButton().getActionListeners()) {</span>
+<span class="nc" id="L169">							getNextButton().removeActionListener(al);</span>
+						}
+<span class="nc" id="L171">						secondStep();</span>
+<span class="nc" id="L172">					}</span>
+				});
+<span class="nc" id="L174">			}</span>
+		});
+<span class="nc" id="L176">	}</span>
+
+	private void secondStep() {
+<span class="nc" id="L179">		aliceExplain.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:650px; height:117px\&quot;&gt;&quot; + explanation2 + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L180">		cc.chooseAlicePrivateColor(Color.GREEN);</span>
+<span class="nc" id="L181">		cc.mixAlicePrivatePublic();</span>
+<span class="nc" id="L182">		cm.setEllipColor(0, cc.getPublicColor());</span>
+<span class="nc" id="L183">		cm.setEllipColor(1, cc.getAlicePrivateColor());</span>
+<span class="nc" id="L184">		cm.mixColors(true, false, new NextStepCallback() {</span>
+			
+			@Override
+			public void callback() {
+<span class="nc bnc" id="L188" title="All 2 branches missed.">				for(ActionListener al : getNextButton().getActionListeners()) {</span>
+<span class="nc" id="L189">					getNextButton().removeActionListener(al);</span>
+				}
+<span class="nc" id="L191">				getNextButton().addActionListener(new ActionListener() {</span>
+					@Override
+					public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L194" title="All 2 branches missed.">						for(ActionListener al : getNextButton().getActionListeners()) {</span>
+<span class="nc" id="L195">							getNextButton().removeActionListener(al);</span>
+						}
+<span class="nc" id="L197">						thirdStep();</span>
+<span class="nc" id="L198">					}</span>
+				});
+<span class="nc" id="L200">			}</span>
+		});
+<span class="nc" id="L202">	}</span>
+	
+	private void thirdStep() {
+<span class="nc" id="L205">		aliceExplain.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:650px; height:117px\&quot;&gt;&quot; + explanation2 + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L206">		cc.sendAliceMixedColorToBob(new NextStepCallback() {</span>
+			
+			@Override
+			public void callback() {
+<span class="nc" id="L210">				getNextButton().addActionListener(new ActionListener() {</span>
+					@Override
+					public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L213" title="All 2 branches missed.">						for(ActionListener al : getNextButton().getActionListeners()) {</span>
+<span class="nc" id="L214">							getNextButton().removeActionListener(al);</span>
+						}
+<span class="nc" id="L216">						fourthStep();</span>
+<span class="nc" id="L217">					}</span>
+				});
+<span class="nc" id="L219">			}</span>
+		});
+<span class="nc" id="L221">	}</span>
+	
+	private void fourthStep() {
+<span class="nc" id="L224">		aliceExplain.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:650px; height:117px\&quot;&gt;&quot; + explanation3 + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L225">		cc.chooseBobPrivateColor(Color.RED);</span>
+<span class="nc" id="L226">		cm.setEllipColor(1, cc.getBobPrivateColor());</span>
+<span class="nc" id="L227">		cm.mixColors(true, false, new NextStepCallback() {</span>
+			
+			@Override
+			public void callback() {
+<span class="nc" id="L231">				getNextButton().addActionListener(new ActionListener() {</span>
+					@Override
+					public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L234" title="All 2 branches missed.">						for(ActionListener al : getNextButton().getActionListeners()) {</span>
+<span class="nc" id="L235">							getNextButton().removeActionListener(al);</span>
+						}
+<span class="nc" id="L237">						fifthStep();</span>
+<span class="nc" id="L238">					}</span>
+				});
+<span class="nc" id="L240">			}</span>
+		});
+<span class="nc" id="L242">	}</span>
+	
+	private void fifthStep() {
+<span class="nc" id="L245">		aliceExplain.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:650px; height:117px\&quot;&gt;&quot; + explanation3 + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L246">		cc.setColorNextToSend(cm.getMixedColor());</span>
+<span class="nc" id="L247">		cc.sendBobMixedColorToAlice(new NextStepCallback() {</span>
+			
+			@Override
+			public void callback() {
+<span class="nc" id="L251">				getNextButton().addActionListener(new ActionListener() {</span>
+					@Override
+					public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L254" title="All 2 branches missed.">						for(ActionListener al : getNextButton().getActionListeners()) {</span>
+<span class="nc" id="L255">							getNextButton().removeActionListener(al);</span>
+						}
+<span class="nc" id="L257">						sixthStep();</span>
+<span class="nc" id="L258">					}</span>
+				});
+<span class="nc" id="L260">			}</span>
+		});
+<span class="nc" id="L262">	}</span>
+	
+	private void sixthStep() {
+<span class="nc" id="L265">		aliceExplain.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:650px; height:117px\&quot;&gt;&quot; + explanation4 + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L266">		getNextButton().addActionListener(remember);</span>
+<span class="nc" id="L267">		cc.mixAliceFinalSecret(new NextStepCallback() {</span>
+			
+			@Override
+			public void callback() {
+<span class="nc" id="L271">				cc.mixBobFinalSecret(null);</span>
+<span class="nc" id="L272">			}</span>
+		});
+<span class="nc" id="L274">	}</span>
+
+	public void setRemember(ActionListener remember) {
+<span class="nc" id="L277">		this.remember = remember;</span>
+<span class="nc" id="L278">	}</span>
+
+	public String getHelp() {
+<span class="nc" id="L281">		return help ;</span>
+	}
+	
+	public JButton getSkip() {
+<span class="nc" id="L285">		return skip;</span>
+	}
+
+	public void stopTimers() {
+<span class="nc bnc" id="L289" title="All 2 branches missed.">		if(cm != null) {</span>
+<span class="nc" id="L290">			cm.stopTimer();</span>
+		}
+<span class="nc bnc" id="L292" title="All 2 branches missed.">		if(cc != null) {</span>
+<span class="nc" id="L293">			cc.stopTimer();</span>
+		}
+<span class="nc" id="L295">	}</span>
+
+	public JButton getSkipButton() {
+<span class="nc" id="L298">		return n.getForward();</span>
+	}
+
+	public JButton getReturnButton() {
+<span class="nc" id="L302">		return n.getBack();</span>
+	}
+	
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

@@ -56,6 +56,7 @@
  dies das Leitthema bei der Validierung. Darauf wurde somit der größte Wert gelegt.\newline
  Die Fehler wurden alle bis auf ein paar \textbf{Ausnahmen} beseitigt und das Programm \textbf{benutzerfreundlicher} gestaltet. Die Verfahren wurden einheitlicher
  gemacht und unnötige, wie unintuitive UI-Elemente entfernt. Die Erklärungen wurden angepasst und das Layout marginal verändert.
+\clearpage
 
 \section{Testszenarien}
   Die folgenden Testszenarien sind bereits im Pflichtenheft im Kapitel 8 ``Testszenarien'' spezifiziert. Hier
@@ -152,16 +153,57 @@
         \hline
       \end{tabularx}
     \end{table}
+\clearpage
 
-\section{Coverage-Tests}
-text here
-  % They devide it like this on their table of contents,
-  % but since we only have juint test cases, this might be 
-  % senseless?
-  \subsection{Abdeckung der JUnit-Testfälle}
-    \subsubsection{Klasse ABC}
-    \subsubsection{Klasse XYZ}
-  \subsection{Abdeckung aller Testfälle}
+\section{Abdeckung der JUnit-Testfälle}
+  Da Cryptographics vor allem aus GUI-Komponenten besteht, konzentrieren sich die JUnit-Testfälle auf die
+  funktionalen Komponenten. Dies sind für die einzelnen Verfahren die Model-Klassen, welche die kryptographischen
+  Funktionen bereit stellen. Im Paket CryptographicsLib wurden ebenfalls die Model-Klassen getestet sowie die Klasse
+  AbstractVisualization, da diese grundlegender Bestandteil der gesamten Controller-Hierarchie ist.
+
+  In allen genannten Klassen konnten immer wenigstens 80\% Abdeckung erreicht werden, in den meisten Fällen sogar
+  weit über 90\%.
+
+  \subsection{Paket edu.kit.iks.CryptographicsLib}
+    \subsubsection{Klasse AbstractController}
+      \begin{figure}[H]
+        \centering
+          \includegraphics[width=\textwidth]{resources/coverage_lib_abstractcontroller}
+      \end{figure}
+
+    \subsubsection{Klasse Configuration}
+      \begin{figure}[H]
+        \centering
+          \includegraphics[width=\textwidth]{resources/coverage_lib_configuration}
+      \end{figure}
+
+    \subsubsection{Klasse VisualizationInfoLoader}
+      \begin{figure}[H]
+        \centering
+          \includegraphics[width=\textwidth]{resources/coverage_lib_visualizationinfoloader}
+      \end{figure}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Caesar.Experiment}
+    \subsubsection{Klasse CryptoModel}
+      \begin{figure}[H]
+        \centering
+          \includegraphics[width=\textwidth]{resources/coverage_caesar_model}
+      \end{figure}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.DiffieHellman}
+    \subsubsection{Klasse Model}
+      \begin{figure}[H]
+        \centering
+          \includegraphics[width=\textwidth]{resources/coverage_diffiehellman_model}
+      \end{figure}
+
+  \subsection{Paket edu.kit.iks.Cryptographics.Vigenere}
+    \subsubsection{VigenereModel}
+      \begin{figure}[H]
+        \centering
+          \includegraphics[width=\textwidth]{resources/coverage_vigenere_model}
+      \end{figure}
+\clearpage
 
 \section{Regressionstests}
  \subsection{Caesar}
@@ -210,7 +252,7 @@ text here
           nochmal dir die Einführung anzuschauen. Klicke dich zur Demonstration.
           Entscheide dich doch das Caesar-Verfahren anzuschauen statt Diffie-Hellman.
       \end{enumerate}
-
+\clearpage
 
 \section{Beschreibung der Fehler}
   Die meisten Bugs kamen aus der Sparte \textbf{Usability}. Vieles war in der Implementierungsphase nicht zu entdecken, da man damit beschäftigt
@@ -306,7 +348,7 @@ text here
          \item Der Status des Scroll-Down-Buttons war bei kurzen Texten fälschlicherweise auf aktiv gesetzt
          und wurde erst nach dem Anklicken korrekt aktualisiert. Das Problem wurde behoben.
          \end{enumerate}
-
+\clearpage
 
 % We may need this, or not...
 \section{Anhang}
@@ -314,6 +356,7 @@ text here
 %    Alte Version des ``Brute Force'' Experiments und die sichtbaren Usability Probleme.
 %   \includegraphics[width=4cm]{resources/bruteForceUsability.png}
 
+\clearpage
 \section{Glossar}
 
  \restoregeometry

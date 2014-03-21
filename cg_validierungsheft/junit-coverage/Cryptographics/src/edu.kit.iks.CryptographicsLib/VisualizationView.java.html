@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>VisualizationView.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.CryptographicsLib</a> &gt; <span class="el_source">VisualizationView.java</span></div><h1>VisualizationView.java</h1><pre class="source lang-java linenums">package edu.kit.iks.CryptographicsLib;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import org.xnap.commons.i18n.I18n;
+
+/**
+ * View for UI elements which all visualizations have in common
+ * 
+ * @author Christian Dreher
+ */
+public class VisualizationView extends JPanel {
+	
+	/**
+	 * Serial Version UID 
+	 */
+	private static final long serialVersionUID = -988624050394454370L;
+
+	/**
+	 * Localization instance
+	 */
+<span class="fc" id="L23">	private static I18n i18n = Configuration.getInstance().getI18n(VisualizationView.class);</span>
+	
+	/**
+	 * Next button
+	 */
+	private JButton nextButton;
+	
+	/**
+	 * Back button
+	 */
+	private JButton backButton;
+	
+	/**
+	 * Constructor initializing a new instance of {VisualizationView}
+	 */
+<span class="fc" id="L38">	public VisualizationView() {</span>
+<span class="fc" id="L39">		nextButton = new JButton(i18n.tr(&quot;Next&quot;));</span>
+<span class="fc" id="L40">		this.add(nextButton);</span>
+		
+<span class="fc" id="L42">		backButton = new JButton(i18n.tr(&quot;Back&quot;));</span>
+<span class="fc" id="L43">		this.add(backButton);</span>
+<span class="fc" id="L44">		this.validate();</span>
+<span class="fc" id="L45">	}</span>
+	
+	/**
+	 * Gets the next button
+	 * 
+	 * @return The next button
+	 */
+	public JButton getNextButton() {
+<span class="fc" id="L53">		return nextButton;</span>
+	}
+	
+	/**
+	 * Gets the back button
+	 * 
+	 * @return The back button
+	 */
+	public JButton getBackButton() {
+<span class="fc" id="L62">		return backButton;</span>
+	}
+
+	/**
+	 * @param nextButton the nextButton to set
+	 */
+	public void setNextButton(JButton nextButton) {
+<span class="nc" id="L69">		this.nextButton = nextButton;</span>
+<span class="nc" id="L70">	}</span>
+
+	/**
+	 * @param backButton the backButton to set
+	 */
+	public void setBackButton(JButton backButton) {
+<span class="nc" id="L76">		this.backButton = backButton;</span>
+<span class="nc" id="L77">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

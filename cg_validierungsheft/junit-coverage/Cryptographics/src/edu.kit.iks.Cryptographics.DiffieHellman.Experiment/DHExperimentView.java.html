@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>DHExperimentView.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics.DiffieHellman.Experiment</a> &gt; <span class="el_source">DHExperimentView.java</span></div><h1>DHExperimentView.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">package edu.kit.iks.Cryptographics.DiffieHellman.Experiment;</span>
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorChannel;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorChooser;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.ColorMix;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.LabelExplanation;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.Navigation;
+import edu.kit.iks.Cryptographics.DiffieHellman.Demonstration.NextStepCallback;
+
+public class DHExperimentView extends JPanel {
+
+	/**
+	 * Localization instance
+	 */
+<span class="nc" id="L30">	private static I18n i18n = Configuration.getInstance().getI18n(DHExperimentView.class);</span>
+	
+<span class="nc" id="L32">	private static final long serialVersionUID = 5764374133753732451L;</span>
+	
+<span class="nc" id="L34">	private String explanation1 = i18n.tr(&quot;Now it is your turn! Choose a public color, which &quot; +</span>
+			&quot;will be the basis for the coming operations. When you're are done, &quot; +
+			&quot;click the 'send color' button to send it to Bob.&quot;);
+	
+<span class="nc" id="L38">	private String explanation2 = i18n.tr(&quot;Now you can choose a private color which you can mix with the &quot; +</span>
+			&quot;public color you previously send to Bob. When you're done, click &quot; +
+			&quot;the 'Mix with public color' button.&quot;);
+	
+<span class="nc" id="L42">	private String explanation3 = i18n.tr(&quot;The next step is to send the right color to Bob, as &quot; +</span>
+			&quot;shown in the demonstration. You have three possible colors to send and &quot; +
+			&quot;one is the right color. If you need help click the 'Help' button.&quot;);
+	
+<span class="nc" id="L46">	private String wrongPrivate = i18n.tr(&quot;Oh no. You chose the private color. This color &quot; +</span>
+			&quot;is meant to be private. If you had sent this color, Eve would be able &quot; +
+			&quot;to get the secret too, afterwards. &quot; +
+			&quot;Please try again, by choosing another color and clicking &quot; +
+			&quot;the 'send color' button.&quot;);
+	
+<span class="nc" id="L52">	private String wrongPublic = i18n.tr(&quot;Oh no. You chose the public color. While Eve &quot; +</span>
+			&quot;won't be able to get the secret shared color, you still didn't follow &quot; +
+			&quot;the protocol instructions. Try again by choosing another color.&quot;);
+	
+<span class="nc" id="L56">	private String rightColor = i18n.tr(&quot;Good. You sent your mixture to Bob. This is &quot; +</span>
+			&quot;the right choice.&quot;);
+	
+<span class="nc" id="L59">	private String bobsTurn = i18n.tr(&quot;Now it is Bobs turn. Click the continue button, so that &quot; +</span>
+			&quot;Bob will choose his private color and send you his mixture.&quot;);
+	
+<span class="nc" id="L62">	private String finalSecret = i18n.tr(&quot;This is the last step in the protocol. &quot; +</span>
+			&quot;Choose the right colors to produce the final secret, just like &quot; +
+			&quot;how it was explained at the demonstration.&quot;);
+	
+<span class="nc" id="L66">	private String congrats = i18n.tr(&quot;Congratulations, you chose the right colors to mix, &quot; +</span>
+			&quot;you and Bob established a shared secret that Eve does not know.&quot;);
+	
+	/*
+	 * the current help String
+	 */
+	private String help;
+	
+<span class="nc" id="L74">	private String help1 = i18n.tr(&quot;You have to choose a public color, &quot; +</span>
+			&quot;to choose a different color you have to click the '-&gt;' or &quot; +
+			&quot;'&lt;-' Button. You can't do much wrong. When you are ready &quot; +
+			&quot;click the 'send color' button.&quot;);
+	
+<span class="nc" id="L79">	private String help2 = i18n.tr(&quot;You have to choose a private color, which &quot; +</span>
+			&quot;is not the same as the public color. To choose a color, &quot; +
+			&quot;you have to click the '-&gt;' or the '&lt;-' Button. You can't do &quot; +
+			&quot;much wrong. When you are ready, click the 'mix colors' button.&quot;);
+	
+<span class="nc" id="L84">	private String help3 = i18n.tr(&quot;You have to send the right color, the right color is the &quot; +</span>
+			&quot;one you have not already sent, and the one you don't want to keep private. &quot; +
+			&quot;If you still have no clue, try the three different colors.&quot;);
+	
+<span class="nc" id="L88">	private String help4 = i18n.tr(&quot;Just click the continue button and Bob will mix his color &quot; +</span>
+			&quot;and will send it to you.&quot;);
+	
+<span class="nc" id="L91">	private String help5 = i18n.tr(&quot;You have to choose the two colors that will be mixed to &quot; +</span>
+			&quot;the final shared secret. Tip: Why can't Eve compute the secret. Right, &quot; +
+			&quot;you have a color that Eve does not have, so you have to use that one. It is the color&quot; +
+			&quot;with the Label SA. The other color is the one you got from Bob which is the mixture of Bob,&quot; +
+			&quot;MB&quot;);
+	
+<span class="nc" id="L97">	private String mix = i18n.tr(&quot;Mix with public color&quot;);</span>
+	
+<span class="nc" id="L99">	private String mixFinal = i18n.tr(&quot;Mix colors to final secret&quot;);</span>
+	
+<span class="nc" id="L101">	private String contin = i18n.tr(&quot;Continue&quot;);</span>
+	
+<span class="nc" id="L103">	private String notSame = i18n.tr(&quot;The private color can't be the same&quot; +</span>
+			&quot; as the public color&quot;);
+	
+<span class="nc" id="L106">	private String send = i18n.tr(&quot;Send color&quot;);</span>
+	
+<span class="nc" id="L108">	private String wrongColor = i18n.tr(&quot;You chose the wrong colors, try again&quot;);</span>
+	
+	private JLabel explainLbl;
+	
+	private JButton multiBtn;
+
+	private ColorChannel cc;
+
+	private ColorMix cm;
+	
+	private ColorChooser chooser, chooser2;
+	
+	private GridBagConstraints gbc;
+	
+<span class="nc" id="L122">	private Color[] toChooseFrom = {Color.BLUE, Color.GREEN, Color.YELLOW,</span>
+<span class="nc" id="L123">			Color.RED,</span>
+	};
+	
+<span class="nc" id="L126">	private Color[] rememberColors = toChooseFrom;</span>
+
+	private ActionListener remember;
+	
+	private Navigation n;
+
+	
+	/**
+	 * Build the used objects and lay them out
+	 */
+	public DHExperimentView() {
+<span class="nc" id="L137">		super();</span>
+<span class="nc" id="L138">		help = help1; //the first help text</span>
+<span class="nc" id="L139">		gbc = new GridBagConstraints();</span>
+<span class="nc" id="L140">		GridBagLayout layout = new GridBagLayout();</span>
+<span class="nc" id="L141">		this.setLayout(layout);</span>
+		
+<span class="nc" id="L143">		gbc.weightx = 0.1;</span>
+<span class="nc" id="L144">		gbc.weighty = 0.0;</span>
+<span class="nc" id="L145">		gbc.gridx = 0;</span>
+<span class="nc" id="L146">		gbc.gridy = 0;</span>
+<span class="nc" id="L147">		gbc.gridwidth = 3;</span>
+<span class="nc" id="L148">		gbc.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="nc" id="L149">		n = new Navigation(i18n.tr(&quot;Back to Demonstration&quot;), i18n.tr(&quot;Skip the Experiment&quot;));</span>
+<span class="nc" id="L150">		this.add(n, gbc);</span>
+<span class="nc" id="L151">		gbc.fill = GridBagConstraints.NONE;</span>
+<span class="nc" id="L152">		gbc.gridwidth = 1;</span>
+		
+<span class="nc" id="L154">		this.explainLbl = new JLabel();</span>
+<span class="nc" id="L155">		this.explainLbl.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:300px; height:100px\&quot;&gt;&quot; + explanation1 + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L156">		gbc.weightx = 0.1;</span>
+<span class="nc" id="L157">		gbc.weighty = 0.1;</span>
+<span class="nc" id="L158">		gbc.gridx = 1;</span>
+<span class="nc" id="L159">		gbc.gridy = 3;</span>
+<span class="nc" id="L160">		this.add(explainLbl, gbc);</span>
+<span class="nc" id="L161">		this.cc = new ColorChannel(new Dimension(700, 200), 50);</span>
+		
+<span class="nc" id="L163">		gbc.weightx = 0.2;</span>
+<span class="nc" id="L164">		gbc.weighty = 0.2;</span>
+<span class="nc" id="L165">		gbc.gridx = 1;</span>
+<span class="nc" id="L166">		gbc.gridy = 1;</span>
+<span class="nc" id="L167">		gbc.fill = GridBagConstraints.BOTH;</span>
+<span class="nc" id="L168">		this.add(this.cc, gbc);</span>
+		
+<span class="nc" id="L170">		this.cm = new ColorMix(50, new Dimension(200, 200));</span>
+		
+<span class="nc" id="L172">		gbc.weightx = 0.1;</span>
+<span class="nc" id="L173">		gbc.weighty = 0.1;</span>
+<span class="nc" id="L174">		gbc.gridx = 0;</span>
+<span class="nc" id="L175">		gbc.gridy = 1;</span>
+<span class="nc" id="L176">		this.add(this.cm, gbc);</span>
+		
+<span class="nc" id="L178">		this.chooser = new ColorChooser(new Dimension(50, 50), Color.BLUE, toChooseFrom);</span>
+		
+<span class="nc" id="L180">		gbc.weightx = 0.1;</span>
+<span class="nc" id="L181">		gbc.weighty = 0.1;</span>
+<span class="nc" id="L182">		gbc.gridx = 0;</span>
+<span class="nc" id="L183">		gbc.gridy = 2;</span>
+<span class="nc" id="L184">		this.add(this.chooser, gbc);</span>
+		
+<span class="nc" id="L186">		this.multiBtn = new JButton(&quot;Send Color&quot;);</span>
+<span class="nc" id="L187">		this.multiBtn.setPreferredSize(new Dimension(250, 40));</span>
+		
+<span class="nc" id="L189">		gbc.weightx = 0.1;</span>
+<span class="nc" id="L190">		gbc.weighty = 0.1;</span>
+<span class="nc" id="L191">		gbc.gridx = 2;</span>
+<span class="nc" id="L192">		gbc.gridy = 3;</span>
+<span class="nc" id="L193">		gbc.fill = GridBagConstraints.NONE;</span>
+<span class="nc" id="L194">		this.add(this.multiBtn, gbc);</span>
+<span class="nc" id="L195">		this.multiBtn.addActionListener(new ActionListener() {</span>
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L199" title="All 2 branches missed.">				for(ActionListener al : multiBtn.getActionListeners()) {</span>
+<span class="nc" id="L200">					multiBtn.removeActionListener(al);</span>
+				}
+<span class="nc" id="L202">				sendPublicColor();</span>
+<span class="nc" id="L203">			}</span>
+		});
+		
+<span class="nc" id="L206">		gbc.weightx = 0.1;</span>
+<span class="nc" id="L207">		gbc.weighty = 0.1;</span>
+<span class="nc" id="L208">		gbc.gridx = 2;</span>
+<span class="nc" id="L209">		gbc.gridy = 2;</span>
+<span class="nc" id="L210">		this.add(new LabelExplanation(), gbc);</span>
+<span class="nc" id="L211">		validate();</span>
+<span class="nc" id="L212">	}</span>
+	
+	private void sendPublicColor() {
+<span class="nc" id="L215">		this.cc.setRepeat(false);</span>
+<span class="nc" id="L216">		this.cc.setKeepColor(true);</span>
+<span class="nc" id="L217">		this.cc.choosePublicColor(this.chooser.getCurrentColor());</span>
+<span class="nc" id="L218">		this.cc.sendPublicColor(new NextStepCallback() {</span>
+			
+			@Override
+			public void callback() {
+<span class="nc" id="L222">				help = help2;</span>
+<span class="nc" id="L223">				explainLbl.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:300px; height:100px\&quot;&gt;&quot; + explanation2 + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L224">				multiBtn.setText(mix);</span>
+<span class="nc" id="L225">				multiBtn.addActionListener(new ActionListener() {</span>
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L229" title="All 2 branches missed.">						if(!chooser.getCurrentColor().equals(cc.getPublicColor())) {</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">							for(ActionListener al : multiBtn.getActionListeners()) {</span>
+<span class="nc" id="L231">								multiBtn.removeActionListener(al);</span>
+							}
+<span class="nc" id="L233">							mixPrivateColorStep();</span>
+							
+<span class="nc" id="L235">						} else {</span>
+<span class="nc" id="L236">							explainLbl.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:300px; height:100px\&quot;&gt;&quot; + notSame + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+						}
+<span class="nc" id="L238">					}</span>
+				});
+<span class="nc" id="L240">			}</span>
+		});
+<span class="nc" id="L242">	}</span>
+
+	private void mixPrivateColorStep() {
+<span class="nc" id="L245">		cc.chooseAlicePrivateColor(chooser.getCurrentColor());</span>
+<span class="nc" id="L246">		cc.mixAlicePrivatePublic();</span>
+<span class="nc" id="L247">		cm.setEllipColor(0, cc.getPublicColor());</span>
+<span class="nc" id="L248">		cm.setEllipColor(1, cc.getAlicePrivateColor());</span>
+<span class="nc" id="L249">		cm.setComputeFinalMix(false);</span>
+<span class="nc" id="L250">		cm.mixColors(true, false, new NextStepCallback() {</span>
+			
+			@Override
+			public void callback() {
+<span class="nc" id="L254">				help = help3;</span>
+<span class="nc" id="L255">				chooser.setToChooseFrom(new Color[]{cc.getPublicColor(), cc.getAlicePrivateColor(),</span>
+<span class="nc" id="L256">						cm.getMixedColor()</span>
+				});
+<span class="nc" id="L258">				toChooseFrom = chooser.getToChooseFrom();</span>
+<span class="nc" id="L259">				explainLbl.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:300px; height:100px\&quot;&gt;&quot; + explanation3 + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L260">				multiBtn.setText(send);</span>
+<span class="nc" id="L261">				multiBtn.addActionListener(new ActionListener() {</span>
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L265">						sendMixedColor();						</span>
+<span class="nc" id="L266">					}</span>
+				});
+<span class="nc" id="L268">			}</span>
+		});
+<span class="nc" id="L270">	}</span>
+	
+	private void sendMixedColor() {
+<span class="nc bnc" id="L273" title="All 2 branches missed.">		if(chooser.getCurrentColor().equals(cc.getAliceMixedColor())) {</span>
+<span class="nc bnc" id="L274" title="All 2 branches missed.">			for(ActionListener al : multiBtn.getActionListeners()) {</span>
+<span class="nc" id="L275">				multiBtn.removeActionListener(al);</span>
+			}
+<span class="nc" id="L277">			chooser.setHide(true);</span>
+<span class="nc" id="L278">			revalidate();</span>
+<span class="nc" id="L279">			explainLbl.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:300px; height:100px\&quot;&gt;&quot; + rightColor + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L280">			cc.sendAliceMixedColorToBob(new NextStepCallback() {</span>
+				
+				@Override
+				public void callback() {
+<span class="nc" id="L284">					help = help4;</span>
+<span class="nc" id="L285">					explainLbl.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:300px; height:100px\&quot;&gt;&quot; + bobsTurn + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L286">					multiBtn.setText(contin);</span>
+<span class="nc" id="L287">					multiBtn.addActionListener(new ActionListener() {</span>
+						
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+<span class="nc bnc" id="L291" title="All 2 branches missed.">							for(ActionListener al : multiBtn.getActionListeners()) {</span>
+<span class="nc" id="L292">								multiBtn.removeActionListener(al);</span>
+							}
+<span class="nc" id="L294">							sendBobMixedColor();</span>
+<span class="nc" id="L295">						}</span>
+					});
+<span class="nc" id="L297">				}</span>
+			});
+<span class="nc" id="L299">		} else {</span>
+<span class="nc bnc" id="L300" title="All 2 branches missed.">			if(chooser.getCurrentColor().equals(cc.getAlicePrivateColor())) {</span>
+<span class="nc" id="L301">				explainLbl.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:300px; height:100px\&quot;&gt;&quot; + wrongPrivate + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L302">			} else {</span>
+<span class="nc" id="L303">				explainLbl.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:300px; height:100px\&quot;&gt;&quot; + wrongPublic + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+			}
+		}
+<span class="nc" id="L306">	}</span>
+	
+	private void sendBobMixedColor() {
+<span class="nc" id="L309">		cc.chooseBobPrivateColor(randomColor());</span>
+<span class="nc" id="L310">		cm.setEllipColor(1, cc.getBobPrivateColor());</span>
+<span class="nc" id="L311">		cm.mixColors(true, false, new NextStepCallback() {</span>
+			
+			@Override
+			public void callback() {
+<span class="nc" id="L315">				cc.sendBobMixedColorToAlice(new NextStepCallback() {</span>
+					
+					@Override
+					public void callback() {
+<span class="nc" id="L319">						help = help5;</span>
+<span class="nc" id="L320">						Color[] param = new Color[]{cc.getPublicColor(),</span>
+<span class="nc" id="L321">								cc.getAlicePrivateColor(), cc.getAliceMixedColor(),</span>
+<span class="nc" id="L322">								cc.getBobMixedColor()};</span>
+<span class="nc" id="L323">						chooser2 = new ColorChooser(new Dimension(50, 50), param[0], param);</span>
+<span class="nc" id="L324">						gbc.gridx = 0;</span>
+<span class="nc" id="L325">						gbc.gridy = 3;</span>
+<span class="nc" id="L326">						add(chooser2, gbc);</span>
+<span class="nc" id="L327">						chooser.setToChooseFrom(param);</span>
+<span class="nc" id="L328">						explainLbl.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:300px; height:100px\&quot;&gt;&quot; + finalSecret + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L329">						multiBtn.setText(mixFinal);</span>
+<span class="nc" id="L330">						validate();</span>
+<span class="nc" id="L331">						chooser.setHide(false);</span>
+<span class="nc" id="L332">						revalidate();</span>
+<span class="nc" id="L333">						multiBtn.addActionListener(new ActionListener() {</span>
+							
+							@Override
+							public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L337">								mixFinalColors();</span>
+<span class="nc" id="L338">							}</span>
+						});
+<span class="nc" id="L340">					}</span>
+				});
+<span class="nc" id="L342">			}</span>
+		});
+<span class="nc" id="L344">	}</span>
+	
+	private void mixFinalColors() {
+<span class="nc bnc" id="L347" title="All 2 branches missed.">		if((chooser.getCurrentColor().equals(cc.getAlicePrivateColor())</span>
+<span class="nc bnc" id="L348" title="All 2 branches missed.">				&amp;&amp; chooser2.getCurrentColor().equals(cc.getBobMixedColor()))</span>
+<span class="nc bnc" id="L349" title="All 2 branches missed.">				|| (chooser.getCurrentColor().equals(cc.getBobMixedColor())</span>
+<span class="nc bnc" id="L350" title="All 2 branches missed.">						&amp;&amp; chooser2.getCurrentColor().equals(cc.getAlicePrivateColor()))) {</span>
+			//chose the right colors
+<span class="nc bnc" id="L352" title="All 2 branches missed.">			for(ActionListener al : multiBtn.getActionListeners()) {</span>
+<span class="nc" id="L353">				multiBtn.removeActionListener(al);</span>
+			}
+<span class="nc" id="L355">			explainLbl.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:300px; height:100px\&quot;&gt;&quot; + congrats + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+<span class="nc" id="L356">			cc.mixAliceFinalSecret(new NextStepCallback() {</span>
+				
+				@Override
+				public void callback() {
+<span class="nc" id="L360">					cc.mixBobFinalSecret(new NextStepCallback() {</span>
+						
+						@Override
+						public void callback() {
+<span class="nc" id="L364">							multiBtn.setText(contin);</span>
+<span class="nc" id="L365">							chooser.setHide(true);</span>
+<span class="nc" id="L366">							chooser2.setHide(true);</span>
+<span class="nc" id="L367">							revalidate();</span>
+<span class="nc" id="L368">							multiBtn.addActionListener(remember);</span>
+<span class="nc" id="L369">						}</span>
+					});
+<span class="nc" id="L371">				}</span>
+			});
+<span class="nc" id="L373">		} else {</span>
+<span class="nc" id="L374">			explainLbl.setText(&quot;&lt;html&gt;&lt;div style=\&quot;width:300px; height:100px\&quot;&gt;&quot; +</span>
+<span class="nc" id="L375">					wrongColor + &quot;&lt;/div&gt;&lt;/html&gt;&quot;);</span>
+			
+<span class="nc" id="L377">			validate();</span>
+		}
+<span class="nc" id="L379">	}</span>
+		
+	/*
+	 * randomColor from remember - toChooseFrom
+	 */
+	private Color randomColor() {
+<span class="nc" id="L385">		Color randColor = rememberColors[randInt(0, rememberColors.length-1)];</span>
+<span class="nc bnc" id="L386" title="All 2 branches missed.">		while(in(randColor, toChooseFrom)) {</span>
+<span class="nc" id="L387">			randColor = rememberColors[randInt(0, rememberColors.length-1)];</span>
+		}
+<span class="nc" id="L389">		return randColor;</span>
+	}
+	
+	private boolean in(Color rand, Color[] colors) {
+<span class="nc bnc" id="L393" title="All 2 branches missed.">		for(int i=0; i &lt; colors.length; i++) {</span>
+<span class="nc bnc" id="L394" title="All 2 branches missed.">			if(rand.equals(colors[i])) {</span>
+<span class="nc" id="L395">				return true;</span>
+			}
+		}
+<span class="nc" id="L398">		return false;</span>
+	}
+	
+	private int randInt(int min, int max) {
+<span class="nc" id="L402">		Random rand = new Random();</span>
+		
+<span class="nc" id="L404">		int randNum = rand.nextInt((max-min) + 1) + min;</span>
+		
+<span class="nc" id="L406">		return randNum;</span>
+	}
+	
+	/**
+	 * remember an actionlistener
+	 * @param remember remember this actionlistener
+	 */
+	public void setRemember(ActionListener remember) {
+<span class="nc" id="L414">		this.remember = remember;</span>
+<span class="nc" id="L415">	}</span>
+
+	/** return help string */
+	public String getHelp() {
+<span class="nc" id="L419">		return help;</span>
+	}
+	
+	public JButton getSkipButton() {
+<span class="nc" id="L423">		return n.getForward();</span>
+	}
+
+	public JButton getReturnButton() {
+<span class="nc" id="L427">		return n.getBack();</span>
+	}
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

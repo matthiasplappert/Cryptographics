@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>AlphabetStripView.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.CryptographicsLib</a> &gt; <span class="el_source">AlphabetStripView.java</span></div><h1>AlphabetStripView.java</h1><pre class="source lang-java linenums">package edu.kit.iks.CryptographicsLib;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+
+/**
+ * @author Matthias Jaenicke.
+ * 
+ * A horizontal strip of all letters from A to Z.
+ * Beneath it is matched by a corresponding strip of the numbers from 1 to 26.
+ */
+<span class="nc bnc" id="L19" title="All 2 branches missed.">public class AlphabetStripView extends JPanel {</span>
+	
+	/**
+	 * Serial version UID
+	 */
+	private static final long serialVersionUID = 2443142838200011020L;
+	
+	private JLabel[] chars;
+	private JLabel[] nums;
+	
+<span class="nc" id="L29">	private static final Border normalBorder = BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.lightGray, Color.gray);</span>
+//	private static final Border normalBorder = BorderFactory.createLineBorder(Color.black);
+<span class="nc" id="L31">	private static final Border highlightBorder = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED, Color.lightGray.darker(), Color.gray.darker());</span>
+	
+	/**
+	 * Generates the alphabet strip with default dimension
+	 * which is (26 * 30) x (2 * 25)
+	 */
+	public AlphabetStripView() {
+<span class="nc" id="L38">		super();</span>
+<span class="nc" id="L39">		generateStrip(30, 25);</span>
+<span class="nc" id="L40">	}</span>
+	
+	/**
+	 * Generates the alphabet strip with given parameters
+	 * (26 * width) x (2 * height)
+	 * @param width Width of single cell
+	 * @param height Height of single cell
+	 */
+	public AlphabetStripView(int width, int height) {
+<span class="nc" id="L49">		super();</span>
+<span class="nc" id="L50">		generateStrip(width, height);</span>
+<span class="nc" id="L51">	}</span>
+
+	private void generateStrip(int width, int height) {
+
+		// A layout with 2 rows and 26 columns. The desired form is simply 
+		// achieved by first putting the alphabet and then the numbers in. 
+<span class="nc" id="L57">		GridLayout layout = new GridLayout(2, 26);</span>
+<span class="nc" id="L58">		this.setLayout(layout);</span>
+		
+		// Puts the 26 characters of the alphabet in the first row
+<span class="nc" id="L61">		int asciiA = 65;</span>
+<span class="nc" id="L62">		chars = new JLabel[26];</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">		for (int i = 0; i &lt; 26; i++) {</span>
+<span class="nc" id="L64">			chars[i] = new JLabel(String.valueOf((char)(i+asciiA)));</span>
+//			chars[i].setBorder(BorderFactory.createLineBorder(Color.black));
+<span class="nc" id="L66">			chars[i].setBorder(normalBorder);</span>
+<span class="nc" id="L67">			chars[i].setVerticalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L68">			chars[i].setHorizontalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L69">			this.add(chars[i]);</span>
+		}
+		
+		// Puts the numbers from 1 to 26 in the second row
+<span class="nc" id="L73">		nums = new JLabel[26];</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">		for (int i = 0; i &lt; 26; i++) {</span>
+<span class="nc" id="L75">			nums[i] = new JLabel(&quot;&quot; + (i+1));</span>
+//			nums[i].setBorder(BorderFactory.createLineBorder(Color.black));
+<span class="nc" id="L77">			nums[i].setBorder(normalBorder);</span>
+<span class="nc" id="L78">			nums[i].setVerticalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L79">			nums[i].setHorizontalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L80">			this.add(nums[i]);</span>
+		}
+		
+<span class="nc" id="L83">		Dimension d = new Dimension(width * 26, height * 2);</span>
+<span class="nc" id="L84">		this.setPreferredSize(d);</span>
+<span class="nc" id="L85">	}</span>
+	
+	/**
+	 * Highlights the char and its number with the given key
+	 * @param key number between 0 and 25
+	 */
+	public void highlight(int key) {
+		
+<span class="nc bnc" id="L93" title="All 6 branches missed.">		assert(key &gt;= 0 &amp;&amp; key &lt; 26);</span>
+<span class="nc" id="L94">		chars[key].setBorder(highlightBorder);</span>
+//		chars[key].setBackground(Color.yellow);
+<span class="nc" id="L96">		chars[key].setForeground(Color.red);</span>
+<span class="nc" id="L97">		nums[key].setBorder(highlightBorder);</span>
+//		nums[key].setBackground(Color.yellow);
+<span class="nc" id="L99">		nums[key].setForeground(Color.red);</span>
+		
+<span class="nc" id="L101">		this.repaint();</span>
+<span class="nc" id="L102">	}</span>
+	
+	/**
+	 * Reverts highlighting of the char and its number with the given key
+	 * @param key number between 0 and 25
+	 */
+	public void unHighlight(int key) {
+
+<span class="nc bnc" id="L110" title="All 6 branches missed.">		assert(key &gt;= 0 &amp;&amp; key &lt; 26);</span>
+<span class="nc" id="L111">		chars[key].setBorder(normalBorder);</span>
+//		chars[key].setBackground(Color.yellow);
+<span class="nc" id="L113">		chars[key].setForeground(Color.black);</span>
+<span class="nc" id="L114">		nums[key].setBorder(normalBorder);</span>
+//		nums[key].setBackground(Color.yellow);
+<span class="nc" id="L116">		nums[key].setForeground(Color.black);</span>
+		
+<span class="nc" id="L118">		this.repaint();</span>
+<span class="nc" id="L119">	}</span>
+	
+	public void unHighlightAll() {
+<span class="nc bnc" id="L122" title="All 2 branches missed.">		for (int i = 0; i &lt; chars.length; i++) {</span>
+<span class="nc" id="L123">			unHighlight(i);</span>
+		}
+<span class="nc" id="L125">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

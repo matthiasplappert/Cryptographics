@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>StartController.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics</a> &gt; <span class="el_source">StartController.java</span></div><h1>StartController.java</h1><pre class="source lang-java linenums"><span class="pc" id="L1">package edu.kit.iks.Cryptographics;</span>
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.MouseEvent;
+import java.util.List;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+
+import edu.kit.iks.CryptographicsLib.AbstractController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Logger;
+import edu.kit.iks.CryptographicsLib.MouseClickListener;
+import edu.kit.iks.CryptographicsLib.VisualizationButton;
+import edu.kit.iks.CryptographicsLib.VisualizationInfoLoader;
+
+/**
+ * An instance of this class is the start controller showing teasers
+ * 
+ * @author Christian Dreher
+ */
+public class StartController extends AbstractController {
+
+	/**
+	 * An instance of the popover view
+	 */
+	private TimelinePopoverView popoverView;
+
+	/**
+	 * An instance of the timeline view
+	 */
+	private TimelineView timelineView;
+
+	/**
+	 * An instance of the welcome view
+	 */
+	private WelcomeView welcomeView;
+
+	/**
+	 * A list of all VisualizationInfo-objects
+	 */
+	private List&lt;AbstractVisualizationInfo&gt; visualizationInfos;
+
+	/**
+	 * Constructor initializing a new instance of {StartController}
+	 */
+<span class="fc" id="L48">	public StartController() {</span>
+<span class="fc" id="L49">		this.loadAllVisualizationInfos();</span>
+<span class="fc" id="L50">	}</span>
+
+	/**
+	 * Loads the view
+	 */
+	@Override
+	public void loadView() {
+<span class="fc" id="L57">		this.view = new JPanel(new GridBagLayout());</span>
+<span class="fc" id="L58">		this.view.setName(&quot;start-controller-view&quot;);</span>
+		
+		// Add welcome view and its layout
+<span class="fc" id="L61">		GridBagConstraints welcomeViewLayout = new GridBagConstraints();</span>
+<span class="fc" id="L62">		welcomeViewLayout.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="fc" id="L63">		welcomeViewLayout.gridy = 0;</span>
+<span class="fc" id="L64">		welcomeViewLayout.weighty = 0.95f;</span>
+<span class="fc" id="L65">		this.welcomeView = new WelcomeView();</span>
+<span class="fc" id="L66">		this.view.add(this.welcomeView, welcomeViewLayout);</span>
+
+		// Add timeline view and its layout
+<span class="fc" id="L69">		GridBagConstraints timelineViewLayout = new GridBagConstraints();</span>
+<span class="fc" id="L70">		timelineViewLayout.fill = GridBagConstraints.HORIZONTAL;</span>
+<span class="fc" id="L71">		timelineViewLayout.weightx = 1.0f;</span>
+<span class="fc" id="L72">		timelineViewLayout.weighty = 0.05f;</span>
+<span class="fc" id="L73">		timelineViewLayout.gridy = 1;</span>
+<span class="fc" id="L74">		this.timelineView = new TimelineView(visualizationInfos);</span>
+<span class="fc" id="L75">		this.view.add(this.timelineView, timelineViewLayout);</span>
+
+		// Add event handlers
+<span class="fc bfc" id="L78" title="All 2 branches covered.">		for (VisualizationButton button : this.timelineView.getButtons()) {</span>
+<span class="fc" id="L79">			button.addMouseListener(new MouseClickListener() {</span>
+				@Override
+				public void clicked(MouseEvent event) {
+<span class="nc" id="L82">					VisualizationButton button = (VisualizationButton)event.getSource();</span>
+<span class="nc" id="L83">					presentPopoverAction(button.getVisualizationInfo(), button);</span>
+<span class="nc" id="L84">				}</span>
+			});
+		}
+		
+<span class="fc" id="L88">		this.view.validate();</span>
+<span class="fc" id="L89">	}</span>
+
+	/**
+	 * Unloads the view by setting all object references to null
+	 */
+	@Override
+	public void unloadView() {
+<span class="fc" id="L96">		this.view.removeAll();</span>
+<span class="fc" id="L97">		this.view.revalidate();</span>
+		
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">		if (this.popoverView != null) {</span>
+<span class="nc" id="L100">			this.dismissPopoverAction();</span>
+		}
+<span class="fc" id="L102">		this.popoverView = null;</span>
+<span class="fc" id="L103">		this.welcomeView = null;</span>
+<span class="fc" id="L104">		this.timelineView = null;</span>
+<span class="fc" id="L105">		this.view = null;</span>
+<span class="fc" id="L106">	}</span>
+
+	/**
+	 * Loads the view for the popover which gives the user all needed
+	 * informations about the cipher he clicked.
+	 * 
+	 * @param vsInfo
+	 *            Information about the cipher.
+	 */
+	private void loadPopoverView(AbstractVisualizationInfo vsInfo) {
+<span class="nc bnc" id="L116" title="All 2 branches missed.">		if (this.popoverView != null) {</span>
+<span class="nc" id="L117">			this.dismissPopoverAction();</span>
+		}
+		
+<span class="nc" id="L120">		this.popoverView = new TimelinePopoverView(vsInfo);</span>
+<span class="nc" id="L121">	}</span>
+
+	/**
+	 * Shows a popover with information from given {visualizationInfo}
+	 * 
+	 * @param visualizationInfo
+	 *            Object of {VisualizationInfo} containing the metadata to
+	 *            display
+	 */
+	public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo, JComponent sender) {
+<span class="nc" id="L131">		loadPopoverView(visualizationInfo);</span>
+<span class="nc" id="L132">		this.popoverView.present(sender);</span>
+<span class="nc" id="L133">		this.popoverView.getStartButton().addMouseListener(new MouseClickListener() {</span>
+			@Override
+			public void clicked(MouseEvent event) {
+<span class="nc" id="L136">				VisualizationButton startButton = (VisualizationButton)event.getSource();</span>
+<span class="nc" id="L137">				startVisualizationAction(startButton.getVisualizationInfo());</span>
+<span class="nc" id="L138">			}</span>
+		});
+<span class="nc" id="L140">		this.popoverView.getCloseButton().addMouseListener(new MouseClickListener() {</span>
+			@Override
+			public void clicked(MouseEvent event) {
+<span class="nc" id="L143">				dismissPopoverAction();</span>
+<span class="nc" id="L144">			}</span>
+		});
+<span class="nc" id="L146">	}</span>
+
+	/**
+	 * Dismisses the popover
+	 */
+	public void dismissPopoverAction() {
+<span class="nc" id="L152">		this.popoverView.dismiss();</span>
+<span class="nc" id="L153">		this.popoverView = null;</span>
+<span class="nc" id="L154">	}</span>
+
+	/**
+	 * Starts the visualization of a procedure from given {visualizationInfo}
+	 * 
+	 * @param visualizationInfo
+	 *            Object of {VisualizationInfo} containing the data to
+	 *            instantiate related controllers from
+	 */
+	public void startVisualizationAction(AbstractVisualizationInfo visualizationInfo) {
+<span class="nc" id="L164">		this.dismissPopoverAction();</span>
+<span class="nc" id="L165">		MainController mainController = (MainController) this.getParentController();</span>
+<span class="nc" id="L166">		Logger.log(&quot;User chose &quot; + visualizationInfo.getId());</span>
+<span class="nc" id="L167">		mainController.presentVisualizationAction(visualizationInfo);</span>
+<span class="nc" id="L168">	}</span>
+
+	/**
+	 * Helper method to initialize {_visualizationInfos}
+	 */
+	private void loadAllVisualizationInfos() {
+<span class="fc" id="L174">		this.visualizationInfos = VisualizationInfoLoader</span>
+<span class="fc" id="L175">				.loadAllVisualizationInfos();</span>
+<span class="fc" id="L176">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

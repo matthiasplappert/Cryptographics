@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>MainController.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics</a> &gt; <span class="el_source">MainController.java</span></div><h1>MainController.java</h1><pre class="source lang-java linenums">package edu.kit.iks.Cryptographics;
+
+import java.awt.BorderLayout;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
+import java.text.ParseException;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.synth.SynthLookAndFeel;
+
+import edu.kit.iks.CryptographicsLib.AbstractController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.Logger;
+import edu.kit.iks.CryptographicsLib.PopoverView;
+
+/**
+ * An instance of this class is the main controller, delegating all performed
+ * tasks to its subcontrollers like StartController (teaser) or controllers
+ * visualizing a cryptographic procedure
+ * 
+ * @author Christian Dreher
+ */
+<span class="fc" id="L31">public class MainController extends AbstractController {</span>
+
+	/**
+	 * Gets the configurations supplied by the instance
+	 * itself or overwritten by the config.xml file
+	 */
+<span class="fc" id="L37">	private Configuration config = Configuration.getInstance();</span>
+	
+	/**
+	 * A sandbox for subcontrollers to inflate their contents
+	 */
+	private JFrame frame;
+
+	/**
+	 * An instance of the start controller, showing a teaser to draw attention
+	 */
+	private StartController startController;
+
+	/**
+	 * An instance of a container controller, visualizing a cryptographic
+	 * procedure inside
+	 */
+	private VisualizationContainerController visualizationContainerController;
+
+	/**
+	 * Just loads the frame. This controller is specially since it does not load a view.
+	 */
+	@Override
+	public void loadView() {
+		// Note: every method here is strictly bound
+		// to the values defined in the config.xml.
+		// If, for example, &lt;mouseCursor&gt; is set to true,
+		// the method disableCursor() will keep the cursor
+		// visible
+<span class="fc" id="L65">		this.loadLookAndFeel();</span>
+<span class="fc" id="L66">		this.loadFrame();</span>
+<span class="fc" id="L67">		this.disableCursor();</span>
+<span class="fc" id="L68">	}</span>
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+<span class="fc" id="L76">		this.frame = null;</span>
+<span class="fc" id="L77">	}</span>
+	
+	/**
+	 * Gets the JFrame
+	 * 
+	 * @return the JFrame
+	 */
+	public JFrame getJFrame() {
+<span class="fc" id="L85">		return this.frame;</span>
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#isViewLoaded()
+	 */
+	@Override
+	public boolean isViewLoaded() {
+<span class="fc bfc" id="L94" title="All 2 branches covered.">		return (this.frame != null);</span>
+	}
+
+	/**
+	 * Starts the visualization of StartController
+	 */
+	public void presentStartAction() {
+		
+		// Unload visualization controllers not needed anymore
+<span class="fc bfc" id="L103" title="All 2 branches covered.">		if (this.visualizationContainerController != null) {</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">			if (this.visualizationContainerController.getHelpPopoverView() != null) {</span>
+<span class="nc" id="L105">				this.visualizationContainerController.dismissHelpPopover();</span>
+			}
+			
+<span class="fc" id="L108">			this.frame.getContentPane().remove(this.visualizationContainerController.getView());</span>
+<span class="fc" id="L109">			this.visualizationContainerController.unloadView();</span>
+<span class="fc" id="L110">			this.removeChildController(this.visualizationContainerController);</span>
+<span class="fc" id="L111">			this.visualizationContainerController = null;</span>
+		}
+		
+		// Only initialize start controller once, nut load/unload view
+<span class="fc bfc" id="L115" title="All 2 branches covered.">		if (this.startController == null) {</span>
+<span class="fc" id="L116">			this.startController = new StartController();</span>
+<span class="fc" id="L117">			this.addChildController(this.startController);</span>
+		}
+		
+		// Load view and append it to the frame
+<span class="fc" id="L121">		this.startController.loadView();</span>
+<span class="fc" id="L122">		this.frame.getContentPane().add(this.startController.getView(), BorderLayout.CENTER);</span>
+
+		// Important to call validate, as some elements may
+		// be invisible otherwise
+<span class="fc" id="L126">		this.frame.getContentPane().revalidate();</span>
+<span class="fc" id="L127">		this.frame.getContentPane().repaint();</span>
+<span class="fc" id="L128">		this.frame.validate();</span>
+<span class="fc" id="L129">	}</span>
+
+	/**
+	 * Starts the visualization of a procedure with given {visualizationInfo}
+	 * 
+	 * @param visualizationInfo
+	 *            Metadata of the cryptographic procedure to instantiate the
+	 *            controller from
+	 */
+	public void presentVisualizationAction(
+			AbstractVisualizationInfo visualizationInfo) {
+		// Unload the view but keep the instance in memory for 
+		// better response 
+<span class="pc bpc" id="L142" title="1 of 2 branches missed.">		if (this.startController != null) {</span>
+<span class="fc" id="L143">			this.frame.getContentPane().remove(this.startController.getView());</span>
+<span class="fc" id="L144">			this.startController.unloadView();</span>
+		}
+
+		// load VisualizationContainerController
+<span class="fc" id="L148">		this.visualizationContainerController = new VisualizationContainerController(</span>
+<span class="fc" id="L149">				visualizationInfo);</span>
+		// load view
+<span class="fc" id="L151">		this.visualizationContainerController.loadView();</span>
+<span class="fc" id="L152">		this.addChildController(this.visualizationContainerController);</span>
+<span class="fc" id="L153">		this.frame.getContentPane().add(this.visualizationContainerController.getView(), BorderLayout.CENTER);</span>
+<span class="fc" id="L154">		this.visualizationContainerController.setCurrentVisualizationControllerIndex(0);</span>
+		
+<span class="fc" id="L156">		this.frame.getContentPane().revalidate();</span>
+<span class="fc" id="L157">		this.frame.getContentPane().repaint();</span>
+<span class="fc" id="L158">		this.frame.revalidate();</span>
+<span class="fc" id="L159">	}</span>
+	
+	/**
+	 * Gets the start controller
+	 * 
+	 * @return The start controller
+	 */
+	public StartController getStartController() {
+<span class="fc" id="L167">		return this.startController;</span>
+	}
+	
+	/**
+	 * Gets the visualization container controller
+	 * 
+	 * @return The visualization container controller
+	 */
+	public VisualizationContainerController getVisualizationContainerController() {
+<span class="fc" id="L176">		return this.visualizationContainerController;</span>
+	}
+	
+	/**
+	 * Loads the JFrame
+	 */
+	private void loadFrame() {
+<span class="fc" id="L183">		this.frame = new JFrame(&quot;Cryptographics&quot;);</span>
+<span class="fc" id="L184">		this.frame.setName(&quot;main-view&quot;);</span>
+		
+<span class="pc bpc" id="L186" title="1 of 2 branches missed.">		if (this.config.isFullscreenModeEnabled()) {</span>
+<span class="nc" id="L187">			this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);</span>
+<span class="nc" id="L188">			this.frame.setUndecorated(true);</span>
+<span class="nc" id="L189">			this.frame.setAlwaysOnTop(true);</span>
+<span class="nc" id="L190">		} else {</span>
+<span class="fc" id="L191">			this.frame.setSize(1366, 768); // Basic size for debugging</span>
+<span class="fc" id="L192">			Logger.debug(&quot;MainController&quot;, &quot;loadFrame&quot;, &quot;Fullscreen mode disabled due to debugging.&quot;);</span>
+		}
+		
+<span class="fc" id="L195">		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L196">		this.frame.setVisible(true);</span>
+		
+		// Extract the glassPane. We use this for displaying popovers.
+<span class="fc" id="L199">		JPanel popoverContainerView = (JPanel)this.frame.getGlassPane();</span>
+<span class="fc" id="L200">		PopoverView.setContainerView(popoverContainerView);</span>
+<span class="fc" id="L201">	}</span>
+	
+	/**
+	 * Loads the custom look and feel.
+	 */
+	private void loadLookAndFeel() {
+<span class="pc bpc" id="L207" title="1 of 2 branches missed.">		if (this.config.isLookAndFeelEnabled()) {</span>
+<span class="fc" id="L208">			SynthLookAndFeel lookAndFeel = new SynthLookAndFeel();</span>
+			
+			try {
+<span class="fc" id="L211">				InputStream is = this.getClass().getResourceAsStream(&quot;/theme/manifest.xml&quot;);</span>
+				
+<span class="fc" id="L213">				lookAndFeel.load(is, this.getClass());</span>
+<span class="pc" id="L214">			} catch (ParseException e) {</span>
+<span class="nc" id="L215">				Logger.error(e);</span>
+			}
+			
+			try {
+<span class="fc" id="L219">				UIManager.setLookAndFeel(lookAndFeel);</span>
+<span class="pc" id="L220">			} catch (UnsupportedLookAndFeelException e) {</span>
+<span class="nc" id="L221">				Logger.error(e);</span>
+			}
+<span class="nc" id="L223">		} else {</span>
+<span class="nc" id="L224">			Logger.debug(&quot;MainController&quot;, &quot;loadLookAndFeel&quot;, &quot;Look and feel disabled due to debugging.&quot;);</span>
+		}
+<span class="fc" id="L226">	}</span>
+	
+	/**
+	 * Disables the cursor
+	 */
+	private void disableCursor() {
+<span class="pc bpc" id="L232" title="1 of 2 branches missed.">		if (!this.config.isMouseCursorEnabled()) {</span>
+<span class="nc" id="L233">			Cursor nullCursor = null;</span>
+<span class="nc" id="L234">			Toolkit toolkit = Toolkit.getDefaultToolkit();</span>
+<span class="nc" id="L235">			Dimension dimension = toolkit.getBestCursorSize(1, 1);</span>
+			
+<span class="nc bnc" id="L237" title="All 2 branches missed.">			if ((dimension.width | dimension.height) != 0) {</span>
+<span class="nc" id="L238">				nullCursor = toolkit.createCustomCursor(new BufferedImage(dimension.width,</span>
+<span class="nc" id="L239">						dimension.height,</span>
+<span class="nc" id="L240">						BufferedImage.TYPE_INT_ARGB),</span>
+<span class="nc" id="L241">						new Point(0, 0),</span>
+<span class="nc" id="L242">						&quot;nullCursor&quot;);</span>
+			}
+			
+<span class="nc" id="L245">			this.frame.setCursor(nullCursor);</span>
+<span class="nc" id="L246">		} else {</span>
+<span class="fc" id="L247">			Logger.debug(&quot;MainController&quot;, &quot;disableCursor&quot;, &quot;Curser is visible due to debugging.&quot;);</span>
+		}
+<span class="fc" id="L249">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

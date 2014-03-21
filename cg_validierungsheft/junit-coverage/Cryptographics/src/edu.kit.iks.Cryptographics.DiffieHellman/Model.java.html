@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>Model.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics.DiffieHellman</a> &gt; <span class="el_source">Model.java</span></div><h1>Model.java</h1><pre class="source lang-java linenums">package edu.kit.iks.Cryptographics.DiffieHellman;
+
+import java.awt.Color;
+
+/**
+ * The Model will keep some of our colors
+ * need in the Diffie-Hellman Key-Exchange Analogy.
+ * 
+ * @author kai
+ *
+ */
+
+public class Model {
+	
+	/**
+	 * Our public color
+	 */
+	private Color publicColor;
+	
+	/**
+	 * Alices private color
+	 */
+	private Color alicePrivateColor;
+	
+	/**
+	 * Alices mixed color
+	 */
+	private Color aliceMixedColor;
+	
+	/**
+	 * Bobs private color
+	 */
+	private Color bobPrivateColor;
+	
+	/**
+	 * Bobs mixed color
+	 */
+	private Color bobMixedColor;
+
+	/**
+	 * Constructor is empty, because
+	 * values should be initialized with setter
+	 */
+<span class="fc" id="L44">	public Model() {</span>
+<span class="fc" id="L45">	}</span>
+	
+	/**
+	 * return the public color
+	 * @return the public color
+	 */
+	public Color getPublicColor() {
+<span class="fc" id="L52">		return publicColor;</span>
+	}
+
+	/**
+	 * set the public color
+	 * @param publicColor which color to set to
+	 */
+	public void setPublicColor(Color publicColor) {
+<span class="fc" id="L60">		this.publicColor = publicColor;</span>
+<span class="fc" id="L61">	}</span>
+
+	/**
+	 * return alices private color
+	 * @return alices private color
+	 */
+	public Color getAlicePrivateColor() {
+<span class="fc" id="L68">		return alicePrivateColor;</span>
+	}
+
+	/**
+	 * set alices private color
+	 * @param alicePrivateColor
+	 */
+	public void setAlicePrivateColor(Color alicePrivateColor) {
+<span class="fc" id="L76">		this.alicePrivateColor = alicePrivateColor;</span>
+<span class="fc" id="L77">	}</span>
+	
+	/**
+	 * return alices mixed color
+	 * @return alices mixed color, if it was set/mixed
+	 */
+	public Color getAliceMixedColor() {
+<span class="fc" id="L84">		return aliceMixedColor;</span>
+	}
+
+	/**
+	 * return bobs private color
+	 * @return bobs private color
+	 */
+	public Color getBobPrivateColor() {
+<span class="fc" id="L92">		return bobPrivateColor;</span>
+	}
+
+	/**
+	 * set bobs private color
+	 * @param bobPrivateColor the value to set bobs private color
+	 */
+	public void setBobPrivateColor(Color bobPrivateColor) {
+<span class="fc" id="L100">		this.bobPrivateColor = bobPrivateColor;</span>
+<span class="fc" id="L101">	}</span>
+
+	/**
+	 * return bobs mixed color if it was computed
+	 * @return bobs mixed color
+	 */
+	public Color getBobMixedColor() {
+<span class="fc" id="L108">		return bobMixedColor;</span>
+	}
+	
+	/**
+	 * compute mixture of alices private and public color
+	 * and save the color
+	 */
+	public void mixAlicePrivateAndPublic() {
+<span class="fc" id="L116">		this.aliceMixedColor = computeMixedColor(this.alicePrivateColor, this.publicColor);</span>
+<span class="fc" id="L117">	}</span>
+	
+	/**
+	 * compute mixture of bobs private and public color
+	 * and save the color
+	 */
+	public void mixBobPrivateAndPublic() {
+<span class="fc" id="L124">		this.bobMixedColor = computeMixedColor(this.bobPrivateColor, publicColor);</span>
+<span class="fc" id="L125">	}</span>
+	
+	/**
+	 * compute mixture from two colors
+	 * @param color the first color
+	 * @param color2 the second color
+	 * @return the mixture
+	 */
+	private Color computeMixedColor(Color color, Color color2) {
+<span class="fc" id="L134">		int r1 = color.getRed();</span>
+<span class="fc" id="L135">		int r2 = color2.getRed();</span>
+<span class="fc" id="L136">		int g1 = color.getGreen();</span>
+<span class="fc" id="L137">		int g2 = color2.getGreen();</span>
+<span class="fc" id="L138">		int b1 = color.getBlue();</span>
+<span class="fc" id="L139">		int b2 = color2.getBlue();</span>
+<span class="fc" id="L140">		return new Color((r1+r2)/2, (g1+g2)/2, (b1+b2)/2);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>

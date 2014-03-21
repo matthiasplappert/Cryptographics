@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../.resources/report.gif" type="image/gif"/><title>VigenereModel.java</title><link rel="stylesheet" href="../../../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../.sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">test (Mar 21, 2014 6:54:09 PM)</a> &gt; <a href="../../index.html" class="el_group">Cryptographics</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">edu.kit.iks.Cryptographics.Vigenere</a> &gt; <span class="el_source">VigenereModel.java</span></div><h1>VigenereModel.java</h1><pre class="source lang-java linenums">package edu.kit.iks.Cryptographics.Vigenere;
+/**
+ * @author Aydin Tekin
+ * This class represents the model of vigenere; it has the methods for calculating all needed functionality in vigenere.
+ */
+<span class="nc" id="L6">public class VigenereModel {</span>
+	
+	/**
+	 * Position of 'A' in the ASCII system
+	 */
+	private final static int ASCII_A = ((int)'A' - 1);
+	
+	/**
+	 * Number of characters in the alphabet
+	 */
+	private final static int MODULO = 26;
+	
+	/**
+	 * rotates a specific character with the number 'key'
+	 * @param key amount how often the character should be rotated with
+	 * @param text character to be rotated
+	 * @return result of the rotation
+	 */
+	static public char enc(int key, char text) {
+<span class="fc" id="L25">		int offsetText = ((int) text) - ASCII_A; </span>
+		
+<span class="fc" id="L27">		return ((char) ((((offsetText + MODULO) + key) % MODULO) + ASCII_A));</span>
+
+	}
+	
+	/**
+	 * does the same like enc with negative rotation
+	 * @param key amount how often the character should be rotated with
+	 * @param cipher character to be rotated
+	 * @return result of the inverted rotation
+	 */
+	static public char dec(char key, char cipher) {
+<span class="fc" id="L38">		return enc(-((int)key - ASCII_A), cipher);</span>
+	}
+	
+	/**
+	 * converts ASCII number of uppercase characters to alphabetical number
+	 * @param character character to be converted
+	 * @return alphabetical number of character or 0 if the character is invalid
+	 */
+	static public int characterToInt(String character) {
+<span class="fc bfc" id="L47" title="All 2 branches covered.">		if (character.length() == 1) {</span>
+<span class="fc" id="L48">			int value = (int)character.charAt(0) - ASCII_A;</span>
+<span class="fc bfc" id="L49" title="All 4 branches covered.">			if (value &lt; 1 || value &gt; 26) {</span>
+<span class="fc" id="L50">				return 0;</span>
+			} else {
+<span class="fc" id="L52">				return value;</span>
+			}
+		} else {
+<span class="fc" id="L55">			return 0;</span>
+		}
+	}
+	
+	/**
+	 * used by the kasiski test, this method returns every n-th character of a string.
+	 * @param start which position to start with
+	 * @param num value of steps
+	 * @param input string used for the test
+	 * @return every n-th character of the input
+	 */
+	static public String getCharPositionated(int start, int num, String input) {
+<span class="fc" id="L67">		String returnString = &quot;&quot;;</span>
+<span class="fc" id="L68">		int x = 0;</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">		for (int i = start; i &lt; input.length(); i++) {</span>
+<span class="fc" id="L70">			char c = input.charAt(i);</span>
+<span class="fc" id="L71">			int index = (int)c - ASCII_A;</span>
+<span class="pc bpc" id="L72" title="2 of 4 branches missed.">			if (index &gt;= 0 &amp;&amp; index &lt;= MODULO) {</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">				if (x &gt; 0) {</span>
+<span class="fc" id="L74">					x = 0;</span>
+<span class="fc" id="L75">					continue;</span>
+				}
+<span class="fc" id="L77">				returnString = returnString + input.charAt(i);</span>
+<span class="fc" id="L78">				x++;</span>
+			} 
+		}
+<span class="fc" id="L81">		return returnString;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span>test (Mar 21, 2014 6:54:09 PM)</div></body></html>
