@@ -26,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import org.jdom2.Document;
@@ -139,7 +140,15 @@ public class InformationView extends JPanel implements MouseListener {
 		this.loadQRCodeViewComponents();
 		this.validate();
 		
-		this.updateButtonStates();
+		// The JScrollPane returns invalid scroll information, resulting in an invalid
+		// button state. Adding this slight delay fixes the problem.
+		SwingUtilities.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				updateButtonStates();
+			}
+		});
 	}
 	
 	/**

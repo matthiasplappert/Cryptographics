@@ -1,7 +1,7 @@
  <synth>
   <!-- The default style -->
   <style id="defaultStyle">
-    <font name="Verdana" size="16" />
+    <font name="Verdana" size="19" />
     <state>
       <color value="WHITE" type="BACKGROUND" />
       <color value="BLACK" type="FOREGROUND" />
