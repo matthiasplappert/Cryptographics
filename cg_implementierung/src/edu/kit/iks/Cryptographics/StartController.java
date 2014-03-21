@@ -2,14 +2,24 @@ package edu.kit.iks.Cryptographics;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+
+import edu.kit.iks.Cryptographics.Caesar.Demonstration.IntroductionController;
 import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
 import edu.kit.iks.CryptographicsLib.VisualizationButton;
@@ -43,6 +53,11 @@ public class StartController extends AbstractController {
 	private List<AbstractVisualizationInfo> visualizationInfos;
 
 	/**
+	 * Root element from the xml for the resources.
+	 */
+	private Element startResources;
+
+	/**
 	 * Constructor initializing a new instance of {StartController}
 	 */
 	public StartController() {
@@ -56,7 +71,23 @@ public class StartController extends AbstractController {
 	public void loadView() {
 		this.view = new JPanel(new GridBagLayout());
 		this.view.setName("start-controller-view");
-		
+
+		SAXBuilder saxBuilder = new SAXBuilder();
+
+		// obtain file object
+		InputStream is = this.getClass().getResourceAsStream(
+				"/start/startResources.xml");
+
+		try {
+			// converted file to document object
+			Document document = saxBuilder.build(is);
+
+			// get root node from xml
+			this.startResources = document.getRootElement();
+		} catch (JDOMException | IOException e) {
+			Logger.error(e);
+		}
+
 		// Add welcome view and its layout
 		GridBagConstraints welcomeViewLayout = new GridBagConstraints();
 		welcomeViewLayout.fill = GridBagConstraints.HORIZONTAL;
@@ -65,12 +96,29 @@ public class StartController extends AbstractController {
 		this.welcomeView = new WelcomeView();
 		this.view.add(this.welcomeView, welcomeViewLayout);
 
+		String path = "";
+		try {
+			path = startResources.getChild("welcomeImage")
+					.getAttributeValue("path");
+		} catch (NullPointerException nullException) {
+			// Element not found.
+			System.out.println("[NullPointerException] Ressource not found.");
+			nullException.printStackTrace();
+		}
+
+		GridBagConstraints imgConstraint = new GridBagConstraints();
+		imgConstraint.gridx = 0;
+		imgConstraint.gridy = 1;
+		imgConstraint.insets = new Insets(0, 0, 0, 300);
+		ImageView imageToSet = new ImageView(path);
+		this.view.add(imageToSet, imgConstraint);
+
 		// Add timeline view and its layout
 		GridBagConstraints timelineViewLayout = new GridBagConstraints();
 		timelineViewLayout.fill = GridBagConstraints.HORIZONTAL;
 		timelineViewLayout.weightx = 1.0f;
 		timelineViewLayout.weighty = 0.05f;
-		timelineViewLayout.gridy = 1;
+		timelineViewLayout.gridy = 2;
 		this.timelineView = new TimelineView(visualizationInfos);
 		this.view.add(this.timelineView, timelineViewLayout);
 
@@ -79,12 +127,13 @@ public class StartController extends AbstractController {
 			button.addMouseListener(new MouseClickListener() {
 				@Override
 				public void clicked(MouseEvent event) {
-					VisualizationButton button = (VisualizationButton)event.getSource();
+					VisualizationButton button = (VisualizationButton) event
+							.getSource();
 					presentPopoverAction(button.getVisualizationInfo(), button);
 				}
 			});
 		}
-		
+
 		this.view.validate();
 	}
 
@@ -95,7 +144,7 @@ public class StartController extends AbstractController {
 	public void unloadView() {
 		this.view.removeAll();
 		this.view.revalidate();
-		
+
 		if (this.popoverView != null) {
 			this.dismissPopoverAction();
 		}
@@ -106,8 +155,8 @@ public class StartController extends AbstractController {
 	}
 
 	/**
-	 * Loads the view for the popover which gives the user all needed
-	 * informations about the cipher he clicked.
+	 * Loads the view for the popover which gives the user all needed informations about the cipher
+	 * he clicked.
 	 * 
 	 * @param vsInfo
 	 *            Information about the cipher.
@@ -116,7 +165,7 @@ public class StartController extends AbstractController {
 		if (this.popoverView != null) {
 			this.dismissPopoverAction();
 		}
-		
+
 		this.popoverView = new TimelinePopoverView(vsInfo);
 	}
 
@@ -124,25 +173,29 @@ public class StartController extends AbstractController {
 	 * Shows a popover with information from given {visualizationInfo}
 	 * 
 	 * @param visualizationInfo
-	 *            Object of {VisualizationInfo} containing the metadata to
-	 *            display
+	 *            Object of {VisualizationInfo} containing the metadata to display
 	 */
-	public void presentPopoverAction(AbstractVisualizationInfo visualizationInfo, JComponent sender) {
+	public void presentPopoverAction(
+			AbstractVisualizationInfo visualizationInfo, JComponent sender) {
 		loadPopoverView(visualizationInfo);
 		this.popoverView.present(sender);
-		this.popoverView.getStartButton().addMouseListener(new MouseClickListener() {
-			@Override
-			public void clicked(MouseEvent event) {
-				VisualizationButton startButton = (VisualizationButton)event.getSource();
-				startVisualizationAction(startButton.getVisualizationInfo());
-			}
-		});
-		this.popoverView.getCloseButton().addMouseListener(new MouseClickListener() {
-			@Override
-			public void clicked(MouseEvent event) {
-				dismissPopoverAction();
-			}
-		});
+		this.popoverView.getStartButton().addMouseListener(
+				new MouseClickListener() {
+					@Override
+					public void clicked(MouseEvent event) {
+						VisualizationButton startButton = (VisualizationButton) event
+								.getSource();
+						startVisualizationAction(startButton
+								.getVisualizationInfo());
+					}
+				});
+		this.popoverView.getCloseButton().addMouseListener(
+				new MouseClickListener() {
+					@Override
+					public void clicked(MouseEvent event) {
+						dismissPopoverAction();
+					}
+				});
 	}
 
 	/**
@@ -157,12 +210,14 @@ public class StartController extends AbstractController {
 	 * Starts the visualization of a procedure from given {visualizationInfo}
 	 * 
 	 * @param visualizationInfo
-	 *            Object of {VisualizationInfo} containing the data to
-	 *            instantiate related controllers from
+	 *            Object of {VisualizationInfo} containing the data to instantiate related
+	 *            controllers from
 	 */
-	public void startVisualizationAction(AbstractVisualizationInfo visualizationInfo) {
+	public void startVisualizationAction(
+			AbstractVisualizationInfo visualizationInfo) {
 		this.dismissPopoverAction();
-		MainController mainController = (MainController) this.getParentController();
+		MainController mainController = (MainController) this
+				.getParentController();
 		Logger.log("User chose " + visualizationInfo.getId());
 		mainController.presentVisualizationAction(visualizationInfo);
 	}
