@@ -50,7 +50,7 @@
 
 
 \section{Testszenarien}
-  Die folgenden Testszenarien sind bereits im Pflichtenheft im Kapitel 8 ``Testszenarien'' spezifiziert. Hier
+  Die folgenden Testszenarien sind bereits im Pflichtenheft im Abschnitt 8 ``Testszenarien'' spezifiziert. Hier
   findet sich nur eine tabellarische Darstellung derselben, um Funktionen, die im Fließtext beschrieben werden,
   einzeln verifizieren zu können.
   
@@ -146,6 +146,44 @@
     \end{table}
 \clearpage
 
+\section{Globale Testfälle}
+  Die folgenden globale Testfälle sind bereits im Pflichtenheft im Abschnitt 9 ``Globale Testfälle'' spezifiziert.
+  
+  \begin{table}[H]
+    \begin{tabularx}{\textwidth}{| c | >{\raggedright\arraybackslash}X | c |}
+      \hline
+      \textbf{Testfall} & \textbf{Beschreibung} & \textbf{Erfüllt?} \\
+      \hline
+      /T10/ & Beim Drücken des Hilfe-Buttons bekommt der Nutzer Hilfestellungen zur aktuellen Aufgabe. & \cmark \\
+      \hline
+      /T20/ & Benutzer muss eine Farbe für Alice beim Diffie-Hellman-Schlüsselaustausch auswählen. Diese wird dann visuell im Bildschirm zugehörig zu Alice als ``öffentliche'' Farbe abgebildet. & \cmark \\
+      \hline
+      /T30/ & Nach dem Auswählen der geheimen Farbe beim Diffie-Hellman-Schlüssel\-aus\-tausch für Alice, wird dieser visuell mit der zuvor gewählten, öffentlichen Farbe gemischt und am Bildschirm dargestellt. & \cmark \\
+      \hline
+      /T40/ & Je nachdem welche Farbe (öffentlich, nicht-öffentlich oder gemischt) der Nutzer zum Schicken an Bob beim Diffie-Hellman-Schlüsselaustausch auswählt, wird der Nutzer darüber informiert ob seine Aktion falsch oder richtig war. & \cmark \\
+      \hline
+      /T50/ & Bei Caesar und Vigenère kann der Benutzer über ein Eingabefenster Eingaben tätigen. & \cmark \\
+      \hline
+      /T60/ & Bei Caesar und Vigenère kann der Benutzer sich die Eingaben generieren lassen. & \cmark \\
+      \hline
+      /T70/ & Im Laufe des Selbstversuchs von Vigenère und Caesar sollen die Buchstaben der Aufgabe aufleuchten. & \cmark \\
+      \hline
+      /T80/ & Im Laufe des Selbstversuchs von Vigenère und Caesar soll das Alphabet interaktiv sein. & \cmark \\
+      \hline
+      /T90/ & Die Anwendung muss am Ende vom Schritt 1 der Phase 2, Selbstversuch bei Caesar und Vigenère den vom 
+       Benutzer verschlüsselten Klartext entschlüsseln und das Ergebnis anzeigen. & \cmark \\
+      \hline
+      /T100/ & Am Ende des 2ten Schritt der Phase 2, Selbstversuch soll bei Caesar und Vigenère die Anwendung den entschlüsselten Klartext 
+       auf Richtigkeit prüfen und es dem Benutzer anzeigen. & \cmark \\
+      \hline
+      /T110/ & Im 3ten Schritt der Phase 2, Selbstversuch soll der Benutzer sich nach der Demonstration Histogramme erstellen lassen können. & \cmark \\
+      \hline
+      /T120/ & Am Ende jeder Phase soll bei Caesar und Vigenère die Anwendung automatisch in die nächste Phase übergehen und sich die Oberfläche 
+       der nächsten Phase entsprechend ändern. & \cmark \\
+      \hline
+    \end{tabularx}
+  \end{table}
+  
 
 \section{Abdeckung der JUnit-Testfälle}
   Da Cryptographics vor allem aus GUI-Komponenten besteht, konzentrieren sich die JUnit-Testfälle auf die
@@ -196,7 +234,6 @@
           \includegraphics[width=\textwidth]{resources/coverage_vigenere_model}
       \end{figure}
 \clearpage
-
 
 \section{Regressionstests}
  \subsection{Caesar}
