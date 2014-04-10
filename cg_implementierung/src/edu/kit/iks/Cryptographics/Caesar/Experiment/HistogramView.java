@@ -183,7 +183,6 @@ public class HistogramView extends VisualizationView {
 
 		// setup the explanations.
 		this.setExplanations(new JLabel(explanations));
-//		this.explanations.setFont(new Font("Arial", 2, 20));
 		GridBagConstraints explanationConstraint = new GridBagConstraints();
 		explanationConstraint.gridx = 1;
 		explanationConstraint.gridy = 0;
@@ -467,7 +466,6 @@ public class HistogramView extends VisualizationView {
 				.tr("Back to Experiment")));
 		this.getBackButton().setPreferredSize(new Dimension(300, 50));
 		this.getBackButton().setMaximumSize(new Dimension(300, 50));
-		// this.getBackButton().setFont(new Font("Arial", 2, 25));
 		this.navigationPanel.add(this.getBackButton(), BorderLayout.WEST);
 
 		// set up the aligment of the button Next;
@@ -475,7 +473,6 @@ public class HistogramView extends VisualizationView {
 				.tr("Skip the Histograms")));
 		this.getNextButton().setPreferredSize(new Dimension(300, 50));
 		this.getNextButton().setMinimumSize(new Dimension(300, 50));
-		// this.getNextButton().setFont(new Font("Arial", 2, 25));
 		this.navigationPanel.add(this.getNextButton(), BorderLayout.EAST);
 
 	}
@@ -514,7 +511,6 @@ public class HistogramView extends VisualizationView {
 	private void setupCipherPlainPresentationLabels(String cipher) {
 
 		this.bruteForceCipherLabel = new JLabel(cipher);
-		this.bruteForceCipherLabel.setFont(new Font("Arial", 2, 25));
 		this.bruteForceCipherLabel.setPreferredSize(new Dimension(150, 50));
 		GridBagConstraints cipherConst = new GridBagConstraints();
 		cipherConst.gridx = 0;
@@ -523,7 +519,6 @@ public class HistogramView extends VisualizationView {
 		this.keyControl.add(this.bruteForceCipherLabel, cipherConst);
 
 		this.plainText = new JLabel("");
-		this.plainText.setFont(new Font("Arial", 2, 25));
 		this.plainText.setPreferredSize(new Dimension(150, 50));
 		GridBagConstraints plainConst = new GridBagConstraints();
 		plainConst.gridx = 0;

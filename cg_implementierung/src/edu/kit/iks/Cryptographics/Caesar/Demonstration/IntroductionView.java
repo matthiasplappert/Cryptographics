@@ -84,7 +84,6 @@ public class IntroductionView extends VisualizationView {
 		this.getNextButton().setText(
 				IntroductionView.i18n.tr("Skip the introduction"));
 		this.getNextButton().setPreferredSize(new Dimension(350, 50));
-		// this.getNextButton().setFont(new Font("Arial", 2, 25));
 
 		// set the alignment of NextButton.
 		nextConstraint.anchor = GridBagConstraints.NORTHEAST;
@@ -105,7 +104,6 @@ public class IntroductionView extends VisualizationView {
 		proceedConstraint.gridwidth = 3;
 		this.setProceed(new JButton(IntroductionView.i18n.tr("Tell me more")));
 		this.proceed.setPreferredSize(new Dimension(500, 50));
-		// this.proceed.setFont(new Font("Arial", 2, 25));
 		this.add(this.proceed, proceedConstraint);
 
 		// set the alignment of the Explanations.
@@ -120,8 +118,6 @@ public class IntroductionView extends VisualizationView {
 										+ "to finally conquer Gallia and was about to send it to his generals.") + "</div></html>"
 
 		));
-
-		this.explanation.setFont(new Font("Arial", 2, 20));
 		this.explanation.setPreferredSize(new Dimension(1000, 75));
 		this.add(this.explanation, explanationConstraint);
 

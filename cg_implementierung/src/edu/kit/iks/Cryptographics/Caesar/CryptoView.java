@@ -265,19 +265,12 @@ public class CryptoView extends VisualizationView {
 			int yGrid, int xGrid, int widthGrid) {
 		// setup the explanations.
 		this.explanations = new JLabel(explanations);
-		// this.explanations.setFont(new Font("Arial", 2, 25));
-		// this.explanations.setMaximumSize(new Dimension(800, 500));
-		// this.explanations.setMinimumSize(new Dimension(800, 500));
 		this.explanations.setPreferredSize(new Dimension(1000, 200));
 		GridBagConstraints expConst = new GridBagConstraints();
 		expConst.anchor = flag;
-		// expConst.weightx = 0.5;
-		// expConst.weighty = 0.1;
 		expConst.gridx = xGrid;
 		expConst.gridy = yGrid;
-		// expConst.insets = new Insets(30, 0, 10, 0);
 		expConst.gridwidth = widthGrid;
-		// expConst.fill = GridBagConstraints.BOTH;
 		this.add(this.explanations, expConst);
 
 	}
@@ -316,7 +309,6 @@ public class CryptoView extends VisualizationView {
 		JLabel keyLabel = new JLabel(CryptoView.i18n.tr("Key"));
 		GridBagConstraints labelConst = new GridBagConstraints();
 		keyLabel.setPreferredSize(new Dimension(100, 25));
-		keyLabel.setFont(new Font("Arial", 2, 20));
 		labelConst.insets = new Insets(5, 25, 25, 25);
 		labelConst.gridx = xGrid;
 		labelConst.gridy = 0;
@@ -329,7 +321,6 @@ public class CryptoView extends VisualizationView {
 		this.keyInput.setText("" + key);
 		this.keyInput.setPreferredSize(new Dimension(25, 25));
 		this.keyInput.setEditable(false);
-		this.keyInput.setFont(new Font("Arial", 2, 20));
 		keyConst.insets = new Insets(5, 25, 25, 25);
 		keyConst.gridx = xGrid;
 		keyConst.gridy = 1;
@@ -344,7 +335,6 @@ public class CryptoView extends VisualizationView {
 		this.userInput[i].setText("" + content);
 		this.userInput[i].setBorder(null);
 		this.userInput[i].setPreferredSize(new Dimension(25, 25));
-		this.userInput[i].setFont(new Font("Arial", 2, 20));
 		GridBagConstraints inputConst = new GridBagConstraints();
 		inputConst.insets = new Insets(5, 25, 25, 25);
 		inputConst.gridx = i;
@@ -363,7 +353,6 @@ public class CryptoView extends VisualizationView {
 		this.userOutput[i].setOpaque(true);
 		this.userOutput[i].setBorder(BorderFactory
 				.createLineBorder(Color.darkGray));
-		this.userOutput[i].setFont(new Font("Arial", 2, 20));
 
 		GridBagConstraints outConst = new GridBagConstraints();
 		outConst.gridx = i;
