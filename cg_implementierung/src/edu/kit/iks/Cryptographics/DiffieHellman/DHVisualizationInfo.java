@@ -78,7 +78,7 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public VisualizationDifficulty getDifficulty() {
-		return VisualizationDifficulty.EASY;
+		return VisualizationDifficulty.HARD;
 	}
 
 	/*
