@@ -71,8 +71,8 @@ public class FirstDemonstrationView extends VisualizationView{
 		this.setLayout(null);
 		// create GUI Elements
 		this.vigenereText = new JLabel("<html><div width=\"1100\">" + 
-				i18n.tr("After Caesar's cipher was broken, Vigenère started to create his own cipher which would fix the weaknesses of Caesar. He also used the same logic by addition and subtraction of characters but this time"
-						+ "he key would not be a simple number but a whole string. To understand how Vigenères cipher works, we need to know how 'modulo' works...")
+				i18n.tr("After Caesar's cipher was broken, Vigenère started to create his own cipher which would fix the weaknesses of Caesar. He also used the same logic by addition and subtraction of characters but this time "
+						+ "the key would not be a simple number but a whole string. To understand how Vigenères cipher works, we need to know how 'modulo' works...")
 				+ "</div></html>");
 		this.moduloText = new JLabel("<html><div width=\"1100\">" + 
 				i18n.tr("We use modulo in our daily life without maybe noticing it: If you look at your clock, you have a cyclic sequence of numbers. Like you see in the picture at the bottom, 4 hours after 9 means it's 1. So our "

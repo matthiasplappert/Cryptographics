@@ -111,8 +111,8 @@ public class SecondExplanationController extends AbstractVisualizationController
 					break;
 				case 0:
 					getView().setExplanation("<html><div width=\"1200\">"
-							+ i18n.tr("Now its your turn! You have to find the second character "
-							+ "of the key. I was kind enough to give you a diagramm of every "
+							+ i18n.tr("Now it's your turn! You have to find the second character "
+							+ "of the key. I was kind enough to give you a diagram of every "
 							+ "second character encrypted with the second part of the key."
 							+ "You know what to do:")
 							+ "</div></html>");
@@ -182,6 +182,6 @@ public class SecondExplanationController extends AbstractVisualizationController
 	 */
 	@Override
 	public String getHelp() {
-		return i18n.tr("Check the peaks in the histogramm and compare them to the other histogramm, do you see any similarities?");
+		return i18n.tr("Check the peaks in the histogram and compare them to the other histogram, do you see any similarities?");
 	}
 }

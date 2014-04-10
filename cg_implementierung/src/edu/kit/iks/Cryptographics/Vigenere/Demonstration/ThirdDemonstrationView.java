@@ -185,8 +185,8 @@ public class ThirdDemonstrationView extends VisualizationView{
 	private void setupGUI() {
 		this.setLayout(null);
 		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
-				+ i18n.tr("Now we want to decrypt 'DMPL'. Insteading adding up, we "
-				+ "use substraction to decrypt it! So lets go...")
+				+ i18n.tr("Now we want to decrypt 'ENQM'. Instead of adding up, we "
+				+ "use substraction to decrypt it! So let's go...")
 				+ "</div></html>"));
 		this.vigenereKeyDesc = new JLabel(i18n.tr("Vigenere Key") +
 				": " + this.vigenereKey);

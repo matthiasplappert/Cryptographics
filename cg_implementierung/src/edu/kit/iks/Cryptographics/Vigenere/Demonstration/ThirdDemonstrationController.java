@@ -53,15 +53,15 @@ public class ThirdDemonstrationController extends AbstractVisualizationControlle
 				break;
 			case 0:
 				getView().setExplanation("<html><div width=\"1200\">"
-						+ i18n.tr("Now we want to decrypt 'DMPL'. Insteading adding "
-						+ "up, we use substraction to decrypt it! So lets go...")
+						+ i18n.tr("Now we want to decrypt 'ENQM'. Instead of adding "
+						+ "up, we use substraction to decrypt it! So let's go...")
 						+ "</div></html>");
 				getView().setCalculatorVisible(false);
 				break;
 			case 1:
 				getView().setExplanation("<html><div width=\"1200\">"
 						+ i18n.tr("'E' = 5 and 'K' = 11. 3 - 11 = -6. What now? "
-						+ "Well its easy, just reverse the modulo...")
+						+ "Well it's easy, just reverse the modulo...")
 						+ "</div></html>");
 				getView().setCalculatorVisible(true);
 				getView().setCalculator(5,11);
@@ -108,7 +108,7 @@ public class ThirdDemonstrationController extends AbstractVisualizationControlle
 		case 1:
 			getView().setExplanation("<html><div width=\"1200\">"
 					+ i18n.tr("'E' = 5 and 'K' = 11. 3 - 11 = -6. What now? Well "
-					+ "its easy, just reverse the modulo...")
+					+ "it's easy, just reverse the modulo...")
 					+ "</div></html>");
 			getView().setCalculatorVisible(true);
 			getView().setCalculator(5,11);

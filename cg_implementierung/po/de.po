@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-03-21 22:03+0100\n"
-"PO-Revision-Date: 2014-03-21 22:08+0100\n"
+"POT-Creation-Date: 2014-04-10 11:35+0100\n"
+"PO-Revision-Date: 2014-04-10 11:38+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -163,21 +163,26 @@ msgstr ""
 "3. C + Schlüssel = C + 3 = 3 + 3 = 6, was die Position von F im Alphabet "
 "ist. Et voila, du hast C mit dem Schlüssel 3 verschlüsselt."
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:49
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:54
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DemoOneWayView.java:61
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:86
 msgid "Back to Introduction"
 msgstr "Zurück zur Einführung"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:51
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:56
 msgid "Skip the demonstration"
 msgstr "Demonstration überspringen"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:54
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:59
 msgid "CAESAR"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:70
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:83
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:501
+msgid "Proceed"
+msgstr "Weiter"
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:89
 msgid ""
 "Imagine now you are the mighty Caesar! Of course your first idea is to "
 "substitute each letter from your name with another one from the alphabet. "
@@ -186,11 +191,6 @@ msgstr ""
 "Stell dir nun vor du wärst der mächtige Caesar! Natürlich ist deine erste "
 "Idee, Buchstaben des Alphabets auf andere abzubilden. Doch nur auf welche? "
 "Drücke 'Weiter'."
-
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:82
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:501
-msgid "Proceed"
-msgstr "Weiter"
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:163
 msgid ""
@@ -252,7 +252,7 @@ msgstr "Einführung überspringen"
 msgid "Tell me more"
 msgstr "Erzähl' mir mehr"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:129
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:119
 msgid ""
 "One fine day, ca 70 B.C., Caesar was puzzling on an extremely intelligent "
 "plan to finally conquer Gallia and was about to send it to his generals."
@@ -479,7 +479,7 @@ msgstr ""
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:73
 msgid ""
 "Remember 'E' is in most cases the most frequent letter in a text. The column "
-"in the histogramm above E would be the tallest one. So the tallest column in "
+"in the histogram above E would be the tallest one. So the tallest column in "
 "the histogram of a cipher would be the value E was shifted to. For example, "
 "'H' is the tallest one. Simply 'H'- 'E' = 8 - 5 = 3. Et voila 3 is the key."
 msgstr ""
@@ -551,7 +551,7 @@ msgid ""
 "try histogram technique by pressing the button below."
 msgstr ""
 "Oder: Wenn du eine vornehmere Methode anwenden willst, um die Caesar-Chiffre "
-"zu brechen, kannst du die Histrogramm-Methode probieren. Drücke den Button "
+"zu brechen, kannst du die Histogramm-Methode probieren. Drücke den Button "
 "unten."
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramController.java:424
@@ -755,7 +755,7 @@ msgstr ""
 "mischt seine geheime Farbe mit der Mixtur von Alice. Der Trick liegt in der "
 "Kombination der geheimen Farben, die geheim gehalten werden durch das "
 "Verwenden der Einwegfunktion, dabei macht die Reihenfolge des Mischens kein "
-"Unterschied. Das heißt, das Mischen der öffentlichen Farbe mit Alice' "
+"Unterschied. Das heißt, das Mischen der öffentlichen Farbe mit Alice's "
 "geheimer Farbe und dann Bob's geheimer Farbe ist das gleiche wie die "
 "öffentliche Farbe, gemischt mit Bob's Farbe, gemischt mit Alice' Farbe."
 
@@ -789,7 +789,7 @@ msgstr "P - Die Basisfarbe"
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/LabelExplanation.java:25
 msgid "SA - Alice's secret color"
-msgstr "SA - Alice' geheime Farbe"
+msgstr "SA - Alice's geheime Farbe"
 
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/LabelExplanation.java:27
 msgid "SB - Bob's secret color"
@@ -1049,7 +1049,7 @@ msgstr ""
 msgid ""
 "After Caesar's cipher was broken, Vigenère started to create his own cipher "
 "which would fix the weaknesses of Caesar. He also used the same logic by "
-"addition and subtraction of characters but this timehe key would not be a "
+"addition and subtraction of characters but this time the key would not be a "
 "simple number but a whole string. To understand how Vigenères cipher works, "
 "we need to know how 'modulo' works..."
 msgstr ""
@@ -1117,8 +1117,8 @@ msgstr ""
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:95
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/SecondDemonstrationController.java:155
 msgid ""
-"Now get to the next character. Its a 'N', which represents the number 14. "
-"The second character of they key is 'K', which is the 11. 14+11 = 25 -> 'Y'!"
+"Now get to the next character. It's an 'N', which represents the number 14. "
+"The second character of the key is 'K', which is the 11. 14+11 = 25 -> 'Y'!"
 msgstr ""
 "Nun zum nächsten Buchstaben. Es ist ein 'N' welches durch 14 repräsentiert "
 "wird. Das zweite Zeichen des Schlüssels ist 'K', also 11. 14 + 11 = 25 -> "
@@ -1191,17 +1191,17 @@ msgstr "Zurück zur Einführung"
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:56
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationView.java:188
 msgid ""
-"Now we want to decrypt 'DMPL'. Insteading adding up, we use substraction to "
-"decrypt it! So lets go..."
+"Now we want to decrypt 'ENQM'. Instead of adding up, we use substraction to "
+"decrypt it! So let's go..."
 msgstr ""
-"Nun wollen wir 'DMPL' entschlüsseln. Anstatt nun zu addieren, subtrahieren "
-"wir um zu entschlüsseln. Los gehts..."
+"Nun wollen wir 'ENQM' entschlüsseln. Anstatt nun zu addieren, subtrahieren "
+"wir um zu entschlüsseln. Los geht's..."
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:63
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Demonstration/ThirdDemonstrationController.java:110
 msgid ""
-"'E' = 5 and 'K' = 11. 3 - 11 = -6. What now? Well its easy, just reverse the "
-"modulo..."
+"'E' = 5 and 'K' = 11. 3 - 11 = -6. What now? Well it's easy, just reverse "
+"the modulo..."
 msgstr ""
 "'E' = 5 und 'K' = 11. 3 - 11 = -6. Was jetzt? Ganz einfach, wir invertieren "
 "Modulo..."
@@ -1316,12 +1316,12 @@ msgstr "Zurück zur Entschlüsselung"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationController.java:61
 msgid ""
-"Vigenere fixed a few weaknesses of Caesar, but still has flaws. If the key "
-"is shorter then the text to encrypt, Vigenère simply concatinates it with "
+"Vigenère fixed a few weaknesses of Caesar, but still has flaws. If the key "
+"is shorter than the text to encrypt, Vigenère simply concatinates it with "
 "itself until the key is long enough. This again makes it weak against key-"
-"length-guessing. As soon as we guess the key-length, we can use a histogramm "
-"(explained in caesar) to make a static analysis. So lets crack this this "
-"chiffre by guessing the key-length (we will use the kasiski test for it)"
+"length-guessing. As soon as we guess the key-length, we can use a histogram "
+"(explained in Caesar) to make a static analysis. So let's crack this chiffre "
+"by guessing the key-length (we will use the Kasiski test for it)"
 msgstr ""
 "Vigenère behob ein paar Schwächen von Caesar, hat aber immernoch ein paar. "
 "Wenn der Schlüssel kürzer als der Text ist, konkateniert Vigenère ihn "
@@ -1339,8 +1339,8 @@ msgstr "Länge des Schlüssels: 2"
 msgid ""
 "Since we know that the key-length is 2, every second character will be "
 "encrypted with the first character of the key. To guess which is the first "
-"character of the key we need the histrogramm of every second character in "
-"the chiffre"
+"character of the key we need the histogram of every second character in the "
+"chiffre"
 msgstr ""
 "Da wir wissen, dass die Schlüssellänge 2 ist, wird jedes zweite Zeichen mit "
 "dem ersten Buchstaben des Schlüssels verschlüsselt. Um herauszufinden, was "
@@ -1364,9 +1364,9 @@ msgid ""
 "Vigenère fixed a few weaknesses of Caesar, but still has flaws. If the key "
 "is shorter then the text to encrypt, Vigenère simply concatinates it with "
 "itself until the key is long enough. This again makes it weak against key-"
-"length-guessing. As soon as we guess the key-length, we can use a histogramm "
-"(explained in caesar) to make a static analysis. So lets crack this this "
-"chiffre by guessing the key-length (we will use the kasiski test for it)"
+"length-guessing. As soon as we guess the key-length, we can use a histogram "
+"(explained in Caesar) to make a static analysis. So lets crack this chiffre "
+"by guessing the key-length (we will use the Kasiski test for it)"
 msgstr ""
 "Vigenère behob ein paar Schwächen von Caesar, hat aber immernoch ein paar. "
 "Wenn der Schlüssel kürzer als der Text ist, konkateniert Vigenère ihn "
@@ -1378,8 +1378,12 @@ msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationView.java:188
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:198
-msgid "This is the average distribution of the characters in english texts:"
+msgid "This is the average distribution of the characters in English texts:"
 msgstr "Das ist die durchschnittliche Verteilung eines deutschen Texts:"
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationView.java:190
+msgid "Find Key-Length"
+msgstr "Finde Schlüssellänge"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationView.java:192
 msgid "Length of key: ?"
@@ -1387,12 +1391,12 @@ msgstr "Länge des Schlüssels: ?"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationView.java:195
 msgid ""
-"When we look closer at the histogramm we see some differences in the "
-"distribution of the characters; 'S' is has the most common occurance,in an "
-"average normal english text 'E' is the most common one. So maybe our 'S' "
-"couldve been an 'E' before the encryption. We do 19(position of 'S') - 5 "
-"(position of 'E') and we get 14, which meansthe first character of the key "
-"is 'N'."
+"When we look closer at the histogram we see some differences in the "
+"distribution of the characters; 'S' is has the most common occurance. In an "
+"average normal English text 'E' is the most common one. So maybe our 'S' "
+"could've been an 'E' before the encryption. We calculate 19 (position of "
+"'S') - 5 (position of 'E') and we get 14, which means the first character of "
+"the key is 'N'."
 msgstr ""
 "Wenn wir uns die Histogramme genauer anschauen sehen wir einige Unterschiede "
 "in der Verteilung. 'S' kommt am häufigsten vor. In einem durchschnittlichen "
@@ -1410,8 +1414,8 @@ msgstr ""
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationController.java:114
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:192
 msgid ""
-"Now its your turn! You have to find the second character of the key. I was "
-"kind enough to give you a diagramm of every second character encrypted with "
+"Now it's your turn! You have to find the second character of the key. I was "
+"kind enough to give you a diagram of every second character encrypted with "
 "the second part of the key.You know what to do:"
 msgstr ""
 "Nun bist du dran! Du musst das zweite Zeichen des Schlüssels finden. Ich war "
@@ -1421,8 +1425,8 @@ msgstr ""
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationController.java:185
 msgid ""
-"Check the peaks in the histogramm and compare them to the other histogramm, "
-"do you see any similarities?"
+"Check the peaks in the histogram and compare them to the other histogram, do "
+"you see any similarities?"
 msgstr ""
 "Prüfe die Spitzen des Histogramms und vergleiche sie mit dem anderen "
 "Histogramm. Siehst du Ähnlichkeiten?"
@@ -1437,7 +1441,7 @@ msgstr "Zurück zur Erklärung"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:201
 msgid ""
-"Look at the peaks of both histogramm and calculate the second part of the "
+"Look at the peaks of both histograms and calculate the second part of the "
 "key! Your answer:"
 msgstr ""
 "Schau dir die Spitzen beider Histogramme an und berechne den zweiten Teil "
@@ -1481,3 +1485,51 @@ msgstr "Y"
 #: ../src/edu/kit/iks/CryptographicsLib/VisualizationView.java:42
 msgid "Back"
 msgstr "Zurück"
+
+#~ msgid ""
+#~ "Vigenère fixed a few weaknesses of Caesar, but still has flaws. If the "
+#~ "key is shorter then the text to encrypt, Vigenère simply concatinates it "
+#~ "with itself until the key is long enough. This again makes it weak "
+#~ "against key-length-guessing. As soon as we guess the key-length, we can "
+#~ "use a histogram (explained in caesar) to make a static analysis. So lets "
+#~ "crack this this chiffre by guessing the key-length (we will use the "
+#~ "kasiski test for it)"
+#~ msgstr ""
+#~ "Vigenère behob ein paar Schwächen von Caesar, hat aber immernoch ein "
+#~ "paar. Wenn der Schlüssel kürzer als der Text ist, konkateniert Vigenère "
+#~ "ihn einfach an sich selbst bis er lang genug ist. Das wiederrum macht ihn "
+#~ "schwach für Schlüssellängeraten. Sobald wir die Schlüssellänge wissen, "
+#~ "können wir Histogramme verwenden (wie in Caesar). Los geht's mit dem "
+#~ "Brechen der Chiffre durch Raten der Schlüssellänge (wir verwenden den "
+#~ "Kasiski-Test dafür)"
+
+#~ msgid ""
+#~ "'E' = 5 and 'K' = 11. 3 - 11 = -6. What now? Well its easy, just reverse "
+#~ "the modulo..."
+#~ msgstr ""
+#~ "'E' = 5 und 'K' = 11. 3 - 11 = -6. Was jetzt? Ganz einfach, wir "
+#~ "invertieren Modulo..."
+
+#~ msgid ""
+#~ "Now we want to decrypt 'DMPL'. Insteading adding up, we use substraction "
+#~ "to decrypt it! So lets go..."
+#~ msgstr ""
+#~ "Nun wollen wir 'DMPL' entschlüsseln. Anstatt nun zu addieren, "
+#~ "subtrahieren wir um zu entschlüsseln. Los gehts..."
+
+#~ msgid ""
+#~ "Vigenere fixed a few weaknesses of Caesar, but still has flaws. If the "
+#~ "key is shorter then the text to encrypt, Vigenère simply concatinates it "
+#~ "with itself until the key is long enough. This again makes it weak "
+#~ "against key-length-guessing. As soon as we guess the key-length, we can "
+#~ "use a histogramm (explained in caesar) to make a static analysis. So lets "
+#~ "crack this this chiffre by guessing the key-length (we will use the "
+#~ "kasiski test for it)"
+#~ msgstr ""
+#~ "Vigenère behob ein paar Schwächen von Caesar, hat aber immernoch ein "
+#~ "paar. Wenn der Schlüssel kürzer als der Text ist, konkateniert Vigenère "
+#~ "ihn einfach an sich selbst bis er lang genug ist. Das wiederrum macht ihn "
+#~ "schwach für Schlüssellängeraten. Sobald wir die Schlüssellänge wissen, "
+#~ "können wir Histogramme verwenden (wie in Caesar). Los geht's mit dem "
+#~ "Brechen der Chiffre durch Raten der Schlüssellänge (wir verwenden den "
+#~ "Kasiski-Test dafür)"
