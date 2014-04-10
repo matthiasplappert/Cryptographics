@@ -92,9 +92,9 @@ public class SecondDemonstrationController extends AbstractVisualizationControll
 			break;
 		case 4:
 			getView().setExplanation("<html><div width=\"1200\">"
-					+ i18n.tr("Now get to the next character. Its a 'N', which "
+					+ i18n.tr("Now get to the next character. It's an 'N', which "
 					+ "represents the number 14. The second character "
-					+ "of they key is 'K', which is the 11. 14+11 = 25 -> "
+					+ "of the key is 'K', which is the 11. 14+11 = 25 -> "
 					+ "'Y'!")
 					+ "</div></html>");
 			getView().setCalculator(14,11);
@@ -152,9 +152,9 @@ public class SecondDemonstrationController extends AbstractVisualizationControll
 			break;
 		case 4:
 			getView().setExplanation("<html><div width=\"1200\">"
-					+ i18n.tr("Now get to the next character. Its a 'N', which "
+					+ i18n.tr("Now get to the next character. It's an 'N', which "
 					+ "represents the number 14. The second character of "
-					+ "they key is 'K', which is the 11. 14+11 = 25 -> 'Y'!")
+					+ "the key is 'K', which is the 11. 14+11 = 25 -> 'Y'!")
 					+ "</div></html>");
 			getView().setCalculator(14,11);
 			getView().highlightAndSetText(24, 1, "Y");

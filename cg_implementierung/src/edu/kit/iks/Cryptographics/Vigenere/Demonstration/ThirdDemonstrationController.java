@@ -108,7 +108,7 @@ public class ThirdDemonstrationController extends AbstractVisualizationControlle
 		case 1:
 			getView().setExplanation("<html><div width=\"1200\">"
 					+ i18n.tr("'E' = 5 and 'K' = 11. 3 - 11 = -6. What now? Well "
-					+ "its easy, just reverse the modulo...")
+					+ "it's easy, just reverse the modulo...")
 					+ "</div></html>");
 			getView().setCalculatorVisible(true);
 			getView().setCalculator(5,11);

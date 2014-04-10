@@ -25,12 +25,12 @@ public class FirstExplanationView extends VisualizationView{
 	private static I18n i18n = Configuration.getInstance().getI18n(FirstExplanationView.class);
 	
 	static final String vigenereText = "HEREUPON LEGRAND AROSE, WITH A GRAVE AND STATELY AIR, AND BROUGHT ME THE BEETLEFROM A GLASS CASE "
-			+ "IN WHICH IT WAS ENCLOSED. IT WAS A BEAUTIFUL SCARABAEUS, AND, AT"
-			+ "THAT TIME, UNKNOWN TO NATURALISTS-OF COURSE A GREAT PRIZE IN A SCIENTIFIC POINT"
-			+ "OF VIEW. THERE WERE TWO ROUND BLACK SPOTS NEAR ONE EXTREMITY OF THE BACK, AND A"
-			+ "LONG ONE NEAR THE OTHER. THE SCALES WERE EXCEEDINGLY HARD AND GLOSSY, WITH ALL THE"
-			+ "APPEARANCE OF BURNISHED GOLD. THE WEIGHT OF THE INSECT WAS VERY REMARKABLE, AND,"
-			+ "TAKING ALL THINGS INTO CONSIDERATION, I COULD HARDLY BLAME JUPITER FOR HIS OPINION"
+			+ "IN WHICH IT WAS ENCLOSED. IT WAS A BEAUTIFUL SCARABAEUS, AND, AT "
+			+ "THAT TIME, UNKNOWN TO NATURALISTS-OF COURSE A GREAT PRIZE IN A SCIENTIFIC POINT "
+			+ "OF VIEW. THERE WERE TWO ROUND BLACK SPOTS NEAR ONE EXTREMITY OF THE BACK, AND A "
+			+ "LONG ONE NEAR THE OTHER. THE SCALES WERE EXCEEDINGLY HARD AND GLOSSY, WITH ALL THE "
+			+ "APPEARANCE OF BURNISHED GOLD. THE WEIGHT OF THE INSECT WAS VERY REMARKABLE, AND, "
+			+ "TAKING ALL THINGS INTO CONSIDERATION, I COULD HARDLY BLAME JUPITER FOR HIS OPINION "
 			+ "RESPECTING IT.";
 	static final String vigenereEncrypted = "VOFOIZCX ZOUBOXR KFYGO, KSHR O QFKJO OXR CHKHOZI OSF, KBN PBCEURH WS DVO POSDZO"
 			+ "TBCW O QZKGC QKGO WX KRWMV SH GOC SXQVCCSN. WD KKG K POOEHSTEZ CQKFKPKSEG, KBN, OD"
@@ -178,25 +178,25 @@ public class FirstExplanationView extends VisualizationView{
 			+ "the key is shorter then the text to encrypt, "
        		+ "Vigenère simply concatinates it with itself until the key is long enough. "
        		+ "This again makes it weak against key-length-guessing. "
-       		+ "As soon as we guess the key-length, we can use a histogramm "
-       		+ "(explained in caesar) to make a static analysis. So lets crack this "
-       		+ "this chiffre by guessing the key-length (we will use the kasiski test for it)")
+       		+ "As soon as we guess the key-length, we can use a histogram "
+       		+ "(explained in Caesar) to make a static analysis. So lets crack this "
+       		+ "chiffre by guessing the key-length (we will use the Kasiski test for it)")
        		+ ":<br><br>"
        		+ vigenereEncrypted
        		+ "</div></html>"));
 		this.add(this.secondExplanation = new JLabel("<html><div width=\"1200\">"
-				+ i18n.tr("This is the average distribution of the characters in english texts:")
+				+ i18n.tr("This is the average distribution of the characters in English texts:")
 				+ "</div></html>"));
 		this.add(this.findKeyLength = new JButton(i18n.tr("Find Key-Length")));
 		this.add(this.keyLength = new JLabel("<html><div width=\"1200\">"
 				+ i18n.tr("Length of key: ?")
 				+ "</div></html>"));
 		this.add(this.thirdExplanation = new JLabel("<html><div width=\"1200\">"
-				+ i18n.tr("When we look closer at the histogramm we see some differences in the "
-				+ "distribution of the characters; 'S' is has the most common occurance,"
-				+ "in an average normal english text 'E' is the most common one. So maybe "
-				+ "our 'S' couldve been an 'E' before the encryption. We do 19(position of 'S') "
-				+ "- 5 (position of 'E') and we get 14, which means"
+				+ i18n.tr("When we look closer at the histogram we see some differences in the "
+				+ "distribution of the characters; 'S' is has the most common occurance. "
+				+ "In an average normal English text 'E' is the most common one. So maybe "
+				+ "our 'S' could've been an 'E' before the encryption. We calculate 19 (position of 'S') "
+				+ "- 5 (position of 'E') and we get 14, which means "
 				+ "the first character of the key is 'N'.")
 				+ "</div></html>"));
 		this.vigenereHistogramm = new CharacterFrequencyDiagramView(VigenereModel.getCharPositionated(0, 2, encryptedAverageText), 600,

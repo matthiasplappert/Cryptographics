@@ -71,7 +71,7 @@ public class HistogramController extends AbstractVisualizationController {
 		if (this.getView().getHistogramCipher() != null) {
 			return HistogramController.i18n
 					.tr("Remember 'E' is in most cases the most frequent letter in a text."
-							+ " The column in the histogramm above E would be the tallest one."
+							+ " The column in the histogram above E would be the tallest one."
 							+ " So the tallest column in the histogram of a cipher would be the value E was shifted to."
 							+ " For example, 'H' is the tallest one. Simply 'H'- 'E' = 8 - 5 = 3. Et voila 3 is the key.");
 		}

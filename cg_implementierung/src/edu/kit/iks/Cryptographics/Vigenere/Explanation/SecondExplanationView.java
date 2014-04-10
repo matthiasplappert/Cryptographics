@@ -189,16 +189,16 @@ public class SecondExplanationView extends VisualizationView{
 		this.add(this.skip = new JButton(i18n.tr("Go to Information")));
 		this.add(this.btnReturn = new JButton(i18n.tr("Return to Explanation")));
 		this.add(this.explanation = new JLabel("<html><div width=\"1200\">"
-				+ i18n.tr("Now its your turn! You have to find the second character of the "
-				+ "key. I was kind enough to give you a diagramm of every second "
+				+ i18n.tr("Now it's your turn! You have to find the second character of the "
+				+ "key. I was kind enough to give you a diagram of every second "
 				+ "character encrypted with the second part of the key."
 				+ "You know what to do:")
 				+ "</div></html>"));
 		this.add(this.secondExplanation = new JLabel("<html><div width=\"1200\">"
-				+ i18n.tr("This is the average distribution of the characters in english texts:")
+				+ i18n.tr("This is the average distribution of the characters in English texts:")
 				+ "</div></html>"));
 		this.add(this.thirdExplanation = new JLabel("<html><div width=\"1200\">"
-				+ i18n.tr("Look at the peaks of both histogramm and calculate the second part "
+				+ i18n.tr("Look at the peaks of both histograms and calculate the second part "
 				+ "of the key! Your answer:")
 				+ "</div></html>"));
 		this.add(this.answer = new JTextField(""));
