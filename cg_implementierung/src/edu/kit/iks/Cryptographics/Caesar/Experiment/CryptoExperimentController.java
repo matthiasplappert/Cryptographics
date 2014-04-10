@@ -707,7 +707,7 @@ public class CryptoExperimentController extends AbstractVisualizationController 
 				.getExplanations()
 				.setText(
 						explanationContent
-								+ "<br>"
+								+ " "
 								+ CryptoExperimentController.i18n
 										.tr("This key is ok. Now put your name into the bigger box to the left."));
 		this.getView().getKeyInput()

@@ -187,7 +187,7 @@ public class FirstExplanationView extends VisualizationView{
 		this.add(this.secondExplanation = new JLabel("<html><div width=\"1200\">"
 				+ i18n.tr("This is the average distribution of the characters in english texts:")
 				+ "</div></html>"));
-		this.add(this.findKeyLength = new JButton("Find Key-Length"));
+		this.add(this.findKeyLength = new JButton(i18n.tr("Find Key-Length")));
 		this.add(this.keyLength = new JLabel("<html><div width=\"1200\">"
 				+ i18n.tr("Length of key: ?")
 				+ "</div></html>"));

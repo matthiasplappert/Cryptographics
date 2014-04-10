@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cryptographics\n"
-"POT-Creation-Date: 2014-03-21 22:03+0100\n"
-"PO-Revision-Date: 2014-03-21 22:08+0100\n"
+"POT-Creation-Date: 2014-04-10 11:10+0100\n"
+"PO-Revision-Date: 2014-04-10 11:11+0100\n"
 "Last-Translator: Christian Dreher <cdreher3011@gmail.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -163,21 +163,26 @@ msgstr ""
 "3. C + Schlüssel = C + 3 = 3 + 3 = 6, was die Position von F im Alphabet "
 "ist. Et voila, du hast C mit dem Schlüssel 3 verschlüsselt."
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:49
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:54
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DemoOneWayView.java:61
 #: ../src/edu/kit/iks/Cryptographics/DiffieHellman/Demonstration/DHDemoView.java:86
 msgid "Back to Introduction"
 msgstr "Zurück zur Einführung"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:51
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:56
 msgid "Skip the demonstration"
 msgstr "Demonstration überspringen"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:54
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:59
 msgid "CAESAR"
 msgstr ""
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:70
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:83
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:501
+msgid "Proceed"
+msgstr "Weiter"
+
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:89
 msgid ""
 "Imagine now you are the mighty Caesar! Of course your first idea is to "
 "substitute each letter from your name with another one from the alphabet. "
@@ -186,11 +191,6 @@ msgstr ""
 "Stell dir nun vor du wärst der mächtige Caesar! Natürlich ist deine erste "
 "Idee, Buchstaben des Alphabets auf andere abzubilden. Doch nur auf welche? "
 "Drücke 'Weiter'."
-
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/CryptoDemonstrationView.java:82
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Experiment/HistogramView.java:501
-msgid "Proceed"
-msgstr "Weiter"
 
 #: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionController.java:163
 msgid ""
@@ -252,7 +252,7 @@ msgstr "Einführung überspringen"
 msgid "Tell me more"
 msgstr "Erzähl' mir mehr"
 
-#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:129
+#: ../src/edu/kit/iks/Cryptographics/Caesar/Demonstration/IntroductionView.java:119
 msgid ""
 "One fine day, ca 70 B.C., Caesar was puzzling on an extremely intelligent "
 "plan to finally conquer Gallia and was about to send it to his generals."
@@ -1049,7 +1049,7 @@ msgstr ""
 msgid ""
 "After Caesar's cipher was broken, Vigenère started to create his own cipher "
 "which would fix the weaknesses of Caesar. He also used the same logic by "
-"addition and subtraction of characters but this timehe key would not be a "
+"addition and subtraction of characters but this time the key would not be a "
 "simple number but a whole string. To understand how Vigenères cipher works, "
 "we need to know how 'modulo' works..."
 msgstr ""
@@ -1380,6 +1380,10 @@ msgstr ""
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/SecondExplanationView.java:198
 msgid "This is the average distribution of the characters in english texts:"
 msgstr "Das ist die durchschnittliche Verteilung eines deutschen Texts:"
+
+#: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationView.java:190
+msgid "Find Key-Length"
+msgstr "Finde Schlüssellänge"
 
 #: ../src/edu/kit/iks/Cryptographics/Vigenere/Explanation/FirstExplanationView.java:192
 msgid "Length of key: ?"
