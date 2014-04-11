@@ -111,12 +111,13 @@ public class IntroductionView extends VisualizationView {
 		explanationConstraint.gridy = 1;
 		explanationConstraint.gridwidth = 5;
 		this.setExplanation(new JLabel(
-				"<html><div style=\"width:1000px;\">"
+				"<html><div style=\"width:600px;\">"
 						+ IntroductionView.i18n
 								.tr("One fine day, ca 70 B.C., Caesar was puzzling on an extremely intelligent plan "
 										+ "to finally conquer Gallia and was about to send it to his generals.") + "</div></html>"
 
 		));
+		this.explanation.setPreferredSize(new Dimension(1000, 75));
 		this.add(this.explanation, explanationConstraint);
 
 		// layout the component of the Panel.
