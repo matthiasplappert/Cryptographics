@@ -30,3 +30,10 @@ cg_implementierung/src/edu/.metadata/
 /cg_implementierung/po/*.mo
 
 /cg_implementierung/diagrams/Temp.ucls
+
+# Netbeans
+/cg_implementierung/nbproject/
+/cg_implementierung/build/
+/cg_implementierung/build.xml
+/cg_implementierung/lib/nblibraries.properties
+/cg_implementierung/manifest.mf
