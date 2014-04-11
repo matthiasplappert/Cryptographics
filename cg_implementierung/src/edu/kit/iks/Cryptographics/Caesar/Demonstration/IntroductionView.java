@@ -1,7 +1,6 @@
 package edu.kit.iks.Cryptographics.Caesar.Demonstration;
 
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
