@@ -118,7 +118,6 @@ public class IntroductionView extends VisualizationView {
 										+ "to finally conquer Gallia and was about to send it to his generals.") + "</div></html>"
 
 		));
-		this.explanation.setPreferredSize(new Dimension(1000, 75));
 		this.add(this.explanation, explanationConstraint);
 
 		// layout the component of the Panel.
