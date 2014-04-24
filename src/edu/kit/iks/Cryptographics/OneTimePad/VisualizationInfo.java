@@ -41,7 +41,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public String getId() {
-		return "onetime-pad";
+		return "onetimepad";
 	}
 
 	/*
