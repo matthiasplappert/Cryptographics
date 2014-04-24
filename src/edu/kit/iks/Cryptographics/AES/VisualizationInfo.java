@@ -95,10 +95,9 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	/*
 	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getControllerClasses()
 	 */
-	@SuppressWarnings("rawtypes")
 	@Override
-	public List<Class> getControllerClasses() {
-		List<Class> controllerClasses = new ArrayList<Class>();
+	public List<Class<?>> getControllerClasses() {
+		List<Class<?>> controllerClasses = new ArrayList<>();
 
 		controllerClasses.add(InformationController.class);
 		

@@ -125,8 +125,7 @@ abstract public class AbstractVisualizationInfo {
 	 * ("Class is a raw type. References to generic type Class<T> should be parameterized")
 	 * @return List of all controller classes belonging to the visualization
 	 */
-	@SuppressWarnings("rawtypes")
-	abstract public List<Class> getControllerClasses();
+	abstract public List<Class<?>> getControllerClasses();
 
 	/**
 	 * Gets the additional information as file path to display HTML

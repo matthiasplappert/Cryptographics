@@ -143,9 +143,10 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	 * returns all the needed classes for this algorithm
 	 * @return all the needed classes for this algorithm
 	 */
-	@SuppressWarnings("rawtypes")
-	public List<Class> getControllerClasses() {
-		List<Class> controllerClasses = new ArrayList<Class>();
+	@Override
+	public List<Class<?>> getControllerClasses() {
+		List<Class<?>> controllerClasses = new ArrayList<>();
+		
 		controllerClasses.add(FirstDemonstrationController.class);
 		controllerClasses.add(SecondDemonstrationController.class);
 		controllerClasses.add(ThirdDemonstrationController.class);
@@ -153,6 +154,7 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 		controllerClasses.add(FirstExplanationController.class);
 		controllerClasses.add(SecondExplanationController.class);
 		controllerClasses.add(InformationController.class);
+		
 		return controllerClasses;
 	}
 	

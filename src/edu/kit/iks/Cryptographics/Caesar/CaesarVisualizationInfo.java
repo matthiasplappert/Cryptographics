@@ -55,10 +55,9 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	/*
 	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getControllerClasses ()
 	 */
-	@SuppressWarnings("rawtypes")
 	@Override
-	public List<Class> getControllerClasses() {
-		List<Class> controllerClasses = new ArrayList<Class>();
+	public List<Class<?>> getControllerClasses() {
+		List<Class<?>> controllerClasses = new ArrayList<>();
 
 		controllerClasses.add(IntroductionController.class);
 		controllerClasses.add(CryptoDemonstrationController.class);

@@ -92,8 +92,7 @@ public class VisualizationContainerController extends AbstractController {
 	/**
 	 * List of all child classes
 	 */
-	@SuppressWarnings("rawtypes")
-	List<Class> childClasses;
+	List<Class<?>> childClasses;
 	
 	/**
 	 * View of the popover wich shows help for the user.
@@ -435,7 +434,7 @@ public class VisualizationContainerController extends AbstractController {
 			int index) {
 		Constructor<AbstractVisualizationController> controllerConstructor = null;
 		@SuppressWarnings("unchecked")
-		Class<AbstractVisualizationController> controllerClass = childClasses
+		Class<AbstractVisualizationController> controllerClass = (Class<AbstractVisualizationController>) this.childClasses
 				.get(index);
 		AbstractVisualizationController controller = null;
 
