@@ -19,8 +19,11 @@
 
 package edu.kit.iks.Cryptographics;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.io.IOException;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,6 +31,8 @@ import javax.swing.JPanel;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.Logger;
+import edu.kit.iks.CryptographicsLib.ResourceUtil;
 
 /**
  * An instance of this class represents the view of the welcome screen 
@@ -49,17 +54,8 @@ public class WelcomeView extends JPanel {
 	/**
 	 * String to be displayed as header
 	 */
-	private String welcome = i18n.tr("Welcome");
-	
-	/**
-	 * String to be displayed as a description of how
-	 * to use the timeline
-	 */
-	private String description = i18n.tr("This is Cryptographics, a small tool with the aim"
-			+ " to show how basic and advanced cryptographic procedures work in principle."
-			+ " Below you can see a timeline with some procedures. Tap on the dots representing"
-			+ " their date of invention to view a small description and start the visualization.");
-	
+	private String cryptographics = i18n.tr("Cryptographics");
+
 	public WelcomeView() {
 		super(new GridBagLayout());
 		
@@ -70,16 +66,31 @@ public class WelcomeView extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		
-		this.add(new JLabel(this.wrapHtml("<h2>" + this.welcome + "</h2>")), gbc);
+		JLabel cryptographicsLabel = new JLabel(this.cryptographics);
+		cryptographicsLabel.setFont(this.prepareCryptographicsFont());
+		this.add(cryptographicsLabel, gbc);
 		
 		gbc.gridy = 1;
 		
-		this.add(new JLabel(this.wrapHtml("<div width=\"1000\">"
-				+ this.description
-				+ "</div>")), gbc);
+		// TODO: remove when approved
+//		this.add(new JLabel(this.wrapHtml("<div width=\"1000\">"
+//				+ this.description
+//				+ "</div>")), gbc);
 	}
 	
-	private String wrapHtml(String text) {
-		return "<html><body>" + text + "</body></html>";
+	private Font prepareCryptographicsFont() {
+		
+		Font font = null;
+		
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT,
+					ResourceUtil.getResourceAsInputStream("fonts/capture_smallz/Capsmall.ttf"));
+			
+			font = font.deriveFont(Font.PLAIN, 55);
+		} catch (FontFormatException | IOException e) {
+			Logger.error(e);
+		}
+		
+		return font;
 	}
 }
