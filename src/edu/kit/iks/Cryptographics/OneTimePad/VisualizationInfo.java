@@ -57,7 +57,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public String getDescription() {
-		return i18n.tr("Find out how you can encrypt something in such a way that it is impossible for someone else to crack it!");
+		return i18n.tr("Find out how you can encrypt something in such a way that it is impossible for someone else to crack it.");
 	}
 
 	/*

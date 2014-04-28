@@ -157,9 +157,14 @@ public class StartController extends AbstractController {
 
 		if (this.popoverView != null) {
 			this.dismissPopoverAction();
+			this.popoverView = null;
 		}
-		this.popoverView = null;
-		this.welcomeView = null;
+		
+		if (this.welcomeView != null) {
+			this.welcomeView.stopTeaserCodeTimer();
+			this.welcomeView = null;
+		}
+		
 		this.timelineView = null;
 		this.view = null;
 	}

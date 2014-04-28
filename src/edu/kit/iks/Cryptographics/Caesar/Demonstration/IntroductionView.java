@@ -133,10 +133,11 @@ public class IntroductionView extends VisualizationView {
 				"<html><div style=\"width:600px;\">"
 						+ IntroductionView.i18n
 								.tr("One fine day, ca 70 B.C., Caesar was puzzling on an extremely intelligent plan "
-										+ "to finally conquer Gallia and was about to send it to his generals.") + "</div></html>"
+										+ "to finally conquer Gallia and was about to send it to his generals.") 
+										+ "</div></html>"
 
 		));
-		this.explanation.setPreferredSize(new Dimension(1000, 75));
+		//this.explanation.setPreferredSize(new Dimension(600, 75));
 		this.add(this.explanation, explanationConstraint);
 
 		// layout the component of the Panel.

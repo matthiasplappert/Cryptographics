@@ -57,7 +57,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public String getDescription() {
-		return i18n.tr("Learn about the cryptographic hash function SHA-2. A hash function allows you to transform your data in one direction only, making it impossible to reverse the process!");
+		return i18n.tr("Learn about the cryptographic hash function SHA-2. A hash function allows you to transform your data in one direction only, making it impossible to reverse the process.");
 	}
 	
 	/*

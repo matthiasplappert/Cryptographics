@@ -171,6 +171,14 @@ public class WelcomeView extends JPanel {
 	}
 	
 	/**
+	 * Stops the timer which randomly modifies the teaser code at the
+	 * welcome view.
+	 */
+	public void stopTeaserCodeTimer() {
+		this.timer.stop();
+	}
+	
+	/**
 	 * Prepares the font for the cryptographics logo
 	 * 
 	 * @param size Fontsize
@@ -196,6 +204,7 @@ public class WelcomeView extends JPanel {
 	 * Initialized the timer
 	 */
 	private void initTimer() {
+		Logger.debug("WelcomeView", "initTimer", "Random teaser code timer started");
 		this.timer = new Timer(this.timerInterval, new ActionListener() {
 			
 			@Override

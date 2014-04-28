@@ -103,7 +103,7 @@ public class VigenereVisualizationInfo extends AbstractVisualizationInfo {
 	 * @return description of vigenere.
 	 */
 	public String getDescription() {
-		return i18n.tr("Get to know how Vigenère fixed the weaknesses of Caesar to make a 'secure' cipher for many hundred years!");
+		return i18n.tr("Get to know how Vigenère fixed the weaknesses of Caesar to make a 'secure' cipher for many hundred years.");
 	}
 	
 	/**

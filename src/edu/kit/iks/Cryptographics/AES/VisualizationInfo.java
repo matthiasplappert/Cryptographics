@@ -57,7 +57,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public String getDescription() {
-		return i18n.tr("Learn about one of the most important modern ciphers, the Advanced Encryption Standard!");
+		return i18n.tr("Learn about one of the most important modern ciphers, the Advanced Encryption Standard.");
 	}
 
 	/*

@@ -53,7 +53,7 @@ public class DHVisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	private String description = i18n.tr("The infamous Diffie-Hellman Key-Exchange " +
 			"explained with a color-mixing analogy. Establish a shared secret, " +
-			"without an eavesdropper getting the secret, too!");
+			"without an eavesdropper also getting the secret.");
 	
 	/*
 	 * (non-Javadoc)
