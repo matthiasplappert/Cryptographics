@@ -28,6 +28,8 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.geom.Rectangle2D;
@@ -35,11 +37,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.VisualizationButton;
 
 /**
@@ -90,6 +94,26 @@ public class TimelineView extends JPanel implements ComponentListener {
 	private static final Color YEAR_TEXT_COLOR = Color.GRAY;
 	
 	/**
+	 * Delta of the actual button color. This will produce the blink effect
+	 */
+	private int colorDelta = 0;
+	
+	/**
+	 * Flag to determine, if the delta should be added or substracted
+	 */
+	private boolean colorDeltaTurn = true;
+	
+	/**
+	 * Timer to tilt the teaser code in given interval
+	 */
+	private Timer timer;
+	
+	/**
+	 * Interval in which the timer should tilt letters
+	 */
+	private int timerInterval = 50;
+	
+	/**
 	 * Serial Version UID
 	 */
 	private static final long serialVersionUID = -4974243564527826198L;
@@ -127,6 +151,8 @@ public class TimelineView extends JPanel implements ComponentListener {
 	 */
 	public TimelineView(List<AbstractVisualizationInfo> visualizationInfos) {
 		super(null);
+		
+		this.initTimer();
 		
 		this.addComponentListener(this);
 		this.setPreferredSize(new Dimension(0, 200));
@@ -172,6 +198,8 @@ public class TimelineView extends JPanel implements ComponentListener {
 			AbstractVisualizationInfo visualizationInfo = i.next();
 			this.paintMarker(g2, visualizationInfo);
 		}
+		
+		g2.dispose();
 	}
 	
 	/**
@@ -180,12 +208,12 @@ public class TimelineView extends JPanel implements ComponentListener {
 	 */
 	private void paintTimeline(Graphics2D g2) {
 		final Stroke stroke = new BasicStroke(TIMELINE_STROKE_WIDTH);
-		final int baseline = (int)(this.getSize().getHeight() / 2);
+		final int baseline = (int) (this.getSize().getHeight() / 2);
 		
 		// Paint.
 		g2.setColor(TIMELINE_STROKE_COLOR);
 		g2.setStroke(stroke);
-		g2.drawLine(0, baseline, (int)this.getSize().getWidth(), baseline);
+		g2.drawLine(0, baseline, (int) this.getSize().getWidth(), baseline);
 	}
 	
 	/**
@@ -199,14 +227,14 @@ public class TimelineView extends JPanel implements ComponentListener {
 		final int baseline = this.getSize().height / 2; 
 		
 		// Calculate marker position.
-		int markerX = (int)(this.getSize().width * visualizationInfo.getTimelineOffset());
+		int markerX = (int) (this.getSize().width * visualizationInfo.getTimelineOffset());
 		int markerY = baseline;
 		
 		// Calculate name label position.
 		FontMetrics nameMetrics = g2.getFontMetrics(g2.getFont());
 		Rectangle2D nameRect = nameMetrics.getStringBounds(visualizationInfo.getName(), g2);
-		int nameX = markerX - (int)(nameRect.getWidth() / 2);
-		int nameY = -(int)nameRect.getY();
+		int nameX = markerX - (int) (nameRect.getWidth() / 2);
+		int nameY = - (int) nameRect.getY();
 		
 		// Calculate year label position.
 		String year;
@@ -215,15 +243,16 @@ public class TimelineView extends JPanel implements ComponentListener {
 		} else {
 			year = String.format(i18n.tr("{0} B.C.", Math.abs(visualizationInfo.getYear())));
 		}
+		
 		FontMetrics yearMetrics = g2.getFontMetrics(g2.getFont());
 		Rectangle2D yearRect = yearMetrics.getStringBounds(year, g2);
-		int yearX = markerX - (int)(yearRect.getWidth() / 2);
-		int yearY = baseline + radius + padding - (int)yearRect.getY();
+		int yearX = markerX - (int) (yearRect.getWidth() / 2);
+		int yearY = baseline + radius + padding - (int) yearRect.getY();
 		
 		// Draw name label.
 		g2.setColor(LABEL_STROKE_COLOR);
 		g2.setStroke(new BasicStroke(LABEL_STROKE_WIDTH));
-		g2.drawLine(markerX, markerY - radius - padding, markerX, nameY + (int)nameRect.getHeight() + (int)nameRect.getY() + padding);
+		g2.drawLine(markerX, markerY - radius - padding, markerX, nameY + (int) nameRect.getHeight() + (int) nameRect.getY() + padding);
 		g2.setColor(NAME_TEXT_COLOR);
 		g2.drawString(visualizationInfo.getName(), nameX, nameY);
 		
@@ -231,8 +260,18 @@ public class TimelineView extends JPanel implements ComponentListener {
 		g2.setColor(YEAR_TEXT_COLOR);
 		g2.drawString(year, yearX, yearY);
 		
+
+		
+		// Circle filled with color of difficulty
 		g2.setColor(visualizationInfo.getDifficultyColor());
 		g2.fillOval(markerX - radius, markerY - radius, radius * 2, radius * 2);
+		
+		// Background for blink effect
+		Color black = new Color(255, 255, 255, 0);
+		g2.setColor(this.fade(black));
+		g2.fillOval(markerX - radius, markerY - radius, radius * 2, radius * 2);
+		
+		// Circle with border of the button
 		g2.setColor(TIMELINE_STROKE_COLOR);
 		g2.setStroke(new BasicStroke(TIMELINE_STROKE_WIDTH));
 		g2.drawOval(markerX - radius, markerY - radius, radius * 2, radius * 2);
@@ -283,5 +322,48 @@ public class TimelineView extends JPanel implements ComponentListener {
 	@Override
 	public void componentHidden(ComponentEvent e) {
 		// Unused
+	}
+	
+	private Color fade(Color color) {
+	    int red = color.getRed();
+	    int green = color.getGreen();
+	    int blue = color.getBlue();
+	    int alpha = color.getAlpha() + this.colorDelta;
+
+	    if (alpha < 0) alpha = 0; else if (alpha > 255) alpha = 255;
+
+	    if (this.colorDeltaTurn) {
+	    	this.colorDelta++;
+	    	
+	    	if (this.colorDelta == 128) {
+	    		this.colorDeltaTurn = false;
+	    	}
+	    } else {
+	    	this.colorDelta--;
+	    	
+	    	if (this.colorDelta == -75) {
+	    		this.colorDeltaTurn = true;
+	    	}
+	    }
+	    
+	    return new Color (red, green, blue, alpha);
+	}
+	
+	/**
+	 * Initialized the timer
+	 */
+	private void initTimer() {
+		Logger.debug("TimelineView", "initTimer", "Button animation started");
+		this.timer = new Timer(this.timerInterval, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+
+				
+				TimelineView.this.repaint();
+			}
+		});
+		
+		this.timer.start();
 	}
 }
