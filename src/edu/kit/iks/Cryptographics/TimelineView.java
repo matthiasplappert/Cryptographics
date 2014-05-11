@@ -223,6 +223,9 @@ public class TimelineView extends JPanel implements ComponentListener {
 	 */
 	private void paintMarker(Graphics2D g2, AbstractVisualizationInfo visualizationInfo) {
 		final int radius = MARKER_RADIUS;
+		final int diameter = radius * 2;
+		final int smallRadius = MARKER_RADIUS - 10;
+		final int smallDiameter = smallRadius * 2;
 		final int padding = PADDING;
 		final int baseline = this.getSize().height / 2; 
 		
@@ -260,21 +263,39 @@ public class TimelineView extends JPanel implements ComponentListener {
 		g2.setColor(YEAR_TEXT_COLOR);
 		g2.drawString(year, yearX, yearY);
 		
-
-		
+//		// Circle filled with color of difficulty
+//		g2.setColor(visualizationInfo.getDifficultyColor());
+//		g2.fillOval(markerX - radius, markerY - radius, diameter, diameter);
+//		
+//		// Background for blink effect
+//		Color white = new Color(255, 255, 255, 0);
+//		g2.setColor(this.fade(white));
+//		g2.fillOval(markerX - radius, markerY - radius, diameter, diameter);
+//		
+//		// Smaller inner circle filled with color of difficulty
+//		g2.setColor(visualizationInfo.getDifficultyColor());
+//		g2.fillOval(markerX - smallRadius, markerY - smallRadius, smallDiameter, smallDiameter);
+	
 		// Circle filled with color of difficulty
 		g2.setColor(visualizationInfo.getDifficultyColor());
-		g2.fillOval(markerX - radius, markerY - radius, radius * 2, radius * 2);
+		g2.fillOval(markerX - radius, markerY - radius, diameter, diameter);
 		
-		// Background for blink effect
-		Color black = new Color(255, 255, 255, 0);
-		g2.setColor(this.fade(black));
-		g2.fillOval(markerX - radius, markerY - radius, radius * 2, radius * 2);
+		// Alpha overlay for blink effect
+		Color white = new Color(255, 255, 255, 0);
+		g2.setColor(this.fade(white));
+	//	g2.fillOval(markerX - radius, markerY - radius, diameter, diameter);
+		
+		// Smaller inner circle filled with color of difficulty
+	//	g2.setColor(visualizationInfo.getDifficultyColor());
+		g2.fillOval(markerX - smallRadius, markerY - smallRadius, smallDiameter, smallDiameter);
+		
+		
+		
 		
 		// Circle with border of the button
 		g2.setColor(TIMELINE_STROKE_COLOR);
 		g2.setStroke(new BasicStroke(TIMELINE_STROKE_WIDTH));
-		g2.drawOval(markerX - radius, markerY - radius, radius * 2, radius * 2);
+		g2.drawOval(markerX - radius, markerY - radius, diameter, diameter);
 	}
 	
 	/**
@@ -335,7 +356,7 @@ public class TimelineView extends JPanel implements ComponentListener {
 	    if (this.colorDeltaTurn) {
 	    	this.colorDelta++;
 	    	
-	    	if (this.colorDelta == 128) {
+	    	if (this.colorDelta == 160) {
 	    		this.colorDeltaTurn = false;
 	    	}
 	    } else {
