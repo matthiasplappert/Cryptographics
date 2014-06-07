@@ -21,6 +21,11 @@ import edu.kit.iks.CryptographicsLib.views.VisualizationView;
  */
 public class DemoView extends VisualizationView {
 	
+	/**
+	 * Serial version UID
+	 */
+	private static final long serialVersionUID = 2155655628333021301L;
+
 	public DemoView() {
 		this.setNextButton("Additional info");
 		this.setBackButton("Back to Introduction");

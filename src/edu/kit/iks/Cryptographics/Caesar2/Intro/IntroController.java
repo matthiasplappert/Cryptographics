@@ -13,8 +13,12 @@
  */
 package edu.kit.iks.Cryptographics.Caesar2.Intro;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import org.xnap.commons.i18n.I18n;
 
+import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.controller.AbstractVisualizationController;
@@ -36,9 +40,9 @@ public class IntroController extends AbstractVisualizationController {
 	 * @author Christian Dreher <uaeef@student.kit.edu>
 	 */
 	private static class Strings {
-		public static String help = IntroController.i18n.tr("If you want to hear the story, "
-				+ "click 'Proceed', otherwise skip it by clicking the "
-				+ "'Skip Introduction' button.");
+		public static String help = IntroController.i18n.tr("If you want to hear the story "
+				+ "of how Caesar came up with encrypting, click 'Tell me more', otherwise "
+				+ "click 'Skip Introduction'");
 	}
 	
 	/**
@@ -62,7 +66,25 @@ public class IntroController extends AbstractVisualizationController {
 	@Override
 	public void loadView() {
 		this.view = new IntroView();
+		
 		this.prepareNextActionListener();
+		
+		((IntroView) this.view).setStepButtonActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				boolean valid = ((IntroView) IntroController.this.view).nextStep();
+				
+				if (!valid) {
+					((VisualizationContainerController) IntroController.this.parentController)
+						.presentNextVisualizationController();
+				}
+			}
+			
+		});
+		
+		((IntroView) this.view).caesarsConquerPlan();
 	}
 
 	/* (non-Javadoc)

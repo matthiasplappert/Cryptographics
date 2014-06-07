@@ -29,12 +29,11 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import org.xnap.commons.i18n.I18n;
-
-import edu.kit.iks.CryptographicsLib.Configuration;
+import javax.swing.JTextPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 /**
  * View for UI elements which all visualizations have in common
@@ -48,6 +47,11 @@ public class VisualizationView extends JPanel {
 	 */
 	private static final long serialVersionUID = -988624050394454370L;
 
+	/**
+	 * JPanel wrapping the navigation buttons
+	 * 
+	 * @author Christian Dreher <uaeef@student.kit.edu>
+	 */
 	private class NavigationContainer extends JPanel {
 		
 		/**
@@ -84,6 +88,11 @@ public class VisualizationView extends JPanel {
 		}
 	}
 	
+	/**
+	 * JPanel wrapping the content area
+	 * 
+	 * @author Christian Dreher <uaeef@student.kit.edu>
+	 */
 	private class ContentContainer extends JPanel {
 		
 		/**
@@ -109,19 +118,35 @@ public class VisualizationView extends JPanel {
 		private void initGridBagConstraints() {
 			this.gbc.gridx = 0;
 			this.gbc.gridy = 0;
+			this.gbc.gridwidth = 1;
 			this.gbc.anchor = GridBagConstraints.CENTER;
-			this.gbc.fill = GridBagConstraints.HORIZONTAL;
+			this.gbc.fill = GridBagConstraints.NONE;
 		}
 	}
 	
+	/**
+	 * Instance of the navigation container
+	 */
 	private NavigationContainer navigationContainer;
 	
+	/**
+	 * Instance of the content container
+	 */
 	private ContentContainer contentContainer;
 	
+	/**
+	 * Button for stepwise skipping inside one view
+	 */
 	private JButton stepButton;
 	
+	/**
+	 * JPanel wrapping the step button
+	 */
 	private JPanel footerContainer;
 	
+	/**
+	 * Constructor initializing a new instance of VisualizationView
+	 */
 	public VisualizationView() {
 		super(new BorderLayout());
 		
@@ -129,7 +154,6 @@ public class VisualizationView extends JPanel {
 		this.setupContentContainer();
 		this.setupFooterContainer();
 	}
-	
 
 	/**
 	 * If this method is called the first time, a 'Next' button with given label will
@@ -144,7 +168,6 @@ public class VisualizationView extends JPanel {
 		this.navigationContainer.setNextButton(label);
 	}
 	
-	
 	/**
 	 * If this method is called the first time, a 'Back' button with given label will
 	 * be created. If the method is called another time, only the label of the already
@@ -157,7 +180,6 @@ public class VisualizationView extends JPanel {
 	public void setBackButton(String label) {
 		this.navigationContainer.setBackButton(label);
 	}
-	
 	
 	/**
 	 * If this method is called the first time, a 'Step' button with given label will
@@ -183,7 +205,6 @@ public class VisualizationView extends JPanel {
 		this.revalidate();
 	}
 	
-	
 	/**
 	 * Binds an ActionListener to the next button
 	 * 
@@ -194,7 +215,6 @@ public class VisualizationView extends JPanel {
 			this.navigationContainer.nextButton.addActionListener(al);
 		}
 	}
-	
 	
 	/**
 	 * Binds an ActionListener to the back button
@@ -207,7 +227,6 @@ public class VisualizationView extends JPanel {
 		}
 	}
 	
-	
 	/**
 	 * Binds an ActionListener to the step button
 	 * @param al The ActionListener to bind
@@ -216,15 +235,43 @@ public class VisualizationView extends JPanel {
 		this.stepButton.addActionListener(al);
 	}
 	
-	
+	/**
+	 * Adds a text to the content area 
+	 * 
+	 * @param text Text to add to content
+	 * @return ID to identify the object for modifying or removing it
+	 */
 	public int addText(String text) {
-		JLabel label = new JLabel(text);
+		JTextPane jtext = new JTextPane();
+		jtext.setText(text);
+		jtext.setEditable(false);
+		jtext.setPreferredSize(new Dimension(800, 80));
 		
-		return this.contentContainer.addElement(label);
+		StyledDocument doc = jtext.getStyledDocument();
+		SimpleAttributeSet center = new SimpleAttributeSet();
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		
+		return this.contentContainer.addElement(jtext);
 	}
 	
+	/**
+	 * Adds a partial view to the content
+	 * 
+	 * @param partialView Partial view to add
+	 * @return ID to identify the object for modifying or removing it
+	 */
 	public int addPartialView(JComponent partialView) {
 		return this.contentContainer.addElement(partialView);
+	}
+	
+	/**
+	 * Resets the content area by removing all JComponents
+	 */
+	public void clearContentContainer() {
+		this.remove(this.contentContainer);
+		this.contentContainer = new ContentContainer();
+		this.add(this.contentContainer);
 	}
 	
 	/**
@@ -236,7 +283,6 @@ public class VisualizationView extends JPanel {
 		this.add(this.navigationContainer, BorderLayout.NORTH);
 	}
 	
-	
 	/**
 	 * Sets up the content container
 	 */
@@ -245,7 +291,6 @@ public class VisualizationView extends JPanel {
 		
 		this.add(this.contentContainer, BorderLayout.CENTER);
 	}
-	
 	
 	/**
 	 * Sets up the footer container
