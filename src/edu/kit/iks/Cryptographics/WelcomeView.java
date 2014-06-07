@@ -176,6 +176,7 @@ public class WelcomeView extends JPanel {
 	 */
 	public void stopTeaserCodeTimer() {
 		this.timer.stop();
+		Logger.debug("WelcomeView", "stopTeaserCodeTimer", "Timer stopped");
 	}
 	
 	/**

@@ -36,9 +36,9 @@ import edu.kit.iks.Cryptographics.Vigenere.Explanation.FirstExplanationControlle
 import edu.kit.iks.Cryptographics.Vigenere.Explanation.SecondExplanationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
-import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
+import edu.kit.iks.CryptographicsLib.controller.InformationController;
 
 /**
  * @author Aydin Tekin

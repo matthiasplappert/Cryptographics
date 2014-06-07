@@ -25,36 +25,45 @@ import java.awt.event.MouseListener;
 /**
  * This is a utility class that makes dealing with MouseListeners that are simply
  * used for clicks easier.
+ * MouseClickListener is deprecated, since it uses the low level MouseListener. Use
+ * ActionListener instead.
  * 
  * @author Matthias Plappert
  */
+@Deprecated
 abstract public class MouseClickListener implements MouseListener {
 	/**
 	 * This method will be executed when the mouse is clicked.
 	 * @param event the MouseEvent
 	 */
+	@Deprecated
 	abstract public void clicked(MouseEvent event);
 
+	@Deprecated
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// Unused
 	}
 
+	@Deprecated
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// Unused
 	}
 
+	@Deprecated
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// Unused
 	}
 
+	@Deprecated
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// Unused
 	}
 
+	@Deprecated
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		this.clicked(arg0);

@@ -17,17 +17,15 @@
  * THE SOFTWARE.
  */
 
-package edu.kit.iks.Cryptographics.Caesar;
+package edu.kit.iks.Cryptographics.Caesar2;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.xnap.commons.i18n.I18n;
 
-import edu.kit.iks.Cryptographics.Caesar.Demonstration.CryptoDemonstrationController;
-import edu.kit.iks.Cryptographics.Caesar.Demonstration.IntroductionController;
-import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoExperimentController;
-import edu.kit.iks.Cryptographics.Caesar.Experiment.HistogramController;
+import edu.kit.iks.Cryptographics.Caesar2.Demo.DemoController;
+import edu.kit.iks.Cryptographics.Caesar2.Intro.IntroController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
@@ -59,10 +57,8 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	public List<Class<?>> getControllerClasses() {
 		List<Class<?>> controllerClasses = new ArrayList<>();
 
-		controllerClasses.add(IntroductionController.class);
-		controllerClasses.add(CryptoDemonstrationController.class);
-		controllerClasses.add(CryptoExperimentController.class);
-		controllerClasses.add(HistogramController.class);
+		controllerClasses.add(IntroController.class);
+		controllerClasses.add(DemoController.class);
 		controllerClasses.add(InformationController.class);
 
 		return controllerClasses;
@@ -74,7 +70,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	@Override
 	public String getDescription() {
 		String description = CaesarVisualizationInfo.i18n
-				.tr("Get to know how Ceasar fooled his enemys that "
+				.tr("Get to know how Caesar fooled his enemys that "
 						+ "intercepted his orders and see one of the oldest "
 						+ "attempts to make confidential material unreadable "
 						+ "for undesireable readers.");

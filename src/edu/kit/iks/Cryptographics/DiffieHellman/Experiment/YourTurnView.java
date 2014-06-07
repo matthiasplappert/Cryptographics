@@ -27,7 +27,7 @@ import javax.swing.JLabel;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.CryptographicsLib.Configuration;
-import edu.kit.iks.CryptographicsLib.VisualizationView;
+import edu.kit.iks.CryptographicsLib.views.VisualizationView;
 
 /**
  * Says that it is the turn of the user to try

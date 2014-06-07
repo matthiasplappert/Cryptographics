@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
+import edu.kit.iks.CryptographicsLib.controller.InformationController;
 
 public class VisualizationInfo extends AbstractVisualizationInfo {
 

@@ -30,10 +30,10 @@ import javax.swing.JTextField;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
-import edu.kit.iks.CryptographicsLib.CharacterFrequencyDiagramView;
 import edu.kit.iks.CryptographicsLib.Configuration;
-import edu.kit.iks.CryptographicsLib.KeyboardView;
-import edu.kit.iks.CryptographicsLib.VisualizationView;
+import edu.kit.iks.CryptographicsLib.views.VisualizationView;
+import edu.kit.iks.CryptographicsLib.views.partials.CharacterFrequencyDiagramView;
+import edu.kit.iks.CryptographicsLib.views.partials.KeyboardView;
 
 /**
  * This class represents the view of the first explanatation step. In this step a cipher will be given

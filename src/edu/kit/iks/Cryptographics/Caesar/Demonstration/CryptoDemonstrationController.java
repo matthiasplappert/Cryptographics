@@ -40,14 +40,14 @@ import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.Cryptographics.Caesar.Experiment.CryptoModel;
-import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.Configuration;
-import edu.kit.iks.CryptographicsLib.ImageView;
-import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
+import edu.kit.iks.CryptographicsLib.controller.AbstractVisualizationController;
+import edu.kit.iks.CryptographicsLib.views.partials.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.views.partials.ImageView;
+import edu.kit.iks.CryptographicsLib.views.partials.KeyboardView;
 
 /**
  * Controller for the last step of demonstration phase. Controls the needed elements from

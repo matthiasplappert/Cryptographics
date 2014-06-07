@@ -32,7 +32,7 @@ import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.Caesar.CryptoView;
 import edu.kit.iks.CryptographicsLib.Configuration;
-import edu.kit.iks.CryptographicsLib.KeyboardView;
+import edu.kit.iks.CryptographicsLib.views.partials.KeyboardView;
 
 /**
  * Performs animations for demonstrating Caesar's idea.

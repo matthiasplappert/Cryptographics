@@ -30,8 +30,8 @@ import javax.swing.JPanel;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.CryptographicsLib.Configuration;
-import edu.kit.iks.CryptographicsLib.ImageView;
-import edu.kit.iks.CryptographicsLib.VisualizationView;
+import edu.kit.iks.CryptographicsLib.views.VisualizationView;
+import edu.kit.iks.CryptographicsLib.views.partials.ImageView;
 
 /**
  * This is the first view the user gets presented when he requests the

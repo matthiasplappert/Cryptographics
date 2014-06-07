@@ -35,13 +35,13 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
-import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.ImageView;
 import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
 import edu.kit.iks.CryptographicsLib.VisualizationButton;
 import edu.kit.iks.CryptographicsLib.VisualizationInfoLoader;
+import edu.kit.iks.CryptographicsLib.controller.AbstractController;
+import edu.kit.iks.CryptographicsLib.views.partials.ImageView;
 
 /**
  * An instance of this class is the start controller showing teasers
@@ -160,12 +160,18 @@ public class StartController extends AbstractController {
 			this.popoverView = null;
 		}
 		
+		// Stop timer to avoid performance break-in
 		if (this.welcomeView != null) {
 			this.welcomeView.stopTeaserCodeTimer();
 			this.welcomeView = null;
 		}
 		
-		this.timelineView = null;
+		// Stop timer to avoid performance break-in
+		if (this.timelineView != null) {
+			this.timelineView.stopButtonAnimationTimer();
+			this.timelineView = null;
+		}
+		
 		this.view = null;
 	}
 

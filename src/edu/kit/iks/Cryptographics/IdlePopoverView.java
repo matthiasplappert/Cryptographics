@@ -32,7 +32,7 @@ import javax.swing.Timer;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.CryptographicsLib.Configuration;
-import edu.kit.iks.CryptographicsLib.PopoverView;
+import edu.kit.iks.CryptographicsLib.views.partials.PopoverView;
 
 /**
  * The idle popover is presented as soon as the user is detected as idle.

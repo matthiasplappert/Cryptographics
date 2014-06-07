@@ -345,6 +345,11 @@ public class TimelineView extends JPanel implements ComponentListener {
 		// Unused
 	}
 	
+	public void stopButtonAnimationTimer() {
+		this.timer.stop();
+		Logger.debug("TimelineView", "stopButtonAnimationTimer", "Timer stopped");
+	}
+	
 	private Color fade(Color color) {
 	    int red = color.getRed();
 	    int green = color.getGreen();

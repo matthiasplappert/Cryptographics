@@ -27,9 +27,9 @@ import javax.swing.JLabel;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.Vigenere.VigenereModel;
-import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.Configuration;
-import edu.kit.iks.CryptographicsLib.VisualizationView;
+import edu.kit.iks.CryptographicsLib.views.VisualizationView;
+import edu.kit.iks.CryptographicsLib.views.partials.AlphabetStripView;
 
 /**
  * in this step the decryption will be explained.

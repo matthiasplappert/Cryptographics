@@ -21,7 +21,7 @@ package edu.kit.iks.Cryptographics;
 
 import javax.swing.JLabel;
 
-import edu.kit.iks.CryptographicsLib.PopoverView;
+import edu.kit.iks.CryptographicsLib.views.partials.PopoverView;
 
 /**
  * Objects of this class represent the popover when

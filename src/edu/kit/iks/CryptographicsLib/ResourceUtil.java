@@ -14,8 +14,16 @@
 
 package edu.kit.iks.CryptographicsLib;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.regex.Pattern;
+
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+
+import edu.kit.iks.CryptographicsLib.views.partials.ImageView;
 
 /**
  * Utility class to ease file access
@@ -40,5 +48,28 @@ public class ResourceUtil {
 		InputStream is = ResourceUtil.class.getResourceAsStream(name);
 		
 		return is;
+	}
+	
+	public static ImageView getImageViewFromResourceId(String procedureId, String resourceId) {
+		SAXBuilder saxBuilder = new SAXBuilder();
+		String path = "";
+
+		// Obtain file object
+		InputStream is = ResourceUtil.class.getResourceAsStream("/" + procedureId + "/" + "resources.xml");
+
+		try {
+			// Converted file to document object
+			Document document = saxBuilder.build(is);
+
+			// Get root node from XML
+			Element root = document.getRootElement();
+			
+			// Get file path from child with given resourceId
+			path = root.getChild(resourceId).getAttributeValue("path");
+		} catch (JDOMException | IOException | NullPointerException e) {
+			Logger.error(e);
+		}
+		
+		return new ImageView(path);
 	}
 }

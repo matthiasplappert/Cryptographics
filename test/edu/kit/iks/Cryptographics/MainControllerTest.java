@@ -27,8 +27,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.AbstractController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.controller.AbstractController;
 
 /**
  * Tests for the MainController

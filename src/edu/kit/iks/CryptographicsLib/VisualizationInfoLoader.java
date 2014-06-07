@@ -22,7 +22,7 @@ package edu.kit.iks.CryptographicsLib;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.kit.iks.Cryptographics.Caesar.CaesarVisualizationInfo;
+import edu.kit.iks.Cryptographics.Caesar2.CaesarVisualizationInfo;
 import edu.kit.iks.Cryptographics.DiffieHellman.DHVisualizationInfo;
 import edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo;
 

@@ -26,8 +26,8 @@ import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
-import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
+import edu.kit.iks.CryptographicsLib.controller.InformationController;
 
 public class VisualizationInfo extends AbstractVisualizationInfo {
 	

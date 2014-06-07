@@ -35,8 +35,8 @@ import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.Caesar.CryptoView;
 import edu.kit.iks.CryptographicsLib.Configuration;
-import edu.kit.iks.CryptographicsLib.KeyboardView;
-import edu.kit.iks.CryptographicsLib.NumpadView;
+import edu.kit.iks.CryptographicsLib.views.partials.KeyboardView;
+import edu.kit.iks.CryptographicsLib.views.partials.NumpadView;
 
 /**
  * @author wasilij
@@ -76,19 +76,8 @@ public class CryptoExperimentView extends CryptoView {
 		// setup the explanations.
 		String explanation = this
 				.wrapHtml(CryptoExperimentView.i18n
-						.tr("In the demonstration you encrypted with the key 3. On further thought it seems logical that this key can vary"
-								+ " from 1 to 26.")
-						+ "<br>"
-						+ CryptoExperimentView.i18n
-								.tr("Now you have 2 options:")
-						+ "<br>"
-						+ "<br>"
-						+ CryptoExperimentView.i18n
-								.tr("1. You can either put your own key and plaintext into the textfield,")
-						+ "<br>"
-						+ "<br>"
-						+ CryptoExperimentView.i18n
-								.tr("2. or you just click \"Generate\" and this awesome program will generate a key and plaintext for you."));
+						.tr("Now try it with your own name and key"));
+
 		this.setupExplanations(explanation, GridBagConstraints.PAGE_START, 1,
 				0, 6);
 
@@ -217,7 +206,7 @@ public class CryptoExperimentView extends CryptoView {
 
 		// add the caption of the input field.
 		JLabel inputCaption = new JLabel(
-				CryptoExperimentView.i18n.tr("Put your name in here!"));
+				CryptoExperimentView.i18n.tr("Your name"));
 		GridBagConstraints capConst = new GridBagConstraints();
 		capConst.gridx = 0;
 		capConst.gridy = 0;
@@ -236,14 +225,6 @@ public class CryptoExperimentView extends CryptoView {
 		this.userCharacterIOContainer.add(this.literalInput, inputConst);
 		this.literalInput
 				.setBorder(BorderFactory.createLineBorder(Color.black));
-		
-		JLabel textLabel = new JLabel(CryptoExperimentView.i18n.tr("Or"));
-		GridBagConstraints textConst = new GridBagConstraints();
-		textConst.gridx = 0;
-		textConst.gridy = 3;
-		textConst.insets = new Insets(50, 200, 0, 0);
-		textConst.fill = GridBagConstraints.BOTH;
-		this.userCharacterIOContainer.add(textLabel, textConst);
 	}
 
 	private void setupUserNumericalInput() {
@@ -258,7 +239,7 @@ public class CryptoExperimentView extends CryptoView {
 		this.keyInput.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		// add the caption for the input field.
-		JLabel keyCaption = new JLabel("The key goes here.");
+		JLabel keyCaption = new JLabel("Your key");
 		GridBagConstraints keyCapConst = new GridBagConstraints();
 		keyCapConst.gridx = 2;
 		keyCapConst.gridy = 0;
@@ -268,7 +249,7 @@ public class CryptoExperimentView extends CryptoView {
 
 	private void setupIOGenerator() {
 		this.generator = new JButton(
-				CryptoExperimentView.i18n.tr("Generate letters"));
+				CryptoExperimentView.i18n.tr("Random name and key"));
 		this.generator.setPreferredSize(new Dimension(300, 50));
 		GridBagConstraints genConst = new GridBagConstraints();
 		genConst.weightx = 1.0;

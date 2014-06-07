@@ -24,8 +24,8 @@ import java.awt.event.ActionListener;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
 import edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.controller.AbstractVisualizationController;
 
 /**
  * Controller class of the first phase

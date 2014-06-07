@@ -32,12 +32,12 @@ import java.util.List;
 
 import javax.swing.Timer;
 
-import edu.kit.iks.CryptographicsLib.AbstractController;
-import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
 import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
+import edu.kit.iks.CryptographicsLib.controller.AbstractController;
+import edu.kit.iks.CryptographicsLib.controller.AbstractVisualizationController;
 
 /**
  * An instance of this class is a wrapper for visualization controller to

@@ -17,7 +17,7 @@
  * THE SOFTWARE.
  */
 
-package edu.kit.iks.CryptographicsLib;
+package edu.kit.iks.CryptographicsLib.views.partials;
 
 import java.awt.Color;
 import java.awt.Dimension;

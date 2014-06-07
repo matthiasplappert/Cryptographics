@@ -17,16 +17,23 @@
  * THE SOFTWARE.
  */
 
-package edu.kit.iks.CryptographicsLib;
+package edu.kit.iks.CryptographicsLib.controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import edu.kit.iks.Cryptographics.VisualizationContainerController;
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.views.VisualizationView;
 
 /**
- * Abstract visualisization controller specialized for
+ * Abstract visualization controller specialized for
  * the needs of a procedure to visualize its contents
  * 
  * @author Christian Dreher
  */
 public abstract class AbstractVisualizationController extends AbstractController {
-	
+
 	/**
 	 * {VisualizationInfo}-object holding all metadata of the procedure
 	 */
@@ -58,4 +65,42 @@ public abstract class AbstractVisualizationController extends AbstractController
 	 * @return help text
 	 */
 	abstract public String getHelp();
+	
+	/**
+	 * Prepares the ActionListener for the 'Next' button
+	 * (Skips current controller and loads next one)
+	 */
+	protected void prepareNextActionListener() {
+		ActionListener nextListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController 
+						= (VisualizationContainerController) AbstractVisualizationController.this
+						.getParentController();
+				
+				containerController.presentNextVisualizationController();
+			}
+		};
+		
+		((VisualizationView) this.view).setNextButtonActionListener(nextListener);
+	}
+	
+	/**
+	 * Prepares the ActionListener for the 'Back' button
+	 * (Skips current controller and loads previous one)
+	 */
+	protected void prepareBackActionListener() {
+		ActionListener backListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				VisualizationContainerController containerController
+						= (VisualizationContainerController) AbstractVisualizationController.this
+						.getParentController();
+				
+				containerController.presentPreviousVisualizationController();
+			}
+		};
+		
+		((VisualizationView) this.view).setBackButtonActionListener(backListener);
+	}
 }

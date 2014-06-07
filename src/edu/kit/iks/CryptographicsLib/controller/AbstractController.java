@@ -17,7 +17,7 @@
  * THE SOFTWARE.
  */
 
-package edu.kit.iks.CryptographicsLib;
+package edu.kit.iks.CryptographicsLib.controller;
 
 import java.util.ArrayList;
 import java.util.List;

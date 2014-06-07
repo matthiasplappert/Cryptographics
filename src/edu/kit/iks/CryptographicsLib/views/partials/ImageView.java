@@ -17,7 +17,7 @@
  * THE SOFTWARE.
  */
 
-package edu.kit.iks.CryptographicsLib;
+package edu.kit.iks.CryptographicsLib.views.partials;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -29,6 +29,8 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
+import edu.kit.iks.CryptographicsLib.Logger;
 
 /**
  * Class to display an image in the view

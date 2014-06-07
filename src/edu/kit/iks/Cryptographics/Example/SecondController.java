@@ -25,10 +25,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
-import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.VisualizationView;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
+import edu.kit.iks.CryptographicsLib.controller.AbstractVisualizationController;
+import edu.kit.iks.CryptographicsLib.views.VisualizationView;
 
 public class SecondController extends AbstractVisualizationController {
 

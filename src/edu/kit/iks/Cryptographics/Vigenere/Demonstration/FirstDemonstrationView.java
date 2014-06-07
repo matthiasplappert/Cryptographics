@@ -29,8 +29,8 @@ import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.Vigenere.VigenereVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
-import edu.kit.iks.CryptographicsLib.ImageView;
-import edu.kit.iks.CryptographicsLib.VisualizationView;
+import edu.kit.iks.CryptographicsLib.views.VisualizationView;
+import edu.kit.iks.CryptographicsLib.views.partials.ImageView;
 /**
  * In this step will be shown how vigenere works.
  * @author Aydin Tekin

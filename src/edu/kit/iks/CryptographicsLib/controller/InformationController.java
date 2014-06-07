@@ -17,7 +17,7 @@
  * THE SOFTWARE.
  */
 
-package edu.kit.iks.CryptographicsLib;
+package edu.kit.iks.CryptographicsLib.controller;
 
 import java.awt.Image;
 import java.io.BufferedReader;
@@ -26,6 +26,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.Logger;
+import edu.kit.iks.CryptographicsLib.views.InformationView;
 
 /**
  * Controller for each procedure displaying further

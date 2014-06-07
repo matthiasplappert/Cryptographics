@@ -21,7 +21,6 @@ package edu.kit.iks.Cryptographics.Caesar.Experiment;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-
 import java.awt.GridBagConstraints;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -42,14 +41,14 @@ import org.jdom2.input.SAXBuilder;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.Cryptographics.VisualizationContainerController;
-import edu.kit.iks.CryptographicsLib.AbstractVisualizationController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
-import edu.kit.iks.CryptographicsLib.AlphabetStripView;
 import edu.kit.iks.CryptographicsLib.Configuration;
-import edu.kit.iks.CryptographicsLib.ImageView;
-import edu.kit.iks.CryptographicsLib.KeyboardView;
 import edu.kit.iks.CryptographicsLib.Logger;
 import edu.kit.iks.CryptographicsLib.MouseClickListener;
+import edu.kit.iks.CryptographicsLib.controller.AbstractVisualizationController;
+import edu.kit.iks.CryptographicsLib.views.partials.AlphabetStripView;
+import edu.kit.iks.CryptographicsLib.views.partials.ImageView;
+import edu.kit.iks.CryptographicsLib.views.partials.KeyboardView;
 
 /**
  * Controller for the first and second step of the experiment phase. When user has to put input and

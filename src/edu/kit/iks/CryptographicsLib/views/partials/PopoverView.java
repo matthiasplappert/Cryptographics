@@ -17,7 +17,7 @@
  * THE SOFTWARE.
  */
 
-package edu.kit.iks.CryptographicsLib;
+package edu.kit.iks.CryptographicsLib.views.partials;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

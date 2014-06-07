@@ -17,7 +17,7 @@
  * THE SOFTWARE.
  */
 
-package edu.kit.iks.CryptographicsLib;
+package edu.kit.iks.CryptographicsLib.views.partials;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -40,6 +40,9 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.xnap.commons.i18n.I18n;
+
+import edu.kit.iks.CryptographicsLib.Configuration;
+import edu.kit.iks.CryptographicsLib.Logger;
 
 /**
  * A displayable keyboard for character input per mouse click or touchscreen. Contains only

@@ -31,8 +31,8 @@ import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.YourTurnController;
 import edu.kit.iks.Cryptographics.DiffieHellman.Experiment.DHExperimentController;
 import edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo;
 import edu.kit.iks.CryptographicsLib.Configuration;
-import edu.kit.iks.CryptographicsLib.InformationController;
 import edu.kit.iks.CryptographicsLib.VisualizationDifficulty;
+import edu.kit.iks.CryptographicsLib.controller.InformationController;
 
 /**
  * The VisualizationInfo for Diffie-Hellman Key-Exchange Analogy
