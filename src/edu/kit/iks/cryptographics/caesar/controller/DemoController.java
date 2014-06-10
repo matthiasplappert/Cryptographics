@@ -19,15 +19,16 @@ import java.awt.event.ActionListener;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.cryptographics.caesar.views.demo.DemoView;
+import edu.kit.iks.cryptographics.caesar.views.demo.partials.CaesarsIdea;
 import edu.kit.iks.cryptographicslib.AbstractVisualizationInfo;
 import edu.kit.iks.cryptographicslib.Configuration;
-import edu.kit.iks.cryptographicslib.controller.AbstractVisualizationController;
+import edu.kit.iks.cryptographicslib.controller.AbstractSteppableVisualizationController;
 
 /**
  * @author Christian Dreher <uaeef@student.kit.edu>
  *
  */
-public class DemoController extends AbstractVisualizationController {
+public class DemoController extends AbstractSteppableVisualizationController {
 
 	/**
 	 * Localization instance
@@ -44,7 +45,7 @@ public class DemoController extends AbstractVisualizationController {
 		private static String nextButtonLabel = DemoController.i18n.tr("Skip demonstration");
 		private static String backButtonLabel = DemoController.i18n.tr("Back to introduction");
 		private static String stepButtonLabel = DemoController.i18n.tr("Proceed");
-		private static String noHelp = DemoController.i18n.tr("At this time, no help can be offered.");
+		private static String noHelp = DemoController.i18n.tr("No help can be offered at the moment.");
 		
 		// Caesars Idea
 		private static String caesarsIdea = DemoController.i18n.tr("Caesar's idea was to simply shift "
@@ -52,6 +53,10 @@ public class DemoController extends AbstractVisualizationController {
 				+ "the plan in the future. Press 'Proceed' and see how it works.");
 		private static String helpCaesarsIdea = DemoController.i18n.tr("Just click 'Proceed' at the "
 				+ "bottom to see how Caesars idea exactly works.");
+	}
+	
+	private static class Steps {
+		public final static int CAESARS_IDEA = 1;
 	}
 	
 	/**
@@ -66,22 +71,39 @@ public class DemoController extends AbstractVisualizationController {
 	 */
 	@Override
 	public String getHelp() {
-		return this.view().getHelp();
+		String help;
+		
+		switch (this.getCurrentStep()) {
+			case DemoController.Steps.CAESARS_IDEA:
+				help = DemoController.Strings.helpCaesarsIdea;
+				break;
+			default:
+				help = DemoController.Strings.noHelp;
+				break;
+		}
+		
+		return help;
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.kit.iks.CryptographicsLib.controller.AbstractController#loadView()
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.cryptographicslib.controller.AbstractSteppableVisualizationController#loadView(edu.kit.iks.cryptographicslib.controller.AbstractSteppableVisualizationController.RunningOrderHelper)
 	 */
 	@Override
-	public void loadView() {
-		this.view = new DemoView();
+	public void loadView(RunningOrderHelper roh) {
+		VariableHelper vh = new VariableHelper();
 		
-		this.prepareViewLayout();
+		vh.add("nextButtonLabel", DemoController.Strings.nextButtonLabel);
+		vh.add("backButtonLabel", DemoController.Strings.backButtonLabel);
+		vh.add("stepButtonLabel", DemoController.Strings.stepButtonLabel);
 		
-		this.prepareNextActionListener();
-		this.prepareBackActionListener();
+		this.view = new DemoView(vh.toList());
 		
-		this.view().setStepButtonActionListener(this.prepareStepButtonActionListener());
+		this.useDefaultNextButtonBehavior();
+		this.useDefaultBackButtonBehavior();
+		this.view().setStepButtonActionListener(this.getStepActionListener());
+		
+		this.defineRunningOrder(roh);
 	}
 
 	/* (non-Javadoc)
@@ -91,17 +113,13 @@ public class DemoController extends AbstractVisualizationController {
 	public void unloadView() {
 		this.view = null;
 	}
-	
-	private void prepareViewLayout() {
-		this.view().setVariable("nextButtonLabel", DemoController.Strings.nextButtonLabel);
-		this.view().setVariable("backButtonLabel", DemoController.Strings.backButtonLabel);
-		this.view().setVariable("stepButtonLabel", DemoController.Strings.stepButtonLabel);
-		
-		this.view().prepareLayout();
+
+	private DemoView view() {
+		return (DemoView) this.view;
 	}
 	
-	private ActionListener prepareStepButtonActionListener() {
-		return new ActionListener() {
+	private ActionListener getStepActionListener() {
+		ActionListener al = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -110,14 +128,19 @@ public class DemoController extends AbstractVisualizationController {
 			}
 			
 		};
+		
+		return al;
 	}
-
-	/**
-	 * Casts the view for easier access
-	 * 
-	 * @return Casted view
-	 */
-	private DemoView view() {
-		return (DemoView) this.view;
+	
+	private void defineRunningOrder(RunningOrderHelper roh) {
+		roh.enqueue(DemoController.Steps.CAESARS_IDEA, this.prepareCaesarsIdea());
+	}
+	
+	private CaesarsIdea prepareCaesarsIdea() {
+		VariableHelper vh = new VariableHelper();
+		
+		vh.add("caesarsIdea", DemoController.Strings.caesarsIdea);
+		
+		return new CaesarsIdea(vh.toList());
 	}
 }

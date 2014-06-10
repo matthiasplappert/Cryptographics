@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.xnap.commons.i18n.I18n;
 
+import edu.kit.iks.cryptographics.caesar.controller.DemoController;
 import edu.kit.iks.cryptographics.caesar.controller.IntroController;
 import edu.kit.iks.cryptographicslib.AbstractVisualizationInfo;
 import edu.kit.iks.cryptographicslib.Configuration;
@@ -57,7 +58,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 		List<Class<?>> controllerClasses = new ArrayList<>();
 
 		controllerClasses.add(IntroController.class);
-//		controllerClasses.add(DemoController.class);
+		controllerClasses.add(DemoController.class);
 		controllerClasses.add(InformationController.class);
 
 		return controllerClasses;
@@ -69,7 +70,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	@Override
 	public String getDescription() {
 		String description = CaesarVisualizationInfo.i18n
-				.tr("Get to know how Caesar fooled his enemys that "
+				.tr("Get to know how Caesar fooled his enemies that "
 						+ "intercepted his orders and see one of the oldest "
 						+ "attempts to make confidential material unreadable "
 						+ "for undesireable readers.");

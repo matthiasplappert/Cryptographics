@@ -21,6 +21,7 @@ package edu.kit.iks.cryptographics;
 
 import javax.swing.SwingUtilities;
 
+import edu.kit.iks.cryptographics.main.controller.MainController;
 import edu.kit.iks.cryptographicslib.Configuration;
 import edu.kit.iks.cryptographicslib.Logger;
 
@@ -42,7 +43,7 @@ public class Main {
 		}
 		
 		Logger.log("Cryptographics launched");
-		Logger.debug("Main", "main", "Debugger running.");
+		Logger.debug("Main", "main", "Debugger running");
 		
 		// Run app on the AWT event queue.
 		SwingUtilities.invokeLater(new Runnable() {

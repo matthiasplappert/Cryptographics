@@ -13,12 +13,8 @@
  */
 package edu.kit.iks.cryptographics.caesar.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import org.xnap.commons.i18n.I18n;
 
-import edu.kit.iks.cryptographics.VisualizationContainerController;
 import edu.kit.iks.cryptographics.caesar.views.intro.IntroView;
 import edu.kit.iks.cryptographics.caesar.views.intro.partials.CaesarsConquerPlan;
 import edu.kit.iks.cryptographics.caesar.views.intro.partials.CaesarsPlanCrossed;
@@ -27,14 +23,13 @@ import edu.kit.iks.cryptographics.caesar.views.intro.partials.CourierCaughtByKry
 import edu.kit.iks.cryptographics.caesar.views.intro.partials.KryptolixReadingPlan;
 import edu.kit.iks.cryptographicslib.AbstractVisualizationInfo;
 import edu.kit.iks.cryptographicslib.Configuration;
-import edu.kit.iks.cryptographicslib.controller.AbstractVisualizationController;
-import edu.kit.iks.cryptographicslib.views.partials.AbstractPartialView;
+import edu.kit.iks.cryptographicslib.controller.AbstractSteppableVisualizationController;
 
 /**
  * @author Christian Dreher <uaeef@student.kit.edu>
  *
  */
-public class IntroController extends AbstractVisualizationController {
+public class IntroController extends AbstractSteppableVisualizationController {
 
 	/**
 	 * Localization instance
@@ -74,11 +69,6 @@ public class IntroController extends AbstractVisualizationController {
 	}
 
 	/**
-	 * Helper to keep track of the running order of the partial views
-	 */
-	private RunningOrderHelper runningOrderHelper;
-	
-	/**
 	 * @param visualizationInfo
 	 */
 	public IntroController(AbstractVisualizationInfo visualizationInfo) {
@@ -93,39 +83,12 @@ public class IntroController extends AbstractVisualizationController {
 		return IntroController.Strings.help;
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#loadView()
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.cryptographicslib.controller.AbstractSteppableVisualizationController#loadView(edu.kit.iks.cryptographicslib.controller.AbstractSteppableVisualizationController.RunningOrderHelper)
 	 */
 	@Override
-	public void loadView() {
-		this.prepareView();
-		this.preparePartialViewsAndOrder();
-	}
-
-	/* (non-Javadoc)
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
-	 */
-	@Override
-	public void unloadView() {
-		this.view = null;
-		this.runningOrderHelper = null;
-	}
-	
-	/**
-	 * Casts view for easier access
-	 * 
-	 * @return Casted view
-	 */
-	private IntroView view() {
-		return (IntroView) this.view;
-	}
-
-	/**
-	 * Prepares the layout view
-	 * 
-	 * @return 
-	 */
-	private void prepareView() {
+	public void loadView(RunningOrderHelper roh) {
 		// Set variables for view
 		VariableHelper vh = new VariableHelper();
 		
@@ -135,49 +98,28 @@ public class IntroController extends AbstractVisualizationController {
 		// Create view
 		this.view = new IntroView(vh.toList());
 		
-		// Set ActionListener
-		this.prepareNextActionListener();
+		// Use default button behavior
+		this.useDefaultNextButtonBehavior();
+		this.useDefaultStepButtonBehavior();
 		
-		this.view().setStepButtonActionListener(new ActionListener() {
+		// Define running order
+		this.defineRunningOrder(roh);
+	}
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				IntroController.this.presentNextStep();
-			}
-			
-		});
+	/* (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractController#unloadView()
+	 */
+	@Override
+	public void unloadView() {
+		this.view = null;
 	}
 	
-	/**
-	 * Presents the next step by loading the partial view first
-	 * enqueued in the running order
-	 */
-	private void presentNextStep() {
-		AbstractPartialView step = this.runningOrderHelper.getNext();
-		
-		if (step == null) {
-			((VisualizationContainerController) this.parentController)
-				.presentNextVisualizationController();
-		} else {
-			this.view().setContent(step);
-		}
-	}
-	
-	/**
-	 * Prepares the partial views and their order
-	 */
-	private void preparePartialViewsAndOrder() {
-		this.runningOrderHelper = new RunningOrderHelper();
-		
-		// Define the running order of the steps
-		this.runningOrderHelper.enqueue(this.prepareCaesarsConquerPlan());
-		this.runningOrderHelper.enqueue(this.prepareCourierCarryingPlan());
-		this.runningOrderHelper.enqueue(this.prepareCourierCaughtByKryptolix());
-		this.runningOrderHelper.enqueue(this.prepareKryptolixReadingPlan());
-		this.runningOrderHelper.enqueue(this.prepareCaesarsPlanCrossed());
-		
-		// Load first step into view
-		this.view().setContent(this.runningOrderHelper.getNext());
+	private void defineRunningOrder(RunningOrderHelper roh) {
+		roh.enqueue(this.prepareCaesarsConquerPlan());
+		roh.enqueue(this.prepareCourierCarryingPlan());
+		roh.enqueue(this.prepareCourierCaughtByKryptolix());
+		roh.enqueue(this.prepareKryptolixReadingPlan());
+		roh.enqueue(this.prepareCaesarsPlanCrossed());
 	}
 	
 	private CaesarsConquerPlan prepareCaesarsConquerPlan() {
@@ -214,4 +156,5 @@ public class IntroController extends AbstractVisualizationController {
 		
 		return new CaesarsPlanCrossed(vh.toList());
 	}
+
 }

@@ -103,6 +103,15 @@ public abstract class AbstractVisualizationView extends AbstractView {
 		public ContentContainer() {
 			super(null);
 		}
+		
+
+		/* (non-Javadoc)
+		 * @see edu.kit.iks.cryptographicslib.views.partials.AbstractPartialView#preparePartialView()
+		 */
+		@Override
+		public void preparePartialView() {
+			// Nothing to do, view will be populated at runtime
+		}
 	}
 	
 	/**
@@ -196,6 +205,9 @@ public abstract class AbstractVisualizationView extends AbstractView {
 	public void setNextButtonActionListener(ActionListener al) {
 		if (this.navigationContainer.nextButton != null) {
 			this.navigationContainer.nextButton.addActionListener(al);
+		} else {
+			throw new RuntimeException("'Next' button action listener could not be set since the button is not "
+					+ "initialized.");
 		}
 	}
 	
@@ -207,6 +219,9 @@ public abstract class AbstractVisualizationView extends AbstractView {
 	public void setBackButtonActionListener(ActionListener al) {
 		if (this.navigationContainer.backButton != null) {
 			this.navigationContainer.backButton.addActionListener(al);
+		} else {
+			throw new RuntimeException("'Back' button action listener could not be set since the button is not "
+					+ "initialized.");
 		}
 	}
 	
@@ -215,7 +230,12 @@ public abstract class AbstractVisualizationView extends AbstractView {
 	 * @param al The ActionListener to bind
 	 */
 	public void setStepButtonActionListener(ActionListener al) {
-		this.stepButton.addActionListener(al);
+		if (this.stepButton != null) {
+			this.stepButton.addActionListener(al);
+		} else {
+			throw new RuntimeException("'Step' button action listener could not be set since the button is not "
+					+ "initialized.");
+		}
 	}
 	
 	/**
@@ -238,10 +258,25 @@ public abstract class AbstractVisualizationView extends AbstractView {
 		return this.contentContainer.addElement(partialView);
 	}
 	
+	/**
+	 * Sets the content to a new partial view
+	 * 
+	 * @param content Partial view to set
+	 */
 	public void setContent(AbstractPartialView content) {
+		// Removes old content container from view
 		this.remove(this.contentContainer);
+		
+		// Sets new content container
 		this.contentContainer = content;
+		
+		// Prepares the partial view to display its contents
+		this.contentContainer.preparePartialView();
+		
+		// Adds the new partial view to this view
 		this.add(this.contentContainer);
+		
+		// Refresh
 		this.refreshContent();
 	}
 	
@@ -264,6 +299,9 @@ public abstract class AbstractVisualizationView extends AbstractView {
 		this.add(this.contentContainer);
 	}
 	
+	/**
+	 * Refreshes the content area
+	 */
 	public void refreshContent() {
 		this.validate();
 	}

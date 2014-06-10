@@ -54,6 +54,19 @@ public abstract class AbstractPartialView extends AbstractView {
 		this.initGridBagConstraints();
 	}
 	
+	/**
+	 * Method to initialize the partial view. Necessary, since maybe not all partial views
+	 * are needed, so relying on this method to initialize a partial view when it is needed
+	 * results in better resource utilization. 
+	 */
+	public abstract void preparePartialView();
+	
+	/**
+	 * Adds an element to the content area
+	 * 
+	 * @param element Element to add
+	 * @return ID to identify the object for modifying or removing it
+	 */
 	public int addElement(JComponent element) {
 		this.elements.add(this.gbc.gridy, element);
 		this.add(element, this.gbc);

@@ -34,11 +34,13 @@ public class CourierCaughtByKryptolix extends AbstractPartialView {
 	 */
 	public CourierCaughtByKryptolix(List<SimpleEntry<String, String>> variables) {
 		super(variables);
-
-		this.init();
 	}
 
-	private void init() {
+	/* (non-Javadoc)
+	 * @see edu.kit.iks.cryptographicslib.views.partials.AbstractPartialView#preparePartialView()
+	 */
+	@Override
+	public void preparePartialView() {
 		this.addImageFromResource("FlyingCourier");
 		
 		this.addText(this.getVariableValue("courierCaughtByKryptolix"));

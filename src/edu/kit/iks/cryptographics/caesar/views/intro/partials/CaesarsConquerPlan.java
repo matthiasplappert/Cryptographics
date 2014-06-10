@@ -34,11 +34,14 @@ public class CaesarsConquerPlan extends AbstractPartialView {
 	 */
 	public CaesarsConquerPlan(List<SimpleEntry<String, String>> variables) {
 		super(variables);
-		
-		this.init();
 	}
 
-	private void init() {
+
+	/* (non-Javadoc)
+	 * @see edu.kit.iks.cryptographicslib.views.partials.AbstractPartialView#preparePartialView()
+	 */
+	@Override
+	public void preparePartialView() {
 		this.addImageFromResource("CaesarIdea");
 		
 		this.addText(this.getVariableValue("caesarsConquerPlan"));

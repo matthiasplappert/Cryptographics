@@ -34,11 +34,13 @@ public class KryptolixReadingPlan extends AbstractPartialView {
 	 */
 	public KryptolixReadingPlan(List<SimpleEntry<String, String>> variables) {
 		super(variables);
-
-		this.init();
 	}
 
-	private void init() {
+	/* (non-Javadoc)
+	 * @see edu.kit.iks.cryptographicslib.views.partials.AbstractPartialView#preparePartialView()
+	 */
+	@Override
+	public void preparePartialView() {
 		this.addImageFromResource("Kryptolix");
 		
 		this.addText(this.getVariableValue("kryptolixReadingPlan"));

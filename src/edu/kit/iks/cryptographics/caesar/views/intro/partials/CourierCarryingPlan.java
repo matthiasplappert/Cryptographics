@@ -34,11 +34,13 @@ public class CourierCarryingPlan extends AbstractPartialView {
 	 */
 	public CourierCarryingPlan(List<SimpleEntry<String, String>> variables) {
 		super(variables);
-		
-		init();
 	}
 
-	private void init() {
+	/* (non-Javadoc)
+	 * @see edu.kit.iks.cryptographicslib.views.partials.AbstractPartialView#preparePartialView()
+	 */
+	@Override
+	public void preparePartialView() {
 		this.addImageFromResource("Courier");
 		
 		this.addText(this.getVariableValue("courierCarryingPlan"));

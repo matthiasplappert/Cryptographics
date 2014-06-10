@@ -23,13 +23,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-import edu.kit.iks.cryptographics.VisualizationContainerController;
+import edu.kit.iks.cryptographics.main.controller.VisualizationContainerController;
 import edu.kit.iks.cryptographicslib.AbstractVisualizationInfo;
 import edu.kit.iks.cryptographicslib.views.AbstractVisualizationView;
-import edu.kit.iks.cryptographicslib.views.partials.AbstractPartialView;
 
 /**
  * Abstract visualization controller specialized for
@@ -57,25 +55,6 @@ public abstract class AbstractVisualizationController extends AbstractController
 		
 		public List<SimpleEntry<String, String>> toList() {
 			return this.variables;
-		}
-	}
-	
-	protected class RunningOrderHelper {
-		
-		LinkedList<AbstractPartialView> runningOrder = new LinkedList<>();
-		
-		public RunningOrderHelper() {
-
-		}
-
-		public void enqueue(AbstractPartialView view) {
-			this.runningOrder.add(view);
-		}
-		
-		public AbstractPartialView getNext() {
-			// poll(), because it returns null when the queue is empty.
-			// remove() or similar throw a NoSuchElementException
-			return this.runningOrder.poll();
 		}
 	}
 	
@@ -112,10 +91,18 @@ public abstract class AbstractVisualizationController extends AbstractController
 	abstract public String getHelp();
 	
 	/**
-	 * Prepares the ActionListener for the 'Next' button
-	 * (Skips current controller and loads next one)
+	 * Uses all default button behaviors
 	 */
-	protected void prepareNextActionListener() {
+	protected void useDefaultButtonBehaviors() {
+		this.useDefaultNextButtonBehavior();
+		this.useDefaultNextButtonBehavior();
+	}
+	
+	/**
+	 * Pressing the 'Next' button will load the next controller
+	 * as defined in the VisualizationInfo
+	 */
+	protected void useDefaultNextButtonBehavior() {
 		if (this.view == null) {
 			throw new RuntimeException("View is undefined. Can't prepare ActionListener without defined view.");
 		}
@@ -135,10 +122,10 @@ public abstract class AbstractVisualizationController extends AbstractController
 	}
 	
 	/**
-	 * Prepares the ActionListener for the 'Back' button
-	 * (Skips current controller and loads previous one)
+	 * Pressing the 'Back' button will load the previous controller
+	 * as defined in the VisualizationInfo
 	 */
-	protected void prepareBackActionListener() {
+	protected void useDefaultBackButtonBehavior() {
 		if (this.view == null) {
 			throw new RuntimeException("View is undefined. Can't prepare ActionListener without defined view.");
 		}
