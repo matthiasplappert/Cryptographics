@@ -25,7 +25,6 @@ import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -38,7 +37,6 @@ import edu.kit.iks.cryptographics.main.views.VisualizationContainerView;
 import edu.kit.iks.cryptographicslib.AbstractVisualizationInfo;
 import edu.kit.iks.cryptographicslib.Configuration;
 import edu.kit.iks.cryptographicslib.Logger;
-import edu.kit.iks.cryptographicslib.MouseClickListener;
 import edu.kit.iks.cryptographicslib.Utility;
 import edu.kit.iks.cryptographicslib.controller.AbstractController;
 import edu.kit.iks.cryptographicslib.controller.AbstractVisualizationController;
@@ -156,20 +154,25 @@ public class VisualizationContainerController extends AbstractController {
 		this.view.setName("visualizationContainerController");
 		this.view.getNameLabel().setText("<html><h1>" + this.getVisualizationInfo().getName() + "</h1></html>");
 		
-		this.view.getExitButton().addMouseListener(new MouseClickListener() {
+		this.view.getExitButton().addActionListener(new ActionListener() {
+
 			@Override
-			public void clicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				MainController mainController = (MainController) getParentController();
-				getCurrentVisualizationController().unloadView();
+				VisualizationContainerController.this.getCurrentVisualizationController().unloadView();
 				Logger.log("User went back to start screen");
 				mainController.presentStartAction();
 			}
+			
 		});
-		this.view.getHelpButton().addMouseListener(new MouseClickListener() {
+		
+		this.view.getHelpButton().addActionListener(new ActionListener() {
+
 			@Override
-			public void clicked(MouseEvent e) {
-				presentHelpPopover();
+			public void actionPerformed(ActionEvent e) {
+				VisualizationContainerController.this.presentHelpPopover();
 			}
+			
 		});
 	}
 
@@ -227,15 +230,18 @@ public class VisualizationContainerController extends AbstractController {
 		this.idlePopoverView.present(this.getView().getExitButton());
 		
 		// Create mouse listeners for buttons.
-		MouseClickListener listener = new MouseClickListener() {
+		ActionListener listener = new ActionListener() {
+			
 			@Override
-			public void clicked(MouseEvent e) {
-				dismissIdlePopover();
-				startIdleDetectionTimer();
+			public void actionPerformed(ActionEvent e) {
+				VisualizationContainerController.this.dismissIdlePopover();
+				VisualizationContainerController.this.startIdleDetectionTimer();
 			}
+			
 		};
-		this.idlePopoverView.getCloseButton().addMouseListener(listener);
-		this.idlePopoverView.getContinueButton().addMouseListener(listener);
+		
+		this.idlePopoverView.getCloseButton().addActionListener(listener);
+		this.idlePopoverView.getContinueButton().addActionListener(listener);
 		
 		this.startResetTimer();
 	}
@@ -331,12 +337,14 @@ public class VisualizationContainerController extends AbstractController {
 		}
 		
 		this.helpPopoverView = new HelpPopoverView(helpText);
-		this.helpPopoverView.getCloseButton().addMouseListener(new MouseClickListener() {
+		
+		this.helpPopoverView.getCloseButton().addActionListener(new ActionListener() {
 			@Override
-			public void clicked(MouseEvent e) {
-				dismissHelpPopover();
+			public void actionPerformed(ActionEvent e) {
+				VisualizationContainerController.this.dismissHelpPopover();
 			}
 		});
+		
 		this.helpPopoverView.present(this.getView().getHelpButton());
 	}
 	

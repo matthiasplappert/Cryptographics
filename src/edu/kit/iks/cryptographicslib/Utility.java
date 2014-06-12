@@ -45,7 +45,6 @@ public class Utility {
 	 * @param name Name of the resource
 	 * @return InputStream instance containing requested file
 	 */
-	@Deprecated
 	public static InputStream getResourceAsInputStream(String name) {
 		
 		if (!Pattern.matches("/.*", name)) {

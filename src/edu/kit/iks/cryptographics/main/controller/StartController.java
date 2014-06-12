@@ -22,7 +22,8 @@ package edu.kit.iks.cryptographics.main.controller;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -40,7 +41,6 @@ import edu.kit.iks.cryptographics.main.views.TimelineView;
 import edu.kit.iks.cryptographics.main.views.WelcomeView;
 import edu.kit.iks.cryptographicslib.AbstractVisualizationInfo;
 import edu.kit.iks.cryptographicslib.Logger;
-import edu.kit.iks.cryptographicslib.MouseClickListener;
 import edu.kit.iks.cryptographicslib.VisualizationButton;
 import edu.kit.iks.cryptographicslib.VisualizationInfoLoader;
 import edu.kit.iks.cryptographicslib.controller.AbstractController;
@@ -137,13 +137,14 @@ public class StartController extends AbstractController {
 
 		// Add event handlers
 		for (VisualizationButton button : this.timelineView.getButtons()) {
-			button.addMouseListener(new MouseClickListener() {
+			button.addActionListener(new ActionListener() {
+
 				@Override
-				public void clicked(MouseEvent event) {
-					VisualizationButton button = (VisualizationButton) event
-							.getSource();
-					presentPopoverAction(button.getVisualizationInfo(), button);
+				public void actionPerformed(ActionEvent e) {
+					VisualizationButton button = (VisualizationButton) e.getSource();
+					StartController.this.presentPopoverAction(button.getVisualizationInfo(), button);
 				}
+				
 			});
 		}
 
@@ -201,25 +202,30 @@ public class StartController extends AbstractController {
 	 */
 	public void presentPopoverAction(
 			AbstractVisualizationInfo visualizationInfo, JComponent sender) {
+		
 		loadPopoverView(visualizationInfo);
+		
 		this.popoverView.present(sender);
-		this.popoverView.getStartButton().addMouseListener(
-				new MouseClickListener() {
-					@Override
-					public void clicked(MouseEvent event) {
-						VisualizationButton startButton = (VisualizationButton) event
-								.getSource();
-						startVisualizationAction(startButton
-								.getVisualizationInfo());
-					}
-				});
-		this.popoverView.getCloseButton().addMouseListener(
-				new MouseClickListener() {
-					@Override
-					public void clicked(MouseEvent event) {
-						dismissPopoverAction();
-					}
-				});
+		
+		this.popoverView.getStartButton().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VisualizationButton startButton = (VisualizationButton) e.getSource();
+				
+				StartController.this.startVisualizationAction(startButton.getVisualizationInfo());
+			}
+			
+		});
+		
+		this.popoverView.getCloseButton().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				StartController.this.dismissPopoverAction();
+			}
+			
+		});
 	}
 
 	/**
