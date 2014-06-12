@@ -124,8 +124,8 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public int getYear() {
-		// when getYear() negative then it's the year B.C.
-		// The year is an estimation!!!
+		// When getYear() negative then it's the year B.C.
+		// The year is an estimation
 		return -70;
 	}
 
