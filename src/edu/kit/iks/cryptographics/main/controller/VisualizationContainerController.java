@@ -94,7 +94,7 @@ public class VisualizationContainerController extends AbstractController {
 	/**
 	 * List of all child classes
 	 */
-	List<Class<?>> childClasses;
+	List<Class<? extends AbstractVisualizationController>> childClasses;
 	
 	/**
 	 * View of the popover wich shows help for the user.
@@ -445,17 +445,15 @@ public class VisualizationContainerController extends AbstractController {
 	 */
 	private AbstractVisualizationController loadVisualizationController(
 			int index) {
-		Constructor<AbstractVisualizationController> controllerConstructor = null;
-		@SuppressWarnings("unchecked")
-		Class<AbstractVisualizationController> controllerClass = (Class<AbstractVisualizationController>) this.childClasses
-				.get(index);
+		Constructor<? extends AbstractVisualizationController> controllerConstructor = null;
+
+		Class<? extends AbstractVisualizationController> controllerClass = this.childClasses.get(index);
 		AbstractVisualizationController controller = null;
 
 		try {
 			// visualizationinfo is now passed to the contructor.
-			controllerConstructor = controllerClass
-					.getConstructor(AbstractVisualizationInfo.class);
-			controller = controllerConstructor
+			controllerConstructor = controllerClass.getConstructor(AbstractVisualizationInfo.class);
+			controller = (AbstractVisualizationController) controllerConstructor
 					.newInstance(this.visualizationInfo);
 		} catch (InstantiationException | IllegalAccessException
 				| NoSuchMethodException | SecurityException

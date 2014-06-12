@@ -29,6 +29,7 @@ import edu.kit.iks.cryptographics.caesar.controller.IntroController;
 import edu.kit.iks.cryptographicslib.AbstractVisualizationInfo;
 import edu.kit.iks.cryptographicslib.Configuration;
 import edu.kit.iks.cryptographicslib.VisualizationDifficulty;
+import edu.kit.iks.cryptographicslib.controller.AbstractVisualizationController;
 import edu.kit.iks.cryptographicslib.controller.InformationController;
 
 /**
@@ -54,8 +55,8 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getControllerClasses ()
 	 */
 	@Override
-	public List<Class<?>> getControllerClasses() {
-		List<Class<?>> controllerClasses = new ArrayList<>();
+	public List<Class<? extends AbstractVisualizationController>> getControllerClasses() {
+		List<Class<? extends AbstractVisualizationController>> controllerClasses = new ArrayList<>();
 
 		controllerClasses.add(IntroController.class);
 		controllerClasses.add(DemoController.class);

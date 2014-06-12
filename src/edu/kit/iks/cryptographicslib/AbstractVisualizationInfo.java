@@ -31,6 +31,7 @@ import javax.imageio.ImageIO;
 
 import org.xnap.commons.i18n.I18n;
 
+import edu.kit.iks.cryptographicslib.controller.AbstractVisualizationController;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 
@@ -121,11 +122,9 @@ abstract public class AbstractVisualizationInfo {
 	/**
 	 * Gets a list of all controller classes belonging to the visualization
 	 * 
-	 * @todo fix warning here 
-	 * ("Class is a raw type. References to generic type Class<T> should be parameterized")
 	 * @return List of all controller classes belonging to the visualization
 	 */
-	abstract public List<Class<?>> getControllerClasses();
+	abstract public List<Class<? extends AbstractVisualizationController>> getControllerClasses();
 
 	/**
 	 * Gets the additional information as file path to display HTML

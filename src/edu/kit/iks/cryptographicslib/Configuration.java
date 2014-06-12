@@ -237,8 +237,7 @@ public class Configuration {
 	 * @param className fully qualified class name (ClassName.class)
 	 * @return I18n instance to use the tr functions
 	 */
-	@SuppressWarnings("rawtypes")
-	public I18n getI18n(Class className) {
+	public I18n getI18n(Class<?> className) {
 		Locale loc = new Locale(this.getLanguageCode());
 		I18n i18n = I18nFactory.getI18n(className, loc);
 		
