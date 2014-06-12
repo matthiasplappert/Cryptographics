@@ -22,10 +22,6 @@ package edu.kit.iks.cryptographicslib;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.kit.iks.cryptographics.caesar.CaesarVisualizationInfo;
-import edu.kit.iks.cryptographics.z_oldmodules.diffiehellman.DHVisualizationInfo;
-import edu.kit.iks.cryptographics.z_oldmodules.vigenere.VigenereVisualizationInfo;
-
 /**
  * This class is a registry where all {VisualisationInfo}-objects are 
  * accessible through the static {loadAllVisualizationInfo()}-method.
@@ -48,16 +44,13 @@ public class VisualizationInfoLoader {
 	 * @return A list of all {VisualizationInfo}-objects 
 	 */
 	static public List<AbstractVisualizationInfo> loadAllVisualizationInfos() {
+		
 		List<AbstractVisualizationInfo> visualizationInfos = new ArrayList<AbstractVisualizationInfo>();
-		visualizationInfos.add(new CaesarVisualizationInfo());
-		visualizationInfos.add(new DHVisualizationInfo());
-		visualizationInfos.add(new VigenereVisualizationInfo());
+		visualizationInfos.add(new edu.kit.iks.cryptographics.caesar.VisualizationInfo());
 		visualizationInfos.add(new edu.kit.iks.cryptographics.onetimepad.VisualizationInfo());
 		visualizationInfos.add(new edu.kit.iks.cryptographics.aes.VisualizationInfo());
 		visualizationInfos.add(new edu.kit.iks.cryptographics.sha2.VisualizationInfo());
 		
-		// Example Package
-		//visualizationInfos.add(new edu.kit.iks.Cryptographics.Example.VisualizationInfo());
 		return visualizationInfos;
 	}
 }

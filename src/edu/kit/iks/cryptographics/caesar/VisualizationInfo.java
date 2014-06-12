@@ -35,18 +35,18 @@ import edu.kit.iks.cryptographicslib.controller.InformationController;
  * @author Wasilij Beskorovajnov.
  * 
  */
-public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
+public class VisualizationInfo extends AbstractVisualizationInfo {
 
 	/**
 	 * Localization instance
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(
-			CaesarVisualizationInfo.class);
+			VisualizationInfo.class);
 
 	/**
 	 * Constructor for the visualizationInfo.
 	 */
-	public CaesarVisualizationInfo() {
+	public VisualizationInfo() {
 	
 	}
 
@@ -69,7 +69,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public String getDescription() {
-		String description = CaesarVisualizationInfo.i18n
+		String description = VisualizationInfo.i18n
 				.tr("Get to know how Caesar fooled his enemies that "
 						+ "intercepted his orders and see one of the oldest "
 						+ "attempts to make confidential material unreadable "
@@ -99,7 +99,7 @@ public class CaesarVisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public String getName() {
-		return CaesarVisualizationInfo.i18n.tr("Caesar");
+		return VisualizationInfo.i18n.tr("Caesar");
 	}
 
 	/*
