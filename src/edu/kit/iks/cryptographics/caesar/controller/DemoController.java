@@ -48,10 +48,10 @@ public class DemoController extends AbstractSteppableVisualizationController {
 		private static String noHelp = DemoController.i18n.tr("No help can be offered at the moment.");
 		
 		// Caesars Idea
-		private static String caesarsIdea = DemoController.i18n.tr("Caesar's idea was to simply shift "
+		private static String caesarsIdea = DemoController.i18n.tr("Caesar\'s idea was to simply shift "
 				+ "each letter in his name by three, so no undesired reader will know who sent "
-				+ "the plan in the future. Press 'Proceed' and see how it works.");
-		private static String helpCaesarsIdea = DemoController.i18n.tr("Just click 'Proceed' at the "
+				+ "the plan in the future. Press \'Proceed\' and see how it works.");
+		private static String helpCaesarsIdea = DemoController.i18n.tr("Just click \'Proceed\' at the "
 				+ "bottom to see how Caesars idea exactly works.");
 	}
 	

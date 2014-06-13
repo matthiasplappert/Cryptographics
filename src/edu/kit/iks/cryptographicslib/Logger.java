@@ -70,7 +70,7 @@ public class Logger {
 		String unixTimestamp = Logger.getUnixTimestamp();
 		
 		if (Logger.isDebugModeActive()) {
-			System.out.println("[Log]: (write '" + Logger.LOG_FILE_NAME + "') " + logEntry);
+			System.out.println("[Log]: (write \'" + Logger.LOG_FILE_NAME + "\') " + logEntry);
 		}
 		
     	Logger.writeLogFileLine(logEntry, unixTimestamp);

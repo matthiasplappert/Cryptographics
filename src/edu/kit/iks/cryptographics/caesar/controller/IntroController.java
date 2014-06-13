@@ -48,8 +48,8 @@ public class IntroController extends AbstractSteppableVisualizationController {
 		
 		// Help
 		public static String help = IntroController.i18n.tr("If you want to hear the story "
-				+ "of how Caesar came up with encrypting, click 'Tell me more', otherwise "
-				+ "click 'Skip Introduction'");
+				+ "of how Caesar came up with encrypting, click \'Tell me more\', otherwise "
+				+ "click \'Skip Introduction\'");
 
 		// Story texts
 		public static String caesarsConquerPlan = IntroController.i18n.tr("One fine day, at about 70 B.C., Caesar was "
@@ -61,7 +61,7 @@ public class IntroController extends AbstractSteppableVisualizationController {
 				+ "unsuspecting and whistling roman courier, he punched him back to Rome as the crow flies. "
 				+ "But the courier had lost his invaluable scroll!");
 		public static String kryptolixReadingPlan = IntroController.i18n.tr("When reading the scroll the courier "
-				+ "lost, Kryptolix identified it as Caesar's plan to conquer Gallia. Because of this, "
+				+ "lost, Kryptolix identified it as Caesar\'s plan to conquer Gallia. Because of this, "
 				+ "Kryptolix and his friends were able to defeat Caesar once more!");
 		public static String caesarsPlanCrossed = IntroController.i18n.tr("Caesar was raging! While he was "
 				+ "torturing some minions, suddenly an hellacious and foolproof idea crossed his mind. "

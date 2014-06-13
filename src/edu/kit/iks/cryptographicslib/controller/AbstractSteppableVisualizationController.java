@@ -91,7 +91,7 @@ public abstract class AbstractSteppableVisualizationController extends
 		if (this.runningOrderHelper.size() == 0) {
 			throw new RuntimeException("RunningOrderHelper was not populated with views to display. "
 					+ "You need to call roh.enqueue(YourView); to define a running order for your "
-					+ "views which should be steppable. If you don't need steppable views, use "
+					+ "views which should be steppable. If you don\'t need steppable views, use "
 					+ "AbstractVisualizationController instead.");
 		}
 		
@@ -125,7 +125,7 @@ public abstract class AbstractSteppableVisualizationController extends
 	 */
 	protected void useDefaultStepButtonBehavior() {
 		if (this.view == null) {
-			throw new RuntimeException("View is undefined. Can't prepare ActionListener without defined view.");
+			throw new RuntimeException("View is undefined. Can\'t prepare ActionListener without defined view.");
 		}
 		
 		((AbstractVisualizationView) this.view).setStepButtonActionListener(new ActionListener() {

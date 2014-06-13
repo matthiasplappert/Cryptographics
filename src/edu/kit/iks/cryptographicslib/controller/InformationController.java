@@ -99,7 +99,7 @@ public class InformationController extends AbstractVisualizationController {
 	public String getHelp() {
 		String help = InformationController.i18n.tr("Here you can learn more about {0}. You can also"
 				+ " scan the QR code at the bottom of the page to take additional information home."
-				+ " Once you're done, just click the exit button.", this.getVisualizationInfo().getName());
+				+ " Once you\'re done, just click the exit button.", this.getVisualizationInfo().getName());
 		
 		return help;
 	}

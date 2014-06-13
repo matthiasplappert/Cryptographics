@@ -113,7 +113,7 @@ public class IdlePopoverView extends PopoverView {
 		GridBagConstraints textConstraints = new GridBagConstraints();
 		textConstraints.gridx = 0;
 		textConstraints.gridy = 0;
-		String text = i18n.tr("You haven't done anything in a while. To keep this exhibit functional, the system will reset itself soon. If you want to continue using the system, just dismiss this dialog.");
+		String text = i18n.tr("You haven\'t done anything in a while. To keep this exhibit functional, the system will reset itself soon. If you want to continue using the system, just dismiss this dialog.");
 		this.textLabel = new JLabel("<html><div style=\"width:200px;\">" + text + "</div></html>");
 		this.getContentView().add(this.textLabel, textConstraints);
 		

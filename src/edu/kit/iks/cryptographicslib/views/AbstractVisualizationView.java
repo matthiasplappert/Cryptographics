@@ -206,7 +206,7 @@ public abstract class AbstractVisualizationView extends AbstractView {
 		if (this.navigationContainer.nextButton != null) {
 			this.navigationContainer.nextButton.addActionListener(al);
 		} else {
-			throw new RuntimeException("'Next' button action listener could not be set since the button is not "
+			throw new RuntimeException("\'Next\' button action listener could not be set since the button is not "
 					+ "initialized.");
 		}
 	}
@@ -220,7 +220,7 @@ public abstract class AbstractVisualizationView extends AbstractView {
 		if (this.navigationContainer.backButton != null) {
 			this.navigationContainer.backButton.addActionListener(al);
 		} else {
-			throw new RuntimeException("'Back' button action listener could not be set since the button is not "
+			throw new RuntimeException("\'Back\' button action listener could not be set since the button is not "
 					+ "initialized.");
 		}
 	}
@@ -233,7 +233,7 @@ public abstract class AbstractVisualizationView extends AbstractView {
 		if (this.stepButton != null) {
 			this.stepButton.addActionListener(al);
 		} else {
-			throw new RuntimeException("'Step' button action listener could not be set since the button is not "
+			throw new RuntimeException("\'Step\' button action listener could not be set since the button is not "
 					+ "initialized.");
 		}
 	}

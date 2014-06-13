@@ -104,7 +104,7 @@ public abstract class AbstractVisualizationController extends AbstractController
 	 */
 	protected void useDefaultNextButtonBehavior() {
 		if (this.view == null) {
-			throw new RuntimeException("View is undefined. Can't prepare ActionListener without defined view.");
+			throw new RuntimeException("View is undefined. Can\'t prepare ActionListener without defined view.");
 		}
 		
 		ActionListener nextListener = new ActionListener() {
@@ -127,7 +127,7 @@ public abstract class AbstractVisualizationController extends AbstractController
 	 */
 	protected void useDefaultBackButtonBehavior() {
 		if (this.view == null) {
-			throw new RuntimeException("View is undefined. Can't prepare ActionListener without defined view.");
+			throw new RuntimeException("View is undefined. Can\'t prepare ActionListener without defined view.");
 		}
 		
 		ActionListener backListener = new ActionListener() {
