@@ -36,15 +36,15 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
-import edu.kit.iks.cryptographics.main.views.TimelinePopoverView;
-import edu.kit.iks.cryptographics.main.views.TimelineView;
-import edu.kit.iks.cryptographics.main.views.WelcomeView;
-import edu.kit.iks.cryptographicslib.AbstractVisualizationInfo;
-import edu.kit.iks.cryptographicslib.Logger;
-import edu.kit.iks.cryptographicslib.VisualizationButton;
-import edu.kit.iks.cryptographicslib.VisualizationInfoLoader;
-import edu.kit.iks.cryptographicslib.controller.AbstractController;
-import edu.kit.iks.cryptographicslib.views.partials.ImageView;
+import edu.kit.iks.cryptographics.main.view.WelcomeView;
+import edu.kit.iks.cryptographics.main.view.partial.TimelinePopoverView;
+import edu.kit.iks.cryptographics.main.view.partial.TimelineView;
+import edu.kit.iks.cryptographics.main.view.partial.VisualizationButtonView;
+import edu.kit.iks.cryptographicslib.common.view.partial.ImageView;
+import edu.kit.iks.cryptographicslib.framework.controller.AbstractController;
+import edu.kit.iks.cryptographicslib.framework.model.AbstractVisualizationInfo;
+import edu.kit.iks.cryptographicslib.framework.model.VisualizationInfoLoader;
+import edu.kit.iks.cryptographicslib.util.Logger;
 
 /**
  * An instance of this class is the start controller showing teasers
@@ -136,12 +136,12 @@ public class StartController extends AbstractController {
 		this.view.add(this.timelineView, timelineViewLayout);
 
 		// Add event handlers
-		for (VisualizationButton button : this.timelineView.getButtons()) {
+		for (VisualizationButtonView button : this.timelineView.getButtons()) {
 			button.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					VisualizationButton button = (VisualizationButton) e.getSource();
+					VisualizationButtonView button = (VisualizationButtonView) e.getSource();
 					StartController.this.presentPopoverAction(button.getVisualizationInfo(), button);
 				}
 				
@@ -211,7 +211,7 @@ public class StartController extends AbstractController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VisualizationButton startButton = (VisualizationButton) e.getSource();
+				VisualizationButtonView startButton = (VisualizationButtonView) e.getSource();
 				
 				StartController.this.startVisualizationAction(startButton.getVisualizationInfo());
 			}

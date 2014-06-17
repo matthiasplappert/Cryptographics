@@ -24,11 +24,11 @@ import java.util.List;
 
 import org.xnap.commons.i18n.I18n;
 
-import edu.kit.iks.cryptographicslib.AbstractVisualizationInfo;
-import edu.kit.iks.cryptographicslib.Configuration;
-import edu.kit.iks.cryptographicslib.VisualizationDifficulty;
-import edu.kit.iks.cryptographicslib.controller.AbstractVisualizationController;
-import edu.kit.iks.cryptographicslib.controller.InformationController;
+import edu.kit.iks.cryptographicslib.common.controller.InformationController;
+import edu.kit.iks.cryptographicslib.framework.controller.AbstractVisualizationController;
+import edu.kit.iks.cryptographicslib.framework.model.AbstractVisualizationInfo;
+import edu.kit.iks.cryptographicslib.framework.model.VisualizationDifficulty;
+import edu.kit.iks.cryptographicslib.util.Configuration;
 
 public class VisualizationInfo extends AbstractVisualizationInfo {
 	

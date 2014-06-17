@@ -17,42 +17,33 @@
  * THE SOFTWARE.
  */
 
-package edu.kit.iks.cryptographics;
-
-import javax.swing.SwingUtilities;
-
-import edu.kit.iks.cryptographics.main.controller.MainController;
-import edu.kit.iks.cryptographicslib.util.Configuration;
-import edu.kit.iks.cryptographicslib.util.Logger;
+package edu.kit.iks.cryptographicslib.framework.model;
 
 /**
- * Main Class containing the main()-method
+ * Enum to model a difficulty for a specific visualization 
  * 
  * @author Christian Dreher
  */
-public class Main {
+public enum VisualizationDifficulty {
+	
 	/**
-	 * Main method (hook for Java to start from)
-	 * 
-	 * @param args  Arguments
+	 * Easy difficulty 
 	 */
-	public static void main(String[] args) {
-		// Configure logger.
-		if (Configuration.getInstance().isDebugModeEnabled()) {
-			Logger.setDebugMode();
-		}
-		
-		Logger.log("Cryptographics launched");
-		Logger.debug("Main", "main", "Debugger running");
-		
-		// Run app on the AWT event queue.
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				MainController mainController = new MainController();
-				mainController.loadView();
-				mainController.presentStartAction();
-			}
-		});
-	}
+	EASY,
+	
+	/**
+	 * Medium difficulty 
+	 */
+	MEDIUM,
+	
+	/**
+	 * Hard difficulty 
+	 */
+	HARD,
+	
+	/**
+	 * Used to describe visualization that do not have an interactive visualization
+	 * yet and only present additional information
+	 */
+	NOT_INTERACTIVE
 }

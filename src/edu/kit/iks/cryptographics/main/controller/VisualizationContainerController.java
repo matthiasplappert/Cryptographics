@@ -31,15 +31,15 @@ import java.util.List;
 
 import javax.swing.Timer;
 
-import edu.kit.iks.cryptographics.main.views.HelpPopoverView;
-import edu.kit.iks.cryptographics.main.views.IdlePopoverView;
-import edu.kit.iks.cryptographics.main.views.VisualizationContainerView;
-import edu.kit.iks.cryptographicslib.AbstractVisualizationInfo;
-import edu.kit.iks.cryptographicslib.Configuration;
-import edu.kit.iks.cryptographicslib.Logger;
-import edu.kit.iks.cryptographicslib.Utility;
-import edu.kit.iks.cryptographicslib.controller.AbstractController;
-import edu.kit.iks.cryptographicslib.controller.AbstractVisualizationController;
+import edu.kit.iks.cryptographics.main.view.VisualizationContainerView;
+import edu.kit.iks.cryptographics.main.view.partial.HelpPopoverView;
+import edu.kit.iks.cryptographics.main.view.partial.IdlePopoverView;
+import edu.kit.iks.cryptographicslib.framework.controller.AbstractController;
+import edu.kit.iks.cryptographicslib.framework.controller.AbstractVisualizationController;
+import edu.kit.iks.cryptographicslib.framework.model.AbstractVisualizationInfo;
+import edu.kit.iks.cryptographicslib.util.Configuration;
+import edu.kit.iks.cryptographicslib.util.Logger;
+import edu.kit.iks.cryptographicslib.util.Utility;
 
 /**
  * An instance of this class is a wrapper for visualization controller to
@@ -330,7 +330,7 @@ public class VisualizationContainerController extends AbstractController {
 			this.dismissIdlePopover();
 		}
 		
-		String helpText = this.getCurrentVisualizationController().getHelp();
+		String helpText = this.getCurrentVisualizationController().helpAction();
 		if (helpText == null) {
 			// Do not present help if no help is available.
 			return;

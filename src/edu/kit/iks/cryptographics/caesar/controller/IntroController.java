@@ -15,15 +15,15 @@ package edu.kit.iks.cryptographics.caesar.controller;
 
 import org.xnap.commons.i18n.I18n;
 
-import edu.kit.iks.cryptographics.caesar.views.intro.IntroView;
-import edu.kit.iks.cryptographics.caesar.views.intro.partials.CaesarsConquerPlan;
-import edu.kit.iks.cryptographics.caesar.views.intro.partials.CaesarsPlanCrossed;
-import edu.kit.iks.cryptographics.caesar.views.intro.partials.CourierCarryingPlan;
-import edu.kit.iks.cryptographics.caesar.views.intro.partials.CourierCaughtByKryptolix;
-import edu.kit.iks.cryptographics.caesar.views.intro.partials.KryptolixReadingPlan;
-import edu.kit.iks.cryptographicslib.AbstractVisualizationInfo;
-import edu.kit.iks.cryptographicslib.Configuration;
-import edu.kit.iks.cryptographicslib.controller.AbstractSteppableVisualizationController;
+import edu.kit.iks.cryptographics.caesar.view.intro.IntroView;
+import edu.kit.iks.cryptographics.caesar.view.intro.partial.CaesarsConquerPlan;
+import edu.kit.iks.cryptographics.caesar.view.intro.partial.CaesarsPlanCrossed;
+import edu.kit.iks.cryptographics.caesar.view.intro.partial.CourierCarryingPlan;
+import edu.kit.iks.cryptographics.caesar.view.intro.partial.CourierCaughtByKryptolix;
+import edu.kit.iks.cryptographics.caesar.view.intro.partial.KryptolixReadingPlan;
+import edu.kit.iks.cryptographicslib.framework.controller.AbstractSteppableVisualizationController;
+import edu.kit.iks.cryptographicslib.framework.model.AbstractVisualizationInfo;
+import edu.kit.iks.cryptographicslib.util.Configuration;
 
 /**
  * @author Christian Dreher <uaeef@student.kit.edu>
@@ -76,11 +76,11 @@ public class IntroController extends AbstractSteppableVisualizationController {
 	}
 
 	/* (non-Javadoc)
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationController#getHelp()
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
-	public String getHelp() {
-		return IntroController.Strings.help;
+	public boolean routeAction(String callerId) {
+		return false;
 	}
 
 	/*
@@ -94,13 +94,10 @@ public class IntroController extends AbstractSteppableVisualizationController {
 		
 		vh.add("nextButtonLabel", IntroController.Strings.nextButtonLabel);
 		vh.add("stepButtonLabel", IntroController.Strings.stepButtonLabel);
+		vh.add("helpText", IntroController.Strings.help);
 		
 		// Create view
-		this.view = new IntroView(vh.toList());
-		
-		// Use default button behavior
-		this.useDefaultNextButtonBehavior();
-		this.useDefaultStepButtonBehavior();
+		this.view = new IntroView(this, vh.toList());
 		
 		// Define running order
 		this.defineRunningOrder(roh);
@@ -112,6 +109,14 @@ public class IntroController extends AbstractSteppableVisualizationController {
 	@Override
 	public void unloadView() {
 		this.view = null;
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationController#getHelp()
+	 */
+	@Override
+	public String helpAction() {
+		return this.view().getHelp();
 	}
 	
 	private void defineRunningOrder(RunningOrderHelper roh) {
@@ -157,4 +162,7 @@ public class IntroController extends AbstractSteppableVisualizationController {
 		return new CaesarsPlanCrossed(vh.toList());
 	}
 
+	private IntroView view() {
+		return (IntroView) this.view;
+	}
 }

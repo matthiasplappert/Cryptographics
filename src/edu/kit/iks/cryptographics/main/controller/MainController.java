@@ -37,11 +37,11 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.synth.SynthLookAndFeel;
 
-import edu.kit.iks.cryptographicslib.AbstractVisualizationInfo;
-import edu.kit.iks.cryptographicslib.Configuration;
-import edu.kit.iks.cryptographicslib.Logger;
-import edu.kit.iks.cryptographicslib.controller.AbstractController;
-import edu.kit.iks.cryptographicslib.views.partials.PopoverView;
+import edu.kit.iks.cryptographicslib.common.view.partial.PopoverView;
+import edu.kit.iks.cryptographicslib.framework.controller.AbstractController;
+import edu.kit.iks.cryptographicslib.framework.model.AbstractVisualizationInfo;
+import edu.kit.iks.cryptographicslib.util.Configuration;
+import edu.kit.iks.cryptographicslib.util.Logger;
 
 /**
  * An instance of this class is the main controller, delegating all performed
