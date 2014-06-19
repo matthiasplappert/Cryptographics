@@ -34,45 +34,45 @@ import edu.kit.iks.cryptographicslib.util.Configuration;
 
 /**
  * An instance of this class represents the view of container controller
- * beside the actual visualization
+ * beside the actual visualization.
  * 
  * @author Christian Dreher
  */
 public class VisualizationContainerView extends JPanel {
 	
 	/**
-	 * Serial Version UID
+	 * Serial Version UID.
 	 */
 	private static final long serialVersionUID = 2802070691102616667L;
 
 	/**
-	 * Name of the current visualization
+	 * Name of the current visualization.
 	 */
 	private JLabel nameLabel;
 	
 	/**
-	 * Button to exit the current visualization
+	 * Button to exit the current visualization.
 	 */
 	private JButton exitButton;
 	
 	/**
 	 * Button to access interactive help for the current step inside the
-	 * visualization
+	 * visualization.
 	 */
 	private JButton helpButton;
 	
 	/**
-	 * The content view that contains the actual visualization 
+	 * The content view that contains the actual visualization.
 	 */
 	private JPanel contentView;
 	
 	/**
-	 * Localization instance
+	 * Localization instance.
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(VisualizationContainerView.class);
 	
 	/**
-	 * Constructor initializing a new instance of {VisualizationContainerView}
+	 * Constructor initializing a new instance of {VisualizationContainerView}.
 	 */
 	public VisualizationContainerView() {
 		super(new BorderLayout());

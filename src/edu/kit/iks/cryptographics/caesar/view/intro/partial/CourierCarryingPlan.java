@@ -25,7 +25,7 @@ import edu.kit.iks.cryptographicslib.framework.view.partial.AbstractPartialView;
 public class CourierCarryingPlan extends AbstractPartialView {
 
 	/**
-	 * Serial version UID
+	 * Serial version UID.
 	 */
 	private static final long serialVersionUID = 562227014119150482L;
 

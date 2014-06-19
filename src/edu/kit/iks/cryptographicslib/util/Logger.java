@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 Matthias Jaenicke <matthias.jaenicke@student.kit.edu>,
  * Matthias Plappert <undkc@student.kit.edu>,
- * Julien Duman <uncyc@student.kit.edu>, 
+ * Julien Duman <uncyc@student.kit.edu>,
  * Christian Dreher <uaeef@student.kit.edu>,
- * Wasilij Beskorovajnov <uajkm@student.kit.edu> and 
+ * Wasilij Beskorovajnov <uajkm@student.kit.edu> and
  * Aydin Tekin <aydin.tekin@student.kit.edu>
- * 
+ *
  * Released under the MIT license (refer to LICENSE.md)
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,42 +27,51 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Date;
 
-public class Logger {
-	
+/**
+ * Logger utility class.
+ * 
+ * @author Christian Dreher
+ */
+public final class Logger {
+
+    /**
+     * Debug mode initially turned off (no debug outputs in console).
+     */
+    private static boolean debugMode = false;
+
+    /**
+     * Name of the log file.
+     */
+    private static final String LOG_FILE_NAME = "statistics.csv";
+
 	/**
-	 * Debug mode initially turned off (no debug outputs in console)
-	 */
-	private static boolean debugMode = false;
-	
-	/**
-	 * Name of the log file 
-	 */
-	private static final String LOG_FILE_NAME = "statistics.csv";
-	
-	/**
-	 * Name of the error log file
+	 * Name of the error log file.
 	 */
 	private static final String ERROR_LOG_FILE = "error.log";
+
+	private Logger() {
+		
+	}
 	
 	/**
-	 * Check whether debug mode is activated or not
+	 * Check whether debug mode is activated or not.
 	 * 
 	 * @return {true}, if debug mode is activated, {false} if not
 	 */
 	public static boolean isDebugModeActive() {
 		return Logger.debugMode;
 	}
-	
+
 	/**
-	 * Sets the debug mode 
+	 * Sets the debug mode.
 	 */
 	public static void setDebugMode() {
 		Logger.debugMode = true;
 	}
-	
+
 	/**
 	 * Writes a new entry line in the logfile in this format:
-	 * {logEntry};{UNIX timestamp}
+	 * {logEntry};{UNIX timestamp}.
 	 * 
 	 * @param logEntry Action which should be logged
 	 */
@@ -77,7 +86,7 @@ public class Logger {
 	}
 	
 	/**
-	 * Writes a new debug output to the console
+	 * Writes a new debug output to the console.
 	 * 
 	 * @param classID Class name of this debug output
 	 * @param method Method name of this debug output
@@ -111,7 +120,7 @@ public class Logger {
 	
 	/**
 	 * Helper method to write a new line into the logfile. Creates a logfile, if
-	 * it doesn't exist already
+	 * it doesn't exist already.
 	 * 
 	 * @param logEntry Log entry to be written
 	 * @param formattedDate To string formatted timestamp to be written
@@ -177,7 +186,7 @@ public class Logger {
 	}
 	
 	/**
-	 * Helper method to get unix timestamp
+	 * Helper method to get unix timestamp.
 	 * 
 	 * @return String of unix timestamp
 	 */

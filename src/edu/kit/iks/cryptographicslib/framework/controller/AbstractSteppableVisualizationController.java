@@ -31,9 +31,9 @@ import edu.kit.iks.cryptographicslib.framework.view.partial.AbstractPartialView;
 public abstract class AbstractSteppableVisualizationController extends AbstractVisualizationController {
 
 	/**
-	 * Helper class to easily define a running order of partial views
+	 * Helper class to easily define a running order of partial views.
+	 * 
 	 * @author Christian Dreher <uaeef@student.kit.edu>
-	 *
 	 */
 	protected class RunningOrderHelper {
 		
@@ -63,12 +63,12 @@ public abstract class AbstractSteppableVisualizationController extends AbstractV
 	}
 	
 	/**
-	 * Helper to keep track of the running order of the partial views
+	 * Helper to keep track of the running order of the partial views.
 	 */
 	private RunningOrderHelper runningOrderHelper;
 	
 	/**
-	 * Current step
+	 * Current step.
 	 */
 	private int currentStep = 0;
 	
@@ -79,6 +79,9 @@ public abstract class AbstractSteppableVisualizationController extends AbstractV
 		super(visualizationInfo);
 	}
 	
+	/**
+	 * Overridden actionPerformed to also react on step button action events.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String callerId = ((JComponent) e.getSource()).getName();
@@ -122,7 +125,7 @@ public abstract class AbstractSteppableVisualizationController extends AbstractV
 	public abstract void loadView(RunningOrderHelper roh);
 	
 	/**
-	 * Gets the current step
+	 * Gets the current step.
 	 * 
 	 * @return Integer representation of current step
 	 */
@@ -143,7 +146,7 @@ public abstract class AbstractSteppableVisualizationController extends AbstractV
 	
 	/**
 	 * Presents the next step by loading the partial view first
-	 * enqueued in the running order
+	 * enqueued in the running order.
 	 */
 	protected final void defaultStepAction() {
 		SimpleEntry<Integer, AbstractPartialView> step = this.runningOrderHelper.getNext();

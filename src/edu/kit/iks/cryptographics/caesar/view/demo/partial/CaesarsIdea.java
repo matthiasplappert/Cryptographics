@@ -25,7 +25,7 @@ import edu.kit.iks.cryptographicslib.framework.view.partial.AbstractPartialView;
 public class CaesarsIdea extends AbstractPartialView {
 
 	/**
-	 * Serial version UID
+	 * Serial version UID.
 	 */
 	private static final long serialVersionUID = 2896188957888222317L;
 

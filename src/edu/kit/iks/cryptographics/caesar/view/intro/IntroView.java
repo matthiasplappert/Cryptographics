@@ -26,7 +26,7 @@ import edu.kit.iks.cryptographicslib.framework.view.AbstractVisualizationView;
 public class IntroView extends AbstractVisualizationView {
 	
 	/**
-	 * Serial version UID
+	 * Serial version UID.
 	 */
 	private static final long serialVersionUID = -2526016347621838350L;
 	

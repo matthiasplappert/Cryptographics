@@ -25,7 +25,7 @@ import edu.kit.iks.cryptographicslib.framework.view.partial.AbstractPartialView;
 public class CourierCaughtByKryptolix extends AbstractPartialView {
 
 	/**
-	 * Serial version UID
+	 * Serial version UID.
 	 */
 	private static final long serialVersionUID = 6737923632713804689L;
 

@@ -33,44 +33,44 @@ import edu.kit.iks.cryptographicslib.util.Configuration;
 
 /**
  * Objects of this class represent the popover when
- * the user clicks on a button in the timeline
+ * the user clicks on a button in the timeline.
  * 
  * @author Christian Dreher
  */
 public class TimelinePopoverView extends PopoverView {
 	
 	/**
-	 * Serial Version UID
+	 * Serial Version UID.
 	 */
 	private static final long serialVersionUID = 1914359780570867605L;
 
 	/**
-     * {VisualizationInfo}-object holding metadata of the current visualization
+     * {VisualizationInfo}-object holding metadata of the current visualization.
      */
 	private AbstractVisualizationInfo visualizationInfo;
 	
 	/**
-     * Label to display the name of the current visualization
+     * Label to display the name of the current visualization.
      */
 	private JLabel nameLabel;
 
 	/**
-     * Label to display the current difficulty
+     * Label to display the current difficulty.
      */
 	private JLabel difficultyLabel;
 
 	/**
-     * Label to display a description
+     * Label to display a description.
      */
 	private JLabel descriptionLabel;
 
 	/**
-     * Button to start the currently displayed visualization
+     * Button to start the currently displayed visualization.
      */
 	private VisualizationButtonView startButton;
 	
 	/**
-	 * Localization instance
+	 * Localization instance.
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(TimelinePopoverView.class);
 	
@@ -96,7 +96,6 @@ public class TimelinePopoverView extends PopoverView {
 		this.nameLabel = new JLabel("<html><h2>" + visualizationInfo.getName() + "</h2></html>");
 		this.getContentView().add(this.nameLabel, nameConstraints);
 		
-		// TODO: map to human readable string
 		// Create difficulty label.
 		GridBagConstraints difficultyConstraints = new GridBagConstraints();
 		difficultyConstraints.gridx = 2;

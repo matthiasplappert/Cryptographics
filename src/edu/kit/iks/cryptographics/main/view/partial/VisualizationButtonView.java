@@ -26,26 +26,26 @@ import edu.kit.iks.cryptographicslib.framework.model.AbstractVisualizationInfo;
 /**
  * Objects of this class are a decorator for JButton, 
  * holding data about the procedure they represent on the
- * timeline
+ * timeline.
  * 
  * @author Christian Dreher
  */
 public class VisualizationButtonView extends JButton {
 	
 	/**
-	 * Serial Version UID
+	 * Serial Version UID.
 	 */
 	private static final long serialVersionUID = -1971747371012823882L;
 	
 	/**
 	 * {VisualizationInfo}-object, holding metadata of the 
-	 * procedure the button represents
+	 * procedure the button represents.
 	 */
 	private AbstractVisualizationInfo visualizationInfo;
 	
 	/**
 	 * Constructor initializing a new instance of {VisualizationButton} 
-	 * with given {vInfo}
+	 * with given {vInfo}.
 	 * 
 	 * @param vInfo {VisualizationInfo}-object holding metadata for
 	 * 		the button to represent
@@ -60,7 +60,7 @@ public class VisualizationButtonView extends JButton {
 	}
 	
 	/**
-	 * Gets the {VisualizationInfo}-object holding the metadata 
+	 * Gets the {VisualizationInfo}-object holding the metadata.
 	 * 
 	 * @return {VisualizationInfo}-object
 	 */

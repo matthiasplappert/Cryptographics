@@ -57,11 +57,12 @@ import edu.kit.iks.cryptographicslib.common.view.partial.ImageView;
 import edu.kit.iks.cryptographicslib.util.Logger;
 
 /**
- * View of the information page
+ * View of the information page.
  * 
  * @author Matthias Plappert
  */
 public class InformationView extends JPanel implements MouseListener {
+    
 	/**
 	 * Possible scroll directions.
 	 */
@@ -80,12 +81,12 @@ public class InformationView extends JPanel implements MouseListener {
 	private static final int scrollDelay = 50; 
 	
 	/**
-	 * Serial Version UID
+	 * Serial Version UID.
 	 */
 	private static final long serialVersionUID = -8593552609491347799L;
 
 	/**
-	 * QR code for further information
+	 * QR code for further information.
 	 */
 	private Image qrCode;
 	
@@ -143,7 +144,7 @@ public class InformationView extends JPanel implements MouseListener {
 	
 	/**
 	 * Constructor initializing a new instance of {InformationView}
-	 * with given {HTML} and {qrCode}
+	 * with given {HTML} and {qrCode}.
 	 * 
 	 * @param html The HTML used to display the additional informations
 	 * @param qrCode QR code for further information
@@ -174,7 +175,7 @@ public class InformationView extends JPanel implements MouseListener {
 	}
 	
 	/**
-	 * Helper to init the resources 
+	 * Helper to init the resources.
 	 */
 	private void initResources() {
 		SAXBuilder saxBuilder = new SAXBuilder();
@@ -308,7 +309,7 @@ public class InformationView extends JPanel implements MouseListener {
 	}
 	
 	/**
-	 * Gets the QR code for further information
+	 * Gets the QR code for further information.
 	 * 
 	 * @return QR code for further information
 	 */

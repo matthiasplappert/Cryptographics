@@ -25,7 +25,7 @@ import edu.kit.iks.cryptographicslib.framework.view.partial.AbstractPartialView;
 public class KryptolixReadingPlan extends AbstractPartialView {
 
 	/**
-	 * Serial version UID
+	 * Serial version UID.
 	 */
 	private static final long serialVersionUID = -1215554926164251451L;
 

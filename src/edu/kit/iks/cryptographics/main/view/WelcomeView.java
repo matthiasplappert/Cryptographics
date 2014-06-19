@@ -38,42 +38,42 @@ import edu.kit.iks.cryptographicslib.util.Logger;
 import edu.kit.iks.cryptographicslib.util.Utility;
 
 /**
- * An instance of this class represents the view of the welcome screen 
+ * An instance of this class represents the view of the welcome screen.
  * 
  * @author Christian Dreher
  */
 public class WelcomeView extends JPanel {
 	
 	/**
-	 * Serial version UID
+	 * Serial version UID.
 	 */
 	private static final long serialVersionUID = -8871817760284013217L;
 
 	/**
-	 * Localization instance
+	 * Localization instance.
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(WelcomeView.class);
 	
 	/**
-	 * Generates the teaser code
+	 * Generates the teaser code.
 	 * 
 	 * @author Christian Dreher <uaeef@student.kit.edu>
 	 */
 	private class TeaserCode {
 		
 		/**
-		 * Text to be displayed
+		 * Text to be displayed.
 		 */
 		private String text = "";
 		
 		/**
-		 * Length of the text
+		 * Length of the text.
 		 */
 		private int textLength;
 		
 		/**
 		 * Constructor initializing a new random
-		 * text with given text length
+		 * text with given text length.
 		 * 
 		 * @param textLength Length of the text
 		 */
@@ -86,7 +86,7 @@ public class WelcomeView extends JPanel {
 		}
 		
 		/**
-		 * Gets the text
+		 * Gets the text.
 		 * 
 		 * @return The text
 		 */
@@ -95,7 +95,7 @@ public class WelcomeView extends JPanel {
 		}
 		
 		/**
-		 * Tilts one random character in the text
+		 * Tilts one random character in the text.
 		 * 
 		 * @return Text with one tilted character
 		 */
@@ -120,33 +120,33 @@ public class WelcomeView extends JPanel {
 	}
 
 	/**
-	 * The teaser code to display
+	 * The teaser code to display.
 	 */
 	private TeaserCode teaserCode = new TeaserCode(53);
 	
 	/**
 	 * JLabel of the teaser code. Needs to be explicitly set, since
-	 * it should be tilted by a timer
+	 * it should be tilted by a timer.
 	 */
 	private JLabel teaserCodeLabel = new JLabel(teaserCode.getText());
 	
 	/**
-	 * Timer to tilt the teaser code in given interval
+	 * Timer to tilt the teaser code in given interval.
 	 */
 	private Timer timer;
 	
 	/**
-	 * Interval in which the timer should tilt letters
+	 * Interval in which the timer should tilt letters.
 	 */
 	private int timerInterval = 10;
 	
 	/**
-	 * String to be displayed as header
+	 * String to be displayed as header.
 	 */
 	private String cryptographics = i18n.tr("Cryptographics");
 
 	/**
-	 * Constructor initializing the welcome view
+	 * Constructor initializing the welcome view.
 	 */
 	public WelcomeView() {
 		super(new GridBagLayout());
@@ -180,7 +180,7 @@ public class WelcomeView extends JPanel {
 	}
 	
 	/**
-	 * Prepares the font for the cryptographics logo
+	 * Prepares the font for the Cryptographics logo.
 	 * 
 	 * @param size Fontsize
 	 * @return Initialized Font object
@@ -202,7 +202,7 @@ public class WelcomeView extends JPanel {
 	}
 	
 	/**
-	 * Initialized the timer
+	 * Initialized the timer.
 	 */
 	private void initTimer() {
 		Logger.debug("WelcomeView", "initTimer", "Random teaser code timer started");

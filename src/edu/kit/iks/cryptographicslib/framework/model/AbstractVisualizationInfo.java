@@ -38,11 +38,11 @@ import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 
 /**
- * Abstract visualization information
+ * Abstract visualization information.
  * 
  * @author Christian Dreher
  */
-abstract public class AbstractVisualizationInfo {
+public abstract class AbstractVisualizationInfo {
 	
 	/**
 	 * The color used for easy difficulty.
@@ -65,31 +65,31 @@ abstract public class AbstractVisualizationInfo {
 	private static final Color COLOR_NO_VISUALIZATION = Color.LIGHT_GRAY;
 	
 	/**
-	 * Localization instance
+	 * Localization instance.
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(
 			AbstractVisualizationInfo.class);
 	
 	/**
-	 * Gets the ID of the procedure
+	 * Gets the ID of the procedure.
 	 * 
 	 * @return ID of the procedure
 	 */
-	abstract public String getId();
+	public abstract String getId();
 
 	/**
-	 * Gets the name of the procedure
+	 * Gets the name of the procedure.
 	 * 
 	 * @return Name of the procedure
 	 */
-	abstract public String getName();
+	public abstract String getName();
 
 	/**
-	 * Gets the description of a procedure
+	 * Gets the description of a procedure.
 	 * 
 	 * @return Description of a procedure
 	 */
-	abstract public String getDescription();
+	public abstract String getDescription();
 
 	/**
 	 * Offset on the timeline indicating the position on the timeline 
@@ -98,42 +98,42 @@ abstract public class AbstractVisualizationInfo {
 	 * 
 	 * @return Position on the timeline in the interval (0,1)
 	 */
-	abstract public float getTimelineOffset();
+	public abstract float getTimelineOffset();
 
 	/**
-	 * Gets the difficulty of the procedure
+	 * Gets the difficulty of the procedure.
 	 * 
 	 * @return Difficulty of the procedure
 	 */
-	abstract public VisualizationDifficulty getDifficulty();
+	public abstract VisualizationDifficulty getDifficulty();
 
 	/**
-	 * Gets the year the procedure was invented
+	 * Gets the year the procedure was invented.
 	 * 
 	 * @return Year the procedure was invented
 	 */
-	abstract public int getYear();
+	public abstract int getYear();
 	
 	/**
-	 * Gets the plain text of what the QR is encoding
+	 * Gets the plain text of what the QR is encoding.
 	 * 
 	 * @return Plain text of what the QR is encoding
 	 */
-	abstract public String getQRCodeContent();
+	public abstract String getQRCodeContent();
 	
 	/**
-	 * Gets a list of all controller classes belonging to the visualization
+	 * Gets a list of all controller classes belonging to the visualization.
 	 * 
 	 * @return List of all controller classes belonging to the visualization
 	 */
-	abstract public List<Class<? extends AbstractVisualizationController>> getControllerClasses();
+	public abstract List<Class<? extends AbstractVisualizationController>> getControllerClasses();
 
 	/**
-	 * Gets the additional information as file path to display HTML
+	 * Gets the additional information as file path to display HTML.
 	 * 
 	 * @return Additional information as file path to display HTML
 	 */
-	public String getAdditionalInformationPath() {
+	public final String getAdditionalInformationPath() {
 		// Generate path.
 		String language = Configuration.getInstance().getLanguageCode();
 		String path = "/" + this.getId() + "/" + language + "/" + "additional_information.html";  
@@ -146,11 +146,11 @@ abstract public class AbstractVisualizationInfo {
 	private Image qrCode = null;
 
 	/**
-	 * Gets the QR code as image 
+	 * Gets the QR code as image.
 	 * 
 	 * @return QR code as image 
 	 */
-	public Image getQrCode() {
+	public final Image getQrCode() {
 		if (this.qrCode == null) {
 			this.generateQrCode();
 		}
@@ -181,11 +181,11 @@ abstract public class AbstractVisualizationInfo {
 	}
 	
 	/**
-	 * Gets the human-readable and localized difficulty
+	 * Gets the human-readable and localized difficulty.
 	 * 
 	 * @return The difficulty string
 	 */
-	public String getHumanReadableDifficulty() {
+	public final String getHumanReadableDifficulty() {
 		switch (this.getDifficulty()) {
 			case EASY: return i18n.tr("Easy");
 			case MEDIUM: return i18n.tr("Medium");
@@ -196,11 +196,11 @@ abstract public class AbstractVisualizationInfo {
 	}
 	
 	/**
-	 * Gets the color to represent the difficulty
+	 * Gets the color to represent the difficulty.
 	 * 
 	 * @return The color
 	 */
-	public Color getDifficultyColor() {
+	public final Color getDifficultyColor() {
 		switch (this.getDifficulty()) {
 	    	case EASY: return COLOR_EASY;
 	    	case MEDIUM: return COLOR_MEDIUM;

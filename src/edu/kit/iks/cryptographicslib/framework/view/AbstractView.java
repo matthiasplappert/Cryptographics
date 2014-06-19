@@ -11,6 +11,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package edu.kit.iks.cryptographicslib.framework.view;
 
 import java.awt.event.ActionListener;
@@ -31,22 +32,22 @@ import edu.kit.iks.cryptographicslib.util.Configuration;
 public abstract class AbstractView extends JPanel {
 	
 	/**
-	 * Serial version UID
+	 * Serial version UID.
 	 */
 	protected static final long serialVersionUID = -8541837612624248511L;
 
 	/**
-	 * Localization instance
+	 * Localization instance.
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(AbstractView.class);
 	
 	/**
-	 * Default help text
+	 * Default help text.
 	 */
 	private String noHelp = AbstractView.i18n.tr("No help can be offered at this moment.");
 	
 	/**
-	 * Data structure to hold key value pairs
+	 * Data structure to hold key value pairs.
 	 * 
 	 * @author Christian Dreher <uaeef@student.kit.edu>
 	 */
@@ -56,17 +57,17 @@ public abstract class AbstractView extends JPanel {
 	}
 	
 	/**
-	 * List of all view variables
+	 * List of all view variables.
 	 */
 	protected ArrayList<Variable> variables = new ArrayList<>();
 	
 	/**
-	 * Action listener to delegate actions to
+	 * Action listener to delegate actions to.
 	 */
 	protected ActionListener globalActionListener;
 	
 	/**
-	 * Constructor initializing the view with variables
+	 * Constructor initializing the view with variables.
 	 * 
 	 * @param variables All variables
 	 */
@@ -91,7 +92,7 @@ public abstract class AbstractView extends JPanel {
 	}
 	
 	/**
-	 * Sets the global ActionListener
+	 * Sets the global ActionListener.
 	 * 
 	 * @param al ActionListener instance
 	 */
@@ -100,7 +101,7 @@ public abstract class AbstractView extends JPanel {
 	}
 
 	/**
-	 * Sets a variable with given key and value to the view
+	 * Sets a variable with given key and value to the view.
 	 *  
 	 * @param key Key of the variable
 	 * @param value Value of the variable
@@ -119,7 +120,7 @@ public abstract class AbstractView extends JPanel {
 	}
 
 	/**
-	 * Gets a variable by key
+	 * Gets a variable by key.
 	 * 
 	 * @param key Key of the variable
 	 * 
@@ -136,7 +137,7 @@ public abstract class AbstractView extends JPanel {
 	}
 	
 	/**
-	 * Gets the value of a variable by its key
+	 * Gets the value of a variable by its key.
 	 * 
 	 * @param key Key of the variable
 	 * 

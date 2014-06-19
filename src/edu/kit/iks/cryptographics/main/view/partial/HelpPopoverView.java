@@ -25,24 +25,24 @@ import edu.kit.iks.cryptographicslib.common.view.partial.PopoverView;
 
 /**
  * Objects of this class represent the popover when
- * the user clicks on the help button
+ * the user clicks on the help button.
  * 
  * @author Christian Dreher
  */
 public class HelpPopoverView extends PopoverView {
 	
 	/**
-	 * Serial Version UID
+	 * Serial Version UID.
 	 */
 	private static final long serialVersionUID = -8140547473696504022L;
 
 	/**
-	 * Text to be displayed
+	 * Text to be displayed.
 	 */
 	private String helpText;
 	
 	/**
-	 * Label to actually display the text on the UI
+	 * Label to actually display the text on the UI.
 	 */
 	private JLabel helpTextLabel;
 	
@@ -70,6 +70,7 @@ public class HelpPopoverView extends PopoverView {
 	
 	/**
 	 * Returns the help text label.
+	 * 
 	 * @return the help text label
 	 */
 	public JLabel getHelpTextLabel() {

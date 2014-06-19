@@ -33,7 +33,6 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -41,6 +40,7 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.xnap.commons.i18n.I18n;
 
+import edu.kit.iks.cryptographicslib.framework.controller.AbstractVisualizationController;
 import edu.kit.iks.cryptographicslib.util.Configuration;
 import edu.kit.iks.cryptographicslib.util.Logger;
 
@@ -54,66 +54,74 @@ import edu.kit.iks.cryptographicslib.util.Logger;
 public class KeyboardView extends JPanel implements ActionListener {
 
 	/**
-	 * Serial version UID
+	 * Serial version UID.
 	 */
 	private static final long serialVersionUID = -1797509729654756462L;
 	
 	/**
-	 * Resources of the keyboard
-	 * (Icons for enter and backspace)
+	 * Resources of the keyboard (Icons for enter and backspace).
 	 */
 	private Element resources;
 	
 	/**
 	 * When character mode is used, the buttons pressed will replace
-	 * the text in the given input field
+	 * the text in the given input field.
 	 */
 	public static final int CHAR_MODE = 0;
 	
 	/**
 	 * When string mode is used, the buttons pressed will append
-	 * the text in the given input field
+	 * the text in the given input field.
 	 */
 	public static final int STRING_MODE = 1;
 	
 	/**
-	 * The input mode set by the constructor
+	 * The input mode set by the constructor.
 	 */
 	private int inputMode;
 
 	/**
-	 * The text field passed through the constructor
+	 * Name of the action which should be called when a button was pressed.
 	 */
-	private JTextField textField;
+	private String actionName;
+	
+	/**
+	 * Instance of the controller to delegate action calls to.
+	 */
+	private AbstractVisualizationController avc;
+	
+	/**
+	 * The text field passed through the constructor.
+	 */
+	private String input;
 
 	/**
-	 * The matrix of all buttons that this view paints
+	 * The matrix of all buttons that this view paints.
 	 */
 	private JButton[][] keys;
 
 	/**
-	 * Localization instance 
+	 * Localization instance.
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(KeyboardView.class);
 	
 	/**
 	 * Constructor initializing a new instance of keyboard view
-	 * by passed text field (the textField which should be manipulated
-	 * by this keyboard) and the mode. The mode can either be the
+	 * by passed event handler and mode. The mode can either be the
 	 * KeyboardView.CHAR_MODE, in which the text in the textField will
 	 * always be replaced by the button pressed, or KeyboardView.STRING_MODE,
 	 * in which the button pressed will only be appended to the text in the
-	 * textField
+	 * textField.
 	 * 
-	 * @param textField Text field to be manipulated by this keyboard
+	 * @param avc AbstractVisualizationController instance
 	 * @param mode The input mode (Either CHAR_MODE or STRING_MODE)
 	 */
-	public KeyboardView(JTextField textField, int mode) {
+	public KeyboardView(AbstractVisualizationController avc, int mode) {
 		super();
 		
 		this.initResources();
 
-		this.textField = textField;
+		this.avc = avc;
 		this.inputMode = mode; 
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -145,8 +153,12 @@ public class KeyboardView extends JPanel implements ActionListener {
 		this.setVisible(true);
 	}
 
+	public void setAction(String actionName) {
+		this.actionName = actionName;
+	}
+	
 	/**
-	 * Method to be called on action performed 
+	 * Method to be called on action performed.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -156,38 +168,45 @@ public class KeyboardView extends JPanel implements ActionListener {
 		
 		if (buttonName.equals("button-enter")) {
 			Logger.debug("KeyboardView", "actionPerformed", "Enter pressed");
-			this.textField.getActionListeners()[0].actionPerformed(e);
 		} else if (buttonName.equals("button-backspace")) {
 			Logger.debug("KeyboardView", "actionPerformed", "Backspace pressed");
-			String currentText = this.textField.getText();
+			String currentText = this.input;
 			
 			if (currentText.length() > 1) {
 				String trimmedText = currentText.substring(0, currentText.length() - 1);
 				
-				this.textField.setText(trimmedText);
+				this.input = trimmedText;
 			} else {
-				this.textField.setText("");
+				this.input = "";
 			}
 		} else if (buttonName.equals("button-key")) {
 			Logger.debug("KeyboardView", "actionPerformed", "Key pressed");
 			
 			if (this.inputMode == KeyboardView.STRING_MODE) {
 				
-				String currentText = this.textField.getText();
+				String currentText = this.input;
 				String newText = currentText + buttonLabel;
-				this.textField.setText(newText);
+				this.input = newText;
 				
 			} else if (this.inputMode == KeyboardView.CHAR_MODE) {
 
-				this.textField.setText(buttonLabel);
-				this.textField.getActionListeners()[0].actionPerformed(e);
+				this.input = buttonLabel;
 			}
 		}
 		
+		this.avc.routeAction(this.actionName);
+	}
+	
+	public String getInput() {
+		return this.input;
+	}
+	
+	public void clearInput() {
+		this.input = "";
 	}
 	
 	/**
-	 * Helper to init the resources 
+	 * Helper to init the resources.
 	 */
 	private void initResources() {
 		SAXBuilder saxBuilder = new SAXBuilder();
@@ -208,7 +227,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 	}
 	
 	/**
-	 * Helper to init the buttons 
+	 * Helper to init the buttons.
 	 */
 	private void initKeyboardButtons() {
 		JButton[][] keysInit = {
@@ -230,7 +249,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 	/**
 	 * Creates a new JButton instance with given String as label.
 	 * kf stands for "Key factory" and is a factory method to
-	 * instantiate new buttons more convenient
+	 * instantiate new buttons more convenient.
 	 * 
 	 * @param label The label of the button
 	 * 
@@ -279,7 +298,7 @@ public class KeyboardView extends JPanel implements ActionListener {
 	}
 	
 	/**
-	 * Loads an image icon from given path
+	 * Loads an image icon from given path.
 	 * 
 	 * @param path path to image
 	 * @return ImageIcon instance

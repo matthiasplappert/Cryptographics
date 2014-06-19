@@ -32,12 +32,12 @@ import edu.kit.iks.cryptographicslib.util.Configuration;
 public class IntroController extends AbstractSteppableVisualizationController {
 
 	/**
-	 * Localization instance
+	 * Localization instance.
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(IntroController.class);
 	
 	/**
-	 * Strings to be displayed
+	 * Strings to be displayed.
 	 * 
 	 * @author Christian Dreher <uaeef@student.kit.edu>
 	 */

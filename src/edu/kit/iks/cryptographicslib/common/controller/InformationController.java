@@ -34,28 +34,22 @@ import edu.kit.iks.cryptographicslib.util.Configuration;
 import edu.kit.iks.cryptographicslib.util.Logger;
 
 /**
- * Controller for each procedure displaying further
- * information
+ * Controller for each procedure displaying further information.
  * 
  * @author Christian Dreher
  */
 public class InformationController extends AbstractVisualizationController {
 	
 	/**
-	 * Localization instance
+	 * Localization instance.
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(InformationController.class);
-	
-	/**
-	 * View of the controller
-	 */
-	private InformationView view;
 	
 	private String additionalInformationHtml;
 	
 	/**
 	 * Constructor initializing a new instance of {InformationController}
-	 * with given {visualizationInfo}
+	 * with given {visualizationInfo}.
 	 * 
 	 * @param visualizationInfo Object of {VisualizationInfo} containing the data to
 	 *		instantiate related controllers from
@@ -109,9 +103,8 @@ public class InformationController extends AbstractVisualizationController {
 	 * (non-Javadoc)
 	 * @see edu.kit.iks.CryptographicsLib.AbstractController#getView()
 	 */
-	@Override
-	public InformationView getView() {
-		return this.view;
+	private InformationView view() {
+		return (InformationView) this.view;
 	}
 	
 	// convert InputStream to String

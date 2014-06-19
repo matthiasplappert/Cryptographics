@@ -26,7 +26,7 @@ import org.jdom2.input.SAXBuilder;
 import edu.kit.iks.cryptographicslib.common.view.partial.ImageView;
 
 /**
- * Utility class to ease file access
+ * Utility class to ease file access.
  * 
  * @author Christian Dreher <uaeef@student.kit.edu>
  *
@@ -40,7 +40,7 @@ public class Utility {
 	}
 	
 	/**
-	 * Gets a resource as input stream
+	 * Gets a resource as input stream.
 	 * 
 	 * @param name Name of the resource
 	 * @return InputStream instance containing requested file

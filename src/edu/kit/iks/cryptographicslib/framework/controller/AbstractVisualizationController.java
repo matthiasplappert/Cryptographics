@@ -32,7 +32,7 @@ import edu.kit.iks.cryptographicslib.framework.model.AbstractVisualizationInfo;
 
 /**
  * Abstract visualization controller specialized for
- * the needs of a procedure to visualize its contents
+ * the needs of a procedure to visualize its contents.
  * 
  * @author Christian Dreher
  */
@@ -40,7 +40,7 @@ public abstract class AbstractVisualizationController extends AbstractController
 	implements ActionListener {
 
 	/**
-	 * Helper class to easier form key value pairs for view variables
+	 * Helper class to easier form key value pairs for view variables.
 	 * 
 	 * @author Christian Dreher <uaeef@student.kit.edu>
 	 */
@@ -61,13 +61,13 @@ public abstract class AbstractVisualizationController extends AbstractController
 	}
 	
 	/**
-	 * {VisualizationInfo}-object holding all metadata of the procedure
+	 * {VisualizationInfo}-object holding all metadata of the procedure.
 	 */
 	private AbstractVisualizationInfo visualizationInfo;
 	
 	/**
 	 * Constructor initializing a new instance of AbstractVisualizationController 
-	 * with given {visualizationInfo}
+	 * with given {visualizationInfo}.
 	 * 
 	 * @param visualizationInfo {VisualizationInfo}-object holding 
 	 * 		metadata of the procedure
@@ -77,7 +77,7 @@ public abstract class AbstractVisualizationController extends AbstractController
 	}
 	
 	/**
-	 * Gets the {VisualizationInfo}-object of the visualization
+	 * Gets the {VisualizationInfo}-object of the visualization.
 	 * 
 	 * @return{VisualizationInfo}-object holding metadata of the procedure
 	 */
@@ -112,7 +112,7 @@ public abstract class AbstractVisualizationController extends AbstractController
 	public abstract boolean routeAction(String callerId);
 	
 	/**
-	 * Gets the currently relevant help text
+	 * Gets the currently relevant help text.
 	 * 
 	 * @return help text
 	 */

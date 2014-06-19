@@ -33,7 +33,7 @@ import edu.kit.iks.cryptographicslib.util.Configuration;
 public class VisualizationInfo extends AbstractVisualizationInfo {
 	
 	/**
-	 * Localization instance
+	 * Localization instance.
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(VisualizationInfo.class);
 	

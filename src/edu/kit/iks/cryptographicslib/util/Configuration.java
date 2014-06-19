@@ -39,7 +39,7 @@ import org.xnap.commons.i18n.I18nFactory;
 public class Configuration {
 	
 	/**
-	 * Shared instance for singleton
+	 * Shared instance for singleton.
 	 */
 	static private Configuration sharedInstance = null;
 	
@@ -146,7 +146,8 @@ public class Configuration {
 	}
 	
 	/**
-	 * Returns a shared instance (singleton pattern)
+	 * Returns a shared instance.
+	 * 
 	 * @return the shared instance
 	 */
 	static public Configuration getInstance() {
@@ -212,6 +213,7 @@ public class Configuration {
 	/**
 	 * Returns true if the fullscreen mode should be enabled. This setting
 	 * will always return true if debug mode is disabled.
+	 * 
 	 * @return
 	 */
 	public boolean isFullscreenModeEnabled() {
@@ -224,6 +226,7 @@ public class Configuration {
 	
 	/**
 	 * Returns the language code used for localization.
+	 * 
 	 * @return the language code
 	 */
 	public String getLanguageCode() {
@@ -232,7 +235,7 @@ public class Configuration {
 	
 	/**
 	 * Returns the I18n instance for the package the given
-	 * class is in
+	 * class is in.
 	 * 
 	 * @param className fully qualified class name (ClassName.class)
 	 * @return I18n instance to use the tr functions

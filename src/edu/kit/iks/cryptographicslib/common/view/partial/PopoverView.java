@@ -41,11 +41,12 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 /**
- * An instance of this class represents the view of a popover
+ * An instance of this class represents the view of a popover.
  * 
  * @author Christian Dreher
  */
 public class PopoverView extends JPanel {
+    
 	/**
 	 * Defines the possible locations of a popover arrow. 
 	 */
@@ -86,29 +87,29 @@ public class PopoverView extends JPanel {
 	private ArrowLocation arrowLocation = ArrowLocation.TOP;
 	
 	/**
-	 * Serial Version UID
+	 * Serial Version UID.
 	 */
 	private static final long serialVersionUID = -5949014143695648861L;
 
 	/**
-	 * Button to close the popover
+	 * Button to close the popover.
 	 */
 	private JButton closeButton;
 	
 	/**
-	 * Content area of the popover
+	 * Content area of the popover.
 	 */
 	private JPanel contentView;
 	
 	private Point anchorPoint;
 	
 	/**
-	 * The shared container view
+	 * The shared container view.
 	 */
 	static private JPanel containerView;
 	
 	/**
-	 * Constructor initializing a new instance of {PopoverView}
+	 * Constructor initializing a new instance of {PopoverView}.
 	 */
 	public PopoverView() {
 		super(new GridBagLayout());
@@ -177,7 +178,7 @@ public class PopoverView extends JPanel {
 	}
 	
 	/**
-	 * Presents a popover in the container
+	 * Presents a popover in the container.
 	 * 
 	 * @param originComponent the origin of the popover is where the arrow of the popover should point to
 	 */
@@ -199,7 +200,7 @@ public class PopoverView extends JPanel {
 	}
 	
 	/**
-	 * Removes a popover from the container
+	 * Removes a popover from the container.
 	 */
 	public void dismiss() {
 		PopoverView.containerView.remove(this);
@@ -230,7 +231,8 @@ public class PopoverView extends JPanel {
     }
 
 	/**
-	 * Creates the popover shape
+	 * Creates the popover shape.
+	 * 
 	 * @return The popover shape
 	 */
 	private Area createShape() {

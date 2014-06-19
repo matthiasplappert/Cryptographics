@@ -33,7 +33,7 @@ import edu.kit.iks.cryptographicslib.util.Configuration;
 public class VisualizationInfo extends AbstractVisualizationInfo {
 	
 	/**
-	 * Localization instance
+	 * Localization instance.
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(VisualizationInfo.class);
 	
@@ -41,7 +41,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getId()
 	 */
 	@Override
-	public String getId() {
+    public final String getId() {
 		return "aes";
 	}
 

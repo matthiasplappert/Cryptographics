@@ -25,32 +25,32 @@ import java.util.List;
 /**
  * This class is a registry where all {VisualisationInfo}-objects are 
  * accessible through the static {loadAllVisualizationInfo()}-method.
- * Objects of this class cannot be instantiated
+ * Objects of this class cannot be instantiated.
  * 
  * @author Christian Dreher
  */
-public class VisualizationInfoLoader {
-	
-	/**
-	 * Private constructor to prevent this class from being instantiated
-	 */
-	private VisualizationInfoLoader() {
-		
-	}
-	
-	/**
-	 * Returns a list of all {VisualizationInfo}-objects 
-	 * 
-	 * @return A list of all {VisualizationInfo}-objects 
-	 */
-	static public List<AbstractVisualizationInfo> loadAllVisualizationInfos() {
-		
-		List<AbstractVisualizationInfo> visualizationInfos = new ArrayList<AbstractVisualizationInfo>();
-		visualizationInfos.add(new edu.kit.iks.cryptographics.caesar.model.VisualizationInfo());
-		visualizationInfos.add(new edu.kit.iks.cryptographics.onetimepad.VisualizationInfo());
-		visualizationInfos.add(new edu.kit.iks.cryptographics.aes.VisualizationInfo());
-		visualizationInfos.add(new edu.kit.iks.cryptographics.sha2.VisualizationInfo());
-		
-		return visualizationInfos;
-	}
+public final class VisualizationInfoLoader {
+    
+    /**
+     * Private constructor to prevent this class from being instantiated.
+     */
+    private VisualizationInfoLoader() {
+        
+    }
+
+    /**
+     * Returns a list of all {VisualizationInfo}-objects .
+     * 
+     * @return A list of all {VisualizationInfo}-objects 
+     */
+    public static List<AbstractVisualizationInfo> loadAllVisualizationInfos() {
+        List<AbstractVisualizationInfo> visualizationInfos = new ArrayList<AbstractVisualizationInfo>();
+        
+        visualizationInfos.add(new edu.kit.iks.cryptographics.caesar.model.VisualizationInfo());
+        visualizationInfos.add(new edu.kit.iks.cryptographics.onetimepad.VisualizationInfo());
+        visualizationInfos.add(new edu.kit.iks.cryptographics.aes.VisualizationInfo());
+        visualizationInfos.add(new edu.kit.iks.cryptographics.sha2.VisualizationInfo());
+        
+        return visualizationInfos;
+    }
 }

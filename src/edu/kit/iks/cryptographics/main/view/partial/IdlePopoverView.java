@@ -45,46 +45,47 @@ import edu.kit.iks.cryptographicslib.util.Configuration;
 public class IdlePopoverView extends PopoverView {
 	
 	/**
-	 * Serial version UID
+	 * Serial version UID.
 	 */
 	private static final long serialVersionUID = -4551738579737944993L;
 	
 	/**
-	 * The text label that displays the explanation
+	 * The text label that displays the explanation.
 	 */
 	private JLabel textLabel;
 	
 	/**
-	 * The text label that displays the count-down
+	 * The text label that displays the count-down.
 	 */
 	private JLabel countdownLabel;
 	
 	/**
 	 * The button that allows the user to continue using the app. This
 	 * might be considered as a duplicate, since the close button does the same
-	 * thing, but it's probably easier for the user if he can simply press continue
+	 * thing, but it's probably easier for the user if he can simply press continue.
 	 */
 	private JButton continueButton;
 	
 	/**
-	 * The remaining time in milliseconds
+	 * The remaining time in milliseconds.
 	 */
 	private long remainingTime;
 	
 	/**
-	 * The timer used to update the count-down label 
+	 * The timer used to update the count-down label.
 	 */
 	private Timer updateTimer;
 	
 	/**
-	 * Localization instance
+	 * Localization instance.
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(IdlePopoverView.class);
 	
 	/**
 	 * Creates a new popover with a given remaining time in milliseconds.
 	 * The remaining time will be counted down until it reaches zero.
-	 * @param remaining the initial countdown time in milliseconds
+	 * 
+	 * @param initialTime Remaining the initial countdown time in milliseconds
 	 */
 	public IdlePopoverView(long initialTime) {
 		super();
@@ -137,7 +138,7 @@ public class IdlePopoverView extends PopoverView {
 	}
 	
 	/**
-	 * Updates the text of the {countdownLabel}
+	 * Updates the text of the {countdownLabel}.
 	 */
 	private void updateCountdownLabel() {
 		int seconds = (int)(this.remainingTime / 1000);
@@ -146,7 +147,8 @@ public class IdlePopoverView extends PopoverView {
 	}
 	
 	/**
-	 * Returns the continue button
+	 * Returns the continue button.
+	 * 
 	 * @return the continue button
 	 */
 	public JButton getContinueButton() {
