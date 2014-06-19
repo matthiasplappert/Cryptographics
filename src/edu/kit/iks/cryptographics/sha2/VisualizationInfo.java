@@ -66,7 +66,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public float getTimelineOffset() {
-		return 0.97f;
+		return 0.96f;
 	}
 	
 	/*

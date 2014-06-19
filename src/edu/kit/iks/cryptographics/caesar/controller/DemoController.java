@@ -27,8 +27,9 @@ import edu.kit.iks.cryptographicslib.framework.model.AbstractVisualizationInfo;
 import edu.kit.iks.cryptographicslib.util.Configuration;
 
 /**
+ * Demonstration controller.
+ * 
  * @author Christian Dreher <uaeef@student.kit.edu>
- *
  */
 public class DemoController extends AbstractSteppableVisualizationController {
 
@@ -68,13 +69,13 @@ public class DemoController extends AbstractSteppableVisualizationController {
 		private static String result = Strings.i18n.tr("Well done! That''s it. \"{0}\" encrypted with the key 3 " +
 				"is \"{1}\".", 
 				Strings.caesarsName,
-				CryptoModel.getInstance().enc(3, Strings.caesarsName));
+				CryptoModel.getInstance().enc(DemoController.DEMO_ENCRYPTION_KEY, Strings.caesarsName));
 	};
 	
 	/**
 	 * It is said that the original Caesar cipher used the key 3.
 	 */
-	private Integer demoEncryptionKey = 3;
+	private static final Integer DEMO_ENCRYPTION_KEY = 3;
 	
 	/**
 	 * Model for this controller.
@@ -87,9 +88,9 @@ public class DemoController extends AbstractSteppableVisualizationController {
 	private TryEncryptCaesar tryEncryptCaesar;
 
 	/**
-	 * @param visualizationInfo
+	 * @param visualizationInfo Visualization info
 	 */
-	public DemoController(AbstractVisualizationInfo visualizationInfo) {
+	public DemoController(final AbstractVisualizationInfo visualizationInfo) {
 		super(visualizationInfo);
 	}
 
@@ -97,7 +98,7 @@ public class DemoController extends AbstractSteppableVisualizationController {
 	 * @see edu.kit.iks.cryptographicslib.controller.AbstractVisualizationController#routeAction(java.lang.String)
 	 */
 	@Override
-	public boolean routeAction(String callerId) {
+    public final boolean routeAction(final String callerId) {
 		switch (callerId) {
 			case "exampleFirstLetter":
 				this.exampleFirstLetter();
@@ -121,10 +122,11 @@ public class DemoController extends AbstractSteppableVisualizationController {
 
 	/*
 	 * (non-Javadoc)
-	 * @see edu.kit.iks.cryptographicslib.controller.AbstractSteppableVisualizationController#loadView(edu.kit.iks.cryptographicslib.controller.AbstractSteppableVisualizationController.RunningOrderHelper)
+	 * @see edu.kit.iks.cryptographicslib.controller.AbstractSteppableVisualizationController
+	 * #loadView(edu.kit.iks.cryptographicslib.controller.AbstractSteppableVisualizationController.RunningOrderHelper)
 	 */
 	@Override
-	public void loadView(RunningOrderHelper roh) {
+    public final void loadView(final RunningOrderHelper roh) {
 		VariableHelper vh = new VariableHelper();
 		
 		vh.add("nextButtonLabel", DemoController.Strings.nextButtonLabel);
@@ -132,7 +134,8 @@ public class DemoController extends AbstractSteppableVisualizationController {
 		vh.add("stepButtonLabel", DemoController.Strings.stepButtonLabel);
 		
 		this.view = new DemoView(this, vh.toList());
-		this.model = new DemoModel(DemoController.Strings.caesarsName.toCharArray(), this.demoEncryptionKey);
+		this.model = new DemoModel(DemoController.Strings.caesarsName.toCharArray(),
+		        DemoController.DEMO_ENCRYPTION_KEY);
 		
 		this.defineRunningOrder(roh);
 	}
@@ -141,7 +144,7 @@ public class DemoController extends AbstractSteppableVisualizationController {
 	 * @see edu.kit.iks.CryptographicsLib.controller.AbstractController#unloadView()
 	 */
 	@Override
-	public void unloadView() {
+    public final void unloadView() {
 		this.view = null;
 		this.tryEncryptCaesar = null;
 	}
@@ -150,7 +153,7 @@ public class DemoController extends AbstractSteppableVisualizationController {
 	 * @see edu.kit.iks.CryptographicsLib.controller.AbstractVisualizationController#getHelp()
 	 */
 	@Override
-	public String helpAction() {
+    public final String helpAction() {
 		return this.view().getHelp();
 	}
 	
@@ -163,7 +166,7 @@ public class DemoController extends AbstractSteppableVisualizationController {
 	 * @see edu.kit.iks.cryptographicslib.framework.controller.AbstractSteppableVisualizationController#indexAction()
 	 */
 	@Override
-	protected void indexAction() {
+    protected final void indexAction() {
 		this.view().setStepButtonAction("exampleFirstLetter");
 		super.indexAction();
 	}
@@ -171,7 +174,7 @@ public class DemoController extends AbstractSteppableVisualizationController {
 	/**
 	 * Action to demonstrate the encryption of the first letter of Caesars name.
 	 */
-	protected void exampleFirstLetter() {
+	protected final void exampleFirstLetter() {
 		this.view().setStepButtonAction("solveFirstLetter");
 		this.defaultStepAction();
 		
@@ -181,7 +184,7 @@ public class DemoController extends AbstractSteppableVisualizationController {
 	/**
 	 * Action to solve the encryption of the first letter of Caesars name.
 	 */
-	protected void solveFirstLetter() {
+	protected final void solveFirstLetter() {
 		this.view().setStepButtonAction("tryNextLetter");
 		
 		this.tryEncryptCaesar.solveFirstLetter(this.model);
@@ -192,7 +195,7 @@ public class DemoController extends AbstractSteppableVisualizationController {
 	/**
 	 * Action to let build the view to let the user try to encrypt the rest of Caesars name.
 	 */
-	protected void tryNextLetter() {
+	protected final void tryNextLetter() {
 		this.view().useCharKeyboard();
 		this.view().setKeyboardAction("tryNextLetterParameterized");
 		this.view().showKeyboard();
@@ -205,7 +208,7 @@ public class DemoController extends AbstractSteppableVisualizationController {
 	 * 
 	 * @param userInput Key the user pressed
 	 */
-	protected void tryNextLetter(String userInput) {
+	protected final void tryNextLetter(final String userInput) {
 		this.tryEncryptCaesar.setInput(this.model.getCurrentPosition(), userInput);
 
 		String expected = this.model.getCurrentCharEncrypted();
@@ -250,7 +253,7 @@ public class DemoController extends AbstractSteppableVisualizationController {
 		vh.add("explanation2", DemoController.Strings.explanation2);
 		vh.add("explanation3", DemoController.Strings.explanation3);
 		vh.add("caesarsName", DemoController.Strings.caesarsName);
-		vh.add("key", this.demoEncryptionKey.toString());
+		vh.add("key", DemoController.DEMO_ENCRYPTION_KEY.toString());
 		
 		this.tryEncryptCaesar = new TryEncryptCaesar(vh.toList());
 		
@@ -276,7 +279,7 @@ public class DemoController extends AbstractSteppableVisualizationController {
 	 * 
 	 * @param roh Running order helper
 	 */
-	private void defineRunningOrder(RunningOrderHelper roh) {
+	private void defineRunningOrder(final RunningOrderHelper roh) {
 		roh.enqueue(this.prepareCaesarsIdea());
 		roh.enqueue(this.prepareTryEncryptCeasar());
 		roh.enqueue(this.prepareResult());

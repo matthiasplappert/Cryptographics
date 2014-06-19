@@ -65,7 +65,7 @@ abstract public class AbstractController {
 	 * @param childController
 	 *            Controller to be removed
 	 */
-	public final void removeChildController(AbstractController childController) {
+	public final void removeChildController(final AbstractController childController) {
 		this.childControllers.remove(childController);
 	}
 

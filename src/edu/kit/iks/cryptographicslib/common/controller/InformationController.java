@@ -99,14 +99,6 @@ public class InformationController extends AbstractVisualizationController {
 		return help;
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see edu.kit.iks.CryptographicsLib.AbstractController#getView()
-	 */
-	private InformationView view() {
-		return (InformationView) this.view;
-	}
-	
 	// convert InputStream to String
 	private static String getStringFromInputStream(InputStream is) {
 		BufferedReader br = null;
