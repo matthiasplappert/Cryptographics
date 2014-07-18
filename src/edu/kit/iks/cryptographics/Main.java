@@ -26,33 +26,41 @@ import edu.kit.iks.cryptographicslib.util.Configuration;
 import edu.kit.iks.cryptographicslib.util.Logger;
 
 /**
- * Main Class containing the main()-method
+ * Main Class containing the main()-method.
  * 
  * @author Christian Dreher
  */
-public class Main {
-	/**
-	 * Main method (hook for Java to start from)
-	 * 
-	 * @param args  Arguments
-	 */
-	public static void main(String[] args) {
-		// Configure logger.
-		if (Configuration.getInstance().isDebugModeEnabled()) {
-			Logger.setDebugMode();
-		}
-		
-		Logger.log("Cryptographics launched");
-		Logger.debug("Main", "main", "Debugger running");
-		
-		// Run app on the AWT event queue.
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				MainController mainController = new MainController();
-				mainController.loadView();
-				mainController.presentStartAction();
-			}
-		});
-	}
+public final class Main {
+    
+    /**
+     * Private constructor to avoid instantiation.
+     */
+    private Main() {
+        
+    }
+    
+    /**
+     * Main method (hook for Java to start from).
+     * 
+     * @param args Arguments
+     */
+    public static void main(final String[] args) {
+        // Configure logger.
+        if (Configuration.getInstance().isDebugModeEnabled()) {
+            Logger.setDebugMode();
+        }
+        
+        Logger.log("Cryptographics launched");
+        Logger.debug("Main", "main", "Debugger running");
+        
+        // Run app on the AWT event queue.
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                MainController mainController = new MainController();
+                mainController.loadView();
+                mainController.presentStartAction();
+            }
+        });
+    }
 }

@@ -25,7 +25,7 @@ import edu.kit.iks.cryptographicslib.framework.view.partial.AbstractPartialView;
 public class CaesarsPlanCrossed extends AbstractPartialView {
 
 	/**
-	 * Serial version UID
+	 * Serial version UID.
 	 */
 	private static final long serialVersionUID = -8331005689403566801L;
 

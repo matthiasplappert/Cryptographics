@@ -43,7 +43,7 @@ import javax.swing.JPanel;
 public class CharacterFrequencyDiagramView extends JPanel {
 
 	/**
-	 * Serial version UID
+	 * Serial version UID.
 	 */
 	private static final long serialVersionUID = -9014431293164765696L;
 	

@@ -30,29 +30,31 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import edu.kit.iks.cryptographicslib.common.view.partial.KeyboardView;
+import edu.kit.iks.cryptographicslib.framework.controller.AbstractVisualizationController;
 import edu.kit.iks.cryptographicslib.framework.view.partial.AbstractPartialView;
 
 /**
- * View for UI elements which all visualizations have in common
+ * View for UI elements which all visualizations have in common.
  * 
  * @author Christian Dreher
  */
 public abstract class AbstractVisualizationView extends AbstractView {
 	
 	/**
-	 * Serial Version UID 
+	 * Serial Version UID .
 	 */
 	private static final long serialVersionUID = -988624050394454370L;
 	
 	/**
-	 * JPanel wrapping the navigation buttons
+	 * JPanel wrapping the navigation buttons.
 	 * 
 	 * @author Christian Dreher <uaeef@student.kit.edu>
 	 */
 	private class NavigationContainer extends JPanel {
 		
 		/**
-		 * Serial version UID
+		 * Serial version UID.
 		 */
 		private static final long serialVersionUID = 427370017328857575L;
 		
@@ -104,14 +106,14 @@ public abstract class AbstractVisualizationView extends AbstractView {
 	}
 	
 	/**
-	 * JPanel wrapping the content area
+	 * JPanel wrapping the content area.
 	 * 
 	 * @author Christian Dreher <uaeef@student.kit.edu>
 	 */
 	private class ContentContainer extends AbstractPartialView {
 		
 		/**
-		 * Serial version UID
+		 * Serial version UID.
 		 */
 		private static final long serialVersionUID = -6819473343449512917L;
 
@@ -132,27 +134,33 @@ public abstract class AbstractVisualizationView extends AbstractView {
 	}
 	
 	/**
-	 * Instance of the navigation container
+	 * Instance of the navigation container.
 	 */
 	private NavigationContainer navigationContainer;
 	
 	/**
-	 * Instance of the content container
+	 * Instance of the content container.
 	 */
 	protected AbstractPartialView contentContainer;
 	
 	/**
-	 * Button for stepwise skipping inside one view
+	 * Button for stepwise skipping inside one view.
 	 */
 	private JButton stepButton;
 	
 	/**
-	 * JPanel wrapping the step button
+	 * Keyboard instance. Will be displayed in the footer instead of
+	 * the step button if set to be visible.
+	 */
+	private KeyboardView keyboardView;
+	
+	/**
+	 * JPanel wrapping the step button.
 	 */
 	private JPanel footerContainer;
 	
 	/**
-	 * Constructor initializing a new instance of VisualizationView
+	 * Constructor initializing a new instance of VisualizationView.
 	 */
 	public AbstractVisualizationView(ActionListener al, List<SimpleEntry<String, String>> variables) {
 		super(variables);
@@ -218,35 +226,66 @@ public abstract class AbstractVisualizationView extends AbstractView {
 		this.revalidate();
 	}
 
+	public void useCharKeyboard() {
+		this.keyboardView = new KeyboardView((AbstractVisualizationController) this.globalActionListener,
+				KeyboardView.CHAR_MODE);
+	}
+	
+	public void useStringKeyboard() {
+		this.keyboardView = new KeyboardView((AbstractVisualizationController) this.globalActionListener,
+				KeyboardView.STRING_MODE);
+	}
+	
+	public void setKeyboardAction(String actionName) {
+		this.keyboardView.setAction(actionName);
+	}
+	
+	public String getUserInput() {
+		return this.keyboardView.getInput();
+	}
+	
 	/**
-	 * Unsets the next button
+	 * Unsets the next button.
 	 */
 	protected void unsetNextButton() {
 		this.navigationContainer.unsetNextButton();
 	}
 	
 	/**
-	 * Unsets the back button
+	 * Unsets the back button.
 	 */
 	protected void unsetBackButton() {
 		this.navigationContainer.unsetBackButton();
 	}
 	
 	public void showStepButton() {
+		this.hideKeyboard();
 		this.footerContainer.add(this.stepButton);
 		this.revalidate();
 	}
 	
 	/**
-	 * Unsets the step button
+	 * Unsets the step button.
 	 */
 	public void hideStepButton() {
 		this.footerContainer.remove(this.stepButton);
 		this.revalidate();
 	}
 	
+	public void showKeyboard() {
+		this.hideStepButton();
+		this.footerContainer.add(this.keyboardView);
+		this.revalidate();
+	}
+	
+	public void hideKeyboard() {
+		this.footerContainer.remove(this.keyboardView);
+		this.keyboardView.clearInput();
+		this.revalidate();
+	}
+	
 	/**
-	 * Sets the action name of the step button
+	 * Sets the action name of the step button.
 	 * 
 	 * @param actionName New name of the action to call
 	 */
@@ -255,14 +294,14 @@ public abstract class AbstractVisualizationView extends AbstractView {
 	}
 	
 	/**
-	 * Sets the default step action to the step button
+	 * Sets the default step action to the step button.
 	 */
-	protected void setDefaultStepButtonAction() {
+	public void setDefaultStepButtonAction() {
 		this.setStepButtonAction("step");
 	}
 	
 	/**
-	 * Adds a text to the content area 
+	 * Adds a text to the content area.
 	 * 
 	 * @param text Text to add to content
 	 * @return ID to identify the object for modifying or removing it
@@ -272,7 +311,7 @@ public abstract class AbstractVisualizationView extends AbstractView {
 	}
 	
 	/**
-	 * Adds a partial view to the content
+	 * Adds a partial view to the content.
 	 * 
 	 * @param partialView Partial view to add
 	 * @return ID to identify the object for modifying or removing it
@@ -282,7 +321,7 @@ public abstract class AbstractVisualizationView extends AbstractView {
 	}
 	
 	/**
-	 * Sets the content to a new partial view
+	 * Sets the content to a new partial view.
 	 * 
 	 * @param content Partial view to set
 	 */
@@ -304,7 +343,7 @@ public abstract class AbstractVisualizationView extends AbstractView {
 	}
 	
 	/**
-	 * Adds an image as ImageView to the content by its resource ID
+	 * Adds an image as ImageView to the content by its resource ID.
 	 * 
 	 * @param resourceId Resource ID defined in resources.xml
 	 * @returnID to identify the object for modifying or removing it
@@ -314,7 +353,7 @@ public abstract class AbstractVisualizationView extends AbstractView {
 	}
 	
 	/**
-	 * Resets the content area by removing all JComponents
+	 * Resets the content area by removing all JComponents.
 	 */
 	protected void clearContent() {
 		this.remove(this.contentContainer);
@@ -323,14 +362,14 @@ public abstract class AbstractVisualizationView extends AbstractView {
 	}
 	
 	/**
-	 * Refreshes the content area
+	 * Refreshes the content area.
 	 */
 	public void refreshContent() {
 		this.validate();
 	}
 	
 	/**
-	 * Sets up the navigation container
+	 * Sets up the navigation container.
 	 */
 	private void setupNavigationContainer() {
 		this.navigationContainer = new NavigationContainer();
@@ -339,7 +378,7 @@ public abstract class AbstractVisualizationView extends AbstractView {
 	}
 	
 	/**
-	 * Sets up the content container
+	 * Sets up the content container.
 	 */
 	private void setupContentContainer() {
 		this.contentContainer = new ContentContainer();
@@ -348,7 +387,7 @@ public abstract class AbstractVisualizationView extends AbstractView {
 	}
 	
 	/**
-	 * Sets up the footer container
+	 * Sets up the footer container.
 	 */
 	private void setupFooterContainer() {
 		this.footerContainer = new JPanel(new FlowLayout(FlowLayout.CENTER));

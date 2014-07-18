@@ -46,7 +46,7 @@ import edu.kit.iks.cryptographicslib.util.Configuration;
 import edu.kit.iks.cryptographicslib.util.Logger;
 
 /**
- * An instance of this class represents the view of a timeline 
+ * An instance of this class represents the view of a timeline.
  * 
  * @author Christian Dreher
  */
@@ -98,33 +98,33 @@ public class TimelineView extends JPanel implements ComponentListener {
 	private int colorDelta = 0;
 	
 	/**
-	 * Flag to determine, if the delta should be added or substracted
+	 * Flag to determine, if the delta should be added or substracted.
 	 */
 	private boolean colorDeltaTurn = true;
 	
 	/**
-	 * Timer to tilt the teaser code in given interval
+	 * Timer to tilt the teaser code in given interval.
 	 */
 	private Timer timer;
 	
 	/**
-	 * Interval in which the timer should tilt letters
+	 * Interval in which the timer should tilt letters.
 	 */
 	private int timerInterval = 50;
 	
 	/**
-	 * Serial Version UID
+	 * Serial Version UID.
 	 */
 	private static final long serialVersionUID = -4974243564527826198L;
 	
 	/**
-	 * Localization instance
+	 * Localization instance.
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(TimelineView.class);
 
 	/**
 	 * Buttons to open the popover of a specific procedure to eventually 
-	 * start their visualization
+	 * start their visualization.
 	 */
 	private VisualizationButtonView[] buttons;
 	
@@ -134,7 +134,7 @@ public class TimelineView extends JPanel implements ComponentListener {
 	private List<AbstractVisualizationInfo> visualizationInfos;
 	
 	/**
-	 * Gets the buttons symbolizing a procedure displayed on the timeline 
+	 * Gets the buttons symbolizing a procedure displayed on the timeline.
 	 * 
 	 * @return Array of all timeline-buttons
 	 */
@@ -144,7 +144,7 @@ public class TimelineView extends JPanel implements ComponentListener {
 	
 	/**
 	 * Constructor initializing a new instance of {TimelineView} with 
-	 * given {visualizationInfos}
+	 * given {visualizationInfos}.
 	 * 
 	 * @param visualizationInfos List of all {VisualizationInfo}-instances
 	 */
@@ -181,7 +181,7 @@ public class TimelineView extends JPanel implements ComponentListener {
 	}
 	
 	/**
-	 * Paints the timeline and all markers
+	 * Paints the timeline and all markers.
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -203,6 +203,7 @@ public class TimelineView extends JPanel implements ComponentListener {
 	
 	/**
 	 * Paints the timeline.
+	 * 
 	 * @param g2 The graphics context
 	 */
 	private void paintTimeline(Graphics2D g2) {
@@ -217,6 +218,7 @@ public class TimelineView extends JPanel implements ComponentListener {
 	
 	/**
 	 * Paints the markers and the related labels.
+	 * 
 	 * @param g2 The graphics context
 	 * @param visualizationInfo The visualization info that is represented by the marker
 	 */
@@ -236,7 +238,7 @@ public class TimelineView extends JPanel implements ComponentListener {
 		FontMetrics nameMetrics = g2.getFontMetrics(g2.getFont());
 		Rectangle2D nameRect = nameMetrics.getStringBounds(visualizationInfo.getName(), g2);
 		int nameX = markerX - (int) (nameRect.getWidth() / 2);
-		int nameY = - (int) nameRect.getY();
+		int nameY = -((int) nameRect.getY());
 		
 		// Calculate year label position.
 		String year;
@@ -254,27 +256,15 @@ public class TimelineView extends JPanel implements ComponentListener {
 		// Draw name label.
 		g2.setColor(LABEL_STROKE_COLOR);
 		g2.setStroke(new BasicStroke(LABEL_STROKE_WIDTH));
-		g2.drawLine(markerX, markerY - radius - padding, markerX, nameY + (int) nameRect.getHeight() + (int) nameRect.getY() + padding);
+		g2.drawLine(markerX, markerY - radius - padding, markerX,
+		        nameY + (int) nameRect.getHeight() + (int) nameRect.getY() + padding);
 		g2.setColor(NAME_TEXT_COLOR);
 		g2.drawString(visualizationInfo.getName(), nameX, nameY);
 		
 		// Draw year label.
 		g2.setColor(YEAR_TEXT_COLOR);
 		g2.drawString(year, yearX, yearY);
-		
-//		// Circle filled with color of difficulty
-//		g2.setColor(visualizationInfo.getDifficultyColor());
-//		g2.fillOval(markerX - radius, markerY - radius, diameter, diameter);
-//		
-//		// Background for blink effect
-//		Color white = new Color(255, 255, 255, 0);
-//		g2.setColor(this.fade(white));
-//		g2.fillOval(markerX - radius, markerY - radius, diameter, diameter);
-//		
-//		// Smaller inner circle filled with color of difficulty
-//		g2.setColor(visualizationInfo.getDifficultyColor());
-//		g2.fillOval(markerX - smallRadius, markerY - smallRadius, smallDiameter, smallDiameter);
-	
+
 		// Circle filled with color of difficulty
 		g2.setColor(visualizationInfo.getDifficultyColor());
 		g2.fillOval(markerX - radius, markerY - radius, diameter, diameter);
@@ -282,15 +272,10 @@ public class TimelineView extends JPanel implements ComponentListener {
 		// Alpha overlay for blink effect
 		Color white = new Color(255, 255, 255, 0);
 		g2.setColor(this.fade(white));
-	//	g2.fillOval(markerX - radius, markerY - radius, diameter, diameter);
 		
 		// Smaller inner circle filled with color of difficulty
-	//	g2.setColor(visualizationInfo.getDifficultyColor());
 		g2.fillOval(markerX - smallRadius, markerY - smallRadius, smallDiameter, smallDiameter);
-		
-		
-		
-		
+
 		// Circle with border of the button
 		g2.setColor(TIMELINE_STROKE_COLOR);
 		g2.setStroke(new BasicStroke(TIMELINE_STROKE_WIDTH));
@@ -375,7 +360,7 @@ public class TimelineView extends JPanel implements ComponentListener {
 	}
 	
 	/**
-	 * Initialized the timer
+	 * Initialized the timer.
 	 */
 	private void initTimer() {
 		Logger.debug("TimelineView", "initTimer", "Button animation started");

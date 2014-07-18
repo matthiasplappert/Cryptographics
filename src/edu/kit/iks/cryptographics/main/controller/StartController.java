@@ -47,29 +47,29 @@ import edu.kit.iks.cryptographicslib.framework.model.VisualizationInfoLoader;
 import edu.kit.iks.cryptographicslib.util.Logger;
 
 /**
- * An instance of this class is the start controller showing teasers
+ * An instance of this class is the start controller showing teasers.
  * 
  * @author Christian Dreher
  */
 public class StartController extends AbstractController {
 
 	/**
-	 * An instance of the popover view
+	 * An instance of the popover view.
 	 */
 	private TimelinePopoverView popoverView;
 
 	/**
-	 * An instance of the timeline view
+	 * An instance of the timeline view.
 	 */
 	private TimelineView timelineView;
 
 	/**
-	 * An instance of the welcome view
+	 * An instance of the welcome view.
 	 */
 	private WelcomeView welcomeView;
 
 	/**
-	 * A list of all VisualizationInfo-objects
+	 * A list of all VisualizationInfo-objects.
 	 */
 	private List<AbstractVisualizationInfo> visualizationInfos;
 
@@ -79,14 +79,15 @@ public class StartController extends AbstractController {
 	private Element startResources;
 
 	/**
-	 * Constructor initializing a new instance of {StartController}
+	 * Constructor initializing a new instance of {StartController}.
 	 */
 	public StartController() {
 		this.loadAllVisualizationInfos();
 	}
 
-	/**
-	 * Loads the view
+	/*
+	 * (non-Javadoc)
+	 * @see edu.kit.iks.cryptographicslib.framework.controller.AbstractController#loadView()
 	 */
 	@Override
 	public void loadView() {
@@ -152,7 +153,7 @@ public class StartController extends AbstractController {
 	}
 
 	/**
-	 * Unloads the view by setting all object references to null
+	 * Unloads the view by setting all object references to null.
 	 */
 	@Override
 	public void unloadView() {
@@ -195,7 +196,7 @@ public class StartController extends AbstractController {
 	}
 
 	/**
-	 * Shows a popover with information from given {visualizationInfo}
+	 * Shows a popover with information from given {visualizationInfo}.
 	 * 
 	 * @param visualizationInfo
 	 *            Object of {VisualizationInfo} containing the metadata to display
@@ -229,7 +230,7 @@ public class StartController extends AbstractController {
 	}
 
 	/**
-	 * Dismisses the popover
+	 * Dismisses the popover.
 	 */
 	public void dismissPopoverAction() {
 		this.popoverView.dismiss();
@@ -237,7 +238,7 @@ public class StartController extends AbstractController {
 	}
 
 	/**
-	 * Starts the visualization of a procedure from given {visualizationInfo}
+	 * Starts the visualization of a procedure from given {visualizationInfo}.
 	 * 
 	 * @param visualizationInfo
 	 *            Object of {VisualizationInfo} containing the data to instantiate related
@@ -253,7 +254,7 @@ public class StartController extends AbstractController {
 	}
 
 	/**
-	 * Helper method to initialize {_visualizationInfos}
+	 * Helper method to initialize {_visualizationInfos}.
 	 */
 	private void loadAllVisualizationInfos() {
 		this.visualizationInfos = VisualizationInfoLoader

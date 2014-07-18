@@ -33,25 +33,25 @@ import javax.swing.JPanel;
 import edu.kit.iks.cryptographicslib.util.Logger;
 
 /**
- * Class to display an image in the view
+ * Class to display an image in the view.
  * 
  * @author Christian Dreher
  */
 public class ImageView extends JPanel {
 
 	/**
-	 * Serial Version UID
+	 * Serial Version UID.
 	 */
 	private static final long serialVersionUID = 6272421643783212805L;
 	
 	/**
-	 * Image to be displayed
+	 * Image to be displayed.
 	 */
 	private BufferedImage image;
 
 	/**
 	 * Constructor initializing a new instance of {ImageView}
-	 * with given {img}
+	 * with given {img}.
 	 * 
 	 * @param img Image to be displayed
 	 */
@@ -72,7 +72,7 @@ public class ImageView extends JPanel {
     
     /**
      * Constructor initializing a new instance of {ImageView}
-     * with given {filePath}
+     * with given {filePath}.
      * 
      * @param filePath File path to the image to be displayed
      */
@@ -98,6 +98,8 @@ public class ImageView extends JPanel {
     }
 
 	/**
+	 * Gets the buffered image.
+	 * 
 	 * @return the image
 	 */
 	public BufferedImage getImage() {

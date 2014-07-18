@@ -11,7 +11,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package edu.kit.iks.cryptographics.caesar.view.intro;
+
+package edu.kit.iks.cryptographics.caesar.view.trial;
 
 import java.awt.event.ActionListener;
 import java.util.AbstractMap.SimpleEntry;
@@ -20,21 +21,21 @@ import java.util.List;
 import edu.kit.iks.cryptographicslib.framework.view.AbstractVisualizationView;
 
 /**
- * @author Christian Dreher <uaeef@student.kit.edu>
+ * @author Christian Dreher
  *
  */
-public class IntroView extends AbstractVisualizationView {
-	
-	/**
-	 * Serial version UID.
-	 */
-	private static final long serialVersionUID = -2526016347621838350L;
-	
-	public IntroView(ActionListener al, List<SimpleEntry<String, String>> variables) {
-		super(al, variables);
-		
-		// Navigation and footer
-		this.setNextButton(this.getVariableValue("nextButtonLabel"));
-		this.setStepButton(this.getVariableValue("stepButtonLabel"));
-	}
+public class TrialView extends AbstractVisualizationView {
+
+    /**
+     * Serial version UID.
+     */
+    private static final long serialVersionUID = 1744518643503441631L;
+
+    /**
+     * @param al
+     * @param variables
+     */
+    public TrialView(ActionListener al, List<SimpleEntry<String, String>> variables) {
+        super(al, variables);
+    }
 }

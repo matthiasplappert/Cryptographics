@@ -52,7 +52,7 @@ import edu.kit.iks.cryptographicslib.util.Logger;
 public class NumpadView extends JPanel implements ActionListener {
 
 	/**
-	 * Serial Version UID
+	 * Serial Version UID.
 	 */
 	private static final long serialVersionUID = 5986894202162733671L;
 
@@ -60,29 +60,29 @@ public class NumpadView extends JPanel implements ActionListener {
 	
 	/**
 	 * When digit mode is used, the buttons pressed will replace
-	 * the number in the given input field
+	 * the number in the given input field.
 	 */
 	public static final int DIGIT_MODE = 0;
 	
 	/**
 	 * When number mode is used, the buttons pressed will append
-	 * the number in the given input field
+	 * the number in the given input field.
 	 */
 	public static final int NUMBER_MODE = 1;
 	
 	/**
-	 * The input mode set by the constructor
+	 * The input mode set by the constructor.
 	 */
 	
 	private int inputMode;
 
 	/**
-	 * The text field passed through the constructor
+	 * The text field passed through the constructor.
 	 */
 	private JTextField textField;
 
 	/**
-	 * The matrix of all buttons that this view paints
+	 * The matrix of all buttons that this view paints.
 	 */
 	private JButton[][] keys;
 
@@ -93,7 +93,7 @@ public class NumpadView extends JPanel implements ActionListener {
 	 * NumpadView.DIGIT_MODE, in which the text in the textField will
 	 * always be replaced by the button pressed, or NumpadView.NUMBER_MODE,
 	 * in which the button pressed will only be appended to the text in the
-	 * textField
+	 * textField.
 	 * 
 	 * @param textField Text field to be manipulated by this numpad
 	 * @param mode The input mode (Either DIGIT_MODE or NUMBER_MODE)
@@ -211,7 +211,7 @@ public class NumpadView extends JPanel implements ActionListener {
 	/**
 	 * Creates a new JButton instance with given String as label.
 	 * kf stands for "Key factory" and is a factory method to
-	 * instantiate new buttons more convenient
+	 * instantiate new buttons more convenient.
 	 * 
 	 * @param label The label of the button
 	 * 
@@ -226,7 +226,7 @@ public class NumpadView extends JPanel implements ActionListener {
 	 * If given name is "bs" (BackSpace), a backspace button
 	 * will be created. If given name is "e" (Enter), an enter
 	 * button will be created. All other will result in a normal
-	 * button representing a character
+	 * button representing a character.
 	 * 
 	 * @param label The label of the button
 	 * @param name (bs|e|?), according to the button which should be created
@@ -260,7 +260,7 @@ public class NumpadView extends JPanel implements ActionListener {
 	}
 	
 	/**
-	 * Loads an image icon from given path
+	 * Loads an image icon from given path.
 	 * 
 	 * @param path path to image
 	 * @return ImageIcon instance

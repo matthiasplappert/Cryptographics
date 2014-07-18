@@ -37,7 +37,7 @@ import edu.kit.iks.cryptographicslib.util.Utility;
 public abstract class AbstractPartialView extends AbstractView {
 
 	/**
-	 * Serial version UID
+	 * Serial version UID.
 	 */
 	private static final long serialVersionUID = -1106719043723627842L;
 
@@ -63,7 +63,7 @@ public abstract class AbstractPartialView extends AbstractView {
 	public abstract void preparePartialView();
 	
 	/**
-	 * Adds an element to the content area
+	 * Adds an element to the content area.
 	 * 
 	 * @param element Element to add
 	 * @return ID to identify the object for modifying or removing it
@@ -76,7 +76,7 @@ public abstract class AbstractPartialView extends AbstractView {
 	}
 	
 	/**
-	 * Adds a text to the content area 
+	 * Adds a text to the content area.
 	 * 
 	 * @param text Text to add to content
 	 * @return ID to identify the object for modifying or removing it
@@ -96,7 +96,7 @@ public abstract class AbstractPartialView extends AbstractView {
 	}
 	
 	/**
-	 * Adds a partial view to the content
+	 * Adds a partial view to the content.
 	 * 
 	 * @param partialView Partial view to add
 	 * @return ID to identify the object for modifying or removing it
@@ -106,7 +106,7 @@ public abstract class AbstractPartialView extends AbstractView {
 	}
 	
 	/**
-	 * Adds an image as ImageView to the content by its resource ID
+	 * Adds an image as ImageView to the content by its resource ID.
 	 * 
 	 * @param resourceId Resource ID defined in resources.xml
 	 * @returnID to identify the object for modifying or removing it

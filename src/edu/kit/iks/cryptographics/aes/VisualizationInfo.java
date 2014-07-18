@@ -30,78 +30,93 @@ import edu.kit.iks.cryptographicslib.framework.model.AbstractVisualizationInfo;
 import edu.kit.iks.cryptographicslib.framework.model.VisualizationDifficulty;
 import edu.kit.iks.cryptographicslib.util.Configuration;
 
+/**
+ * Visualization info for AES.
+ * 
+ * @author Christian Dreher
+ */
 public class VisualizationInfo extends AbstractVisualizationInfo {
-	
-	/**
-	 * Localization instance
-	 */
-	private static I18n i18n = Configuration.getInstance().getI18n(VisualizationInfo.class);
-	
-	/*
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getId()
-	 */
-	@Override
-	public String getId() {
-		return "aes";
-	}
-
-	/*
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getName()
-	 */
-	@Override
-	public String getName() {
-		return i18n.tr("AES");
-	}
-
-	/*
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getDescription()
-	 */
-	@Override
-	public String getDescription() {
-		return i18n.tr("Learn about one of the most important modern ciphers, the Advanced Encryption Standard.");
-	}
-
-	/*
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getTimelineOffset()
-	 */
-	@Override
-	public float getTimelineOffset() {
-		return 0.93f;
-	}
-	
-	/*
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getDifficulty()
-	 */
-	@Override
-	public VisualizationDifficulty getDifficulty() {
-		return VisualizationDifficulty.NOT_INTERACTIVE;
-	}
-	
-	/*
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getYear()
-	 */
-	@Override
-	public int getYear() {
-		return 1998;
-	}
-	
-	/*
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getQRCodeContent()
-	 */
-	@Override
-	public String getQRCodeContent() {
-		return i18n.tr("http://en.wikipedia.org/wiki/Advanced_Encryption_Standard");
-	}
-	
-	/*
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getControllerClasses()
-	 */
-	@Override
-	public List<Class<? extends AbstractVisualizationController>> getControllerClasses() {
-		List<Class<? extends AbstractVisualizationController>> controllerClasses = new ArrayList<>();
-
-		controllerClasses.add(InformationController.class);
-		
-		return controllerClasses;
-	}
+    
+    /**
+     * Localization instance.
+     */
+    private static I18n i18n = Configuration.getInstance().getI18n(VisualizationInfo.class);
+    
+    /**
+     * Timeline offset of the visualization.
+     */
+    private static final float TIMELINE_OFFSET = 0.91f;
+    
+    /**
+     * Year in which the procedure was invented.
+     */
+    private static final int INVENTION_YEAR = 1998;
+    
+    /*
+     * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getId()
+     */
+    @Override
+    public final String getId() {
+        return "aes";
+    }
+    
+    /*
+     * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getName()
+     */
+    @Override
+    public final String getName() {
+        return i18n.tr("AES");
+    }
+    
+    /*
+     * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getDescription()
+     */
+    @Override
+    public final String getDescription() {
+        return i18n.tr("Learn about one of the most important modern ciphers, the Advanced Encryption Standard.");
+    }
+    
+    /*
+     * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getTimelineOffset()
+     */
+    @Override
+    public final float getTimelineOffset() {
+        return VisualizationInfo.TIMELINE_OFFSET;
+    }
+    
+    /*
+     * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getDifficulty()
+     */
+    @Override
+    public final VisualizationDifficulty getDifficulty() {
+        return VisualizationDifficulty.NOT_INTERACTIVE;
+    }
+    
+    /*
+     * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getYear()
+     */
+    @Override
+    public final int getYear() {
+        return VisualizationInfo.INVENTION_YEAR;
+    }
+    
+    /*
+     * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getQRCodeContent()
+     */
+    @Override
+    public final String getQRCodeContent() {
+        return i18n.tr("http://en.wikipedia.org/wiki/Advanced_Encryption_Standard");
+    }
+    
+    /*
+     * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getControllerClasses()
+     */
+    @Override
+    public final List<Class<? extends AbstractVisualizationController>> getControllerClasses() {
+        List<Class<? extends AbstractVisualizationController>> controllerClasses = new ArrayList<>();
+        
+        controllerClasses.add(InformationController.class);
+        
+        return controllerClasses;
+    }
 }

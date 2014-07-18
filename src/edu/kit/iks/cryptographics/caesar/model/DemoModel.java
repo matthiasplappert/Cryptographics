@@ -17,33 +17,45 @@
  * THE SOFTWARE.
  */
 
-package edu.kit.iks.cryptographicslib.framework.model;
+package edu.kit.iks.cryptographics.caesar.model;
 
 /**
- * Enum to model a difficulty for a specific visualization.
- * 
  * @author Christian Dreher
+ *
  */
-public enum VisualizationDifficulty {
+public class DemoModel {
 	
-	/**
-	 * Easy difficulty.
-	 */
-	EASY,
+	private int currentPosition = 0;
 	
-	/**
-	 * Medium difficulty.
-	 */
-	MEDIUM,
+	private char[] stringToEncrypt;
+	private int key;
 	
-	/**
-	 * Hard difficulty.
-	 */
-	HARD,
+	public DemoModel(char[] stringToEncrypt, int key) {
+		this.stringToEncrypt = stringToEncrypt;
+		this.key = key;
+	}
 	
-	/**
-	 * Used to describe visualization that do not have an interactive visualization
-	 * yet and only present additional information.
-	 */
-	NOT_INTERACTIVE
+	public boolean next() {
+		this.currentPosition++;
+		
+		if (this.currentPosition >= this.stringToEncrypt.length) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public String getCurrentChar() {
+		return this.stringToEncrypt[this.currentPosition] + "";
+	}
+	
+	public String getCurrentCharEncrypted() {
+		String currentChar = this.getCurrentChar();
+		
+		return CryptoModel.getInstance().enc(this.key, currentChar);
+	}
+	
+	public int getCurrentPosition() {
+		return this.currentPosition;
+	}
 }

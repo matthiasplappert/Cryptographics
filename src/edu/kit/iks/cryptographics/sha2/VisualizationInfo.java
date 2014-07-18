@@ -33,7 +33,7 @@ import edu.kit.iks.cryptographicslib.util.Configuration;
 public class VisualizationInfo extends AbstractVisualizationInfo {
 	
 	/**
-	 * Localization instance
+	 * Localization instance.
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(VisualizationInfo.class);
 	
@@ -66,7 +66,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	 */
 	@Override
 	public float getTimelineOffset() {
-		return 0.97f;
+		return 0.96f;
 	}
 	
 	/*

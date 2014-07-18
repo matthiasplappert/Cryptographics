@@ -26,6 +26,7 @@ import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.cryptographics.caesar.controller.DemoController;
 import edu.kit.iks.cryptographics.caesar.controller.IntroController;
+import edu.kit.iks.cryptographics.caesar.controller.TrialController;
 import edu.kit.iks.cryptographicslib.common.controller.InformationController;
 import edu.kit.iks.cryptographicslib.framework.controller.AbstractVisualizationController;
 import edu.kit.iks.cryptographicslib.framework.model.AbstractVisualizationInfo;
@@ -39,7 +40,7 @@ import edu.kit.iks.cryptographicslib.util.Configuration;
 public class VisualizationInfo extends AbstractVisualizationInfo {
 
 	/**
-	 * Localization instance
+	 * Localization instance.
 	 */
 	private static I18n i18n = Configuration.getInstance().getI18n(
 			VisualizationInfo.class);
@@ -52,7 +53,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	}
 
 	/*
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getControllerClasses ()
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getControllerClasses()
 	 */
 	@Override
 	public List<Class<? extends AbstractVisualizationController>> getControllerClasses() {
@@ -60,6 +61,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 
 		controllerClasses.add(IntroController.class);
 		controllerClasses.add(DemoController.class);
+		controllerClasses.add(TrialController.class);
 		controllerClasses.add(InformationController.class);
 
 		return controllerClasses;
@@ -104,7 +106,7 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	}
 
 	/*
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getQRCodeContent ()
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getQRCodeContent()
 	 */
 	@Override
 	public String getQRCodeContent() {
@@ -112,11 +114,11 @@ public class VisualizationInfo extends AbstractVisualizationInfo {
 	}
 
 	/*
-	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getTimelineOffset ()
+	 * @see edu.kit.iks.CryptographicsLib.AbstractVisualizationInfo#getTimelineOffset()
 	 */
 	@Override
 	public float getTimelineOffset() {
-		return 0.05f;
+		return 0.04f;
 	}
 
 	/*
