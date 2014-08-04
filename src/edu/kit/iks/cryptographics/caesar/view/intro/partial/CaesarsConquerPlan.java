@@ -36,7 +36,6 @@ public class CaesarsConquerPlan extends AbstractPartialView {
 		super(variables);
 	}
 
-
 	/* (non-Javadoc)
 	 * @see edu.kit.iks.cryptographicslib.views.partials.AbstractPartialView#preparePartialView()
 	 */

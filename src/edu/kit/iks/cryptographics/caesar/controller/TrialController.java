@@ -17,6 +17,7 @@ package edu.kit.iks.cryptographics.caesar.controller;
 import org.xnap.commons.i18n.I18n;
 
 import edu.kit.iks.cryptographics.caesar.view.trial.TrialView;
+import edu.kit.iks.cryptographics.caesar.view.trial.partial.EnterName;
 import edu.kit.iks.cryptographicslib.framework.controller.AbstractSteppableVisualizationController;
 import edu.kit.iks.cryptographicslib.framework.model.AbstractVisualizationInfo;
 import edu.kit.iks.cryptographicslib.util.Configuration;
@@ -44,6 +45,7 @@ public class TrialController extends AbstractSteppableVisualizationController {
         private static String backButtonLabel = Strings.i18n.tr("Back to demonstration");
         private static String stepButtonLabel = Strings.i18n.tr("Proceed");
         
+        private static String trialExplanation = Strings.i18n.tr("test");
     };
     
     /**
@@ -104,6 +106,14 @@ public class TrialController extends AbstractSteppableVisualizationController {
      * @param roh Running order helper
      */
     private void defineRunningOrder(final RunningOrderHelper roh) {
-        roh.enqueue(null);
+        roh.enqueue(this.prepareEnterName());
+    }
+    
+    private EnterName prepareEnterName() {
+        VariableHelper vh = new VariableHelper();
+        
+        vh.add("explanation", TrialController.Strings.trialExplanation);
+        
+        return new EnterName(vh.toList());
     }
 }
