@@ -346,8 +346,10 @@ public class VisualizationContainerController extends AbstractController {
      * Function for unloading the helpView.
      */
     public void dismissHelpPopover() {
-        this.helpPopoverView.dismiss();
-        this.helpPopoverView = null;
+        if (this.helpPopoverView != null) {
+            this.helpPopoverView.dismiss();
+            this.helpPopoverView = null;
+        }
     }
 
     /**

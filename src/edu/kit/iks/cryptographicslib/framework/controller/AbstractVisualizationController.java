@@ -106,6 +106,8 @@ public abstract class AbstractVisualizationController extends AbstractController
 				return false;
 		}
 		
+		((VisualizationContainerController) this.getParentController()).dismissHelpPopover();
+		
 		return true;
 	}
 	

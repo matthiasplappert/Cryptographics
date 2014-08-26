@@ -214,7 +214,7 @@ public class DemoController extends AbstractSteppableVisualizationController {
 		String expected = this.model.getCurrentCharEncrypted();
 		
 		if (userInput.equals(expected)) {
-			this.tryEncryptCaesar.correctInput();
+			this.tryEncryptCaesar.correctInput(this.model);
 			if (this.model.next()) {
 				this.tryEncryptCaesar.encryptNext(this.model);
 			} else {
@@ -223,7 +223,7 @@ public class DemoController extends AbstractSteppableVisualizationController {
 				this.defaultStepAction();
 			}
 		} else {
-			this.tryEncryptCaesar.incorrectInput();
+			this.tryEncryptCaesar.incorrectInput(this.model);
 		}
 	}
 

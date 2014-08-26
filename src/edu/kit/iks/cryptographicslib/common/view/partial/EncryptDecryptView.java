@@ -49,6 +49,18 @@ public class EncryptDecryptView extends JPanel {
 
 	private String key = EncryptDecryptView.i18n.tr("Key");
 	
+	private static class COLORS_SUCCESS {
+	    public final static Color FONT = new Color(0x31708f);
+	    public final static Color BORDER = new Color(0xbce8f1);
+	    public final static Color BACKGROUND = new Color(0xd9edf7);
+	}
+	
+	private static class COLORS_ERROR {
+        public final static Color FONT = new Color(0xa94442);
+        public final static Color BORDER = new Color(0xebccd1);
+        public final static Color BACKGROUND = new Color(0xf2dede);
+	}
+	
 	private static class Layout {
 		public static GridBagConstraints gbc;
 		public static Dimension dimension = new Dimension(25, 25);
@@ -95,7 +107,21 @@ public class EncryptDecryptView extends JPanel {
 		this.revalidate();
 	}
 	
-	public void highlightInput(int index) {
+	public void highlightInputSuccess(int index) {
+	    this.inputs[index].setForeground(EncryptDecryptView.COLORS_SUCCESS.FONT);
+	    this.inputs[index].setBorder(BorderFactory.createLineBorder(COLORS_SUCCESS.BORDER));
+	    this.inputs[index].setBackground(EncryptDecryptView.COLORS_SUCCESS.BACKGROUND);
+	    this.revalidate();
+	}
+	
+	public void highlightInputError(int index) {
+        this.inputs[index].setForeground(EncryptDecryptView.COLORS_ERROR.FONT);
+        this.inputs[index].setBorder(BorderFactory.createLineBorder(COLORS_ERROR.BORDER));
+        this.inputs[index].setBackground(EncryptDecryptView.COLORS_ERROR.BACKGROUND);
+        this.revalidate();
+    }
+	
+	public void highlightInputBorder(int index) {
 		this.inputs[index].setBorder(BorderFactory.createLineBorder(Color.RED));
 		this.revalidate();
 	}
@@ -103,7 +129,6 @@ public class EncryptDecryptView extends JPanel {
 	public void unhighlightAll() {
 		for (int i = 0; i < this.inputs.length; i++) {
 			this.labels[i].setBorder(null);
-			this.inputs[i].setBorder(BorderFactory.createLineBorder(Color.darkGray));
 		}
 	}
 	
@@ -148,12 +173,13 @@ public class EncryptDecryptView extends JPanel {
 			this.inputs[i].setEditable(false);
 			this.inputs[i].setHorizontalAlignment(JTextField.CENTER);
 			this.inputs[i].setPreferredSize(EncryptDecryptView.Layout.dimension);
-			this.inputs[i].setBorder(BorderFactory
-					.createLineBorder(Color.darkGray));
+			this.inputs[i].setBorder(BorderFactory.createLineBorder(Color.darkGray));
+            this.inputs[i].setBackground(Color.WHITE);
+            this.inputs[i].setOpaque(true);
 			
 			// Questionmark to indicate input possibility 
 			this.inputs[i].setText("?");
-			
+
 			this.add(this.inputs[i], this.inputLayout(i));
 		}
 		

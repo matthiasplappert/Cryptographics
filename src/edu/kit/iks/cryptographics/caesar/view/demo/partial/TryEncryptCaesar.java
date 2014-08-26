@@ -97,7 +97,7 @@ public class TryEncryptCaesar extends AbstractPartialView {
 		JTextField firstLetter = this.encryptCaesarView.getInput(0);
 		firstLetter.setText(demoModel.getCurrentCharEncrypted());
 		
-		this.encryptCaesarView.highlightInput(demoModel.getCurrentPosition());
+		this.encryptCaesarView.highlightInputBorder(demoModel.getCurrentPosition());
 		this.alphabetStripView.highlightRedByLetter(demoModel.getCurrentCharEncrypted());
 		
 		this.revalidate();
@@ -110,6 +110,7 @@ public class TryEncryptCaesar extends AbstractPartialView {
 	 */
 	public void encryptFirst(DemoModel demoModel) {
 		this.explanation.setText(this.getVariableValue("explanation3"));
+		this.encryptCaesarView.highlightInputSuccess(0);
 		this.encryptNext(demoModel);
 	}
 	
@@ -139,14 +140,14 @@ public class TryEncryptCaesar extends AbstractPartialView {
 	/**
 	 * Restructures the view to let the user know that his input was correct.
 	 */
-	public void correctInput() {
-		
+	public void correctInput(DemoModel demoModel) {
+	    this.encryptCaesarView.highlightInputSuccess(demoModel.getCurrentPosition());
 	}
 	
 	/**
 	 * Restructures the view to let the user know that his input was incorrect.
 	 */
-	public void incorrectInput() {
-		
+	public void incorrectInput(DemoModel demoModel) {
+	    this.encryptCaesarView.highlightInputError(demoModel.getCurrentPosition());
 	}
 }
