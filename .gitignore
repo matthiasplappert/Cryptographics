@@ -14,26 +14,17 @@
 *.ist
 
 # PDF
-/cg_pflichtenheft/*.pdf
-/cg_entwurf/*.pdf
-/cg_implementierungsheft/*.pdf
-/cg_validierungsheft/*.pdf
+*.pdf
 
 # Java
-/cg_implementierung/bin/*
-/cg_implementierung/diagrams/*.png
-cg_implementierung/.metadata/
-cg_implementierung/src/edu/.metadata/
-/cg_implementierung/statistics.csv
-/cg_implementierung/error.log
-/cg_implementierung/compile_po.bat
-/cg_implementierung/po/*.mo
-
-/cg_implementierung/diagrams/Temp.ucls
-
-# Netbeans
-/cg_implementierung/nbproject/
-/cg_implementierung/build/
-/cg_implementierung/build.xml
-/cg_implementierung/lib/nblibraries.properties
-/cg_implementierung/manifest.mf
+/diagrams/*.png
+/.metadata/
+/src/edu/.metadata/
+/statistics.csv
+/error.log
+/po/*.mo
+/diagrams/Temp.ucls
+/bin
+/.classpath
+/.project
+/.settings

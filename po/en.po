@@ -1,0 +1,225 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Cryptographics\n"
+"POT-Creation-Date: 2014-07-18 21:10+0100\n"
+"PO-Revision-Date: 2014-07-18 21:10+0100\n"
+"Last-Translator: Christian Dreher <CDreher3011@gmail.com>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: tr;trc;trn:1,2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: ../src\n"
+
+#: ../src/edu/kit/iks/cryptographics/aes/VisualizationInfo.java:53
+msgid "AES"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/aes/VisualizationInfo.java:61
+msgid ""
+"Learn about one of the most important modern ciphers, the Advanced "
+"Encryption Standard."
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/aes/VisualizationInfo.java:93
+msgid "http://en.wikipedia.org/wiki/Advanced_Encryption_Standard"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/DemoController.java:43
+msgid "Skip demonstration"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/DemoController.java:44
+msgid "Back to introduction"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/DemoController.java:45
+msgid "Proceed"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/DemoController.java:48
+msgid ""
+"Caesar's idea was to simply shift each letter in his name by three, so no "
+"undesired reader will know who sent the plan in the future. Press 'Proceed' "
+"and see how it works."
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/DemoController.java:51
+msgid ""
+"Just click 'Proceed' at the bottom to see how Caesars idea exactly works."
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/DemoController.java:55
+msgid "CAESAR"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/DemoController.java:56
+msgid ""
+"Let's start with the first letter, 'C'. Below you can see an alphabet "
+"strip..."
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/IntroController.java:46
+msgid "Skip introduction"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/IntroController.java:47
+msgid "Tell me more"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/IntroController.java:50
+msgid ""
+"If you want to hear the story of how Caesar came up with encrypting, click "
+"'Tell me more', otherwise click 'Skip Introduction'"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/IntroController.java:55
+msgid ""
+"One fine day, at about 70 B.C., Caesar was puzzling on an extremely "
+"brilliant plan to finally conquer Gallia and was about to send it to his "
+"generals."
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/IntroController.java:58
+msgid ""
+"Unfortunately his courier took the way through the forest, where Kryptolix "
+"chased some wild boars."
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/IntroController.java:60
+msgid ""
+"When Kryptolix noticed the unsuspecting and whistling roman courier, he "
+"punched him back to Rome as the crow flies. But the courier had lost his "
+"invaluable scroll!"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/IntroController.java:63
+msgid ""
+"When reading the scroll the courier lost, Kryptolix identified it as "
+"Caesar's plan to conquer Gallia. Because of this, Kryptolix and his friends "
+"were able to defeat Caesar once more!"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/controller/IntroController.java:66
+msgid ""
+"Caesar was raging! While he was torturing some minions, suddenly an "
+"hellacious and foolproof idea crossed his mind. In his next message he would "
+"encrypt his name! Hue Hue Hue. Help him!"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/model/VisualizationInfo.java:74
+msgid ""
+"Get to know how Caesar fooled his enemies that intercepted his orders and "
+"see one of the oldest attempts to make confidential material unreadable for "
+"undesireable readers."
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/model/VisualizationInfo.java:103
+msgid "Caesar"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/caesar/model/VisualizationInfo.java:111
+msgid "http://en.wikipedia.org/wiki/Caesar_cipher"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/main/view/VisualizationContainerView.java:92
+msgid "Exit"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/main/view/VisualizationContainerView.java:111
+msgid "Help"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/main/view/WelcomeView.java:146
+msgid "Cryptographics"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/main/view/partial/IdlePopoverView.java:116
+msgid ""
+"You haven't done anything in a while. To keep this exhibit functional, the "
+"system will reset itself soon. If you want to continue using the system, "
+"just dismiss this dialog."
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/main/view/partial/IdlePopoverView.java:133
+msgid "Continue"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/main/view/partial/TimelinePopoverView.java:126
+msgid "Start"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/main/view/partial/TimelineView.java:246
+#, java-format
+msgid "{0} B.C."
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/onetimepad/VisualizationInfo.java:53
+msgid "One-Time Pad"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/onetimepad/VisualizationInfo.java:61
+msgid ""
+"Find out how you can encrypt something in such a way that it is impossible "
+"for someone else to crack it."
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/onetimepad/VisualizationInfo.java:93
+msgid "http://en.wikipedia.org/wiki/One-time_pad"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/sha2/VisualizationInfo.java:53
+msgid "SHA-2"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/sha2/VisualizationInfo.java:61
+msgid ""
+"Learn about the cryptographic hash function SHA-2. A hash function allows "
+"you to transform your data in one direction only, making it impossible to "
+"reverse the process."
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographics/sha2/VisualizationInfo.java:93
+msgid "http://en.wikipedia.org/wiki/SHA_2"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographicslib/common/controller/InformationController.java:101
+#, java-format
+msgid ""
+"Here you can learn more about {0}. You can also scan the QR code at the "
+"bottom of the page to take additional information home. Once you're done, "
+"just click the exit button."
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographicslib/common/view/partial/KeyboardView.java:216
+msgid "keyboard-y"
+msgstr "Y"
+
+#: ../src/edu/kit/iks/cryptographicslib/common/view/partial/KeyboardView.java:224
+msgid "keyboard-z"
+msgstr "Z"
+
+#: ../src/edu/kit/iks/cryptographicslib/framework/model/AbstractVisualizationInfo.java:190
+msgid "Easy"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographicslib/framework/model/AbstractVisualizationInfo.java:191
+msgid "Medium"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographicslib/framework/model/AbstractVisualizationInfo.java:192
+msgid "Hard"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographicslib/framework/model/AbstractVisualizationInfo.java:193
+msgid "Not Interactive"
+msgstr ""
+
+#: ../src/edu/kit/iks/cryptographicslib/framework/view/AbstractView.java:46
+msgid "No help can be offered at this moment."
+msgstr ""

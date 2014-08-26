@@ -1,8 +1,9 @@
 Copyright (c) 2014 Matthias Jaenicke <matthias.jaenicke@student.kit.edu>,
-Matthias Plappert <undkc@student.kit.edu>, Julien Duman
-<uncyc@student.kit.edu>, Christian Dreher <uaeef@student.kit.edu>,
-Wasilij Beskorovajnov <uajkm@student.kit.edu> and Aydin Tekin
-<aydin.tekin@student.kit.edu>
+Matthias Plappert <undkc@student.kit.edu>,
+Julien Duman <uncyc@student.kit.edu>,
+Christian Dreher <uaeef@student.kit.edu>,
+Wasilij Beskorovajnov <uajkm@student.kit.edu> and 
+Aydin Tekin <aydin.tekin@student.kit.edu>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
